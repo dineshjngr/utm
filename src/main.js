@@ -10,7 +10,14 @@ import {
   exportHistoryToCSV, 
   exportHistoryToJSON 
 } from './modules/history.js';
-import { GA4_CHANNEL_RULES, GOLDEN_RULES, auditUTM } from './modules/taxonomy.js';
+import { 
+  GA4_CHANNEL_RULES, 
+  GA4_UNASSIGNED_FIXES, 
+  CAMPAIGN_TAGGING_STEPS, 
+  DOS_AND_DONTS, 
+  GOLDEN_RULES, 
+  auditUTM 
+} from './modules/taxonomy.js';
 import { BATCH_CHANNELS, generateBatchMatrix, exportBatchToCSV, exportBatchToTSV } from './modules/batch.js';
 import { deconstructUrl } from './modules/inspector.js';
 import { shortenUrl, calculateSavings } from './modules/shortener.js';
@@ -1272,22 +1279,141 @@ function renderInspection(data) {
 // =========================================================
 function initTaxonomyGuide() {
   const cardsGrid = document.getElementById('taxonomy-cards-grid');
-  if (cardsGrid) {
-    cardsGrid.innerHTML = GA4_CHANNEL_RULES.map(rule => `
+  const searchInput = document.getElementById('channel-search-input');
+  const filterButtons = document.querySelectorAll('.channel-filter-btn');
+  let currentCategory = 'all';
+
+  function renderChannelCards() {
+    if (!cardsGrid) return;
+    const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+
+    const filtered = GA4_CHANNEL_RULES.filter(rule => {
+      const matchCat = currentCategory === 'all' || rule.category === currentCategory;
+      if (!matchCat) return false;
+      if (!query) return true;
+      return (
+        rule.channel.toLowerCase().includes(query) ||
+        rule.recommendedMedium.toLowerCase().includes(query) ||
+        rule.description.toLowerCase().includes(query) ||
+        rule.example.toLowerCase().includes(query)
+      );
+    });
+
+    if (filtered.length === 0) {
+      cardsGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; padding: 2rem; text-align: center; color: var(--text-secondary);">
+          No matching GA4 channels found for "${query}". Try searching for "cpc", "email", or "social".
+        </div>
+      `;
+      return;
+    }
+
+    cardsGrid.innerHTML = filtered.map(rule => `
       <div class="taxonomy-card">
-        <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap;">
           <span class="channel-rule-badge" style="background: ${rule.color}20; color: ${rule.color};">${rule.channel}</span>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Recommended: <strong>${rule.recommendedMedium}</strong></span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Medium: <strong>${rule.recommendedMedium}</strong></span>
         </div>
-        <p style="font-size: 0.85rem; color: var(--text-secondary);">${rule.description}</p>
-        <div>
-          <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.2rem;">Example UTMs:</span>
-          <div class="rule-code-snippet">${rule.example}</div>
+        <p style="font-size: 0.85rem; color: var(--text-main); font-weight: 500; margin-top: 0.25rem;">${rule.plainSummary || ''}</p>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.45;">${rule.description}</p>
+        <div style="margin-top: 0.25rem;">
+          <span style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 0.2rem;">Example UTM:</span>
+          <div class="rule-example-row">
+            <div class="rule-code-snippet" style="flex: 1;">${rule.example}</div>
+            <button type="button" class="rule-copy-btn" data-copy="${rule.example}" title="Copy Example">Copy</button>
+          </div>
         </div>
+        ${rule.commonMistake ? `
+          <div class="channel-mistake-hint">
+            <strong>Avoid:</strong> <span>${rule.commonMistake}</span>
+          </div>
+        ` : ''}
+      </div>
+    `).join('');
+
+    // Attach copy buttons
+    cardsGrid.querySelectorAll('.rule-copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const text = btn.getAttribute('data-copy');
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast('Copied example UTM to clipboard!', 'info');
+        } catch {
+          showToast('Failed to copy', 'error');
+        }
+      });
+    });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', renderChannelCards);
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = btn.getAttribute('data-category') || 'all';
+      renderChannelCards();
+    });
+  });
+
+  renderChannelCards();
+
+  // 5-Step Campaign Tagging Blueprint
+  const taggingContainer = document.getElementById('tagging-steps-container');
+  if (taggingContainer) {
+    taggingContainer.innerHTML = CAMPAIGN_TAGGING_STEPS.map(s => `
+      <div class="tagging-step-card">
+        <span class="step-num-pill">${s.step}</span>
+        <div class="step-card-title">${s.title}</div>
+        <div class="step-card-subtitle">${s.subtitle}</div>
+        <div class="step-card-desc">${s.description}</div>
+        <div class="step-card-tip"><strong>Pro Tip:</strong> ${s.tip}</div>
       </div>
     `).join('');
   }
 
+  // Unassigned Traffic Fixes
+  const unassignedContainer = document.getElementById('unassigned-fixes-container');
+  if (unassignedContainer) {
+    unassignedContainer.innerHTML = GA4_UNASSIGNED_FIXES.map(f => `
+      <div class="unassigned-card">
+        <div class="unassigned-card-title">${f.title}</div>
+        <div class="unassigned-symptom-tag">${f.symptom}</div>
+        <p class="unassigned-fix-text" style="margin-bottom: 0.5rem;"><strong>Why it breaks:</strong> ${f.whyItBreaks}</p>
+        <p class="unassigned-fix-text" style="color: var(--primary);"><strong>Fix:</strong> ${f.howToFix}</p>
+      </div>
+    `).join('');
+  }
+
+  // Do's and Don'ts Matrix
+  const dosDontsContainer = document.getElementById('dos-donts-container');
+  if (dosDontsContainer) {
+    const dos = DOS_AND_DONTS.filter(d => d.type === 'do');
+    const donts = DOS_AND_DONTS.filter(d => d.type === 'dont');
+    dosDontsContainer.innerHTML = `
+      <div class="dos-card">
+        <h4 style="font-size: 1rem; font-weight: 600; color: #10B981; display: flex; align-items: center; gap: 6px;">
+          <span>✅</span> Campaign Best Practices (Do)
+        </h4>
+        <ul class="rules-checklist">
+          ${dos.map(d => `<li><strong>${d.title}</strong>${d.desc}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="donts-card">
+        <h4 style="font-size: 1rem; font-weight: 600; color: #EF4444; display: flex; align-items: center; gap: 6px;">
+          <span>❌</span> Costly Mistakes to Avoid (Don't)
+        </h4>
+        <ul class="rules-checklist">
+          ${donts.map(d => `<li><strong>${d.title}</strong>${d.desc}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+  }
+
+  // The 5 Golden Rules
   const goldenContainer = document.getElementById('golden-rules-container');
   if (goldenContainer) {
     goldenContainer.innerHTML = GOLDEN_RULES.map(r => `
@@ -1306,36 +1432,38 @@ function initTaxonomyGuide() {
   const resultDisplay = document.getElementById('formula-result-display');
   const useFormulaBtn = document.getElementById('btn-use-formula-in-builder');
 
-  prodIn.value = 'saas';
-  objIn.value = 'leadgen';
-  geoIn.value = 'us';
-  timeIn.value = '2025q3';
+  if (prodIn && objIn && geoIn && timeIn && resultDisplay && useFormulaBtn) {
+    prodIn.value = 'saas';
+    objIn.value = 'leadgen';
+    geoIn.value = 'us';
+    timeIn.value = '2026q1';
 
-  function updateFormula() {
-    const parts = [
-      prodIn.value.trim().toLowerCase(),
-      objIn.value.trim().toLowerCase(),
-      geoIn.value.trim().toLowerCase(),
-      timeIn.value.trim().toLowerCase()
-    ].filter(Boolean);
+    function updateFormula() {
+      const parts = [
+        prodIn.value.trim().toLowerCase(),
+        objIn.value.trim().toLowerCase(),
+        geoIn.value.trim().toLowerCase(),
+        timeIn.value.trim().toLowerCase()
+      ].filter(Boolean);
 
-    const formatted = parts.join('_') || 'campaign_name';
-    resultDisplay.textContent = formatted;
-    return formatted;
+      const formatted = parts.join('_') || 'campaign_name';
+      resultDisplay.textContent = formatted;
+      return formatted;
+    }
+
+    [prodIn, objIn, geoIn, timeIn].forEach(el => {
+      el.addEventListener('input', updateFormula);
+    });
+
+    useFormulaBtn.addEventListener('click', () => {
+      const formulaVal = updateFormula();
+      document.getElementById('input-utm-campaign').value = formulaVal;
+      readSingleInputs();
+      recalculateSingleUrl();
+      switchTab('tab-builder');
+      showToast(`utm_campaign set to "${formulaVal}"!`, 'info');
+    });
   }
-
-  [prodIn, objIn, geoIn, timeIn].forEach(el => {
-    el.addEventListener('input', updateFormula);
-  });
-
-  useFormulaBtn.addEventListener('click', () => {
-    const formulaVal = updateFormula();
-    document.getElementById('input-utm-campaign').value = formulaVal;
-    readSingleInputs();
-    recalculateSingleUrl();
-    switchTab('tab-builder');
-    showToast(`utm_campaign set to "${formulaVal}"!`, 'info');
-  });
 }
 
 // =========================================================
@@ -1612,6 +1740,31 @@ function initModals() {
 }
 
 // =========================================================
+// FOOTER & QUICK-NAV LINK CONTROLLER
+// =========================================================
+function initFooterNavigation() {
+  document.querySelectorAll('[data-switch-tab]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetTab = link.getAttribute('data-switch-tab');
+      if (targetTab) {
+        switchTab(targetTab);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+
+  const btnOpenShortcuts = document.getElementById('footer-btn-shortcuts');
+  if (btnOpenShortcuts) {
+    btnOpenShortcuts.addEventListener('click', (e) => {
+      e.preventDefault();
+      const modal = document.getElementById('modal-shortcuts');
+      if (modal) modal.classList.add('open');
+    });
+  }
+}
+
+// =========================================================
 // BOOTSTRAP INITIALIZATION
 // =========================================================
 window.addEventListener('DOMContentLoaded', () => {
@@ -1623,5 +1776,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initTaxonomyGuide();
   initHistoryControls();
   initModals();
+  initFooterNavigation();
   updateHistoryBadge();
 });
+

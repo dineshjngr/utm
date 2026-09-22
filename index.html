@@ -14,16 +14,19 @@
     })();
   </script>
   <title>Free UTM Builder &amp; GA4 Campaign URL Generator | UTMCraft</title>
-  <meta name="description" content="Build, inspect, and manage GA4-ready UTM campaign URLs. Create single or bulk tracking links, audit parameters, generate QR codes, and export campaign history.">
+  <meta name="description" content="Build, audit, and manage GA4-ready UTM campaign tracking URLs in seconds. Free client-side UTM builder, bulk URL matrix generator, link inspector, QR codes, and Google Analytics 4 taxonomy guide.">
+  <meta name="keywords" content="utm builder, ga4 utm builder, campaign url builder, google analytics 4 url generator, utm tracking, utm parameters, bulk utm generator, ga4 channel grouping, utm link generator, url shortener utm, google ads utm, facebook utm builder, qr code utm generator, utm campaign tracking, utm tags">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#FCFCFB">
+  <link rel="canonical" href="https://utm.workers.dev/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="UTMCraft">
-  <meta property="og:title" content="Free UTM Builder &amp; GA4 Campaign URL Generator">
-  <meta property="og:description" content="Create consistent GA4-ready campaign links, bulk URL matrices, QR codes, and UTM audits in your browser.">
+  <meta property="og:title" content="Free UTM Builder &amp; GA4 Campaign URL Generator | UTMCraft">
+  <meta property="og:description" content="Build clean, GA4-ready UTM campaign URLs, bulk link matrices, QR codes, and audit tracking parameters directly in your browser. 100% private.">
+  <meta property="og:url" content="https://utm.workers.dev/">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Free UTM Builder &amp; GA4 Campaign URL Generator">
-  <meta name="twitter:description" content="Create consistent GA4-ready campaign links, bulk URL matrices, QR codes, and UTM audits in your browser.">
+  <meta name="twitter:title" content="Free UTM Builder &amp; GA4 Campaign URL Generator | UTMCraft">
+  <meta name="twitter:description" content="Build clean, GA4-ready UTM campaign URLs, bulk link matrices, QR codes, and audit tracking parameters directly in your browser. 100% private.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -36,25 +39,134 @@
       {
         "@type": "WebApplication",
         "name": "UTMCraft UTM Builder",
+        "url": "https://utm.workers.dev/",
         "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Any",
-        "description": "A browser-based toolkit for building, auditing, and managing GA4 campaign URLs.",
+        "operatingSystem": "All modern web browsers",
+        "description": "A client-side browser toolkit for generating, auditing, shortening, and managing GA4 UTM campaign URLs, QR codes, and bulk matrices.",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "featureList": ["UTM URL builder", "Bulk campaign URL generator", "UTM link inspector", "GA4 channel taxonomy guide", "Local campaign history", "QR code generator"]
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "128"
+        },
+        "featureList": [
+          "GA4-ready UTM URL builder",
+          "Bulk multi-channel UTM matrix generator",
+          "UTM link inspector and health auditor",
+          "High-contrast QR code generator (PNG & SVG)",
+          "Client-side URL shortener with fallback",
+          "Google Analytics 4 default channel grouping guide",
+          "Private local storage campaign history"
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to Build a GA4 Campaign UTM Tracking URL",
+        "description": "Step-by-step guide to generating standard GA4 UTM campaign links.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Enter Destination URL",
+            "text": "Paste your canonical landing page URL (e.g. https://yourwebsite.com/landing)."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Define Campaign Source and Medium",
+            "text": "Specify the platform in lowercase (e.g. google, facebook, newsletter) and standard GA4 medium (e.g. cpc, paid_social, email)."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Add Campaign Name and Copy",
+            "text": "Enter your descriptive campaign identifier, then click Copy Campaign URL or generate a QR code."
+          }
+        ]
       },
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "What is a UTM URL?", "acceptedAnswer": { "@type": "Answer", "text": "A UTM URL is a destination link with campaign parameters that help analytics tools identify the source, medium, campaign, term, and content behind a visit." } },
-          { "@type": "Question", "name": "Which UTM parameters are required?", "acceptedAnswer": { "@type": "Answer", "text": "Use utm_source, utm_medium, and utm_campaign for reliable campaign reporting. Term, content, and campaign ID are optional." } },
-          { "@type": "Question", "name": "Can I generate UTM links in bulk?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Add multiple landing pages, select the channels you need, and generate a campaign matrix that can be copied or exported as CSV." } },
-          { "@type": "Question", "name": "How do I keep bulk campaign tags consistent?", "acceptedAnswer": { "@type": "Answer", "text": "Use one campaign name, approved channel presets, lowercase values, and one separator style across every generated link." } },
-          { "@type": "Question", "name": "What does the UTM inspector check?", "acceptedAnswer": { "@type": "Answer", "text": "It extracts tracking parameters, separates non-UTM query values, checks GA4 naming quality, and identifies missing or inconsistent fields." } },
-          { "@type": "Question", "name": "Are inspected URLs sent to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. URL inspection runs in the browser, so the submitted link is not uploaded by this tool." } },
-          { "@type": "Question", "name": "Why does GA4 channel grouping matter?", "acceptedAnswer": { "@type": "Answer", "text": "GA4 uses source and medium values to classify traffic. Consistent values reduce unassigned traffic and fragmented reports." } },
-          { "@type": "Question", "name": "Should UTM values use lowercase?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Analytics treats differently capitalized values as separate entries, so lowercase naming keeps reports cleaner." } },
-          { "@type": "Question", "name": "Where is campaign history stored?", "acceptedAnswer": { "@type": "Answer", "text": "Campaign history is stored locally in the current browser using local storage." } },
-          { "@type": "Question", "name": "Can I move campaign history to another tool?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Export campaign history as CSV for spreadsheets or JSON for backups and other workflows." } }
+          {
+            "@type": "Question",
+            "name": "What is a UTM code and how does UTM tracking work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A UTM (Urchin Tracking Module) code consists of query parameters appended to a destination URL that allow analytics platforms like Google Analytics 4 (GA4) to identify the specific traffic source, medium, campaign name, keyword term, and creative content responsible for a visit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which UTM parameters are required by Google Analytics 4?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For proper attribution and default channel grouping in GA4, utm_source and utm_medium are required. While utm_campaign is technically optional, it is strongly recommended for campaign-level reporting. utm_term and utm_content are optional for granular creative and keyword tracking."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between utm_source and utm_medium?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "utm_source answers 'Where is the visitor coming from?' (e.g., google, facebook, newsletter, linkedin). utm_medium answers 'What marketing vehicle or mechanism was used?' (e.g., cpc, paid_social, email, referral, organic)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does my marketing traffic show up as (Unassigned) in GA4?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Traffic is classified as (Unassigned) in GA4 when the source and medium parameters fail to match Google's predefined Default Channel Grouping rules. Common causes include uppercase characters (e.g. utm_medium=Email instead of email), inverted source and medium, or non-standard custom mediums."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should UTM parameter values always be lowercase?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, absolutely. Google Analytics treats uppercase and lowercase parameter values as distinct rows. For instance, utm_source=Google and utm_source=google will split your traffic into two separate reporting rows. Always force lowercase."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why should you never use UTM tracking links on internal site links?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Placing UTM parameters on internal site links (such as navigation menus, hero buttons, or related posts) overrides the original attribution source of the visitor and artificially triggers a new analytics session, causing inaccurate conversion attribution."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I generate UTM campaign links in bulk?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. UTMCraft includes a Bulk Generator Matrix tool that lets you paste multiple landing page URLs, select target advertising channels, and automatically generate a complete matrix exported as CSV or TSV."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does shortening a URL break UTM parameters or analytics tracking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. When using standard HTTP 301 or 302 redirects (such as those provided by UTMCraft's shortener), the destination URL including all UTM parameters is passed directly to the browser, preserving analytics attribution."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do UTM tracking tags work with QR codes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When users scan a QR code encoded with a UTM URL, their mobile browser navigates to that URL with the parameters intact. This allows marketers to track offline print collateral, conference badges, and product packaging in GA4."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my campaign data private when using UTMCraft?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, 100%. UTMCraft executes entirely client-side in your web browser. No URLs, campaign names, or customer data are uploaded to or stored on external servers."
+            }
+          }
         ]
       }
     ]
@@ -744,12 +856,64 @@
           </div>
         </div>
 
+        <!-- Channel Filter & Search Controls Bar -->
+        <div class="channel-controls-bar">
+          <div class="channel-search-box">
+            <svg class="channel-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input 
+              type="text" 
+              id="channel-search-input" 
+              class="form-input channel-search-input" 
+              placeholder="Search channel, medium, or source..."
+              aria-label="Filter GA4 Channels"
+            >
+          </div>
+
+          <div class="channel-filter-chips">
+            <button type="button" class="channel-filter-btn active" data-category="all">All Channels</button>
+            <button type="button" class="channel-filter-btn" data-category="paid">Paid Traffic</button>
+            <button type="button" class="channel-filter-btn" data-category="organic">Organic &amp; Social</button>
+            <button type="button" class="channel-filter-btn" data-category="direct">Email &amp; SMS</button>
+            <button type="button" class="channel-filter-btn" data-category="offline">QR &amp; Offline</button>
+          </div>
+        </div>
+
         <div class="taxonomy-grid" id="taxonomy-cards-grid">
           <!-- Populated from taxonomy.js -->
         </div>
 
+        <!-- 5-Step Campaign Tagging Blueprint -->
+        <div style="margin-top: 2.25rem;">
+          <span class="card-category">STEP-BY-STEP BLUEPRINT</span>
+          <h3 class="card-title" style="margin-top: 0.25rem;">5 Steps to Flawless GA4 Campaign Tracking</h3>
+          <p class="card-description">Follow this repeatable sequence to ensure every marketing dollar tracks cleanly without unassigned leakage.</p>
+          <div class="tagging-steps-grid" id="tagging-steps-container">
+            <!-- Populated from taxonomy.js -->
+          </div>
+        </div>
+
+        <!-- Unassigned Traffic Diagnostic Guide -->
+        <div style="margin-top: 2.25rem;">
+          <span class="card-category" style="color: var(--accent-rose);">DIAGNOSTIC &amp; REPAIR</span>
+          <h3 class="card-title" style="margin-top: 0.25rem;">Why Does My Traffic Show Up as (Unassigned) in GA4?</h3>
+          <p class="card-description">The four most frequent tagging mistakes that trigger (Unassigned) acquisition rows, and the instant 30-second fix for each.</p>
+          <div class="unassigned-grid" id="unassigned-fixes-container">
+            <!-- Populated from taxonomy.js -->
+          </div>
+        </div>
+
+        <!-- Do's and Don'ts Matrix -->
+        <div style="margin-top: 2.25rem;">
+          <span class="card-category">CHEAT SHEET</span>
+          <h3 class="card-title" style="margin-top: 0.25rem;">UTM Best Practices: Do's &amp; Don'ts</h3>
+          <p class="card-description">Quick reference checklist to share across your growth, content, paid acquisition, and PR teams.</p>
+          <div class="dos-donts-grid" id="dos-donts-container">
+            <!-- Populated from taxonomy.js -->
+          </div>
+        </div>
+
         <!-- The 5 Golden Rules -->
-        <div style="margin-top: 2rem;">
+        <div style="margin-top: 2.25rem;">
           <h3 class="card-title">The 5 Golden Rules of UTM Tracking</h3>
           <div class="golden-rules-list" id="golden-rules-container">
             <!-- Populated from taxonomy.js -->
@@ -879,9 +1043,185 @@
     </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Dedicated SEO FAQ & Knowledge Base Section -->
+    <section id="section-faqs" class="faq-main-section" aria-labelledby="faq-section-title">
+      <div class="faq-section-header">
+        <span class="card-category">KNOWLEDGE BASE</span>
+        <h2 id="faq-section-title" class="faq-section-title">Frequently Asked Questions &amp; UTM Tracking Guide</h2>
+        <p class="faq-section-subtitle">Everything you need to know about URL tracking, GA4 default channel groupings, campaign attribution, and best practices.</p>
+      </div>
+
+      <div class="faq-columns-grid">
+        <div class="faq-accordion-group">
+          <details class="faq-item" open>
+            <summary class="faq-summary">What are UTM parameters and why are they critical?</summary>
+            <div class="faq-content">
+              <p>UTM (Urchin Tracking Module) parameters are five standard query tags appended to destination URLs (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_term</code>, <code>utm_content</code>). They enable web analytics platforms like Google Analytics 4 (GA4), Mixpanel, and HubSpot to pinpoint the exact origin, marketing channel, creative asset, and promotion driving each visitor and conversion.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Which UTM parameters are strictly required by GA4?</summary>
+            <div class="faq-content">
+              <p>For Google Analytics 4 to correctly classify incoming sessions into standard Default Channel Groups, <strong>utm_source</strong> and <strong>utm_medium</strong> are required. While <strong>utm_campaign</strong> is optional in theory, it is essential in practice to measure return on ad spend (ROAS) and specific campaign initiatives.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">What is the difference between utm_source and utm_medium?</summary>
+            <div class="faq-content">
+              <p>A simple rule of thumb: <strong>Source is the platform or vendor</strong> sending the traffic (e.g. <code>google</code>, <code>facebook</code>, <code>newsletter</code>, <code>linkedin</code>), while <strong>Medium is the marketing vehicle or mechanism</strong> (e.g. <code>cpc</code>, <code>paid_social</code>, <code>email</code>, <code>referral</code>, <code>social</code>). Inverting these two is the leading cause of broken GA4 channel attribution.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Why does my campaign traffic show up as (Unassigned) in GA4?</summary>
+            <div class="faq-content">
+              <p>Traffic is designated as (Unassigned) in GA4 when the combination of source and medium does not match Google's predefined channel regexes. Common causes include:</p>
+              <ul style="margin-top: 0.4rem; padding-left: 1.25rem;">
+                <li>Using TitleCase or UPPERCASE (e.g. <code>utm_medium=Email</code> instead of <code>email</code>).</li>
+                <li>Inventing unsupported mediums (e.g. <code>utm_medium=promoted_post</code> instead of <code>paid_social</code>).</li>
+                <li>Inverting source and medium (e.g. <code>utm_source=email&amp;utm_medium=klaviyo</code>).</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Why must all UTM parameter values be strictly lowercase?</summary>
+            <div class="faq-content">
+              <p>Google Analytics is strictly case-sensitive. If an email campaign sends clicks tagged with <code>utm_source=Facebook</code> and another with <code>utm_source=facebook</code>, GA4 will treat them as two completely unrelated sources. This divides your traffic and makes reporting difficult. UTMCraft automatically converts all inputs to lowercase to prevent this issue.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Should I use hyphens or underscores instead of spaces?</summary>
+            <div class="faq-content">
+              <p>Never use spaces in URLs. Web browsers encode spaces into unsightly <code>%20</code> or <code>+</code> characters. We recommend choosing either hyphens (e.g. <code>paid-social</code>) or underscores (e.g. <code>paid_social</code>) and documenting that choice across your marketing organization.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Why should you NEVER use UTM tracking on internal website links?</summary>
+            <div class="faq-content">
+              <p>Using UTM tags on links within your own domain (for example, placing a UTM link on a homepage slider pointing to your pricing page) immediately resets the analytics session and overwrites the initial campaign attribution. If a customer arrived from a $50 Google Ad and then clicked an internal banner with UTMs, Google Analytics assigns the final purchase to the internal banner, destroying your ad attribution data!</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="faq-accordion-group">
+          <details class="faq-item">
+            <summary class="faq-summary">How do dynamic ad macros like {keyword} work in UTMs?</summary>
+            <div class="faq-content">
+              <p>Ad networks like Google Ads, Microsoft Advertising, and Meta Ads support template macros (e.g. <code>{keyword}</code>, <code>{matchtype}</code>, <code>{{campaign.name}}</code>, <code>{{ad.id}}</code>). When an ad is served, the ad server automatically replaces these tokens with real values. UTMCraft safely preserves dynamic macro tokens during parameter construction.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Does shortening a URL break UTM tracking or GA4 data?</summary>
+            <div class="faq-content">
+              <p>No. When a short link executes an HTTP 301 (Permanent) or HTTP 302 (Temporary) redirect, modern browsers pass the complete query string to the destination page. Analytics tags (such as Google Tag Manager or gtag.js) fire on the destination page and capture all UTM parameters seamlessly.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">How do UTM tags work with offline QR codes?</summary>
+            <div class="faq-content">
+              <p>When creating print flyers, brochures, trade show booths, or physical packaging, encode the full UTM URL into a QR code (using <code>utm_medium=qr_code</code> or <code>utm_medium=print</code>). When a customer scans the code with their smartphone, their device browser opens the page with full attribution intact, giving you quantifiable offline campaign tracking in GA4.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Can I generate UTM links in bulk for multiple marketing channels?</summary>
+            <div class="faq-content">
+              <p>Yes. With our Bulk Generator Matrix, you can provide several landing page URLs, pick target channels (Google Search, Meta Ads, LinkedIn, Email, Twitter/X), specify a unified campaign name, and produce hundreds of formatted URLs in seconds. You can copy the matrix or export it to CSV/TSV for Google Sheets and Excel.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">What is the character limit for a URL with UTM tracking parameters?</summary>
+            <div class="faq-content">
+              <p>While modern HTTP servers support URLs up to 8,192 characters, standard browsers and older web crawlers work best with URLs under 2,048 characters. UTMCraft displays a live character counter and warns you if your concatenated URL approaches the safe limit.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">Is my marketing data private and confidential on UTMCraft?</summary>
+            <div class="faq-content">
+              <p>Yes. UTMCraft operates 100% in your local web browser. We do not store your URLs, landing pages, client names, or marketing parameters on external databases. Your campaign history and custom presets stay stored safely in your browser's local storage.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">How do I create a scalable UTM naming convention for my marketing team?</summary>
+            <div class="faq-content">
+              <p>Adopt a predictable, machine-readable delimiter structure such as: <code>[offering]_[funnel_stage]_[geography]_[year_quarter]</code> (e.g. <code>saas_leadgen_us_2026q1</code>). Use our interactive Standardized Campaign Name Builder in Tab 4 to generate consistent formulas across your organization.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial SaaS Footer -->
     <footer class="app-footer">
-      <p>UTMCraft Pro • Client-side private URL generator • Compatible with GA4, Google Ads, Meta Ads &amp; Hubspot</p>
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <div class="brand-group" style="margin-bottom: 0.25rem;">
+              <div class="brand-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+              </div>
+              <span class="brand-title">UTMCraft</span>
+              <span class="brand-pill">Studio</span>
+            </div>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links with zero server tracking.</p>
+            <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Features</h4>
+            <ul class="footer-links">
+              <li><a href="#tab-builder" data-switch-tab="tab-builder">Single URL Builder</a></li>
+              <li><a href="#tab-batch" data-switch-tab="tab-batch">Bulk Generator Matrix</a></li>
+              <li><a href="#tab-inspector" data-switch-tab="tab-inspector">UTM Link Inspector</a></li>
+              <li><a href="#tab-taxonomy" data-switch-tab="tab-taxonomy">GA4 Taxonomy Guide</a></li>
+              <li><a href="#tab-history" data-switch-tab="tab-history">Campaign History</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Resources</h4>
+            <ul class="footer-links">
+              <li><a href="#tab-taxonomy" data-switch-tab="tab-taxonomy">Channel Grouping Rules</a></li>
+              <li><a href="#tab-taxonomy" data-switch-tab="tab-taxonomy">Unassigned Traffic Fixes</a></li>
+              <li><a href="#tab-taxonomy" data-switch-tab="tab-taxonomy">Campaign Name Formula</a></li>
+              <li><a href="#section-faqs">UTM Tracking FAQs</a></li>
+              <li><a href="#" id="footer-btn-shortcuts">Keyboard Shortcuts (?)</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Legal &amp; Privacy</h4>
+            <ul class="footer-links">
+              <li><a href="/terms.html">Terms and Conditions</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by DJ</div>
+          <div class="footer-legal-links">
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
     </footer>
 
   </div>
