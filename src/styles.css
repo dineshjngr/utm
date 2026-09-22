@@ -288,6 +288,79 @@ button, input, select, textarea {
   background-color: var(--bg-subtle);
 }
 
+/* Header Dropdown Submenu */
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-dropdown-toggle .dropdown-chevron {
+  transition: transform 150ms ease;
+}
+
+.nav-dropdown:hover .nav-dropdown-toggle .dropdown-chevron,
+.nav-dropdown.is-open .nav-dropdown-toggle .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 280px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+  padding: 6px;
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1000;
+  margin-top: 4px;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.is-open .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  display: flex;
+}
+
+.nav-dropdown-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background-color 150ms ease;
+  color: var(--text-main);
+}
+
+.nav-dropdown-item:hover {
+  background-color: var(--bg-subtle);
+  text-decoration: none;
+}
+
+.dropdown-item-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.dropdown-item-desc {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
 /* Header Actions */
 .header-actions {
   display: flex;
@@ -855,10 +928,15 @@ button, input, select, textarea {
 /* Preset Chips */
 .preset-chips-container {
   margin: 1.15rem 0;
-  padding: 1rem;
+  padding: 0.85rem 1rem;
   background: var(--bg-subtle);
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
+  transition: all 200ms ease;
+}
+
+.preset-chips-container.is-compact {
+  padding: 0.65rem 0.85rem;
 }
 
 .preset-chips-grid {
@@ -866,6 +944,32 @@ button, input, select, textarea {
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 0.5rem;
+  transition: max-height 250ms ease, opacity 200ms ease;
+}
+
+.preset-chips-grid.is-compact {
+  max-height: 34px;
+  overflow: hidden;
+}
+
+.btn-preset-toggle {
+  font-size: 11.5px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.btn-preset-toggle:hover {
+  color: var(--text-main);
+  border-color: var(--soft-green);
+  background: var(--bg-accent-soft);
 }
 
 .preset-chip {

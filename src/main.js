@@ -566,6 +566,25 @@ function initSingleBuilder() {
     clearPresetBtn.addEventListener('click', clearActivePreset);
   }
 
+  const togglePresetsBtn = document.getElementById('btn-toggle-presets');
+  const presetsList = document.getElementById('presets-chips-list');
+  const presetContainer = document.getElementById('preset-chips-container');
+  if (togglePresetsBtn && presetsList) {
+    togglePresetsBtn.addEventListener('click', () => {
+      const isCompact = presetsList.classList.toggle('is-compact');
+      if (presetContainer) presetContainer.classList.toggle('is-compact', isCompact);
+      togglePresetsBtn.setAttribute('aria-expanded', !isCompact);
+      const textSpan = document.getElementById('preset-toggle-text');
+      const icon = document.getElementById('preset-toggle-icon');
+      if (textSpan) {
+        textSpan.textContent = isCompact ? 'Show full (12)' : 'Show less';
+      }
+      if (icon) {
+        icon.style.transform = isCompact ? 'rotate(0deg)' : 'rotate(180deg)';
+      }
+    });
+  }
+
   // Collapsible Rules Accordion
   const rulesToggle = document.getElementById('toggle-rules-btn');
   const rulesBody = document.getElementById('rules-body');

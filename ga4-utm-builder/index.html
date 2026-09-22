@@ -95,7 +95,7 @@
   <!-- Thin Minimal Top Navigation (64-72px) -->
   <header class="app-header">
     <div class="header-inner">
-      <div class="brand">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
         <div class="brand-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
@@ -108,13 +108,44 @@
           <span class="brand-title">UTMCraft</span>
           <span class="brand-pill">Studio</span>
         </div>
-      </div>
+      </a>
 
       <nav class="header-nav" aria-label="Main Navigation">
-        <a href="/campaign-url-builder/" class="nav-header-link">Campaign Builder</a>
-        <a href="/ga4-utm-builder/" class="nav-header-link">GA4 Builder</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-haspopup="true">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/campaign-url-builder/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Standard Campaign Builder</span>
+              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+            </a>
+            <a href="/ga4-utm-builder/" class="nav-dropdown-item active" role="menuitem">
+              <span class="dropdown-item-title">GA4 Channel Validator</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
         <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
         <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <a href="/ga4-utm-builder/" class="nav-header-link active">GA4 Taxonomy</a>
         <a href="/utm-parameters/" class="nav-header-link">Parameters</a>
         <a href="/utm-naming-conventions/" class="nav-header-link">Taxonomy SOP</a>
       </nav>
@@ -263,23 +294,7 @@
               </div>
             </div>
 
-            <!-- Channel Presets Chips Bar -->
-            <div class="preset-chips-container">
-              <div class="field-label-row">
-                <span class="form-label">Channel Presets</span>
-                <div class="field-actions">
-                  <button type="button" id="btn-clear-preset" class="btn btn-ghost btn-sm" title="Clear the selected preset" disabled>
-                    Clear preset
-                  </button>
-                  <button type="button" id="btn-open-save-preset" class="btn btn-ghost btn-sm" style="color: var(--primary);">
-                    + Custom Preset
-                  </button>
-                </div>
-              </div>
-              <div id="presets-chips-list" class="preset-chips-grid">
-                <!-- Dynamically populated from presets.js -->
-              </div>
-            </div>
+
 
             <!-- UTM Parameters Form -->
             <div class="form-row-2">
@@ -616,6 +631,235 @@
     
     <!-- Comprehensive Editorial & Guide Section -->
     <section class="landing-guide-section">
+      <!-- Featured Visual Card -->
+      <div class="card featured-card">
+        <div class="featured-card-body">
+          <span class="card-category featured-card-category">ATTRIBUTION BLUEPRINT</span>
+          <h2 class="featured-card-title">Zero Unassigned Traffic</h2>
+          <p class="featured-card-description">Standardizing your campaign source and medium rules ensures 100% of visitor sessions map cleanly to default channel groups without fragmented acquisition reports.</p>
+          <div class="featured-card-footer">
+            <span class="featured-badge">GA4 Protocol Standard</span>
+            <span class="featured-badge-subtle">Universal Analytics Replacement</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1.5rem;">
+        <div class="card-header">
+          <div>
+            <span class="card-category">DATA TAXONOMY</span>
+            <h2 class="card-title">Google Analytics 4 Channel Grouping Guide</h2>
+            <p class="card-description">How GA4 classifies traffic based on your UTM parameters. Ensure your mediums match these exact definitions.</p>
+          </div>
+        </div>
+
+        <!-- Channel Filter & Search Controls Bar -->
+        <div class="channel-controls-bar">
+          <div class="channel-search-box">
+            <svg class="channel-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input 
+              type="text" 
+              id="channel-search-input" 
+              class="form-input channel-search-input" 
+              placeholder="Search channel, medium, or source..."
+              aria-label="Filter GA4 Channels"
+            >
+          </div>
+
+          <div class="channel-filter-chips">
+            <button type="button" class="channel-filter-btn active" data-category="all">All Channels</button>
+            <button type="button" class="channel-filter-btn" data-category="paid">Paid Traffic</button>
+            <button type="button" class="channel-filter-btn" data-category="organic">Organic &amp; Social</button>
+            <button type="button" class="channel-filter-btn" data-category="direct">Email &amp; SMS</button>
+            <button type="button" class="channel-filter-btn" data-category="offline">QR &amp; Offline</button>
+          </div>
+        </div>
+
+        <div class="taxonomy-grid" id="taxonomy-cards-grid">
+          <!-- Populated from taxonomy.js -->
+        </div>
+
+        <!-- 5-Step Campaign Tagging Blueprint -->
+        <div style="margin-top: 2.25rem;">
+          <span class="card-category">STEP-BY-STEP BLUEPRINT</span>
+          <h3 class="card-title" style="margin-top: 0.25rem;">5 Steps to Flawless GA4 Campaign Tracking</h3>
+          <p class="card-description">Follow this repeatable sequence to ensure every marketing dollar tracks cleanly without unassigned leakage.</p>
+          <div class="tagging-steps-grid" id="tagging-steps-container">
+            <!-- Populated from taxonomy.js -->
+          </div>
+        </div>
+
+        <!-- Unassigned Traffic Diagnostic Guide -->
+        <div style="margin-top: 2.25rem;">
+          <span class="card-category" style="color: var(--accent-rose);">DIAGNOSTIC &amp; REPAIR</span>
+          <h3 class="card-title" style="margin-top: 0.25rem;">Why Does My Traffic Show Up as (Unassigned) in GA4?</h3>
+          <p class="card-description">The four most frequent tagging mistakes that trigger (Unassigned) acquisition rows, and the instant 30-second fix for each.</p>
+          <div class="unassigned-grid" id="unassigned-fixes-container">
+            <!-- Populated from taxonomy.js -->
+          </div>
+        </div>
+
+        <!-- Do's and Don'ts Matrix -->
+        <div style="margin-top: 2.25rem;">
+          <span class="card-category">CHEAT SHEET</span>
+          <h3 class="card-title" style="margin-top: 0.25rem;">UTM Best Practices: Do's &amp; Don'ts</h3>
+          <p class="card-description">Quick reference checklist to share across your growth, content, paid acquisition, and PR teams.</p>
+          <div class="dos-donts-grid" id="dos-donts-container">
+            <!-- Populated from taxonomy.js -->
+          </div>
+        </div>
+
+        <!-- The 5 Golden Rules -->
+        <div style="margin-top: 2.25rem;">
+          <h3 class="card-title">The 5 Golden Rules of UTM Tracking</h3>
+          <div class="golden-rules-list" id="golden-rules-container">
+            <!-- Populated from taxonomy.js -->
+          </div>
+        </div>
+
+        <!-- Interactive Campaign Name Formula Generator -->
+        <div class="formula-builder-card" style="margin-top: 2rem;">
+          <div style="margin-bottom: 1rem;">
+            <span class="card-category">CAMPAIGN FORMULA</span>
+            <h3 class="card-title" style="margin-top: 0.25rem;">Standardized Campaign Name Builder</h3>
+            <p class="card-description">Construct consistent, machine-readable campaign names using industry best-practice formulas.</p>
+          </div>
+
+          <div class="form-row-2">
+            <div>
+              <label class="form-label" style="font-size: 0.8rem;">Product / Offering</label>
+              <input type="text" id="formula-product" class="form-input" placeholder="e.g. saas, pro, course">
+            </div>
+            <div>
+              <label class="form-label" style="font-size: 0.8rem;">Objective / Funnel Stage</label>
+              <input type="text" id="formula-objective" class="form-input" placeholder="e.g. leadgen, retargeting, brand">
+            </div>
+          </div>
+
+          <div class="form-row-2" style="margin-top: 0.75rem;">
+            <div>
+              <label class="form-label" style="font-size: 0.8rem;">Target Geography / Audience</label>
+              <input type="text" id="formula-geo" class="form-input" placeholder="e.g. us, global, emea">
+            </div>
+            <div>
+              <label class="form-label" style="font-size: 0.8rem;">Timeframe / Quarter</label>
+              <input type="text" id="formula-time" class="form-input" placeholder="e.g. 2025q3, blackfriday">
+            </div>
+          </div>
+
+          <div style="margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; background: var(--bg-card); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <div>
+              <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Resulting Formula:</span>
+              <div id="formula-result-display" style="font-family: var(--font-mono); font-weight: 700; color: var(--primary); font-size: 1rem;">
+                saas_leadgen_us_2025q3
+              </div>
+            </div>
+            <button type="button" id="btn-use-formula-in-builder" class="btn btn-primary btn-sm">
+              Use as utm_campaign
+            </button>
+          </div>
+        </div>
+
+        <!-- How to View & Check UTM Traffic in Google Analytics 4 (GA4) -->
+        <div style="margin-top: 2.5rem;" id="ga4-check-traffic-guide">
+          <div class="card-header" style="padding: 0; margin-bottom: 1rem;">
+            <div>
+              <span class="card-category" style="color: var(--primary);">GA4 REPORTING TUTORIAL</span>
+              <h3 class="card-title" style="margin-top: 0.25rem;">How to Find &amp; Check UTM Campaign Traffic in GA4</h3>
+              <p class="card-description">A step-by-step visual roadmap to locate your campaign clicks, custom UTMs, and conversion metrics inside Google Analytics 4.</p>
+            </div>
+          </div>
+
+          <div class="ga4-traffic-methods-grid">
+            <!-- Method 1: Realtime Testing -->
+            <div class="ga4-method-card">
+              <div class="ga4-method-badge">Method 1 • Quick Test</div>
+              <h4 class="ga4-method-title">1. Realtime Report (Instant 10-Second Test)</h4>
+              <p class="ga4-method-desc">Before launching ad spend, click your UTM link and verify it appears immediately in GA4.</p>
+              <div class="ga4-step-path">
+                <span class="path-step">GA4</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Reports</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Realtime</span>
+              </div>
+              <ul class="ga4-step-instructions">
+                <li>Look for the <strong>"Users by First user source / medium"</strong> card.</li>
+                <li>Verify your <code>utm_source</code> and <code>utm_medium</code> appear within 10 to 30 seconds.</li>
+                <li>Scroll down to <strong>"Event count by Event name"</strong> to verify <code>page_view</code> and <code>session_start</code> fired.</li>
+              </ul>
+              <div class="ga4-method-tip"><strong>Pro Tip:</strong> Open your tagged link in an Incognito window to trigger a fresh session.</div>
+            </div>
+
+            <!-- Method 2: Traffic Acquisition -->
+            <div class="ga4-method-card">
+              <div class="ga4-method-badge">Method 2 • Core Reporting</div>
+              <h4 class="ga4-method-title">2. Traffic Acquisition Report (Sessions &amp; Medium)</h4>
+              <p class="ga4-method-desc">The primary standard report for analyzing which marketing channels and campaigns drove traffic.</p>
+              <div class="ga4-step-path">
+                <span class="path-step">GA4</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Reports</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Acquisition</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Traffic acquisition</span>
+              </div>
+              <ul class="ga4-step-instructions">
+                <li>Click the primary dimension dropdown (defaults to <em>Session default channel group</em>).</li>
+                <li>Switch to <strong>"Session source / medium"</strong> to see exact pairings (e.g. <code>facebook / paid_social</code>, <code>google / cpc</code>).</li>
+                <li>Or switch to <strong>"Session campaign"</strong> to evaluate each <code>utm_campaign</code> initiative.</li>
+                <li>Click the blue <strong>"+"</strong> icon to add a secondary dimension: search for <strong>"Session manual ad content"</strong> to view <code>utm_content</code> variations.</li>
+              </ul>
+              <div class="ga4-method-tip"><strong>Note:</strong> Standard reports in GA4 may take 24–48 hours to fully process historical batch data.</div>
+            </div>
+
+            <!-- Method 3: User Acquisition -->
+            <div class="ga4-method-card">
+              <div class="ga4-method-badge">Method 3 • First-Touch Attribution</div>
+              <h4 class="ga4-method-title">3. User Acquisition Report (How New Users Found You)</h4>
+              <p class="ga4-method-desc">Reveals which campaigns originally introduced net-new visitors to your website or product.</p>
+              <div class="ga4-step-path">
+                <span class="path-step">GA4</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Reports</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Acquisition</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">User acquisition</span>
+              </div>
+              <ul class="ga4-step-instructions">
+                <li>Select <strong>"First user source / medium"</strong> as primary dimension.</li>
+                <li>Evaluate metrics: <em>New users</em>, <em>Engaged sessions</em>, and <em>Engagement rate</em>.</li>
+                <li>Compare against <em>Traffic acquisition</em> to spot the difference between new user acquisition and return traffic.</li>
+              </ul>
+              <div class="ga4-method-tip"><strong>Key Insight:</strong> Shows the top-of-funnel campaign that sparked first contact.</div>
+            </div>
+
+            <!-- Method 4: Explorations Deep Dive -->
+            <div class="ga4-method-card">
+              <div class="ga4-method-badge">Method 4 • Advanced Analysis</div>
+              <h4 class="ga4-method-title">4. Free-Form Explorations (Custom Multichannel Pivot)</h4>
+              <p class="ga4-method-desc">Create custom pivot tables combining source, medium, campaign, content, and revenue.</p>
+              <div class="ga4-step-path">
+                <span class="path-step">GA4</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Explore</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Free-form exploration</span>
+              </div>
+              <ul class="ga4-step-instructions">
+                <li>Import <strong>Dimensions</strong>: <code>Session source / medium</code>, <code>Session campaign</code>, <code>Session manual ad content</code>, <code>Landing page + query string</code>.</li>
+                <li>Import <strong>Metrics</strong>: <code>Sessions</code>, <code>Active users</code>, <code>Key events (Conversions)</code>, <code>Total revenue</code>.</li>
+                <li>Drag dimensions into <em>Rows</em> and metrics into <em>Values</em> for full conversion attribution!</li>
+              </ul>
+              <div class="ga4-method-tip"><strong>Power Feature:</strong> Filter rows where <code>Session campaign</code> is not <code>(not set)</code>.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
       <article class="editorial-card" id="channel-rules">
         <h2>Official GA4 Default Channel Grouping Rules Matrix</h2>
         <p>In Google Analytics 4, sessions are assigned to channel groups based on a strict hierarchy evaluated from top to bottom. If a session fails rule #1, it falls to rule #2, and so forth. If no rule matches, it lands in <strong>(Unassigned)</strong>.</p>
@@ -777,7 +1021,7 @@
       <div class="footer-container">
         <div class="footer-grid">
           <div class="footer-col-brand">
-            <div class="brand-group" style="margin-bottom: 0.25rem;">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
               <div class="brand-icon" aria-hidden="true">
                 <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
@@ -788,7 +1032,7 @@
               </div>
               <span class="brand-title">UTMCraft</span>
               <span class="brand-pill">Studio</span>
-            </div>
+            </a>
             <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links with zero server tracking.</p>
             <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
           </div>
@@ -910,8 +1154,6 @@
       </div>
     </div>
   </div>
-
-  <script type="module" src="/src/main.js"></script>
 
   <script type="module" src="/src/main.js"></script>
 </body>

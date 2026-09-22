@@ -81,7 +81,7 @@
   <!-- Thin Minimal Top Navigation (64-72px) -->
   <header class="app-header">
     <div class="header-inner">
-      <div class="brand">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
         <div class="brand-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
@@ -94,13 +94,44 @@
           <span class="brand-title">UTMCraft</span>
           <span class="brand-pill">Studio</span>
         </div>
-      </div>
+      </a>
 
       <nav class="header-nav" aria-label="Main Navigation">
-        <a href="/campaign-url-builder/" class="nav-header-link">Campaign Builder</a>
-        <a href="/ga4-utm-builder/" class="nav-header-link">GA4 Builder</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-haspopup="true">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/campaign-url-builder/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Standard Campaign Builder</span>
+              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+            </a>
+            <a href="/ga4-utm-builder/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">GA4 Channel Validator</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
         <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
         <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <a href="/ga4-utm-builder/" class="nav-header-link">GA4 Taxonomy</a>
         <a href="/utm-parameters/" class="nav-header-link">Parameters</a>
         <a href="/utm-naming-conventions/" class="nav-header-link">Taxonomy SOP</a>
       </nav>
@@ -250,23 +281,6 @@
               </div>
             </div>
 
-            <!-- Channel Presets Chips Bar -->
-            <div class="preset-chips-container">
-              <div class="field-label-row">
-                <span class="form-label">Channel Presets</span>
-                <div class="field-actions">
-                  <button type="button" id="btn-clear-preset" class="btn btn-ghost btn-sm" title="Clear the selected preset" disabled>
-                    Clear preset
-                  </button>
-                  <button type="button" id="btn-open-save-preset" class="btn btn-ghost btn-sm" style="color: var(--primary);">
-                    + Custom Preset
-                  </button>
-                </div>
-              </div>
-              <div id="presets-chips-list" class="preset-chips-grid">
-                <!-- Dynamically populated from presets.js -->
-              </div>
-            </div>
 
             <!-- UTM Parameters Form -->
             <div class="form-row-2">
@@ -721,7 +735,7 @@
       <div class="footer-container">
         <div class="footer-grid">
           <div class="footer-col-brand">
-            <div class="brand-group" style="margin-bottom: 0.25rem;">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
               <div class="brand-icon" aria-hidden="true">
                 <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
@@ -732,7 +746,7 @@
               </div>
               <span class="brand-title">UTMCraft</span>
               <span class="brand-pill">Studio</span>
-            </div>
+            </a>
             <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links with zero server tracking.</p>
             <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
           </div>
