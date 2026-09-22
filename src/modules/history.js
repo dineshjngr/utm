@@ -25,11 +25,13 @@ export function saveToHistory(item) {
     // Bring to top and update timestamp
     const existing = history.splice(existingIdx, 1)[0];
     existing.timestamp = Date.now();
+    if (item.shortUrl) existing.shortUrl = item.shortUrl;
     history.unshift(existing);
   } else {
     const newEntry = {
       id: 'h_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
       url: item.url,
+      shortUrl: item.shortUrl || '',
       baseUrl: item.baseUrl || '',
       source: item.source || '',
       medium: item.medium || '',
@@ -76,10 +78,11 @@ export function exportHistoryToCSV() {
   const history = getHistory();
   if (history.length === 0) return null;
 
-  const headers = ['Date', 'Final Tracked URL', 'Base URL', 'Source', 'Medium', 'Campaign', 'Term', 'Content'];
+  const headers = ['Date', 'Final Tracked URL', 'Short URL', 'Base URL', 'Source', 'Medium', 'Campaign', 'Term', 'Content'];
   const rows = history.map(item => [
     new Date(item.timestamp).toISOString(),
     `"${(item.url || '').replace(/"/g, '""')}"`,
+    `"${(item.shortUrl || '').replace(/"/g, '""')}"`,
     `"${(item.baseUrl || '').replace(/"/g, '""')}"`,
     `"${(item.source || '').replace(/"/g, '""')}"`,
     `"${(item.medium || '').replace(/"/g, '""')}"`,

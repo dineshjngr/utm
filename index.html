@@ -407,6 +407,11 @@
                 <span id="btn-copy-text">Copy URL</span>
               </button>
 
+              <button type="button" id="btn-shorten-url" class="btn btn-secondary" title="Shorten UTM link for social & SMS">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                <span id="btn-shorten-text">Shorten</span>
+              </button>
+
               <button type="button" id="btn-test-url" class="btn btn-secondary" title="Open in new tab to test">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 <span>Test Link</span>
@@ -420,6 +425,30 @@
               <button type="button" id="btn-reset-form" class="btn btn-ghost btn-sm" title="Clear all fields">
                 Reset
               </button>
+            </div>
+
+            <!-- Short URL Box -->
+            <div id="short-url-box" class="short-url-container" style="display: none;">
+              <div class="short-url-header">
+                <div class="short-url-title-group">
+                  <span class="short-url-badge">⚡ Short Link</span>
+                  <span id="short-url-savings-badge" class="short-url-savings"></span>
+                </div>
+                <div class="short-url-actions-top">
+                  <button type="button" id="btn-short-url-qr" class="short-url-action-btn" title="Use shortened link in QR Code">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    <span id="btn-short-url-qr-label">Use in QR</span>
+                  </button>
+                  <button type="button" id="btn-close-short-url" class="short-url-close-btn" title="Dismiss short link view" aria-label="Close short link">✕</button>
+                </div>
+              </div>
+              <div class="short-url-content-row">
+                <a id="short-url-link" class="short-url-link" href="#" target="_blank" rel="noopener noreferrer" title="Click to test short link"></a>
+                <button type="button" id="btn-copy-short-url" class="btn btn-primary btn-sm">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span id="btn-copy-short-text">Copy</span>
+                </button>
+              </div>
             </div>
 
             <!-- Quality Scorecard -->
@@ -442,7 +471,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                 QR Code
               </h2>
-              <span class="field-hint">PNG / Print</span>
+              <span id="qr-target-badge" class="field-hint">Full URL</span>
             </div>
 
             <div class="qr-container">

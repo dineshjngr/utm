@@ -13,6 +13,7 @@ import {
 import { GA4_CHANNEL_RULES, GOLDEN_RULES, auditUTM } from './modules/taxonomy.js';
 import { BATCH_CHANNELS, generateBatchMatrix, exportBatchToCSV, exportBatchToTSV } from './modules/batch.js';
 import { deconstructUrl } from './modules/inspector.js';
+import { shortenUrl, calculateSavings } from './modules/shortener.js';
 
 // =========================================================
 // APPLICATION STATE
@@ -38,6 +39,9 @@ const state = {
     trimSpaces: true
   },
   currentGeneratedUrl: '',
+  shortUrl: '',
+  shortUrlOriginal: '',
+  qrTarget: 'full', // 'full' | 'short'
   batchResults: [],
   activePresetId: null,
   filterStarred: false
@@ -407,6 +411,7 @@ function initSingleBuilder() {
     }
     saveToHistory({
       url: state.currentGeneratedUrl,
+      shortUrl: state.shortUrlOriginal === state.currentGeneratedUrl ? state.shortUrl : '',
       baseUrl: state.single.baseUrl,
       source: state.single.source,
       medium: state.single.medium,
@@ -418,6 +423,30 @@ function initSingleBuilder() {
     updateHistoryBadge();
     showToast('Saved link to Campaign History!', 'success');
   });
+
+  // Action: Shorten URL
+  const shortenBtn = document.getElementById('btn-shorten-url');
+  if (shortenBtn) {
+    shortenBtn.addEventListener('click', handleShortenUrl);
+  }
+
+  // Action: Copy Short URL
+  const copyShortBtn = document.getElementById('btn-copy-short-url');
+  if (copyShortBtn) {
+    copyShortBtn.addEventListener('click', handleCopyShortUrl);
+  }
+
+  // Action: Toggle Short URL in QR Code
+  const qrShortBtn = document.getElementById('btn-short-url-qr');
+  if (qrShortBtn) {
+    qrShortBtn.addEventListener('click', handleToggleShortUrlQR);
+  }
+
+  // Action: Close Short URL Card
+  const closeShortBtn = document.getElementById('btn-close-short-url');
+  if (closeShortBtn) {
+    closeShortBtn.addEventListener('click', handleCloseShortUrl);
+  }
 
   // Action: Reset Form
   const resetBtn = document.getElementById('btn-reset-form');
@@ -435,6 +464,14 @@ function initSingleBuilder() {
     updatePresetChipSelection();
     checkUrlForExistingUtms('');
     readSingleInputs();
+
+    // Reset short URL & QR state
+    state.shortUrl = '';
+    state.shortUrlOriginal = '';
+    const shortBox = document.getElementById('short-url-box');
+    if (shortBox) shortBox.style.display = 'none';
+    setQrTarget('full');
+
     recalculateSingleUrl();
     showToast('Form reset', 'info');
   });
@@ -466,17 +503,21 @@ function initSingleBuilder() {
   const qrCanvas = document.getElementById('qr-canvas');
 
   downloadQrBtn.addEventListener('click', () => {
-    if (state.currentGeneratedUrl) {
-      downloadQRCode(qrCanvas, `${state.single.campaign || 'campaign'}-qr.png`);
-      showToast('QR Code downloaded as PNG!', 'success');
+    const activeUrl = (state.qrTarget === 'short' && state.shortUrl) ? state.shortUrl : state.currentGeneratedUrl;
+    if (activeUrl) {
+      const prefix = state.qrTarget === 'short' ? 'short-' : '';
+      downloadQRCode(qrCanvas, `${state.single.campaign || 'campaign'}-${prefix}qr.png`);
+      showToast(`QR Code (${state.qrTarget === 'short' ? 'Short URL' : 'Full URL'}) downloaded as PNG!`, 'success');
     }
   });
 
   if (downloadQrSvgBtn) {
     downloadQrSvgBtn.addEventListener('click', () => {
-      if (state.currentGeneratedUrl) {
-        downloadQRCodeSVG(state.currentGeneratedUrl, `${state.single.campaign || 'campaign'}-qr.svg`);
-        showToast('QR Code downloaded as vector SVG!', 'success');
+      const activeUrl = (state.qrTarget === 'short' && state.shortUrl) ? state.shortUrl : state.currentGeneratedUrl;
+      if (activeUrl) {
+        const prefix = state.qrTarget === 'short' ? 'short-' : '';
+        downloadQRCodeSVG(activeUrl, `${state.single.campaign || 'campaign'}-${prefix}qr.svg`);
+        showToast(`QR Code (${state.qrTarget === 'short' ? 'Short URL' : 'Full URL'}) downloaded as vector SVG!`, 'success');
       }
     });
   }
@@ -528,6 +569,17 @@ function recalculateSingleUrl() {
     statusPill.textContent = 'Ready';
     statusPill.className = 'score-badge high';
 
+    // Invalidate previously shortened URL if parameters changed
+    if (state.shortUrlOriginal && state.shortUrlOriginal !== state.currentGeneratedUrl) {
+      state.shortUrl = '';
+      state.shortUrlOriginal = '';
+      const shortBox = document.getElementById('short-url-box');
+      if (shortBox) shortBox.style.display = 'none';
+      if (state.qrTarget === 'short') {
+        setQrTarget('full');
+      }
+    }
+
     updateQRCode();
   } else {
     state.currentGeneratedUrl = '';
@@ -535,6 +587,14 @@ function recalculateSingleUrl() {
     charCountEl.textContent = '0 chars';
     statusPill.textContent = 'Incomplete';
     statusPill.className = 'score-badge low';
+
+    state.shortUrl = '';
+    state.shortUrlOriginal = '';
+    const shortBox = document.getElementById('short-url-box');
+    if (shortBox) shortBox.style.display = 'none';
+    if (state.qrTarget === 'short') {
+      setQrTarget('full');
+    }
   }
 
   updateScorecard();
@@ -544,7 +604,10 @@ function updateQRCode() {
   const qrCanvas = document.getElementById('qr-canvas');
   if (!qrCanvas) return;
 
-  const url = state.currentGeneratedUrl || state.single.baseUrl || 'https://example.com';
+  const url = (state.qrTarget === 'short' && state.shortUrl)
+    ? state.shortUrl
+    : (state.currentGeneratedUrl || state.single.baseUrl || 'https://example.com');
+
   renderQRCode(qrCanvas, url, {
     darkColor: '#0f172a',
     lightColor: '#ffffff'
@@ -609,6 +672,7 @@ async function handleCopyUrl() {
     // Auto-save to history on copy
     saveToHistory({
       url: state.currentGeneratedUrl,
+      shortUrl: state.shortUrlOriginal === state.currentGeneratedUrl ? state.shortUrl : '',
       baseUrl: state.single.baseUrl,
       source: state.single.source,
       medium: state.single.medium,
@@ -622,11 +686,139 @@ async function handleCopyUrl() {
     const copyBtnText = document.getElementById('btn-copy-text');
     copyBtnText.textContent = 'Copied!';
     setTimeout(() => {
-      copyBtnText.textContent = 'Copy UTM URL';
+      copyBtnText.textContent = 'Copy URL';
     }, 1800);
   } catch (err) {
     console.error('Clipboard copy failed:', err);
     showToast('Failed to copy to clipboard', 'error');
+  }
+}
+
+// =========================================================
+// URL SHORTENER CONTROLLER
+// =========================================================
+async function handleShortenUrl() {
+  if (!state.currentGeneratedUrl) {
+    showToast('Please enter a valid destination URL first', 'error');
+    return;
+  }
+
+  const shortenBtn = document.getElementById('btn-shorten-url');
+  const shortenText = document.getElementById('btn-shorten-text');
+
+  // If already shortened for this current URL, display and copy
+  if (state.shortUrl && state.shortUrlOriginal === state.currentGeneratedUrl) {
+    displayShortUrlCard(state.shortUrl, state.currentGeneratedUrl);
+    await handleCopyShortUrl();
+    return;
+  }
+
+  if (shortenBtn) shortenBtn.disabled = true;
+  if (shortenText) shortenText.textContent = 'Shortening...';
+
+  try {
+    const res = await shortenUrl(state.currentGeneratedUrl);
+    if (res.success && res.shortUrl) {
+      state.shortUrl = res.shortUrl;
+      state.shortUrlOriginal = state.currentGeneratedUrl;
+
+      displayShortUrlCard(res.shortUrl, state.currentGeneratedUrl);
+      showToast('Short URL created!', 'success');
+
+      // Update history entry with shortened URL
+      saveToHistory({
+        url: state.currentGeneratedUrl,
+        shortUrl: res.shortUrl,
+        baseUrl: state.single.baseUrl,
+        source: state.single.source,
+        medium: state.single.medium,
+        campaign: state.single.campaign,
+        term: state.single.term,
+        content: state.single.content,
+        customParams: state.single.customParams
+      });
+      updateHistoryBadge();
+    } else {
+      showToast(res.error || 'Failed to shorten URL. Try again.', 'error');
+    }
+  } catch (err) {
+    console.error('Shorten error:', err);
+    showToast('Network error while shortening URL', 'error');
+  } finally {
+    if (shortenBtn) shortenBtn.disabled = false;
+    if (shortenText) shortenText.textContent = 'Shorten';
+  }
+}
+
+function displayShortUrlCard(shortUrl, longUrl) {
+  const shortBox = document.getElementById('short-url-box');
+  const linkEl = document.getElementById('short-url-link');
+  const savingsBadge = document.getElementById('short-url-savings-badge');
+  if (!shortBox || !linkEl) return;
+
+  linkEl.textContent = shortUrl;
+  linkEl.href = shortUrl;
+
+  const savings = calculateSavings(longUrl, shortUrl);
+  if (savingsBadge) {
+    savingsBadge.textContent = `-${savings.percentSaved}% (${savings.savedChars} chars saved)`;
+  }
+
+  shortBox.style.display = 'block';
+}
+
+async function handleCopyShortUrl() {
+  if (!state.shortUrl) return;
+  try {
+    await navigator.clipboard.writeText(state.shortUrl);
+    showToast('Short URL copied to clipboard!', 'success');
+    const copyText = document.getElementById('btn-copy-short-text');
+    if (copyText) {
+      copyText.textContent = 'Copied!';
+      setTimeout(() => {
+        copyText.textContent = 'Copy';
+      }, 1800);
+    }
+  } catch {
+    showToast('Failed to copy to clipboard', 'error');
+  }
+}
+
+function setQrTarget(target) {
+  state.qrTarget = target;
+  const qrShortBtn = document.getElementById('btn-short-url-qr');
+  const qrShortLabel = document.getElementById('btn-short-url-qr-label');
+  const qrBadge = document.getElementById('qr-target-badge');
+
+  if (target === 'short') {
+    if (qrShortBtn) qrShortBtn.classList.add('active');
+    if (qrShortLabel) qrShortLabel.textContent = 'In QR ✓';
+    if (qrBadge) qrBadge.textContent = '⚡ Short URL';
+  } else {
+    if (qrShortBtn) qrShortBtn.classList.remove('active');
+    if (qrShortLabel) qrShortLabel.textContent = 'Use in QR';
+    if (qrBadge) qrBadge.textContent = 'Full URL';
+  }
+
+  updateQRCode();
+}
+
+function handleToggleShortUrlQR() {
+  if (!state.shortUrl) return;
+  if (state.qrTarget === 'short') {
+    setQrTarget('full');
+    showToast('QR code switched to Full URL', 'info');
+  } else {
+    setQrTarget('short');
+    showToast('QR code updated to Short URL!', 'success');
+  }
+}
+
+function handleCloseShortUrl() {
+  const shortBox = document.getElementById('short-url-box');
+  if (shortBox) shortBox.style.display = 'none';
+  if (state.qrTarget === 'short') {
+    setQrTarget('full');
   }
 }
 
@@ -1164,6 +1356,12 @@ function renderHistoryView() {
             ${item.term ? `<span class="mini-badge" style="color: #c084fc;">term: ${item.term}</span>` : ''}
           </div>
           <div class="history-url-text" title="${item.url}">${item.url}</div>
+          ${item.shortUrl ? `
+            <div style="margin-top: 0.2rem; display: flex; align-items: center; gap: 0.5rem;">
+              <a href="${item.shortUrl}" target="_blank" rel="noopener noreferrer" class="history-short-link" title="Open short link in new tab">⚡ ${item.shortUrl}</a>
+              <button type="button" class="btn btn-ghost btn-sm btn-hist-copy-short" style="padding: 0 0.35rem; font-size: 0.7rem; min-height: 20px; line-height: 1;" title="Copy short link">Copy Short</button>
+            </div>
+          ` : ''}
         </div>
 
         <div class="history-actions">
@@ -1192,6 +1390,14 @@ function renderHistoryView() {
       showToast('Copied history URL!', 'success');
     });
 
+    const copyShortBtn = row.querySelector('.btn-hist-copy-short');
+    if (copyShortBtn && item.shortUrl) {
+      copyShortBtn.addEventListener('click', async () => {
+        await navigator.clipboard.writeText(item.shortUrl);
+        showToast('Copied short URL!', 'success');
+      });
+    }
+
     row.querySelector('.btn-hist-load').addEventListener('click', () => {
       document.getElementById('input-base-url').value = item.baseUrl || '';
       document.getElementById('input-utm-source').value = item.source || '';
@@ -1201,6 +1407,13 @@ function renderHistoryView() {
       document.getElementById('input-utm-content').value = item.content || '';
       readSingleInputs();
       recalculateSingleUrl();
+
+      if (item.shortUrl && state.currentGeneratedUrl === item.url) {
+        state.shortUrl = item.shortUrl;
+        state.shortUrlOriginal = item.url;
+        displayShortUrlCard(item.shortUrl, item.url);
+      }
+
       switchTab('tab-builder');
       showToast('Loaded link into Builder!', 'info');
     });

@@ -727,24 +727,170 @@ body {
 }
 
 .action-buttons-row {
-  display: grid;
-  grid-template-columns: minmax(112px, 1.25fr) minmax(88px, 1fr) minmax(72px, 0.85fr) auto;
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.4rem;
   margin-top: 0.75rem;
 }
 
 .action-buttons-row .btn {
   min-height: 40px;
-  width: 100%;
-}
-
-#btn-copy-url,
-#btn-copy-text {
-  white-space: nowrap;
+  flex: 1 1 auto;
 }
 
 #btn-copy-url {
+  flex: 1.4 1 120px;
   min-width: 112px;
+  white-space: nowrap;
+}
+
+#btn-shorten-url {
+  flex: 1.2 1 100px;
+  white-space: nowrap;
+}
+
+#btn-test-url,
+#btn-save-history {
+  flex: 1 1 80px;
+  white-space: nowrap;
+}
+
+#btn-reset-form {
+  flex: 0 0 auto;
+}
+
+#btn-copy-text,
+#btn-shorten-text {
+  white-space: nowrap;
+}
+
+/* Short URL Container */
+.short-url-container {
+  margin-top: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.short-url-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.45rem;
+}
+
+.short-url-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.short-url-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.short-url-savings {
+  font-size: 0.72rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: var(--success-subtle);
+  color: var(--success);
+  font-weight: 600;
+}
+
+.short-url-actions-top {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.short-url-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.short-url-action-btn:hover {
+  color: var(--text-main);
+  border-color: var(--border-focus);
+}
+
+.short-url-action-btn.active {
+  background: var(--primary-subtle);
+  color: var(--primary);
+  border-color: var(--primary);
+  font-weight: 600;
+}
+
+.short-url-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: var(--radius-sm);
+  line-height: 1;
+}
+
+.short-url-close-btn:hover {
+  color: var(--text-main);
+}
+
+.short-url-content-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  background: var(--bg-card);
+  padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.short-url-link {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.short-url-link:hover {
+  text-decoration: underline;
+}
+
+.short-url-content-row .btn-sm {
+  min-height: 30px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.78rem;
+  flex-shrink: 0;
 }
 
 /* Status & Quality Checklist (Clean & Compact) */
@@ -1068,6 +1214,21 @@ body {
   margin-top: 0.2rem;
 }
 
+.history-short-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.2rem;
+}
+
+.history-short-link:hover {
+  text-decoration: underline;
+}
+
 .history-actions {
   display: flex;
   align-items: center;
@@ -1352,11 +1513,17 @@ body {
   }
 
   .action-buttons-row {
+    display: grid;
     grid-template-columns: 1fr 1fr;
   }
 
   #btn-copy-url {
+    grid-column: 1 / -1;
     min-width: 0;
+  }
+
+  #btn-reset-form {
+    grid-column: 1 / -1;
   }
 
   .custom-param-row {

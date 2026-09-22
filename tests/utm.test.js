@@ -4,6 +4,7 @@ import { buildUTMUrl, sanitizeValue } from '../src/modules/builder.js';
 import { auditUTM } from '../src/modules/taxonomy.js';
 import { deconstructUrl } from '../src/modules/inspector.js';
 import { generateBatchMatrix, exportBatchToCSV, exportBatchToTSV } from '../src/modules/batch.js';
+import { shortenUrl, calculateSavings } from '../src/modules/shortener.js';
 
 test('sanitizeValue should lowercase and replace spaces', () => {
   const result = sanitizeValue('Summer Sale 2025', { lowercase: true, spaceReplacement: '-' });
@@ -164,3 +165,88 @@ test('auditUTM should accurately accept standard GA4 mediums without false warni
   assert.equal(referralAudit.score, 100);
   assert.equal(referralAudit.suggestions.length, 0);
 });
+
+test('calculateSavings should correctly compute character difference and percentage', () => {
+  const original = 'https://example.com/checkout?utm_source=google&utm_medium=cpc&utm_campaign=summer_sale_2025&utm_term=shoes';
+  const short = 'https://da.gd/xyz123';
+  const savings = calculateSavings(original, short);
+
+  assert.equal(savings.originalLen, original.length);
+  assert.equal(savings.shortLen, short.length);
+  assert.equal(savings.savedChars, original.length - short.length);
+  assert.ok(savings.percentSaved > 70);
+});
+
+test('shortenUrl should validate inputs and handle failures safely', async () => {
+  const emptyRes = await shortenUrl('');
+  assert.equal(emptyRes.success, false);
+  assert.ok(emptyRes.error);
+
+  const invalidRes = await shortenUrl('ftp://invalid-protocol.com');
+  assert.equal(invalidRes.success, false);
+
+  // Test custom fetch mock for successful da.gd response
+  const mockFetchSuccess = async (url) => {
+    if (url.includes('da.gd')) {
+      return {
+        ok: true,
+        text: async () => 'https://da.gd/abc123'
+      };
+    }
+    return { ok: false };
+  };
+
+  const successRes = await shortenUrl('https://example.com/page?utm_source=test', { fetchFn: mockFetchSuccess });
+  assert.equal(successRes.success, true);
+  assert.equal(successRes.shortUrl, 'https://da.gd/abc123');
+  assert.equal(successRes.provider, 'da.gd');
+
+  // Test fallback to clck.ru when primary fails
+  const mockFetchFallback = async (url) => {
+    if (url.includes('da.gd')) {
+      throw new Error('Connection refused');
+    }
+    if (url.includes('clck.ru')) {
+      return {
+        ok: true,
+        text: async () => 'https://clck.ru/34567'
+      };
+    }
+    return { ok: false };
+  };
+
+  const fallbackRes = await shortenUrl('https://example.com/page?utm_source=test', { fetchFn: mockFetchFallback });
+  assert.equal(fallbackRes.success, true);
+  assert.equal(fallbackRes.shortUrl, 'https://clck.ru/34567');
+  assert.equal(fallbackRes.provider, 'clck.ru');
+});
+
+test('history module should preserve shortUrl and export it to CSV', async () => {
+  if (typeof localStorage === 'undefined') {
+    const store = new Map();
+    globalThis.localStorage = {
+      getItem: (k) => store.get(k) ?? null,
+      setItem: (k, v) => store.set(k, String(v)),
+      removeItem: (k) => store.delete(k),
+      clear: () => store.clear()
+    };
+  }
+
+  const { saveToHistory, clearAllHistory, exportHistoryToCSV } = await import('../src/modules/history.js');
+  clearAllHistory();
+
+  saveToHistory({
+    url: 'https://mysite.com/page?utm_source=google&utm_medium=cpc&utm_campaign=summer',
+    shortUrl: 'https://da.gd/sm123',
+    baseUrl: 'https://mysite.com/page',
+    source: 'google',
+    medium: 'cpc',
+    campaign: 'summer'
+  });
+
+  const csv = exportHistoryToCSV();
+  assert.ok(csv.includes('Short URL'));
+  assert.ok(csv.includes('"https://da.gd/sm123"'));
+});
+
+
