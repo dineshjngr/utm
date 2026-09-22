@@ -220,7 +220,6 @@
           <ul class="footer-links">
             <li><a href="/">Single URL Builder</a></li>
             <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
-            <li><a href="/ga4-utm-builder/">GA4 Channel Validator</a></li>
             <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
             <li><a href="/utm-checker/">UTM Link Checker</a></li>
           </ul>
@@ -233,8 +232,12 @@
             <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
             <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
           </ul>
-          <h4 class="footer-heading" style="margin-top: 1.25rem;">Guides &amp; References</h4>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
           <ul class="footer-links">
+            <li><a href="/ga4-utm-builder/">GA4 Channel Taxonomy</a></li>
             <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
             <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
           </ul>
@@ -255,44 +258,40 @@
         <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
         <div class="footer-credit">Made with ❤️ by DJ</div>
         <div class="footer-legal-links">
-          <a href="/privacy.html">Privacy</a>
+          <a href="/privacy.html">Privacy Policy</a>
           <span>•</span>
-          <a href="/terms.html">Terms</a>
+          <a href="/terms.html">Terms &amp; Conditions</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Theme toggle handler for legal page
-    (function() {
-      var themeBtn = document.getElementById('btn-theme-toggle');
-      var moonIcon = document.getElementById('theme-icon-moon');
-      var sunIcon = document.getElementById('theme-icon-sun');
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
-      function updateIcons(theme) {
-        if (theme === 'dark') {
-          if (moonIcon) moonIcon.style.display = 'none';
-          if (sunIcon) sunIcon.style.display = 'block';
-        } else {
-          if (moonIcon) moonIcon.style.display = 'block';
-          if (sunIcon) sunIcon.style.display = 'none';
-        }
-      }
+  <!-- Shortcuts Modal -->
+  <div id="modal-shortcuts" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-shortcuts-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-shortcuts-title" class="card-title">Keyboard Shortcuts</h3>
+        <button type="button" class="btn btn-ghost btn-sm btn-close-modal" aria-label="Close modal">✕</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+          <span>Open Shortcuts Guide</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">?</kbd>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+          <span>Close Modal</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">Esc</kbd>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-close-modal">Got it</button>
+      </div>
+    </div>
+  </div>
 
-      var current = document.documentElement.getAttribute('data-theme') || 'light';
-      updateIcons(current);
-
-      if (themeBtn) {
-        themeBtn.addEventListener('click', function() {
-          var active = document.documentElement.getAttribute('data-theme') || 'light';
-          var next = active === 'dark' ? 'light' : 'dark';
-          document.documentElement.setAttribute('data-theme', next);
-          localStorage.setItem('utmc_theme', next);
-          updateIcons(next);
-        });
-      }
-    })();
-  </script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

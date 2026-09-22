@@ -172,6 +172,8 @@ function initTabs() {
       if (input) {
         input.focus();
         input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        window.location.href = '/campaign-url-builder/';
       }
     });
   }
@@ -283,19 +285,19 @@ function initSingleBuilder() {
   const ruleDuplicate = document.getElementById('rule-strip-duplicate');
 
   // Initial populate from state
-  inputBaseUrl.value = state.single.baseUrl;
-  inputSource.value = state.single.source;
-  inputMedium.value = state.single.medium;
-  inputCampaign.value = state.single.campaign;
-  inputTerm.value = state.single.term;
-  inputContent.value = state.single.content;
-  inputUtmId.value = state.single.utmId;
+  if (inputBaseUrl) inputBaseUrl.value = state.single.baseUrl;
+  if (inputSource) inputSource.value = state.single.source;
+  if (inputMedium) inputMedium.value = state.single.medium;
+  if (inputCampaign) inputCampaign.value = state.single.campaign;
+  if (inputTerm) inputTerm.value = state.single.term;
+  if (inputContent) inputContent.value = state.single.content;
+  if (inputUtmId) inputUtmId.value = state.single.utmId;
 
   // Real-time recalculation listener
   const formInputs = [
     inputBaseUrl, inputSource, inputMedium, inputCampaign, 
     inputTerm, inputContent, inputUtmId
-  ];
+  ].filter(Boolean);
 
   formInputs.forEach(el => {
     el.addEventListener('input', () => {
@@ -707,13 +709,21 @@ function generateActiveQRCode(showToastMsg = false, isRegen = false) {
 }
 
 function readSingleInputs() {
-  state.single.baseUrl = document.getElementById('input-base-url').value;
-  state.single.source = document.getElementById('input-utm-source').value;
-  state.single.medium = document.getElementById('input-utm-medium').value;
-  state.single.campaign = document.getElementById('input-utm-campaign').value;
-  state.single.term = document.getElementById('input-utm-term').value;
-  state.single.content = document.getElementById('input-utm-content').value;
-  state.single.utmId = document.getElementById('input-utm-id').value;
+  const bUrl = document.getElementById('input-base-url');
+  const bSrc = document.getElementById('input-utm-source');
+  const bMed = document.getElementById('input-utm-medium');
+  const bCmp = document.getElementById('input-utm-campaign');
+  const bTrm = document.getElementById('input-utm-term');
+  const bCnt = document.getElementById('input-utm-content');
+  const bId = document.getElementById('input-utm-id');
+
+  if (bUrl) state.single.baseUrl = bUrl.value;
+  if (bSrc) state.single.source = bSrc.value;
+  if (bMed) state.single.medium = bMed.value;
+  if (bCmp) state.single.campaign = bCmp.value;
+  if (bTrm) state.single.term = bTrm.value;
+  if (bCnt) state.single.content = bCnt.value;
+  if (bId) state.single.utmId = bId.value;
 }
 
 function recalculateSingleUrl() {
@@ -1775,37 +1785,46 @@ function initHistoryControls() {
     });
   }
 
-  document.getElementById('btn-history-export-csv').addEventListener('click', () => {
-    const csv = exportHistoryToCSV();
-    if (!csv) {
-      showToast('History is empty', 'error');
-      return;
-    }
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `utm-campaign-history-${Date.now()}.csv`;
-    link.click();
-    showToast('Exported campaign history CSV!', 'success');
-  });
+  const exportCsvBtn = document.getElementById('btn-history-export-csv');
+  if (exportCsvBtn) {
+    exportCsvBtn.addEventListener('click', () => {
+      const csv = exportHistoryToCSV();
+      if (!csv) {
+        showToast('History is empty', 'error');
+        return;
+      }
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `utm-campaign-history-${Date.now()}.csv`;
+      link.click();
+      showToast('Exported campaign history CSV!', 'success');
+    });
+  }
 
-  document.getElementById('btn-history-export-json').addEventListener('click', () => {
-    const json = exportHistoryToJSON();
-    const blob = new Blob([json], { type: 'application/json;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `utm-campaign-history-${Date.now()}.json`;
-    link.click();
-    showToast('Exported campaign history JSON!', 'success');
-  });
+  const exportJsonBtn = document.getElementById('btn-history-export-json');
+  if (exportJsonBtn) {
+    exportJsonBtn.addEventListener('click', () => {
+      const json = exportHistoryToJSON();
+      const blob = new Blob([json], { type: 'application/json;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `utm-campaign-history-${Date.now()}.json`;
+      link.click();
+      showToast('Exported campaign history JSON!', 'success');
+    });
+  }
 
-  document.getElementById('btn-history-clear').addEventListener('click', () => {
-    if (confirm('Are you sure you want to clear all history?')) {
-      clearAllHistory();
-      renderHistoryView();
-      showToast('All history cleared', 'info');
-    }
-  });
+  const clearHistoryBtn = document.getElementById('btn-history-clear');
+  if (clearHistoryBtn) {
+    clearHistoryBtn.addEventListener('click', () => {
+      if (confirm('Are you sure you want to clear all history?')) {
+        clearAllHistory();
+        renderHistoryView();
+        showToast('All history cleared', 'info');
+      }
+    });
+  }
 }
 
 // =========================================================
@@ -1884,7 +1903,7 @@ function initModals() {
     // ? opens shortcuts modal if not typing in input
     if (e.key === '?' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
       e.preventDefault();
-      shortcutsModal.classList.add('open');
+      if (shortcutsModal) shortcutsModal.classList.add('open');
     }
 
     // Cmd/Ctrl + Enter copies generated URL
@@ -1903,15 +1922,58 @@ function initModals() {
 }
 
 // =========================================================
+// HEADER DROPDOWN NAVIGATION
+// =========================================================
+function initHeaderDropdowns() {
+  document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+    const toggleBtn = dropdown.querySelector('.nav-dropdown-toggle');
+    const menu = dropdown.querySelector('.nav-dropdown-menu');
+    if (!toggleBtn) return;
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.toggle('is-open');
+      toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        dropdown.classList.remove('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close dropdown when an item inside it is clicked
+    if (menu) {
+      menu.querySelectorAll('.nav-dropdown-item').forEach(item => {
+        item.addEventListener('click', () => {
+          dropdown.classList.remove('is-open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  });
+}
+
+// =========================================================
 // FOOTER & QUICK-NAV LINK CONTROLLER
 // =========================================================
 function initFooterNavigation() {
   document.querySelectorAll('[data-switch-tab]').forEach(link => {
     link.addEventListener('click', (e) => {
-      e.preventDefault();
       const targetTab = link.getAttribute('data-switch-tab');
       const scrollToId = link.getAttribute('data-scroll-to');
-      if (targetTab) {
+      if (targetTab && document.getElementById(targetTab)) {
+        e.preventDefault();
         switchTab(targetTab);
         if (scrollToId) {
           setTimeout(() => {
@@ -1924,6 +1986,8 @@ function initFooterNavigation() {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
+      // If targetTab is not on this page, do not preventDefault!
+      // The browser will naturally follow the href="/" or other link URL.
     });
   });
 
@@ -1980,9 +2044,10 @@ function initMacroChips() {
 // =========================================================
 // BOOTSTRAP INITIALIZATION
 // =========================================================
-window.addEventListener('DOMContentLoaded', () => {
+function initApp() {
   applyPageOverrides();
   initTheme();
+  initHeaderDropdowns();
   initTabs();
   initSingleBuilder();
   initBatchGenerator();
@@ -1993,5 +2058,11 @@ window.addEventListener('DOMContentLoaded', () => {
   initFooterNavigation();
   initMacroChips();
   updateHistoryBadge();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
 
