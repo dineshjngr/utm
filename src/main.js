@@ -722,7 +722,7 @@ async function handleCopyUrl() {
     const copyBtnText = document.getElementById('btn-copy-text');
     copyBtnText.textContent = 'Copied!';
     setTimeout(() => {
-      copyBtnText.textContent = 'Copy URL';
+      copyBtnText.textContent = 'Copy Campaign URL';
     }, 1800);
   } catch (err) {
     console.error('Clipboard copy failed:', err);

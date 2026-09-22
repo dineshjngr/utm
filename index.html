@@ -78,14 +78,6 @@
         </div>
       </div>
 
-      <nav class="header-nav" aria-label="Primary Navigation">
-        <button type="button" class="nav-header-link active" data-tab-target="tab-builder">Builder</button>
-        <button type="button" class="nav-header-link" data-tab-target="tab-batch">Bulk Matrix</button>
-        <button type="button" class="nav-header-link" data-tab-target="tab-inspector">Inspector</button>
-        <button type="button" class="nav-header-link" data-tab-target="tab-taxonomy">Taxonomy</button>
-        <button type="button" class="nav-header-link" data-tab-target="tab-history">History</button>
-      </nav>
-
       <div class="header-actions">
         <button type="button" id="btn-shortcuts" class="btn-text-action" title="Keyboard Shortcuts (Press ?)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
@@ -104,42 +96,41 @@
     </div>
   </header>
 
-  <!-- Compact Hero Section -->
-  <section class="hero-section">
-    <div class="hero-inner">
-      <h1 class="hero-heading">Build Better Campaign URLs</h1>
-      <p class="hero-subheading">Create clean, GA4-ready UTM links in seconds.</p>
-
-      <!-- Horizontal Segmented Tab Interface -->
-      <div class="nav-tabs-wrapper">
-        <nav class="nav-tabs" role="tablist" aria-label="Tool Navigation">
-          <button id="nav-builder" class="nav-tab active" data-tab="tab-builder" role="tab" aria-selected="true" aria-controls="tab-builder" tabindex="0">
-            <span>Single URL Builder</span>
-          </button>
-
-          <button id="nav-batch" class="nav-tab" data-tab="tab-batch" role="tab" aria-selected="false" aria-controls="tab-batch" tabindex="-1">
-            <span>Bulk Matrix Generator</span>
-          </button>
-
-          <button id="nav-inspector" class="nav-tab" data-tab="tab-inspector" role="tab" aria-selected="false" aria-controls="tab-inspector" tabindex="-1">
-            <span>UTM Inspector</span>
-          </button>
-
-          <button id="nav-taxonomy" class="nav-tab" data-tab="tab-taxonomy" role="tab" aria-selected="false" aria-controls="tab-taxonomy" tabindex="-1">
-            <span>GA4 Taxonomy Guide</span>
-          </button>
-
-          <button id="nav-history" class="nav-tab" data-tab="tab-history" role="tab" aria-selected="false" aria-controls="tab-history" tabindex="-1">
-            <span>Campaign History</span>
-            <span id="history-counter-badge" class="tab-badge">0</span>
-          </button>
-        </nav>
-      </div>
-    </div>
-  </section>
-
   <!-- Main Grid Workspace Container -->
   <div class="app-container">
+    
+    <!-- Application Header directly above tool -->
+    <header class="workspace-header">
+      <div class="workspace-title-group">
+        <h1 class="workspace-title">UTM Builder</h1>
+        <p class="workspace-subtitle">Create clean, GA4-ready UTM links in seconds.</p>
+      </div>
+
+      <!-- Navigation tabs directly above tool -->
+      <nav class="nav-tabs" role="tablist" aria-label="Tool Navigation">
+        <button id="nav-builder" class="nav-tab active" data-tab="tab-builder" role="tab" aria-selected="true" aria-controls="tab-builder" tabindex="0">
+          <span>Single URL</span>
+        </button>
+
+        <button id="nav-batch" class="nav-tab" data-tab="tab-batch" role="tab" aria-selected="false" aria-controls="tab-batch" tabindex="-1">
+          <span>Bulk Generator</span>
+        </button>
+
+        <button id="nav-inspector" class="nav-tab" data-tab="tab-inspector" role="tab" aria-selected="false" aria-controls="tab-inspector" tabindex="-1">
+          <span>Inspector</span>
+        </button>
+
+        <button id="nav-taxonomy" class="nav-tab" data-tab="tab-taxonomy" role="tab" aria-selected="false" aria-controls="tab-taxonomy" tabindex="-1">
+          <span>Taxonomy</span>
+        </button>
+
+        <button id="nav-history" class="nav-tab" data-tab="tab-history" role="tab" aria-selected="false" aria-controls="tab-history" tabindex="-1">
+          <span>History</span>
+          <span id="history-counter-badge" class="tab-badge">0</span>
+        </button>
+      </nav>
+    </header>
+
     <main class="tool-content">
     <!-- TAB 1: SINGLE BUILDER -->
     <section id="tab-builder" class="tab-pane active" role="tabpanel" aria-labelledby="nav-builder">
@@ -149,35 +140,29 @@
         <div class="builder-form-column">
           
           <div class="card">
-            <div class="card-header">
-              <div>
-                <span class="card-category">DESTINATION</span>
-                <h2 class="card-title">Target Website URL</h2>
-                <p class="card-description">The destination landing page on your website where users will land.</p>
-              </div>
-            </div>
-
-            <!-- Base URL input -->
-            <div class="form-group">
-              <div class="field-label-row">
-                <label for="input-base-url" class="form-label">
-                  Website URL <span class="required-dot">*</span>
+            <!-- Hero Destination Input -->
+            <div class="destination-field-group">
+              <div class="field-label-row destination-label-row">
+                <label for="input-base-url" class="destination-label">
+                  Destination URL <span class="required-dot">*</span>
                 </label>
                 <div class="field-actions">
-                  <span class="field-hint" id="base-url-hint">e.g. https://yourbrand.com/landing</span>
+                  <span class="field-hint" id="base-url-hint">Paste your destination URL</span>
                   <button type="button" id="btn-clear-url" class="btn btn-ghost btn-sm" title="Clear the destination URL">
                     Clear URL
                   </button>
                 </div>
               </div>
               
-              <div class="input-with-icon">
-                <span class="input-icon">🌐</span>
+              <div class="input-with-icon destination-input-wrap">
+                <span class="input-icon destination-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </span>
                 <input 
                   type="url" 
                   id="input-base-url" 
-                  class="form-input" 
-                  placeholder="https://example.com/pricing" 
+                  class="form-input destination-input" 
+                  placeholder="https://yourwebsite.com/landing" 
                   required 
                   autocomplete="off"
                   inputmode="url"
@@ -421,25 +406,28 @@
               <span style="font-size: 0.75rem; color: var(--text-muted);">Standard limit &lt; 2048 chars</span>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="action-buttons-row">
-              <button type="button" id="btn-copy-url" class="btn btn-primary">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                <span id="btn-copy-text">Copy URL</span>
+            <!-- Dominant Full-Width Primary Action -->
+            <div class="copy-action-dominant-wrap">
+              <button type="button" id="btn-copy-url" class="btn btn-primary btn-copy-dominant">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span id="btn-copy-text">Copy Campaign URL</span>
               </button>
+            </div>
 
-              <button type="button" id="btn-shorten-url" class="btn btn-secondary" title="Shorten UTM link for social & SMS">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            <!-- Secondary Actions Row Underneath -->
+            <div class="secondary-actions-row">
+              <button type="button" id="btn-shorten-url" class="btn btn-secondary btn-sm" title="Shorten UTM link for social & SMS">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                 <span id="btn-shorten-text">Shorten</span>
               </button>
 
-              <button type="button" id="btn-test-url" class="btn btn-secondary" title="Open in new tab to test">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              <button type="button" id="btn-test-url" class="btn btn-secondary btn-sm" title="Open in new tab to test">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 <span>Test Link</span>
               </button>
 
-              <button type="button" id="btn-save-history" class="btn btn-secondary" title="Save link to history">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              <button type="button" id="btn-save-history" class="btn btn-secondary btn-sm" title="Save link to history">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
                 <span>Save</span>
               </button>
 
