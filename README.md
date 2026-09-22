@@ -97,8 +97,7 @@ utm-builder/
 ├── wrangler.jsonc           # Cloudflare Workers static assets configuration
 ├── .node-version            # Pinned Node.js 22 runtime for build environments
 ├── public/
-│   ├── _headers             # Cloudflare security & asset caching headers
-│   └── _redirects           # Cloudflare SPA fallback routing
+│   └── _headers             # Cloudflare security & asset caching headers
 ├── src/
 │   ├── main.js              # Application controller & state coordination
 │   ├── styles.css           # CSS custom properties, responsive layout & themes
