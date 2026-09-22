@@ -3,10 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UTM Builder — Campaign URL Generator</title>
-  <meta name="description" content="Clean, simple UTM campaign URL generator and GA4 tagging tool.">
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('utmc_theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+  <title>Free UTM Builder &amp; GA4 Campaign URL Generator | UTMCraft</title>
+  <meta name="description" content="Build, inspect, and manage GA4-ready UTM campaign URLs. Create single or bulk tracking links, audit parameters, generate QR codes, and export campaign history.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#2563eb">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="UTMCraft">
+  <meta property="og:title" content="Free UTM Builder &amp; GA4 Campaign URL Generator">
+  <meta property="og:description" content="Create consistent GA4-ready campaign links, bulk URL matrices, QR codes, and UTM audits in your browser.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free UTM Builder &amp; GA4 Campaign URL Generator">
+  <meta name="twitter:description" content="Create consistent GA4-ready campaign links, bulk URL matrices, QR codes, and UTM audits in your browser.">
   <link rel="stylesheet" href="./src/styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔗</text></svg>">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "UTMCraft UTM Builder",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "description": "A browser-based toolkit for building, auditing, and managing GA4 campaign URLs.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": ["UTM URL builder", "Bulk campaign URL generator", "UTM link inspector", "GA4 channel taxonomy guide", "Local campaign history", "QR code generator"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "What is a UTM URL?", "acceptedAnswer": { "@type": "Answer", "text": "A UTM URL is a destination link with campaign parameters that help analytics tools identify the source, medium, campaign, term, and content behind a visit." } },
+          { "@type": "Question", "name": "Which UTM parameters are required?", "acceptedAnswer": { "@type": "Answer", "text": "Use utm_source, utm_medium, and utm_campaign for reliable campaign reporting. Term, content, and campaign ID are optional." } },
+          { "@type": "Question", "name": "Can I generate UTM links in bulk?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Add multiple landing pages, select the channels you need, and generate a campaign matrix that can be copied or exported as CSV." } },
+          { "@type": "Question", "name": "How do I keep bulk campaign tags consistent?", "acceptedAnswer": { "@type": "Answer", "text": "Use one campaign name, approved channel presets, lowercase values, and one separator style across every generated link." } },
+          { "@type": "Question", "name": "What does the UTM inspector check?", "acceptedAnswer": { "@type": "Answer", "text": "It extracts tracking parameters, separates non-UTM query values, checks GA4 naming quality, and identifies missing or inconsistent fields." } },
+          { "@type": "Question", "name": "Are inspected URLs sent to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. URL inspection runs in the browser, so the submitted link is not uploaded by this tool." } },
+          { "@type": "Question", "name": "Why does GA4 channel grouping matter?", "acceptedAnswer": { "@type": "Answer", "text": "GA4 uses source and medium values to classify traffic. Consistent values reduce unassigned traffic and fragmented reports." } },
+          { "@type": "Question", "name": "Should UTM values use lowercase?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Analytics treats differently capitalized values as separate entries, so lowercase naming keeps reports cleaner." } },
+          { "@type": "Question", "name": "Where is campaign history stored?", "acceptedAnswer": { "@type": "Answer", "text": "Campaign history is stored locally in the current browser using local storage." } },
+          { "@type": "Question", "name": "Can I move campaign history to another tool?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Export campaign history as CSV for spreadsheets or JSON for backups and other workflows." } }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="app-container">
@@ -41,35 +91,36 @@
 
     <!-- Navigation Tabs -->
     <nav class="nav-tabs" role="tablist" aria-label="Tool Navigation">
-      <button class="nav-tab active" data-tab="tab-builder" role="tab" aria-selected="true" aria-controls="tab-builder">
+      <button id="nav-builder" class="nav-tab active" data-tab="tab-builder" role="tab" aria-selected="true" aria-controls="tab-builder" tabindex="0">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
         <span>Single URL Builder</span>
       </button>
 
-      <button class="nav-tab" data-tab="tab-batch" role="tab" aria-selected="false" aria-controls="tab-batch">
+      <button id="nav-batch" class="nav-tab" data-tab="tab-batch" role="tab" aria-selected="false" aria-controls="tab-batch" tabindex="-1">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
         <span>Bulk Matrix Generator</span>
       </button>
 
-      <button class="nav-tab" data-tab="tab-inspector" role="tab" aria-selected="false" aria-controls="tab-inspector">
+      <button id="nav-inspector" class="nav-tab" data-tab="tab-inspector" role="tab" aria-selected="false" aria-controls="tab-inspector" tabindex="-1">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         <span>UTM Inspector</span>
       </button>
 
-      <button class="nav-tab" data-tab="tab-taxonomy" role="tab" aria-selected="false" aria-controls="tab-taxonomy">
+      <button id="nav-taxonomy" class="nav-tab" data-tab="tab-taxonomy" role="tab" aria-selected="false" aria-controls="tab-taxonomy" tabindex="-1">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
         <span>GA4 Taxonomy Guide</span>
       </button>
 
-      <button class="nav-tab" data-tab="tab-history" role="tab" aria-selected="false" aria-controls="tab-history">
+      <button id="nav-history" class="nav-tab" data-tab="tab-history" role="tab" aria-selected="false" aria-controls="tab-history" tabindex="-1">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
         <span>Campaign History</span>
         <span id="history-counter-badge" class="tab-badge">0</span>
       </button>
     </nav>
 
+    <main class="tool-content">
     <!-- TAB 1: SINGLE BUILDER -->
-    <main id="tab-builder" class="tab-pane active" role="tabpanel">
+    <section id="tab-builder" class="tab-pane active" role="tabpanel" aria-labelledby="nav-builder">
       <div class="builder-layout">
         
         <!-- Left Section: Parameters Form -->
@@ -92,7 +143,12 @@
                 <label for="input-base-url" class="form-label">
                   Website URL <span class="required-dot">*</span>
                 </label>
-                <span class="field-hint" id="base-url-hint">e.g. https://yourbrand.com/landing</span>
+                <div class="field-actions">
+                  <span class="field-hint" id="base-url-hint">e.g. https://yourbrand.com/landing</span>
+                  <button type="button" id="btn-clear-url" class="btn btn-ghost btn-sm" title="Clear the destination URL">
+                    Clear URL
+                  </button>
+                </div>
               </div>
               
               <div class="input-with-icon">
@@ -112,6 +168,9 @@
                 <span>⚠️</span> Please enter a valid URL (e.g. https://domain.com/path)
               </div>
 
+              <!-- Detected UTMs Banner -->
+              <div id="detected-utms-container" style="display: none;"></div>
+
               <!-- Quick Demo Fills -->
               <div style="display: flex; gap: 0.4rem; margin-top: 0.5rem; flex-wrap: wrap; font-size: 0.78rem;">
                 <span style="color: var(--text-muted); align-self: center;">Quick fill:</span>
@@ -125,9 +184,14 @@
             <div class="preset-chips-container">
               <div class="field-label-row">
                 <span class="form-label">Channel Presets</span>
-                <button type="button" id="btn-open-save-preset" class="btn btn-ghost btn-sm" style="color: var(--primary);">
-                  + Custom Preset
-                </button>
+                <div class="field-actions">
+                  <button type="button" id="btn-clear-preset" class="btn btn-ghost btn-sm" title="Clear the selected preset" disabled>
+                    Clear preset
+                  </button>
+                  <button type="button" id="btn-open-save-preset" class="btn btn-ghost btn-sm" style="color: var(--primary);">
+                    + Custom Preset
+                  </button>
+                </div>
               </div>
               <div id="presets-chips-list" class="preset-chips-grid">
                 <!-- Dynamically populated from presets.js -->
@@ -338,7 +402,7 @@
 
             <!-- Action Buttons -->
             <div class="action-buttons-row">
-              <button type="button" id="btn-copy-url" class="btn btn-primary" style="flex: 1;">
+              <button type="button" id="btn-copy-url" class="btn btn-primary">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 <span id="btn-copy-text">Copy URL</span>
               </button>
@@ -387,13 +451,17 @@
               </div>
 
               <div class="qr-actions">
-                <button type="button" id="btn-download-qr" class="btn btn-secondary btn-sm">
+                <button type="button" id="btn-download-qr" class="btn btn-secondary btn-sm" title="Download QR code as PNG">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                  <span>Download PNG</span>
+                  <span>PNG</span>
                 </button>
-                <button type="button" id="btn-copy-qr" class="btn btn-secondary btn-sm">
+                <button type="button" id="btn-download-qr-svg" class="btn btn-secondary btn-sm" title="Download Vector SVG for high-res print">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                  <span>SVG</span>
+                </button>
+                <button type="button" id="btn-copy-qr" class="btn btn-secondary btn-sm" title="Copy QR image to clipboard">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>Copy Image</span>
+                  <span>Copy</span>
                 </button>
               </div>
             </div>
@@ -402,10 +470,26 @@
         </div>
 
       </div>
-    </main>
+      <section class="tool-guide" aria-labelledby="builder-guide-title">
+        <div class="guide-copy">
+          <span class="guide-kicker">UTM URL builder</span>
+          <h2 id="builder-guide-title">Build accurate campaign links in seconds</h2>
+          <p>Add a landing page, choose a channel preset, and name your campaign. UTMCraft normalizes the values, removes duplicate UTM tags, and creates a GA4-ready URL plus a downloadable QR code.</p>
+          <ul class="guide-points">
+            <li>Use lowercase names to prevent split analytics rows.</li>
+            <li>Keep source, medium, and campaign on every marketing link.</li>
+          </ul>
+        </div>
+        <div class="faq-block">
+          <h2>UTM builder FAQs</h2>
+          <details><summary>What is a UTM URL?</summary><p>A UTM URL is a destination link with campaign parameters that identify where a visit came from and which campaign drove it.</p></details>
+          <details><summary>Which UTM parameters are required?</summary><p>Use <code>utm_source</code>, <code>utm_medium</code>, and <code>utm_campaign</code> for dependable reporting. Term, content, and campaign ID are optional.</p></details>
+        </div>
+      </section>
+    </section>
 
     <!-- TAB 2: BULK MATRIX GENERATOR -->
-    <section id="tab-batch" class="tab-pane" role="tabpanel">
+    <section id="tab-batch" class="tab-pane" role="tabpanel" aria-labelledby="nav-batch" hidden>
       <div class="card">
         <div class="card-header">
           <div>
@@ -472,15 +556,18 @@
             <div>
               <h3 class="card-title">Generated URLs (<span id="batch-total-count">0</span>)</h3>
             </div>
-            <div style="display: flex; gap: 0.5rem;">
-              <button type="button" id="btn-batch-copy-all" class="btn btn-secondary btn-sm">
-                📋 Copy All URLs
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button type="button" id="btn-batch-copy-all" class="btn btn-secondary btn-sm" title="Copy all final URLs">
+                📋 Copy URLs
               </button>
-              <button type="button" id="btn-batch-download-csv" class="btn btn-primary btn-sm">
+              <button type="button" id="btn-batch-copy-tsv" class="btn btn-secondary btn-sm" title="Copy table formatted for Google Sheets & Excel">
+                📊 Copy for Sheets
+              </button>
+              <button type="button" id="btn-batch-download-csv" class="btn btn-primary btn-sm" title="Download matrix as CSV file">
                 📥 Download CSV
               </button>
-              <button type="button" id="btn-batch-save-history" class="btn btn-secondary btn-sm">
-                💾 Save All to History
+              <button type="button" id="btn-batch-save-history" class="btn btn-secondary btn-sm" title="Save matrix URLs to history">
+                💾 Save All
               </button>
             </div>
           </div>
@@ -505,10 +592,26 @@
         </div>
 
       </div>
+      <section class="tool-guide" aria-labelledby="batch-guide-title">
+        <div class="guide-copy">
+          <span class="guide-kicker">Bulk UTM generator</span>
+          <h2 id="batch-guide-title">Create consistent links across channels</h2>
+          <p>Turn multiple landing pages and channel presets into one organized campaign matrix. Copy the finished links, export them to CSV, or save them to local campaign history.</p>
+          <ul class="guide-points">
+            <li>One naming convention keeps cross-channel reports comparable.</li>
+            <li>Review the matrix before sharing links with your team.</li>
+          </ul>
+        </div>
+        <div class="faq-block">
+          <h2>Bulk UTM FAQs</h2>
+          <details><summary>Can I generate UTM links in bulk?</summary><p>Yes. Enter one landing page per line, select your channels, and generate every URL in one matrix.</p></details>
+          <details><summary>How do I keep bulk campaign tags consistent?</summary><p>Use a shared campaign name, approved presets, lowercase values, and the same separator across every link.</p></details>
+        </div>
+      </section>
     </section>
 
     <!-- TAB 3: UTM INSPECTOR -->
-    <section id="tab-inspector" class="tab-pane" role="tabpanel">
+    <section id="tab-inspector" class="tab-pane" role="tabpanel" aria-labelledby="nav-inspector" hidden>
       <div class="card">
         <div class="card-header">
           <div>
@@ -522,7 +625,7 @@
 
         <div class="form-group">
           <label for="inspector-input" class="form-label">Paste Any Tracked URL</label>
-          <div style="display: flex; gap: 0.75rem;">
+          <div class="inspector-input-row">
             <input 
               type="url" 
               id="inspector-input" 
@@ -557,10 +660,26 @@
         </div>
 
       </div>
+      <section class="tool-guide" aria-labelledby="inspector-guide-title">
+        <div class="guide-copy">
+          <span class="guide-kicker">UTM link checker</span>
+          <h2 id="inspector-guide-title">Audit tracking links before launch</h2>
+          <p>Paste an existing campaign URL to see every tracking value, find missing GA4 fields, and separate UTM tags from other query parameters without sending the link anywhere.</p>
+          <ul class="guide-points">
+            <li>Catch inconsistent capitalization and spacing.</li>
+            <li>Load the inspected link into the builder to fix it.</li>
+          </ul>
+        </div>
+        <div class="faq-block">
+          <h2>UTM inspector FAQs</h2>
+          <details><summary>What does the UTM inspector check?</summary><p>It extracts tracking values, checks naming quality, and flags missing or inconsistent fields that can weaken GA4 reporting.</p></details>
+          <details><summary>Are inspected URLs sent to a server?</summary><p>No. Inspection runs in your browser, so the link is not uploaded by this tool.</p></details>
+        </div>
+      </section>
     </section>
 
     <!-- TAB 4: GA4 TAXONOMY GUIDE -->
-    <section id="tab-taxonomy" class="tab-pane" role="tabpanel">
+    <section id="tab-taxonomy" class="tab-pane" role="tabpanel" aria-labelledby="nav-taxonomy" hidden>
       <div class="card">
         <div class="card-header">
           <div>
@@ -627,10 +746,26 @@
         </div>
 
       </div>
+      <section class="tool-guide" aria-labelledby="taxonomy-guide-title">
+        <div class="guide-copy">
+          <span class="guide-kicker">GA4 channel guide</span>
+          <h2 id="taxonomy-guide-title">Use source and medium values GA4 understands</h2>
+          <p>Compare common channel patterns, follow the naming rules, and build a repeatable campaign taxonomy that produces cleaner acquisition reports.</p>
+          <ul class="guide-points">
+            <li>Standard mediums reduce unassigned traffic.</li>
+            <li>Document naming rules before campaigns go live.</li>
+          </ul>
+        </div>
+        <div class="faq-block">
+          <h2>GA4 taxonomy FAQs</h2>
+          <details><summary>Why does GA4 channel grouping matter?</summary><p>GA4 uses source and medium values to classify traffic. Consistent values reduce unassigned traffic and fragmented reports.</p></details>
+          <details><summary>Should UTM values use lowercase?</summary><p>Yes. Analytics can treat differently capitalized values as separate entries, so lowercase naming keeps reports cleaner.</p></details>
+        </div>
+      </section>
     </section>
 
     <!-- TAB 5: HISTORY & BOOKMARKS -->
-    <section id="tab-history" class="tab-pane" role="tabpanel">
+    <section id="tab-history" class="tab-pane" role="tabpanel" aria-labelledby="nav-history" hidden>
       <div class="card">
         <div class="card-header">
           <div>
@@ -648,9 +783,13 @@
             id="history-search-input" 
             class="form-input history-search-input" 
             placeholder="Search campaign, source, URL..."
+            aria-label="Search campaign history"
           >
 
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button type="button" id="btn-history-filter-starred" class="btn btn-secondary btn-sm btn-history-filter" title="Filter to starred links only">
+              ★ Starred
+            </button>
             <button type="button" id="btn-history-export-csv" class="btn btn-secondary btn-sm">
               📥 Export CSV
             </button>
@@ -669,7 +808,24 @@
         </div>
 
       </div>
+      <section class="tool-guide" aria-labelledby="history-guide-title">
+        <div class="guide-copy">
+          <span class="guide-kicker">Campaign link history</span>
+          <h2 id="history-guide-title">Find and export previously created URLs</h2>
+          <p>Search saved campaign links, bookmark important URLs, and export your local records for reporting or backup. Your history stays in this browser until you clear it.</p>
+          <ul class="guide-points">
+            <li>Star links you reuse often.</li>
+            <li>Export CSV for spreadsheets or JSON for backup.</li>
+          </ul>
+        </div>
+        <div class="faq-block">
+          <h2>Campaign history FAQs</h2>
+          <details><summary>Where is campaign history stored?</summary><p>History is stored locally in your current browser using local storage. It is not synced to an account.</p></details>
+          <details><summary>Can I move campaign history to another tool?</summary><p>Yes. Export CSV for spreadsheets or JSON for backups and other workflows.</p></details>
+        </div>
+      </section>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="app-footer">

@@ -94,9 +94,15 @@ export function buildUTMUrl(input, options = {}) {
     });
   }
 
+  let finalUrl = parsedUrl.toString();
+  // Preserve ad network dynamic macro tokens ({keyword}, {{campaign.name}})
+  finalUrl = finalUrl
+    .replace(/%7B%7B([^%]+)%7D%7D/g, '{{$1}}')
+    .replace(/%7B([^%]+)%7D/g, '{$1}');
+
   return {
     isValid: true,
-    url: parsedUrl.toString(),
+    url: finalUrl,
     parsed: parsedUrl,
     error: null
   };
@@ -130,10 +136,10 @@ export function getHighlightedUrlHtml(urlString) {
         else if (key === 'utm_id') tagClass = 'url-param-id';
 
         parts.push(
-          `<span class="url-param-item ${tagClass}">` +
+          `<span class="url-param-item ${tagClass}" data-param-key="${escapeHtml(key)}" title="Click to edit ${escapeHtml(key)}">` +
             `<span class="url-param-key">${escapeHtml(key)}</span>` +
             `<span class="url-param-eq">=</span>` +
-            `<span class="url-param-val">${escapeHtml(encodeURIComponent(val))}</span>` +
+            `<span class="url-param-val">${escapeHtml(val)}</span>` +
           `</span>`
         );
       }

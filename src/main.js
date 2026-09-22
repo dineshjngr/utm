@@ -1,6 +1,6 @@
 import { buildUTMUrl, getHighlightedUrlHtml } from './modules/builder.js';
-import { getAllPresets, saveCustomPreset } from './modules/presets.js';
-import { renderQRCode, downloadQRCode, copyQRCodeImage } from './modules/qr.js';
+import { getAllPresets, saveCustomPreset, deleteCustomPreset } from './modules/presets.js';
+import { renderQRCode, downloadQRCode, downloadQRCodeSVG, copyQRCodeImage } from './modules/qr.js';
 import { 
   getHistory, 
   saveToHistory, 
@@ -11,7 +11,7 @@ import {
   exportHistoryToJSON 
 } from './modules/history.js';
 import { GA4_CHANNEL_RULES, GOLDEN_RULES, auditUTM } from './modules/taxonomy.js';
-import { BATCH_CHANNELS, generateBatchMatrix, exportBatchToCSV } from './modules/batch.js';
+import { BATCH_CHANNELS, generateBatchMatrix, exportBatchToCSV, exportBatchToTSV } from './modules/batch.js';
 import { deconstructUrl } from './modules/inspector.js';
 
 // =========================================================
@@ -39,7 +39,8 @@ const state = {
   },
   currentGeneratedUrl: '',
   batchResults: [],
-  activePresetId: null
+  activePresetId: null,
+  filterStarred: false
 };
 
 // =========================================================
@@ -95,33 +96,106 @@ function updateThemeIcons() {
       sun.style.display = 'block';
     }
   }
+
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+  if (metaThemeColor) {
+    metaThemeColor.setAttribute('content', state.theme === 'dark' ? '#09090b' : '#f8fafc');
+  }
 }
 
 // =========================================================
 // TAB NAVIGATION
 // =========================================================
 function initTabs() {
-  const tabs = document.querySelectorAll('.nav-tab');
-  tabs.forEach(tab => {
+  const tabs = Array.from(document.querySelectorAll('.nav-tab'));
+  tabs.forEach((tab, index) => {
     tab.addEventListener('click', () => {
       const targetId = tab.getAttribute('data-tab');
       switchTab(targetId);
     });
+
+    tab.addEventListener('keydown', (event) => {
+      const navigationKeys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+      if (!navigationKeys.includes(event.key)) return;
+
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+      if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = tabs.length - 1;
+
+      tabs[nextIndex].focus();
+      switchTab(tabs[nextIndex].getAttribute('data-tab'));
+    });
+  });
+
+  const initialTab = Object.entries(TAB_META)
+    .find(([, meta]) => `#${meta.slug}` === window.location.hash)?.[0];
+  switchTab(initialTab || 'tab-builder', { updateUrl: false });
+
+  window.addEventListener('hashchange', () => {
+    const matchingTab = Object.entries(TAB_META)
+      .find(([, meta]) => `#${meta.slug}` === window.location.hash)?.[0];
+    if (matchingTab) switchTab(matchingTab, { updateUrl: false });
   });
 }
 
-function switchTab(tabId) {
+const TAB_META = {
+  'tab-builder': {
+    slug: 'builder',
+    title: 'Free UTM Builder & GA4 Campaign URL Generator | UTMCraft',
+    description: 'Build GA4-ready UTM campaign URLs, apply channel presets, audit naming quality, and generate campaign QR codes.'
+  },
+  'tab-batch': {
+    slug: 'bulk-generator',
+    title: 'Bulk UTM Generator & Campaign URL Matrix | UTMCraft',
+    description: 'Generate consistent UTM links across multiple landing pages and advertising channels, then copy or export the campaign matrix.'
+  },
+  'tab-inspector': {
+    slug: 'utm-inspector',
+    title: 'UTM Link Checker & URL Inspector | UTMCraft',
+    description: 'Inspect campaign URLs, extract UTM parameters, audit GA4 compliance, and fix inconsistent tracking links in your browser.'
+  },
+  'tab-taxonomy': {
+    slug: 'ga4-taxonomy',
+    title: 'GA4 Channel Grouping & UTM Taxonomy Guide | UTMCraft',
+    description: 'Learn consistent source and medium values for GA4 default channel grouping and build standardized campaign names.'
+  },
+  'tab-history': {
+    slug: 'campaign-history',
+    title: 'Campaign URL History & Export Tool | UTMCraft',
+    description: 'Search, bookmark, and export UTM campaign URLs stored privately in your browser.'
+  }
+};
+
+function switchTab(tabId, { updateUrl = true } = {}) {
   state.activeTab = tabId;
 
   document.querySelectorAll('.nav-tab').forEach(btn => {
     const isCurrent = btn.getAttribute('data-tab') === tabId;
     btn.classList.toggle('active', isCurrent);
     btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+    btn.tabIndex = isCurrent ? 0 : -1;
   });
 
   document.querySelectorAll('.tab-pane').forEach(pane => {
-    pane.classList.toggle('active', pane.id === tabId);
+    const isCurrent = pane.id === tabId;
+    pane.classList.toggle('active', isCurrent);
+    pane.hidden = !isCurrent;
   });
+
+  const meta = TAB_META[tabId];
+  if (meta) {
+    const socialTitle = meta.title.replace(' | UTMCraft', '');
+    document.title = meta.title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description);
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', socialTitle);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', meta.description);
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', socialTitle);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', meta.description);
+    if (updateUrl) history.replaceState(null, '', `#${meta.slug}`);
+  }
 
   if (tabId === 'tab-history') {
     renderHistoryView();
@@ -164,9 +238,95 @@ function initSingleBuilder() {
 
   formInputs.forEach(el => {
     el.addEventListener('input', () => {
+      if (state.activePresetId && [inputSource, inputMedium, inputTerm, inputContent].includes(el)) {
+        state.activePresetId = null;
+        updatePresetChipSelection();
+      }
       readSingleInputs();
       recalculateSingleUrl();
     });
+  });
+
+  function checkUrlForExistingUtms(rawVal) {
+    const container = document.getElementById('detected-utms-container');
+    if (!container) return;
+
+    if (!rawVal || !rawVal.trim()) {
+      container.style.display = 'none';
+      container.innerHTML = '';
+      return;
+    }
+
+    try {
+      const testUrl = new URL(rawVal.startsWith('http') ? rawVal : `https://${rawVal}`);
+      const utmKeys = Array.from(testUrl.searchParams.keys()).filter(k => k.toLowerCase().startsWith('utm_'));
+      if (utmKeys.length > 0) {
+        container.style.display = 'block';
+        container.innerHTML = `
+          <div class="detected-utms-alert">
+            <span>⚡ Detected ${utmKeys.length} existing UTM tag${utmKeys.length > 1 ? 's' : ''} in URL</span>
+            <div style="display: flex; gap: 0.35rem;">
+              <button type="button" id="btn-extract-utms" class="btn btn-primary btn-sm">Extract into fields</button>
+              <button type="button" id="btn-dismiss-utms" class="btn btn-ghost btn-sm" title="Dismiss">✕</button>
+            </div>
+          </div>
+        `;
+
+        const extractBtn = document.getElementById('btn-extract-utms');
+        if (extractBtn) {
+          extractBtn.addEventListener('click', () => {
+            const cleanBase = `${testUrl.origin}${testUrl.pathname}`;
+            inputBaseUrl.value = cleanBase;
+
+            if (testUrl.searchParams.get('utm_source')) inputSource.value = testUrl.searchParams.get('utm_source');
+            if (testUrl.searchParams.get('utm_medium')) inputMedium.value = testUrl.searchParams.get('utm_medium');
+            if (testUrl.searchParams.get('utm_campaign')) inputCampaign.value = testUrl.searchParams.get('utm_campaign');
+            if (testUrl.searchParams.get('utm_term')) inputTerm.value = testUrl.searchParams.get('utm_term');
+            if (testUrl.searchParams.get('utm_content')) inputContent.value = testUrl.searchParams.get('utm_content');
+            if (testUrl.searchParams.get('utm_id')) inputUtmId.value = testUrl.searchParams.get('utm_id');
+
+            container.style.display = 'none';
+            container.innerHTML = '';
+
+            readSingleInputs();
+            recalculateSingleUrl();
+            showToast('Extracted UTM parameters into fields!', 'success');
+          });
+        }
+
+        const dismissBtn = document.getElementById('btn-dismiss-utms');
+        if (dismissBtn) {
+          dismissBtn.addEventListener('click', () => {
+            container.style.display = 'none';
+            container.innerHTML = '';
+          });
+        }
+      } else {
+        container.style.display = 'none';
+        container.innerHTML = '';
+      }
+    } catch {
+      container.style.display = 'none';
+      container.innerHTML = '';
+    }
+  }
+
+  inputBaseUrl.addEventListener('input', () => {
+    checkUrlForExistingUtms(inputBaseUrl.value);
+  });
+  inputBaseUrl.addEventListener('paste', () => {
+    setTimeout(() => checkUrlForExistingUtms(inputBaseUrl.value), 50);
+  });
+
+  // Targeted clear action: leave campaign settings intact while changing the destination.
+  const clearUrlBtn = document.getElementById('btn-clear-url');
+  clearUrlBtn.addEventListener('click', () => {
+    inputBaseUrl.value = '';
+    checkUrlForExistingUtms('');
+    readSingleInputs();
+    recalculateSingleUrl();
+    inputBaseUrl.focus();
+    showToast('Destination URL cleared', 'info');
   });
 
   // Rules toggles
@@ -191,6 +351,7 @@ function initSingleBuilder() {
   document.querySelectorAll('.quick-url-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       inputBaseUrl.value = btn.getAttribute('data-url');
+      checkUrlForExistingUtms(inputBaseUrl.value);
       readSingleInputs();
       recalculateSingleUrl();
       showToast('Destination URL filled!', 'info');
@@ -200,6 +361,32 @@ function initSingleBuilder() {
   // Action: Copy URL
   const copyBtn = document.getElementById('btn-copy-url');
   copyBtn.addEventListener('click', handleCopyUrl);
+
+  // Click URL Output Box to copy or focus clicked param
+  const outputBox = document.getElementById('url-output-box');
+  if (outputBox) {
+    outputBox.addEventListener('click', (e) => {
+      const paramItem = e.target.closest('.url-param-item');
+      if (paramItem) {
+        const key = paramItem.getAttribute('data-param-key');
+        const inputMap = {
+          'utm_source': inputSource,
+          'utm_medium': inputMedium,
+          'utm_campaign': inputCampaign,
+          'utm_term': inputTerm,
+          'utm_content': inputContent,
+          'utm_id': inputUtmId
+        };
+        const targetInput = inputMap[key];
+        if (targetInput) {
+          targetInput.focus();
+          targetInput.select();
+          return;
+        }
+      }
+      handleCopyUrl();
+    });
+  }
 
   // Action: Test URL
   const testBtn = document.getElementById('btn-test-url');
@@ -246,10 +433,14 @@ function initSingleBuilder() {
     renderCustomParams();
     state.activePresetId = null;
     updatePresetChipSelection();
+    checkUrlForExistingUtms('');
     readSingleInputs();
     recalculateSingleUrl();
     showToast('Form reset', 'info');
   });
+
+  const clearPresetBtn = document.getElementById('btn-clear-preset');
+  clearPresetBtn.addEventListener('click', clearActivePreset);
 
   // Collapsible Rules Accordion
   const rulesToggle = document.getElementById('toggle-rules-btn');
@@ -270,6 +461,7 @@ function initSingleBuilder() {
 
   // QR Code actions
   const downloadQrBtn = document.getElementById('btn-download-qr');
+  const downloadQrSvgBtn = document.getElementById('btn-download-qr-svg');
   const copyQrBtn = document.getElementById('btn-copy-qr');
   const qrCanvas = document.getElementById('qr-canvas');
 
@@ -279,6 +471,15 @@ function initSingleBuilder() {
       showToast('QR Code downloaded as PNG!', 'success');
     }
   });
+
+  if (downloadQrSvgBtn) {
+    downloadQrSvgBtn.addEventListener('click', () => {
+      if (state.currentGeneratedUrl) {
+        downloadQRCodeSVG(state.currentGeneratedUrl, `${state.single.campaign || 'campaign'}-qr.svg`);
+        showToast('QR Code downloaded as vector SVG!', 'success');
+      }
+    });
+  }
 
   copyQrBtn.addEventListener('click', async () => {
     if (!state.currentGeneratedUrl) return;
@@ -310,6 +511,11 @@ function recalculateSingleUrl() {
   const outputBox = document.getElementById('url-output-box');
   const charCountEl = document.getElementById('url-char-count');
   const statusPill = document.getElementById('url-status-pill');
+  const clearUrlBtn = document.getElementById('btn-clear-url');
+
+  if (clearUrlBtn) {
+    clearUrlBtn.disabled = !state.single.baseUrl.trim();
+  }
 
   if (result.isValid) {
     state.currentGeneratedUrl = result.url;
@@ -444,6 +650,24 @@ function renderPresetChips() {
       <span>${p.name}</span>
     `;
 
+    if (p.isCustom) {
+      const delBtn = document.createElement('span');
+      delBtn.className = 'preset-chip-delete';
+      delBtn.title = 'Delete custom preset';
+      delBtn.setAttribute('aria-label', `Delete custom preset ${p.name}`);
+      delBtn.textContent = '✕';
+      delBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        deleteCustomPreset(p.id);
+        if (state.activePresetId === p.id) {
+          state.activePresetId = null;
+        }
+        renderPresetChips();
+        showToast(`Deleted custom preset "${p.name}"`, 'info');
+      });
+      chip.appendChild(delBtn);
+    }
+
     chip.addEventListener('click', () => {
       applyPreset(p);
     });
@@ -473,10 +697,42 @@ function applyPreset(preset) {
   showToast(`Applied "${preset.name}" preset`, 'info');
 }
 
+function clearActivePreset() {
+  if (!state.activePresetId) return;
+
+  const preset = getAllPresets().find(item => item.id === state.activePresetId);
+  const sourceInput = document.getElementById('input-utm-source');
+  const mediumInput = document.getElementById('input-utm-medium');
+  const campaignInput = document.getElementById('input-utm-campaign');
+  const termInput = document.getElementById('input-utm-term');
+  const contentInput = document.getElementById('input-utm-content');
+
+  sourceInput.value = '';
+  mediumInput.value = '';
+
+  // Clear optional values only when they still match the preset. This preserves user edits.
+  if (preset) {
+    if (preset.defaultCampaign && campaignInput.value === preset.defaultCampaign) campaignInput.value = '';
+    if (preset.term && termInput.value === preset.term) termInput.value = '';
+    if (preset.content && contentInput.value === preset.content) contentInput.value = '';
+  }
+
+  state.activePresetId = null;
+  updatePresetChipSelection();
+  readSingleInputs();
+  recalculateSingleUrl();
+  showToast('Channel preset cleared', 'info');
+}
+
 function updatePresetChipSelection() {
   document.querySelectorAll('.preset-chip').forEach(chip => {
     chip.classList.toggle('active', chip.getAttribute('data-preset-id') === state.activePresetId);
   });
+
+  const clearPresetBtn = document.getElementById('btn-clear-preset');
+  if (clearPresetBtn) {
+    clearPresetBtn.disabled = !state.activePresetId;
+  }
 }
 
 // Custom Parameters rendering
@@ -489,9 +745,9 @@ function renderCustomParams() {
     const row = document.createElement('div');
     row.className = 'custom-param-row';
     row.innerHTML = `
-      <input type="text" class="form-input custom-param-key" placeholder="Parameter Key (e.g. ref, partner)" value="${param.key}">
-      <input type="text" class="form-input custom-param-val" placeholder="Value (e.g. 12345)" value="${param.value}">
-      <button type="button" class="btn-remove-param" title="Remove parameter">✕</button>
+      <input type="text" class="form-input custom-param-key" placeholder="Parameter Key (e.g. ref, partner)" value="${param.key}" aria-label="Custom parameter key">
+      <input type="text" class="form-input custom-param-val" placeholder="Value (e.g. 12345)" value="${param.value}" aria-label="Custom parameter value">
+      <button type="button" class="btn-remove-param" title="Remove parameter" aria-label="Remove parameter">✕</button>
     `;
 
     const keyInput = row.querySelector('.custom-param-key');
@@ -559,6 +815,10 @@ function initBatchGenerator() {
 
   // Batch actions
   document.getElementById('btn-batch-copy-all').addEventListener('click', handleBatchCopyAll);
+  const copyTsvBtn = document.getElementById('btn-batch-copy-tsv');
+  if (copyTsvBtn) {
+    copyTsvBtn.addEventListener('click', handleBatchCopyTSV);
+  }
   document.getElementById('btn-batch-download-csv').addEventListener('click', handleBatchDownloadCSV);
   document.getElementById('btn-batch-save-history').addEventListener('click', handleBatchSaveHistory);
 }
@@ -639,6 +899,13 @@ async function handleBatchCopyAll() {
   const allUrls = state.batchResults.map(r => r.url).join('\n');
   await navigator.clipboard.writeText(allUrls);
   showToast(`Copied all ${state.batchResults.length} URLs to clipboard!`, 'success');
+}
+
+async function handleBatchCopyTSV() {
+  if (state.batchResults.length === 0) return;
+  const tsv = exportBatchToTSV(state.batchResults);
+  await navigator.clipboard.writeText(tsv);
+  showToast(`Copied ${state.batchResults.length} rows for Google Sheets / Excel!`, 'success');
 }
 
 function handleBatchDownloadCSV() {
@@ -854,6 +1121,7 @@ function renderHistoryView() {
   const query = (searchInput ? searchInput.value : '').toLowerCase();
   const allHistory = getHistory();
   const filtered = allHistory.filter(item => {
+    if (state.filterStarred && !item.starred) return false;
     if (!query) return true;
     return (
       (item.campaign && item.campaign.toLowerCase().includes(query)) ||
@@ -868,8 +1136,8 @@ function renderHistoryView() {
   if (filtered.length === 0) {
     container.innerHTML = `
       <div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
-        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">No saved campaign links found</p>
-        <p style="font-size: 0.85rem;">Generated and copied UTM URLs will automatically be logged here.</p>
+        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">${state.filterStarred ? 'No starred campaign links found' : 'No saved campaign links found'}</p>
+        <p style="font-size: 0.85rem;">${state.filterStarred ? 'Star important links by clicking the star icon on any campaign.' : 'Generated and copied UTM URLs will automatically be logged here.'}</p>
       </div>
     `;
     return;
@@ -899,9 +1167,10 @@ function renderHistoryView() {
         </div>
 
         <div class="history-actions">
-          <button type="button" class="btn btn-secondary btn-sm btn-hist-copy" title="Copy URL">📋</button>
-          <button type="button" class="btn btn-secondary btn-sm btn-hist-load" title="Load into Builder">✏️</button>
-          <button type="button" class="btn btn-ghost btn-sm btn-hist-delete" style="color: var(--accent-rose);" title="Delete">🗑️</button>
+          <button type="button" class="btn btn-ghost btn-sm btn-hist-star ${item.starred ? 'starred' : ''}" title="${item.starred ? 'Starred link (click to unstar)' : 'Star link'}" aria-label="Toggle star">${item.starred ? '★' : '☆'}</button>
+          <button type="button" class="btn btn-secondary btn-sm btn-hist-copy" title="Copy URL" aria-label="Copy URL">📋</button>
+          <button type="button" class="btn btn-secondary btn-sm btn-hist-load" title="Load into Builder" aria-label="Load into Builder">✏️</button>
+          <button type="button" class="btn btn-ghost btn-sm btn-hist-delete" style="color: var(--accent-rose);" title="Delete" aria-label="Delete">🗑️</button>
         </div>
       </div>
     `;
@@ -912,6 +1181,11 @@ function renderHistoryView() {
     const id = row.getAttribute('data-history-id');
     const item = allHistory.find(h => h.id === id);
     if (!item) return;
+
+    row.querySelector('.btn-hist-star').addEventListener('click', () => {
+      toggleStarHistory(id);
+      renderHistoryView();
+    });
 
     row.querySelector('.btn-hist-copy').addEventListener('click', async () => {
       await navigator.clipboard.writeText(item.url);
@@ -950,6 +1224,15 @@ function initHistoryControls() {
   const searchInput = document.getElementById('history-search-input');
   if (searchInput) {
     searchInput.addEventListener('input', renderHistoryView);
+  }
+
+  const filterStarredBtn = document.getElementById('btn-history-filter-starred');
+  if (filterStarredBtn) {
+    filterStarredBtn.addEventListener('click', () => {
+      state.filterStarred = !state.filterStarred;
+      filterStarredBtn.classList.toggle('active', state.filterStarred);
+      renderHistoryView();
+    });
   }
 
   document.getElementById('btn-history-export-csv').addEventListener('click', () => {

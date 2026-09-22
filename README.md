@@ -68,6 +68,24 @@ The compiled, production-ready static assets are written to the `dist/` director
 npm test
 ```
 
+### 5. Deploy to Cloudflare
+
+This project is pre-configured for both **Cloudflare Pages** (via GitHub) and **Cloudflare Workers (Static Assets)**.
+
+#### Option A: Cloudflare Pages (Recommended with GitHub)
+1. Go to **Cloudflare Dashboard** → **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
+2. Select your repository (`utm`).
+3. Set build configuration:
+   - **Framework preset:** `Vite`
+   - **Build command:** `npm run build`
+   - **Build output directory:** `dist`
+4. Deploy! Cloudflare will automatically use Node 22 (via `.node-version`) and apply security/caching headers (via `public/_headers`).
+
+#### Option B: Direct CLI Deploy (Cloudflare Workers)
+```bash
+npx wrangler deploy
+```
+
 ---
 
 ## 📁 Project Structure
@@ -76,16 +94,21 @@ npm test
 utm-builder/
 ├── index.html               # Main application layout and HTML structure
 ├── package.json             # Scripts & dependencies
+├── wrangler.jsonc           # Cloudflare Workers static assets configuration
+├── .node-version            # Pinned Node.js 22 runtime for build environments
+├── public/
+│   ├── _headers             # Cloudflare security & asset caching headers
+│   └── _redirects           # Cloudflare SPA fallback routing
 ├── src/
 │   ├── main.js              # Application controller & state coordination
 │   ├── styles.css           # CSS custom properties, responsive layout & themes
 │   └── modules/
 │       ├── builder.js       # URL construction, sanitization & syntax highlighting
 │       ├── presets.js       # Predefined channels & custom presets management
-│       ├── batch.js         # Multi-channel matrix generator & CSV export
+│       ├── batch.js         # Multi-channel matrix generator & CSV/TSV export
 │       ├── inspector.js     # URL deconstructor & parser
 │       ├── taxonomy.js      # GA4 channel groupings & UTM quality auditor
-│       ├── qr.js            # QR code generation, PNG export & clipboard
+│       ├── qr.js            # QR code generation, PNG/SVG export & clipboard
 │       └── history.js       # LocalStorage campaign history & export
 └── tests/
     └── utm.test.js          # Unit test suite

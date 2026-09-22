@@ -8,6 +8,7 @@ export const GA4_CHANNEL_RULES = [
     description: 'Traffic from search engines via paid ads (Google Ads, Bing Ads, Baidu).',
     sourceCondition: 'Matches a list of search sites (google, bing, yahoo, baidu, duckduckgo...)',
     mediumCondition: 'Matches regex: ^(.*cp.*|ppc|paid.*)$',
+    mediumRegex: /^(.*cp.*|ppc|paid.*)$/i,
     recommendedMedium: 'cpc',
     example: 'utm_source=google&utm_medium=cpc',
     icon: 'search',
@@ -18,6 +19,7 @@ export const GA4_CHANNEL_RULES = [
     description: 'Traffic from social platforms via paid campaigns or sponsored posts.',
     sourceCondition: 'Matches social sites (facebook, instagram, linkedin, twitter, tiktok, pinterest...)',
     mediumCondition: 'Matches regex: ^(.*cp.*|ppc|paid.*|paid_social)$',
+    mediumRegex: /^(.*cp.*|ppc|paid.*|paid_social)$/i,
     recommendedMedium: 'paid_social',
     example: 'utm_source=facebook&utm_medium=paid_social',
     icon: 'share-2',
@@ -27,7 +29,8 @@ export const GA4_CHANNEL_RULES = [
     channel: 'Organic Social',
     description: 'Traffic from unpaid social media posts, profile bios, and link-in-bio tools.',
     sourceCondition: 'Matches social sites (facebook, instagram, linkedin, twitter, tiktok, youtube...)',
-    mediumCondition: 'Matches regex: ^(social|social-network|social-media|sm|social_post)$ or is empty',
+    mediumCondition: 'Matches regex: ^(social|social-network|social-media|sm|social_post)$',
+    mediumRegex: /^(social|social-network|social-media|sm|social_post)$/i,
     recommendedMedium: 'social',
     example: 'utm_source=linkedin&utm_medium=social',
     icon: 'heart',
@@ -38,6 +41,7 @@ export const GA4_CHANNEL_RULES = [
     description: 'Traffic driven from email marketing campaigns, newsletters, and lifecycle drip sequences.',
     sourceCondition: 'Any email service or newsletter identifier',
     mediumCondition: 'Matches regex: ^(.*email.*|e-mail|e_mail|newsletter)$',
+    mediumRegex: /^(.*email.*|e-mail|e_mail|newsletter)$/i,
     recommendedMedium: 'email',
     example: 'utm_source=newsletter&utm_medium=email',
     icon: 'mail',
@@ -48,6 +52,7 @@ export const GA4_CHANNEL_RULES = [
     description: 'Traffic from affiliate networks, influencer referral links, or coupon sites.',
     sourceCondition: 'Partner, creator, or affiliate network name',
     mediumCondition: 'Matches regex: ^(.*affiliate.*|aff)$',
+    mediumRegex: /^(.*affiliate.*|aff)$/i,
     recommendedMedium: 'affiliate',
     example: 'utm_source=influencer_jen&utm_medium=affiliate',
     icon: 'users',
@@ -57,7 +62,8 @@ export const GA4_CHANNEL_RULES = [
     channel: 'Referral',
     description: 'Traffic from external web links, review sites, and partner blogs.',
     sourceCondition: 'External domain or blog',
-    mediumCondition: 'Matches regex: ^(.*referral.*|app|link)$ or empty',
+    mediumCondition: 'Matches regex: ^(.*referral.*|app|link)$',
+    mediumRegex: /^(.*referral.*|app|link)$/i,
     recommendedMedium: 'referral',
     example: 'utm_source=techcrunch&utm_medium=referral',
     icon: 'external-link',
@@ -68,6 +74,7 @@ export const GA4_CHANNEL_RULES = [
     description: 'Traffic from video streaming ad formats (YouTube In-Stream, Vimeo, Twitch).',
     sourceCondition: 'Matches video platforms (youtube, vimeo, twitch, dailymotion...)',
     mediumCondition: 'Matches regex: ^(.*cp.*|ppc|paid.*)$',
+    mediumRegex: /^(.*cp.*|ppc|paid.*)$/i,
     recommendedMedium: 'cpc',
     example: 'utm_source=youtube&utm_medium=cpc',
     icon: 'video',
@@ -78,6 +85,7 @@ export const GA4_CHANNEL_RULES = [
     description: 'Traffic from programmatic display banners, GDN, and image placements.',
     sourceCondition: 'Ad network or publisher',
     mediumCondition: 'Matches regex: ^(display|banner|expandable|interstitial|cpm)$',
+    mediumRegex: /^(display|banner|expandable|interstitial|cpm)$/i,
     recommendedMedium: 'display',
     example: 'utm_source=gdn&utm_medium=display',
     icon: 'image',
@@ -98,7 +106,7 @@ export const GOLDEN_RULES = [
   },
   {
     title: '3. Never Use UTMs on Internal Site Links',
-    desc: 'Using UTMs on links within your own domain (e.g. from homepage to pricing) completely restarts the GA4 user session and wipes out the original marketing attribution attribution!',
+    desc: 'Using UTMs on links within your own domain (e.g. from homepage to pricing) can restart attribution and overwrite the original campaign source in your analytics reports.',
     severity: 'critical'
   },
   {
@@ -168,8 +176,10 @@ export function auditUTM(params) {
 
     // Check GA4 match
     const ga4Matches = GA4_CHANNEL_RULES.some(rule => {
-      const regex = new RegExp(rule.mediumCondition.replace('Matches regex: ', ''), 'i');
-      return regex.test(medium);
+      if (rule.mediumRegex) {
+        return rule.mediumRegex.test(medium);
+      }
+      return false;
     });
 
     if (!ga4Matches && medium !== 'qr_code') {

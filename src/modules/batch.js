@@ -65,3 +65,19 @@ export function exportBatchToCSV(batchResults) {
 
   return [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
 }
+
+export function exportBatchToTSV(batchResults) {
+  if (!batchResults || batchResults.length === 0) return null;
+
+  const headers = ['Channel Name', 'Source', 'Medium', 'Campaign', 'Base URL', 'Final UTM URL'];
+  const rows = batchResults.map(r => [
+    r.channelName || '',
+    r.source || '',
+    r.medium || '',
+    r.campaign || '',
+    r.baseUrl || '',
+    r.url || ''
+  ]);
+
+  return [headers.join('\t'), ...rows.map(r => r.join('\t'))].join('\n');
+}

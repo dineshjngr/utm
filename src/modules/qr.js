@@ -35,6 +35,27 @@ export async function downloadQRCode(canvasElement, filename = 'utm-qr-code.png'
   document.body.removeChild(link);
 }
 
+export async function downloadQRCodeSVG(text, filename = 'utm-qr-code.svg', options = {}) {
+  if (!text) return;
+  const svgString = await QRCode.toString(text, {
+    type: 'svg',
+    margin: options.margin !== undefined ? options.margin : 2,
+    color: {
+      dark: options.darkColor || '#0f172a',
+      light: options.lightColor || '#ffffff'
+    },
+    errorCorrectionLevel: 'M'
+  });
+  const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+  const link = document.createElement('a');
+  link.download = filename;
+  link.href = URL.createObjectURL(blob);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(link.href);
+}
+
 export async function copyQRCodeImage(canvasElement) {
   if (!canvasElement) throw new Error('No QR canvas found');
 

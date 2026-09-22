@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { buildUTMUrl, sanitizeValue } from '../src/modules/builder.js';
 import { auditUTM } from '../src/modules/taxonomy.js';
 import { deconstructUrl } from '../src/modules/inspector.js';
-import { generateBatchMatrix, exportBatchToCSV } from '../src/modules/batch.js';
+import { generateBatchMatrix, exportBatchToCSV, exportBatchToTSV } from '../src/modules/batch.js';
 
 test('sanitizeValue should lowercase and replace spaces', () => {
   const result = sanitizeValue('Summer Sale 2025', { lowercase: true, spaceReplacement: '-' });
@@ -123,4 +123,44 @@ test('generateBatchMatrix and exportBatchToCSV should generate matrix for multip
   assert.ok(csv.includes('Channel Name,Source,Medium,Campaign,Base URL,Final UTM URL'));
   assert.ok(csv.includes('"Google CPC","google","cpc"'));
   assert.ok(csv.includes('"Meta Ads","facebook","paid_social"'));
+
+  const tsv = exportBatchToTSV(matrix);
+  assert.ok(tsv.includes('Channel Name\tSource\tMedium\tCampaign\tBase URL\tFinal UTM URL'));
+  assert.ok(tsv.includes('Google CPC\tgoogle\tcpc'));
+});
+
+test('buildUTMUrl should preserve ad network macro tokens like {keyword} and {{campaign.name}}', () => {
+  const result = buildUTMUrl({
+    baseUrl: 'https://mysite.com/landing',
+    source: 'google',
+    medium: 'cpc',
+    campaign: '{{campaign.name}}',
+    term: '{keyword}',
+    content: '{matchtype}'
+  });
+
+  assert.equal(result.isValid, true);
+  assert.ok(result.url.includes('utm_campaign={{campaign.name}}'));
+  assert.ok(result.url.includes('utm_term={keyword}'));
+  assert.ok(result.url.includes('utm_content={matchtype}'));
+});
+
+test('auditUTM should accurately accept standard GA4 mediums without false warnings', () => {
+  const socialAudit = auditUTM({
+    baseUrl: 'https://example.com',
+    source: 'linkedin',
+    medium: 'social',
+    campaign: 'thought_leadership'
+  });
+  assert.equal(socialAudit.score, 100);
+  assert.equal(socialAudit.suggestions.length, 0);
+
+  const referralAudit = auditUTM({
+    baseUrl: 'https://example.com',
+    source: 'techcrunch',
+    medium: 'referral',
+    campaign: 'press_coverage'
+  });
+  assert.equal(referralAudit.score, 100);
+  assert.equal(referralAudit.suggestions.length, 0);
 });
