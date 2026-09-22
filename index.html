@@ -240,23 +240,43 @@
 
       <!-- Navigation tabs directly above tool -->
       <nav class="nav-tabs" role="tablist" aria-label="Tool Navigation">
-        <button id="nav-builder" class="nav-tab active" data-tab="tab-builder" role="tab" aria-selected="true" aria-controls="tab-builder" tabindex="0">
+        <a href="/" class="nav-tab active" data-tab="tab-builder">
           <span>Single URL</span>
-        </button>
+        </a>
 
-        <button id="nav-batch" class="nav-tab" data-tab="tab-batch" role="tab" aria-selected="false" aria-controls="tab-batch" tabindex="-1">
+        <a href="/bulk-utm-builder/" class="nav-tab">
           <span>Bulk Generator</span>
-        </button>
+        </a>
 
-        <button id="nav-inspector" class="nav-tab" data-tab="tab-inspector" role="tab" aria-selected="false" aria-controls="tab-inspector" tabindex="-1">
-          <span>Inspector</span>
-        </button>
+        <a href="/utm-checker/" class="nav-tab">
+          <span>UTM Checker</span>
+        </a>
 
-        <button id="nav-taxonomy" class="nav-tab" data-tab="tab-taxonomy" role="tab" aria-selected="false" aria-controls="tab-taxonomy" tabindex="-1">
-          <span>Taxonomy</span>
-        </button>
+        <a href="/ga4-utm-builder/" class="nav-tab">
+          <span>GA4 Taxonomy</span>
+        </a>
 
-        <button id="nav-history" class="nav-tab" data-tab="tab-history" role="tab" aria-selected="false" aria-controls="tab-history" tabindex="-1">
+        <a href="/utm-builder/google-ads/" class="nav-tab">
+          <span>Google Ads</span>
+        </a>
+
+        <a href="/utm-builder/facebook/" class="nav-tab">
+          <span>Facebook Ads</span>
+        </a>
+
+        <a href="/utm-builder/linkedin/" class="nav-tab">
+          <span>LinkedIn Ads</span>
+        </a>
+
+        <a href="/utm-parameters/" class="nav-tab">
+          <span>Parameters</span>
+        </a>
+
+        <a href="/utm-naming-conventions/" class="nav-tab">
+          <span>Taxonomy SOP</span>
+        </a>
+
+        <button type="button" id="nav-history" class="nav-tab" data-tab="tab-history" role="tab" aria-selected="false">
           <span>History</span>
           <span id="history-counter-badge" class="tab-badge">0</span>
         </button>

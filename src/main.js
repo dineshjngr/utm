@@ -121,8 +121,13 @@ function updateThemeIcons() {
 function initTabs() {
   const tabs = Array.from(document.querySelectorAll('.nav-tab'));
   tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => {
+    tab.addEventListener('click', (e) => {
       const targetId = tab.getAttribute('data-tab');
+      if (!targetId || !document.getElementById(targetId)) {
+        // Let standard <a> link navigation proceed for cross-page links
+        return;
+      }
+      e.preventDefault();
       switchTab(targetId);
     });
 
@@ -138,15 +143,21 @@ function initTabs() {
       if (event.key === 'End') nextIndex = tabs.length - 1;
 
       tabs[nextIndex].focus();
-      switchTab(tabs[nextIndex].getAttribute('data-tab'));
+      const targetId = tabs[nextIndex].getAttribute('data-tab');
+      if (targetId && document.getElementById(targetId)) {
+        switchTab(targetId);
+      }
     });
   });
 
   // Top header nav links
   document.querySelectorAll('.nav-header-link').forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
       const targetId = link.getAttribute('data-tab-target');
-      if (targetId) switchTab(targetId);
+      if (targetId && document.getElementById(targetId)) {
+        e.preventDefault();
+        switchTab(targetId);
+      }
     });
   });
 
@@ -154,7 +165,9 @@ function initTabs() {
   const headerNewBtn = document.getElementById('btn-header-new');
   if (headerNewBtn) {
     headerNewBtn.addEventListener('click', () => {
-      switchTab('tab-builder');
+      if (document.getElementById('tab-builder')) {
+        switchTab('tab-builder');
+      }
       const input = document.getElementById('input-base-url');
       if (input) {
         input.focus();
@@ -167,7 +180,9 @@ function initTabs() {
   const initialTab = isDedicatedPage
     ? (document.body.dataset.activeTab || 'tab-builder')
     : (Object.entries(TAB_META).find(([, meta]) => `#${meta.slug}` === window.location.hash)?.[0] || 'tab-builder');
-  switchTab(initialTab, { updateUrl: false });
+  if (initialTab && document.getElementById(initialTab)) {
+    switchTab(initialTab, { updateUrl: false });
+  }
 
   if (!isDedicatedPage) {
     window.addEventListener('hashchange', () => {
@@ -207,6 +222,7 @@ const TAB_META = {
 };
 
 function switchTab(tabId, { updateUrl = true } = {}) {
+  if (!tabId || !document.getElementById(tabId)) return;
   state.activeTab = tabId;
 
   document.querySelectorAll('.nav-tab').forEach(btn => {
