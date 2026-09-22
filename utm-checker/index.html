@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UTM Checker &amp; Link Validator - Audit Tracking URLs | UTMCraft</title>
-  <meta name="description" content="Free UTM link checker and parameter validator. Paste any tracking URL to inspect parameter health, detect syntax errors, verify GA4 channel grouping, and test redirects.">
-  <meta name="keywords" content="utm checker, utm validator, check utm link, utm parameter inspector, test utm url, validate tracking url, utm health check, ga4 link auditor">
+  <title>UTM Checker & URL Link Validator | UTMCraft</title>
+  <meta name="description" content="Audit campaign links before launch. Paste any URL to inspect UTM parameters, test GA4 channel grouping compliance, detect casing errors, and fix broken tags.">
+  <meta name="keywords" content="utm checker, utm link checker, utm validator, check utm parameters, url inspector, ga4 utm audit, utm tester, campaign link validator">
   <link rel="canonical" href="https://utm.workers.dev/utm-checker/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://utm.workers.dev/utm-checker/">
-  <meta property="og:title" content="UTM Checker &amp; Link Validator - Audit Tracking URLs | UTMCraft">
-  <meta property="og:description" content="Free UTM link checker and parameter validator. Paste any tracking URL to inspect parameter health, detect syntax errors, verify GA4 channel grouping, and test redirects.">
+  <meta property="og:title" content="UTM Checker & URL Link Validator | UTMCraft">
+  <meta property="og:description" content="Audit campaign links before launch. Paste any URL to inspect UTM parameters, test GA4 channel grouping compliance, detect casing errors, and fix broken tags.">
   <meta property="og:image" content="https://utm.workers.dev/logo.svg">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://utm.workers.dev/utm-checker/">
-  <meta name="twitter:title" content="UTM Checker &amp; Link Validator - Audit Tracking URLs | UTMCraft">
-  <meta name="twitter:description" content="Free UTM link checker and parameter validator. Paste any tracking URL to inspect parameter health, detect syntax errors, verify GA4 channel grouping, and test redirects.">
+  <meta name="twitter:title" content="UTM Checker & URL Link Validator | UTMCraft">
+  <meta name="twitter:description" content="Audit campaign links before launch. Paste any URL to inspect UTM parameters, test GA4 channel grouping compliance, detect casing errors, and fix broken tags.">
 
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,10 +92,10 @@
 </head>
 <body data-page="utm-checker" data-active-tab="tab-inspector">
 
-  <!-- Top Navigation Header -->
+  <!-- Thin Minimal Top Navigation (64-72px) -->
   <header class="app-header">
     <div class="header-inner">
-      <a href="/" class="brand" style="text-decoration: none;">
+      <div class="brand">
         <div class="brand-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
@@ -108,50 +108,53 @@
           <span class="brand-title">UTMCraft</span>
           <span class="brand-pill">Studio</span>
         </div>
-      </a>
+      </div>
 
       <nav class="header-nav" aria-label="Main Navigation">
         <a href="/campaign-url-builder/" class="nav-header-link">Campaign Builder</a>
         <a href="/ga4-utm-builder/" class="nav-header-link">GA4 Builder</a>
         <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
-        <a href="/utm-checker/" class="nav-header-link active">UTM Checker</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
         <a href="/utm-parameters/" class="nav-header-link">Parameters</a>
         <a href="/utm-naming-conventions/" class="nav-header-link">Taxonomy SOP</a>
       </nav>
 
       <div class="header-actions">
+        <button type="button" id="btn-shortcuts" class="btn-text-action" title="Keyboard Shortcuts (Press ?)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span>Shortcuts</span>
+        </button>
+
         <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
           <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
           <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
         </button>
 
-        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
-          <span>All Tools</span>
-        </a>
+        <button type="button" id="btn-header-new" class="btn-primary-cta">
+          <span>New Link</span>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- Main Container -->
+  <!-- Main Grid Workspace Container -->
   <div class="app-container">
     
     <!-- Breadcrumbs -->
     <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <ol class="breadcrumb-list">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-separator">/</li>
-        <li class="breadcrumb-item" aria-current="page">UTM Checker</li>
+        <li class="breadcrumb-item"><a href="/">Home</a></li><li class="breadcrumb-separator">/</li><li class="breadcrumb-item" aria-current="page">UTM Checker</li>
       </ol>
     </nav>
 
-    <!-- Workspace Header -->
+    <!-- Workspace Header directly above tool -->
     <header class="workspace-header">
       <div class="workspace-title-group">
         <h1 class="workspace-title">UTM Checker &amp; <span class="workspace-title-muted">Link Validator</span></h1>
         <p class="workspace-subtitle">Paste any campaign tracking URL to extract parameters, audit health scores, detect uppercase casing errors, and verify GA4 channel classification.</p>
       </div>
 
-      <!-- Quick Platform Navigation Chips -->
+      
       <div class="macro-chips-group" style="margin-top: 1rem;">
         <span class="macro-chips-label">Related Tools:</span>
         <div class="macro-chips-list">
@@ -163,75 +166,63 @@
       </div>
     </header>
 
-    <!-- Core Inspector Tool High on Page -->
-    <main class="tool-content-area">
-      <div id="tab-inspector" class="tab-pane active" role="tabpanel">
-        <div class="inspector-layout">
+    
+    <!-- Core UTM Inspector Tool (High on Page) -->
+    <main class="tool-content">
+      <!-- TAB 3: UTM INSPECTOR -->
+      <section id="tab-inspector" class="tab-pane active" role="tabpanel" aria-labelledby="nav-inspector">
+        <div class="card">
+        <div class="card-header">
+          <div>
+            <span class="card-category">LINK AUDITOR</span>
+            <h2 class="card-title">UTM Inspector &amp; Deconstructor</h2>
+            <p class="card-description">Paste any existing URL to unpack its tracking parameters, audit GA4 compliance, and detect errors.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inspector-input" class="form-label">Paste Any Tracked URL</label>
+          <div class="inspector-input-row">
+            <input 
+              type="url" 
+              id="inspector-input" 
+              class="form-input" 
+              placeholder="https://example.com/checkout?utm_source=facebook&utm_medium=paid_social&utm_campaign=summer_sale#step1"
+            >
+            <button type="button" id="btn-inspect-url" class="btn btn-primary" style="white-space: nowrap;">
+              Inspect URL
+            </button>
+          </div>
+        </div>
+
+        <!-- Inspection Output -->
+        <div id="inspector-output-container" style="display: none;">
           
-          <!-- Input Card -->
-          <div class="inspector-card">
-            <div class="inspector-header">
-              <h2 class="inspector-title">Paste URL to Audit &amp; Deconstruct</h2>
-              <p class="inspector-desc">Supports single links, ad destination URLs, short links, or campaign snippets.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem; flex-wrap: wrap; gap: 0.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="font-weight: 600; font-size: 1.05rem;">Analysis Summary</span>
+              <span id="inspector-score-pill" class="score-badge high">100/100</span>
             </div>
-
-            <div class="inspector-input-group">
-              <div class="input-with-icon" style="flex: 1;">
-                <span class="input-icon">🔍</span>
-                <input type="url" id="inspector-input" class="text-input" placeholder="https://example.com/landing?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=summer_sale_2025" value="https://example.com/landing?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=summer_sale_2025">
-              </div>
-              <button type="button" id="btn-inspect-url" class="btn-primary-action">
-                <span>Inspect URL</span>
-              </button>
-            </div>
-
-            <!-- Pre-filled Sample Clickers -->
-            <div class="sample-links-row" style="margin-top: 0.75rem;">
-              <span class="sample-label" style="font-size: 0.75rem; color: var(--text-muted);">Try Sample Links:</span>
-              <button type="button" class="btn-sample" onclick="document.getElementById('inspector-input').value='https://myshop.com/shoes?utm_source=Facebook&amp;utm_medium=Social_Ad&amp;utm_campaign=Spring+Sale'; document.getElementById('btn-inspect-url').click();">Faulty Mixed Casing Sample</button>
-              <button type="button" class="btn-sample" onclick="document.getElementById('inspector-input').value='https://saas.com/signup?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=enterprise_q4&amp;utm_content=search_ad_v1'; document.getElementById('btn-inspect-url').click();">100% Clean GA4 Sample</button>
-            </div>
+            <button type="button" id="btn-load-inspector-to-builder" class="btn btn-secondary btn-sm">
+              ✏️ Open in Builder to Edit &amp; Fix
+            </button>
           </div>
 
-          <!-- Inspector Results Card -->
-          <div id="inspector-results-card" class="inspector-results-card" style="display: none;">
-            <div class="inspector-results-header">
-              <div class="score-badge-wrap">
-                <span id="inspector-score-badge" class="pill pill-score score-100">100% Valid</span>
-                <span id="inspector-channel-badge" class="pill pill-channel">Channel: Paid Search</span>
-              </div>
-              <div class="inspector-actions">
-                <button type="button" id="btn-load-inspector-to-builder" class="btn-primary-cta">Load into Builder to Fix</button>
-              </div>
-            </div>
+          <div id="inspector-issues-box" style="margin-top: 0.75rem;"></div>
 
-            <!-- Base URL & Clean Destination -->
-            <div class="inspected-base-url-card">
-              <span class="inspected-label">Clean Destination Domain:</span>
-              <code id="inspected-base-url" class="inspected-code"></code>
-            </div>
-
-            <!-- Extracted UTM Badges Grid -->
-            <div class="extracted-params-section">
-              <h3 class="extracted-title">Extracted Tracking Parameters</h3>
-              <div id="extracted-params-grid" class="extracted-grid"></div>
-            </div>
-
-            <!-- Audit Findings & Warnings List -->
-            <div id="inspector-warnings-card" class="inspector-warnings-card">
-              <h3 class="warnings-title">Diagnostic Findings</h3>
-              <ul id="inspector-warnings-list" class="warnings-list"></ul>
-            </div>
+          <div id="inspector-cards-grid" class="inspector-cards-grid">
+            <!-- Parameter cards injected here -->
           </div>
 
         </div>
+
       </div>
+      </section>
     </main>
 
+    
     <!-- Comprehensive Editorial & Guide Section -->
     <section class="landing-guide-section">
-      
-      <!-- Section 1: The 7 Costliest UTM Mistakes -->
       <article class="editorial-card">
         <h2>The 7 Costliest UTM Mistakes Detected by This Checker</h2>
         <p>A single typo in a campaign link can permanently skew quarterly attribution reports and waste thousands of ad dollars. Below are the 7 most common UTM errors this auditor catches:</p>
@@ -286,7 +277,6 @@
         </div>
       </article>
 
-      <!-- Section 2: Interactive QA Checklist -->
       <article class="editorial-card">
         <h2>Pre-Launch Campaign Link QA Checklist</h2>
         <ol>
@@ -298,7 +288,6 @@
         </ol>
       </article>
 
-      <!-- Section 3: FAQs -->
       <article class="editorial-card">
         <h2>Frequently Asked Questions</h2>
         <div class="faq-block">
@@ -324,7 +313,6 @@
     <footer class="app-footer">
       <div class="footer-container">
         <div class="footer-grid">
-          
           <div class="footer-col-brand">
             <div class="brand-group" style="margin-bottom: 0.25rem;">
               <div class="brand-icon" aria-hidden="true">
@@ -345,7 +333,7 @@
           <div class="footer-col">
             <h4 class="footer-heading">Core Builders</h4>
             <ul class="footer-links">
-              <li><a href="/">Single UTM Builder</a></li>
+              <li><a href="/" data-switch-tab="tab-builder">Single URL Builder</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/ga4-utm-builder/">GA4 Channel Validator</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
@@ -359,6 +347,9 @@
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
               <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+            <h4 class="footer-heading" style="margin-top: 1.25rem;">Guides &amp; References</h4>
+            <ul class="footer-links">
               <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
               <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
             </ul>
@@ -370,24 +361,95 @@
               <li><a href="/terms.html">Terms and Conditions</a></li>
               <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
             </ul>
           </div>
-
         </div>
 
-        <div class="footer-bottom">
-          <div class="footer-copy">
-            &copy; 2026 UTMCraft Studio. Released under MIT License. All processing is 100% client-side.
-          </div>
-          <div class="footer-attribution">
-            Made with ❤️ by DJ
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by DJ</div>
+          <div class="footer-legal-links">
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
           </div>
         </div>
       </div>
     </footer>
+
   </div>
 
+  <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Custom Preset Modal -->
+  <div id="modal-save-preset" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-preset-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-preset-title" class="card-title">Save Custom Channel Preset</h3>
+        <button type="button" class="btn btn-ghost btn-sm btn-close-modal" aria-label="Close modal">✕</button>
+      </div>
+      <form id="form-save-preset">
+        <div class="form-group">
+          <label for="preset-name" class="form-label">Preset Name</label>
+          <input type="text" id="preset-name" class="form-input" placeholder="e.g. Pinterest Promoted Pin" required>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="preset-source" class="form-label">utm_source</label>
+            <input type="text" id="preset-source" class="form-input" placeholder="pinterest" required>
+          </div>
+          <div class="form-group">
+            <label for="preset-medium" class="form-label">utm_medium</label>
+            <input type="text" id="preset-medium" class="form-input" placeholder="paid_social" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="preset-campaign" class="form-label">Default Campaign (Optional)</label>
+          <input type="text" id="preset-campaign" class="form-input" placeholder="e.g. pin_shopping">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Preset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shortcuts Modal -->
+  <div id="modal-shortcuts" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-shortcuts-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-shortcuts-title" class="card-title">Keyboard Shortcuts</h3>
+        <button type="button" class="btn btn-ghost btn-sm btn-close-modal" aria-label="Close modal">✕</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+          <span>Copy Generated UTM URL</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">Cmd/Ctrl + Enter</kbd>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+          <span>Open Shortcuts Guide</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">?</kbd>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+          <span>Close Modal</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">Esc</kbd>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.5rem;">
+          <span>Switch Tabs</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">1 - 5</kbd>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-close-modal">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>

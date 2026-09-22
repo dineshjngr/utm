@@ -3,23 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UTM Parameters Explained - Complete Reference Guide | UTMCraft</title>
-  <meta name="description" content="The definitive guide to all UTM parameters: utm_source, utm_medium, utm_campaign, utm_term, utm_content, and utm_id. Definitions, examples, and GA4 dimension mappings.">
-  <meta name="keywords" content="utm parameters, utm parameters explained, utm tags, what is utm source, utm medium values, utm campaign parameter, utm term utm content, google analytics utm parameters, utm id ga4">
+  <title>UTM Parameters Explained: The Complete GA4 Reference Guide | UTMCraft</title>
+  <meta name="description" content="Everything you need to know about the 6 UTM parameters. Learn what each parameter does, valid values, GA4 channel mapping rules, and mistakes to avoid.">
+  <meta name="keywords" content="utm parameters, utm parameters explained, what are utm parameters, utm_source, utm_medium, utm_campaign, utm_term, utm_content, utm_id, ga4 utm parameters">
   <link rel="canonical" href="https://utm.workers.dev/utm-parameters/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
-  <meta property="og:type" content="article">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
   <meta property="og:url" content="https://utm.workers.dev/utm-parameters/">
-  <meta property="og:title" content="UTM Parameters Explained - Complete Reference Guide | UTMCraft">
-  <meta property="og:description" content="The definitive guide to all UTM parameters: definitions, GA4 dimension mappings, valid values, and real-world examples for every marketing channel.">
+  <meta property="og:title" content="UTM Parameters Explained: The Complete GA4 Reference Guide | UTMCraft">
+  <meta property="og:description" content="Everything you need to know about the 6 UTM parameters. Learn what each parameter does, valid values, GA4 channel mapping rules, and mistakes to avoid.">
   <meta property="og:image" content="https://utm.workers.dev/logo.svg">
 
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://utm.workers.dev/utm-parameters/">
-  <meta name="twitter:title" content="UTM Parameters Explained - Complete Reference Guide | UTMCraft">
-  <meta name="twitter:description" content="The definitive guide to all UTM parameters: definitions, GA4 dimension mappings, valid values, and real-world examples for every marketing channel.">
+  <meta name="twitter:title" content="UTM Parameters Explained: The Complete GA4 Reference Guide | UTMCraft">
+  <meta name="twitter:description" content="Everything you need to know about the 6 UTM parameters. Learn what each parameter does, valid values, GA4 channel mapping rules, and mistakes to avoid.">
 
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -27,6 +30,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/favicon.svg">
 
+  <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -92,9 +96,10 @@
 </head>
 <body data-page="utm-parameters">
 
+  <!-- Thin Minimal Top Navigation (64-72px) -->
   <header class="app-header">
     <div class="header-inner">
-      <a href="/" class="brand" style="text-decoration: none;">
+      <div class="brand">
         <div class="brand-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
@@ -107,44 +112,53 @@
           <span class="brand-title">UTMCraft</span>
           <span class="brand-pill">Studio</span>
         </div>
-      </a>
+      </div>
 
       <nav class="header-nav" aria-label="Main Navigation">
         <a href="/campaign-url-builder/" class="nav-header-link">Campaign Builder</a>
         <a href="/ga4-utm-builder/" class="nav-header-link">GA4 Builder</a>
         <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
         <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
-        <a href="/utm-parameters/" class="nav-header-link active">Parameters</a>
+        <a href="/utm-parameters/" class="nav-header-link">Parameters</a>
         <a href="/utm-naming-conventions/" class="nav-header-link">Taxonomy SOP</a>
       </nav>
 
       <div class="header-actions">
+        <button type="button" id="btn-shortcuts" class="btn-text-action" title="Keyboard Shortcuts (Press ?)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span>Shortcuts</span>
+        </button>
+
         <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
           <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
           <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
         </button>
-        <a href="/" class="btn-primary-cta" style="text-decoration: none;"><span>Build UTM Links →</span></a>
+
+        <button type="button" id="btn-header-new" class="btn-primary-cta">
+          <span>New Link</span>
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- Main Grid Workspace Container -->
   <div class="app-container">
-
+    
+    <!-- Breadcrumbs -->
     <nav class="breadcrumb-nav" aria-label="Breadcrumb">
       <ol class="breadcrumb-list">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-separator">/</li>
-        <li class="breadcrumb-item" aria-current="page">UTM Parameters Guide</li>
+        <li class="breadcrumb-item"><a href="/">Home</a></li><li class="breadcrumb-separator">/</li><li class="breadcrumb-item" aria-current="page">UTM Parameters Guide</li>
       </ol>
     </nav>
 
-    <header class="workspace-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 0;">
+    <!-- Workspace Header directly above tool -->
+    <header class="workspace-header">
       <div class="workspace-title-group">
-        <p class="eyebrow-label">Complete Reference</p>
         <h1 class="workspace-title">UTM Parameters <span class="workspace-title-muted">Explained</span></h1>
-        <p class="workspace-subtitle">Everything you need to know about the 6 UTM tracking parameters - what they do, how GA4 uses them, valid values for every major marketing channel, and common mistakes to avoid.</p>
+        <p class="workspace-subtitle">Everything you need to know about the 6 UTM tracking parameters: what they do, how GA4 uses them, valid values for every major marketing channel, and common mistakes to avoid.</p>
       </div>
 
+      
       <div class="macro-chips-group" style="margin-top: 1.25rem;">
         <span class="macro-chips-label">Jump to Section:</span>
         <div class="macro-chips-list">
@@ -158,9 +172,10 @@
       </div>
     </header>
 
-    <main class="landing-guide-section" style="margin-top: 2.5rem;">
+    
 
-      <!-- Section 1: What Are UTM Parameters -->
+    
+    <main class="landing-guide-section" style="margin-top: 1.5rem;">
       <article class="editorial-card" id="what-are-utm-parameters">
         <h2>What Are UTM Parameters?</h2>
         <p>UTM parameters (Urchin Tracking Modules) are short text snippets appended to any destination URL as query string key-value pairs. When a visitor clicks a tagged link, Google Analytics 4 reads these parameters and stores the marketing context as session-level dimensions - enabling precise attribution to the exact campaign, channel, and creative that drove each conversion.</p>
@@ -179,7 +194,6 @@
         </div>
       </article>
 
-      <!-- Section 2: Complete Parameter Reference Table -->
       <article class="editorial-card" id="parameter-reference">
         <h2>Complete UTM Parameter Reference Table</h2>
         <p>Google Analytics 4 supports 6 standard UTM parameters. Each maps to a specific GA4 dimension name you can use in reports and explorations:</p>
@@ -243,7 +257,6 @@
         </div>
       </article>
 
-      <!-- Section 3: utm_source deep dive -->
       <article class="editorial-card" id="utm-source">
         <h2>utm_source - Campaign Source Parameter</h2>
         <p><strong>Definition:</strong> Identifies the specific referrer, publisher, platform, or origin that sent traffic to your website. It answers the question: <em>"Where did this visitor come from?"</em></p>
@@ -301,7 +314,6 @@
         </div>
       </article>
 
-      <!-- Section 4: utm_medium deep dive -->
       <article class="editorial-card" id="utm-medium">
         <h2>utm_medium - Campaign Medium Parameter</h2>
         <p><strong>Definition:</strong> Identifies the broad marketing channel or advertising method. It answers: <em>"What type of marketing activity drove this traffic?"</em> This is the most critical parameter for GA4 Default Channel Grouping - it is evaluated against regular expressions to classify sessions.</p>
@@ -364,7 +376,6 @@
         </div>
       </article>
 
-      <!-- Section 5: utm_campaign, utm_id, utm_term, utm_content -->
       <article class="editorial-card" id="utm-campaign">
         <h2>utm_campaign, utm_id, utm_term &amp; utm_content</h2>
 
@@ -387,7 +398,6 @@
         <p><strong>GA4 Dimension:</strong> Session manual ad content</p>
       </article>
 
-      <!-- Section 6: Common Mistakes -->
       <article class="editorial-card" id="common-mistakes">
         <h2>9 UTM Parameter Mistakes That Destroy Analytics</h2>
         <ol>
@@ -408,7 +418,6 @@
         </div>
       </article>
 
-      <!-- FAQs -->
       <article class="editorial-card">
         <h2>Frequently Asked Questions About UTM Parameters</h2>
         <div class="faq-block">
@@ -438,17 +447,9 @@
           </details>
         </div>
       </article>
-
     </main>
 
-    <!-- CTA Panel -->
-    <div style="max-width: 1060px; margin: 2rem auto; padding: 0 1rem 3rem;">
-      <div class="editorial-callout">
-        <h4>🚀 Ready to Build GA4-Compliant Campaign URLs?</h4>
-        <p>Use the <a href="/" style="color: var(--soft-green);">UTMCraft Builder</a> to generate perfectly formatted tracking links with live channel validation, or explore our <a href="/utm-naming-conventions/" style="color: var(--soft-green);">Taxonomy SOP Template</a> to standardize parameters across your entire marketing team.</p>
-      </div>
-    </div>
-
+    <!-- Editorial SaaS Footer -->
     <footer class="app-footer">
       <div class="footer-container">
         <div class="footer-grid">
@@ -465,47 +466,130 @@
               <span class="brand-title">UTMCraft</span>
               <span class="brand-pill">Studio</span>
             </div>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit.</p>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links with zero server tracking.</p>
             <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
           </div>
+
           <div class="footer-col">
             <h4 class="footer-heading">Core Builders</h4>
             <ul class="footer-links">
-              <li><a href="/">Single UTM Builder</a></li>
+              <li><a href="/" data-switch-tab="tab-builder">Single URL Builder</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/ga4-utm-builder/">GA4 Channel Validator</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
             </ul>
           </div>
+
           <div class="footer-col">
             <h4 class="footer-heading">Platform Builders</h4>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
               <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+            <h4 class="footer-heading" style="margin-top: 1.25rem;">Guides &amp; References</h4>
+            <ul class="footer-links">
               <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
               <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
             </ul>
           </div>
+
           <div class="footer-col">
-            <h4 class="footer-heading">Legal</h4>
+            <h4 class="footer-heading">Legal &amp; Privacy</h4>
             <ul class="footer-links">
               <li><a href="/terms.html">Terms and Conditions</a></li>
               <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
             </ul>
           </div>
         </div>
-        <div class="footer-bottom">
-          <div class="footer-copy">&copy; 2026 UTMCraft Studio. All processing is 100% client-side.</div>
-          <div class="footer-attribution">Made with ❤️ by DJ</div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by DJ</div>
+          <div class="footer-legal-links">
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
         </div>
       </div>
     </footer>
+
   </div>
 
+  <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Custom Preset Modal -->
+  <div id="modal-save-preset" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-preset-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-preset-title" class="card-title">Save Custom Channel Preset</h3>
+        <button type="button" class="btn btn-ghost btn-sm btn-close-modal" aria-label="Close modal">✕</button>
+      </div>
+      <form id="form-save-preset">
+        <div class="form-group">
+          <label for="preset-name" class="form-label">Preset Name</label>
+          <input type="text" id="preset-name" class="form-input" placeholder="e.g. Pinterest Promoted Pin" required>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="preset-source" class="form-label">utm_source</label>
+            <input type="text" id="preset-source" class="form-input" placeholder="pinterest" required>
+          </div>
+          <div class="form-group">
+            <label for="preset-medium" class="form-label">utm_medium</label>
+            <input type="text" id="preset-medium" class="form-input" placeholder="paid_social" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="preset-campaign" class="form-label">Default Campaign (Optional)</label>
+          <input type="text" id="preset-campaign" class="form-input" placeholder="e.g. pin_shopping">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Preset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shortcuts Modal -->
+  <div id="modal-shortcuts" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-shortcuts-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-shortcuts-title" class="card-title">Keyboard Shortcuts</h3>
+        <button type="button" class="btn btn-ghost btn-sm btn-close-modal" aria-label="Close modal">✕</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+          <span>Copy Generated UTM URL</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">Cmd/Ctrl + Enter</kbd>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+          <span>Open Shortcuts Guide</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">?</kbd>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+          <span>Close Modal</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">Esc</kbd>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.5rem;">
+          <span>Switch Tabs</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">1 - 5</kbd>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-close-modal">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>

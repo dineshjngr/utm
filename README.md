@@ -1,4 +1,4 @@
-# UTMCraft Pro — Campaign URL Architect & GA4 Toolkit
+# UTMCraft Pro - Campaign URL Architect & GA4 Toolkit
 
 A modern, high-performance web application designed for digital marketers, growth engineers, and analytics professionals to build, audit, and manage standard UTM tracking parameters for marketing campaigns.
 

@@ -365,32 +365,42 @@ function initSingleBuilder() {
 
   // Targeted clear action: leave campaign settings intact while changing the destination.
   const clearUrlBtn = document.getElementById('btn-clear-url');
-  clearUrlBtn.addEventListener('click', () => {
-    inputBaseUrl.value = '';
-    checkUrlForExistingUtms('');
-    readSingleInputs();
-    recalculateSingleUrl();
-    inputBaseUrl.focus();
-    showToast('Destination URL cleared', 'info');
-  });
+  if (clearUrlBtn) {
+    clearUrlBtn.addEventListener('click', () => {
+      inputBaseUrl.value = '';
+      checkUrlForExistingUtms('');
+      readSingleInputs();
+      recalculateSingleUrl();
+      inputBaseUrl.focus();
+      showToast('Destination URL cleared', 'info');
+    });
+  }
 
   // Rules toggles
-  ruleLowercase.addEventListener('change', () => {
-    state.options.lowercase = ruleLowercase.checked;
-    recalculateSingleUrl();
-  });
-  ruleSpace.addEventListener('change', () => {
-    state.options.spaceReplacement = ruleSpace.value;
-    recalculateSingleUrl();
-  });
-  ruleProtocol.addEventListener('change', () => {
-    state.options.autoProtocol = ruleProtocol.checked;
-    recalculateSingleUrl();
-  });
-  ruleDuplicate.addEventListener('change', () => {
-    state.options.stripDuplicateUtms = ruleDuplicate.checked;
-    recalculateSingleUrl();
-  });
+  if (ruleLowercase) {
+    ruleLowercase.addEventListener('change', () => {
+      state.options.lowercase = ruleLowercase.checked;
+      recalculateSingleUrl();
+    });
+  }
+  if (ruleSpace) {
+    ruleSpace.addEventListener('change', () => {
+      state.options.spaceReplacement = ruleSpace.value;
+      recalculateSingleUrl();
+    });
+  }
+  if (ruleProtocol) {
+    ruleProtocol.addEventListener('change', () => {
+      state.options.autoProtocol = ruleProtocol.checked;
+      recalculateSingleUrl();
+    });
+  }
+  if (ruleDuplicate) {
+    ruleDuplicate.addEventListener('change', () => {
+      state.options.stripDuplicateUtms = ruleDuplicate.checked;
+      recalculateSingleUrl();
+    });
+  }
 
   // Quick fill links
   document.querySelectorAll('.quick-url-btn').forEach(btn => {
@@ -405,7 +415,9 @@ function initSingleBuilder() {
 
   // Action: Copy URL
   const copyBtn = document.getElementById('btn-copy-url');
-  copyBtn.addEventListener('click', handleCopyUrl);
+  if (copyBtn) {
+    copyBtn.addEventListener('click', handleCopyUrl);
+  }
 
   // Click URL Output Box to copy or focus clicked param
   const outputBox = document.getElementById('url-output-box');
@@ -435,21 +447,24 @@ function initSingleBuilder() {
 
   // Action: Test URL
   const testBtn = document.getElementById('btn-test-url');
-  testBtn.addEventListener('click', () => {
-    if (state.currentGeneratedUrl) {
-      window.open(state.currentGeneratedUrl, '_blank', 'noopener,noreferrer');
-    } else {
-      showToast('Please enter a valid URL first', 'error');
-    }
-  });
+  if (testBtn) {
+    testBtn.addEventListener('click', () => {
+      if (state.currentGeneratedUrl) {
+        window.open(state.currentGeneratedUrl, '_blank', 'noopener,noreferrer');
+      } else {
+        showToast('Please enter a valid URL first', 'error');
+      }
+    });
+  }
 
   // Action: Save to History
   const saveBtn = document.getElementById('btn-save-history');
-  saveBtn.addEventListener('click', () => {
-    if (!state.currentGeneratedUrl) {
-      showToast('No valid URL to save', 'error');
-      return;
-    }
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => {
+      if (!state.currentGeneratedUrl) {
+        showToast('No valid URL to save', 'error');
+        return;
+      }
     saveToHistory({
       url: state.currentGeneratedUrl,
       shortUrl: state.shortUrlOriginal === state.currentGeneratedUrl ? state.shortUrl : '',
@@ -463,7 +478,8 @@ function initSingleBuilder() {
     });
     updateHistoryBadge();
     showToast('Saved link to Campaign History!', 'success');
-  });
+    });
+  }
 
   // Action: Shorten URL
   const shortenBtn = document.getElementById('btn-shorten-url');
@@ -501,51 +517,59 @@ function initSingleBuilder() {
 
   // Action: Reset Form
   const resetBtn = document.getElementById('btn-reset-form');
-  resetBtn.addEventListener('click', () => {
-    inputBaseUrl.value = '';
-    inputSource.value = '';
-    inputMedium.value = '';
-    inputCampaign.value = '';
-    inputTerm.value = '';
-    inputContent.value = '';
-    inputUtmId.value = '';
-    state.single.customParams = [];
-    renderCustomParams();
-    state.activePresetId = null;
-    updatePresetChipSelection();
-    checkUrlForExistingUtms('');
-    readSingleInputs();
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      inputBaseUrl.value = '';
+      inputSource.value = '';
+      inputMedium.value = '';
+      inputCampaign.value = '';
+      inputTerm.value = '';
+      inputContent.value = '';
+      inputUtmId.value = '';
+      state.single.customParams = [];
+      renderCustomParams();
+      state.activePresetId = null;
+      updatePresetChipSelection();
+      checkUrlForExistingUtms('');
+      readSingleInputs();
 
-    // Reset short URL & QR state
-    state.shortUrl = '';
-    state.shortUrlOriginal = '';
-    const shortBox = document.getElementById('short-url-box');
-    if (shortBox) shortBox.style.display = 'none';
-    setQrTarget('full');
+      // Reset short URL & QR state
+      state.shortUrl = '';
+      state.shortUrlOriginal = '';
+      const shortBox = document.getElementById('short-url-box');
+      if (shortBox) shortBox.style.display = 'none';
+      setQrTarget('full');
 
-    recalculateSingleUrl();
-    showToast('Form reset', 'info');
-  });
+      recalculateSingleUrl();
+      showToast('Form reset', 'info');
+    });
+  }
 
   const clearPresetBtn = document.getElementById('btn-clear-preset');
-  clearPresetBtn.addEventListener('click', clearActivePreset);
+  if (clearPresetBtn) {
+    clearPresetBtn.addEventListener('click', clearActivePreset);
+  }
 
   // Collapsible Rules Accordion
   const rulesToggle = document.getElementById('toggle-rules-btn');
   const rulesBody = document.getElementById('rules-body');
   const rulesArrow = document.getElementById('rules-toggle-arrow');
-  rulesToggle.addEventListener('click', () => {
-    const isOpen = rulesBody.classList.toggle('open');
-    rulesToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    rulesArrow.textContent = isOpen ? '▲' : '▼';
-  });
+  if (rulesToggle && rulesBody) {
+    rulesToggle.addEventListener('click', () => {
+      const isOpen = rulesBody.classList.toggle('open');
+      rulesToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      if (rulesArrow) rulesArrow.textContent = isOpen ? '▲' : '▼';
+    });
+  }
 
   // Custom Param button
   const addParamBtn = document.getElementById('btn-add-custom-param');
-  addParamBtn.addEventListener('click', () => {
-    state.single.customParams.push({ key: '', value: '' });
-    renderCustomParams();
-  });
+  if (addParamBtn) {
+    addParamBtn.addEventListener('click', () => {
+      state.single.customParams.push({ key: '', value: '' });
+      renderCustomParams();
+    });
+  }
 
   // QR Code actions & On-Demand Generator
   const downloadQrBtn = document.getElementById('btn-download-qr');
@@ -567,17 +591,19 @@ function initSingleBuilder() {
     });
   }
 
-  downloadQrBtn.addEventListener('click', () => {
-    if (!state.qrGenerated) {
-      generateActiveQRCode(false, false);
-    }
-    const activeUrl = (state.qrTarget === 'short' && state.shortUrl) ? state.shortUrl : state.currentGeneratedUrl;
-    if (activeUrl) {
-      const prefix = state.qrTarget === 'short' ? 'short-' : '';
-      downloadQRCode(qrCanvas, `${state.single.campaign || 'campaign'}-${prefix}qr.png`);
-      showToast(`QR Code (${state.qrTarget === 'short' ? 'Short URL' : 'Full URL'}) downloaded as PNG!`, 'success');
-    }
-  });
+  if (downloadQrBtn) {
+    downloadQrBtn.addEventListener('click', () => {
+      if (!state.qrGenerated) {
+        generateActiveQRCode(false, false);
+      }
+      const activeUrl = (state.qrTarget === 'short' && state.shortUrl) ? state.shortUrl : state.currentGeneratedUrl;
+      if (activeUrl) {
+        const prefix = state.qrTarget === 'short' ? 'short-' : '';
+        downloadQRCode(qrCanvas, `${state.single.campaign || 'campaign'}-${prefix}qr.png`);
+        showToast(`QR Code (${state.qrTarget === 'short' ? 'Short URL' : 'Full URL'}) downloaded as PNG!`, 'success');
+      }
+    });
+  }
 
   if (downloadQrSvgBtn) {
     downloadQrSvgBtn.addEventListener('click', () => {
@@ -593,18 +619,20 @@ function initSingleBuilder() {
     });
   }
 
-  copyQrBtn.addEventListener('click', async () => {
-    if (!state.qrGenerated) {
-      generateActiveQRCode(false, false);
-    }
-    if (!state.currentGeneratedUrl) return;
-    try {
-      await copyQRCodeImage(qrCanvas);
-      showToast('QR Code copied to clipboard!', 'success');
-    } catch {
-      showToast('Could not copy image directly. Try downloading instead.', 'error');
-    }
-  });
+  if (copyQrBtn) {
+    copyQrBtn.addEventListener('click', async () => {
+      if (!state.qrGenerated) {
+        generateActiveQRCode(false, false);
+      }
+      if (!state.currentGeneratedUrl) return;
+      try {
+        await copyQRCodeImage(qrCanvas);
+        showToast('QR Code copied to clipboard!', 'success');
+      } catch {
+        showToast('Could not copy image directly. Try downloading instead.', 'error');
+      }
+    });
+  }
 
   // Initial presets & calculate
   renderPresetChips();
@@ -1103,28 +1131,48 @@ function initBatchGenerator() {
   });
 
   // Select all / deselect all
-  document.getElementById('batch-select-all').addEventListener('click', () => {
-    BATCH_CHANNELS.forEach(ch => ch.checked = true);
-    grid.querySelectorAll('input').forEach(input => input.checked = true);
-  });
+  const selectAll = document.getElementById('batch-select-all');
+  if (selectAll) {
+    selectAll.addEventListener('click', () => {
+      BATCH_CHANNELS.forEach(ch => ch.checked = true);
+      grid.querySelectorAll('input').forEach(input => input.checked = true);
+    });
+  }
 
-  document.getElementById('batch-deselect-all').addEventListener('click', () => {
-    BATCH_CHANNELS.forEach(ch => ch.checked = false);
-    grid.querySelectorAll('input').forEach(input => input.checked = false);
-  });
+  const deselectAll = document.getElementById('batch-deselect-all');
+  if (deselectAll) {
+    deselectAll.addEventListener('click', () => {
+      BATCH_CHANNELS.forEach(ch => ch.checked = false);
+      grid.querySelectorAll('input').forEach(input => input.checked = false);
+    });
+  }
 
   // Generate Matrix Button
   const generateBtn = document.getElementById('btn-generate-batch');
-  generateBtn.addEventListener('click', handleGenerateBatch);
+  if (generateBtn) {
+    generateBtn.addEventListener('click', handleGenerateBatch);
+  }
 
   // Batch actions
-  document.getElementById('btn-batch-copy-all').addEventListener('click', handleBatchCopyAll);
+  const copyAllBtn = document.getElementById('btn-batch-copy-all');
+  if (copyAllBtn) {
+    copyAllBtn.addEventListener('click', handleBatchCopyAll);
+  }
+
   const copyTsvBtn = document.getElementById('btn-batch-copy-tsv');
   if (copyTsvBtn) {
     copyTsvBtn.addEventListener('click', handleBatchCopyTSV);
   }
-  document.getElementById('btn-batch-download-csv').addEventListener('click', handleBatchDownloadCSV);
-  document.getElementById('btn-batch-save-history').addEventListener('click', handleBatchSaveHistory);
+
+  const downloadCsvBtn = document.getElementById('btn-batch-download-csv');
+  if (downloadCsvBtn) {
+    downloadCsvBtn.addEventListener('click', handleBatchDownloadCSV);
+  }
+
+  const saveHistoryBtn = document.getElementById('btn-batch-save-history');
+  if (saveHistoryBtn) {
+    saveHistoryBtn.addEventListener('click', handleBatchSaveHistory);
+  }
 }
 
 function handleGenerateBatch() {
@@ -1266,23 +1314,32 @@ function initInspector() {
     renderInspection(result);
   });
 
-  loadBtn.addEventListener('click', () => {
-    if (!currentInspected) return;
+  if (loadBtn) {
+    loadBtn.addEventListener('click', () => {
+      if (!currentInspected) return;
 
-    // Load into Single Builder
-    document.getElementById('input-base-url').value = currentInspected.baseUrl;
-    document.getElementById('input-utm-source').value = currentInspected.utmParams['utm_source'] || '';
-    document.getElementById('input-utm-medium').value = currentInspected.utmParams['utm_medium'] || '';
-    document.getElementById('input-utm-campaign').value = currentInspected.utmParams['utm_campaign'] || '';
-    document.getElementById('input-utm-term').value = currentInspected.utmParams['utm_term'] || '';
-    document.getElementById('input-utm-content').value = currentInspected.utmParams['utm_content'] || '';
-    document.getElementById('input-utm-id').value = currentInspected.utmParams['utm_id'] || '';
+      // Load into Single Builder
+      const bUrl = document.getElementById('input-base-url');
+      if (bUrl) bUrl.value = currentInspected.baseUrl;
+      const bSrc = document.getElementById('input-utm-source');
+      if (bSrc) bSrc.value = currentInspected.utmParams['utm_source'] || '';
+      const bMed = document.getElementById('input-utm-medium');
+      if (bMed) bMed.value = currentInspected.utmParams['utm_medium'] || '';
+      const bCmp = document.getElementById('input-utm-campaign');
+      if (bCmp) bCmp.value = currentInspected.utmParams['utm_campaign'] || '';
+      const bTrm = document.getElementById('input-utm-term');
+      if (bTrm) bTrm.value = currentInspected.utmParams['utm_term'] || '';
+      const bCnt = document.getElementById('input-utm-content');
+      if (bCnt) bCnt.value = currentInspected.utmParams['utm_content'] || '';
+      const bId = document.getElementById('input-utm-id');
+      if (bId) bId.value = currentInspected.utmParams['utm_id'] || '';
 
-    readSingleInputs();
-    recalculateSingleUrl();
-    switchTab('tab-builder');
-    showToast('Loaded inspected link into Builder for editing!', 'info');
-  });
+      readSingleInputs();
+      recalculateSingleUrl();
+      switchTab('tab-builder');
+      showToast('Loaded inspected link into Builder for editing!', 'info');
+    });
+  }
 }
 
 function renderInspection(data) {
@@ -1864,14 +1921,13 @@ function applyPageOverrides() {
 function initMacroChips() {
   document.querySelectorAll('.macro-chip-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      e.preventDefault();
       const targetId = btn.getAttribute('data-insert-target');
       const val = btn.getAttribute('data-insert-val');
-      if (!targetId || !val) return;
+      if (!targetId || !val) return; // Allow normal link navigation for anchor buttons!
+      e.preventDefault();
 
       const targetEl = document.getElementById(targetId);
       if (targetEl) {
-        // If target is empty or has default sample, replace it; otherwise append with hyphen/underscore
         if (!targetEl.value || targetEl.value === 'summer_sale_2025' || targetEl.value === 'search_intent') {
           targetEl.value = val;
         } else {
