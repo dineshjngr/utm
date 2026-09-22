@@ -166,6 +166,14 @@
               "@type": "Answer",
               "text": "Yes, 100%. UTMCraft executes entirely client-side in your web browser. No URLs, campaign names, or customer data are uploaded to or stored on external servers."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I check and find my UTM campaign traffic in Google Analytics 4 (GA4)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In GA4, check Realtime reports under 'Users by First user source / medium' for instant testing. For historical reporting, navigate to Reports > Acquisition > Traffic acquisition and switch the primary dimension to 'Session source / medium' or 'Session campaign'."
+            }
           }
         ]
       }
@@ -587,6 +595,10 @@
               <div id="audit-messages-container" class="audit-messages">
                 <!-- Real-time audit checklist items -->
               </div>
+              <div style="margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px dashed var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                <span style="color: var(--text-muted);">Want to verify in GA4?</span>
+                <a href="#ga4-check-traffic-guide" data-switch-tab="tab-taxonomy" data-scroll-to="ga4-check-traffic-guide" style="color: var(--primary); text-decoration: none; font-weight: 500;">How to check in GA4 →</a>
+              </div>
             </div>
 
           </div>
@@ -599,12 +611,25 @@
                 <h2 class="card-title">Mobile QR Code</h2>
                 <p class="card-description">High-resolution vector SVG and PNG for print &amp; outdoor media.</p>
               </div>
-              <span id="qr-target-badge" class="field-hint">Full URL</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span id="qr-target-badge" class="field-hint">Preview (Blurred)</span>
+                <button type="button" id="btn-regenerate-qr" class="btn-regenerate-qr" style="display: none;" title="Regenerate QR Code with current URL">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                  <span>Refresh</span>
+                </button>
+              </div>
             </div>
 
             <div class="qr-container">
-              <div class="qr-canvas-wrapper">
-                <canvas id="qr-canvas" class="qr-canvas" width="180" height="180"></canvas>
+              <div class="qr-canvas-wrapper" id="qr-canvas-wrapper">
+                <canvas id="qr-canvas" class="qr-canvas is-blurred" width="180" height="180"></canvas>
+                <div id="qr-generate-overlay" class="qr-generate-overlay">
+                  <button type="button" id="btn-generate-qr" class="btn-generate-qr">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    <span>Generate QR Code</span>
+                  </button>
+                  <span class="qr-overlay-hint">Instant high-res SVG &amp; PNG</span>
+                </div>
               </div>
 
               <div class="qr-actions">
@@ -963,6 +988,104 @@
           </div>
         </div>
 
+        <!-- How to View & Check UTM Traffic in Google Analytics 4 (GA4) -->
+        <div style="margin-top: 2.5rem;" id="ga4-check-traffic-guide">
+          <div class="card-header" style="padding: 0; margin-bottom: 1rem;">
+            <div>
+              <span class="card-category" style="color: var(--primary);">GA4 REPORTING TUTORIAL</span>
+              <h3 class="card-title" style="margin-top: 0.25rem;">How to Find &amp; Check UTM Campaign Traffic in GA4</h3>
+              <p class="card-description">A step-by-step visual roadmap to locate your campaign clicks, custom UTMs, and conversion metrics inside Google Analytics 4.</p>
+            </div>
+          </div>
+
+          <div class="ga4-traffic-methods-grid">
+            <!-- Method 1: Realtime Testing -->
+            <div class="ga4-method-card">
+              <div class="ga4-method-badge">Method 1 • Quick Test</div>
+              <h4 class="ga4-method-title">1. Realtime Report (Instant 10-Second Test)</h4>
+              <p class="ga4-method-desc">Before launching ad spend, click your UTM link and verify it appears immediately in GA4.</p>
+              <div class="ga4-step-path">
+                <span class="path-step">GA4</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Reports</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Realtime</span>
+              </div>
+              <ul class="ga4-step-instructions">
+                <li>Look for the <strong>"Users by First user source / medium"</strong> card.</li>
+                <li>Verify your <code>utm_source</code> and <code>utm_medium</code> appear within 10 to 30 seconds.</li>
+                <li>Scroll down to <strong>"Event count by Event name"</strong> to verify <code>page_view</code> and <code>session_start</code> fired.</li>
+              </ul>
+              <div class="ga4-method-tip"><strong>Pro Tip:</strong> Open your tagged link in an Incognito window to trigger a fresh session.</div>
+            </div>
+
+            <!-- Method 2: Traffic Acquisition -->
+            <div class="ga4-method-card">
+              <div class="ga4-method-badge">Method 2 • Core Reporting</div>
+              <h4 class="ga4-method-title">2. Traffic Acquisition Report (Sessions &amp; Medium)</h4>
+              <p class="ga4-method-desc">The primary standard report for analyzing which marketing channels and campaigns drove traffic.</p>
+              <div class="ga4-step-path">
+                <span class="path-step">GA4</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Reports</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Acquisition</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Traffic acquisition</span>
+              </div>
+              <ul class="ga4-step-instructions">
+                <li>Click the primary dimension dropdown (defaults to <em>Session default channel group</em>).</li>
+                <li>Switch to <strong>"Session source / medium"</strong> to see exact pairings (e.g. <code>facebook / paid_social</code>, <code>google / cpc</code>).</li>
+                <li>Or switch to <strong>"Session campaign"</strong> to evaluate each <code>utm_campaign</code> initiative.</li>
+                <li>Click the blue <strong>"+"</strong> icon to add a secondary dimension: search for <strong>"Session manual ad content"</strong> to view <code>utm_content</code> variations.</li>
+              </ul>
+              <div class="ga4-method-tip"><strong>Note:</strong> Standard reports in GA4 may take 24–48 hours to fully process historical batch data.</div>
+            </div>
+
+            <!-- Method 3: User Acquisition -->
+            <div class="ga4-method-card">
+              <div class="ga4-method-badge">Method 3 • First-Touch Attribution</div>
+              <h4 class="ga4-method-title">3. User Acquisition Report (How New Users Found You)</h4>
+              <p class="ga4-method-desc">Reveals which campaigns originally introduced net-new visitors to your website or product.</p>
+              <div class="ga4-step-path">
+                <span class="path-step">GA4</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Reports</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Acquisition</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">User acquisition</span>
+              </div>
+              <ul class="ga4-step-instructions">
+                <li>Select <strong>"First user source / medium"</strong> as primary dimension.</li>
+                <li>Evaluate metrics: <em>New users</em>, <em>Engaged sessions</em>, and <em>Engagement rate</em>.</li>
+                <li>Compare against <em>Traffic acquisition</em> to spot the difference between new user acquisition and return traffic.</li>
+              </ul>
+              <div class="ga4-method-tip"><strong>Key Insight:</strong> Shows the top-of-funnel campaign that sparked first contact.</div>
+            </div>
+
+            <!-- Method 4: Explorations Deep Dive -->
+            <div class="ga4-method-card">
+              <div class="ga4-method-badge">Method 4 • Advanced Analysis</div>
+              <h4 class="ga4-method-title">4. Free-Form Explorations (Custom Multichannel Pivot)</h4>
+              <p class="ga4-method-desc">Create custom pivot tables combining source, medium, campaign, content, and revenue.</p>
+              <div class="ga4-step-path">
+                <span class="path-step">GA4</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Explore</span>
+                <span class="path-arrow">›</span>
+                <span class="path-step">Free-form exploration</span>
+              </div>
+              <ul class="ga4-step-instructions">
+                <li>Import <strong>Dimensions</strong>: <code>Session source / medium</code>, <code>Session campaign</code>, <code>Session manual ad content</code>, <code>Landing page + query string</code>.</li>
+                <li>Import <strong>Metrics</strong>: <code>Sessions</code>, <code>Active users</code>, <code>Key events (Conversions)</code>, <code>Total revenue</code>.</li>
+                <li>Drag dimensions into <em>Rows</em> and metrics into <em>Values</em> for full conversion attribution!</li>
+              </ul>
+              <div class="ga4-method-tip"><strong>Power Feature:</strong> Filter rows where <code>Session campaign</code> is not <code>(not set)</code>.</div>
+            </div>
+          </div>
+        </div>
+
       </div>
       <section class="tool-guide" aria-labelledby="taxonomy-guide-title">
         <div class="guide-copy">
@@ -1109,6 +1232,18 @@
         </div>
 
         <div class="faq-accordion-group">
+          <details class="faq-item" open>
+            <summary class="faq-summary">How do I view and check UTM campaign traffic in Google Analytics 4 (GA4)?</summary>
+            <div class="faq-content">
+              <p>You can verify and check your UTM campaign data in Google Analytics 4 through three main paths:</p>
+              <ol style="margin-top: 0.4rem; padding-left: 1.25rem;">
+                <li><strong>Realtime Test (Instant Verification):</strong> Navigate to <em>Reports → Realtime</em> and check the "Users by First user source / medium" card within 10 to 30 seconds of clicking your link.</li>
+                <li><strong>Traffic Acquisition (Standard Reporting):</strong> Go to <em>Reports → Acquisition → Traffic acquisition</em>. Change the primary dimension from Default channel group to <strong>Session source / medium</strong> or <strong>Session campaign</strong>. Click the "<strong>+</strong>" icon to add a secondary dimension like <strong>Session manual ad content</strong> (utm_content).</li>
+                <li><strong>Custom Explorations:</strong> Go to <em>Explore → Free-form</em>, add dimensions for <code>Session source / medium</code> and <code>Session campaign</code>, and add metrics like <code>Sessions</code>, <code>Key events (Conversions)</code>, and <code>Total revenue</code> for full multi-touch attribution analysis.</li>
+              </ol>
+            </div>
+          </details>
+
           <details class="faq-item">
             <summary class="faq-summary">How do dynamic ad macros like {keyword} work in UTMs?</summary>
             <div class="faq-content">

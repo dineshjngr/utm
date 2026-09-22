@@ -49,6 +49,7 @@ const state = {
   shortUrl: '',
   shortUrlOriginal: '',
   qrTarget: 'full', // 'full' | 'short'
+  qrGenerated: false,
   batchResults: [],
   activePresetId: null,
   filterStarred: false
@@ -539,13 +540,30 @@ function initSingleBuilder() {
     renderCustomParams();
   });
 
-  // QR Code actions
+  // QR Code actions & On-Demand Generator
   const downloadQrBtn = document.getElementById('btn-download-qr');
   const downloadQrSvgBtn = document.getElementById('btn-download-qr-svg');
   const copyQrBtn = document.getElementById('btn-copy-qr');
+  const generateQrBtn = document.getElementById('btn-generate-qr');
+  const regenQrBtn = document.getElementById('btn-regenerate-qr');
   const qrCanvas = document.getElementById('qr-canvas');
 
+  if (generateQrBtn) {
+    generateQrBtn.addEventListener('click', () => {
+      generateActiveQRCode(true, false);
+    });
+  }
+
+  if (regenQrBtn) {
+    regenQrBtn.addEventListener('click', () => {
+      generateActiveQRCode(true, true);
+    });
+  }
+
   downloadQrBtn.addEventListener('click', () => {
+    if (!state.qrGenerated) {
+      generateActiveQRCode(false, false);
+    }
     const activeUrl = (state.qrTarget === 'short' && state.shortUrl) ? state.shortUrl : state.currentGeneratedUrl;
     if (activeUrl) {
       const prefix = state.qrTarget === 'short' ? 'short-' : '';
@@ -556,6 +574,9 @@ function initSingleBuilder() {
 
   if (downloadQrSvgBtn) {
     downloadQrSvgBtn.addEventListener('click', () => {
+      if (!state.qrGenerated) {
+        generateActiveQRCode(false, false);
+      }
       const activeUrl = (state.qrTarget === 'short' && state.shortUrl) ? state.shortUrl : state.currentGeneratedUrl;
       if (activeUrl) {
         const prefix = state.qrTarget === 'short' ? 'short-' : '';
@@ -566,6 +587,9 @@ function initSingleBuilder() {
   }
 
   copyQrBtn.addEventListener('click', async () => {
+    if (!state.qrGenerated) {
+      generateActiveQRCode(false, false);
+    }
     if (!state.currentGeneratedUrl) return;
     try {
       await copyQRCodeImage(qrCanvas);
@@ -578,6 +602,38 @@ function initSingleBuilder() {
   // Initial presets & calculate
   renderPresetChips();
   recalculateSingleUrl();
+}
+
+function generateActiveQRCode(showToastMsg = false, isRegen = false) {
+  const qrCanvas = document.getElementById('qr-canvas');
+  const qrOverlay = document.getElementById('qr-generate-overlay');
+  const regenQrBtn = document.getElementById('btn-regenerate-qr');
+  const qrBadge = document.getElementById('qr-target-badge');
+  if (!qrCanvas) return;
+
+  state.qrGenerated = true;
+
+  // Unblur canvas smoothly
+  qrCanvas.classList.remove('is-blurred');
+  if (qrOverlay) qrOverlay.classList.add('hidden');
+  if (regenQrBtn) regenQrBtn.style.display = 'inline-flex';
+  if (qrBadge) {
+    qrBadge.textContent = state.qrTarget === 'short' ? '⚡ Short QR Active' : '● Active & Ready';
+    qrBadge.style.color = 'var(--soft-green)';
+  }
+
+  const url = (state.qrTarget === 'short' && state.shortUrl)
+    ? state.shortUrl
+    : (state.currentGeneratedUrl || state.single.baseUrl || 'https://example.com');
+
+  renderQRCode(qrCanvas, url, {
+    darkColor: '#182126',
+    lightColor: '#ffffff'
+  });
+
+  if (showToastMsg) {
+    showToast(isRegen ? 'QR Code refreshed for current URL!' : 'Unique working QR Code generated!', 'success');
+  }
 }
 
 function readSingleInputs() {
@@ -652,9 +708,15 @@ function updateQRCode() {
     : (state.currentGeneratedUrl || state.single.baseUrl || 'https://example.com');
 
   renderQRCode(qrCanvas, url, {
-    darkColor: '#0f172a',
+    darkColor: '#182126',
     lightColor: '#ffffff'
   });
+
+  if (!state.qrGenerated) {
+    qrCanvas.classList.add('is-blurred');
+  } else {
+    qrCanvas.classList.remove('is-blurred');
+  }
 }
 
 function updateScorecard() {
@@ -1747,9 +1809,19 @@ function initFooterNavigation() {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetTab = link.getAttribute('data-switch-tab');
+      const scrollToId = link.getAttribute('data-scroll-to');
       if (targetTab) {
         switchTab(targetTab);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (scrollToId) {
+          setTimeout(() => {
+            const targetEl = document.getElementById(scrollToId);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 60);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       }
     });
   });
