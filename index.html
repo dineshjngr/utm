@@ -443,11 +443,17 @@
                 </div>
               </div>
               <div class="short-url-content-row">
-                <a id="short-url-link" class="short-url-link" href="#" target="_blank" rel="noopener noreferrer" title="Click to test short link"></a>
-                <button type="button" id="btn-copy-short-url" class="btn btn-primary btn-sm">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span id="btn-copy-short-text">Copy</span>
-                </button>
+                <a id="short-url-link" class="short-url-link" href="#" target="_blank" rel="noopener noreferrer" title="Click to test short link in new tab"></a>
+                <div style="display: flex; gap: 0.35rem; align-items: center; flex-shrink: 0;">
+                  <button type="button" id="btn-copy-short-url" class="btn btn-primary btn-sm" title="Copy short URL">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <span id="btn-copy-short-text">Copy</span>
+                  </button>
+                  <button type="button" id="btn-test-short-url" class="btn btn-secondary btn-sm" title="Open short URL in new tab to verify redirect">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    <span>Test</span>
+                  </button>
+                </div>
               </div>
             </div>
 

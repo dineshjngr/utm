@@ -69,7 +69,39 @@ export async function shortenUrl(longUrl, options = {}) {
     console.warn('da.gd shortener failed, attempting fallback...', err);
   }
 
-  // 2. Attempt Fallback: clck.ru
+  // 2. Attempt Fallback 1: spoo.me (CORS enabled, clean 302 direct redirect)
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+    const response = await fetchFn('https://spoo.me/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: new URLSearchParams({ url: trimmed }),
+      signal: controller.signal
+    });
+    clearTimeout(timer);
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data && data.short_url) {
+        const shortHttps = data.short_url.replace(/^http:\/\//i, 'https://');
+        return {
+          success: true,
+          shortUrl: shortHttps,
+          originalUrl: trimmed,
+          provider: 'spoo.me'
+        };
+      }
+    }
+  } catch (err) {
+    console.warn('spoo.me shortener failed, attempting clck.ru...', err);
+  }
+
+  // 3. Attempt Fallback 2: clck.ru
   try {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);

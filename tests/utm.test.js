@@ -201,9 +201,28 @@ test('shortenUrl should validate inputs and handle failures safely', async () =>
   assert.equal(successRes.shortUrl, 'https://da.gd/abc123');
   assert.equal(successRes.provider, 'da.gd');
 
-  // Test fallback to clck.ru when primary fails
-  const mockFetchFallback = async (url) => {
+  // Test fallback to spoo.me when primary fails
+  const mockFetchSpoo = async (url) => {
     if (url.includes('da.gd')) {
+      throw new Error('Connection refused');
+    }
+    if (url.includes('spoo.me')) {
+      return {
+        ok: true,
+        json: async () => ({ short_url: 'http://spoo.me/xyz999' })
+      };
+    }
+    return { ok: false };
+  };
+
+  const spooRes = await shortenUrl('https://example.com/page?utm_source=test', { fetchFn: mockFetchSpoo });
+  assert.equal(spooRes.success, true);
+  assert.equal(spooRes.shortUrl, 'https://spoo.me/xyz999');
+  assert.equal(spooRes.provider, 'spoo.me');
+
+  // Test fallback to clck.ru when both da.gd and spoo.me fail
+  const mockFetchFallback = async (url) => {
+    if (url.includes('da.gd') || url.includes('spoo.me')) {
       throw new Error('Connection refused');
     }
     if (url.includes('clck.ru')) {

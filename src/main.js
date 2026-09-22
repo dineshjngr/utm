@@ -436,6 +436,16 @@ function initSingleBuilder() {
     copyShortBtn.addEventListener('click', handleCopyShortUrl);
   }
 
+  // Action: Test Short URL
+  const testShortBtn = document.getElementById('btn-test-short-url');
+  if (testShortBtn) {
+    testShortBtn.addEventListener('click', () => {
+      if (state.shortUrl) {
+        window.open(state.shortUrl, '_blank', 'noopener,noreferrer');
+      }
+    });
+  }
+
   // Action: Toggle Short URL in QR Code
   const qrShortBtn = document.getElementById('btn-short-url-qr');
   if (qrShortBtn) {
