@@ -7,7 +7,16 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
         terms: resolve(import.meta.dirname, 'terms.html'),
-        privacy: resolve(import.meta.dirname, 'privacy.html')
+        privacy: resolve(import.meta.dirname, 'privacy.html'),
+        'campaign-url-builder': resolve(import.meta.dirname, 'campaign-url-builder/index.html'),
+        'ga4-utm-builder': resolve(import.meta.dirname, 'ga4-utm-builder/index.html'),
+        'bulk-utm-builder': resolve(import.meta.dirname, 'bulk-utm-builder/index.html'),
+        'utm-checker': resolve(import.meta.dirname, 'utm-checker/index.html'),
+        'utm-parameters': resolve(import.meta.dirname, 'utm-parameters/index.html'),
+        'utm-naming-conventions': resolve(import.meta.dirname, 'utm-naming-conventions/index.html'),
+        'utm-builder-google-ads': resolve(import.meta.dirname, 'utm-builder/google-ads/index.html'),
+        'utm-builder-facebook': resolve(import.meta.dirname, 'utm-builder/facebook/index.html'),
+        'utm-builder-linkedin': resolve(import.meta.dirname, 'utm-builder/linkedin/index.html'),
       }
     }
   },

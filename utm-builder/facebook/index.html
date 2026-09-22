@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook &amp; Meta Ads UTM Builder with Dynamic Parameters | UTMCraft</title>
+  <meta name="description" content="Build UTM tracking URLs for Facebook and Meta Ads with dynamic parameters. Insert {{ad.id}}, {{campaign.name}}, {{adset.name}} and more for automatic pixel-level campaign attribution.">
+  <meta name="keywords" content="facebook utm builder, meta ads utm tracking, facebook ads utm parameters, meta dynamic url parameters, facebook campaign tracking, meta pixel utm, ios 14 utm tracking, facebook ads url parameters {{ad.id}}">
+  <link rel="canonical" href="https://utm.workers.dev/utm-builder/facebook/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://utm.workers.dev/utm-builder/facebook/">
+  <meta property="og:title" content="Facebook &amp; Meta Ads UTM Builder with Dynamic Parameters | UTMCraft">
+  <meta property="og:description" content="Build UTM tracking URLs for Facebook and Meta Ads with dynamic parameters. Insert {{ad.id}}, {{campaign.name}}, {{adset.name}} and more for automatic attribution.">
+  <meta property="og:image" content="https://utm.workers.dev/logo.svg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utm.workers.dev/utm-builder/facebook/">
+  <meta name="twitter:title" content="Facebook &amp; Meta Ads UTM Builder with Dynamic Parameters | UTMCraft">
+  <meta name="twitter:description" content="Build UTM tracking URLs for Facebook and Meta Ads with dynamic parameters.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Facebook & Meta Ads UTM Builder",
+        "applicationCategory": "UtilityApplication",
+        "url": "https://utm.workers.dev/utm-builder/facebook/",
+        "description": "Build UTM tracking URLs for Meta (Facebook & Instagram) Ads with dynamic parameters for ad-level attribution across campaigns, ad sets, and creatives.",
+        "publisher": { "@type": "Organization", "name": "UTMCraft Studio", "url": "https://utm.workers.dev/" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utm.workers.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "UTM Builders", "item": "https://utm.workers.dev/campaign-url-builder/" },
+          { "@type": "ListItem", "position": 3, "name": "Facebook & Meta Ads UTM Builder", "item": "https://utm.workers.dev/utm-builder/facebook/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Where do I add UTM parameters in Meta Ads Manager?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In Meta Ads Manager, add UTM parameters in the 'URL Parameters' field at the ad level — not in the Destination URL field directly. The URL Parameters field is specifically designed for tracking parameters and dynamic tokens. It appends your parameters to the landing page URL automatically. Using the URL Parameters field (rather than manually editing the destination URL) preserves compatibility with Meta's click tracking and dynamic URLs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are Meta dynamic URL parameters?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Meta dynamic URL parameters are special tokens wrapped in double curly braces ({{ }}) that Meta Ads automatically replaces with real campaign data when an ad is clicked. For example, {{campaign.name}} is replaced with your actual campaign name, {{ad.id}} with the numeric ad ID, and {{site_source_name}} with 'fb', 'ig', 'msg', or 'an' depending on where the ad was shown. They enable ad-level attribution in GA4 without creating separate URLs for every variation."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-page="facebook-builder" data-active-tab="tab-builder" data-default-source="facebook" data-default-medium="paid_social">
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" style="text-decoration: none;">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
+            <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
+            <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
+            <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
+          </svg>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-title">UTMCraft</span>
+          <span class="brand-pill">Studio</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Main Navigation">
+        <a href="/campaign-url-builder/" class="nav-header-link">Campaign Builder</a>
+        <a href="/ga4-utm-builder/" class="nav-header-link">GA4 Builder</a>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <a href="/utm-parameters/" class="nav-header-link">Parameters</a>
+        <a href="/utm-naming-conventions/" class="nav-header-link">Taxonomy SOP</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;"><span>All Tools →</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="breadcrumb-item"><a href="/campaign-url-builder/">UTM Builders</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="breadcrumb-item" aria-current="page">Facebook &amp; Meta Ads</li>
+      </ol>
+    </nav>
+
+    <header class="workspace-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem; margin-bottom: 0;">
+      <div class="workspace-title-group">
+        <p class="eyebrow-label">Platform Builder · Meta Ads</p>
+        <h1 class="workspace-title">Facebook &amp; Meta Ads <span class="workspace-title-muted">UTM Builder</span></h1>
+        <p class="workspace-subtitle">Pre-configured for Meta with <code>source=facebook</code> and <code>medium=paid_social</code>. Use the dynamic parameter chips below to auto-populate campaign, ad set, and ad identifiers into your tracking URL — no need to manually update each ad variation.</p>
+      </div>
+
+      <div class="macro-chips-group" style="margin-top: 1.25rem;">
+        <span class="macro-chips-label">Insert Meta Dynamic Params into <strong>utm_campaign</strong>:</span>
+        <div class="macro-chips-list">
+          <button type="button" class="macro-chip-btn" data-insert-target="input-utm-campaign" data-insert-val="{{campaign.name}}">&#123;&#123;campaign.name&#125;&#125;</button>
+          <button type="button" class="macro-chip-btn" data-insert-target="input-utm-campaign" data-insert-val="{{campaign.id}}">&#123;&#123;campaign.id&#125;&#125;</button>
+        </div>
+      </div>
+
+      <div class="macro-chips-group" style="margin-top: 0.75rem;">
+        <span class="macro-chips-label">Insert into <strong>utm_content</strong> (ad set + ad identifiers):</span>
+        <div class="macro-chips-list">
+          <button type="button" class="macro-chip-btn" data-insert-target="input-utm-content" data-insert-val="{{adset.name}}">&#123;&#123;adset.name&#125;&#125;</button>
+          <button type="button" class="macro-chip-btn" data-insert-target="input-utm-content" data-insert-val="{{ad.name}}">&#123;&#123;ad.name&#125;&#125;</button>
+          <button type="button" class="macro-chip-btn" data-insert-target="input-utm-content" data-insert-val="{{ad.id}}">&#123;&#123;ad.id&#125;&#125;</button>
+          <button type="button" class="macro-chip-btn" data-insert-target="input-utm-content" data-insert-val="{{adset.id}}">&#123;&#123;adset.id&#125;&#125;</button>
+          <button type="button" class="macro-chip-btn" data-insert-target="input-utm-content" data-insert-val="{{site_source_name}}">&#123;&#123;site_source_name&#125;&#125;</button>
+          <button type="button" class="macro-chip-btn" data-insert-target="input-utm-content" data-insert-val="{{placement}}">&#123;&#123;placement&#125;&#125;</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Tool Section -->
+    <section class="tool-workspace">
+
+      <nav class="tool-tabs-nav" aria-label="Tool Tabs">
+        <div class="tool-tabs-container">
+          <button type="button" class="tab-btn active" data-tab="tab-builder" role="tab" aria-selected="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Single URL Builder
+          </button>
+        </div>
+      </nav>
+
+      <div class="tab-panels">
+        <div id="tab-builder" class="tab-panel active" role="tabpanel">
+          <div class="builder-layout">
+            <div class="builder-form-panel">
+              <div class="form-field">
+                <label class="field-label" for="input-base-url">Destination URL *</label>
+                <div class="url-input-wrap">
+                  <span class="url-icon" aria-hidden="true">🌐</span>
+                  <input type="url" id="input-base-url" class="field-input url-field-large" placeholder="https://yourlandingpage.com/" autocomplete="off" spellcheck="false" required>
+                </div>
+              </div>
+
+              <div class="form-row-duo">
+                <div class="form-field">
+                  <label class="field-label" for="input-utm-source">utm_source *</label>
+                  <input type="text" id="input-utm-source" class="field-input" placeholder="facebook" autocomplete="off" spellcheck="false">
+                </div>
+                <div class="form-field">
+                  <label class="field-label" for="input-utm-medium">utm_medium *</label>
+                  <input type="text" id="input-utm-medium" class="field-input" placeholder="paid_social" autocomplete="off" spellcheck="false">
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label" for="input-utm-campaign">utm_campaign — Use chips above for dynamic name</label>
+                <input type="text" id="input-utm-campaign" class="field-input" placeholder="brand_awareness_us_q1-2025" autocomplete="off" spellcheck="false">
+              </div>
+
+              <div class="form-row-duo">
+                <div class="form-field">
+                  <label class="field-label" for="input-utm-term">utm_term — Audience segment / interest targeting</label>
+                  <input type="text" id="input-utm-term" class="field-input" placeholder="lookalike_purchasers_us" autocomplete="off" spellcheck="false">
+                </div>
+                <div class="form-field">
+                  <label class="field-label" for="input-utm-content">utm_content — Use chips above for ad-level data</label>
+                  <input type="text" id="input-utm-content" class="field-input" placeholder="{{ad.name}}_{{site_source_name}}" autocomplete="off" spellcheck="false">
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label class="field-label" for="input-utm-id">utm_id — Campaign ID for GA4 Cost Data Import</label>
+                <input type="text" id="input-utm-id" class="field-input" placeholder="e.g. {{campaign.id}}" autocomplete="off" spellcheck="false">
+              </div>
+            </div>
+
+            <div class="builder-output-panel">
+              <div class="output-section">
+                <div class="output-label-row">
+                  <label class="field-label">Generated Campaign URL</label>
+                  <div class="output-char-count" id="output-char-count">0 characters</div>
+                </div>
+                <div class="output-url-box" id="output-url-box" aria-live="polite">
+                  <span class="output-placeholder">Your Meta Ads tracking URL will appear here. Add it to the URL Parameters field in Meta Ads Manager — not the Destination URL.</span>
+                </div>
+                <div class="channel-badge-row" id="channel-badge-row" style="display:none;">
+                  <span class="channel-label">GA4 Channel:</span>
+                  <span class="channel-badge" id="channel-badge"></span>
+                </div>
+                <button type="button" id="btn-copy-url" class="btn-copy-full" disabled>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  Copy Meta Ads URL
+                </button>
+                <div class="output-actions-secondary">
+                  <button type="button" id="btn-shorten-url" class="btn-action-sm" disabled>Shorten</button>
+                  <button type="button" id="btn-test-link" class="btn-action-sm" disabled>Test Link</button>
+                  <button type="button" id="btn-save-link" class="btn-action-sm" disabled>Save</button>
+                  <button type="button" id="btn-qr-code" class="btn-action-sm" disabled>QR Code</button>
+                </div>
+              </div>
+
+              <div id="qr-section" class="qr-section" style="display: none;">
+                <div class="qr-label-row">
+                  <label class="field-label">QR Code</label>
+                </div>
+                <div class="qr-container">
+                  <div id="qr-placeholder" class="qr-placeholder">
+                    <span>QR code will appear here</span>
+                  </div>
+                  <div id="qr-code-display" style="display: none;">
+                    <canvas id="qr-canvas"></canvas>
+                  </div>
+                </div>
+                <button type="button" id="btn-generate-qr" class="btn-generate-qr">Generate QR Code</button>
+                <button type="button" id="btn-download-qr" class="btn-download-qr" style="display: none;">Download QR Code</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="landing-guide-section">
+
+      <article class="editorial-card">
+        <h2>Meta Ads Dynamic URL Parameters — Complete Reference</h2>
+        <p>Meta dynamic parameters use double curly braces <code>&#123;&#123; &#125;&#125;</code> syntax. They are evaluated when the ad is served, replacing the token with real campaign data. Unlike Google's ValueTrack which uses single braces, Meta uses a different notation that is not URL-encoded at ad creation time.</p>
+
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Dynamic Token</th>
+                <th>Replaced With</th>
+                <th>Best UTM Field</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>&#123;&#123;campaign.id&#125;&#125;</code></td><td>Numeric Campaign ID</td><td>utm_id</td></tr>
+              <tr><td><code>&#123;&#123;campaign.name&#125;&#125;</code></td><td>Campaign name as set in Ads Manager</td><td>utm_campaign</td></tr>
+              <tr><td><code>&#123;&#123;adset.id&#125;&#125;</code></td><td>Numeric Ad Set ID</td><td>utm_content</td></tr>
+              <tr><td><code>&#123;&#123;adset.name&#125;&#125;</code></td><td>Ad Set name</td><td>utm_content</td></tr>
+              <tr><td><code>&#123;&#123;ad.id&#125;&#125;</code></td><td>Numeric Ad ID</td><td>utm_content</td></tr>
+              <tr><td><code>&#123;&#123;ad.name&#125;&#125;</code></td><td>Ad name as set in Ads Manager</td><td>utm_content</td></tr>
+              <tr><td><code>&#123;&#123;site_source_name&#125;&#125;</code></td><td><code>fb</code> (Facebook), <code>ig</code> (Instagram), <code>msg</code> (Messenger), <code>an</code> (Audience Network)</td><td>utm_source or utm_content</td></tr>
+              <tr><td><code>&#123;&#123;placement&#125;&#125;</code></td><td>Specific placement type (e.g. feed, story, reels)</td><td>utm_content</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="editorial-card" id="where-to-add">
+        <h2>Where to Add UTM Parameters in Meta Ads Manager</h2>
+
+        <div class="editorial-callout" style="border-color: #e07b39; background: rgba(224,123,57,0.06);">
+          <h4>⚠️ Critical: Use the URL Parameters Field, NOT the Destination URL</h4>
+          <p>A very common and costly mistake is adding UTM parameters directly to the Final URL / Destination URL field in Meta Ads Manager. For campaigns with multiple placements or dynamic creative, Meta may override or strip parameters added to the Destination URL. Always add UTM parameters using the dedicated <strong>URL Parameters field</strong> at the ad level.</p>
+        </div>
+
+        <h3>Step-by-Step: Adding UTMs via URL Parameters Field</h3>
+        <ol>
+          <li>In Meta Ads Manager, navigate to the <strong>Ad level</strong> (not campaign or ad set level)</li>
+          <li>Scroll to the <strong>Destination</strong> section and look for <strong>URL Parameters</strong></li>
+          <li>Click "Build a URL Parameter" or paste your tracking string directly</li>
+          <li>Enter <strong>only the query string</strong> — do not include the <code>?</code> or the base URL:
+            <div class="code-block-wrap">
+              <pre>utm_source=facebook&amp;utm_medium=paid_social&amp;utm_campaign={{campaign.name}}&amp;utm_content={{adset.name}}_{{ad.name}}&amp;utm_id={{campaign.id}}</pre>
+            </div>
+          </li>
+          <li>Meta will preview the combined URL — verify the structure looks correct</li>
+          <li>Run the Meta pixel helper Chrome extension to confirm UTMs are being sent to your site after publishing</li>
+        </ol>
+      </article>
+
+      <article class="editorial-card">
+        <h2>iOS 14 Impact on Meta UTM Attribution</h2>
+        <p>Apple's App Tracking Transparency (ATT) framework introduced with iOS 14 significantly reduced Meta's ability to track users across apps and websites. This directly affects attribution data visible in Meta Ads Manager. UTM parameters remain unaffected — they travel with the URL and are captured server-side by your analytics platform regardless of device privacy settings.</p>
+
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Attribution Data</th>
+                <th>Impact of iOS 14 ATT</th>
+                <th>UTM Parameters Affected?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Meta Ads Manager reporting</td>
+                <td>Reduced — modeled conversions fill gaps</td>
+                <td>No — UTMs still passed in URLs</td>
+              </tr>
+              <tr>
+                <td>GA4 Traffic Acquisition (UTM-based)</td>
+                <td>Minimal — UTMs are URL parameters, not cookies</td>
+                <td>Not impacted</td>
+              </tr>
+              <tr>
+                <td>Meta Pixel events</td>
+                <td>Limited on iOS 14+ devices without ATT consent</td>
+                <td>N/A — separate tracking system</td>
+              </tr>
+              <tr>
+                <td>View-through conversions</td>
+                <td>Severely limited on iOS 14+</td>
+                <td>N/A — UTMs are click-based only</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="editorial-callout">
+          <h4>💡 UTMs + Conversions API = Full Attribution</h4>
+          <p>Combine manual UTM tracking with Meta's <strong>Conversions API (CAPI)</strong> for a dual-track attribution setup. UTMs provide click-level data in GA4. CAPI provides server-side event data directly to Meta. Together, they give you the most complete picture of ad performance even in a post-iOS 14 world.</p>
+        </div>
+      </article>
+
+      <article class="editorial-card">
+        <h2>Frequently Asked Questions — Meta &amp; Facebook Ads UTM Tracking</h2>
+        <div class="faq-block">
+          <details>
+            <summary>Why is my Facebook traffic showing as Direct or Organic Social in GA4?</summary>
+            <p>This happens when UTM parameters are missing from your ad URLs, Meta's in-app browser strips UTM strings, or users land on your page from a saved or shared link without UTMs. Always add UTM parameters to every Meta ad creative. For the in-app browser issue, use the <strong>Meta Pixel + UTM combination</strong> and consider enabling CAPI for server-side event capture.</p>
+          </details>
+          <details>
+            <summary>Should utm_source be "facebook" or "meta"?</summary>
+            <p>Use <code>facebook</code> as the utm_source value. GA4's built-in channel grouping rules recognize <code>facebook</code> as a social network source. "meta" is not in GA4's recognized source list and would generate an "Unassigned" channel grouping. For Instagram-placed ads, many teams use <code>instagram</code> as the source, which is also recognized by GA4.</p>
+          </details>
+          <details>
+            <summary>What utm_medium value should I use for Meta paid social campaigns?</summary>
+            <p>Use <code>paid_social</code>. This is in GA4's Default Channel Grouping regex for the Paid Social channel. Avoid <code>cpc</code> for social ads — in GA4, <code>source=facebook&amp;medium=cpc</code> does not reliably map to Paid Social and may appear as Paid Search or Unassigned depending on the GA4 property configuration.</p>
+          </details>
+        </div>
+      </article>
+
+      <div style="text-align: center; padding: 1.5rem 0 2rem;">
+        <p style="color: var(--text-secondary); font-size: 0.875rem; margin: 0;">Related platform builders:</p>
+        <div style="display: flex; gap: 0.75rem; justify-content: center; margin-top: 0.75rem; flex-wrap: wrap;">
+          <a href="/utm-builder/google-ads/" class="macro-chip-btn" style="text-decoration: none;">Google Ads Builder →</a>
+          <a href="/utm-builder/linkedin/" class="macro-chip-btn" style="text-decoration: none;">LinkedIn Ads Builder →</a>
+          <a href="/bulk-utm-builder/" class="macro-chip-btn" style="text-decoration: none;">Bulk Matrix Generator →</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <div class="brand-group" style="margin-bottom: 0.25rem;">
+              <div class="brand-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
+                  <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
+                  <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
+                  <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
+                </svg>
+              </div>
+              <span class="brand-title">UTMCraft</span>
+              <span class="brand-pill">Studio</span>
+            </div>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit.</p>
+            <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Core Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/">Single UTM Builder</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/ga4-utm-builder/">GA4 Channel Validator</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Platform Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Legal</h4>
+            <ul class="footer-links">
+              <li><a href="/terms.html">Terms and Conditions</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">&copy; 2026 UTMCraft Studio. All processing is 100% client-side.</div>
+          <div class="footer-attribution">Made with ❤️ by DJ</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

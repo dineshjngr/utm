@@ -163,15 +163,19 @@ function initTabs() {
     });
   }
 
-  const initialTab = Object.entries(TAB_META)
-    .find(([, meta]) => `#${meta.slug}` === window.location.hash)?.[0];
-  switchTab(initialTab || 'tab-builder', { updateUrl: false });
+  const isDedicatedPage = typeof document !== 'undefined' && !!document.body?.dataset?.page;
+  const initialTab = isDedicatedPage
+    ? (document.body.dataset.activeTab || 'tab-builder')
+    : (Object.entries(TAB_META).find(([, meta]) => `#${meta.slug}` === window.location.hash)?.[0] || 'tab-builder');
+  switchTab(initialTab, { updateUrl: false });
 
-  window.addEventListener('hashchange', () => {
-    const matchingTab = Object.entries(TAB_META)
-      .find(([, meta]) => `#${meta.slug}` === window.location.hash)?.[0];
-    if (matchingTab) switchTab(matchingTab, { updateUrl: false });
-  });
+  if (!isDedicatedPage) {
+    window.addEventListener('hashchange', () => {
+      const matchingTab = Object.entries(TAB_META)
+        .find(([, meta]) => `#${meta.slug}` === window.location.hash)?.[0];
+      if (matchingTab) switchTab(matchingTab, { updateUrl: false });
+    });
+  }
 }
 
 const TAB_META = {
@@ -223,8 +227,9 @@ function switchTab(tabId, { updateUrl = true } = {}) {
     pane.hidden = !isCurrent;
   });
 
+  const isDedicatedPage = typeof document !== 'undefined' && !!document.body?.dataset?.page;
   const meta = TAB_META[tabId];
-  if (meta) {
+  if (meta && !isDedicatedPage) {
     const socialTitle = meta.title.replace(' | UTMCraft', '');
     document.title = meta.title;
     document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description);
@@ -246,6 +251,8 @@ function switchTab(tabId, { updateUrl = true } = {}) {
 function initSingleBuilder() {
   // Elements
   const inputBaseUrl = document.getElementById('input-base-url');
+  if (!inputBaseUrl) return;
+
   const inputSource = document.getElementById('input-utm-source');
   const inputMedium = document.getElementById('input-utm-medium');
   const inputCampaign = document.getElementById('input-utm-campaign');
@@ -1238,6 +1245,7 @@ function initInspector() {
   const inspectBtn = document.getElementById('btn-inspect-url');
   const input = document.getElementById('inspector-input');
   const loadBtn = document.getElementById('btn-load-inspector-to-builder');
+  if (!inspectBtn || !input) return;
 
   let currentInspected = null;
 
@@ -1341,6 +1349,7 @@ function renderInspection(data) {
 // =========================================================
 function initTaxonomyGuide() {
   const cardsGrid = document.getElementById('taxonomy-cards-grid');
+  if (!cardsGrid) return;
   const searchInput = document.getElementById('channel-search-input');
   const filterButtons = document.querySelectorAll('.channel-filter-btn');
   let currentCategory = 'all';
@@ -1837,9 +1846,51 @@ function initFooterNavigation() {
 }
 
 // =========================================================
+// PAGE OVERRIDES & MACRO TOKEN CHIPS
+// =========================================================
+function applyPageOverrides() {
+  if (typeof document === 'undefined' || !document.body) return;
+  const ds = document.body.dataset;
+  if (ds.defaultBaseUrl) state.single.baseUrl = ds.defaultBaseUrl;
+  if (ds.defaultSource) state.single.source = ds.defaultSource;
+  if (ds.defaultMedium) state.single.medium = ds.defaultMedium;
+  if (ds.defaultCampaign) state.single.campaign = ds.defaultCampaign;
+  if (ds.defaultTerm) state.single.term = ds.defaultTerm;
+  if (ds.defaultContent) state.single.content = ds.defaultContent;
+  if (ds.defaultUtmId) state.single.utmId = ds.defaultUtmId;
+  if (ds.activeTab) state.activeTab = ds.activeTab;
+}
+
+function initMacroChips() {
+  document.querySelectorAll('.macro-chip-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = btn.getAttribute('data-insert-target');
+      const val = btn.getAttribute('data-insert-val');
+      if (!targetId || !val) return;
+
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        // If target is empty or has default sample, replace it; otherwise append with hyphen/underscore
+        if (!targetEl.value || targetEl.value === 'summer_sale_2025' || targetEl.value === 'search_intent') {
+          targetEl.value = val;
+        } else {
+          if (!targetEl.value.includes(val)) {
+            targetEl.value = `${targetEl.value}_${val}`;
+          }
+        }
+        targetEl.dispatchEvent(new Event('input', { bubbles: true }));
+        showToast(`Inserted ${val}`, 'info');
+      }
+    });
+  });
+}
+
+// =========================================================
 // BOOTSTRAP INITIALIZATION
 // =========================================================
 window.addEventListener('DOMContentLoaded', () => {
+  applyPageOverrides();
   initTheme();
   initTabs();
   initSingleBuilder();
@@ -1849,6 +1900,7 @@ window.addEventListener('DOMContentLoaded', () => {
   initHistoryControls();
   initModals();
   initFooterNavigation();
+  initMacroChips();
   updateHistoryBadge();
 });
 

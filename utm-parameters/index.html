@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTM Parameters Explained — Complete Reference Guide | UTMCraft</title>
+  <meta name="description" content="The definitive guide to all UTM parameters: utm_source, utm_medium, utm_campaign, utm_term, utm_content, and utm_id. Definitions, examples, and GA4 dimension mappings.">
+  <meta name="keywords" content="utm parameters, utm parameters explained, utm tags, what is utm source, utm medium values, utm campaign parameter, utm term utm content, google analytics utm parameters, utm id ga4">
+  <link rel="canonical" href="https://utm.workers.dev/utm-parameters/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utm.workers.dev/utm-parameters/">
+  <meta property="og:title" content="UTM Parameters Explained — Complete Reference Guide | UTMCraft">
+  <meta property="og:description" content="The definitive guide to all UTM parameters: definitions, GA4 dimension mappings, valid values, and real-world examples for every marketing channel.">
+  <meta property="og:image" content="https://utm.workers.dev/logo.svg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utm.workers.dev/utm-parameters/">
+  <meta name="twitter:title" content="UTM Parameters Explained — Complete Reference Guide | UTMCraft">
+  <meta name="twitter:description" content="The definitive guide to all UTM parameters: definitions, GA4 dimension mappings, valid values, and real-world examples for every marketing channel.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "UTM Parameters Explained — Complete Reference Guide",
+        "description": "Comprehensive explanation of all 6 UTM tracking parameters with GA4 dimension names, valid value examples, and best practices.",
+        "url": "https://utm.workers.dev/utm-parameters/",
+        "publisher": {
+          "@type": "Organization",
+          "name": "UTMCraft Studio",
+          "url": "https://utm.workers.dev/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utm.workers.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "UTM Parameters Guide", "item": "https://utm.workers.dev/utm-parameters/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does UTM stand for?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "UTM stands for Urchin Tracking Module, named after Urchin Software Corporation, the company that created the web analytics platform acquired by Google in 2005, which evolved into Google Analytics. UTM parameters are query string key-value pairs appended to destination URLs to pass campaign attribution data to analytics platforms."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are UTM parameters visible to website visitors?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. UTM parameters are visible in the browser address bar. They do not collect personal data; they only describe the marketing context of a click. Many marketers use a URL shortener to hide the raw parameter string in shared links."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between utm_source and utm_medium?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "utm_source identifies the specific referrer or publisher (e.g. 'google', 'facebook', 'newsletter_weekly'). utm_medium identifies the broad category or marketing channel type (e.g. 'cpc', 'email', 'paid_social', 'display'). GA4 uses medium — not source — to classify sessions into Default Channel Groups."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do UTM parameters affect SEO rankings?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "UTM parameters do not directly affect organic search rankings. However, if Google crawls and indexes URLs with UTM parameters instead of the canonical version, it may cause duplicate content signals. Always configure a canonical tag pointing to the clean URL and optionally block UTM-parameterized URLs in Google Search Console's URL parameters tool."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-page="utm-parameters">
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" style="text-decoration: none;">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
+            <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
+            <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
+            <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
+          </svg>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-title">UTMCraft</span>
+          <span class="brand-pill">Studio</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Main Navigation">
+        <a href="/campaign-url-builder/" class="nav-header-link">Campaign Builder</a>
+        <a href="/ga4-utm-builder/" class="nav-header-link">GA4 Builder</a>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <a href="/utm-parameters/" class="nav-header-link active">Parameters</a>
+        <a href="/utm-naming-conventions/" class="nav-header-link">Taxonomy SOP</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;"><span>Build UTM Links →</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="breadcrumb-item" aria-current="page">UTM Parameters Guide</li>
+      </ol>
+    </nav>
+
+    <header class="workspace-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 0;">
+      <div class="workspace-title-group">
+        <p class="eyebrow-label">Complete Reference</p>
+        <h1 class="workspace-title">UTM Parameters <span class="workspace-title-muted">Explained</span></h1>
+        <p class="workspace-subtitle">Everything you need to know about the 6 UTM tracking parameters — what they do, how GA4 uses them, valid values for every major marketing channel, and common mistakes to avoid.</p>
+      </div>
+
+      <div class="macro-chips-group" style="margin-top: 1.25rem;">
+        <span class="macro-chips-label">Jump to Section:</span>
+        <div class="macro-chips-list">
+          <a href="#what-are-utm-parameters" class="macro-chip-btn" style="text-decoration: none;">What Are UTM Parameters?</a>
+          <a href="#parameter-reference" class="macro-chip-btn" style="text-decoration: none;">Parameter Reference Table</a>
+          <a href="#utm-source" class="macro-chip-btn" style="text-decoration: none;">utm_source</a>
+          <a href="#utm-medium" class="macro-chip-btn" style="text-decoration: none;">utm_medium</a>
+          <a href="#utm-campaign" class="macro-chip-btn" style="text-decoration: none;">utm_campaign</a>
+          <a href="#common-mistakes" class="macro-chip-btn" style="text-decoration: none;">Common Mistakes</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="landing-guide-section" style="margin-top: 2.5rem;">
+
+      <!-- Section 1: What Are UTM Parameters -->
+      <article class="editorial-card" id="what-are-utm-parameters">
+        <h2>What Are UTM Parameters?</h2>
+        <p>UTM parameters (Urchin Tracking Modules) are short text snippets appended to any destination URL as query string key-value pairs. When a visitor clicks a tagged link, Google Analytics 4 reads these parameters and stores the marketing context as session-level dimensions — enabling precise attribution to the exact campaign, channel, and creative that drove each conversion.</p>
+
+        <p>A fully tagged URL looks like this:</p>
+
+        <div class="code-block-wrap">
+          <pre>https://example.com/landing?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=spring_launch_2025&amp;utm_content=search_ad_v1&amp;utm_term=utm+builder+tool</pre>
+        </div>
+
+        <p>UTM tags are the backbone of every digital marketing attribution model. Without them, organic and paid traffic is often misattributed — social clicks appear as Direct, newsletter traffic is lost, and ad spend cannot be confidently tied to revenue outcomes.</p>
+
+        <div class="editorial-callout">
+          <h4>🔎 How GA4 Reads UTM Parameters</h4>
+          <p>GA4 reads UTM parameters on page load via the JavaScript SDK. They are stored as session-scoped dimensions in BigQuery export and campaign reports. They persist for the duration of the session (30 minutes of inactivity by default) and influence both Last Click and Data-Driven attribution models.</p>
+        </div>
+      </article>
+
+      <!-- Section 2: Complete Parameter Reference Table -->
+      <article class="editorial-card" id="parameter-reference">
+        <h2>Complete UTM Parameter Reference Table</h2>
+        <p>Google Analytics 4 supports 6 standard UTM parameters. Each maps to a specific GA4 dimension name you can use in reports and explorations:</p>
+
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Required?</th>
+                <th>GA4 Dimension Name</th>
+                <th>Max Length</th>
+                <th>Accepted Characters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>utm_source</code></td>
+                <td><strong>Required</strong></td>
+                <td>Session source / First user source</td>
+                <td>No hard limit (keep &lt;100 chars)</td>
+                <td>Lowercase alphanumeric, hyphens, underscores</td>
+              </tr>
+              <tr>
+                <td><code>utm_medium</code></td>
+                <td><strong>Strongly Recommended</strong></td>
+                <td>Session medium / First user medium</td>
+                <td>No hard limit (keep &lt;50 chars)</td>
+                <td>Lowercase alphanumeric, hyphens, underscores</td>
+              </tr>
+              <tr>
+                <td><code>utm_campaign</code></td>
+                <td><strong>Recommended</strong></td>
+                <td>Session campaign / First user campaign</td>
+                <td>No hard limit (keep &lt;100 chars)</td>
+                <td>Lowercase alphanumeric, hyphens, underscores</td>
+              </tr>
+              <tr>
+                <td><code>utm_id</code></td>
+                <td>Optional</td>
+                <td>Campaign ID</td>
+                <td>No hard limit</td>
+                <td>Alphanumeric and common symbols</td>
+              </tr>
+              <tr>
+                <td><code>utm_term</code></td>
+                <td>Optional (Paid Search)</td>
+                <td>Session manual ad term</td>
+                <td>No hard limit</td>
+                <td>Lowercase, URL-encoded spaces as + or %20</td>
+              </tr>
+              <tr>
+                <td><code>utm_content</code></td>
+                <td>Optional (A/B testing)</td>
+                <td>Session manual ad content</td>
+                <td>No hard limit (keep &lt;100 chars)</td>
+                <td>Lowercase alphanumeric, hyphens, underscores</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Section 3: utm_source deep dive -->
+      <article class="editorial-card" id="utm-source">
+        <h2>utm_source — Campaign Source Parameter</h2>
+        <p><strong>Definition:</strong> Identifies the specific referrer, publisher, platform, or origin that sent traffic to your website. It answers the question: <em>"Where did this visitor come from?"</em></p>
+
+        <p><strong>GA4 Dimension:</strong> <code>Session source</code> and <code>First user source</code></p>
+
+        <h3>Recommended utm_source Values by Channel</h3>
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Platform / Origin</th>
+                <th>Recommended utm_source Value</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Google Search Ads</td>
+                <td><code>google</code></td>
+                <td>GA4 recognizes this as a paid search source when paired with <code>medium=cpc</code>.</td>
+              </tr>
+              <tr>
+                <td>Bing / Microsoft Ads</td>
+                <td><code>bing</code></td>
+                <td>Use consistently; avoid <code>microsoft</code> or <code>msn</code> to prevent report fragmentation.</td>
+              </tr>
+              <tr>
+                <td>Facebook &amp; Instagram Ads</td>
+                <td><code>facebook</code></td>
+                <td>GA4 recognizes <code>facebook</code> as a social network source.</td>
+              </tr>
+              <tr>
+                <td>LinkedIn Sponsored</td>
+                <td><code>linkedin</code></td>
+                <td>GA4 recognizes <code>linkedin</code> as a social network source.</td>
+              </tr>
+              <tr>
+                <td>Email Newsletter</td>
+                <td><code>newsletter</code></td>
+                <td>Use the specific list or tool name: <code>mailchimp</code>, <code>klaviyo</code>, <code>weekly_digest</code>.</td>
+              </tr>
+              <tr>
+                <td>Affiliate / Partner</td>
+                <td><code>partner_name</code></td>
+                <td>Use the specific affiliate or partner website name for granular attribution.</td>
+              </tr>
+              <tr>
+                <td>Print / Offline (QR Code)</td>
+                <td><code>conference_booth</code></td>
+                <td>Use descriptive offline identifiers: <code>store_signage</code>, <code>event_badge</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Section 4: utm_medium deep dive -->
+      <article class="editorial-card" id="utm-medium">
+        <h2>utm_medium — Campaign Medium Parameter</h2>
+        <p><strong>Definition:</strong> Identifies the broad marketing channel or advertising method. It answers: <em>"What type of marketing activity drove this traffic?"</em> This is the most critical parameter for GA4 Default Channel Grouping — it is evaluated against regular expressions to classify sessions.</p>
+
+        <p><strong>GA4 Dimension:</strong> <code>Session medium</code> and <code>First user medium</code></p>
+
+        <h3>GA4 Default Channel Grouping — Accepted Medium Values</h3>
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>GA4 Channel Group</th>
+                <th>Valid utm_medium Values</th>
+                <th>Invalid / Risky Values (Avoid)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Paid Search</strong></td>
+                <td><code>cpc</code>, <code>ppc</code>, <code>paid-search</code></td>
+                <td><code>cpc-ads</code>, <code>paid_search</code>, <code>search</code></td>
+              </tr>
+              <tr>
+                <td><strong>Paid Social</strong></td>
+                <td><code>paid_social</code>, <code>cpc</code>, <code>paid-social</code></td>
+                <td><code>social_ad</code>, <code>social-media</code>, <code>facebook_ad</code></td>
+              </tr>
+              <tr>
+                <td><strong>Organic Social</strong></td>
+                <td><code>social</code>, <code>social-network</code></td>
+                <td><code>organic_social</code>, <code>instagram</code> (as medium)</td>
+              </tr>
+              <tr>
+                <td><strong>Email</strong></td>
+                <td><code>email</code></td>
+                <td><code>email-blast</code>, <code>newsletter</code> (as medium), <code>mailing</code></td>
+              </tr>
+              <tr>
+                <td><strong>Display</strong></td>
+                <td><code>display</code>, <code>banner</code>, <code>expandable</code></td>
+                <td><code>display-ads</code>, <code>gdn</code>, <code>programmatic</code></td>
+              </tr>
+              <tr>
+                <td><strong>Affiliates</strong></td>
+                <td><code>affiliate</code>, <code>affiliates</code></td>
+                <td><code>partner</code>, <code>referral-partner</code></td>
+              </tr>
+              <tr>
+                <td><strong>Referral</strong></td>
+                <td><code>referral</code>, <code>app</code></td>
+                <td><code>link</code>, <code>blog</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="editorial-callout">
+          <h4>⚠️ The Single Most Costly utm_medium Mistake</h4>
+          <p>Using <code>utm_medium=email</code> as <code>utm_source</code> instead of <code>utm_medium</code> is the #1 error teams make. <strong>Source</strong> = where it came from (a specific newsletter name). <strong>Medium</strong> = what type of channel (<code>email</code>). They are different fields.</p>
+        </div>
+      </article>
+
+      <!-- Section 5: utm_campaign, utm_id, utm_term, utm_content -->
+      <article class="editorial-card" id="utm-campaign">
+        <h2>utm_campaign, utm_id, utm_term &amp; utm_content</h2>
+
+        <h3>utm_campaign — Campaign Name</h3>
+        <p>Names the specific marketing initiative. Use descriptive, structured values: <code>product_launch_q4_2025</code>, <code>summer_sale_us</code>, <code>brand_awareness_emea</code>.</p>
+        <p><strong>GA4 Dimension:</strong> Session campaign &amp; First user campaign</p>
+        <p><strong>Best Practices:</strong> Never use spaces. Use underscores or hyphens as word separators. Include quarter and year for temporal filtering: <code>campaign_name_q4_2025</code>.</p>
+
+        <h3>utm_id — Campaign Identifier</h3>
+        <p>A unique alphanumeric ID that matches the campaign record in your ad platform, CRM, or data warehouse. Essential for GA4 Cost Data Import to tie advertising spend to conversion outcomes in GA4 Advertising reports.</p>
+        <p><strong>GA4 Dimension:</strong> Campaign ID</p>
+        <p><strong>Example:</strong> <code>utm_id=meta_c00298171</code> — where the value matches your Meta Ads campaign ID.</p>
+
+        <h3>utm_term — Keyword or Audience Targeting</h3>
+        <p>Primarily used for paid search to capture the keyword that triggered the ad. In Google Ads, use the <code>{keyword}</code> ValueTrack macro to auto-populate. In display or social, use it to identify the audience segment or targeting criterion.</p>
+        <p><strong>GA4 Dimension:</strong> Session manual ad term</p>
+
+        <h3>utm_content — Creative Variant or CTA Label</h3>
+        <p>Differentiates between multiple creatives, ad copy versions, or calls-to-action within the same campaign. Ideal for A/B creative testing: <code>hero_image_blue</code> vs <code>hero_image_green</code>.</p>
+        <p><strong>GA4 Dimension:</strong> Session manual ad content</p>
+      </article>
+
+      <!-- Section 6: Common Mistakes -->
+      <article class="editorial-card" id="common-mistakes">
+        <h2>9 UTM Parameter Mistakes That Destroy Analytics</h2>
+        <ol>
+          <li><strong>Uppercase characters:</strong> <code>Google</code> and <code>google</code> create two different rows in GA4 reports.</li>
+          <li><strong>Spaces in parameter values:</strong> Spaces must be replaced with hyphens or underscores to avoid URL encoding issues.</li>
+          <li><strong>Tagging internal links:</strong> Never tag links pointing from one page to another within the same website domain — doing so destroys the visitor's original acquisition source by starting a new session.</li>
+          <li><strong>Missing utm_medium:</strong> Sessions without a recognized medium value fall into (Unassigned) in the Default Channel Grouping report.</li>
+          <li><strong>Inventing custom mediums:</strong> Channels like <code>promo</code>, <code>organic_social</code>, <code>pdf</code>, and <code>blog_post</code> do not match GA4's built-in regex rules and generate (Unassigned) rows.</li>
+          <li><strong>Using #hash anchors before UTM tags:</strong> Query parameters placed after a # hash fragment are never sent to the web server or analytics.</li>
+          <li><strong>Double-tagging redirected URLs:</strong> Adding UTMs to a URL that already has UTMs (e.g. via a redirect) creates duplicate or malformed parameter strings.</li>
+          <li><strong>URL-encoding the &amp; delimiter:</strong> Some tools double-encode <code>&amp;amp;</code> resulting in broken parameter strings.</li>
+          <li><strong>Inconsistent capitalization across the team:</strong> Without a shared taxonomy document, each team member invents their own casing and naming conventions, permanently fragmenting reports.</li>
+        </ol>
+
+        <div class="editorial-callout">
+          <h4>✅ Solve All 9 Problems Automatically</h4>
+          <p>The <a href="/campaign-url-builder/" style="color: var(--soft-green);">UTMCraft Campaign URL Builder</a> enforces lowercase, strips duplicate UTMs, validates GA4 channel compliance in real time, and warns you about each of these errors before you deploy your links.</p>
+        </div>
+      </article>
+
+      <!-- FAQs -->
+      <article class="editorial-card">
+        <h2>Frequently Asked Questions About UTM Parameters</h2>
+        <div class="faq-block">
+          <details>
+            <summary>What does UTM stand for?</summary>
+            <p>UTM stands for <strong>Urchin Tracking Module</strong>, named after Urchin Software, the web analytics company acquired by Google in 2005. Urchin's tracking technology became the foundation of Google Analytics.</p>
+          </details>
+
+          <details>
+            <summary>Do UTM parameters affect SEO rankings?</summary>
+            <p>No. UTM parameters carry no PageRank or ranking signals. However, if Google crawls and indexes UTM-parameterized URLs instead of clean canonical URLs, it may create duplicate content issues. Always set a canonical tag on landing pages and optionally configure Google Search Console's URL Parameters to ignore UTM variants.</p>
+          </details>
+
+          <details>
+            <summary>Are UTM parameters visible to website visitors?</summary>
+            <p>Yes. They appear in the browser's address bar after a visitor clicks a tagged link. This is normal. To hide them from end users in shared links, use the built-in URL shortener in UTMCraft, which creates a clean redirect with the full UTM string preserved behind the short link.</p>
+          </details>
+
+          <details>
+            <summary>Can I use UTM parameters on non-Google Analytics platforms?</summary>
+            <p>Yes. Many analytics platforms — including Adobe Analytics, Matomo, Heap, Amplitude, and Segment — support UTM parameter ingestion. While the specific dimension names may differ, the underlying URL structure is universal and platform-agnostic.</p>
+          </details>
+
+          <details>
+            <summary>Does GA4 attribute conversions based on first click or last click UTMs?</summary>
+            <p>By default, GA4 uses a <strong>Last Click</strong> model for standard reports. However, the Advertising reports use <strong>Data-Driven Attribution</strong> (DDA) when sufficient data exists, which distributes conversion credit proportionally across all touchpoints recorded during the conversion window.</p>
+          </details>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- CTA Panel -->
+    <div style="max-width: 1060px; margin: 2rem auto; padding: 0 1rem 3rem;">
+      <div class="editorial-callout">
+        <h4>🚀 Ready to Build GA4-Compliant Campaign URLs?</h4>
+        <p>Use the <a href="/" style="color: var(--soft-green);">UTMCraft Builder</a> to generate perfectly formatted tracking links with live channel validation, or explore our <a href="/utm-naming-conventions/" style="color: var(--soft-green);">Taxonomy SOP Template</a> to standardize parameters across your entire marketing team.</p>
+      </div>
+    </div>
+
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <div class="brand-group" style="margin-bottom: 0.25rem;">
+              <div class="brand-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
+                  <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
+                  <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
+                  <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
+                </svg>
+              </div>
+              <span class="brand-title">UTMCraft</span>
+              <span class="brand-pill">Studio</span>
+            </div>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit.</p>
+            <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Core Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/">Single UTM Builder</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/ga4-utm-builder/">GA4 Channel Validator</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Platform Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Legal</h4>
+            <ul class="footer-links">
+              <li><a href="/terms.html">Terms and Conditions</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">&copy; 2026 UTMCraft Studio. All processing is 100% client-side.</div>
+          <div class="footer-attribution">Made with ❤️ by DJ</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTM Naming Conventions &amp; Taxonomy SOP Template | UTMCraft</title>
+  <meta name="description" content="Free UTM naming convention guide and campaign taxonomy SOP template. Standardize source, medium, campaign, term, and content values across your entire marketing team.">
+  <meta name="keywords" content="utm naming conventions, utm naming standards, utm taxonomy, utm convention guide, campaign naming convention, utm parameter standards, marketing taxonomy sop, ga4 naming convention template">
+  <link rel="canonical" href="https://utm.workers.dev/utm-naming-conventions/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utm.workers.dev/utm-naming-conventions/">
+  <meta property="og:title" content="UTM Naming Conventions &amp; Taxonomy SOP Template | UTMCraft">
+  <meta property="og:description" content="Free UTM naming convention guide and campaign taxonomy SOP template. Standardize source, medium, campaign, term, and content values across your entire marketing team.">
+  <meta property="og:image" content="https://utm.workers.dev/logo.svg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utm.workers.dev/utm-naming-conventions/">
+  <meta name="twitter:title" content="UTM Naming Conventions &amp; Taxonomy SOP Template | UTMCraft">
+  <meta name="twitter:description" content="Free UTM naming convention guide and campaign taxonomy SOP template. Standardize source, medium, campaign, term, and content values across your entire marketing team.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "UTM Naming Conventions & Taxonomy SOP Template",
+        "description": "A practical guide to creating standardized UTM naming conventions across an entire marketing organization, including a ready-to-use campaign taxonomy SOP template.",
+        "url": "https://utm.workers.dev/utm-naming-conventions/",
+        "publisher": { "@type": "Organization", "name": "UTMCraft Studio", "url": "https://utm.workers.dev/" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utm.workers.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "UTM Naming Conventions", "item": "https://utm.workers.dev/utm-naming-conventions/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are UTM naming conventions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "UTM naming conventions are a set of agreed-upon rules within a marketing team or organization that standardize how each UTM parameter should be formatted, cased, and structured. They define which words are permitted for each channel, how campaign names should be constructed (e.g. using underscores, quarter/year suffixes), and who is responsible for enforcing compliance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a UTM Taxonomy SOP?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A UTM Taxonomy SOP (Standard Operating Procedure) is a documented governance document that defines every approved UTM source, medium, and campaign name pattern for an organization. It typically covers: approved medium values, campaign name structure formula, required and optional parameter rules, tool workflow, and QA review process."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why are consistent UTM naming conventions important?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Without standardized naming conventions, GA4 reports fragment into dozens of near-identical rows — 'Google', 'google', 'Google LLC', 'google ads' each become separate acquisition sources. This makes it impossible to accurately aggregate performance data, calculate true channel ROI, or build reliable marketing dashboards."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-page="utm-naming-conventions">
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" style="text-decoration: none;">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
+            <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
+            <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
+            <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
+          </svg>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-title">UTMCraft</span>
+          <span class="brand-pill">Studio</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Main Navigation">
+        <a href="/campaign-url-builder/" class="nav-header-link">Campaign Builder</a>
+        <a href="/ga4-utm-builder/" class="nav-header-link">GA4 Builder</a>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <a href="/utm-parameters/" class="nav-header-link">Parameters</a>
+        <a href="/utm-naming-conventions/" class="nav-header-link active">Taxonomy SOP</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;"><span>Build UTM Links →</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="breadcrumb-item" aria-current="page">UTM Naming Conventions &amp; Taxonomy SOP</li>
+      </ol>
+    </nav>
+
+    <header class="workspace-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 2rem; margin-bottom: 0;">
+      <div class="workspace-title-group">
+        <p class="eyebrow-label">Campaign Governance SOP</p>
+        <h1 class="workspace-title">UTM Naming Conventions <span class="workspace-title-muted">&amp; Taxonomy Template</span></h1>
+        <p class="workspace-subtitle">Build a standardized UTM governance framework your entire marketing team can adopt. Includes approved source and medium value lists, campaign name formulas, content naming rules, and a ready-to-use taxonomy SOP document.</p>
+      </div>
+
+      <div class="macro-chips-group" style="margin-top: 1.25rem;">
+        <span class="macro-chips-label">Jump to Section:</span>
+        <div class="macro-chips-list">
+          <a href="#golden-rules" class="macro-chip-btn" style="text-decoration: none;">The 5 Golden Rules</a>
+          <a href="#naming-formula" class="macro-chip-btn" style="text-decoration: none;">Campaign Name Formula</a>
+          <a href="#approved-values" class="macro-chip-btn" style="text-decoration: none;">Approved Value List</a>
+          <a href="#sop-template" class="macro-chip-btn" style="text-decoration: none;">SOP Template</a>
+          <a href="#governance" class="macro-chip-btn" style="text-decoration: none;">Team Governance</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="landing-guide-section" style="margin-top: 2.5rem;">
+
+      <!-- Section 1: Why Conventions Matter -->
+      <article class="editorial-card">
+        <h2>Why Inconsistent UTM Naming Breaks Your Analytics</h2>
+        <p>Consider a real-world scenario: your marketing team runs a February Valentine's Day campaign. Three different team members tag their channels as follows:</p>
+
+        <div class="code-block-wrap">
+          <pre>Paid Search:  utm_source=Google&amp;utm_medium=CPC&amp;utm_campaign=Valentines2025
+Email team:   utm_source=newsletter&amp;utm_medium=Email&amp;utm_campaign=valentines_day_campaign
+Social team:  utm_source=facebook&amp;utm_medium=social_ad&amp;utm_campaign=valentine-2025</pre>
+        </div>
+
+        <p>In your GA4 Campaign report, this single promotion now appears as <strong>at least 5 separate campaign rows</strong> — impossible to aggregate, compare, or attribute accurately to total spend. Your attribution model is permanently corrupted for that period.</p>
+
+        <p>This is exactly why every marketing organization needs a formally documented UTM taxonomy SOP before any campaign goes live.</p>
+      </article>
+
+      <!-- Section 2: The 5 Golden Rules -->
+      <article class="editorial-card" id="golden-rules">
+        <h2>The 5 Golden Rules of UTM Naming Conventions</h2>
+
+        <ol>
+          <li style="margin-bottom: 1.25rem;">
+            <strong>Always Lowercase. No Exceptions.</strong><br>
+            <span style="color: var(--text-secondary); font-size: 0.9375rem;">Google Analytics 4 treats every character as case-sensitive. Enforce strict lowercase for every parameter value across the entire team. Use tooling (like UTMCraft) to auto-enforce casing rather than relying on human discipline.</span>
+          </li>
+          <li style="margin-bottom: 1.25rem;">
+            <strong>Use Hyphens or Underscores as Word Separators. Pick One and Never Mix.</strong><br>
+            <span style="color: var(--text-secondary); font-size: 0.9375rem;">The industry standard is hyphens in URLs (<code>brand-awareness</code>) or underscores for parameter values (<code>brand_awareness</code>). Both are acceptable — but document your choice in your SOP and never mix them within the same property.</span>
+          </li>
+          <li style="margin-bottom: 1.25rem;">
+            <strong>Use a Consistent Campaign Name Formula with Required Suffixes.</strong><br>
+            <span style="color: var(--text-secondary); font-size: 0.9375rem;">Campaign names must be structured enough to filter and aggregate by product, market, and period. See the Campaign Name Formula section below.</span>
+          </li>
+          <li style="margin-bottom: 1.25rem;">
+            <strong>Maintain a Published Approved Values List for Source and Medium.</strong><br>
+            <span style="color: var(--text-secondary); font-size: 0.9375rem;">Never allow team members to invent new source or medium values. Maintain a shared "Allowed Values" spreadsheet and review it quarterly. Any new channel or partner requires a governance approval process.</span>
+          </li>
+          <li style="margin-bottom: 1.25rem;">
+            <strong>QA Every Link Before Publishing. Zero Exceptions.</strong><br>
+            <span style="color: var(--text-secondary); font-size: 0.9375rem;">Require every team member to run tagged URLs through a UTM checker (<a href="/utm-checker/" style="color: var(--soft-green);">UTMCraft's inspector</a>) and confirm the audit score is 100% before any link is shared, sent, or published.</span>
+          </li>
+        </ol>
+      </article>
+
+      <!-- Section 3: Campaign Name Formula -->
+      <article class="editorial-card" id="naming-formula">
+        <h2>The Campaign Name Formula</h2>
+        <p>Structure campaign names so they can be filtered, grouped, and compared across quarters. A recommended enterprise formula:</p>
+
+        <div class="code-block-wrap">
+          <pre>[product/brand]_[initiative-type]_[market/geo]_[quarter-year]
+
+Examples:
+utm_campaign=enterprise_brand-awareness_na_q1-2025
+utm_campaign=starter-plan_trial-upsell_emea_q4-2025
+utm_campaign=annual-sale_conversion_global_q4-2025
+utm_campaign=webinar_lead-gen_us_jan-2025</pre>
+        </div>
+
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Purpose</th>
+                <th>Example Values</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Product / Brand</strong></td>
+                <td>Filter by product line in GA4 Explorations</td>
+                <td><code>enterprise</code>, <code>starter</code>, <code>brand</code>, <code>platform</code></td>
+              </tr>
+              <tr>
+                <td><strong>Initiative Type</strong></td>
+                <td>Categorize by campaign goal or tactic</td>
+                <td><code>brand-awareness</code>, <code>lead-gen</code>, <code>trial-upsell</code>, <code>seasonal-sale</code></td>
+              </tr>
+              <tr>
+                <td><strong>Market / Geo</strong></td>
+                <td>Segment by geography or audience cluster</td>
+                <td><code>na</code>, <code>emea</code>, <code>apac</code>, <code>us</code>, <code>global</code></td>
+              </tr>
+              <tr>
+                <td><strong>Quarter &amp; Year</strong></td>
+                <td>Enable trend analysis and YoY comparison</td>
+                <td><code>q1-2025</code>, <code>q4-2026</code>, <code>jan-2025</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Section 4: Approved Values Taxonomy -->
+      <article class="editorial-card" id="approved-values">
+        <h2>Master Approved Values Taxonomy</h2>
+        <p>Use this reference as the foundation of your organization's UTM SOP. Copy it into a shared Google Sheet or Notion database and make it the single source of truth for your team:</p>
+
+        <h3>Approved utm_source Values</h3>
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr><th>Source Value</th><th>Platform</th><th>GA4 Channel</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>google</code></td><td>Google Ads / Organic Google</td><td>Paid Search / Organic Search</td></tr>
+              <tr><td><code>bing</code></td><td>Microsoft Advertising</td><td>Paid Search</td></tr>
+              <tr><td><code>facebook</code></td><td>Meta Ads (Facebook)</td><td>Paid Social / Organic Social</td></tr>
+              <tr><td><code>instagram</code></td><td>Meta Ads (Instagram)</td><td>Paid Social / Organic Social</td></tr>
+              <tr><td><code>linkedin</code></td><td>LinkedIn Ads / Organic</td><td>Paid Social / Organic Social</td></tr>
+              <tr><td><code>twitter</code></td><td>X (formerly Twitter)</td><td>Organic Social</td></tr>
+              <tr><td><code>tiktok</code></td><td>TikTok Ads</td><td>Paid Social</td></tr>
+              <tr><td><code>youtube</code></td><td>YouTube (Google)</td><td>Paid Video / Organic Video</td></tr>
+              <tr><td><code>newsletter</code></td><td>Email marketing (generic)</td><td>Email</td></tr>
+              <tr><td><code>klaviyo</code></td><td>Klaviyo email flows</td><td>Email</td></tr>
+              <tr><td><code>mailchimp</code></td><td>Mailchimp campaigns</td><td>Email</td></tr>
+              <tr><td><code>partner_affiliate</code></td><td>Affiliate network</td><td>Affiliates</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Approved utm_medium Values</h3>
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr><th>Medium Value</th><th>GA4 Channel Group</th><th>When to Use</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>cpc</code></td><td>Paid Search</td><td>Google Ads, Bing Ads, Apple Search Ads</td></tr>
+              <tr><td><code>paid_social</code></td><td>Paid Social</td><td>Meta, LinkedIn, TikTok, Pinterest, Reddit sponsored posts</td></tr>
+              <tr><td><code>social</code></td><td>Organic Social</td><td>Organic posts, bio links, shared content on social networks</td></tr>
+              <tr><td><code>email</code></td><td>Email</td><td>All email sends: newsletters, lifecycle, transactional</td></tr>
+              <tr><td><code>display</code></td><td>Display</td><td>Google Display Network, programmatic banners</td></tr>
+              <tr><td><code>video</code></td><td>Organic Video</td><td>YouTube organic descriptions, Vimeo</td></tr>
+              <tr><td><code>affiliate</code></td><td>Affiliates</td><td>All affiliate and partner commission links</td></tr>
+              <tr><td><code>referral</code></td><td>Referral</td><td>Partner blog posts, press coverage, app store links</td></tr>
+              <tr><td><code>qr_code</code></td><td>Custom Offline</td><td>Print materials, event signage, packaging</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Section 5: SOP Template -->
+      <article class="editorial-card" id="sop-template">
+        <h2>UTM Taxonomy SOP Template — Copy for Your Team</h2>
+        <p>Use this template as the basis for your organization's formal UTM governance document. Customize it for your brand, tools, and team structure:</p>
+
+        <div class="code-block-wrap">
+          <pre style="white-space: pre-wrap;"># [Your Company] UTM Tracking Taxonomy SOP
+## Version 1.0 | Effective Date: [Date] | Owner: [Analytics Lead]
+
+---
+
+### 1. PURPOSE
+This document defines the required naming conventions for all UTM tracking parameters
+used in digital marketing campaigns. All campaign tracking links must follow these
+rules before being shared, scheduled, or published.
+
+### 2. MANDATORY FORMATTING RULES
+- ALL parameter values must be LOWERCASE with NO EXCEPTIONS
+- Use UNDERSCORES (_) as word separators (or define hyphens if preferred — do not mix)
+- No spaces in any parameter value
+- No special characters (!, @, #, $, %) in parameter values
+- All destination URLs must use HTTPS protocol
+- Never add UTM parameters to internal website navigation links
+
+### 3. CAMPAIGN NAME FORMULA
+utm_campaign = [product]_[initiative]_[market]_[period]
+
+Examples:
+✅ CORRECT:   utm_campaign=enterprise_lead-gen_na_q1-2025
+❌ INCORRECT: utm_campaign=Enterprise Lead Gen NA Q1 2025
+
+### 4. REQUIRED PARAMETERS (Mandatory for every tagged link)
+- utm_source   → Required. Use only approved Source Values (see Appendix A)
+- utm_medium   → Required. Use only approved Medium Values (see Appendix B)
+- utm_campaign → Required. Must follow Campaign Name Formula above
+
+### 5. OPTIONAL PARAMETERS
+- utm_content  → Used for A/B testing: identifies ad creative or CTA variant
+- utm_term     → Used for paid search keywords or audience targeting identifiers
+- utm_id       → Required when uploading campaign cost data to GA4
+
+### 6. QA REVIEW PROCESS
+Before publishing any campaign link:
+1. Paste URL into UTMCraft UTM Checker at https://utm.workers.dev/utm-checker/
+2. Verify audit score = 100%
+3. Confirm GA4 Channel Group matches expected channel
+4. Test link in incognito window — confirm page loads correctly
+5. Verify live session in GA4 Realtime Report before campaign goes live
+
+### APPENDIX A: Approved Source Values
+[See Master Taxonomy Table — maintain in shared Google Sheet]
+
+### APPENDIX B: Approved Medium Values
+[See Master Taxonomy Table — maintain in shared Google Sheet]</pre>
+        </div>
+      </article>
+
+      <!-- Section 6: Team Governance -->
+      <article class="editorial-card" id="governance">
+        <h2>Enforcing UTM Governance Across Teams</h2>
+
+        <h3>1. Designate a Taxonomy Owner</h3>
+        <p>Assign a single analytics team member or marketing operations lead as the UTM Taxonomy Owner. They are responsible for maintaining the approved values list, reviewing new channel additions, and onboarding new team members.</p>
+
+        <h3>2. Integrate UTM Tagging Into Campaign Launch Checklists</h3>
+        <p>Add a UTM compliance step to every campaign launch approval workflow. No campaign should go live in your project management tool (Asana, Jira, Monday.com) without a UTM audit score attached.</p>
+
+        <h3>3. Audit Historical Data Quarterly</h3>
+        <p>At the start of each quarter, run a GA4 Traffic Acquisition report and filter by source/medium. Look for any unexpected row values (often caused by typos or new hires using non-approved values). Create custom channel group overrides in GA4 Admin if historical corrections are needed.</p>
+
+        <h3>4. Use UTMCraft GA4 Taxonomy Guide as Your Team Reference</h3>
+        <p>The <a href="/" style="color: var(--soft-green);">UTMCraft GA4 Taxonomy tab</a> provides a searchable, filterable lookup of all GA4 Default Channel Grouping rules — use it as a real-time reference during campaign planning. Share the URL with your media buyers, email marketers, and agency partners.</p>
+
+        <div class="editorial-callout">
+          <h4>🎯 Apply These Conventions Instantly</h4>
+          <p>Use the <a href="/campaign-url-builder/" style="color: var(--soft-green);">Campaign URL Builder</a> to generate links that automatically enforce all the naming conventions in this guide. It applies strict lowercase, hyphens/underscores, and validates GA4 channel compliance on every link you build.</p>
+        </div>
+      </article>
+
+      <!-- FAQs -->
+      <article class="editorial-card">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-block">
+          <details>
+            <summary>Should I use hyphens or underscores in UTM values?</summary>
+            <p>Both are technically valid. However, underscores (<code>_</code>) are more commonly used in parameter values (e.g. <code>paid_social</code>) because hyphens in campaign names can be confused with URL-encoded characters in some platforms. Choose one standard for your organization and apply it consistently — never mix both in the same property.</p>
+          </details>
+
+          <details>
+            <summary>How often should we update our UTM taxonomy SOP?</summary>
+            <p>Review your taxonomy SOP quarterly, aligned with reporting periods. Update it whenever a new marketing channel is added, a new ad platform is contracted, or a channel restructure is reported in GA4. Version-control your SOP document and maintain a changelog.</p>
+          </details>
+
+          <details>
+            <summary>Can we use branded terms in utm_source?</summary>
+            <p>Yes. For utm_source, descriptive values like <code>mailchimp_automation</code>, <code>klaviyo_welcome</code>, or <code>google_display</code> are acceptable. Avoid brand names in utm_medium — utm_medium must match GA4 channel grouping regex patterns, not brand names.</p>
+          </details>
+
+          <details>
+            <summary>What should utm_content contain for A/B testing?</summary>
+            <p>For creative A/B testing, use utm_content to describe the specific variation: <code>headline_urgency_v1</code> vs <code>headline_benefit_v2</code>, or <code>hero_image_product</code> vs <code>hero_image_lifestyle</code>. Keep the description short enough to scan in a GA4 report but specific enough to reconstruct the test from the value alone.</p>
+          </details>
+        </div>
+      </article>
+
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <div class="brand-group" style="margin-bottom: 0.25rem;">
+              <div class="brand-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
+                  <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
+                  <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
+                  <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
+                </svg>
+              </div>
+              <span class="brand-title">UTMCraft</span>
+              <span class="brand-pill">Studio</span>
+            </div>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit.</p>
+            <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Core Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/">Single UTM Builder</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/ga4-utm-builder/">GA4 Channel Validator</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Platform Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Legal</h4>
+            <ul class="footer-links">
+              <li><a href="/terms.html">Terms and Conditions</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">&copy; 2026 UTMCraft Studio. All processing is 100% client-side.</div>
+          <div class="footer-attribution">Made with ❤️ by DJ</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

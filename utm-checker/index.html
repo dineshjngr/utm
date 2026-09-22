@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTM Checker &amp; Link Validator — Audit Tracking URLs | UTMCraft</title>
+  <meta name="description" content="Free UTM link checker and parameter validator. Paste any tracking URL to inspect parameter health, detect syntax errors, verify GA4 channel grouping, and test redirects.">
+  <meta name="keywords" content="utm checker, utm validator, check utm link, utm parameter inspector, test utm url, validate tracking url, utm health check, ga4 link auditor">
+  <link rel="canonical" href="https://utm.workers.dev/utm-checker/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://utm.workers.dev/utm-checker/">
+  <meta property="og:title" content="UTM Checker &amp; Link Validator — Audit Tracking URLs | UTMCraft">
+  <meta property="og:description" content="Free UTM link checker and parameter validator. Paste any tracking URL to inspect parameter health, detect syntax errors, verify GA4 channel grouping, and test redirects.">
+  <meta property="og:image" content="https://utm.workers.dev/logo.svg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utm.workers.dev/utm-checker/">
+  <meta name="twitter:title" content="UTM Checker &amp; Link Validator — Audit Tracking URLs | UTMCraft">
+  <meta name="twitter:description" content="Free UTM link checker and parameter validator. Paste any tracking URL to inspect parameter health, detect syntax errors, verify GA4 channel grouping, and test redirects.">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "UTM Checker & Link Validator",
+        "url": "https://utm.workers.dev/utm-checker/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All modern web browsers",
+        "description": "An automated UTM campaign link checker that audits URLs for syntax errors, casing anomalies, and GA4 Default Channel Grouping compliance.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+          "Instant 0-100% UTM parameter health scoring",
+          "Automated detection of uppercase characters and broken encodings",
+          "Real-time GA4 channel routing prediction",
+          "1-click link repair and builder reload"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utm.workers.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "UTM Checker", "item": "https://utm.workers.dev/utm-checker/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the UTM Checker audit tracking URLs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The UTM Checker parses your URL according to standard RFC 3986 URL specifications, extracts all query parameters, checks for missing mandatory keys, detects uppercase casing anomalies, evaluates character encoding, and tests the source/medium against GA4 Default Channel Grouping regular expressions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can the UTM Checker detect 301 redirect query loss?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. If your destination URL does not match your canonical domain protocol (e.g. http:// vs https:// or non-www vs www), the auditor alerts you that intermediate server redirects may strip your UTM parameters before GA4 records the session."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I fix a broken UTM URL found by this tool?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Simply click the 'Load into Builder' button inside the inspector. All extracted parameters will load into the builder form where automated casing sanitizers and hyphen rules will instantly repair the URL."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-page="utm-checker" data-active-tab="tab-inspector">
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" style="text-decoration: none;">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
+            <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
+            <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
+            <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
+          </svg>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-title">UTMCraft</span>
+          <span class="brand-pill">Studio</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Main Navigation">
+        <a href="/campaign-url-builder/" class="nav-header-link">Campaign Builder</a>
+        <a href="/ga4-utm-builder/" class="nav-header-link">GA4 Builder</a>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link active">UTM Checker</a>
+        <a href="/utm-parameters/" class="nav-header-link">Parameters</a>
+        <a href="/utm-naming-conventions/" class="nav-header-link">Taxonomy SOP</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>All Tools</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="breadcrumb-item" aria-current="page">UTM Checker</li>
+      </ol>
+    </nav>
+
+    <!-- Workspace Header -->
+    <header class="workspace-header">
+      <div class="workspace-title-group">
+        <h1 class="workspace-title">UTM Checker &amp; <span class="workspace-title-muted">Link Validator</span></h1>
+        <p class="workspace-subtitle">Paste any campaign tracking URL to extract parameters, audit health scores, detect uppercase casing errors, and verify GA4 channel classification.</p>
+      </div>
+
+      <!-- Quick Platform Navigation Chips -->
+      <div class="macro-chips-group" style="margin-top: 1rem;">
+        <span class="macro-chips-label">Related Tools:</span>
+        <div class="macro-chips-list">
+          <a href="/campaign-url-builder/" class="macro-chip-btn" style="text-decoration: none;">🔗 Campaign Builder</a>
+          <a href="/ga4-utm-builder/" class="macro-chip-btn" style="text-decoration: none;">📊 GA4 Channel Validator</a>
+          <a href="/utm-parameters/" class="macro-chip-btn" style="text-decoration: none;">📖 Parameters Reference</a>
+          <a href="/utm-naming-conventions/" class="macro-chip-btn" style="text-decoration: none;">📋 Taxonomy SOP Template</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Core Inspector Tool High on Page -->
+    <main class="tool-content-area">
+      <div id="tab-inspector" class="tab-pane active" role="tabpanel">
+        <div class="inspector-layout">
+          
+          <!-- Input Card -->
+          <div class="inspector-card">
+            <div class="inspector-header">
+              <h2 class="inspector-title">Paste URL to Audit &amp; Deconstruct</h2>
+              <p class="inspector-desc">Supports single links, ad destination URLs, short links, or campaign snippets.</p>
+            </div>
+
+            <div class="inspector-input-group">
+              <div class="input-with-icon" style="flex: 1;">
+                <span class="input-icon">🔍</span>
+                <input type="url" id="inspector-input" class="text-input" placeholder="https://example.com/landing?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=summer_sale_2025" value="https://example.com/landing?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=summer_sale_2025">
+              </div>
+              <button type="button" id="btn-inspect-url" class="btn-primary-action">
+                <span>Inspect URL</span>
+              </button>
+            </div>
+
+            <!-- Pre-filled Sample Clickers -->
+            <div class="sample-links-row" style="margin-top: 0.75rem;">
+              <span class="sample-label" style="font-size: 0.75rem; color: var(--text-muted);">Try Sample Links:</span>
+              <button type="button" class="btn-sample" onclick="document.getElementById('inspector-input').value='https://myshop.com/shoes?utm_source=Facebook&amp;utm_medium=Social_Ad&amp;utm_campaign=Spring+Sale'; document.getElementById('btn-inspect-url').click();">Faulty Mixed Casing Sample</button>
+              <button type="button" class="btn-sample" onclick="document.getElementById('inspector-input').value='https://saas.com/signup?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=enterprise_q4&amp;utm_content=search_ad_v1'; document.getElementById('btn-inspect-url').click();">100% Clean GA4 Sample</button>
+            </div>
+          </div>
+
+          <!-- Inspector Results Card -->
+          <div id="inspector-results-card" class="inspector-results-card" style="display: none;">
+            <div class="inspector-results-header">
+              <div class="score-badge-wrap">
+                <span id="inspector-score-badge" class="pill pill-score score-100">100% Valid</span>
+                <span id="inspector-channel-badge" class="pill pill-channel">Channel: Paid Search</span>
+              </div>
+              <div class="inspector-actions">
+                <button type="button" id="btn-load-inspector-to-builder" class="btn-primary-cta">Load into Builder to Fix</button>
+              </div>
+            </div>
+
+            <!-- Base URL & Clean Destination -->
+            <div class="inspected-base-url-card">
+              <span class="inspected-label">Clean Destination Domain:</span>
+              <code id="inspected-base-url" class="inspected-code"></code>
+            </div>
+
+            <!-- Extracted UTM Badges Grid -->
+            <div class="extracted-params-section">
+              <h3 class="extracted-title">Extracted Tracking Parameters</h3>
+              <div id="extracted-params-grid" class="extracted-grid"></div>
+            </div>
+
+            <!-- Audit Findings & Warnings List -->
+            <div id="inspector-warnings-card" class="inspector-warnings-card">
+              <h3 class="warnings-title">Diagnostic Findings</h3>
+              <ul id="inspector-warnings-list" class="warnings-list"></ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Comprehensive Editorial & Guide Section -->
+    <section class="landing-guide-section">
+      
+      <!-- Section 1: The 7 Costliest UTM Mistakes -->
+      <article class="editorial-card">
+        <h2>The 7 Costliest UTM Mistakes Detected by This Checker</h2>
+        <p>A single typo in a campaign link can permanently skew quarterly attribution reports and waste thousands of ad dollars. Below are the 7 most common UTM errors this auditor catches:</p>
+
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Error Type</th>
+                <th>Example Mistake</th>
+                <th>Why It Corrupts GA4 Analytics</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mixed Casing</strong></td>
+                <td><code>utm_source=Facebook</code></td>
+                <td>GA4 is strictly case-sensitive. It creates two separate rows (<code>Facebook</code> and <code>facebook</code>) and breaks channel regex matching.</td>
+              </tr>
+              <tr>
+                <td><strong>Unencoded Spaces</strong></td>
+                <td><code>utm_campaign=summer sale</code></td>
+                <td>Spaces become <code>%20</code> or <code>+</code>, which can break parameter parsers and create messy regex groupings.</td>
+              </tr>
+              <tr>
+                <td><strong>Duplicate '?' Delimiters</strong></td>
+                <td><code>https://site.com/?p=1?utm_source=...</code></td>
+                <td>A URL may only have ONE question mark. The second <code>?</code> is treated as literal parameter text, destroying all following UTMs.</td>
+              </tr>
+              <tr>
+                <td><strong>Hashtag Placement Error</strong></td>
+                <td><code>https://site.com/#intro?utm_source=...</code></td>
+                <td>Browsers do NOT transmit data after the <code>#</code> hash fragment to server logs or HTTP referrers, completely hiding the UTMs from GA4.</td>
+              </tr>
+              <tr>
+                <td><strong>Missing Campaign Medium</strong></td>
+                <td><code>utm_source=google</code> (no medium)</td>
+                <td>Without <code>utm_medium</code>, GA4 cannot classify the session into a Default Channel Group, forcing it into (Unassigned).</td>
+              </tr>
+              <tr>
+                <td><strong>Internal Website UTMs</strong></td>
+                <td>Home page linking to <code>/pricing?utm_source=home</code></td>
+                <td>Destroys the visitor's original acquisition source, inflates session counts, and triggers artificial 100% bounce rates.</td>
+              </tr>
+              <tr>
+                <td><strong>Redirect Stripping</strong></td>
+                <td><code>http://site.com?utm_...</code> &rarr; <code>https://site.com</code></td>
+                <td>301/302 redirects frequently discard query parameters unless configured with Query String Append (QSA).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Section 2: Interactive QA Checklist -->
+      <article class="editorial-card">
+        <h2>Pre-Launch Campaign Link QA Checklist</h2>
+        <ol>
+          <li><strong>Check Canonical Protocol:</strong> Does the link start with <code>https://</code>? Does it match your domain's exact canonical formatting (www vs non-www)?</li>
+          <li><strong>Verify Strict Lowercase:</strong> Are all parameter values strictly lowercase? No capitalized brand names or acronyms.</li>
+          <li><strong>Confirm GA4 Default Channel Group:</strong> Does your medium match GA4 regex? For paid social, use <code>paid_social</code> or <code>cpc</code>. For email, use <code>email</code>.</li>
+          <li><strong>Test in Incognito Mode:</strong> Paste the full link into a private browser tab and verify that the page loads with a 200 HTTP response and that parameters remain in the address bar.</li>
+          <li><strong>Check GA4 Realtime View:</strong> Visit <em>Google Analytics 4 &rarr; Reports &rarr; Realtime</em> and confirm your test visit shows the expected Session Source / Medium.</li>
+        </ol>
+      </article>
+
+      <!-- Section 3: FAQs -->
+      <article class="editorial-card">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-block">
+          <details>
+            <summary>Can this checker audit URLs created by other UTM tools?</summary>
+            <p>Yes. The UTM Checker inspects URLs generated by any tool, spreadsheet, ad platform, or CRM. It tests compliance against official Google Analytics 4 specifications.</p>
+          </details>
+
+          <details>
+            <summary>What does an audit score of 100% mean?</summary>
+            <p>A 100% audit score indicates that your URL uses a secure HTTPS protocol, has valid syntax, includes required source and medium parameters, uses consistent lowercase characters, and successfully maps to an official GA4 Default Channel Group.</p>
+          </details>
+
+          <details>
+            <summary>Can I inspect URLs that have non-UTM query parameters?</summary>
+            <p>Yes. The checker separates standard UTM parameters from platform tracking tokens (like <code>gclid</code>, <code>fbclid</code>, or custom parameters like <code>ref</code> or <code>affiliate_id</code>) and displays them in distinct diagnostic cards.</p>
+          </details>
+        </div>
+      </article>
+    </section>
+
+    <!-- Editorial SaaS Footer -->
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          
+          <div class="footer-col-brand">
+            <div class="brand-group" style="margin-bottom: 0.25rem;">
+              <div class="brand-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
+                  <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
+                  <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
+                  <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
+                </svg>
+              </div>
+              <span class="brand-title">UTMCraft</span>
+              <span class="brand-pill">Studio</span>
+            </div>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links with zero server tracking.</p>
+            <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Core Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/">Single UTM Builder</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/ga4-utm-builder/">GA4 Channel Validator</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Platform Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Legal &amp; Privacy</h4>
+            <ul class="footer-links">
+              <li><a href="/terms.html">Terms and Conditions</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            &copy; 2026 UTMCraft Studio. Released under MIT License. All processing is 100% client-side.
+          </div>
+          <div class="footer-attribution">
+            Made with ❤️ by DJ
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

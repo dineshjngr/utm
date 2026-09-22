@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk UTM Generator &amp; Multi-Channel URL Matrix | UTMCraft</title>
+  <meta name="description" content="Generate dozens of UTM tracking links in seconds. Free bulk UTM builder with multi-channel matrix, instant CSV/TSV export, and 100% in-browser privacy.">
+  <meta name="keywords" content="bulk utm builder, bulk utm generator, multiple utm links, utm matrix spreadsheet, mass utm link generator, bulk campaign url builder, utm csv export">
+  <link rel="canonical" href="https://utm.workers.dev/bulk-utm-builder/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://utm.workers.dev/bulk-utm-builder/">
+  <meta property="og:title" content="Bulk UTM Generator &amp; Multi-Channel URL Matrix | UTMCraft">
+  <meta property="og:description" content="Generate dozens of UTM tracking links in seconds. Free bulk UTM builder with multi-channel matrix, instant CSV/TSV export, and 100% in-browser privacy.">
+  <meta property="og:image" content="https://utm.workers.dev/logo.svg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utm.workers.dev/bulk-utm-builder/">
+  <meta name="twitter:title" content="Bulk UTM Generator &amp; Multi-Channel URL Matrix | UTMCraft">
+  <meta name="twitter:description" content="Generate dozens of UTM tracking links in seconds. Free bulk UTM builder with multi-channel matrix, instant CSV/TSV export, and 100% in-browser privacy.">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Bulk UTM Generator & Multi-Channel Matrix",
+        "url": "https://utm.workers.dev/bulk-utm-builder/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All modern web browsers",
+        "description": "A high-speed bulk UTM generator that produces standardized tracking links across multiple channels simultaneously with instant CSV/TSV export.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+          "Simultaneous multi-channel link generation",
+          "One-click CSV and TSV campaign matrix export",
+          "Automated GA4 channel compliance verification",
+          "100% private in-browser generation without spreadsheet errors"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utm.workers.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Bulk UTM Builder", "item": "https://utm.workers.dev/bulk-utm-builder/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why use a Bulk UTM Generator instead of a Google Sheets spreadsheet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Spreadsheets suffer from formula breakage, copy-paste casing inconsistencies, accidental duplicate parameters, and lack of real-time GA4 regex validation. A dedicated bulk builder enforces lowercase casing, hyphen separation, and exact GA4 channel grouping rules automatically."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I export the bulk UTM matrix to CSV or Excel?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. UTMCraft allows you to copy all generated URLs with one click or export the entire campaign matrix as a structured CSV or TSV file formatted for direct import into Google Ads Editor, Meta Ads Manager, or agency media plans."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are the generated bulk UTM links private?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "100% private. All URL building, string manipulation, and file downloads execute purely inside your browser's JavaScript engine. Zero campaign data or URLs are transmitted to any external server."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-page="bulk-utm-builder" data-active-tab="tab-batch">
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" style="text-decoration: none;">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
+            <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
+            <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
+            <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
+          </svg>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-title">UTMCraft</span>
+          <span class="brand-pill">Studio</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Main Navigation">
+        <a href="/campaign-url-builder/" class="nav-header-link">Campaign Builder</a>
+        <a href="/ga4-utm-builder/" class="nav-header-link">GA4 Builder</a>
+        <a href="/bulk-utm-builder/" class="nav-header-link active">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <a href="/utm-parameters/" class="nav-header-link">Parameters</a>
+        <a href="/utm-naming-conventions/" class="nav-header-link">Taxonomy SOP</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>All Tools</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="breadcrumb-item" aria-current="page">Bulk UTM Builder</li>
+      </ol>
+    </nav>
+
+    <!-- Workspace Header -->
+    <header class="workspace-header">
+      <div class="workspace-title-group">
+        <h1 class="workspace-title">Bulk UTM Generator &amp; <span class="workspace-title-muted">Campaign Matrix</span></h1>
+        <p class="workspace-subtitle">Generate dozens of standardized, GA4-compliant tracking links across all channels simultaneously. Export to CSV or TSV in seconds.</p>
+      </div>
+
+      <!-- Quick Platform Navigation Chips -->
+      <div class="macro-chips-group" style="margin-top: 1rem;">
+        <span class="macro-chips-label">Related Tooling:</span>
+        <div class="macro-chips-list">
+          <a href="/campaign-url-builder/" class="macro-chip-btn" style="text-decoration: none;">🔗 Single URL Builder</a>
+          <a href="/ga4-utm-builder/" class="macro-chip-btn" style="text-decoration: none;">📊 GA4 Channel Validator</a>
+          <a href="/utm-checker/" class="macro-chip-btn" style="text-decoration: none;">🔍 UTM Link Checker</a>
+          <a href="/utm-naming-conventions/" class="macro-chip-btn" style="text-decoration: none;">📋 Taxonomy SOP Guide</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Core Bulk Tool High on Page -->
+    <main class="tool-content-area">
+      <div id="tab-batch" class="tab-pane active" role="tabpanel">
+        <div class="batch-layout">
+          
+          <!-- Configuration Card -->
+          <div class="batch-config-card">
+            <div class="batch-config-header">
+              <h2 class="batch-title">1. Campaign Configuration</h2>
+              <p class="batch-subtitle">Set your core destination URL and campaign name. The generator handles channel-specific parameters.</p>
+            </div>
+
+            <div class="grid-two-col">
+              <div class="field-group">
+                <label for="batch-base-url" class="field-label-row">
+                  <span class="field-label">Target Website URL <span class="req-star">*</span></span>
+                  <span class="field-hint">e.g. https://yourdomain.com/landing</span>
+                </label>
+                <input type="url" id="batch-base-url" class="text-input" placeholder="https://example.com/landing" value="https://example.com/launch" required>
+              </div>
+
+              <div class="field-group">
+                <label for="batch-campaign" class="field-label-row">
+                  <span class="field-label">Campaign Name (utm_campaign) <span class="req-star">*</span></span>
+                  <span class="field-hint">Applied to all channels</span>
+                </label>
+                <input type="text" id="batch-campaign" class="text-input" placeholder="product_launch_2025" value="product_launch_q4" required>
+              </div>
+            </div>
+
+            <div class="channel-selection-section">
+              <div class="channel-selection-header">
+                <span class="selection-title">2. Select Target Marketing Channels</span>
+                <div class="selection-actions">
+                  <button type="button" id="btn-batch-select-all" class="btn-text-action">Select All</button>
+                  <button type="button" id="btn-batch-deselect-all" class="btn-text-action">Deselect All</button>
+                </div>
+              </div>
+              
+              <div id="batch-channels-grid" class="batch-channels-grid"></div>
+            </div>
+
+            <div class="batch-action-bar">
+              <button type="button" id="btn-generate-batch" class="btn-primary-action">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>Generate Campaign Matrix</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Results Table Card -->
+          <div id="batch-results-card" class="batch-results-card" style="display: none;">
+            <div class="batch-results-header">
+              <div class="results-meta">
+                <span class="results-title">Generated Campaign Links</span>
+                <span id="batch-count-badge" class="pill pill-channel">0 Links</span>
+              </div>
+              <div class="results-actions">
+                <button type="button" id="btn-batch-copy-all" class="btn-action-outline">Copy All URLs</button>
+                <button type="button" id="btn-batch-export-csv" class="btn-action-outline">Export CSV</button>
+                <button type="button" id="btn-batch-export-tsv" class="btn-action-outline">Export TSV</button>
+              </div>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="matrix-table" id="batch-matrix-table">
+                <thead>
+                  <tr>
+                    <th>Channel</th>
+                    <th>Source</th>
+                    <th>Medium</th>
+                    <th>GA4 Group</th>
+                    <th>Full Tagged URL</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="batch-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Comprehensive Editorial & Guide Section -->
+    <section class="landing-guide-section">
+      
+      <!-- Section 1: Why Spreadsheets Fail -->
+      <article class="editorial-card">
+        <h2>Why Spreadsheet UTM Trackers Fail at Scale</h2>
+        <p>Most marketing organizations begin their UTM journey with a shared Google Sheets or Excel document. While initially manageable, spreadsheets break down rapidly as teams expand:</p>
+
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Spreadsheet Pitfall</th>
+                <th>Analytics Impact</th>
+                <th>How UTMCraft Bulk Matrix Solves It</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Accidental Formula Overwrites</strong></td>
+                <td>Broken CONCATENATE strings, missing <code>?</code> or <code>&amp;</code> delimiters.</td>
+                <td>Zero formulas to break. Web standard URL parsing ensures 100% valid query strings.</td>
+              </tr>
+              <tr>
+                <td><strong>Casing Inconsistencies</strong></td>
+                <td>One team writes <code>Facebook</code>, another writes <code>facebook</code>. Fractures GA4 reports.</td>
+                <td>Automated lowercase normalization applied across every channel automatically.</td>
+              </tr>
+              <tr>
+                <td><strong>Non-Standard Mediums</strong></td>
+                <td>Marketers invent custom terms like <code>social-media</code>, forcing traffic into (Unassigned).</td>
+                <td>Pre-mapped to strict GA4 Default Channel Grouping regular expressions.</td>
+              </tr>
+              <tr>
+                <td><strong>Missing Campaign IDs</strong></td>
+                <td>Ad platform cost data cannot sync with GA4 data imports.</td>
+                <td>Structured CSV exports contain source, medium, campaign, and channel dimensions.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Section 2: Standardized Multi-Channel Taxonomy Matrix -->
+      <article class="editorial-card">
+        <h2>Recommended Multi-Channel Parameter Taxonomy</h2>
+        <p>When launching omni-channel campaigns (e.g. seasonal sales, product releases, webinar promotions), use this standardized matrix to ensure uniform reporting across Google Analytics 4:</p>
+
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Channel</th>
+                <th>utm_source</th>
+                <th>utm_medium</th>
+                <th>Target GA4 Default Channel Group</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Google Search Ads</strong></td>
+                <td><code>google</code></td>
+                <td><code>cpc</code></td>
+                <td>Paid Search</td>
+              </tr>
+              <tr>
+                <td><strong>Meta (Facebook / IG)</strong></td>
+                <td><code>facebook</code></td>
+                <td><code>paid_social</code></td>
+                <td>Paid Social</td>
+              </tr>
+              <tr>
+                <td><strong>LinkedIn Sponsored</strong></td>
+                <td><code>linkedin</code></td>
+                <td><code>paid_social</code></td>
+                <td>Paid Social</td>
+              </tr>
+              <tr>
+                <td><strong>Weekly Newsletter</strong></td>
+                <td><code>newsletter</code></td>
+                <td><code>email</code></td>
+                <td>Email</td>
+              </tr>
+              <tr>
+                <td><strong>YouTube Organic</strong></td>
+                <td><code>youtube</code></td>
+                <td><code>video</code></td>
+                <td>Organic Video</td>
+              </tr>
+              <tr>
+                <td><strong>Affiliate Program</strong></td>
+                <td><code>affiliate_partner</code></td>
+                <td><code>affiliate</code></td>
+                <td>Affiliates</td>
+              </tr>
+              <tr>
+                <td><strong>Event Print / QR</strong></td>
+                <td><code>conference_booth</code></td>
+                <td><code>qr_code</code></td>
+                <td>Custom Offline</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Section 3: Importing Bulk UTMs into Ad Platforms -->
+      <article class="editorial-card">
+        <h2>How to Import Bulk UTM Links into Ad Managers</h2>
+        <ol>
+          <li><strong>Google Ads Editor:</strong> Download the matrix CSV. Open Google Ads Editor, go to <em>Keywords and targeting &rarr; Final URLs</em> or <em>Ads &rarr; Expanded Text Ads / Responsive Search Ads</em>, click <em>Account &rarr; Import &rarr; Paste text</em>, and map the Final URL column.</li>
+          <li><strong>Meta Ads Manager:</strong> When creating multiple ad sets in Meta Ads Manager via bulk upload or spreadsheet import, map the tagged destination URLs to the <em>Website URL</em> or <em>URL Parameters</em> column.</li>
+          <li><strong>LinkedIn Campaign Manager:</strong> In LinkedIn Ads, use the bulk link export to paste dedicated URLs for each sponsored creative variant to track creative performance in GA4.</li>
+        </ol>
+      </article>
+
+      <!-- Section 4: FAQs -->
+      <article class="editorial-card">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-block">
+          <details>
+            <summary>Can I customize the channel presets in the bulk generator?</summary>
+            <p>Yes. You can select or deselect any combination of the 10+ standard digital marketing channels, or edit individual rows before copying or exporting your campaign matrix.</p>
+          </details>
+
+          <details>
+            <summary>What format does the CSV export use?</summary>
+            <p>The CSV export includes standard UTF-8 columns: Channel Name, utm_source, utm_medium, utm_campaign, GA4 Channel Group, and the Full Tagged Destination URL. It is fully compatible with Excel, Google Sheets, and ad platform bulk uploaders.</p>
+          </details>
+
+          <details>
+            <summary>Does the bulk generator enforce lowercase characters?</summary>
+            <p>Yes. All generated bulk URLs are strictly lowercase and spaces are replaced with standard hyphens to ensure 100% compliance with Google Analytics 4 regular expressions.</p>
+          </details>
+        </div>
+      </article>
+    </section>
+
+    <!-- Editorial SaaS Footer -->
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          
+          <div class="footer-col-brand">
+            <div class="brand-group" style="margin-bottom: 0.25rem;">
+              <div class="brand-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
+                  <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
+                  <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
+                  <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
+                </svg>
+              </div>
+              <span class="brand-title">UTMCraft</span>
+              <span class="brand-pill">Studio</span>
+            </div>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links with zero server tracking.</p>
+            <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Core Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/">Single UTM Builder</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/ga4-utm-builder/">GA4 Channel Validator</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Platform Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Legal &amp; Privacy</h4>
+            <ul class="footer-links">
+              <li><a href="/terms.html">Terms and Conditions</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            &copy; 2026 UTMCraft Studio. Released under MIT License. All processing is 100% client-side.
+          </div>
+          <div class="footer-attribution">
+            Made with ❤️ by DJ
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

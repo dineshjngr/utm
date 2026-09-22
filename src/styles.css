@@ -271,11 +271,16 @@ button, input, select, textarea {
   cursor: pointer;
   transition: color 150ms ease, background-color 150ms ease;
   white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .nav-header-link:hover {
   color: var(--text-main);
   background-color: var(--bg-subtle);
+  text-decoration: none;
 }
 
 .nav-header-link.active {
@@ -2887,5 +2892,286 @@ button, input, select, textarea {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   EDITORIAL BREADCRUMBS & LANDING PAGE COMPONENTS
+   ========================================================= */
+
+.breadcrumb-nav {
+  margin-bottom: 1rem;
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.breadcrumb-item a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb-item a:hover {
+  color: var(--text-main);
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: var(--border-color);
+  user-select: none;
+  font-size: 0.75rem;
+}
+
+.breadcrumb-item[aria-current="page"] {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* Macro & Dynamic Parameter Insertion Chips */
+.macro-chips-group {
+  margin-top: 0.45rem;
+  margin-bottom: 0.65rem;
+}
+
+.macro-chips-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.macro-chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.macro-chip-btn {
+  appearance: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  user-select: none;
+}
+
+.macro-chip-btn:hover {
+  border-color: var(--soft-green);
+  color: var(--dark-accent);
+  background: var(--soft-green-subtle);
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .macro-chip-btn:hover {
+  color: #FFFFFF;
+}
+
+/* Editorial Content & Guide Sections */
+.landing-guide-section {
+  max-width: 1060px;
+  margin: 3rem auto 0 auto;
+  padding: 0 1rem;
+}
+
+.editorial-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.editorial-card h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.editorial-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text-main);
+  margin-top: 1.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.editorial-card p {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.editorial-card ul, .editorial-card ol {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.editorial-card li {
+  margin-bottom: 0.5rem;
+}
+
+.editorial-card strong {
+  color: var(--text-main);
+}
+
+.editorial-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+}
+
+.editorial-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+.editorial-table th {
+  background: var(--bg-page);
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.editorial-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+
+.editorial-table tr:last-child td {
+  border-bottom: none;
+}
+
+.editorial-table tr:hover td {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+[data-theme="dark"] .editorial-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.editorial-table code {
+  font-family: var(--font-mono, monospace);
+  background: var(--bg-page);
+  border: 1px solid var(--border-color);
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  color: var(--dark-accent);
+}
+
+[data-theme="dark"] .editorial-table code {
+  color: #8EBAA2;
+}
+
+.editorial-callout {
+  background: var(--soft-green-subtle);
+  border: 1px solid rgba(111, 154, 131, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.35rem;
+  margin: 1.5rem 0;
+}
+
+.editorial-callout h4 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #2E5844;
+  margin: 0 0 0.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+[data-theme="dark"] .editorial-callout h4 {
+  color: #8EBAA2;
+}
+
+.editorial-callout p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.code-block-wrap {
+  position: relative;
+  background: #182126;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.code-block-wrap pre {
+  margin: 0;
+  color: #ECEFEE;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
+.code-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .editorial-card {
+    padding: 1.5rem 1.25rem;
   }
 }
