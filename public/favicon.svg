@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <defs>
+    <linearGradient id="utm-fav-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#263A42"/>
+      <stop offset="100%" stop-color="#1A282D"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Squircle with subtle border for dark tab bars -->
+  <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" fill="url(#utm-fav-bg)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+  <!-- Destination Link Hook -->
+  <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Campaign Link Hook -->
+  <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Connecting Attribution Bridge -->
+  <line x1="12" y1="20" x2="20" y2="12" stroke="#6F9A83" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Live Telemetry Beacon Dot -->
+  <circle cx="23.5" cy="8.5" r="2.2" fill="#6F9A83"/>
+</svg>

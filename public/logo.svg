@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 40" width="220" height="40" fill="none">
+  <defs>
+    <linearGradient id="utm-logo-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#263A42"/>
+      <stop offset="100%" stop-color="#1A282D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon Mark Squircle -->
+  <g transform="translate(2, 4)">
+    <rect width="32" height="32" rx="8" fill="url(#utm-logo-bg)"/>
+    <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="12" y1="20" x2="20" y2="12" stroke="#6F9A83" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="23.5" cy="8.5" r="2.2" fill="#6F9A83"/>
+  </g>
+  
+  <!-- Wordmark -->
+  <text x="46" y="26" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#182126" letter-spacing="-0.02em">UTM<tspan font-weight="400" fill="#526066">Craft</tspan></text>
+  
+  <!-- Studio Pill Badge -->
+  <rect x="140" y="12.5" width="54" height="18" rx="4" fill="#F0F5F2" stroke="#D7E5DD" stroke-width="1"/>
+  <text x="167" y="25" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#4D7C66" letter-spacing="0.08em" text-anchor="middle">STUDIO</text>
+</svg>

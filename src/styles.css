@@ -194,11 +194,39 @@ button, input, select, textarea {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.brand:hover .brand-icon,
+.brand-group:hover .brand-icon {
+  transform: scale(1.05);
+}
+
+.brand-icon svg {
+  display: block;
+}
+
+.brand-icon .brand-beacon {
+  fill: var(--soft-green);
+  transition: fill var(--transition-fast);
+}
+
+.brand-icon .brand-bridge {
+  stroke: var(--soft-green);
+  transition: stroke var(--transition-fast);
 }
 
 [data-theme="dark"] .brand-icon {
   background: #ECF0F1;
   color: #182126;
+}
+
+[data-theme="dark"] .brand-icon .brand-beacon {
+  fill: #3E6B56;
+}
+
+[data-theme="dark"] .brand-icon .brand-bridge {
+  stroke: #3E6B56;
 }
 
 .brand-text-group {
