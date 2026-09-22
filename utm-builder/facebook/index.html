@@ -55,7 +55,7 @@
             "name": "Where do I add UTM parameters in Meta Ads Manager?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In Meta Ads Manager, add UTM parameters in the 'URL Parameters' field at the ad level — not in the Destination URL field directly. The URL Parameters field is specifically designed for tracking parameters and dynamic tokens. It appends your parameters to the landing page URL automatically. Using the URL Parameters field (rather than manually editing the destination URL) preserves compatibility with Meta's click tracking and dynamic URLs."
+              "text": "In Meta Ads Manager, add UTM parameters in the 'URL Parameters' field at the ad level - not in the Destination URL field directly. The URL Parameters field is specifically designed for tracking parameters and dynamic tokens. It appends your parameters to the landing page URL automatically. Using the URL Parameters field (rather than manually editing the destination URL) preserves compatibility with Meta's click tracking and dynamic URLs."
             }
           },
           {
@@ -126,7 +126,7 @@
       <div class="workspace-title-group">
         <p class="eyebrow-label">Platform Builder · Meta Ads</p>
         <h1 class="workspace-title">Facebook &amp; Meta Ads <span class="workspace-title-muted">UTM Builder</span></h1>
-        <p class="workspace-subtitle">Pre-configured for Meta with <code>source=facebook</code> and <code>medium=paid_social</code>. Use the dynamic parameter chips below to auto-populate campaign, ad set, and ad identifiers into your tracking URL — no need to manually update each ad variation.</p>
+        <p class="workspace-subtitle">Pre-configured for Meta with <code>source=facebook</code> and <code>medium=paid_social</code>. Use the dynamic parameter chips below to auto-populate campaign, ad set, and ad identifiers into your tracking URL - no need to manually update each ad variation.</p>
       </div>
 
       <div class="macro-chips-group" style="margin-top: 1.25rem;">
@@ -164,7 +164,7 @@
 
       <div class="tab-panels">
         <div id="tab-builder" class="tab-panel active" role="tabpanel">
-          <div class="builder-layout">
+          <div class="lp-builder-layout">
             <div class="builder-form-panel">
               <div class="form-field">
                 <label class="field-label" for="input-base-url">Destination URL *</label>
@@ -186,23 +186,23 @@
               </div>
 
               <div class="form-field">
-                <label class="field-label" for="input-utm-campaign">utm_campaign — Use chips above for dynamic name</label>
+                <label class="field-label" for="input-utm-campaign">utm_campaign - Use chips above for dynamic name</label>
                 <input type="text" id="input-utm-campaign" class="field-input" placeholder="brand_awareness_us_q1-2025" autocomplete="off" spellcheck="false">
               </div>
 
               <div class="form-row-duo">
                 <div class="form-field">
-                  <label class="field-label" for="input-utm-term">utm_term — Audience segment / interest targeting</label>
+                  <label class="field-label" for="input-utm-term">utm_term - Audience segment / interest targeting</label>
                   <input type="text" id="input-utm-term" class="field-input" placeholder="lookalike_purchasers_us" autocomplete="off" spellcheck="false">
                 </div>
                 <div class="form-field">
-                  <label class="field-label" for="input-utm-content">utm_content — Use chips above for ad-level data</label>
+                  <label class="field-label" for="input-utm-content">utm_content - Use chips above for ad-level data</label>
                   <input type="text" id="input-utm-content" class="field-input" placeholder="{{ad.name}}_{{site_source_name}}" autocomplete="off" spellcheck="false">
                 </div>
               </div>
 
               <div class="form-field">
-                <label class="field-label" for="input-utm-id">utm_id — Campaign ID for GA4 Cost Data Import</label>
+                <label class="field-label" for="input-utm-id">utm_id - Campaign ID for GA4 Cost Data Import</label>
                 <input type="text" id="input-utm-id" class="field-input" placeholder="e.g. {{campaign.id}}" autocomplete="off" spellcheck="false">
               </div>
             </div>
@@ -214,7 +214,7 @@
                   <div class="output-char-count" id="output-char-count">0 characters</div>
                 </div>
                 <div class="output-url-box" id="output-url-box" aria-live="polite">
-                  <span class="output-placeholder">Your Meta Ads tracking URL will appear here. Add it to the URL Parameters field in Meta Ads Manager — not the Destination URL.</span>
+                  <span class="output-placeholder">Your Meta Ads tracking URL will appear here. Add it to the URL Parameters field in Meta Ads Manager - not the Destination URL.</span>
                 </div>
                 <div class="channel-badge-row" id="channel-badge-row" style="display:none;">
                   <span class="channel-label">GA4 Channel:</span>
@@ -256,7 +256,7 @@
     <main class="landing-guide-section">
 
       <article class="editorial-card">
-        <h2>Meta Ads Dynamic URL Parameters — Complete Reference</h2>
+        <h2>Meta Ads Dynamic URL Parameters - Complete Reference</h2>
         <p>Meta dynamic parameters use double curly braces <code>&#123;&#123; &#125;&#125;</code> syntax. They are evaluated when the ad is served, replacing the token with real campaign data. Unlike Google's ValueTrack which uses single braces, Meta uses a different notation that is not URL-encoded at ad creation time.</p>
 
         <div class="editorial-table-wrap">
@@ -295,19 +295,19 @@
           <li>In Meta Ads Manager, navigate to the <strong>Ad level</strong> (not campaign or ad set level)</li>
           <li>Scroll to the <strong>Destination</strong> section and look for <strong>URL Parameters</strong></li>
           <li>Click "Build a URL Parameter" or paste your tracking string directly</li>
-          <li>Enter <strong>only the query string</strong> — do not include the <code>?</code> or the base URL:
+          <li>Enter <strong>only the query string</strong> - do not include the <code>?</code> or the base URL:
             <div class="code-block-wrap">
               <pre>utm_source=facebook&amp;utm_medium=paid_social&amp;utm_campaign={{campaign.name}}&amp;utm_content={{adset.name}}_{{ad.name}}&amp;utm_id={{campaign.id}}</pre>
             </div>
           </li>
-          <li>Meta will preview the combined URL — verify the structure looks correct</li>
+          <li>Meta will preview the combined URL - verify the structure looks correct</li>
           <li>Run the Meta pixel helper Chrome extension to confirm UTMs are being sent to your site after publishing</li>
         </ol>
       </article>
 
       <article class="editorial-card">
         <h2>iOS 14 Impact on Meta UTM Attribution</h2>
-        <p>Apple's App Tracking Transparency (ATT) framework introduced with iOS 14 significantly reduced Meta's ability to track users across apps and websites. This directly affects attribution data visible in Meta Ads Manager. UTM parameters remain unaffected — they travel with the URL and are captured server-side by your analytics platform regardless of device privacy settings.</p>
+        <p>Apple's App Tracking Transparency (ATT) framework introduced with iOS 14 significantly reduced Meta's ability to track users across apps and websites. This directly affects attribution data visible in Meta Ads Manager. UTM parameters remain unaffected - they travel with the URL and are captured server-side by your analytics platform regardless of device privacy settings.</p>
 
         <div class="editorial-table-wrap">
           <table class="editorial-table">
@@ -321,23 +321,23 @@
             <tbody>
               <tr>
                 <td>Meta Ads Manager reporting</td>
-                <td>Reduced — modeled conversions fill gaps</td>
-                <td>No — UTMs still passed in URLs</td>
+                <td>Reduced - modeled conversions fill gaps</td>
+                <td>No - UTMs still passed in URLs</td>
               </tr>
               <tr>
                 <td>GA4 Traffic Acquisition (UTM-based)</td>
-                <td>Minimal — UTMs are URL parameters, not cookies</td>
+                <td>Minimal - UTMs are URL parameters, not cookies</td>
                 <td>Not impacted</td>
               </tr>
               <tr>
                 <td>Meta Pixel events</td>
                 <td>Limited on iOS 14+ devices without ATT consent</td>
-                <td>N/A — separate tracking system</td>
+                <td>N/A - separate tracking system</td>
               </tr>
               <tr>
                 <td>View-through conversions</td>
                 <td>Severely limited on iOS 14+</td>
-                <td>N/A — UTMs are click-based only</td>
+                <td>N/A - UTMs are click-based only</td>
               </tr>
             </tbody>
           </table>
@@ -350,7 +350,7 @@
       </article>
 
       <article class="editorial-card">
-        <h2>Frequently Asked Questions — Meta &amp; Facebook Ads UTM Tracking</h2>
+        <h2>Frequently Asked Questions - Meta &amp; Facebook Ads UTM Tracking</h2>
         <div class="faq-block">
           <details>
             <summary>Why is my Facebook traffic showing as Direct or Organic Social in GA4?</summary>
@@ -362,7 +362,7 @@
           </details>
           <details>
             <summary>What utm_medium value should I use for Meta paid social campaigns?</summary>
-            <p>Use <code>paid_social</code>. This is in GA4's Default Channel Grouping regex for the Paid Social channel. Avoid <code>cpc</code> for social ads — in GA4, <code>source=facebook&amp;medium=cpc</code> does not reliably map to Paid Social and may appear as Paid Search or Unassigned depending on the GA4 property configuration.</p>
+            <p>Use <code>paid_social</code>. This is in GA4's Default Channel Grouping regex for the Paid Social channel. Avoid <code>cpc</code> for social ads - in GA4, <code>source=facebook&amp;medium=cpc</code> does not reliably map to Paid Social and may appear as Paid Search or Unassigned depending on the GA4 property configuration.</p>
           </details>
         </div>
       </article>

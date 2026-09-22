@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UTM Parameters Explained — Complete Reference Guide | UTMCraft</title>
+  <title>UTM Parameters Explained - Complete Reference Guide | UTMCraft</title>
   <meta name="description" content="The definitive guide to all UTM parameters: utm_source, utm_medium, utm_campaign, utm_term, utm_content, and utm_id. Definitions, examples, and GA4 dimension mappings.">
   <meta name="keywords" content="utm parameters, utm parameters explained, utm tags, what is utm source, utm medium values, utm campaign parameter, utm term utm content, google analytics utm parameters, utm id ga4">
   <link rel="canonical" href="https://utm.workers.dev/utm-parameters/">
@@ -11,13 +11,13 @@
 
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://utm.workers.dev/utm-parameters/">
-  <meta property="og:title" content="UTM Parameters Explained — Complete Reference Guide | UTMCraft">
+  <meta property="og:title" content="UTM Parameters Explained - Complete Reference Guide | UTMCraft">
   <meta property="og:description" content="The definitive guide to all UTM parameters: definitions, GA4 dimension mappings, valid values, and real-world examples for every marketing channel.">
   <meta property="og:image" content="https://utm.workers.dev/logo.svg">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://utm.workers.dev/utm-parameters/">
-  <meta name="twitter:title" content="UTM Parameters Explained — Complete Reference Guide | UTMCraft">
+  <meta name="twitter:title" content="UTM Parameters Explained - Complete Reference Guide | UTMCraft">
   <meta name="twitter:description" content="The definitive guide to all UTM parameters: definitions, GA4 dimension mappings, valid values, and real-world examples for every marketing channel.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@
     "@graph": [
       {
         "@type": "Article",
-        "headline": "UTM Parameters Explained — Complete Reference Guide",
+        "headline": "UTM Parameters Explained - Complete Reference Guide",
         "description": "Comprehensive explanation of all 6 UTM tracking parameters with GA4 dimension names, valid value examples, and best practices.",
         "url": "https://utm.workers.dev/utm-parameters/",
         "publisher": {
@@ -73,7 +73,7 @@
             "name": "What is the difference between utm_source and utm_medium?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "utm_source identifies the specific referrer or publisher (e.g. 'google', 'facebook', 'newsletter_weekly'). utm_medium identifies the broad category or marketing channel type (e.g. 'cpc', 'email', 'paid_social', 'display'). GA4 uses medium — not source — to classify sessions into Default Channel Groups."
+              "text": "utm_source identifies the specific referrer or publisher (e.g. 'google', 'facebook', 'newsletter_weekly'). utm_medium identifies the broad category or marketing channel type (e.g. 'cpc', 'email', 'paid_social', 'display'). GA4 uses medium - not source - to classify sessions into Default Channel Groups."
             }
           },
           {
@@ -142,7 +142,7 @@
       <div class="workspace-title-group">
         <p class="eyebrow-label">Complete Reference</p>
         <h1 class="workspace-title">UTM Parameters <span class="workspace-title-muted">Explained</span></h1>
-        <p class="workspace-subtitle">Everything you need to know about the 6 UTM tracking parameters — what they do, how GA4 uses them, valid values for every major marketing channel, and common mistakes to avoid.</p>
+        <p class="workspace-subtitle">Everything you need to know about the 6 UTM tracking parameters - what they do, how GA4 uses them, valid values for every major marketing channel, and common mistakes to avoid.</p>
       </div>
 
       <div class="macro-chips-group" style="margin-top: 1.25rem;">
@@ -163,7 +163,7 @@
       <!-- Section 1: What Are UTM Parameters -->
       <article class="editorial-card" id="what-are-utm-parameters">
         <h2>What Are UTM Parameters?</h2>
-        <p>UTM parameters (Urchin Tracking Modules) are short text snippets appended to any destination URL as query string key-value pairs. When a visitor clicks a tagged link, Google Analytics 4 reads these parameters and stores the marketing context as session-level dimensions — enabling precise attribution to the exact campaign, channel, and creative that drove each conversion.</p>
+        <p>UTM parameters (Urchin Tracking Modules) are short text snippets appended to any destination URL as query string key-value pairs. When a visitor clicks a tagged link, Google Analytics 4 reads these parameters and stores the marketing context as session-level dimensions - enabling precise attribution to the exact campaign, channel, and creative that drove each conversion.</p>
 
         <p>A fully tagged URL looks like this:</p>
 
@@ -171,7 +171,7 @@
           <pre>https://example.com/landing?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=spring_launch_2025&amp;utm_content=search_ad_v1&amp;utm_term=utm+builder+tool</pre>
         </div>
 
-        <p>UTM tags are the backbone of every digital marketing attribution model. Without them, organic and paid traffic is often misattributed — social clicks appear as Direct, newsletter traffic is lost, and ad spend cannot be confidently tied to revenue outcomes.</p>
+        <p>UTM tags are the backbone of every digital marketing attribution model. Without them, organic and paid traffic is often misattributed - social clicks appear as Direct, newsletter traffic is lost, and ad spend cannot be confidently tied to revenue outcomes.</p>
 
         <div class="editorial-callout">
           <h4>🔎 How GA4 Reads UTM Parameters</h4>
@@ -245,7 +245,7 @@
 
       <!-- Section 3: utm_source deep dive -->
       <article class="editorial-card" id="utm-source">
-        <h2>utm_source — Campaign Source Parameter</h2>
+        <h2>utm_source - Campaign Source Parameter</h2>
         <p><strong>Definition:</strong> Identifies the specific referrer, publisher, platform, or origin that sent traffic to your website. It answers the question: <em>"Where did this visitor come from?"</em></p>
 
         <p><strong>GA4 Dimension:</strong> <code>Session source</code> and <code>First user source</code></p>
@@ -303,12 +303,12 @@
 
       <!-- Section 4: utm_medium deep dive -->
       <article class="editorial-card" id="utm-medium">
-        <h2>utm_medium — Campaign Medium Parameter</h2>
-        <p><strong>Definition:</strong> Identifies the broad marketing channel or advertising method. It answers: <em>"What type of marketing activity drove this traffic?"</em> This is the most critical parameter for GA4 Default Channel Grouping — it is evaluated against regular expressions to classify sessions.</p>
+        <h2>utm_medium - Campaign Medium Parameter</h2>
+        <p><strong>Definition:</strong> Identifies the broad marketing channel or advertising method. It answers: <em>"What type of marketing activity drove this traffic?"</em> This is the most critical parameter for GA4 Default Channel Grouping - it is evaluated against regular expressions to classify sessions.</p>
 
         <p><strong>GA4 Dimension:</strong> <code>Session medium</code> and <code>First user medium</code></p>
 
-        <h3>GA4 Default Channel Grouping — Accepted Medium Values</h3>
+        <h3>GA4 Default Channel Grouping - Accepted Medium Values</h3>
         <div class="editorial-table-wrap">
           <table class="editorial-table">
             <thead>
@@ -368,21 +368,21 @@
       <article class="editorial-card" id="utm-campaign">
         <h2>utm_campaign, utm_id, utm_term &amp; utm_content</h2>
 
-        <h3>utm_campaign — Campaign Name</h3>
+        <h3>utm_campaign - Campaign Name</h3>
         <p>Names the specific marketing initiative. Use descriptive, structured values: <code>product_launch_q4_2025</code>, <code>summer_sale_us</code>, <code>brand_awareness_emea</code>.</p>
         <p><strong>GA4 Dimension:</strong> Session campaign &amp; First user campaign</p>
         <p><strong>Best Practices:</strong> Never use spaces. Use underscores or hyphens as word separators. Include quarter and year for temporal filtering: <code>campaign_name_q4_2025</code>.</p>
 
-        <h3>utm_id — Campaign Identifier</h3>
+        <h3>utm_id - Campaign Identifier</h3>
         <p>A unique alphanumeric ID that matches the campaign record in your ad platform, CRM, or data warehouse. Essential for GA4 Cost Data Import to tie advertising spend to conversion outcomes in GA4 Advertising reports.</p>
         <p><strong>GA4 Dimension:</strong> Campaign ID</p>
-        <p><strong>Example:</strong> <code>utm_id=meta_c00298171</code> — where the value matches your Meta Ads campaign ID.</p>
+        <p><strong>Example:</strong> <code>utm_id=meta_c00298171</code> - where the value matches your Meta Ads campaign ID.</p>
 
-        <h3>utm_term — Keyword or Audience Targeting</h3>
+        <h3>utm_term - Keyword or Audience Targeting</h3>
         <p>Primarily used for paid search to capture the keyword that triggered the ad. In Google Ads, use the <code>{keyword}</code> ValueTrack macro to auto-populate. In display or social, use it to identify the audience segment or targeting criterion.</p>
         <p><strong>GA4 Dimension:</strong> Session manual ad term</p>
 
-        <h3>utm_content — Creative Variant or CTA Label</h3>
+        <h3>utm_content - Creative Variant or CTA Label</h3>
         <p>Differentiates between multiple creatives, ad copy versions, or calls-to-action within the same campaign. Ideal for A/B creative testing: <code>hero_image_blue</code> vs <code>hero_image_green</code>.</p>
         <p><strong>GA4 Dimension:</strong> Session manual ad content</p>
       </article>
@@ -393,7 +393,7 @@
         <ol>
           <li><strong>Uppercase characters:</strong> <code>Google</code> and <code>google</code> create two different rows in GA4 reports.</li>
           <li><strong>Spaces in parameter values:</strong> Spaces must be replaced with hyphens or underscores to avoid URL encoding issues.</li>
-          <li><strong>Tagging internal links:</strong> Never tag links pointing from one page to another within the same website domain — doing so destroys the visitor's original acquisition source by starting a new session.</li>
+          <li><strong>Tagging internal links:</strong> Never tag links pointing from one page to another within the same website domain - doing so destroys the visitor's original acquisition source by starting a new session.</li>
           <li><strong>Missing utm_medium:</strong> Sessions without a recognized medium value fall into (Unassigned) in the Default Channel Grouping report.</li>
           <li><strong>Inventing custom mediums:</strong> Channels like <code>promo</code>, <code>organic_social</code>, <code>pdf</code>, and <code>blog_post</code> do not match GA4's built-in regex rules and generate (Unassigned) rows.</li>
           <li><strong>Using #hash anchors before UTM tags:</strong> Query parameters placed after a # hash fragment are never sent to the web server or analytics.</li>
@@ -429,7 +429,7 @@
 
           <details>
             <summary>Can I use UTM parameters on non-Google Analytics platforms?</summary>
-            <p>Yes. Many analytics platforms — including Adobe Analytics, Matomo, Heap, Amplitude, and Segment — support UTM parameter ingestion. While the specific dimension names may differ, the underlying URL structure is universal and platform-agnostic.</p>
+            <p>Yes. Many analytics platforms - including Adobe Analytics, Matomo, Heap, Amplitude, and Segment - support UTM parameter ingestion. While the specific dimension names may differ, the underlying URL structure is universal and platform-agnostic.</p>
           </details>
 
           <details>

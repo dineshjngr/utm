@@ -69,7 +69,7 @@
             "name": "Why are consistent UTM naming conventions important?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Without standardized naming conventions, GA4 reports fragment into dozens of near-identical rows — 'Google', 'google', 'Google LLC', 'google ads' each become separate acquisition sources. This makes it impossible to accurately aggregate performance data, calculate true channel ROI, or build reliable marketing dashboards."
+              "text": "Without standardized naming conventions, GA4 reports fragment into dozens of near-identical rows - 'Google', 'google', 'Google LLC', 'google ads' each become separate acquisition sources. This makes it impossible to accurately aggregate performance data, calculate true channel ROI, or build reliable marketing dashboards."
             }
           }
         ]
@@ -158,7 +158,7 @@ Email team:   utm_source=newsletter&amp;utm_medium=Email&amp;utm_campaign=valent
 Social team:  utm_source=facebook&amp;utm_medium=social_ad&amp;utm_campaign=valentine-2025</pre>
         </div>
 
-        <p>In your GA4 Campaign report, this single promotion now appears as <strong>at least 5 separate campaign rows</strong> — impossible to aggregate, compare, or attribute accurately to total spend. Your attribution model is permanently corrupted for that period.</p>
+        <p>In your GA4 Campaign report, this single promotion now appears as <strong>at least 5 separate campaign rows</strong> - impossible to aggregate, compare, or attribute accurately to total spend. Your attribution model is permanently corrupted for that period.</p>
 
         <p>This is exactly why every marketing organization needs a formally documented UTM taxonomy SOP before any campaign goes live.</p>
       </article>
@@ -174,7 +174,7 @@ Social team:  utm_source=facebook&amp;utm_medium=social_ad&amp;utm_campaign=vale
           </li>
           <li style="margin-bottom: 1.25rem;">
             <strong>Use Hyphens or Underscores as Word Separators. Pick One and Never Mix.</strong><br>
-            <span style="color: var(--text-secondary); font-size: 0.9375rem;">The industry standard is hyphens in URLs (<code>brand-awareness</code>) or underscores for parameter values (<code>brand_awareness</code>). Both are acceptable — but document your choice in your SOP and never mix them within the same property.</span>
+            <span style="color: var(--text-secondary); font-size: 0.9375rem;">The industry standard is hyphens in URLs (<code>brand-awareness</code>) or underscores for parameter values (<code>brand_awareness</code>). Both are acceptable - but document your choice in your SOP and never mix them within the same property.</span>
           </li>
           <li style="margin-bottom: 1.25rem;">
             <strong>Use a Consistent Campaign Name Formula with Required Suffixes.</strong><br>
@@ -292,7 +292,7 @@ utm_campaign=webinar_lead-gen_us_jan-2025</pre>
 
       <!-- Section 5: SOP Template -->
       <article class="editorial-card" id="sop-template">
-        <h2>UTM Taxonomy SOP Template — Copy for Your Team</h2>
+        <h2>UTM Taxonomy SOP Template - Copy for Your Team</h2>
         <p>Use this template as the basis for your organization's formal UTM governance document. Customize it for your brand, tools, and team structure:</p>
 
         <div class="code-block-wrap">
@@ -308,7 +308,7 @@ rules before being shared, scheduled, or published.
 
 ### 2. MANDATORY FORMATTING RULES
 - ALL parameter values must be LOWERCASE with NO EXCEPTIONS
-- Use UNDERSCORES (_) as word separators (or define hyphens if preferred — do not mix)
+- Use UNDERSCORES (_) as word separators (or define hyphens if preferred - do not mix)
 - No spaces in any parameter value
 - No special characters (!, @, #, $, %) in parameter values
 - All destination URLs must use HTTPS protocol
@@ -336,14 +336,14 @@ Before publishing any campaign link:
 1. Paste URL into UTMCraft UTM Checker at https://utm.workers.dev/utm-checker/
 2. Verify audit score = 100%
 3. Confirm GA4 Channel Group matches expected channel
-4. Test link in incognito window — confirm page loads correctly
+4. Test link in incognito window - confirm page loads correctly
 5. Verify live session in GA4 Realtime Report before campaign goes live
 
 ### APPENDIX A: Approved Source Values
-[See Master Taxonomy Table — maintain in shared Google Sheet]
+[See Master Taxonomy Table - maintain in shared Google Sheet]
 
 ### APPENDIX B: Approved Medium Values
-[See Master Taxonomy Table — maintain in shared Google Sheet]</pre>
+[See Master Taxonomy Table - maintain in shared Google Sheet]</pre>
         </div>
       </article>
 
@@ -361,7 +361,7 @@ Before publishing any campaign link:
         <p>At the start of each quarter, run a GA4 Traffic Acquisition report and filter by source/medium. Look for any unexpected row values (often caused by typos or new hires using non-approved values). Create custom channel group overrides in GA4 Admin if historical corrections are needed.</p>
 
         <h3>4. Use UTMCraft GA4 Taxonomy Guide as Your Team Reference</h3>
-        <p>The <a href="/" style="color: var(--soft-green);">UTMCraft GA4 Taxonomy tab</a> provides a searchable, filterable lookup of all GA4 Default Channel Grouping rules — use it as a real-time reference during campaign planning. Share the URL with your media buyers, email marketers, and agency partners.</p>
+        <p>The <a href="/" style="color: var(--soft-green);">UTMCraft GA4 Taxonomy tab</a> provides a searchable, filterable lookup of all GA4 Default Channel Grouping rules - use it as a real-time reference during campaign planning. Share the URL with your media buyers, email marketers, and agency partners.</p>
 
         <div class="editorial-callout">
           <h4>🎯 Apply These Conventions Instantly</h4>
@@ -375,7 +375,7 @@ Before publishing any campaign link:
         <div class="faq-block">
           <details>
             <summary>Should I use hyphens or underscores in UTM values?</summary>
-            <p>Both are technically valid. However, underscores (<code>_</code>) are more commonly used in parameter values (e.g. <code>paid_social</code>) because hyphens in campaign names can be confused with URL-encoded characters in some platforms. Choose one standard for your organization and apply it consistently — never mix both in the same property.</p>
+            <p>Both are technically valid. However, underscores (<code>_</code>) are more commonly used in parameter values (e.g. <code>paid_social</code>) because hyphens in campaign names can be confused with URL-encoded characters in some platforms. Choose one standard for your organization and apply it consistently - never mix both in the same property.</p>
           </details>
 
           <details>
@@ -385,7 +385,7 @@ Before publishing any campaign link:
 
           <details>
             <summary>Can we use branded terms in utm_source?</summary>
-            <p>Yes. For utm_source, descriptive values like <code>mailchimp_automation</code>, <code>klaviyo_welcome</code>, or <code>google_display</code> are acceptable. Avoid brand names in utm_medium — utm_medium must match GA4 channel grouping regex patterns, not brand names.</p>
+            <p>Yes. For utm_source, descriptive values like <code>mailchimp_automation</code>, <code>klaviyo_welcome</code>, or <code>google_display</code> are acceptable. Avoid brand names in utm_medium - utm_medium must match GA4 channel grouping regex patterns, not brand names.</p>
           </details>
 
           <details>

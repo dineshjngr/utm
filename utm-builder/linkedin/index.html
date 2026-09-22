@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LinkedIn Ads UTM Builder — B2B Campaign Tracking Guide | UTMCraft</title>
+  <title>LinkedIn Ads UTM Builder - B2B Campaign Tracking Guide | UTMCraft</title>
   <meta name="description" content="Build LinkedIn Ads UTM tracking URLs for B2B campaigns. Covers LinkedIn Campaign Manager tracking setup, manual naming conventions (LinkedIn has no dynamic URL macros), Insight Tag, and ABM attribution.">
   <meta name="keywords" content="linkedin utm builder, linkedin ads utm tracking, linkedin campaign manager utm parameters, linkedin b2b utm strategy, linkedin utm parameters, linkedin ads url tracking, b2b utm attribution, linkedin insight tag utm">
   <link rel="canonical" href="https://utm.workers.dev/utm-builder/linkedin/">
@@ -11,13 +11,13 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://utm.workers.dev/utm-builder/linkedin/">
-  <meta property="og:title" content="LinkedIn Ads UTM Builder — B2B Campaign Tracking Guide | UTMCraft">
+  <meta property="og:title" content="LinkedIn Ads UTM Builder - B2B Campaign Tracking Guide | UTMCraft">
   <meta property="og:description" content="Build LinkedIn Ads UTM tracking URLs for B2B campaigns. Learn LinkedIn's tracking limitations and how to build a robust manual attribution strategy.">
   <meta property="og:image" content="https://utm.workers.dev/logo.svg">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://utm.workers.dev/utm-builder/linkedin/">
-  <meta name="twitter:title" content="LinkedIn Ads UTM Builder — B2B Campaign Tracking Guide | UTMCraft">
+  <meta name="twitter:title" content="LinkedIn Ads UTM Builder - B2B Campaign Tracking Guide | UTMCraft">
   <meta name="twitter:description" content="Build LinkedIn Ads UTM tracking URLs for B2B campaigns. Learn LinkedIn's tracking limitations and how to build a robust manual attribution strategy.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,7 +63,7 @@
             "name": "What utm_source should I use for LinkedIn Ads?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Use 'linkedin' as the utm_source value. GA4's Default Channel Grouping recognizes 'linkedin' as a social network source. Avoid 'linkedin.com', 'LinkedIn', or 'LinkedIn_Ads' — these create separate rows in GA4 reports and may not map to the correct channel group."
+              "text": "Use 'linkedin' as the utm_source value. GA4's Default Channel Grouping recognizes 'linkedin' as a social network source. Avoid 'linkedin.com', 'LinkedIn', or 'LinkedIn_Ads' - these create separate rows in GA4 reports and may not map to the correct channel group."
             }
           },
           {
@@ -134,7 +134,7 @@
       <div class="workspace-title-group">
         <p class="eyebrow-label">Platform Builder · LinkedIn Ads</p>
         <h1 class="workspace-title">LinkedIn Ads UTM Builder <span class="workspace-title-muted">for B2B</span></h1>
-        <p class="workspace-subtitle">Pre-configured for LinkedIn with <code>source=linkedin</code> and <code>medium=paid_social</code>. Unlike Google and Meta, LinkedIn Campaign Manager has <strong>no native dynamic URL macros</strong> — every UTM value must be set manually. Use the audience chips below as quick-fill shortcuts for common LinkedIn targeting groups.</p>
+        <p class="workspace-subtitle">Pre-configured for LinkedIn with <code>source=linkedin</code> and <code>medium=paid_social</code>. Unlike Google and Meta, LinkedIn Campaign Manager has <strong>no native dynamic URL macros</strong> - every UTM value must be set manually. Use the audience chips below as quick-fill shortcuts for common LinkedIn targeting groups.</p>
       </div>
 
       <div class="macro-chips-group" style="margin-top: 1.25rem;">
@@ -176,7 +176,7 @@
 
       <div class="tab-panels">
         <div id="tab-builder" class="tab-panel active" role="tabpanel">
-          <div class="builder-layout">
+          <div class="lp-builder-layout">
             <div class="builder-form-panel">
               <div class="form-field">
                 <label class="field-label" for="input-base-url">Destination URL *</label>
@@ -198,23 +198,23 @@
               </div>
 
               <div class="form-field">
-                <label class="field-label" for="input-utm-campaign">utm_campaign * — Follow naming formula for consistency</label>
+                <label class="field-label" for="input-utm-campaign">utm_campaign * - Follow naming formula for consistency</label>
                 <input type="text" id="input-utm-campaign" class="field-input" placeholder="enterprise-pipeline_b2b_na_q1-2025" autocomplete="off" spellcheck="false">
               </div>
 
               <div class="form-row-duo">
                 <div class="form-field">
-                  <label class="field-label" for="input-utm-term">utm_term — Use audience chips above</label>
+                  <label class="field-label" for="input-utm-term">utm_term - Use audience chips above</label>
                   <input type="text" id="input-utm-term" class="field-input" placeholder="seniority_director_plus" autocomplete="off" spellcheck="false">
                 </div>
                 <div class="form-field">
-                  <label class="field-label" for="input-utm-content">utm_content — Use format chips above</label>
+                  <label class="field-label" for="input-utm-content">utm_content - Use format chips above</label>
                   <input type="text" id="input-utm-content" class="field-input" placeholder="single_image_ad_v1" autocomplete="off" spellcheck="false">
                 </div>
               </div>
 
               <div class="form-field">
-                <label class="field-label" for="input-utm-id">utm_id — LinkedIn Campaign ID for cost data alignment</label>
+                <label class="field-label" for="input-utm-id">utm_id - LinkedIn Campaign ID for cost data alignment</label>
                 <input type="text" id="input-utm-id" class="field-input" placeholder="e.g. 214089741 (from Campaign Manager URL)" autocomplete="off" spellcheck="false">
               </div>
             </div>
@@ -271,7 +271,7 @@
         <h2>LinkedIn's Critical Difference: No Dynamic URL Macros</h2>
 
         <div class="editorial-callout" style="border-color: #0073B1; background: rgba(0, 115, 177, 0.04);">
-          <h4>📋 LinkedIn Has No Native URL Tokens — Manual Naming is Required</h4>
+          <h4>📋 LinkedIn Has No Native URL Tokens - Manual Naming is Required</h4>
           <p>Unlike Google Ads (<code>{keyword}</code>, <code>{device}</code>) and Meta Ads (<code>&#123;&#123;campaign.name&#125;&#125;</code>, <code>&#123;&#123;ad.id&#125;&#125;</code>), LinkedIn Campaign Manager does not offer dynamic URL parameter macros. Every UTM value must be typed manually for each individual campaign, ad set, and creative. This is why strict naming conventions are essential for LinkedIn campaigns.</p>
         </div>
 
@@ -294,7 +294,7 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign=enterprise_lead-
           <li>In Campaign Manager, navigate to the <strong>Ad level</strong> of your campaign</li>
           <li>In the ad creation or edit screen, find the <strong>Destination URL</strong> field</li>
           <li>Paste your complete UTM-tagged URL (full URL including <code>?utm_source=linkedin&amp;...</code>) into the Destination URL field</li>
-          <li>Unlike Meta, there is no separate URL Parameters field — the full URL goes directly into Destination URL</li>
+          <li>Unlike Meta, there is no separate URL Parameters field - the full URL goes directly into Destination URL</li>
           <li>Click <strong>Preview</strong> to verify the link resolves correctly before saving</li>
           <li>Check GA4 Realtime report after publishing to confirm session data appears with the correct source/medium</li>
         </ol>
@@ -307,7 +307,7 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign=enterprise_lead-
 
       <article class="editorial-card" id="b2b-attribution">
         <h2>B2B Attribution Strategy for LinkedIn Campaigns</h2>
-        <p>LinkedIn generates the highest quality B2B leads of any social channel, but it consistently suffers from last-touch attribution bias. A VP of Engineering who sees your LinkedIn ad in January and downloads a whitepaper tracked via UTMs may not convert to a customer until October — after many other touchpoints. Your UTM data will credit only the last-touch session, dramatically undervaluing LinkedIn's contribution.</p>
+        <p>LinkedIn generates the highest quality B2B leads of any social channel, but it consistently suffers from last-touch attribution bias. A VP of Engineering who sees your LinkedIn ad in January and downloads a whitepaper tracked via UTMs may not convert to a customer until October - after many other touchpoints. Your UTM data will credit only the last-touch session, dramatically undervaluing LinkedIn's contribution.</p>
 
         <h3>A Practical B2B Multi-Touch Attribution Stack</h3>
         <div class="editorial-table-wrap">
@@ -328,7 +328,7 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign=enterprise_lead-
               <tr>
                 <td><strong>2. CRM First-touch</strong></td>
                 <td>HubSpot / Salesforce</td>
-                <td>Hidden form fields capture UTM values at lead creation — preserved in CRM for lifetime attribution</td>
+                <td>Hidden form fields capture UTM values at lead creation - preserved in CRM for lifetime attribution</td>
               </tr>
               <tr>
                 <td><strong>3. Insight Tag</strong></td>
@@ -338,7 +338,7 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign=enterprise_lead-
               <tr>
                 <td><strong>4. Account-level data</strong></td>
                 <td>LinkedIn Insight Tag + Campaign Manager</td>
-                <td>Company demographics visiting your site — identifies which target accounts are engaging</td>
+                <td>Company demographics visiting your site - identifies which target accounts are engaging</td>
               </tr>
             </tbody>
           </table>
@@ -376,7 +376,7 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign=enterprise_lead-
       </article>
 
       <article class="editorial-card">
-        <h2>Frequently Asked Questions — LinkedIn Ads UTM Tracking</h2>
+        <h2>Frequently Asked Questions - LinkedIn Ads UTM Tracking</h2>
         <div class="faq-block">
           <details>
             <summary>Why does LinkedIn traffic sometimes show as Direct in GA4?</summary>

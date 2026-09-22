@@ -174,7 +174,7 @@
 
       <div class="tab-panels">
         <div id="tab-builder" class="tab-panel active" role="tabpanel">
-          <div class="builder-layout">
+          <div class="lp-builder-layout">
             <div class="builder-form-panel">
               <div class="form-field">
                 <label class="field-label" for="input-base-url">Destination URL *</label>
@@ -202,17 +202,17 @@
 
               <div class="form-row-duo">
                 <div class="form-field">
-                  <label class="field-label" for="input-utm-term">utm_term — Use ValueTrack above</label>
+                  <label class="field-label" for="input-utm-term">utm_term - Use ValueTrack above</label>
                   <input type="text" id="input-utm-term" class="field-input" placeholder="{keyword}" autocomplete="off" spellcheck="false">
                 </div>
                 <div class="form-field">
-                  <label class="field-label" for="input-utm-content">utm_content — Use ValueTrack above</label>
+                  <label class="field-label" for="input-utm-content">utm_content - Use ValueTrack above</label>
                   <input type="text" id="input-utm-content" class="field-input" placeholder="{creative}_{device}" autocomplete="off" spellcheck="false">
                 </div>
               </div>
 
               <div class="form-field">
-                <label class="field-label" for="input-utm-id">utm_id — Campaign ID for Cost Data Import</label>
+                <label class="field-label" for="input-utm-id">utm_id - Campaign ID for Cost Data Import</label>
                 <input type="text" id="input-utm-id" class="field-input" placeholder="e.g. 19284761234 (Google Ads Campaign ID)" autocomplete="off" spellcheck="false">
               </div>
             </div>
@@ -268,7 +268,7 @@
 
       <article class="editorial-card" id="valuetrack-reference">
         <h2>Google Ads ValueTrack Parameter Reference</h2>
-        <p>ValueTrack parameters are dynamic tokens that Google Ads replaces at click time with real campaign data. They eliminate the need to manually create separate URLs for every keyword, ad group, or device — your UTM values auto-populate based on what triggered each click.</p>
+        <p>ValueTrack parameters are dynamic tokens that Google Ads replaces at click time with real campaign data. They eliminate the need to manually create separate URLs for every keyword, ad group, or device - your UTM values auto-populate based on what triggered each click.</p>
 
         <div class="editorial-table-wrap">
           <table class="editorial-table">
@@ -348,7 +348,7 @@
 
       <article class="editorial-card" id="final-url-suffix">
         <h2>Setting Up Google Ads Final URL Suffix</h2>
-        <p>The most scalable way to deploy UTM parameters across your entire Google Ads account is via the <strong>Final URL Suffix</strong> field in Account-level Tracking Settings. This applies your tracking template to every ad — even auto-created assets for Performance Max — without editing each individual ad.</p>
+        <p>The most scalable way to deploy UTM parameters across your entire Google Ads account is via the <strong>Final URL Suffix</strong> field in Account-level Tracking Settings. This applies your tracking template to every ad - even auto-created assets for Performance Max - without editing each individual ad.</p>
 
         <h3>Step-by-Step: Final URL Suffix Setup</h3>
         <ol>
@@ -365,7 +365,7 @@
 
         <div class="editorial-callout">
           <h4>⚡ Auto-Tagging &amp; UTMs Can Coexist</h4>
-          <p>Google Ads auto-tagging (GCLID) passes automatically when enabled. UTM parameters run in parallel — GA4 will record both. GCLID enables Smart Bidding signals and cross-device matching; UTMs enable attribution in non-Google analytics tools, custom attribution models, and CRM integrations. Keep both enabled simultaneously for full attribution coverage.</p>
+          <p>Google Ads auto-tagging (GCLID) passes automatically when enabled. UTM parameters run in parallel - GA4 will record both. GCLID enables Smart Bidding signals and cross-device matching; UTMs enable attribution in non-Google analytics tools, custom attribution models, and CRM integrations. Keep both enabled simultaneously for full attribution coverage.</p>
         </div>
       </article>
 
@@ -406,11 +406,11 @@
       </article>
 
       <article class="editorial-card">
-        <h2>Frequently Asked Questions — Google Ads UTM Tracking</h2>
+        <h2>Frequently Asked Questions - Google Ads UTM Tracking</h2>
         <div class="faq-block">
           <details>
             <summary>How do I add UTM parameters to Google Ads without breaking ValueTrack?</summary>
-            <p>Add UTM parameters via the <strong>Final URL Suffix</strong> field in Account Settings (not the Tracking Template field). The Final URL Suffix is appended directly to your Final URL and supports ValueTrack dynamic parameters. Do not URL-encode the curly braces — enter them literally as <code>{keyword}</code>, <code>{device}</code> etc.</p>
+            <p>Add UTM parameters via the <strong>Final URL Suffix</strong> field in Account Settings (not the Tracking Template field). The Final URL Suffix is appended directly to your Final URL and supports ValueTrack dynamic parameters. Do not URL-encode the curly braces - enter them literally as <code>{keyword}</code>, <code>{device}</code> etc.</p>
           </details>
           <details>
             <summary>Do UTM parameters override auto-tagging GCLID in Google Ads?</summary>
