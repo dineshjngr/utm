@@ -344,21 +344,34 @@ button, input, select, textarea {
 .workspace-title-group {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .workspace-title {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 500;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   color: var(--text-main);
   line-height: 1.15;
+  margin: 0;
+}
+
+.workspace-title-muted {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+[data-theme="dark"] .workspace-title-muted {
+  color: #94A1A7;
 }
 
 .workspace-subtitle {
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--text-secondary);
   font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  margin: 0;
 }
 
 /* =========================================================
