@@ -1,4 +1,3 @@
-import confetti from 'canvas-confetti';
 import { buildUTMUrl, getHighlightedUrlHtml } from './modules/builder.js';
 import { getAllPresets, saveCustomPreset } from './modules/presets.js';
 import { renderQRCode, downloadQRCode, copyQRCodeImage } from './modules/qr.js';
@@ -320,20 +319,16 @@ function recalculateSingleUrl() {
     charCountEl.textContent = `${length} chars`;
     charCountEl.classList.toggle('warning', length > 2000);
 
-    statusPill.textContent = 'Valid';
-    statusPill.style.background = 'rgba(16, 185, 129, 0.15)';
-    statusPill.style.color = 'var(--accent-emerald)';
-    statusPill.style.borderColor = 'var(--accent-emerald)';
+    statusPill.textContent = 'Ready';
+    statusPill.className = 'score-badge high';
 
     updateQRCode();
   } else {
     state.currentGeneratedUrl = '';
-    outputBox.innerHTML = `<span class="url-placeholder">${result.error || 'Enter a valid URL to generate UTM link...'}</span>`;
+    outputBox.innerHTML = `<span class="url-placeholder">${result.error || 'Enter destination URL...'}</span>`;
     charCountEl.textContent = '0 chars';
     statusPill.textContent = 'Incomplete';
-    statusPill.style.background = 'rgba(244, 63, 94, 0.15)';
-    statusPill.style.color = 'var(--accent-rose)';
-    statusPill.style.borderColor = 'var(--accent-rose)';
+    statusPill.className = 'score-badge low';
   }
 
   updateScorecard();
@@ -356,39 +351,42 @@ function updateScorecard() {
   const progressBar = document.getElementById('score-progress-bar');
   const messagesContainer = document.getElementById('audit-messages-container');
 
-  scoreBadge.textContent = `${audit.score} / 100`;
+  if (scoreBadge) {
+    scoreBadge.textContent = `${audit.score} / 100`;
+    let gradeClass = 'high';
+    if (audit.score < 60) gradeClass = 'low';
+    else if (audit.score < 85) gradeClass = 'medium';
+    scoreBadge.className = `score-badge ${gradeClass}`;
+  }
 
-  let gradeClass = 'high';
-  if (audit.score < 60) gradeClass = 'low';
-  else if (audit.score < 85) gradeClass = 'medium';
+  if (progressBar) {
+    progressBar.style.width = `${audit.score}%`;
+  }
 
-  scoreBadge.className = `score-badge ${gradeClass}`;
-  progressBar.className = `score-progress-bar ${gradeClass}`;
-  progressBar.style.width = `${audit.score}%`;
-
-  // Render check list
-  if (audit.issues.length === 0 && audit.suggestions.length === 0) {
-    messagesContainer.innerHTML = `
-      <div class="audit-msg" style="color: var(--accent-emerald); background: rgba(16, 185, 129, 0.1);">
-        ✓ All UTM parameters adhere to GA4 conventions and best practices.
-      </div>
-    `;
-  } else {
-    const listHtml = [
-      ...audit.issues.map(i => `
-        <div class="audit-msg ${i.level}">
-          <span>${i.level === 'error' ? '❌' : '⚠️'}</span>
-          <span>${i.message}</span>
+  if (messagesContainer) {
+    if (audit.issues.length === 0 && audit.suggestions.length === 0) {
+      messagesContainer.innerHTML = `
+        <div class="audit-msg" style="color: var(--success); background: var(--success-subtle);">
+          ✓ All parameters match GA4 standards.
         </div>
-      `),
-      ...audit.suggestions.map(s => `
-        <div class="audit-msg suggestion">
-          <span>💡</span>
-          <span>${s.message}</span>
-        </div>
-      `)
-    ].join('');
-    messagesContainer.innerHTML = listHtml;
+      `;
+    } else {
+      const listHtml = [
+        ...audit.issues.map(i => `
+          <div class="audit-msg ${i.level}">
+            <span>${i.level === 'error' ? '✕' : '⚠'}</span>
+            <span>${i.message}</span>
+          </div>
+        `),
+        ...audit.suggestions.map(s => `
+          <div class="audit-msg suggestion">
+            <span>•</span>
+            <span>${s.message}</span>
+          </div>
+        `)
+      ].join('');
+      messagesContainer.innerHTML = listHtml;
+    }
   }
 }
 
@@ -400,14 +398,7 @@ async function handleCopyUrl() {
 
   try {
     await navigator.clipboard.writeText(state.currentGeneratedUrl);
-    showToast('UTM URL copied to clipboard!', 'success');
-
-    // Confetti celebration
-    confetti({
-      particleCount: 40,
-      spread: 60,
-      origin: { y: 0.8 }
-    });
+    showToast('Copied to clipboard', 'success');
 
     // Auto-save to history on copy
     saveToHistory({

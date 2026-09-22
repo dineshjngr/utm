@@ -1,31 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UTMCraft — Modern Campaign URL Builder & GA4 Analytics Toolkit</title>
-  <meta name="description" content="Generate, audit, and manage standard UTM tracking parameters for marketing campaigns with live syntax highlighting, GA4 compliance, bulk matrix generator, and QR codes.">
+  <title>UTM Builder — Campaign URL Generator</title>
+  <meta name="description" content="Clean, simple UTM campaign URL generator and GA4 tagging tool.">
   <link rel="stylesheet" href="./src/styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔗</text></svg>">
 </head>
 <body>
   <div class="app-container">
     
-    <!-- Top Application Header -->
+    <!-- Header -->
     <header class="app-header">
       <div class="brand">
         <div class="brand-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
           </svg>
         </div>
         <div>
-          <h1 class="brand-title">
-            UTMCraft
-            <span class="brand-badge">Pro 2.0</span>
-          </h1>
-          <p class="brand-tagline">Campaign URL Architect &amp; GA4 Tagging Toolkit</p>
+          <h1 class="brand-title">UTM Builder</h1>
+          <p class="brand-tagline">Campaign URL generator &amp; GA4 tagging</p>
         </div>
       </div>
 
@@ -127,9 +124,9 @@
             <!-- Channel Presets Chips Bar -->
             <div class="preset-chips-container">
               <div class="field-label-row">
-                <span class="form-label">⚡ Quick Channel Presets</span>
+                <span class="form-label">Channel Presets</span>
                 <button type="button" id="btn-open-save-preset" class="btn btn-ghost btn-sm" style="color: var(--primary);">
-                  + Save as Custom Preset
+                  + Custom Preset
                 </button>
               </div>
               <div id="presets-chips-list" class="preset-chips-grid">
@@ -320,13 +317,13 @@
         <div class="preview-column">
           
           <!-- Live URL Card -->
-          <div class="card output-card">
+          <div class="card">
             <div class="card-header">
               <h2 class="card-title">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-                Generated UTM Link
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                Generated URL
               </h2>
-              <span id="url-status-pill" class="brand-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); border-color: var(--accent-emerald);">Live</span>
+              <span id="url-status-pill" class="score-badge high">Ready</span>
             </div>
 
             <!-- Syntax Highlighted URL Container -->
@@ -336,23 +333,23 @@
 
             <div class="url-meta-bar">
               <span id="url-char-count" class="url-length-badge">0 chars</span>
-              <span style="font-size: 0.78rem; color: var(--text-muted);">GA4 Safe Limit &lt; 2048</span>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Standard limit &lt; 2048 chars</span>
             </div>
 
             <!-- Action Buttons -->
             <div class="action-buttons-row">
               <button type="button" id="btn-copy-url" class="btn btn-primary" style="flex: 1;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                <span id="btn-copy-text">Copy UTM URL</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span id="btn-copy-text">Copy URL</span>
               </button>
 
               <button type="button" id="btn-test-url" class="btn btn-secondary" title="Open in new tab to test">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 <span>Test Link</span>
               </button>
 
               <button type="button" id="btn-save-history" class="btn btn-secondary" title="Save link to history">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
                 <span>Save</span>
               </button>
 
@@ -364,11 +361,8 @@
             <!-- Quality Scorecard -->
             <div class="audit-scorecard">
               <div class="scorecard-header">
-                <span style="font-weight: 600; font-size: 0.88rem;">UTM Health &amp; GA4 Score</span>
+                <span>GA4 Compatibility</span>
                 <span id="score-number-badge" class="score-badge high">100 / 100</span>
-              </div>
-              <div class="score-progress-bg">
-                <div id="score-progress-bar" class="score-progress-bar high" style="width: 100%;"></div>
               </div>
               <div id="audit-messages-container" class="audit-messages">
                 <!-- Real-time audit checklist items -->
@@ -377,28 +371,28 @@
 
           </div>
 
-          <!-- Dynamic QR Code Card -->
+          <!-- QR Code Card -->
           <div class="card">
             <div class="card-header">
               <h2 class="card-title">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                Offline Campaign QR Code
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                QR Code
               </h2>
-              <span class="field-hint">High-Res PNG / Print Ready</span>
+              <span class="field-hint">PNG / Print</span>
             </div>
 
             <div class="qr-container">
               <div class="qr-canvas-wrapper">
-                <canvas id="qr-canvas" class="qr-canvas" width="220" height="220"></canvas>
+                <canvas id="qr-canvas" class="qr-canvas" width="180" height="180"></canvas>
               </div>
 
               <div class="qr-actions">
                 <button type="button" id="btn-download-qr" class="btn btn-secondary btn-sm">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                   <span>Download PNG</span>
                 </button>
                 <button type="button" id="btn-copy-qr" class="btn btn-secondary btn-sm">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                   <span>Copy Image</span>
                 </button>
               </div>
@@ -416,10 +410,10 @@
         <div class="card-header">
           <div>
             <h2 class="card-title">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-              Multi-Channel Campaign Matrix Generator
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              Campaign URL Matrix
             </h2>
-            <p class="card-description">Generate dozens of tagged URLs simultaneously across all your advertising channels with one click.</p>
+            <p class="card-description">Generate tagged URLs across multiple advertising channels and landing pages.</p>
           </div>
         </div>
 
