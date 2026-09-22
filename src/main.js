@@ -134,6 +134,27 @@ function initTabs() {
     });
   });
 
+  // Top header nav links
+  document.querySelectorAll('.nav-header-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const targetId = link.getAttribute('data-tab-target');
+      if (targetId) switchTab(targetId);
+    });
+  });
+
+  // Header "New Link" button
+  const headerNewBtn = document.getElementById('btn-header-new');
+  if (headerNewBtn) {
+    headerNewBtn.addEventListener('click', () => {
+      switchTab('tab-builder');
+      const input = document.getElementById('input-base-url');
+      if (input) {
+        input.focus();
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }
+
   const initialTab = Object.entries(TAB_META)
     .find(([, meta]) => `#${meta.slug}` === window.location.hash)?.[0];
   switchTab(initialTab || 'tab-builder', { updateUrl: false });
@@ -181,6 +202,11 @@ function switchTab(tabId, { updateUrl = true } = {}) {
     btn.classList.toggle('active', isCurrent);
     btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
     btn.tabIndex = isCurrent ? 0 : -1;
+  });
+
+  document.querySelectorAll('.nav-header-link').forEach(link => {
+    const isCurrent = link.getAttribute('data-tab-target') === tabId;
+    link.classList.toggle('active', isCurrent);
   });
 
   document.querySelectorAll('.tab-pane').forEach(pane => {

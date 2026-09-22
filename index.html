@@ -16,7 +16,7 @@
   <title>Free UTM Builder &amp; GA4 Campaign URL Generator | UTMCraft</title>
   <meta name="description" content="Build, inspect, and manage GA4-ready UTM campaign URLs. Create single or bulk tracking links, audit parameters, generate QR codes, and export campaign history.">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#2563eb">
+  <meta name="theme-color" content="#FCFCFB">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="UTMCraft">
   <meta property="og:title" content="Free UTM Builder &amp; GA4 Campaign URL Generator">
@@ -24,6 +24,9 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Free UTM Builder &amp; GA4 Campaign URL Generator">
   <meta name="twitter:description" content="Create consistent GA4-ready campaign links, bulk URL matrices, QR codes, and UTM audits in your browser.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./src/styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔗</text></svg>">
   <script type="application/ld+json">
@@ -59,65 +62,90 @@
   </script>
 </head>
 <body>
-  <div class="app-container">
-    
-    <!-- Header -->
-    <header class="app-header">
+  <!-- Thin Minimal Top Navigation (64-72px) -->
+  <header class="app-header">
+    <div class="header-inner">
       <div class="brand">
         <div class="brand-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
             <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
           </svg>
         </div>
-        <div>
-          <h1 class="brand-title">UTM Builder</h1>
-          <p class="brand-tagline">Campaign URL generator &amp; GA4 tagging</p>
+        <div class="brand-text-group">
+          <span class="brand-title">UTMCraft</span>
+          <span class="brand-pill">Studio</span>
         </div>
       </div>
 
+      <nav class="header-nav" aria-label="Primary Navigation">
+        <button type="button" class="nav-header-link active" data-tab-target="tab-builder">Builder</button>
+        <button type="button" class="nav-header-link" data-tab-target="tab-batch">Bulk Matrix</button>
+        <button type="button" class="nav-header-link" data-tab-target="tab-inspector">Inspector</button>
+        <button type="button" class="nav-header-link" data-tab-target="tab-taxonomy">Taxonomy</button>
+        <button type="button" class="nav-header-link" data-tab-target="tab-history">History</button>
+      </nav>
+
       <div class="header-actions">
-        <button id="btn-shortcuts" class="btn btn-secondary btn-sm" title="Keyboard Shortcuts (Press ?)">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        <button type="button" id="btn-shortcuts" class="btn-text-action" title="Keyboard Shortcuts (Press ?)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
           <span>Shortcuts</span>
         </button>
 
-        <button id="btn-theme-toggle" class="btn btn-secondary btn-icon" title="Toggle Theme" aria-label="Toggle Theme">
-          <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-          <svg id="theme-icon-sun" style="display: none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <button type="button" id="btn-header-new" class="btn-primary-cta">
+          <span>New Link</span>
         </button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- Navigation Tabs -->
-    <nav class="nav-tabs" role="tablist" aria-label="Tool Navigation">
-      <button id="nav-builder" class="nav-tab active" data-tab="tab-builder" role="tab" aria-selected="true" aria-controls="tab-builder" tabindex="0">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-        <span>Single URL Builder</span>
-      </button>
+  <!-- Spacious, Centered Hero Section -->
+  <section class="hero-section">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">CAMPAIGN ATTRIBUTION SUITE</span>
+      <h1 class="hero-heading">
+        Precision Campaign URLs<br>
+        <span class="hero-heading-muted">Built for Modern Growth Teams</span>
+      </h1>
+      <p class="hero-subheading">
+        Generate GA4-compliant campaign URLs, test tracking parameters in real-time, shorten links with zero redirect delay, and audit attribution tags in one seamless workspace.
+      </p>
 
-      <button id="nav-batch" class="nav-tab" data-tab="tab-batch" role="tab" aria-selected="false" aria-controls="tab-batch" tabindex="-1">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        <span>Bulk Matrix Generator</span>
-      </button>
+      <!-- Horizontal Segmented Tab Interface -->
+      <div class="nav-tabs-wrapper">
+        <nav class="nav-tabs" role="tablist" aria-label="Tool Navigation">
+          <button id="nav-builder" class="nav-tab active" data-tab="tab-builder" role="tab" aria-selected="true" aria-controls="tab-builder" tabindex="0">
+            <span>Single URL Builder</span>
+          </button>
 
-      <button id="nav-inspector" class="nav-tab" data-tab="tab-inspector" role="tab" aria-selected="false" aria-controls="tab-inspector" tabindex="-1">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <span>UTM Inspector</span>
-      </button>
+          <button id="nav-batch" class="nav-tab" data-tab="tab-batch" role="tab" aria-selected="false" aria-controls="tab-batch" tabindex="-1">
+            <span>Bulk Matrix Generator</span>
+          </button>
 
-      <button id="nav-taxonomy" class="nav-tab" data-tab="tab-taxonomy" role="tab" aria-selected="false" aria-controls="tab-taxonomy" tabindex="-1">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-        <span>GA4 Taxonomy Guide</span>
-      </button>
+          <button id="nav-inspector" class="nav-tab" data-tab="tab-inspector" role="tab" aria-selected="false" aria-controls="tab-inspector" tabindex="-1">
+            <span>UTM Inspector</span>
+          </button>
 
-      <button id="nav-history" class="nav-tab" data-tab="tab-history" role="tab" aria-selected="false" aria-controls="tab-history" tabindex="-1">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        <span>Campaign History</span>
-        <span id="history-counter-badge" class="tab-badge">0</span>
-      </button>
-    </nav>
+          <button id="nav-taxonomy" class="nav-tab" data-tab="tab-taxonomy" role="tab" aria-selected="false" aria-controls="tab-taxonomy" tabindex="-1">
+            <span>GA4 Taxonomy Guide</span>
+          </button>
 
+          <button id="nav-history" class="nav-tab" data-tab="tab-history" role="tab" aria-selected="false" aria-controls="tab-history" tabindex="-1">
+            <span>Campaign History</span>
+            <span id="history-counter-badge" class="tab-badge">0</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Grid Workspace Container -->
+  <div class="app-container">
     <main class="tool-content">
     <!-- TAB 1: SINGLE BUILDER -->
     <section id="tab-builder" class="tab-pane active" role="tabpanel" aria-labelledby="nav-builder">
@@ -129,10 +157,8 @@
           <div class="card">
             <div class="card-header">
               <div>
-                <h2 class="card-title">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                  Target Destination URL
-                </h2>
+                <span class="card-category">DESTINATION</span>
+                <h2 class="card-title">Target Website URL</h2>
                 <p class="card-description">The destination landing page on your website where users will land.</p>
               </div>
             </div>
@@ -383,10 +409,11 @@
           <!-- Live URL Card -->
           <div class="card">
             <div class="card-header">
-              <h2 class="card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-                Generated URL
-              </h2>
+              <div>
+                <span class="card-category">LIVE PREVIEW</span>
+                <h2 class="card-title">Generated Campaign URL</h2>
+                <p class="card-description">Real-time normalized URL with syntax highlighting &amp; validation.</p>
+              </div>
               <span id="url-status-pill" class="score-badge high">Ready</span>
             </div>
 
@@ -473,10 +500,11 @@
           <!-- QR Code Card -->
           <div class="card">
             <div class="card-header">
-              <h2 class="card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                QR Code
-              </h2>
+              <div>
+                <span class="card-category">DISTRIBUTION</span>
+                <h2 class="card-title">Mobile QR Code</h2>
+                <p class="card-description">High-resolution vector SVG and PNG for print &amp; outdoor media.</p>
+              </div>
               <span id="qr-target-badge" class="field-hint">Full URL</span>
             </div>
 
@@ -528,10 +556,8 @@
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-              Campaign URL Matrix
-            </h2>
+            <span class="card-category">BULK MATRIX</span>
+            <h2 class="card-title">Campaign URL Matrix</h2>
             <p class="card-description">Generate tagged URLs across multiple advertising channels and landing pages.</p>
           </div>
         </div>
@@ -650,10 +676,8 @@
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              UTM Inspector &amp; Deconstructor
-            </h2>
+            <span class="card-category">LINK AUDITOR</span>
+            <h2 class="card-title">UTM Inspector &amp; Deconstructor</h2>
             <p class="card-description">Paste any existing URL to unpack its tracking parameters, audit GA4 compliance, and detect errors.</p>
           </div>
         </div>
@@ -715,13 +739,25 @@
 
     <!-- TAB 4: GA4 TAXONOMY GUIDE -->
     <section id="tab-taxonomy" class="tab-pane" role="tabpanel" aria-labelledby="nav-taxonomy" hidden>
-      <div class="card">
+      
+      <!-- Featured Visual Card -->
+      <div class="card featured-card">
+        <div class="featured-card-body">
+          <span class="card-category featured-card-category">ATTRIBUTION BLUEPRINT</span>
+          <h2 class="featured-card-title">Zero Unassigned Traffic</h2>
+          <p class="featured-card-description">Standardizing your campaign source and medium rules ensures 100% of visitor sessions map cleanly to default channel groups without fragmented acquisition reports.</p>
+          <div class="featured-card-footer">
+            <span class="featured-badge">GA4 Protocol Standard</span>
+            <span class="featured-badge-subtle">Universal Analytics Replacement</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1.5rem;">
         <div class="card-header">
           <div>
-            <h2 class="card-title">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-              Google Analytics 4 Default Channel Grouping Guide
-            </h2>
+            <span class="card-category">DATA TAXONOMY</span>
+            <h2 class="card-title">Google Analytics 4 Channel Grouping Guide</h2>
             <p class="card-description">How GA4 classifies traffic based on your UTM parameters. Ensure your mediums match these exact definitions.</p>
           </div>
         </div>
@@ -739,11 +775,12 @@
         </div>
 
         <!-- Interactive Campaign Name Formula Generator -->
-        <div class="formula-builder-card">
-          <h3 class="card-title" style="margin-bottom: 0.4rem;">💡 Standardized Campaign Name Builder</h3>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
-            Construct consistent, machine-readable campaign names using industry best-practice formulas.
-          </p>
+        <div class="formula-builder-card" style="margin-top: 2rem;">
+          <div style="margin-bottom: 1rem;">
+            <span class="card-category">CAMPAIGN FORMULA</span>
+            <h3 class="card-title" style="margin-top: 0.25rem;">Standardized Campaign Name Builder</h3>
+            <p class="card-description">Construct consistent, machine-readable campaign names using industry best-practice formulas.</p>
+          </div>
 
           <div class="form-row-2">
             <div>
@@ -804,10 +841,8 @@
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-              Campaign History &amp; Bookmarked Links
-            </h2>
+            <span class="card-category">LOCAL LOGS</span>
+            <h2 class="card-title">Campaign History &amp; Bookmarked Links</h2>
             <p class="card-description">Track and export all previously generated campaign URLs stored locally in your browser.</p>
           </div>
         </div>
