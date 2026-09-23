@@ -137,7 +137,7 @@ function initThemeToggle() {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const nextTheme = isDark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', nextTheme);
-    localStorage.setItem('theme', nextTheme);
+    localStorage.setItem('utmc_theme', nextTheme);
     updateIcons(!isDark);
   });
 }
@@ -191,4 +191,3 @@ function initHeaderDropdowns() {
     }
   });
 }
-

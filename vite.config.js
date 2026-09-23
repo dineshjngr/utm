@@ -60,7 +60,7 @@ function blogUrlRoutingPlugin() {
       });
     },
 
-    // 2. Production Build: ensure both dist/[slug]/index.html and dist/blog/[slug]/index.html exist
+    // 2. Production Build: emit canonical flat article and landing routes.
     closeBundle() {
       const distDir = resolve(import.meta.dirname, 'dist');
       const distBlogPostsDir = join(distDir, 'blog', 'posts');
@@ -80,12 +80,6 @@ function blogUrlRoutingPlugin() {
         }
         writeFileSync(join(flatDir, 'index.html'), htmlContent, 'utf8');
 
-        // Output blog subpath directory: dist/blog/[slug]/index.html (https://utmcraft.com/blog/[slug]/)
-        const blogSlugDir = join(distDir, 'blog', post.slug);
-        if (!existsSync(blogSlugDir)) {
-          mkdirSync(blogSlugDir, { recursive: true });
-        }
-        writeFileSync(join(blogSlugDir, 'index.html'), htmlContent, 'utf8');
       }
 
       // Keep the source organized under landing-pages/ without changing public URLs.
@@ -96,7 +90,11 @@ function blogUrlRoutingPlugin() {
         mkdirSync(join(distDir, route), { recursive: true });
         copyFileSync(sourceHtml, publicHtml);
       }
-      console.log(`[blog-url-routing] Generated dual production routes in dist/ for all ${blogPosts.length} articles.`);
+      const builtNotFound = join(distDir, 'public', '404.html');
+      if (existsSync(builtNotFound)) {
+        copyFileSync(builtNotFound, join(distDir, '404.html'));
+      }
+      console.log(`[blog-url-routing] Generated canonical production routes in dist/ for all ${blogPosts.length} articles.`);
     }
   };
 }
@@ -113,6 +111,7 @@ export default defineConfig({
     blogUrlRoutingPlugin()
   ],
   build: {
+    emptyOutDir: true,
     rollupOptions: {
       input: htmlInputs
     }

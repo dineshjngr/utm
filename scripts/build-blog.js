@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { blogPosts, getRelatedPosts, getCategoryById } from '../src/data/blog-posts.js';
 import { blogCategories } from '../src/data/blog-categories.js';
+import { renderHeader, renderFooter } from './shared-layout.js';
 
 const rootDir = path.resolve(import.meta.dirname, '..');
 
@@ -9,172 +10,6 @@ const rootDir = path.resolve(import.meta.dirname, '..');
 function escapeAttr(str) {
   if (!str) return '';
   return str.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-// Global Site Header HTML matching UTMCraft design
-function renderHeader(activeNav = 'blog') {
-  return `
-  <!-- Thin Minimal Top Navigation -->
-  <header class="app-header">
-    <div class="header-inner">
-      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
-        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
-        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
-      </a>
-
-      <nav class="header-nav" aria-label="Main Navigation">
-        <div class="nav-dropdown">
-          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
-            <span>Campaign Builders</span>
-            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="nav-dropdown-menu" role="menu">
-            <a href="/" class="nav-dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
-            </a>
-            <a href="/utm-builder/google-ads/" class="nav-dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
-              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
-            </a>
-            <a href="/utm-builder/facebook/" class="nav-dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">Meta / Facebook Ads</span>
-              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
-            </a>
-            <a href="/utm-builder/linkedin/" class="nav-dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">LinkedIn Ads</span>
-              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
-            </a>
-            <a href="/bulk-utm-builder/" class="nav-dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">Bulk Matrix Generator</span>
-              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
-            </a>
-          </div>
-        </div>
-        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
-        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
-        <div class="nav-dropdown">
-          <button type="button" class="nav-header-link nav-dropdown-toggle ${activeNav === 'blog' ? 'active' : ''}" aria-expanded="false" aria-haspopup="true">
-            <span>Guides</span>
-            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="nav-dropdown-menu" role="menu">
-            <a href="/blog/" class="nav-dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
-            </a>
-            <a href="/utm-parameters/" class="nav-dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">UTM Parameters Guide</span>
-              <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
-            </a>
-            <a href="/#ga4-taxonomy" class="nav-dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
-              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
-            </a>
-            <a href="/utm-naming-conventions/" class="nav-dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
-              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
-            </a>
-          </div>
-        </div>
-      </nav>
-
-      <div class="header-actions">
-        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
-          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        </button>
-
-        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
-          <span>New Link</span>
-        </a>
-      </div>
-    </div>
-  </header>`;
-}
-
-// Global Site Footer HTML matching UTMCraft design
-function renderFooter() {
-  return `
-  <!-- Editorial SaaS Footer -->
-  <footer class="app-footer">
-    <div class="footer-container">
-      <div class="footer-grid">
-        <div class="footer-col-brand">
-          <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
-            <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
-            <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
-          </a>
-          <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-          <div class="footer-badge">Campaign Data Stays in Your Browser</div>
-          <div class="footer-contact-link" style="margin-top: 0.65rem; font-size: 0.8125rem; color: var(--text-secondary);">Direct Support: <a href="mailto:contact@utmcraft.com" style="color: var(--soft-green); text-decoration: none;">contact@utmcraft.com</a></div>
-        </div>
-
-        <div class="footer-col">
-          <h4 class="footer-heading">Core Builders</h4>
-          <ul class="footer-links">
-            <li><a href="/">Single URL Builder</a></li>
-            <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
-            <li><a href="/utm-checker/">UTM Link Checker</a></li>
-            <li><a href="/utm-builder/google-ads/">Google Ads ValueTrack</a></li>
-            <li><a href="/utm-builder/facebook/">Meta Ads Builder</a></li>
-            <li><a href="/utm-builder/linkedin/">LinkedIn Ads Builder</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4 class="footer-heading">Attribution Guides</h4>
-          <ul class="footer-links">
-            <li><a href="/blog/">All Knowledge Guides</a></li>
-            <li><a href="/utm-strategy-guide/">UTM Strategy Guide</a></li>
-            <li><a href="/ga4-utm-parameters-guide/">GA4 Parameters Guide</a></li>
-            <li><a href="/ga4-utm-troubleshooting-guide/">GA4 Troubleshooting</a></li>
-            <li><a href="/google-ads-utm-guide/">Google Ads Tracking</a></li>
-            <li><a href="/meta-ads-utm-guide/">Meta Ads Tracking</a></li>
-            <li><a href="/linkedin-ads-utm-guide/">LinkedIn Ads Tracking</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4 class="footer-heading">Taxonomy Clusters</h4>
-          <ul class="footer-links">
-            <li><a href="/blog/utm-strategy/">Strategy &amp; Governance</a></li>
-            <li><a href="/blog/ga4-attribution/">GA4 Diagnostics</a></li>
-            <li><a href="/blog/email-tracking/">Email Attribution</a></li>
-            <li><a href="/blog/organic-social-pr/">Non-Paid &amp; PR</a></li>
-            <li><a href="/blog/offline-qr/">Offline &amp; QR Codes</a></li>
-            <li><a href="/blog/utm-operations/">UTM Operations &amp; CRM</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4 class="footer-heading">Company &amp; Trust</h4>
-          <ul class="footer-links">
-            <li><a href="/about/">About Us</a></li>
-            <li><a href="/contact/">Contact Us</a></li>
-            <li><a href="/terms.html">Terms and Conditions</a></li>
-            <li><a href="/privacy.html">Privacy Policy</a></li>
-            <li><a href="/sitemap.xml">XML Sitemap</a></li>
-            <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom-row">
-        <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
-        <div class="footer-credit">Made with ❤️ by DJ</div>
-        <div class="footer-legal-links">
-          <a href="/about/">About</a>
-          <span>•</span>
-          <a href="/contact/">Contact</a>
-          <span>•</span>
-          <a href="/privacy.html">Privacy Policy</a>
-          <span>•</span>
-          <a href="/terms.html">Terms &amp; Conditions</a>
-        </div>
-      </div>
-    </div>
-  </footer>`;
 }
 
 // Helper to extract FAQ questions and answers from article HTML
@@ -246,7 +81,7 @@ function renderArticlePage(post) {
           "url": "https://utmcraft.com/",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://utmcraft.com/logo.svg"
+            "url": "https://utmcraft.com/utmcraft-logo-light.png"
           }
         },
         "mainEntityOfPage": canonicalUrl
@@ -363,6 +198,7 @@ function renderArticlePage(post) {
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
+  <script type="module" src="/src/theme.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeAttr(post.seoTitle)}</title>
   <meta name="description" content="${escapeAttr(post.description)}">
@@ -574,6 +410,7 @@ function renderCategoryPage(category) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeAttr(category.name)} Guides &amp; Taxonomy | UTMCraft</title>
+  <script type="module" src="/src/theme.js"></script>
   <meta name="description" content="${escapeAttr(category.description)}">
   <link rel="canonical" href="${canonicalUrl}">
   <meta name="robots" content="index, follow">
@@ -737,6 +574,7 @@ function renderBlogIndexPage() {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Campaign Tracking, Taxonomy &amp; GA4 Attribution Guides | UTMCraft</title>
+  <script type="module" src="/src/theme.js"></script>
   <meta name="description" content="In-depth guides on UTM parameters, campaign naming taxonomy, GA4 attribution, Google Ads ValueTrack, Meta dynamic tracking, and marketing measurement.">
   <link rel="canonical" href="${canonicalUrl}">
   <meta name="robots" content="index, follow">

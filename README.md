@@ -112,3 +112,7 @@ utm-builder/
 └── tests/
     └── utm.test.js          # Unit test suite
 ```
+
+## Shared header and footer
+
+Edit `src/layout/header.partial`, `footer.partial`, and the two action partials to change the site-wide layout. The blog generator uses these same files. `npm run dev` and `npm run build` synchronize the static HTML pages; run `npm run check:layout` to confirm every content page matches. The redirect at `blog/posts/index.html` intentionally has no site layout.

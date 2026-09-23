@@ -6,7 +6,7 @@
   <script type="module" src="/src/theme.js"></script>
   <title>Privacy Policy | UTMCraft - Private Client-Side UTM Generator</title>
   <meta name="description" content="Read how UTMCraft keeps campaign inputs in your browser, uses local storage, and handles optional third-party URL shortening.">
-  <meta name="keywords" content="UTMCraft privacy policy, private UTM builder, client-side UTM generator, zero tracking analytics, GDPR compliant UTM builder, privacy-first link tracking">
+  <meta name="keywords" content="UTMCraft privacy policy, client-side UTM generator, campaign data privacy, website analytics">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#FCFCFB">
   <link rel="canonical" href="https://utmcraft.com/privacy.html">
@@ -72,12 +72,12 @@
   <!-- Minimal Top Navigation -->
   <header class="app-header">
     <div class="header-inner">
-      <a href="/" class="brand-group" style="text-decoration: none;">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
         <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
         <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
       </a>
 
-      <nav class="header-nav" aria-label="Main Navigation">
+      <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
         <div class="nav-dropdown">
           <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
             <span>Campaign Builders</span>
@@ -122,7 +122,7 @@
               <span class="dropdown-item-title">UTM Parameters Guide</span>
               <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
             </a>
-            <a href="/#ga4-taxonomy" class="nav-dropdown-item" role="menuitem">
+            <a id="nav-taxonomy" href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item" role="menuitem">
               <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
               <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
             </a>
@@ -135,21 +135,21 @@
       </nav>
 
       <div class="header-actions">
-        <a href="/" class="btn-text-action" style="text-decoration: none;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-          <span>Back to Builder</span>
-        </a>
-
         <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
           <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
           <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
         </button>
 
         <a href="/" class="btn-primary-cta" style="text-decoration: none;">
-          <span>Open UTM Builder</span>
+          <span>New Link</span>
         </a>
       </div>
+      <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
     </div>
+    <script type="module" src="/src/site.js"></script>
   </header>
 
   <!-- Legal Content Container -->
@@ -163,18 +163,18 @@
 
       <div class="legal-section">
         <h2>1. Privacy by Architecture</h2>
-        <p>At UTMCraft, privacy is not an afterthought or a compliance checkbox; it is our core engineering design. Unlike traditional marketing tools that require user accounts, track your campaigns, or upload your proprietary URLs to remote database clusters, <strong>UTMCraft operates 100% in your local web browser</strong>.</p>
+        <p>UTMCraft builds and checks campaign URLs in your browser. We do not require an account or upload the campaign fields you enter to an application database. We use Google Analytics 4 to measure visits to this website, as described below.</p>
         <p>All URL parsing, parameter concatenation, GA4 taxonomy checks, CSV exports, and QR code rendering execute exclusively on your computer or mobile device using modern Web Standards and Web APIs.</p>
       </div>
 
       <div class="legal-section">
-        <h2>2. Information We Do NOT Collect</h2>
+        <h2>2. Campaign Data and Website Analytics</h2>
         <p>When using UTMCraft:</p>
         <ul class="legal-list">
           <li><strong>No Campaign Database:</strong> Campaign inputs are processed locally and are not stored in a UTMCraft account or application database.</li>
-          <li><strong>No Accounts or Advertising Analytics:</strong> We do not ask for names, email addresses, company names, or payment details, and we do not load advertising or analytics trackers.</li>
+          <li><strong>Website Analytics:</strong> Google Analytics 4 measures page views and traffic sources across the website. Google may receive the page URL, referral, device and browser information, approximate location, and cookie or similar identifiers. Campaign parameters in the page URL may be included in this measurement.</li>
           <li><strong>No User Profiles:</strong> There are no user accounts, passwords, or cloud databases tracking your workflow.</li>
-          <li><strong>No Cross-Site Advertising Beacons:</strong> We do not embed third-party advertising cookies, retargeting pixels (such as Meta Pixel or TikTok Pixel), or biometric trackers on this website.</li>
+          <li><strong>No Retargeting Pixels:</strong> We do not embed Meta Pixel, TikTok Pixel, or other separate advertising retargeting pixels.</li>
         </ul>
       </div>
 
@@ -187,7 +187,7 @@
           <li><code>utmc_history_v2</code>: Keeps a local record of URLs you generated or bookmarked, allowing you to search and export them to CSV.</li>
           <li><code>utmc_destination_url</code>: Remembers the most recently entered destination URL across pages and future visits on this browser.</li>
         </ul>
-        <p>This data stays in this browser. Clear the destination field to remove its saved URL, or clear your browser storage to remove all saved settings and history.</p>
+        <p>These application settings stay in this browser. Google Analytics may separately use cookies or similar browser storage for traffic measurement. Clear the destination field to remove its saved URL, or clear your browser storage to remove saved settings and history.</p>
       </div>
 
       <div class="legal-section">
@@ -205,8 +205,8 @@
         <p>UTMCraft minimizes application-level data collection, but legal compliance depends on your jurisdiction and how you use generated URLs:</p>
         <ul class="legal-list">
           <li><strong>Hosting:</strong> Our hosting provider may process standard request metadata, such as IP addresses and access logs, to deliver and secure the website.</li>
-          <li><strong>Third Parties:</strong> Google Fonts is requested for typography, and optional shortening providers process URLs only when you choose the Shorten action.</li>
-          <li><strong>Right to Erasure:</strong> Because data is stored in your own browser's local storage, clearing your browser cache immediately and permanently erases all records.</li>
+          <li><strong>Third Parties:</strong> Google Analytics processes website traffic data, Google Fonts is requested for typography, and optional shortening providers process URLs only when you choose the Shorten action.</li>
+          <li><strong>Local Data:</strong> Clearing your browser storage removes locally saved settings and history. It does not erase analytics data already received by Google.</li>
         </ul>
       </div>
 
@@ -224,75 +224,76 @@
 
   <!-- Editorial Footer -->
   <footer class="app-footer">
-    <div class="footer-container">
-      <div class="footer-grid">
-        <div class="footer-col-brand">
-          <a href="/" class="brand-group" style="margin-bottom: 0.5rem; text-decoration: none;">
-        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
-        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
-      </a>
-          <p class="footer-desc">A privacy-focused UTM campaign URL builder and GA4 taxonomy toolkit that keeps core campaign processing in your browser.</p>
-          <div class="footer-badge">Campaign Data Stays in Your Browser</div>
-          <div class="footer-contact-link" style="margin-top: 0.65rem; font-size: 0.8125rem; color: var(--text-secondary);">Direct Support: <a href="mailto:contact@utmcraft.com" style="color: var(--soft-green); text-decoration: none;">contact@utmcraft.com</a></div>
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+              <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+              <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+            </a>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <div class="footer-contact-link" style="margin-top: 0.65rem; font-size: 0.8125rem; color: var(--text-secondary);">Direct Support: <a href="mailto:contact@utmcraft.com" style="color: var(--soft-green); text-decoration: none;">contact@utmcraft.com</a></div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Core Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+              <li><a href="/#campaign-history" data-switch-tab="tab-history">Campaign History</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Platform Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <ul class="footer-links">
+              <li><a href="/blog/">All Knowledge Guides</a></li>
+              <li><a href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy">GA4 Channel Taxonomy</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <ul class="footer-links">
+              <li><a href="/about/">About Us</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/terms.html">Terms and Conditions</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+            </ul>
+          </div>
         </div>
 
-        <div class="footer-col">
-          <h4 class="footer-heading">Core Builders</h4>
-          <ul class="footer-links">
-            <li><a href="/">Single URL Builder</a></li>
-            <li><a href="/">Campaign URL Builder</a></li>
-            <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
-            <li><a href="/utm-checker/">UTM Link Checker</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4 class="footer-heading">Platform Builders</h4>
-          <ul class="footer-links">
-            <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
-            <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
-            <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
-          <ul class="footer-links">
-            <li><a href="/blog/">All Knowledge Guides</a></li>
-            <li><a href="/#ga4-taxonomy">GA4 Channel Taxonomy</a></li>
-            <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
-            <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4 class="footer-heading">Company &amp; Trust</h4>
-          <ul class="footer-links">
-            <li><a href="/about/">About Us</a></li>
-            <li><a href="/contact/">Contact Us</a></li>
-            <li><a href="/terms.html">Terms and Conditions</a></li>
-            <li><a href="/privacy.html">Privacy Policy</a></li>
-            <li><a href="/sitemap.xml">XML Sitemap</a></li>
-            <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
-          </ul>
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by DJ</div>
+          <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
         </div>
       </div>
-
-      <div class="footer-bottom-row">
-        <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
-        <div class="footer-credit">Made with ❤️ by DJ</div>
-        <div class="footer-legal-links">
-          <a href="/about/">About</a>
-          <span>•</span>
-          <a href="/contact/">Contact</a>
-          <span>•</span>
-          <a href="/privacy.html">Privacy Policy</a>
-          <span>•</span>
-          <a href="/terms.html">Terms &amp; Conditions</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>

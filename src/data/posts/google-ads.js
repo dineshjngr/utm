@@ -298,8 +298,7 @@ export const googleAdsPosts = [
     tableOfContents: [
       { id: 'the-anatomy-of-gclid', title: 'The Anatomy of a GCLID', level: 2 },
       { id: 'privacy-restrictions-itp', title: 'Browser Privacy Restrictions: WebKit ITP & Link Decoration', level: 2 },
-      { id: 'data-durability-comparison', title: 'Data Durability & Offline Conversion Imports', level: 2 },
-      { id: 'the-durable-tracking-architecture', title: 'The Privacy-Durable Tracking Architecture', level: 2 }
+      { id: 'data-durability-comparison', title: 'Data Durability & Offline Conversion Imports', level: 2 }
     ],
     toolCta: {
       title: 'Inspect GCLID and UTM Parameters',

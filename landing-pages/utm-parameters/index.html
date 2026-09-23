@@ -113,7 +113,7 @@
         <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
       </a>
 
-      <nav class="header-nav" aria-label="Main Navigation">
+      <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
         <div class="nav-dropdown">
           <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
             <span>Campaign Builders</span>
@@ -154,11 +154,11 @@
               <span class="dropdown-item-title">All Measurement Guides</span>
               <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
             </a>
-            <a href="/utm-parameters/" class="nav-dropdown-item active" role="menuitem">
+            <a href="/utm-parameters/" class="nav-dropdown-item" role="menuitem">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
               <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
             </a>
-            <a href="/#ga4-taxonomy" class="nav-dropdown-item" role="menuitem">
+            <a id="nav-taxonomy" href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item" role="menuitem">
               <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
               <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
             </a>
@@ -185,7 +185,12 @@
           <span>New Link</span>
         </button>
       </div>
+      <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
     </div>
+    <script type="module" src="/src/site.js"></script>
   </header>
 
   <!-- Main Grid Workspace Container -->
@@ -529,9 +534,9 @@
         <div class="footer-grid">
           <div class="footer-col-brand">
             <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
-        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
-        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
-      </a>
+              <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+              <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+            </a>
             <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
             <div class="footer-badge">Campaign Data Stays in Your Browser</div>
             <div class="footer-contact-link" style="margin-top: 0.65rem; font-size: 0.8125rem; color: var(--text-secondary);">Direct Support: <a href="mailto:contact@utmcraft.com" style="color: var(--soft-green); text-decoration: none;">contact@utmcraft.com</a></div>
@@ -541,9 +546,10 @@
             <h4 class="footer-heading">Core Builders</h4>
             <ul class="footer-links">
               <li><a href="/">Single URL Builder</a></li>
-              <li><a href="/">Campaign URL Builder</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
+              <li><a href="/#campaign-history" data-switch-tab="tab-history">Campaign History</a></li>
             </ul>
           </div>
 
@@ -559,7 +565,8 @@
           <div class="footer-col">
             <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
             <ul class="footer-links">
-              <li><a href="/#ga4-taxonomy">GA4 Channel Taxonomy</a></li>
+              <li><a href="/blog/">All Knowledge Guides</a></li>
+              <li><a href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy">GA4 Channel Taxonomy</a></li>
               <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
               <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
             </ul>

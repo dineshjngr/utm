@@ -354,8 +354,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
     tableOfContents: [
       { id: 'the-agency-tracking-problem', title: 'The Multi-Client Attribution Dilemma', level: 2 },
       { id: 'governance-framework', title: 'The 4-Part Agency Tracking Governance Framework', level: 2 },
-      { id: 'client-onboarding-sop', title: 'Client Onboarding Tracking Audit Checklist', level: 2 },
-      { id: 'sla-and-qa-gates', title: 'Pre-Launch QA Gates and Quality SLAs', level: 2 }
+      { id: 'client-onboarding-sop', title: 'Client Onboarding Tracking Audit Checklist', level: 2 }
     ],
     toolCta: {
       title: 'Equip Your Agency Media Teams',
@@ -431,8 +430,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
     tableOfContents: [
       { id: 'why-qa-matters', title: 'Why Pre-Launch QA Saves Five-Figure Ad Budgets', level: 2 },
       { id: 'the-16-point-checklist', title: 'The 16-Point Pre-Launch QA Checklist', level: 2 },
-      { id: 'browser-testing-procedure', title: 'Step-by-Step Live Browser Testing Procedure', level: 2 },
-      { id: 'ga4-debugview-verification', title: 'Verifying in GA4 Realtime and DebugView', level: 2 }
+      { id: 'browser-testing-procedure', title: 'Step-by-Step Live Browser Testing Procedure', level: 2 }
     ],
     toolCta: {
       title: 'Inspect Your URLs in Seconds',

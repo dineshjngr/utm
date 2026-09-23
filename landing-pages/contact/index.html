@@ -83,7 +83,7 @@
         <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
       </a>
 
-      <nav class="header-nav" aria-label="Main Navigation">
+      <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
         <div class="nav-dropdown">
           <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
             <span>Campaign Builders</span>
@@ -128,7 +128,7 @@
               <span class="dropdown-item-title">UTM Parameters Guide</span>
               <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
             </a>
-            <a href="/#ga4-taxonomy" class="nav-dropdown-item" role="menuitem">
+            <a id="nav-taxonomy" href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item" role="menuitem">
               <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
               <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
             </a>
@@ -150,7 +150,12 @@
           <span>New Link</span>
         </a>
       </div>
+      <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
     </div>
+    <script type="module" src="/src/site.js"></script>
   </header>
 
   <div class="app-container">
@@ -288,24 +293,29 @@
             <h4 class="footer-heading">Core Builders</h4>
             <ul class="footer-links">
               <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
-              <li><a href="/utm-builder/google-ads/">Google Ads ValueTrack</a></li>
-              <li><a href="/utm-builder/facebook/">Meta Ads Builder</a></li>
-              <li><a href="/utm-builder/linkedin/">LinkedIn Ads Builder</a></li>
+              <li><a href="/#campaign-history" data-switch-tab="tab-history">Campaign History</a></li>
             </ul>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Attribution Guides</h4>
+            <h4 class="footer-heading">Platform Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
-              <li><a href="/utm-strategy-guide/">UTM Strategy Guide</a></li>
-              <li><a href="/ga4-utm-parameters-guide/">GA4 Parameters Guide</a></li>
-              <li><a href="/ga4-utm-troubleshooting-guide/">GA4 Troubleshooting</a></li>
-              <li><a href="/google-ads-utm-guide/">Google Ads Tracking</a></li>
-              <li><a href="/meta-ads-utm-guide/">Meta Ads Tracking</a></li>
-              <li><a href="/linkedin-ads-utm-guide/">LinkedIn Ads Tracking</a></li>
+              <li><a href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy">GA4 Channel Taxonomy</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
             </ul>
           </div>
 
@@ -326,11 +336,13 @@
           <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
           <div class="footer-credit">Made with ❤️ by DJ</div>
           <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
             <a href="/privacy.html">Privacy Policy</a>
             <span>•</span>
             <a href="/terms.html">Terms &amp; Conditions</a>
-            <span>•</span>
-            <a href="/contact/">Contact</a>
           </div>
         </div>
       </div>

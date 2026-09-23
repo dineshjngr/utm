@@ -1,19 +1,18 @@
 {
   "name": "utm-builder",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "type": "module",
   "scripts": {
+    "predev": "node scripts/sync-layout.js",
     "dev": "vite",
-    "prebuild": "node scripts/generate-assets.js && node scripts/build-blog.js",
+    "prebuild": "node scripts/generate-assets.js && node scripts/build-blog.js && node scripts/sync-layout.js && node scripts/generate-redirects.js",
     "build": "vite build",
+    "check:layout": "node scripts/sync-layout.js --check",
     "preview": "vite preview",
     "test": "node --test tests/**/*.js",
     "deploy": "wrangler deploy"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "qrcode": "^1.5.4"

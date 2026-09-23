@@ -425,6 +425,27 @@ button, input, select, textarea {
   gap: 0.5rem;
 }
 
+.mobile-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 36px;
+  padding: 6px 10px;
+  color: var(--text-main);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+}
+
+.mobile-menu-toggle:focus-visible,
+.nav-header-link:focus-visible,
+.nav-dropdown-item:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
 .btn-text-action {
   background: transparent;
   border: none;
@@ -501,6 +522,36 @@ button, input, select, textarea {
   flex-direction: column;
   gap: 12px;
   margin-bottom: 20px;
+}
+
+.workspace-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.history-utility-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.history-utility-link:hover {
+  color: var(--text-main);
+  border-color: var(--border-hover);
+}
+
+.history-utility-link .tab-badge {
+  background: var(--bg-hover);
+  color: var(--text-secondary);
 }
 
 .workspace-title-group {
@@ -3069,8 +3120,69 @@ button, input, select, textarea {
    Responsive Breakpoints
    ========================================================= */
 @media (max-width: 1024px) {
+  .header-inner {
+    position: relative;
+    gap: 0.75rem;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+  }
+
   .header-nav {
     display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 18px;
+    right: 18px;
+    z-index: 1001;
+    max-height: calc(100dvh - 72px);
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-pop);
+  }
+
+  .header-nav.mobile-open {
+    display: flex;
+  }
+
+  .header-nav .nav-dropdown,
+  .header-nav .nav-dropdown-toggle,
+  .header-nav > .nav-header-link {
+    width: 100%;
+  }
+
+  .header-nav .nav-header-link {
+    padding: 10px 12px;
+  }
+
+  .header-nav .nav-dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-nav .nav-dropdown-menu {
+    position: static;
+    min-width: 0;
+    margin: 0 0 4px;
+    box-shadow: none;
+    border-color: var(--border-section);
+  }
+
+  .header-nav .nav-dropdown:hover .nav-dropdown-menu,
+  .header-nav .nav-dropdown:focus-within .nav-dropdown-menu {
+    display: none;
+  }
+
+  .header-nav .nav-dropdown.is-open .nav-dropdown-menu {
+    display: flex;
   }
 
   .builder-layout {
@@ -3093,6 +3205,11 @@ button, input, select, textarea {
 }
 
 @media (max-width: 768px) {
+  .workspace-heading-row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
   .header-inner {
     padding: 0 18px;
   }
@@ -3182,6 +3299,17 @@ button, input, select, textarea {
 }
 
 @media (max-width: 480px) {
+  .header-actions .btn-primary-cta,
+  .header-actions #btn-shortcuts,
+  .mobile-menu-toggle span {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    width: 36px;
+    padding: 6px;
+  }
+
   .secondary-actions-row {
     display: grid;
     grid-template-columns: 1fr 1fr;

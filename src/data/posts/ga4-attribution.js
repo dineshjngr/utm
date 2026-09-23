@@ -583,8 +583,7 @@ RewriteRule ^signup$ /signup/ [R=301,L,QSA]</code></pre>
       { id: 'why-test-before-spending', title: 'Why You Must Test Before Spending Ad Dollars', level: 2 },
       { id: 'the-debugview-method', title: 'Method 1: Testing with GA4 DebugView (Recommended)', level: 2 },
       { id: 'the-realtime-method', title: 'Method 2: Testing with GA4 Realtime Reports', level: 2 },
-      { id: 'browser-devtools-inspection', title: 'Method 3: Inspecting Network Payloads in Chrome DevTools', level: 2 },
-      { id: 'qa-signoff-criteria', title: 'QA Sign-off Criteria for Media Teams', level: 2 }
+      { id: 'browser-devtools-inspection', title: 'Method 3: Inspecting Network Payloads in Chrome DevTools', level: 2 }
     ],
     toolCta: {
       title: 'Pre-Validate Tracking Parameters',
