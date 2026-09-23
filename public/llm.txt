@@ -1,0 +1,32 @@
+# UTMCraft
+
+> Free, browser-based tools and practical guides for building, auditing, and managing UTM campaign URLs for Google Analytics 4.
+
+Canonical site: https://utmcraft.com/
+
+## Tools
+
+- [UTMCraft UTM Builder](https://utmcraft.com/): Build campaign URLs, inspect UTM parameters, create QR codes, and manage campaign links in the browser.
+- [Bulk UTM Builder](https://utmcraft.com/bulk-utm-builder/): Generate campaign URL matrices and export them.
+- [UTM Checker](https://utmcraft.com/utm-checker/): Inspect campaign URLs and check parameter values.
+- [Campaign URL Builder](https://utmcraft.com/campaign-url-builder/): Build and review GA4 campaign URLs.
+- [Google Ads UTM Builder](https://utmcraft.com/utm-builder/google-ads/)
+- [Meta Ads UTM Builder](https://utmcraft.com/utm-builder/facebook/)
+- [LinkedIn Ads UTM Builder](https://utmcraft.com/utm-builder/linkedin/)
+
+## Guides
+
+- [Guides index](https://utmcraft.com/blog/): Articles about UTM parameters, campaign taxonomy, GA4 attribution, advertising tracking, email, QR codes, and measurement workflows.
+- [UTM parameters reference](https://utmcraft.com/utm-parameters/)
+- [UTM naming conventions](https://utmcraft.com/utm-naming-conventions/)
+- [UTM strategy guide](https://utmcraft.com/utm-strategy-guide/)
+
+## About
+
+- [About UTMCraft](https://utmcraft.com/about/)
+- [Contact](https://utmcraft.com/contact/)
+- [Privacy policy](https://utmcraft.com/privacy.html)
+- [Terms](https://utmcraft.com/terms.html)
+- [XML sitemap](https://utmcraft.com/sitemap.xml)
+
+Use each linked page as the source for its own details. Tool output depends on the values entered by the user; verify campaign conventions against the destination analytics platform and advertising network.

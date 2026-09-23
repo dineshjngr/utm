@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Article source files duplicate the canonical flat article routes.
+Disallow: /blog/posts/
+
 Sitemap: https://utmcraft.com/sitemap.xml

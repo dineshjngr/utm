@@ -392,7 +392,7 @@ function renderArticlePage(post) {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/styles.css">
   <link rel="stylesheet" href="/src/blog.css">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
 
   <!-- Structured Data JSON-LD -->
   <script type="application/ld+json">
@@ -597,7 +597,7 @@ function renderCategoryPage(category) {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/styles.css">
   <link rel="stylesheet" href="/src/blog.css">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
 
   <script type="application/ld+json">
   ${JSON.stringify(jsonLd, null, 2)}
@@ -760,7 +760,7 @@ function renderBlogIndexPage() {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/styles.css">
   <link rel="stylesheet" href="/src/blog.css">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
 
   <script type="application/ld+json">
   ${JSON.stringify(jsonLd, null, 2)}
@@ -882,8 +882,7 @@ function updateSitemap() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allUrls.map(u => `  <url>
     <loc>${u.loc}</loc>
-    <lastmod>${u.lastmod || now}</lastmod>
-    <changefreq>${u.changefreq}</changefreq>
+${u.lastmod ? `    <lastmod>${u.lastmod}</lastmod>\n` : ''}    <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`).join('\n')}
 </urlset>
