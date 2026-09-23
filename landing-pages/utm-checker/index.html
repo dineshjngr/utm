@@ -111,28 +111,28 @@
 
       <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
         <div class="nav-dropdown">
-          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-controls="builder-nav-options">
             <span>Campaign Builders</span>
             <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="nav-dropdown-menu" role="menu">
-            <a href="/" class="nav-dropdown-item" role="menuitem">
+          <div id="builder-nav-options" class="nav-dropdown-menu">
+            <a href="/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Standard Campaign Builder</span>
               <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
             </a>
-            <a href="/utm-builder/google-ads/" class="nav-dropdown-item" role="menuitem">
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
               <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
             </a>
-            <a href="/utm-builder/facebook/" class="nav-dropdown-item" role="menuitem">
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Meta / Facebook Ads</span>
               <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
             </a>
-            <a href="/utm-builder/linkedin/" class="nav-dropdown-item" role="menuitem">
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item">
               <span class="dropdown-item-title">LinkedIn Ads</span>
               <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
             </a>
-            <a href="/bulk-utm-builder/" class="nav-dropdown-item" role="menuitem">
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Bulk Matrix Generator</span>
               <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
             </a>
@@ -141,24 +141,24 @@
         <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
         <a href="/utm-checker/" class="nav-header-link active">UTM Checker</a>
         <div class="nav-dropdown">
-          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-controls="guide-nav-options">
             <span>Guides</span>
             <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="nav-dropdown-menu" role="menu">
-            <a href="/blog/" class="nav-dropdown-item" role="menuitem">
+          <div id="guide-nav-options" class="nav-dropdown-menu">
+            <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
               <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
             </a>
-            <a href="/utm-parameters/" class="nav-dropdown-item" role="menuitem">
+            <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
               <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
             </a>
-            <a id="nav-taxonomy" href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item" role="menuitem">
+            <a id="nav-taxonomy" href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item">
               <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
               <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
             </a>
-            <a href="/utm-naming-conventions/" class="nav-dropdown-item" role="menuitem">
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
               <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
             </a>
@@ -167,7 +167,7 @@
       </nav>
 
       <div class="header-actions">
-        <button type="button" id="btn-shortcuts" class="btn-text-action" title="Keyboard Shortcuts (Press ?)">
+        <button type="button" id="btn-shortcuts" class="btn-text-action" title="Keyboard Shortcuts (Press ?)" aria-label="Keyboard shortcuts">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
           <span>Shortcuts</span>
         </button>
@@ -389,7 +389,7 @@
             </a>
             <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
             <div class="footer-badge">Campaign Data Stays in Your Browser</div>
-            <div class="footer-contact-link" style="margin-top: 0.65rem; font-size: 0.8125rem; color: var(--text-secondary);">Direct Support: <a href="mailto:contact@utmcraft.com" style="color: var(--soft-green); text-decoration: none;">contact@utmcraft.com</a></div>
+            <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">

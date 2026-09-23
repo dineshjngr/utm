@@ -1970,58 +1970,6 @@ function initModals() {
 }
 
 // =========================================================
-// HEADER DROPDOWN NAVIGATION
-// =========================================================
-function initHeaderDropdowns() {
-  const dropdowns = document.querySelectorAll('.nav-dropdown');
-  dropdowns.forEach(dropdown => {
-    const toggleBtn = dropdown.querySelector('.nav-dropdown-toggle');
-    const menu = dropdown.querySelector('.nav-dropdown-menu');
-    if (!toggleBtn) return;
-
-    toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const willBeOpen = !dropdown.classList.contains('is-open');
-      dropdowns.forEach(other => {
-        if (other !== dropdown) {
-          other.classList.remove('is-open');
-          const otherBtn = other.querySelector('.nav-dropdown-toggle');
-          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
-        }
-      });
-      dropdown.classList.toggle('is-open', willBeOpen);
-      toggleBtn.setAttribute('aria-expanded', willBeOpen ? 'true' : 'false');
-    });
-
-    // Close on click outside
-    document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove('is-open');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        dropdown.classList.remove('is-open');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Close dropdown when an item inside it is clicked
-    if (menu) {
-      menu.querySelectorAll('.nav-dropdown-item').forEach(item => {
-        item.addEventListener('click', () => {
-          dropdown.classList.remove('is-open');
-          toggleBtn.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }
-  });
-}
-
-// =========================================================
 // FOOTER & QUICK-NAV LINK CONTROLLER
 // =========================================================
 function initFooterNavigation() {
@@ -2104,7 +2052,6 @@ function initMacroChips() {
 function initApp() {
   applyPageOverrides();
   initTheme();
-  initHeaderDropdowns();
   initTabs();
   initSingleBuilder();
   initBatchGenerator();

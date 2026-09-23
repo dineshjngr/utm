@@ -8,7 +8,7 @@
             </a>
             <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
             <div class="footer-badge">Campaign Data Stays in Your Browser</div>
-            <div class="footer-contact-link" style="margin-top: 0.65rem; font-size: 0.8125rem; color: var(--text-secondary);">Direct Support: <a href="mailto:contact@utmcraft.com" style="color: var(--soft-green); text-decoration: none;">contact@utmcraft.com</a></div>
+            <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">

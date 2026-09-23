@@ -116,7 +116,7 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
   background: var(--bg-accent-soft);
-  color: var(--soft-green);
+  color: var(--accent-text);
   border: 1px solid var(--border-hover);
   text-decoration: none;
   transition: all 0.15s ease;
@@ -124,7 +124,7 @@
 
 .article-category-badge:hover {
   background: var(--bg-hover);
-  border-color: var(--soft-green);
+  border-color: var(--accent-text);
 }
 
 .article-reading-time,
@@ -172,7 +172,7 @@
 }
 
 .article-freshness-bar svg {
-  color: var(--soft-green);
+  color: var(--accent-text);
 }
 
 /* Article Hero Banner */
@@ -311,7 +311,7 @@
 }
 
 .article-prose a {
-  color: var(--soft-green);
+  color: var(--accent-text);
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color 0.15s ease;
@@ -1044,7 +1044,7 @@ details.article-faq-item > p {
 }
 
 .references-list a:hover {
-  color: var(--soft-green);
+  color: var(--accent-text);
   text-decoration: underline;
 }
 
@@ -1074,7 +1074,7 @@ details.article-faq-item > p {
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border-hover);
-  color: var(--soft-green);
+  color: var(--accent-text);
   flex-shrink: 0;
 }
 
@@ -1168,9 +1168,9 @@ details.article-faq-item > p {
 }
 
 .toc-link.active {
-  color: var(--soft-green);
+  color: var(--accent-text);
   font-weight: 600;
-  border-left-color: var(--soft-green);
+  border-left-color: var(--accent-text);
 }
 
 /* =========================================================
@@ -1245,7 +1245,7 @@ details.article-faq-item > p {
 [data-theme="dark"] .category-pill-btn.active {
   background: var(--soft-green);
   color: #0F1518;
-  border-color: var(--soft-green);
+  border-color: var(--accent-text);
 }
 
 /* Instant Client-Side Search Input */
@@ -1336,7 +1336,7 @@ details.article-faq-item > p {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   background: var(--bg-accent-soft);
-  color: var(--soft-green);
+  color: var(--accent-text);
   margin-bottom: 0.75rem;
 }
 
@@ -1511,7 +1511,7 @@ details.article-faq-item > p {
 }
 
 .post-card-footer > :first-child {
-  color: var(--soft-green);
+  color: var(--accent-text);
   font-weight: 600;
   display: inline-flex;
   align-items: center;
