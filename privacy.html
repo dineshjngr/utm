@@ -1,41 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-50Y9TRD8EH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-50Y9TRD8EH');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    (function() {
-      try {
-        var saved = localStorage.getItem('utmc_theme');
-        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = saved || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
-      } catch (e) {}
-    })();
-  </script>
+  <script type="module" src="/src/theme.js"></script>
   <title>Privacy Policy | UTMCraft - Private Client-Side UTM Generator</title>
-  <meta name="description" content="Read UTMCraft's privacy policy. Learn why our 100% client-side UTM builder collects zero personal data, stores zero links on servers, and sets zero tracking cookies.">
+  <meta name="description" content="Read how UTMCraft keeps campaign inputs in your browser, uses local storage, and handles optional third-party URL shortening.">
   <meta name="keywords" content="UTMCraft privacy policy, private UTM builder, client-side UTM generator, zero tracking analytics, GDPR compliant UTM builder, privacy-first link tracking">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#FCFCFB">
-  <link rel="canonical" href="https://utm.workers.dev/privacy.html">
+  <link rel="canonical" href="https://utmcraft.com/privacy.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="UTMCraft">
   <meta property="og:title" content="Privacy Policy | UTMCraft">
-  <meta property="og:description" content="Our commitment to privacy: UTMCraft operates 100% in your browser. Zero server tracking, zero cookies, zero data collection.">
-  <meta property="og:url" content="https://utm.workers.dev/privacy.html">
+  <meta property="og:description" content="How UTMCraft keeps campaign inputs local and handles optional third-party URL shortening.">
+  <meta property="og:url" content="https://utmcraft.com/privacy.html">
+  <meta property="og:image" content="https://utmcraft.com/og-image.png">
   <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
   <meta name="twitter:title" content="Privacy Policy | UTMCraft">
-  <meta name="twitter:description" content="Our commitment to privacy: 100% client-side UTM link building. Zero server tracking.">
+  <meta name="twitter:description" content="How UTMCraft keeps campaign inputs local and handles optional third-party URL shortening.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -48,18 +32,19 @@
     "@type": "WebPage",
     "name": "Privacy Policy | UTMCraft",
     "description": "Privacy policy for UTMCraft's client-side UTM campaign generator.",
-    "url": "https://utm.workers.dev/privacy.html",
+    "url": "https://utmcraft.com/privacy.html",
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utm.workers.dev/" },
-        { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://utm.workers.dev/privacy.html" }
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://utmcraft.com/privacy.html" }
       ]
     }
   }
   </script>
 </head>
 <body class="legal-page-body">
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- Minimal Top Navigation -->
   <header class="app-header">
@@ -86,7 +71,7 @@
             <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="nav-dropdown-menu" role="menu">
-            <a href="/campaign-url-builder/" class="nav-dropdown-item" role="menuitem">
+            <a href="/" class="nav-dropdown-item" role="menuitem">
               <span class="dropdown-item-title">Standard Campaign Builder</span>
               <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
             </a>
@@ -138,12 +123,12 @@
   </header>
 
   <!-- Legal Content Container -->
-  <main class="legal-page-container">
+  <main id="main-content" class="legal-page-container">
     <article class="legal-article">
       <div class="legal-header">
         <span class="card-category">DATA PRIVACY</span>
         <h1 class="legal-title">Privacy Policy</h1>
-        <p class="legal-subtitle">Effective Date: September 22, 2026 • Last Updated: September 22, 2026</p>
+        <p class="legal-subtitle">Effective Date: September 22, 2026 • Last Updated: September 23, 2026</p>
       </div>
 
       <div class="legal-section">
@@ -156,8 +141,8 @@
         <h2>2. Information We Do NOT Collect</h2>
         <p>When using UTMCraft:</p>
         <ul class="legal-list">
-          <li><strong>No Campaign URLs:</strong> We never log, view, store, or transmit the destination URLs, marketing campaigns, client domains, or landing pages you enter.</li>
-          <li><strong>No Personal Identifiable Information (PII):</strong> We do not ask for, collect, or store your name, email address, company name, IP address, or payment details.</li>
+          <li><strong>No Campaign Database:</strong> Campaign inputs are processed locally and are not stored in a UTMCraft account or application database.</li>
+          <li><strong>No Accounts or Advertising Analytics:</strong> We do not ask for names, email addresses, company names, or payment details, and we do not load advertising or analytics trackers.</li>
           <li><strong>No User Profiles:</strong> There are no user accounts, passwords, or cloud databases tracking your workflow.</li>
           <li><strong>No Cross-Site Advertising Beacons:</strong> We do not embed third-party advertising cookies, retargeting pixels (such as Meta Pixel or TikTok Pixel), or biometric trackers on this website.</li>
         </ul>
@@ -179,17 +164,17 @@
         <p>UTMCraft includes an optional URL shortening feature. When you explicitly click the <strong>"Shorten"</strong> button:</p>
         <ul class="legal-list">
           <li>The final concatenated UTM URL is sent to a public URL redirection service (e.g. spoo.me, da.gd, or clck.ru) to retrieve an HTTP 301/302 short link.</li>
-          <li>No personal information, credentials, or cookies are attached to this request.</li>
+          <li>The shortening provider receives the complete destination URL and ordinary network metadata such as your IP address. Do not place personal or confidential data in a URL.</li>
           <li>If you prefer complete air-gapped isolation, you can use the standard <strong>"Copy Campaign URL"</strong> button without activating the shortener.</li>
         </ul>
       </div>
 
       <div class="legal-section">
         <h2>5. Compliance with Global Privacy Frameworks (GDPR, CCPA, CPRA)</h2>
-        <p>Because UTMCraft does not collect, sell, share, or monetize personal data, our tool provides native compliance with global data protection frameworks:</p>
+        <p>UTMCraft minimizes application-level data collection, but legal compliance depends on your jurisdiction and how you use generated URLs:</p>
         <ul class="legal-list">
-          <li><strong>GDPR (European Union):</strong> Data minimization is satisfied by design. You retain sole custody of all data generated.</li>
-          <li><strong>CCPA &amp; CPRA (California):</strong> We do not sell or share personal information under any circumstance.</li>
+          <li><strong>Hosting:</strong> Our hosting provider may process standard request metadata, such as IP addresses and access logs, to deliver and secure the website.</li>
+          <li><strong>Third Parties:</strong> Google Fonts is requested for typography, and optional shortening providers process URLs only when you choose the Shorten action.</li>
           <li><strong>Right to Erasure:</strong> Because data is stored in your own browser's local storage, clearing your browser cache immediately and permanently erases all records.</li>
         </ul>
       </div>
@@ -223,15 +208,15 @@
             <span class="brand-title">UTMCraft</span>
             <span class="brand-pill">Studio</span>
           </a>
-          <p class="footer-desc">Free, client-side UTM campaign URL builder and GA4 taxonomy toolkit. 100% private in-browser link generator.</p>
-          <div class="footer-badge">Client-Side Architecture • Zero Tracking Cookies</div>
+          <p class="footer-desc">A privacy-focused UTM campaign URL builder and GA4 taxonomy toolkit that keeps core campaign processing in your browser.</p>
+          <div class="footer-badge">Campaign Data Stays in Your Browser</div>
         </div>
 
         <div class="footer-col">
           <h4 class="footer-heading">Core Builders</h4>
           <ul class="footer-links">
             <li><a href="/">Single URL Builder</a></li>
-            <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+            <li><a href="/">Campaign URL Builder</a></li>
             <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
             <li><a href="/utm-checker/">UTM Link Checker</a></li>
           </ul>

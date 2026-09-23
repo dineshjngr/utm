@@ -146,6 +146,20 @@ test('buildUTMUrl should preserve ad network macro tokens like {keyword} and {{c
   assert.ok(result.url.includes('utm_content={matchtype}'));
 });
 
+test('buildUTMUrl should preserve case-sensitive LinkedIn macro names', () => {
+  const result = buildUTMUrl({
+    baseUrl: 'https://example.com',
+    source: 'LinkedIn',
+    medium: 'Paid_Social',
+    campaign: '{{CAMPAIGN_NAME}}',
+    content: '{{AD_NAME}}_{{AD_ID}}'
+  }, { lowercase: true });
+
+  assert.match(result.url, /utm_campaign=\{\{CAMPAIGN_NAME\}\}/);
+  assert.match(result.url, /utm_content=\{\{AD_NAME\}\}_\{\{AD_ID\}\}/);
+  assert.match(result.url, /utm_source=linkedin/);
+});
+
 test('auditUTM should accurately accept standard GA4 mediums without false warnings', () => {
   const socialAudit = auditUTM({
     baseUrl: 'https://example.com',
@@ -267,5 +281,4 @@ test('history module should preserve shortUrl and export it to CSV', async () =>
   assert.ok(csv.includes('Short URL'));
   assert.ok(csv.includes('"https://da.gd/sm123"'));
 });
-
 

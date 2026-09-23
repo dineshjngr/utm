@@ -1,41 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-50Y9TRD8EH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-50Y9TRD8EH');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    (function() {
-      try {
-        var saved = localStorage.getItem('utmc_theme');
-        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = saved || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
-      } catch (e) {}
-    })();
-  </script>
+  <meta name="google-site-verification" content="FJgtkaAqoPsGWndDkNukcttvTPBkFd41XRuxu1vM3JM">
+  <script type="module" src="/src/theme.js"></script>
   <title>Free UTM Builder &amp; GA4 Campaign URL Generator | UTMCraft</title>
-  <meta name="description" content="Build, audit, and manage GA4-ready UTM campaign tracking URLs in seconds. Free client-side UTM builder, bulk URL matrix generator, link inspector, QR codes, and Google Analytics 4 taxonomy guide.">
+  <meta name="description" content="Build and audit GA4-ready campaign URLs with a free private UTM builder, bulk generator, link inspector, QR codes, and channel taxonomy guide.">
   <meta name="keywords" content="utm builder, ga4 utm builder, campaign url builder, google analytics 4 url generator, utm tracking, utm parameters, bulk utm generator, ga4 channel grouping, utm link generator, url shortener utm, google ads utm, facebook utm builder, qr code utm generator, utm campaign tracking, utm tags">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#FCFCFB">
-  <link rel="canonical" href="https://utm.workers.dev/">
+  <link rel="canonical" href="https://utmcraft.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="UTMCraft">
   <meta property="og:title" content="Free UTM Builder &amp; GA4 Campaign URL Generator | UTMCraft">
-  <meta property="og:description" content="Build clean, GA4-ready UTM campaign URLs, bulk link matrices, QR codes, and audit tracking parameters directly in your browser. 100% private.">
-  <meta property="og:url" content="https://utm.workers.dev/">
+  <meta property="og:description" content="Build clean, GA4-ready campaign URLs, bulk link matrices, QR codes, and audit tracking parameters directly in your browser.">
+  <meta property="og:url" content="https://utmcraft.com/">
+  <meta property="og:image" content="https://utmcraft.com/og-image.png">
   <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
+  <meta name="twitter:url" content="https://utmcraft.com/">
   <meta name="twitter:title" content="Free UTM Builder &amp; GA4 Campaign URL Generator | UTMCraft">
-  <meta name="twitter:description" content="Build clean, GA4-ready UTM campaign URLs, bulk link matrices, QR codes, and audit tracking parameters directly in your browser. 100% private.">
+  <meta name="twitter:description" content="Build clean, GA4-ready campaign URLs, bulk link matrices, QR codes, and audit tracking parameters directly in your browser.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -49,16 +35,11 @@
       {
         "@type": "WebApplication",
         "name": "UTMCraft UTM Builder",
-        "url": "https://utm.workers.dev/",
+        "url": "https://utmcraft.com/",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "All modern web browsers",
         "description": "A client-side browser toolkit for generating, auditing, shortening, and managing GA4 UTM campaign URLs, QR codes, and bulk matrices.",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "128"
-        },
         "featureList": [
           "GA4-ready UTM URL builder",
           "Bulk multi-channel UTM matrix generator",
@@ -142,7 +123,7 @@
             "name": "Why should you never use UTM tracking links on internal site links?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Placing UTM parameters on internal site links (such as navigation menus, hero buttons, or related posts) overrides the original attribution source of the visitor and artificially triggers a new analytics session, causing inaccurate conversion attribution."
+              "text": "Do not use campaign UTMs on internal links. In GA4 they do not start a new session, but mid-session campaign values can affect event-scoped attribution. Use internal-promotion events instead."
             }
           },
           {
@@ -174,7 +155,7 @@
             "name": "Is my campaign data private when using UTMCraft?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, 100%. UTMCraft executes entirely client-side in your web browser. No URLs, campaign names, or customer data are uploaded to or stored on external servers."
+              "text": "Core URL generation and auditing run in your browser, and campaign history stays in local storage. If you use the optional shortener, the generated URL is sent to a public shortening provider."
             }
           },
           {
@@ -192,6 +173,7 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <!-- Thin Minimal Top Navigation (64-72px) -->
   <header class="app-header">
     <div class="header-inner">
@@ -217,7 +199,7 @@
             <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="nav-dropdown-menu" role="menu">
-            <a href="/campaign-url-builder/" class="nav-dropdown-item" role="menuitem">
+            <a href="/" class="nav-dropdown-item" role="menuitem">
               <span class="dropdown-item-title">Standard Campaign Builder</span>
               <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
             </a>
@@ -279,7 +261,7 @@
       </div>
 
       <!-- Navigation tabs directly above tool -->
-      <nav class="nav-tabs" role="tablist" aria-label="Tool Navigation">
+      <nav class="nav-tabs" aria-label="Tool Navigation">
         <a href="/" class="nav-tab active" data-tab="tab-builder">
           <span>Single URL</span>
         </a>
@@ -292,7 +274,7 @@
           <span>UTM Checker</span>
         </a>
 
-        <button type="button" id="nav-taxonomy" class="nav-tab" data-tab="tab-taxonomy" role="tab" aria-selected="false">
+        <button type="button" id="nav-taxonomy" class="nav-tab" data-tab="tab-taxonomy">
           <span>GA4 Taxonomy</span>
         </button>
 
@@ -316,16 +298,16 @@
           <span>Taxonomy SOP</span>
         </a>
 
-        <button type="button" id="nav-history" class="nav-tab" data-tab="tab-history" role="tab" aria-selected="false">
+        <button type="button" id="nav-history" class="nav-tab" data-tab="tab-history">
           <span>History</span>
           <span id="history-counter-badge" class="tab-badge">0</span>
         </button>
       </nav>
     </header>
 
-    <main class="tool-content">
+    <main id="main-content" class="tool-content">
     <!-- TAB 1: SINGLE BUILDER -->
-    <section id="tab-builder" class="tab-pane active" role="tabpanel" aria-labelledby="nav-builder">
+    <section id="tab-builder" class="tab-pane active">
       <div class="builder-layout">
         
         <!-- Left Section: Parameters Form -->
@@ -749,7 +731,7 @@
     </section>
 
     <!-- TAB 2: BULK MATRIX GENERATOR -->
-    <section id="tab-batch" class="tab-pane" role="tabpanel" aria-labelledby="nav-batch" hidden>
+    <section id="tab-batch" class="tab-pane" hidden>
       <div class="card">
         <div class="card-header">
           <div>
@@ -869,7 +851,7 @@
     </section>
 
     <!-- TAB 3: UTM INSPECTOR -->
-    <section id="tab-inspector" class="tab-pane" role="tabpanel" aria-labelledby="nav-inspector" hidden>
+    <section id="tab-inspector" class="tab-pane" hidden>
       <div class="card">
         <div class="card-header">
           <div>
@@ -935,7 +917,7 @@
     </section>
 
     <!-- TAB 4: GA4 TAXONOMY GUIDE -->
-    <section id="tab-taxonomy" class="tab-pane" role="tabpanel" aria-labelledby="nav-taxonomy" hidden>
+    <section id="tab-taxonomy" class="tab-pane" hidden>
       <div id="ga4-taxonomy"></div>
       
       <!-- Featured Visual Card -->
@@ -1034,22 +1016,22 @@
 
           <div class="form-row-2">
             <div>
-              <label class="form-label" style="font-size: 0.8rem;">Product / Offering</label>
+              <label class="form-label" for="formula-product" style="font-size: 0.8rem;">Product / Offering</label>
               <input type="text" id="formula-product" class="form-input" placeholder="e.g. saas, pro, course">
             </div>
             <div>
-              <label class="form-label" style="font-size: 0.8rem;">Objective / Funnel Stage</label>
+              <label class="form-label" for="formula-objective" style="font-size: 0.8rem;">Objective / Funnel Stage</label>
               <input type="text" id="formula-objective" class="form-input" placeholder="e.g. leadgen, retargeting, brand">
             </div>
           </div>
 
           <div class="form-row-2" style="margin-top: 0.75rem;">
             <div>
-              <label class="form-label" style="font-size: 0.8rem;">Target Geography / Audience</label>
+              <label class="form-label" for="formula-geo" style="font-size: 0.8rem;">Target Geography / Audience</label>
               <input type="text" id="formula-geo" class="form-input" placeholder="e.g. us, global, emea">
             </div>
             <div>
-              <label class="form-label" style="font-size: 0.8rem;">Timeframe / Quarter</label>
+              <label class="form-label" for="formula-time" style="font-size: 0.8rem;">Timeframe / Quarter</label>
               <input type="text" id="formula-time" class="form-input" placeholder="e.g. 2025q3, blackfriday">
             </div>
           </div>
@@ -1185,7 +1167,7 @@
     </section>
 
     <!-- TAB 5: HISTORY & BOOKMARKS -->
-    <section id="tab-history" class="tab-pane" role="tabpanel" aria-labelledby="nav-history" hidden>
+    <section id="tab-history" class="tab-pane" hidden>
       <div class="card">
         <div class="card-header">
           <div>
@@ -1305,7 +1287,7 @@
           <details class="faq-item">
             <summary class="faq-summary">Why should you NEVER use UTM tracking on internal website links?</summary>
             <div class="faq-content">
-              <p>Using UTM tags on links within your own domain (for example, placing a UTM link on a homepage slider pointing to your pricing page) immediately resets the analytics session and overwrites the initial campaign attribution. If a customer arrived from a $50 Google Ad and then clicked an internal banner with UTMs, Google Analytics assigns the final purchase to the internal banner, destroying your ad attribution data!</p>
+              <p>Do not use campaign UTMs for links within your own domain. <a href="https://support.google.com/analytics/answer/11242841" target="_blank" rel="noopener noreferrer">Google documents that GA4 does not start a new session</a> when it encounters new campaign values, but those values can be attached to mid-session events and distort event-scoped attribution. Track internal banners with dedicated events such as <code>select_promotion</code> instead.</p>
             </div>
           </details>
         </div>
@@ -1392,15 +1374,15 @@
               <span class="brand-title">UTMCraft</span>
               <span class="brand-pill">Studio</span>
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links with zero server tracking.</p>
-            <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
           </div>
 
           <div class="footer-col">
             <h4 class="footer-heading">Core Builders</h4>
             <ul class="footer-links">
               <li><a href="/" data-switch-tab="tab-builder">Single URL Builder</a></li>
-              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
             </ul>

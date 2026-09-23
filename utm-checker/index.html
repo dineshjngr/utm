@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-50Y9TRD8EH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-50Y9TRD8EH');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UTM Checker & URL Link Validator | UTMCraft</title>
   <meta name="description" content="Audit campaign links before launch. Paste any URL to inspect UTM parameters, test GA4 channel grouping compliance, detect casing errors, and fix broken tags.">
   <meta name="keywords" content="utm checker, utm link checker, utm validator, check utm parameters, url inspector, ga4 utm audit, utm tester, campaign link validator">
-  <link rel="canonical" href="https://utm.workers.dev/utm-checker/">
+  <link rel="canonical" href="https://utmcraft.com/utm-checker/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://utm.workers.dev/utm-checker/">
+  <meta property="og:url" content="https://utmcraft.com/utm-checker/">
   <meta property="og:title" content="UTM Checker & URL Link Validator | UTMCraft">
   <meta property="og:description" content="Audit campaign links before launch. Paste any URL to inspect UTM parameters, test GA4 channel grouping compliance, detect casing errors, and fix broken tags.">
-  <meta property="og:image" content="https://utm.workers.dev/logo.svg">
+  <meta property="og:image" content="https://utmcraft.com/og-image.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://utm.workers.dev/utm-checker/">
+  <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
+  <meta name="twitter:url" content="https://utmcraft.com/utm-checker/">
   <meta name="twitter:title" content="UTM Checker & URL Link Validator | UTMCraft">
   <meta name="twitter:description" content="Audit campaign links before launch. Paste any URL to inspect UTM parameters, test GA4 channel grouping compliance, detect casing errors, and fix broken tags.">
 
@@ -47,7 +39,7 @@
       {
         "@type": "WebApplication",
         "name": "UTM Checker & Link Validator",
-        "url": "https://utm.workers.dev/utm-checker/",
+        "url": "https://utmcraft.com/utm-checker/",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "All modern web browsers",
         "description": "An automated UTM campaign link checker that audits URLs for syntax errors, casing anomalies, and GA4 Default Channel Grouping compliance.",
@@ -62,8 +54,8 @@
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utm.workers.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "UTM Checker", "item": "https://utm.workers.dev/utm-checker/" }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
+          { "@type": "ListItem", "position": 2, "name": "UTM Checker", "item": "https://utmcraft.com/utm-checker/" }
         ]
       },
       {
@@ -82,7 +74,7 @@
             "name": "Can the UTM Checker detect 301 redirect query loss?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. If your destination URL does not match your canonical domain protocol (e.g. http:// vs https:// or non-www vs www), the auditor alerts you that intermediate server redirects may strip your UTM parameters before GA4 records the session."
+              "text": "No. The checker audits the URL you provide entirely in your browser and does not request the destination or follow its redirect chain. Test the final link in a browser to confirm that redirects preserve its query parameters."
             }
           },
           {
@@ -100,6 +92,7 @@
   </script>
 </head>
 <body data-page="utm-checker" data-active-tab="tab-inspector">
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- Thin Minimal Top Navigation (64-72px) -->
   <header class="app-header">
@@ -126,7 +119,7 @@
             <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="nav-dropdown-menu" role="menu">
-            <a href="/campaign-url-builder/" class="nav-dropdown-item" role="menuitem">
+            <a href="/" class="nav-dropdown-item" role="menuitem">
               <span class="dropdown-item-title">Standard Campaign Builder</span>
               <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
             </a>
@@ -196,8 +189,8 @@
 
       
       <!-- Navigation tabs directly above tool -->
-      <nav class="nav-tabs" role="tablist" aria-label="Tool Navigation">
-        <a href="/campaign-url-builder/" class="nav-tab">
+      <nav class="nav-tabs" aria-label="Tool Navigation">
+        <a href="/" class="nav-tab">
           <span>Single URL</span>
         </a>
 
@@ -237,9 +230,9 @@
 
     
     <!-- Core UTM Inspector Tool (High on Page) -->
-    <main class="tool-content">
+    <main id="main-content" class="tool-content">
       <!-- TAB 3: UTM INSPECTOR -->
-      <section id="tab-inspector" class="tab-pane active" role="tabpanel" aria-labelledby="nav-inspector">
+      <section id="tab-inspector" class="tab-pane active">
         <div class="card">
         <div class="card-header">
           <div>
@@ -395,15 +388,15 @@
               <span class="brand-title">UTMCraft</span>
               <span class="brand-pill">Studio</span>
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links with zero server tracking.</p>
-            <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
           </div>
 
           <div class="footer-col">
             <h4 class="footer-heading">Core Builders</h4>
             <ul class="footer-links">
               <li><a href="/">Single URL Builder</a></li>
-              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
             </ul>

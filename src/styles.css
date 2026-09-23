@@ -147,6 +147,23 @@ button, input, select, textarea {
   color: inherit;
 }
 
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 9999;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--dark-accent);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 /* =========================================================
    Thin Minimal Top Navigation (64-72px)
    ========================================================= */
@@ -2867,6 +2884,10 @@ button, input, select, textarea {
    Responsive Breakpoints
    ========================================================= */
 @media (max-width: 1024px) {
+  .header-nav {
+    display: none;
+  }
+
   .builder-layout {
     grid-template-columns: 1fr;
   }
@@ -3296,4 +3317,3 @@ button, input, select, textarea {
   color: var(--soft-green);
   margin-bottom: 0.5rem;
 }
-

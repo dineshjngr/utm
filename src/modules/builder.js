@@ -11,7 +11,12 @@ export function sanitizeValue(value, options = {}) {
   }
 
   if (options.lowercase) {
-    str = str.toLowerCase();
+    // Ad platforms treat macro names as case-sensitive. Lowercase the
+    // surrounding taxonomy while preserving {macro} and {{MACRO}} tokens.
+    str = str
+      .split(/(\{\{.*?\}\}|\{.*?\})/g)
+      .map(part => part.startsWith('{') ? part : part.toLowerCase())
+      .join('');
   }
 
   const spaceReplacer = options.spaceReplacement || '-';

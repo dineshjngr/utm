@@ -280,7 +280,7 @@ export const DOS_AND_DONTS = [
   {
     type: 'dont',
     title: 'NEVER Use UTMs on Internal Site Links',
-    desc: 'Never put UTM tags on banners or links navigating inside your own website. Doing so overrides the original visitor attribution and inflates session counts.'
+    desc: 'Do not use campaign UTMs on links inside your own website. GA4 keeps the current session, but mid-session campaign values can distort event-scoped attribution. Use internal-promotion events instead.'
   },
   {
     type: 'dont',
@@ -312,7 +312,7 @@ export const GOLDEN_RULES = [
   },
   {
     title: '3. Never Use UTMs on Internal Site Links',
-    desc: 'Using UTMs on links within your own domain (e.g. from homepage to pricing) can restart attribution and overwrite the original campaign source in your analytics reports.',
+    desc: 'Using campaign UTMs within your own domain can attach new campaign values to mid-session events and distort event-scoped attribution. Use internal-promotion events instead.',
     severity: 'critical'
   },
   {

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://utm.workers.dev/sitemap.xml
+Sitemap: https://utmcraft.com/sitemap.xml

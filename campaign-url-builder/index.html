@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-50Y9TRD8EH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-50Y9TRD8EH');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Campaign URL Builder for Google Analytics 4 | UTMCraft</title>
-  <meta name="description" content="Free, privacy-first Campaign URL Builder for Google Analytics 4. Generate clean tracking links, audit GA4 channel compliance, shorten URLs, and export QR codes instantly.">
+  <meta name="description" content="Build clean Google Analytics 4 campaign URLs, audit channel naming, shorten links, and export QR codes with a free privacy-first UTM tool.">
   <meta name="keywords" content="campaign url builder, google campaign url builder, ga4 campaign url builder, google analytics url builder, custom url builder, campaign tracking url, utm generator">
-  <link rel="canonical" href="https://utm.workers.dev/campaign-url-builder/">
+  <link rel="canonical" href="https://utmcraft.com/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://utm.workers.dev/campaign-url-builder/">
+  <meta property="og:url" content="https://utmcraft.com/">
   <meta property="og:title" content="Campaign URL Builder for Google Analytics 4 | UTMCraft">
   <meta property="og:description" content="Free, privacy-first Campaign URL Builder for Google Analytics 4. Generate clean tracking links, audit GA4 channel compliance, shorten URLs, and export QR codes instantly.">
-  <meta property="og:image" content="https://utm.workers.dev/logo.svg">
+  <meta property="og:image" content="https://utmcraft.com/og-image.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://utm.workers.dev/campaign-url-builder/">
+  <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
+  <meta name="twitter:url" content="https://utmcraft.com/">
   <meta name="twitter:title" content="Campaign URL Builder for Google Analytics 4 | UTMCraft">
   <meta name="twitter:description" content="Free, privacy-first Campaign URL Builder for Google Analytics 4. Generate clean tracking links, audit GA4 channel compliance, shorten URLs, and export QR codes instantly.">
 
@@ -47,14 +39,14 @@
       {
         "@type": "WebApplication",
         "name": "Campaign URL Builder for Google Analytics 4",
-        "url": "https://utm.workers.dev/campaign-url-builder/",
+        "url": "https://utmcraft.com/",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "All modern web browsers",
         "description": "A privacy-first campaign URL builder designed for Google Analytics 4. Create, audit, and shorten UTM links with real-time channel validation.",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
         "featureList": [
           "GA4 channel grouping compliance validation",
-          "One-click URL shortener with zero tracking",
+          "Optional one-click URL shortener",
           "High-contrast QR code export (PNG & SVG)",
           "Automatic lowercase and hyphen sanitization",
           "Client-side private campaign history"
@@ -63,8 +55,8 @@
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utm.workers.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Campaign URL Builder", "item": "https://utm.workers.dev/campaign-url-builder/" }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Campaign URL Builder", "item": "https://utmcraft.com/" }
         ]
       },
       {
@@ -75,7 +67,7 @@
             "name": "How is this Campaign URL Builder different from Google's official DevSite tool?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "UTMCraft operates 100% client-side without transmitting your links to external servers. It adds live GA4 channel compliance scoring, instant link shortening, vector QR code export, bulk matrix generation, and automatic lowercase sanitization to prevent fractured analytics reporting."
+              "text": "Core URL generation and auditing run in your browser. Optional shortening sends the generated URL to a public shortening provider. The tool also provides GA4 channel scoring, QR export, bulk generation, and lowercase sanitization."
             }
           },
           {
@@ -109,6 +101,7 @@
   </script>
 </head>
 <body data-page="campaign-url-builder" data-default-source="google" data-default-medium="cpc" data-default-campaign="growth_initiative_q4">
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- Thin Minimal Top Navigation (64-72px) -->
   <header class="app-header">
@@ -135,7 +128,7 @@
             <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="nav-dropdown-menu" role="menu">
-            <a href="/campaign-url-builder/" class="nav-dropdown-item active" role="menuitem">
+            <a href="/" class="nav-dropdown-item active" role="menuitem">
               <span class="dropdown-item-title">Standard Campaign Builder</span>
               <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
             </a>
@@ -205,8 +198,8 @@
 
       
       <!-- Navigation tabs directly above tool -->
-      <nav class="nav-tabs" role="tablist" aria-label="Tool Navigation">
-        <a href="/campaign-url-builder/" class="nav-tab active">
+      <nav class="nav-tabs" aria-label="Tool Navigation">
+        <a href="/" class="nav-tab active">
           <span>Single URL</span>
         </a>
 
@@ -246,9 +239,9 @@
 
     
     <!-- Core Tool Container (High on Page) -->
-    <main class="tool-content">
+    <main id="main-content" class="tool-content">
       <!-- TAB 1: SINGLE BUILDER -->
-      <section id="tab-builder" class="tab-pane active" role="tabpanel" aria-labelledby="nav-builder">
+      <section id="tab-builder" class="tab-pane active">
         <div class="builder-layout">
         
         <!-- Left Section: Parameters Form -->
@@ -775,7 +768,7 @@
         <div class="faq-block">
           <details>
             <summary>How is this Campaign URL Builder different from Google's official DevSite tool?</summary>
-            <p>UTMCraft operates 100% client-side without transmitting your links to external servers. It adds live GA4 channel compliance scoring, instant link shortening, vector QR code export, bulk matrix generation, and automatic lowercase sanitization to prevent fractured analytics reporting.</p>
+            <p>Core URL generation and auditing run in your browser without storing campaign inputs in a UTMCraft account or database. If you choose the optional shortener, the generated URL is sent to a public shortening provider. The tool also adds GA4 channel scoring, QR export, bulk generation, and lowercase sanitization.</p>
           </details>
 
           <details>
@@ -790,7 +783,7 @@
 
           <details>
             <summary>Why should I never use UTM parameters on internal website links?</summary>
-            <p>Appending UTM tags to internal navigation (e.g. banners on your homepage linking to your product page) causes Google Analytics to end the current user session and start a new session. This destroys your original acquisition source, inflates your session counts, and causes artificial 100% bounce rates.</p>
+            <p>Campaign UTMs should not be used on internal navigation. GA4 does not start a new session when new campaign values appear, but it can associate those values with mid-session events and distort event-scoped attribution. Use internal-promotion events instead.</p>
           </details>
 
           <details>
@@ -818,15 +811,15 @@
               <span class="brand-title">UTMCraft</span>
               <span class="brand-pill">Studio</span>
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links with zero server tracking.</p>
-            <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
           </div>
 
           <div class="footer-col">
             <h4 class="footer-heading">Core Builders</h4>
             <ul class="footer-links">
               <li><a href="/">Single URL Builder</a></li>
-              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
             </ul>

@@ -227,11 +227,16 @@ function switchTab(tabId, { updateUrl = true } = {}) {
   if (!tabId || !document.getElementById(tabId)) return;
   state.activeTab = tabId;
 
-  document.querySelectorAll('.nav-tab').forEach(btn => {
+  document.querySelectorAll('.nav-tab[data-tab]').forEach(btn => {
     const isCurrent = btn.getAttribute('data-tab') === tabId;
     btn.classList.toggle('active', isCurrent);
-    btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
-    btn.tabIndex = isCurrent ? 0 : -1;
+    if (btn.tagName === 'BUTTON') {
+      btn.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+    } else if (isCurrent) {
+      btn.setAttribute('aria-current', 'page');
+    } else {
+      btn.removeAttribute('aria-current');
+    }
   });
 
   document.querySelectorAll('.nav-header-link').forEach(link => {
@@ -2065,4 +2070,3 @@ if (document.readyState === 'loading') {
 } else {
   initApp();
 }
-

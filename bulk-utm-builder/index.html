@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-50Y9TRD8EH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-50Y9TRD8EH');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bulk UTM Builder & Campaign URL Matrix Generator | UTMCraft</title>
   <meta name="description" content="Generate dozens of standardized, GA4-compliant UTM tracking links across multiple channels simultaneously. Export to CSV or TSV in seconds.">
   <meta name="keywords" content="bulk utm builder, bulk utm generator, utm matrix generator, mass utm link generator, bulk campaign url builder, utm spreadsheet generator, multi channel utm builder">
-  <link rel="canonical" href="https://utm.workers.dev/bulk-utm-builder/">
+  <link rel="canonical" href="https://utmcraft.com/bulk-utm-builder/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://utm.workers.dev/bulk-utm-builder/">
+  <meta property="og:url" content="https://utmcraft.com/bulk-utm-builder/">
   <meta property="og:title" content="Bulk UTM Builder & Campaign URL Matrix Generator | UTMCraft">
   <meta property="og:description" content="Generate dozens of standardized, GA4-compliant UTM tracking links across multiple channels simultaneously. Export to CSV or TSV in seconds.">
-  <meta property="og:image" content="https://utm.workers.dev/logo.svg">
+  <meta property="og:image" content="https://utmcraft.com/og-image.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://utm.workers.dev/bulk-utm-builder/">
+  <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
+  <meta name="twitter:url" content="https://utmcraft.com/bulk-utm-builder/">
   <meta name="twitter:title" content="Bulk UTM Builder & Campaign URL Matrix Generator | UTMCraft">
   <meta name="twitter:description" content="Generate dozens of standardized, GA4-compliant UTM tracking links across multiple channels simultaneously. Export to CSV or TSV in seconds.">
 
@@ -47,7 +39,7 @@
       {
         "@type": "WebApplication",
         "name": "Bulk UTM Generator & Multi-Channel Matrix",
-        "url": "https://utm.workers.dev/bulk-utm-builder/",
+        "url": "https://utmcraft.com/bulk-utm-builder/",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "All modern web browsers",
         "description": "A high-speed bulk UTM generator that produces standardized tracking links across multiple channels simultaneously with instant CSV/TSV export.",
@@ -56,14 +48,14 @@
           "Simultaneous multi-channel link generation",
           "One-click CSV and TSV campaign matrix export",
           "Automated GA4 channel compliance verification",
-          "100% private in-browser generation without spreadsheet errors"
+          "Private in-browser generation without spreadsheet errors"
         ]
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utm.workers.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "Bulk UTM Builder", "item": "https://utm.workers.dev/bulk-utm-builder/" }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Bulk UTM Builder", "item": "https://utmcraft.com/bulk-utm-builder/" }
         ]
       },
       {
@@ -90,7 +82,7 @@
             "name": "Are the generated bulk UTM links private?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "100% private. All URL building, string manipulation, and file downloads execute purely inside your browser's JavaScript engine. Zero campaign data or URLs are transmitted to any external server."
+              "text": "Bulk URL building, string manipulation, and file downloads run inside your browser. Generated campaign data is not stored in a UTMCraft account or application database."
             }
           }
         ]
@@ -100,6 +92,7 @@
   </script>
 </head>
 <body data-page="bulk-utm-builder" data-active-tab="tab-batch">
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- Thin Minimal Top Navigation (64-72px) -->
   <header class="app-header">
@@ -126,7 +119,7 @@
             <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="nav-dropdown-menu" role="menu">
-            <a href="/campaign-url-builder/" class="nav-dropdown-item" role="menuitem">
+            <a href="/" class="nav-dropdown-item" role="menuitem">
               <span class="dropdown-item-title">Standard Campaign Builder</span>
               <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
             </a>
@@ -196,8 +189,8 @@
 
       
       <!-- Navigation tabs directly above tool -->
-      <nav class="nav-tabs" role="tablist" aria-label="Tool Navigation">
-        <a href="/campaign-url-builder/" class="nav-tab">
+      <nav class="nav-tabs" aria-label="Tool Navigation">
+        <a href="/" class="nav-tab">
           <span>Single URL</span>
         </a>
 
@@ -237,9 +230,9 @@
 
     
     <!-- Core Bulk Matrix Tool (High on Page) -->
-    <main class="tool-content">
+    <main id="main-content" class="tool-content">
       <!-- TAB 2: BULK MATRIX GENERATOR -->
-      <section id="tab-batch" class="tab-pane active" role="tabpanel" aria-labelledby="nav-batch">
+      <section id="tab-batch" class="tab-pane active">
         <div class="card">
         <div class="card-header">
           <div>
@@ -494,15 +487,15 @@
               <span class="brand-title">UTMCraft</span>
               <span class="brand-pill">Studio</span>
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links with zero server tracking.</p>
-            <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
           </div>
 
           <div class="footer-col">
             <h4 class="footer-heading">Core Builders</h4>
             <ul class="footer-links">
               <li><a href="/">Single URL Builder</a></li>
-              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
             </ul>

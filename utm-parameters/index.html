@@ -1,33 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-50Y9TRD8EH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-50Y9TRD8EH');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UTM Parameters Explained: The Complete GA4 Reference Guide | UTMCraft</title>
+  <title>UTM Parameters Explained: GA4 Reference | UTMCraft</title>
   <meta name="description" content="Everything you need to know about the 6 UTM parameters. Learn what each parameter does, valid values, GA4 channel mapping rules, and mistakes to avoid.">
   <meta name="keywords" content="utm parameters, utm parameters explained, what are utm parameters, utm_source, utm_medium, utm_campaign, utm_term, utm_content, utm_id, ga4 utm parameters">
-  <link rel="canonical" href="https://utm.workers.dev/utm-parameters/">
+  <link rel="canonical" href="https://utmcraft.com/utm-parameters/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://utm.workers.dev/utm-parameters/">
+  <meta property="og:url" content="https://utmcraft.com/utm-parameters/">
   <meta property="og:title" content="UTM Parameters Explained: The Complete GA4 Reference Guide | UTMCraft">
   <meta property="og:description" content="Everything you need to know about the 6 UTM parameters. Learn what each parameter does, valid values, GA4 channel mapping rules, and mistakes to avoid.">
-  <meta property="og:image" content="https://utm.workers.dev/logo.svg">
+  <meta property="og:image" content="https://utmcraft.com/og-image.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://utm.workers.dev/utm-parameters/">
+  <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
+  <meta name="twitter:url" content="https://utmcraft.com/utm-parameters/">
   <meta name="twitter:title" content="UTM Parameters Explained: The Complete GA4 Reference Guide | UTMCraft">
   <meta name="twitter:description" content="Everything you need to know about the 6 UTM parameters. Learn what each parameter does, valid values, GA4 channel mapping rules, and mistakes to avoid.">
 
@@ -48,18 +40,18 @@
         "@type": "Article",
         "headline": "UTM Parameters Explained - Complete Reference Guide",
         "description": "Comprehensive explanation of all 6 UTM tracking parameters with GA4 dimension names, valid value examples, and best practices.",
-        "url": "https://utm.workers.dev/utm-parameters/",
+        "url": "https://utmcraft.com/utm-parameters/",
         "publisher": {
           "@type": "Organization",
           "name": "UTMCraft Studio",
-          "url": "https://utm.workers.dev/"
+          "url": "https://utmcraft.com/"
         }
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utm.workers.dev/" },
-          { "@type": "ListItem", "position": 2, "name": "UTM Parameters Guide", "item": "https://utm.workers.dev/utm-parameters/" }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
+          { "@type": "ListItem", "position": 2, "name": "UTM Parameters Guide", "item": "https://utmcraft.com/utm-parameters/" }
         ]
       },
       {
@@ -104,6 +96,7 @@
   </script>
 </head>
 <body data-page="utm-parameters">
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- Thin Minimal Top Navigation (64-72px) -->
   <header class="app-header">
@@ -130,7 +123,7 @@
             <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="nav-dropdown-menu" role="menu">
-            <a href="/campaign-url-builder/" class="nav-dropdown-item" role="menuitem">
+            <a href="/" class="nav-dropdown-item" role="menuitem">
               <span class="dropdown-item-title">Standard Campaign Builder</span>
               <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
             </a>
@@ -200,8 +193,8 @@
 
       
       <!-- Navigation tabs directly above tool -->
-      <nav class="nav-tabs" role="tablist" aria-label="Tool Navigation">
-        <a href="/campaign-url-builder/" class="nav-tab">
+      <nav class="nav-tabs" aria-label="Tool Navigation">
+        <a href="/" class="nav-tab">
           <span>Single URL</span>
         </a>
 
@@ -254,7 +247,7 @@
     
 
     
-    <main class="landing-guide-section" style="margin-top: 1.5rem;">
+    <main id="main-content" class="landing-guide-section" style="margin-top: 1.5rem;">
       <article class="editorial-card" id="what-are-utm-parameters">
         <h2>What Are UTM Parameters?</h2>
         <p>UTM parameters (Urchin Tracking Modules) are short text snippets appended to any destination URL as query string key-value pairs. When a visitor clicks a tagged link, Google Analytics 4 reads these parameters and stores the marketing context as session-level dimensions - enabling precise attribution to the exact campaign, channel, and creative that drove each conversion.</p>
@@ -482,7 +475,7 @@
         <ol>
           <li><strong>Uppercase characters:</strong> <code>Google</code> and <code>google</code> create two different rows in GA4 reports.</li>
           <li><strong>Spaces in parameter values:</strong> Spaces must be replaced with hyphens or underscores to avoid URL encoding issues.</li>
-          <li><strong>Tagging internal links:</strong> Never tag links pointing from one page to another within the same website domain - doing so destroys the visitor's original acquisition source by starting a new session.</li>
+          <li><strong>Tagging internal links:</strong> Avoid campaign UTMs between pages on your own domain. GA4 does not start a new session, but mid-session campaign values can distort event-scoped attribution. Use internal-promotion events instead.</li>
           <li><strong>Missing utm_medium:</strong> Sessions without a recognized medium value fall into (Unassigned) in the Default Channel Grouping report.</li>
           <li><strong>Inventing custom mediums:</strong> Channels like <code>promo</code>, <code>organic_social</code>, <code>pdf</code>, and <code>blog_post</code> do not match GA4's built-in regex rules and generate (Unassigned) rows.</li>
           <li><strong>Using #hash anchors before UTM tags:</strong> Query parameters placed after a # hash fragment are never sent to the web server or analytics.</li>
@@ -493,7 +486,7 @@
 
         <div class="editorial-callout">
           <h4>✅ Solve All 9 Problems Automatically</h4>
-          <p>The <a href="/campaign-url-builder/" style="color: var(--soft-green);">UTMCraft Campaign URL Builder</a> enforces lowercase, strips duplicate UTMs, validates GA4 channel compliance in real time, and warns you about each of these errors before you deploy your links.</p>
+          <p>The <a href="/" style="color: var(--soft-green);">UTMCraft Campaign URL Builder</a> enforces lowercase, strips duplicate UTMs, validates GA4 channel compliance in real time, and warns you about each of these errors before you deploy your links.</p>
         </div>
       </article>
 
@@ -545,15 +538,15 @@
               <span class="brand-title">UTMCraft</span>
               <span class="brand-pill">Studio</span>
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links with zero server tracking.</p>
-            <div class="footer-badge">100% Browser Execution • Zero Tracking Cookies</div>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
           </div>
 
           <div class="footer-col">
             <h4 class="footer-heading">Core Builders</h4>
             <ul class="footer-links">
               <li><a href="/">Single URL Builder</a></li>
-              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
             </ul>

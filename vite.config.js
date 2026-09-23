@@ -8,7 +8,6 @@ export default defineConfig({
         main: resolve(import.meta.dirname, 'index.html'),
         terms: resolve(import.meta.dirname, 'terms.html'),
         privacy: resolve(import.meta.dirname, 'privacy.html'),
-        'campaign-url-builder': resolve(import.meta.dirname, 'campaign-url-builder/index.html'),
         'bulk-utm-builder': resolve(import.meta.dirname, 'bulk-utm-builder/index.html'),
         'utm-checker': resolve(import.meta.dirname, 'utm-checker/index.html'),
         'utm-parameters': resolve(import.meta.dirname, 'utm-parameters/index.html'),
@@ -29,4 +28,3 @@ export default defineConfig({
     host: '127.0.0.1'
   }
 });
-
