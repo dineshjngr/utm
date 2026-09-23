@@ -156,9 +156,9 @@ Footer link:     utm_content=footer_terms_link</code></pre>
   },
   {
     slug: 'email-utm-tracking',
-    title: 'Email Marketing UTM Tracking: ESP Tagging, Link Wrappers & Security Bot Defense',
-    seoTitle: 'Email Marketing UTM Tracking: ESP Setup & Best Practices | UTMCraft',
-    description: 'Learn how to implement email marketing UTM tracking. Fix link wrapping issues, prevent anti-spam bot clicks from skewing GA4, and standardize newsletter tags.',
+    title: 'Email UTM Link Wrappers: Preserve Tags Through ESP Redirects',
+    seoTitle: 'Email UTM Link Wrappers: Prevent Tag Loss in ESP Redirects | UTMCraft',
+    description: 'Diagnose email service provider link wrapping that drops UTM query parameters. Learn how to inspect redirect chains and verify the final landing URL before sending.',
     category: 'email-tracking',
     isPillar: false,
     author: {
@@ -170,18 +170,18 @@ Footer link:     utm_content=footer_terms_link</code></pre>
     dateModified: '2026-09-23',
     reviewedDate: 'September 23, 2026',
     readingTime: '8 min read',
-    primaryKeyword: 'email marketing utm tracking',
-    secondaryKeywords: ['email utm tagging best practices', 'newsletter tracking parameters', 'esp link wrapper utm', 'bot clicks in email marketing'],
-    semanticKeywords: ['utm_medium email standard', 'klaviyo flow tracking', 'apple mail privacy protection', 'ga4 email default channel'],
-    relatedEntities: ['Email Marketing', 'Google Analytics 4', 'Email Service Providers', 'Anti-Spam Scanners'],
-    searchIntent: 'Practical Implementation & Troubleshooting Guide',
+    primaryKeyword: 'email utm link wrappers',
+    secondaryKeywords: ['email links stripping utm parameters', 'esp redirect query string', 'test email tracking links'],
+    semanticKeywords: ['email service provider redirects', 'utm query string preservation', 'click tracking link validation'],
+    relatedEntities: ['Email Service Providers', 'URL Redirects', 'UTM Parameters'],
+    searchIntent: 'ESP Redirect Troubleshooting Guide',
     featuredImage: '/blog/images/email-utm-tracking.webp',
     featuredImageAlt: 'Graphic detailing how email clicks pass through ESP link wrappers to land in GA4 Email acquisition reports',
     tableOfContents: [
-      { id: 'esp-link-wrapping-mechanics', title: 'How ESP Link Wrapping Interacts with UTMs', level: 2 },
-      { id: 'utm-medium-email-rule', title: 'The Mandatory utm_medium=email Rule', level: 2 },
-      { id: 'newsletter-vs-lifecycle-naming', title: 'Naming Standards: Newsletters vs Lifecycle Flows', level: 2 },
-      { id: 'combating-scanner-bot-traffic', title: 'Identifying and Filtering Security Bot Traffic', level: 2 }
+      { id: 'esp-link-wrapping-mechanics', title: 'How ESP Link Wrapping Changes a Destination URL', level: 2 },
+      { id: 'check-the-final-destination', title: 'Check Whether the Final URL Keeps Its UTMs', level: 2 },
+      { id: 'diagnose-parameter-loss', title: 'Diagnose Where Parameters Are Lost', level: 2 },
+      { id: 'pre-send-validation', title: 'Pre-Send Link Validation Checklist', level: 2 }
     ],
     toolCta: {
       title: 'Build Verified Email Tracking Links',
@@ -194,22 +194,28 @@ Footer link:     utm_content=footer_terms_link</code></pre>
       { title: 'Google Analytics 4 Default Channel Definitions', url: 'https://support.google.com/analytics/answer/9756891', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text">Effective email marketing tracking requires understanding how your Email Service Provider (ESP) rewrites URLs for click tracking, enforcing exact medium taxonomy to satisfy GA4, and protecting your data from security scanner bots.</p>
+      <p class="lead-text">Email service providers often rewrite destination links so they can measure clicks. The rewritten URL should still deliver the subscriber to your landing page with every UTM parameter intact. This guide focuses on finding and fixing query-string loss across the ESP redirect.</p>
 
       <h2 id="esp-link-wrapping-mechanics">How ESP Link Wrapping Interacts with UTMs</h2>
-      <p>When you send an email through Mailchimp, Klaviyo, or HubSpot, the ESP replaces your original destination URL with a tracking redirect link (e.g. <code>https://ctk.klaviyo.com/redirect?url=...</code>). When the recipient clicks, the ESP logs the click, then immediately issues a 302 redirect to your landing page. If you append UTMs before the ESP wraps the link, verify that the ESP's redirect server preserves all query parameters upon arrival.</p>
+      <p>Click tracking can replace a direct destination such as <code>https://example.com/pricing?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=fall-launch</code> with an ESP-owned tracking URL. After recording the click, the ESP redirects the browser to the destination. The key check is the final URL: the landing page should receive the complete query string, including all UTM values.</p>
 
-      <h2 id="utm-medium-email-rule">The Mandatory utm_medium=email Rule</h2>
-      <p>GA4's Default Channel Grouping algorithm checks if <code>utm_medium</code> matches <code>email|e-mail|e_mail|newsletter</code>. Always enforce <code>utm_medium=email</code> universally across all email communications to ensure 100% classification under the <strong>Email</strong> channel.</p>
+      <h2 id="check-the-final-destination">Check Whether the Final URL Keeps Its UTMs</h2>
+      <ol>
+        <li>Copy the complete tagged destination URL from your email platform.</li>
+        <li>Send a test message to a mailbox you control and click the link as a recipient.</li>
+        <li>After the redirects finish, inspect the browser address bar and confirm <code>utm_source</code>, <code>utm_medium</code>, and <code>utm_campaign</code> remain present with their intended values.</li>
+      </ol>
 
-      <h2 id="newsletter-vs-lifecycle-naming">Naming Standards: Newsletters vs Lifecycle Flows</h2>
+      <h2 id="diagnose-parameter-loss">Diagnose Where Parameters Are Lost</h2>
+      <p>Compare the original tagged URL with the final landing URL. If the UTMs disappear, inspect each redirect in the chain: open the ESP click URL in browser developer tools or use a redirect checker, then review each <code>Location</code> target. The first redirect that omits the query string identifies where the link needs attention.</p>
+
+      <h2 id="pre-send-validation">Pre-Send Link Validation Checklist</h2>
       <ul>
-        <li><strong>One-Time Broadcasts:</strong> Format with exact send date: <code>utm_campaign=product-roundup_2026-03-24</code>.</li>
-        <li><strong>Automated Flows:</strong> Format with flow name and step: <code>utm_campaign=flow_onboarding-drip&amp;utm_content=email-step-3</code>.</li>
+        <li>Confirm UTMs are on the destination URL before the ESP applies click tracking.</li>
+        <li>Check the final URL after clicking a received test email, including links to pages that redirect to a canonical host or path.</li>
+        <li>Test links on both desktop and mobile if the email platform uses different tracking domains or redirect behavior.</li>
+        <li>Make sure the final landing page loads successfully and that the expected campaign values reach GA4.</li>
       </ul>
-
-      <h2 id="combating-scanner-bot-traffic">Identifying and Filtering Security Bot Traffic</h2>
-      <p>Anti-spam scanners often click every link in an email within 2-5 seconds of dispatch. In GA4, create an exploration filtering for <code>Session medium = email</code> where <code>Engagement rate = 0%</code> and <code>Session duration &lt; 2s</code> to isolate and exclude scanner activity from real subscriber engagement metrics.</p>
     `
   }
 ];

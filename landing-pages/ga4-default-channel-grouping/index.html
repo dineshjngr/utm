@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GA4 Default Channel Grouping Rules & Interactive Validator | UTMCraft</title>
+  <meta name="description" content="Master GA4 default channel grouping rules. Inspect source/medium regex logic, fix (Unassigned) traffic, and test any URL with our interactive channel validator table.">
+  <meta name="keywords" content="ga4 default channel grouping, ga4 channel grouping rules, ga4 source medium rules, ga4 unassigned traffic, ga4 channel taxonomy, default channel groups google analytics 4, fix unassigned ga4">
+  <link rel="canonical" href="https://utmcraft.com/ga4-default-channel-grouping/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://utmcraft.com/ga4-default-channel-grouping/">
+  <meta property="og:title" content="GA4 Default Channel Grouping Rules & Interactive Validator | UTMCraft">
+  <meta property="og:description" content="Master GA4 default channel grouping rules. Inspect source/medium regex logic, fix (Unassigned) traffic, and test any URL with our interactive channel validator table.">
+  <meta property="og:image" content="https://utmcraft.com/og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
+  <meta name="twitter:url" content="https://utmcraft.com/ga4-default-channel-grouping/">
+  <meta name="twitter:title" content="GA4 Default Channel Grouping Rules & Interactive Validator | UTMCraft">
+  <meta name="twitter:description" content="Master GA4 default channel grouping rules. Inspect source/medium regex logic, fix (Unassigned) traffic, and test any URL with our interactive channel validator table.">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "GA4 Default Channel Grouping Interactive Validator",
+        "url": "https://utmcraft.com/ga4-default-channel-grouping/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All modern browsers",
+        "description": "An interactive GA4 source and medium channel classification tool that evaluates UTM parameters against Google Analytics 4 default channel grouping rules and flags (Unassigned) traffic risks in real time.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+          "Live GA4 source/medium channel grouping predictor",
+          "Interactive validation table with 30+ real-world channel patterns",
+          "Detection of inverted parameters, uppercase anomalies, and non-standard mediums",
+          "Clear recommendations to prevent (Unassigned) traffic leakage"
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": "GA4 Default Channel Grouping Rules: The Complete Source/Medium Taxonomy Guide",
+        "description": "Comprehensive reference guide to Google Analytics 4 Default Channel Grouping rules, source/medium regular expressions, sequential evaluation waterfall, and strategies to eliminate (Unassigned) traffic.",
+        "url": "https://utmcraft.com/ga4-default-channel-grouping/",
+        "publisher": {
+          "@type": "Organization",
+          "name": "UTMCraft Studio",
+          "url": "https://utmcraft.com/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
+          { "@type": "ListItem", "position": 2, "name": "GA4 Default Channel Grouping", "item": "https://utmcraft.com/ga4-default-channel-grouping/" }
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://utmcraft.com/#organization",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "logo": "https://utmcraft.com/utmcraft-logo-light.png"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is GA4 Default Channel Grouping?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GA4 Default Channel Grouping is a rule-based dimension in Google Analytics 4 that automatically classifies website sessions and users into high-level marketing categories (such as Paid Search, Paid Social, Organic Social, Email, Referral, and Direct) based on their source and medium parameter values."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does traffic appear as (Unassigned) in GA4 reports?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Traffic appears as (Unassigned) when the incoming session's source and medium values do not match any of Google's predefined Default Channel Grouping rules. Common culprits include using uppercase letters (e.g., utm_medium=Email instead of email), inventing custom mediums (e.g., utm_medium=social_ad or promoted), inverting source and medium, or omitting parameters entirely."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you edit the Default Channel Grouping in GA4?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The system-defined Default Channel Grouping rules are locked and immutable. However, GA4 allows Admin users to create Primary Channel Groups or Custom Channel Groups where rules, regex conditions, and channel names can be fully tailored."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does GA4 differentiate Paid Social from Organic Social?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both channels require a social platform source (such as facebook, instagram, linkedin, tiktok, or twitter). GA4 classifies the session as Paid Social if the medium matches ^(.*cp.*|ppc|paid.*|paid_social)$ and as Organic Social if the medium matches ^(social|social-network|social-media|sm|social_post)$."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Scoped styles for the interactive validator */
+    .validator-sandbox {
+      background: var(--surface-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg, 12px);
+      padding: 1.5rem;
+      margin-top: 1.25rem;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    }
+    .sandbox-inputs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .sandbox-inputs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .sandbox-field label {
+      display: block;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .sandbox-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.4rem;
+    }
+    .sandbox-chip {
+      font-size: 0.75rem;
+      font-family: var(--font-mono, monospace);
+      padding: 0.15rem 0.5rem;
+      background: var(--surface-sunken);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .sandbox-chip:hover {
+      background: var(--surface-card);
+      border-color: var(--accent-text);
+      color: var(--accent-text);
+    }
+    .sandbox-result-card {
+      background: var(--surface-sunken);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md, 8px);
+      padding: 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      transition: border-color 0.2s ease;
+    }
+    .result-channel-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .result-channel-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .result-channel-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .status-valid {
+      background: rgba(16, 185, 129, 0.12);
+      color: #059669;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+    .status-warning {
+      background: rgba(245, 158, 11, 0.12);
+      color: #d97706;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+    .status-broken {
+      background: rgba(239, 68, 68, 0.12);
+      color: #dc2626;
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+    .result-advice {
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      width: 100%;
+      border-top: 1px dashed var(--border-color);
+      padding-top: 0.75rem;
+    }
+    .result-advice code {
+      font-family: var(--font-mono, monospace);
+      font-size: 0.825rem;
+      background: rgba(0, 0, 0, 0.05);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    [data-theme="dark"] .result-advice code {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Filter Bar for Table */
+    .table-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .table-search-input {
+      min-width: 260px;
+      flex: 1;
+      max-width: 400px;
+    }
+    .table-filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .filter-pill {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      background: var(--surface-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .filter-pill:hover,
+    .filter-pill.active {
+      background: var(--text-primary);
+      color: var(--surface-card);
+      border-color: var(--text-primary);
+    }
+    [data-theme="dark"] .filter-pill.active {
+      background: #ffffff;
+      color: #000000;
+      border-color: #ffffff;
+    }
+    .interactive-row {
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    .interactive-row:hover {
+      background-color: var(--surface-sunken) !important;
+    }
+    .channel-cell-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .channel-cell-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .btn-apply-row {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      background: var(--surface-sunken);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      cursor: pointer;
+      margin-left: 0.5rem;
+      transition: all 0.15s ease;
+    }
+    .btn-apply-row:hover {
+      background: var(--accent-text);
+      color: #ffffff;
+      border-color: var(--accent-text);
+    }
+  </style>
+</head>
+<body data-page="ga4-default-channel-grouping">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Header is managed by sync-layout.js -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+
+      <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-controls="builder-nav-options">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="builder-nav-options" class="nav-dropdown-menu">
+            <a href="/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Standard Campaign Builder</span>
+              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-controls="guide-nav-options">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="guide-nav-options" class="nav-dropdown-menu">
+            <a href="/blog/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
+            </a>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>New Link</span>
+        </a>
+      </div>
+      <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+    <script type="module" src="/src/site.js"></script>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="breadcrumb-item" aria-current="page">GA4 Default Channel Grouping</li>
+      </ol>
+    </nav>
+
+    <!-- Workspace Header -->
+    <header class="workspace-header">
+      <div class="workspace-title-group">
+        <span class="card-category" style="color: var(--accent-text); font-weight: 700; letter-spacing: 0.06em;">GA4 ATTRIBUTION &amp; TAXONOMY REFERENCE</span>
+        <h1 class="workspace-title">GA4 Default Channel Grouping: <span class="workspace-title-muted">Rules &amp; Validator</span></h1>
+        <p class="workspace-subtitle">A technical reference and interactive test matrix for Google Analytics 4 source/medium rules. Prevent (Unassigned) traffic leakage, test campaign parameters, and audit channel mapping before deploying links.</p>
+      </div>
+
+      <!-- Navigation tabs directly above tool -->
+      <nav class="nav-tabs" aria-label="Tool Navigation">
+        <a href="/" class="nav-tab">
+          <span>Single URL</span>
+        </a>
+        <a href="/bulk-utm-builder/" class="nav-tab">
+          <span>Bulk Generator</span>
+        </a>
+        <a href="/utm-checker/" class="nav-tab">
+          <span>UTM Checker</span>
+        </a>
+        <a href="/ga4-default-channel-grouping/" class="nav-tab active">
+          <span>Channel Grouping Rules</span>
+        </a>
+        <a href="/utm-parameters/" class="nav-tab">
+          <span>UTM Parameters Guide</span>
+        </a>
+        <a href="/utm-naming-conventions/" class="nav-tab">
+          <span>Taxonomy SOP</span>
+        </a>
+      </nav>
+
+      <!-- Quick Section Jump Chips -->
+      <div class="macro-chips-group" style="margin-top: 1rem;">
+        <span class="macro-chips-label">Jump to Section:</span>
+        <div class="macro-chips-list">
+          <a href="#interactive-validator" class="macro-chip-btn" style="text-decoration: none;">Interactive Channel Validator</a>
+          <a href="#rules-matrix-table" class="macro-chip-btn" style="text-decoration: none;">Source / Medium Matrix Table</a>
+          <a href="#how-ga4-evaluates" class="macro-chip-btn" style="text-decoration: none;">Sequential Waterfall Logic</a>
+          <a href="#fixing-unassigned" class="macro-chip-btn" style="text-decoration: none;">Fixing (Unassigned) Traffic</a>
+          <a href="#naming-sop" class="macro-chip-btn" style="text-decoration: none;">Source &amp; Medium Rules</a>
+          <a href="#faq" class="macro-chip-btn" style="text-decoration: none;">FAQ</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" class="landing-guide-section" style="margin-top: 1.5rem;">
+
+      <!-- Section 1: Interactive Live Validator Sandbox -->
+      <article class="editorial-card" id="interactive-validator">
+        <h2>Live GA4 Channel Grouping Tester</h2>
+        <p>Type any candidate <code>utm_source</code> and <code>utm_medium</code> into the sandbox below. The rule engine will immediately evaluate them against GA4's official waterfall regular expressions, display the expected Default Channel Group, and identify syntax or casing issues that cause traffic to leak into <strong>(Unassigned)</strong>.</p>
+
+        <div class="validator-sandbox">
+          <div class="sandbox-inputs-grid">
+            <div class="sandbox-field">
+              <label for="sandbox-source">Campaign Source (utm_source)</label>
+              <input type="text" id="sandbox-source" class="form-input" placeholder="e.g. google, facebook, newsletter" value="google">
+              <div class="sandbox-chips">
+                <span style="font-size: 0.72rem; color: var(--text-muted); align-self: center;">Try:</span>
+                <button type="button" class="sandbox-chip" data-set-source="google">google</button>
+                <button type="button" class="sandbox-chip" data-set-source="facebook">facebook</button>
+                <button type="button" class="sandbox-chip" data-set-source="linkedin">linkedin</button>
+                <button type="button" class="sandbox-chip" data-set-source="newsletter">newsletter</button>
+                <button type="button" class="sandbox-chip" data-set-source="youtube">youtube</button>
+                <button type="button" class="sandbox-chip" data-set-source="criteo">criteo</button>
+                <button type="button" class="sandbox-chip" data-set-source="email" style="color: #dc2626;">email (inverted!)</button>
+              </div>
+            </div>
+
+            <div class="sandbox-field">
+              <label for="sandbox-medium">Campaign Medium (utm_medium)</label>
+              <input type="text" id="sandbox-medium" class="form-input" placeholder="e.g. cpc, paid_social, email" value="cpc">
+              <div class="sandbox-chips">
+                <span style="font-size: 0.72rem; color: var(--text-muted); align-self: center;">Try:</span>
+                <button type="button" class="sandbox-chip" data-set-medium="cpc">cpc</button>
+                <button type="button" class="sandbox-chip" data-set-medium="paid_social">paid_social</button>
+                <button type="button" class="sandbox-chip" data-set-medium="social">social</button>
+                <button type="button" class="sandbox-chip" data-set-medium="email">email</button>
+                <button type="button" class="sandbox-chip" data-set-medium="affiliate">affiliate</button>
+                <button type="button" class="sandbox-chip" data-set-medium="display">display</button>
+                <button type="button" class="sandbox-chip" data-set-medium="promoted_post" style="color: #dc2626;">promoted_post (invalid!)</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sandbox Live Output Card -->
+          <div class="sandbox-result-card" id="sandbox-result-box">
+            <div class="result-channel-group">
+              <span class="result-channel-label">Expected GA4 Channel Group</span>
+              <div class="result-channel-name" id="sandbox-channel-name">
+                <span class="channel-cell-dot" id="sandbox-channel-dot" style="background-color: #4285F4;"></span>
+                <span id="sandbox-channel-text">Paid Search</span>
+              </div>
+            </div>
+            <div>
+              <span class="status-badge status-valid" id="sandbox-status-badge">✅ Valid GA4 Match</span>
+              <a href="/" id="sandbox-builder-link" class="btn-apply-row" style="text-decoration: none; padding: 0.35rem 0.75rem; display: inline-block;">Build Link with These Tags →</a>
+            </div>
+            <div class="result-advice" id="sandbox-advice-text">
+              Matches standard search engine origin (<code>google</code>) and paid medium regex (<code>cpc</code>). Safely classifies under <strong>Paid Search</strong> in GA4 Traffic Acquisition.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 2: Interactive Source | Medium | Expected Channel | Valid? | Recommended Value Table -->
+      <article class="editorial-card" id="rules-matrix-table">
+        <h2>Interactive GA4 Source / Medium Classification Matrix</h2>
+        <p>This master lookup table details how Google Analytics 4 evaluates real-world source and medium combinations. Click on any row to load it into the tester above, or filter by category or status to review common pitfalls that cause unassigned leakage.</p>
+
+        <!-- Table Toolbar -->
+        <div class="table-toolbar">
+          <input
+            type="text"
+            id="table-filter-input"
+            class="form-input table-search-input"
+            placeholder="Search source, medium, or channel name..."
+            aria-label="Filter matrix table"
+          >
+          <div class="table-filter-pills" id="table-filter-pills">
+            <button type="button" class="filter-pill active" data-filter="all">All Combinations</button>
+            <button type="button" class="filter-pill" data-filter="valid">✅ Valid Only</button>
+            <button type="button" class="filter-pill" data-filter="broken">❌ Broken / (Unassigned)</button>
+            <button type="button" class="filter-pill" data-filter="paid">Paid Channels</button>
+            <button type="button" class="filter-pill" data-filter="organic">Organic Channels</button>
+            <button type="button" class="filter-pill" data-filter="direct">Email &amp; Messaging</button>
+          </div>
+        </div>
+
+        <!-- The Table -->
+        <div class="editorial-table-wrap">
+          <table class="editorial-table" id="matrix-table">
+            <thead>
+              <tr>
+                <th>Source (<code>utm_source</code>)</th>
+                <th>Medium (<code>utm_medium</code>)</th>
+                <th>Expected Channel</th>
+                <th>Valid?</th>
+                <th>Recommended Value &amp; Rule Notes</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-tbody">
+              <!-- Dynamically populated and searchable by script -->
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Section 3: Technical Waterfall & Precedence Logic -->
+      <article class="editorial-card" id="how-ga4-evaluates">
+        <h2>How GA4 Evaluates Channel Groupings: Sequential Waterfall Logic</h2>
+        <p>Google Analytics 4 Default Channel Grouping is <strong>rule-based, sequential, and first-match-wins</strong>. When an event or session starts, GA4 evaluates the incoming traffic parameters against the channel definitions from the top down. As soon as a condition matches, evaluation stops and the channel is assigned.</p>
+
+        <p>If incoming traffic reaches the bottom of the evaluation list without matching any condition, GA4 designates the traffic as <strong>(Unassigned)</strong>.</p>
+
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Channel Group</th>
+                <th>Official GA4 Rule Definition</th>
+                <th>Evaluation Logic</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><strong>Direct</strong></td>
+                <td>Source matches <code>(direct)</code> AND Medium matches <code>(not set)</code> or <code>(none)</code></td>
+                <td>Evaluated first to catch pure direct traffic without campaign or referrer context.</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><strong>Cross-network</strong></td>
+                <td>Campaign name matches cross-network types (e.g. Performance Max, Smart Shopping)</td>
+                <td>Identifies multi-format Google Ads campaigns bridging Search, Display, Maps, and YouTube.</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><strong>Paid Shopping</strong></td>
+                <td>Source matches shopping sites OR medium matches <code>^(.*cp.*|ppc|paid.*|shopping)$</code> with shopping campaigns</td>
+                <td>Takes precedence over general Paid Search when shopping attributes are detected.</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><strong>Paid Search</strong></td>
+                <td>Source matches search engine list AND Medium matches <code>^(.*cp.*|ppc|paid.*)$</code></td>
+                <td>Catches keyword ads across Google Ads, Microsoft Advertising, Baidu, and DuckDuckGo.</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><strong>Paid Social</strong></td>
+                <td>Source matches social sites list AND Medium matches <code>^(.*cp.*|ppc|paid.*|paid_social)$</code></td>
+                <td>Crucial rule: source MUST match Google's list of recognized social platforms.</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><strong>Paid Video</strong></td>
+                <td>Source matches video platform list AND Medium matches <code>^(.*cp.*|ppc|paid.*)$</code></td>
+                <td>Captures YouTube, Vimeo, and Twitch in-stream paid video promotions.</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td><strong>Display</strong></td>
+                <td>Medium matches <code>^(display|banner|expandable|interstitial|cpm)$</code></td>
+                <td>Does not require a specific source platform, relying entirely on the medium string.</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td><strong>Paid Other</strong></td>
+                <td>Medium matches <code>^(.*cp.*|ppc|paid.*)$</code> (where source is NOT search, social, or video)</td>
+                <td>Catches paid directory placements, sponsored newsletters, or non-social paid links.</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><strong>Organic Social</strong></td>
+                <td>Source matches social sites list OR Medium matches <code>^(social|social-network|social-media|sm|social_post)$</code></td>
+                <td>Includes unpaid social posts, profile bio links, and creator shares.</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td><strong>Organic Video</strong></td>
+                <td>Source matches video sites list AND Medium matches <code>^(.*video.*)$</code></td>
+                <td>Unpaid links placed in video descriptions, end screens, and profile cards.</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td><strong>Organic Search</strong></td>
+                <td>Source matches search engine list AND Medium matches <code>organic</code> (or unpaid search referrer)</td>
+                <td>Natural search engine results. Standard organic traffic arrives without UTM parameters.</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td><strong>Email</strong></td>
+                <td>Source matches email platform list OR Medium matches <code>^(.*email.*|e-mail|e_mail|newsletter)$</code></td>
+                <td>Matches outbound newsletters, automated onboarding workflows, and transactional emails.</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td><strong>Affiliates</strong></td>
+                <td>Medium matches <code>^(.*affiliate.*|aff)$</code></td>
+                <td>Partner affiliate programs, review site links, and publisher monetization partnerships.</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td><strong>Referral</strong></td>
+                <td>Medium matches <code>^(.*referral.*|app|link)$</code> (or standard external HTTP referrer)</td>
+                <td>Standard inbound hyperlinks from other web domains.</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td><strong>Audio</strong></td>
+                <td>Medium matches <code>^(audio|podcast|broadcast)$</code></td>
+                <td>Podcast vanity links and audio ad placements (Spotify, Apple Podcasts, Pandora).</td>
+              </tr>
+              <tr>
+                <td>16</td>
+                <td><strong>SMS</strong></td>
+                <td>Medium matches <code>^(sms|mms|text|whatsapp|telegram)$</code></td>
+                <td>Direct text message broadcasts and mobile SMS automated flows.</td>
+              </tr>
+              <tr>
+                <td>17</td>
+                <td><strong>Mobile Push Notifications</strong></td>
+                <td>Medium ends with <code>push</code> or matches <code>^(.*push.*|mobile_notification)$</code></td>
+                <td>In-app notifications and mobile OS push alerts directing users to web deep links.</td>
+              </tr>
+              <tr>
+                <td>Fallthrough</td>
+                <td><strong>(Unassigned)</strong></td>
+                <td>Does NOT match any rule above</td>
+                <td>Any session or event where parameters fail to satisfy Google's regex tree.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="editorial-callout">
+          <h4>💡 Session vs. First User Default Channel Group</h4>
+          <p>Google Analytics 4 provides two distinct channel grouping dimensions:</p>
+          <ul>
+            <li><strong>First user default channel group:</strong> Documents the acquisition channel responsible for the user's very first visit to your digital property. This dimension never changes for that user.</li>
+            <li><strong>Session default channel group:</strong> Documents the specific marketing channel that initiated the individual session. This updates on every new session touchpoint.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Section 4: Diagnosing & Eliminating (Unassigned) Traffic -->
+      <article class="editorial-card" id="fixing-unassigned">
+        <h2>Why Does My Traffic Show Up as (Unassigned) in GA4?</h2>
+        <p><strong>(Unassigned)</strong> is not a valid marketing channel; it is an alert indicating that your tracking data broke Google's classification engine. The four most frequent root causes include:</p>
+
+        <div class="tagging-steps-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+          <div class="card" style="border-left: 4px solid var(--accent-rose);">
+            <h4 style="margin: 0 0 0.5rem; color: var(--accent-rose);">1. Uppercase or Mixed Casing</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;"><code>utm_medium=CPC</code> or <code>utm_source=Google</code></p>
+            <p style="font-size: 0.825rem; color: var(--text-muted);">GA4 processes channel regexes with case-sensitivity in multiple underlying database layers. <code>Email</code> and <code>CPC</code> frequently fail to map to standard definitions. Always enforce strictly lowercase values.</p>
+          </div>
+
+          <div class="card" style="border-left: 4px solid #f59e0b;">
+            <h4 style="margin: 0 0 0.5rem; color: #f59e0b);">2. Inverted Source and Medium</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;"><code>utm_source=email&amp;utm_medium=mailchimp</code></p>
+            <p style="font-size: 0.825rem; color: var(--text-muted);">Source is the platform (mailchimp, klaviyo), while medium is the vehicle (email). When reversed, GA4 looks for a medium named "mailchimp", finds none, and drops the session into (Unassigned).</p>
+          </div>
+
+          <div class="card" style="border-left: 4px solid #6366f1;">
+            <h4 style="margin: 0 0 0.5rem; color: #6366f1);">3. Inventing Unsupported Mediums</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;"><code>utm_medium=promoted</code> or <code>utm_medium=social_ad</code></p>
+            <p style="font-size: 0.825rem; color: var(--text-muted);">GA4 expects <code>paid_social</code> or <code>cpc</code>. Custom terms like <code>infeed_ad</code> or <code>story_ad</code> fail standard regexes. Put custom details in <code>utm_campaign</code> or <code>utm_content</code>.</p>
+          </div>
+
+          <div class="card" style="border-left: 4px solid #06b6d4;">
+            <h4 style="margin: 0 0 0.5rem; color: #06b6d4);">4. Redirects Stripping Query Strings</h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">HTTP 301 from <code>http://</code> to <code>https://</code> or non-www</p>
+            <p style="font-size: 0.825rem; color: var(--text-muted);">Misconfigured web servers drop query strings during canonical redirects. Always tag the final destination URL directly, or configure QSA (Query String Append) on your Apache/Nginx server.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 2rem;">How to Find and Fix (Unassigned) Rows in GA4</h3>
+        <p>To inspect exactly which parameters caused (Unassigned) rows in your GA4 property:</p>
+        <ol style="padding-left: 1.25rem; line-height: 1.7; color: var(--text-secondary); font-size: 0.95rem;">
+          <li>Open <strong>Explore</strong> &gt; <strong>Free-form exploration</strong>.</li>
+          <li>Add Dimensions: <code>Session default channel group</code>, <code>Session source / medium</code>, and <code>Session campaign</code>.</li>
+          <li>Add Metrics: <code>Sessions</code>, <code>Total users</code>, and <code>Key events</code>.</li>
+          <li>Apply a Filter: <code>Session default channel group</code> exactly matches <code>(Unassigned)</code>.</li>
+          <li>Review the resulting table: every row displays the exact, broken source and medium combination causing the issue.</li>
+        </ol>
+      </article>
+
+      <!-- Section 5: Source & Medium Governance SOP -->
+      <article class="editorial-card" id="naming-sop">
+        <h2>Source &amp; Medium Governance SOP</h2>
+        <p>To guarantee 100% clean GA4 Default Channel Grouping across your organization, mandate these rules in your campaign workflow:</p>
+
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Marketing Channel</th>
+                <th>Standard utm_source Examples</th>
+                <th>Mandatory utm_medium</th>
+                <th>Target GA4 Channel Group</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Google Search Ads</td>
+                <td><code>google</code></td>
+                <td><code>cpc</code></td>
+                <td>Paid Search</td>
+              </tr>
+              <tr>
+                <td>Bing Search Ads</td>
+                <td><code>bing</code></td>
+                <td><code>cpc</code></td>
+                <td>Paid Search</td>
+              </tr>
+              <tr>
+                <td>Meta (Facebook/Instagram) Ads</td>
+                <td><code>facebook</code>, <code>instagram</code>, <code>meta</code></td>
+                <td><code>paid_social</code> (or <code>cpc</code>)</td>
+                <td>Paid Social</td>
+              </tr>
+              <tr>
+                <td>LinkedIn Sponsored Ads</td>
+                <td><code>linkedin</code></td>
+                <td><code>paid_social</code></td>
+                <td>Paid Social</td>
+              </tr>
+              <tr>
+                <td>TikTok Ads</td>
+                <td><code>tiktok</code></td>
+                <td><code>paid_social</code></td>
+                <td>Paid Social</td>
+              </tr>
+              <tr>
+                <td>Organic Social Links (Bio/Posts)</td>
+                <td><code>linkedin</code>, <code>facebook</code>, <code>twitter</code></td>
+                <td><code>social</code></td>
+                <td>Organic Social</td>
+              </tr>
+              <tr>
+                <td>Email Marketing &amp; Newsletters</td>
+                <td><code>mailchimp</code>, <code>klaviyo</code>, <code>newsletter</code></td>
+                <td><code>email</code></td>
+                <td>Email</td>
+              </tr>
+              <tr>
+                <td>Affiliate Partner Links</td>
+                <td><code>partner_name</code>, <code>shareasale</code>, <code>cj</code></td>
+                <td><code>affiliate</code></td>
+                <td>Affiliates</td>
+              </tr>
+              <tr>
+                <td>Display Banners &amp; GDN</td>
+                <td><code>gdn</code>, <code>criteo</code>, <code>adroll</code></td>
+                <td><code>display</code> (or <code>cpm</code>)</td>
+                <td>Display</td>
+              </tr>
+              <tr>
+                <td>YouTube Video Description</td>
+                <td><code>youtube</code></td>
+                <td><code>video</code></td>
+                <td>Organic Video</td>
+              </tr>
+              <tr>
+                <td>YouTube Paid In-Stream Ads</td>
+                <td><code>youtube</code></td>
+                <td><code>cpc</code></td>
+                <td>Paid Video</td>
+              </tr>
+              <tr>
+                <td>SMS Marketing Blasts</td>
+                <td><code>twilio</code>, <code>att</code>, <code>sms_blast</code></td>
+                <td><code>sms</code></td>
+                <td>SMS</td>
+              </tr>
+              <tr>
+                <td>Podcast Audio Sponsorship</td>
+                <td><code>podcast_name</code>, <code>spotify</code></td>
+                <td><code>audio</code></td>
+                <td>Audio</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Section 6: FAQ -->
+      <article class="editorial-card" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-block">
+          <details>
+            <summary>What is GA4 Default Channel Grouping?</summary>
+            <p>GA4 Default Channel Grouping is Google Analytics 4's built-in rule engine that categorizes website traffic into standard marketing groups (such as Paid Search, Paid Social, Organic Social, Email, and Referral) using regular expression matches against source and medium parameters.</p>
+          </details>
+
+          <details>
+            <summary>Why does my campaign show up as (Unassigned) in GA4?</summary>
+            <p>Traffic is placed in (Unassigned) when the combination of source and medium does not meet any of Google's predefined channel regex criteria. Common causes include uppercase characters, inverted source and medium parameters, or unsupported custom mediums.</p>
+          </details>
+
+          <details>
+            <summary>Can you edit Default Channel Grouping rules in GA4?</summary>
+            <p>No. Google Analytics 4 locks the system-defined Default Channel Grouping to ensure historical data integrity. However, property Administrators can create Custom Channel Groups or Primary Channel Groups to modify rules, reorder precedence, or add proprietary channels.</p>
+          </details>
+
+          <details>
+            <summary>Does GA4 require utm_source and utm_medium to classify traffic?</summary>
+            <p>Yes. Without <code>utm_source</code> and <code>utm_medium</code>, GA4 has no marketing context to evaluate and will classify the traffic as Direct or (Unassigned). While <code>utm_campaign</code> is not strictly required for channel grouping, it is essential for campaign-level attribution.</p>
+          </details>
+
+          <details>
+            <summary>How many UTM parameters does GA4 support?</summary>
+            <p>GA4 supports 9 manual campaign parameters: six commonly used/core parameters (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_id</code>, <code>utm_term</code>, <code>utm_content</code>) plus three additional GA4 parameters (<code>utm_source_platform</code>, <code>utm_creative_format</code>, <code>utm_marketing_tactic</code>). Note that Google documents that <code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in standard GA4 properties.</p>
+          </details>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- Footer is managed by sync-layout.js -->
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+              <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+              <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+            </a>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Core Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+              <li><a href="/#campaign-history" data-switch-tab="tab-history">Campaign History</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Platform Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <ul class="footer-links">
+              <li><a href="/blog/">All Knowledge Guides</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <ul class="footer-links">
+              <li><a href="/about/">About Us</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/terms.html">Terms and Conditions</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by DJ</div>
+          <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Interactive Matrix & Validator Script -->
+  <script type="module">
+    // Canonical data set of source/medium combinations
+    const MATRIX_DATA = [
+      {
+        source: 'google',
+        medium: 'cpc',
+        channel: 'Paid Search',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Standard Google Ads paid search. Accurately categorizes into Paid Search.'
+      },
+      {
+        source: 'google',
+        medium: 'cpc',
+        channel: 'Paid Shopping',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid (Shopping Feed)',
+        recommendation: 'Used with Shopping feed campaigns. GA4 checks shopping product attributes.'
+      },
+      {
+        source: 'bing',
+        medium: 'cpc',
+        channel: 'Paid Search',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Microsoft Advertising keyword campaign. Matches search source and cpc regex.'
+      },
+      {
+        source: 'facebook',
+        medium: 'paid_social',
+        channel: 'Paid Social',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Meta In-Feed / Carousel ads. Matches social source and paid_social regex.'
+      },
+      {
+        source: 'facebook',
+        medium: 'cpc',
+        channel: 'Paid Social',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Matches social source + cpc medium regex, classifying cleanly into Paid Social.'
+      },
+      {
+        source: 'instagram',
+        medium: 'paid_social',
+        channel: 'Paid Social',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Instagram Stories/Reels ads. Correctly routes to Paid Social.'
+      },
+      {
+        source: 'linkedin',
+        medium: 'paid_social',
+        channel: 'Paid Social',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'LinkedIn Sponsored Content. Accurately maps to Paid Social.'
+      },
+      {
+        source: 'tiktok',
+        medium: 'paid_social',
+        channel: 'Paid Social',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'TikTok in-feed ad campaigns. Correctly routes to Paid Social.'
+      },
+      {
+        source: 'youtube',
+        medium: 'cpc',
+        channel: 'Paid Video',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'YouTube in-stream paid video ads. Routes to Paid Video.'
+      },
+      {
+        source: 'gdn',
+        medium: 'display',
+        channel: 'Display',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Google Display Network banners. Matches display medium regex.'
+      },
+      {
+        source: 'criteo',
+        medium: 'cpm',
+        channel: 'Display',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Programmatic retargeting banners. cpm maps to Display in GA4.'
+      },
+      {
+        source: 'newsletter',
+        medium: 'email',
+        channel: 'Email',
+        category: 'direct',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Editorial newsletter links. Accurately maps to Email channel.'
+      },
+      {
+        source: 'klaviyo',
+        medium: 'email',
+        channel: 'Email',
+        category: 'direct',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Automated email marketing flows. Accurately maps to Email channel.'
+      },
+      {
+        source: 'mailchimp',
+        medium: 'email',
+        channel: 'Email',
+        category: 'direct',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Broadcast promotional emails. Accurately maps to Email channel.'
+      },
+      {
+        source: 'linkedin',
+        medium: 'social',
+        channel: 'Organic Social',
+        category: 'organic',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Unpaid LinkedIn company page or personal post links.'
+      },
+      {
+        source: 'instagram',
+        medium: 'social',
+        channel: 'Organic Social',
+        category: 'organic',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Instagram link-in-bio or unpaid creator mentions.'
+      },
+      {
+        source: 'youtube',
+        medium: 'video',
+        channel: 'Organic Video',
+        category: 'organic',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Unpaid links in video descriptions or pinned comments.'
+      },
+      {
+        source: 'techradar',
+        medium: 'affiliate',
+        channel: 'Affiliates',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Affiliate partner link. Matches affiliate medium regex.'
+      },
+      {
+        source: 'forbes',
+        medium: 'referral',
+        channel: 'Referral',
+        category: 'organic',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'External PR placement or guest article. Matches referral regex.'
+      },
+      {
+        source: 'att',
+        medium: 'sms',
+        channel: 'SMS',
+        category: 'direct',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'SMS text message broadcast. Matches sms medium regex.'
+      },
+      {
+        source: 'huberman',
+        medium: 'audio',
+        channel: 'Audio',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'Podcast sponsorship vanity URL. Matches audio medium regex.'
+      },
+      {
+        source: 'Google',
+        medium: 'CPC',
+        channel: '(Unassigned)',
+        category: 'broken',
+        valid: 'broken',
+        statusText: '❌ Broken / Casing Risk',
+        recommendation: 'Fix: Force lowercase. Use utm_source=google and utm_medium=cpc.'
+      },
+      {
+        source: 'email',
+        medium: 'mailchimp',
+        channel: '(Unassigned)',
+        category: 'broken',
+        valid: 'broken',
+        statusText: '❌ Inverted Tags',
+        recommendation: 'Fix: Inverted. Change to utm_source=mailchimp and utm_medium=email.'
+      },
+      {
+        source: 'social',
+        medium: 'facebook',
+        channel: '(Unassigned)',
+        category: 'broken',
+        valid: 'broken',
+        statusText: '❌ Inverted Tags',
+        recommendation: 'Fix: Inverted. Change to utm_source=facebook and utm_medium=social or paid_social.'
+      },
+      {
+        source: 'facebook',
+        medium: 'promoted_post',
+        channel: '(Unassigned)',
+        category: 'broken',
+        valid: 'broken',
+        statusText: '❌ Unsupported Medium',
+        recommendation: 'Fix: GA4 does not recognize "promoted_post". Use utm_medium=paid_social.'
+      },
+      {
+        source: 'linkedin',
+        medium: 'inmail',
+        channel: '(Unassigned)',
+        category: 'broken',
+        valid: 'broken',
+        statusText: '❌ Unsupported Medium',
+        recommendation: 'Fix: GA4 does not recognize "inmail". Use utm_medium=paid_social or email.'
+      },
+      {
+        source: 'google',
+        medium: 'search_ad',
+        channel: '(Unassigned)',
+        category: 'broken',
+        valid: 'broken',
+        statusText: '❌ Unsupported Medium',
+        recommendation: 'Fix: GA4 expects "cpc" or "ppc". Change medium to cpc.'
+      },
+      {
+        source: 'newsletter',
+        medium: 'blast',
+        channel: '(Unassigned)',
+        category: 'broken',
+        valid: 'broken',
+        statusText: '❌ Unsupported Medium',
+        recommendation: 'Fix: GA4 does not recognize "blast". Change utm_medium to email.'
+      },
+      {
+        source: 'meta',
+        medium: 'paid social',
+        channel: '(Unassigned)',
+        category: 'broken',
+        valid: 'broken',
+        statusText: '❌ Spaces in Medium',
+        recommendation: 'Fix: Spaces encode to %20 and break regex. Use utm_medium=paid_social.'
+      },
+      {
+        source: '(not set)',
+        medium: 'cpc',
+        channel: '(Unassigned)',
+        category: 'broken',
+        valid: 'broken',
+        statusText: '❌ Missing Source',
+        recommendation: 'Fix: utm_source is mandatory. GA4 cannot classify cpc without a known source.'
+      }
+    ];
+
+    // Rule engine evaluator
+    const searchEngines = ['google', 'bing', 'yahoo', 'baidu', 'duckduckgo', 'ecosia', 'yandex', 'ask', 'daum', 'naver', 'sogou', 'seznam', 'qwant'];
+    const socialSites = ['facebook', 'instagram', 'linkedin', 'twitter', 'x', 't.co', 'tiktok', 'pinterest', 'reddit', 'snapchat', 'threads', 'tumblr', 'quora', 'youtube', 'vk', 'wechat', 'whatsapp'];
+    const videoSites = ['youtube', 'vimeo', 'twitch', 'dailymotion', 'tiktok', 'bilibili'];
+    const emailSources = ['mailchimp', 'klaviyo', 'hubspot', 'substack', 'convertkit', 'activecampaign', 'sendgrid', 'campaignmonitor', 'mailerlite', 'marketo', 'salesforce', 'newsletter'];
+
+    function evaluateChannel(source, medium) {
+      const s = (source || '').trim();
+      const m = (medium || '').trim();
+      const sLower = s.toLowerCase();
+      const mLower = m.toLowerCase();
+
+      // Check for casing issues
+      const hasCasingIssue = (s !== sLower) || (m !== mLower);
+      const hasSpaceIssue = /\s/.test(s) || /\s/.test(m);
+
+      if (!s || sLower === '(not set)') {
+        return {
+          channel: '(Unassigned)',
+          status: 'broken',
+          statusText: '❌ Missing utm_source',
+          color: '#EF4444',
+          advice: 'utm_source is mandatory. GA4 cannot classify traffic into channel groups without a known traffic source.'
+        };
+      }
+
+      if (!m || mLower === '(not set)') {
+        return {
+          channel: '(Unassigned)',
+          status: 'broken',
+          statusText: '❌ Missing utm_medium',
+          color: '#EF4444',
+          advice: 'utm_medium is required for GA4 Default Channel Grouping. Sessions without a recognized medium fall into (Unassigned).'
+        };
+      }
+
+      if (hasSpaceIssue) {
+        return {
+          channel: '(Unassigned)',
+          status: 'broken',
+          statusText: '❌ Space in Parameter',
+          color: '#EF4444',
+          advice: `Spaces encode to %20 in web browsers, causing regex failure against GA4 definitions. Replace spaces with underscores or hyphens.`
+        };
+      }
+
+      if (hasCasingIssue) {
+        return {
+          channel: '(Unassigned)',
+          status: 'warning',
+          statusText: '⚠️ Casing Risk',
+          color: '#F59E0B',
+          advice: `GA4 rule matching is case-sensitive in multiple views. Standardize on lowercase everywhere to prevent split rows and (Unassigned) errors.`
+        };
+      }
+
+      // Check inverted
+      if (sLower === 'email' && emailSources.includes(mLower)) {
+        return {
+          channel: '(Unassigned)',
+          status: 'broken',
+          statusText: '❌ Inverted Tags',
+          color: '#EF4444',
+          advice: `Source and medium are inverted. Set utm_source=${mLower} and utm_medium=email.`
+        };
+      }
+
+      // 1. Direct
+      if (sLower === '(direct)' && (mLower === '(not set)' || mLower === '(none)')) {
+        return {
+          channel: 'Direct',
+          status: 'valid',
+          statusText: '✅ Direct Traffic',
+          color: '#6B7280',
+          advice: 'Direct navigation with no campaign or referrer parameters.'
+        };
+      }
+
+      // 2. Paid Search: source is search engine AND medium matches ^(.*cp.*|ppc|paid.*)$
+      if (searchEngines.some(se => sLower.includes(se)) && /^(.*cp.*|ppc|paid.*)$/i.test(mLower)) {
+        return {
+          channel: 'Paid Search',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#4285F4',
+          advice: `Matches search engine domain (${sLower}) and paid medium regex (${mLower}). Correctly classified into Paid Search.`
+        };
+      }
+
+      // 3. Paid Social: source is social site AND medium matches ^(.*cp.*|ppc|paid.*|paid_social)$
+      if (socialSites.some(soc => sLower.includes(soc)) && /^(.*cp.*|ppc|paid.*|paid_social)$/i.test(mLower)) {
+        return {
+          channel: 'Paid Social',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#1877F2',
+          advice: `Matches social network platform (${sLower}) and paid social regex (${mLower}). Correctly classified into Paid Social.`
+        };
+      }
+
+      // 4. Paid Video: source is video site AND medium matches ^(.*cp.*|ppc|paid.*)$
+      if (videoSites.some(v => sLower.includes(v)) && /^(.*cp.*|ppc|paid.*)$/i.test(mLower)) {
+        return {
+          channel: 'Paid Video',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#EF4444',
+          advice: `Matches video platform (${sLower}) and paid video regex (${mLower}). Classified into Paid Video.`
+        };
+      }
+
+      // 5. Display: medium matches ^(display|banner|expandable|interstitial|cpm)$
+      if (/^(display|banner|expandable|interstitial|cpm)$/i.test(mLower)) {
+        return {
+          channel: 'Display',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#EC4899',
+          advice: `Matches display banner regex (${mLower}). Grouped into Display.`
+        };
+      }
+
+      // 6. Paid Other: medium matches ^(.*cp.*|ppc|paid.*)$
+      if (/^(.*cp.*|ppc|paid.*)$/i.test(mLower)) {
+        return {
+          channel: 'Paid Other',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#8B5CF6',
+          advice: `Matches paid medium regex (${mLower}) from a non-search/non-social source (${sLower}). Grouped into Paid Other.`
+        };
+      }
+
+      // 7. Organic Social: source in social OR medium in social regex
+      if (socialSites.some(soc => sLower.includes(soc)) || /^(social|social-network|social-media|sm|social_post)$/i.test(mLower)) {
+        return {
+          channel: 'Organic Social',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#10B981',
+          advice: `Matches social criteria. Correctly categorized into Organic Social.`
+        };
+      }
+
+      // 8. Organic Video: source in video AND medium in video regex
+      if (videoSites.some(v => sLower.includes(v)) && /^(.*video.*)$/i.test(mLower)) {
+        return {
+          channel: 'Organic Video',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#DC2626',
+          advice: `Matches video platform (${sLower}) with video medium. Classified into Organic Video.`
+        };
+      }
+
+      // 9. Organic Search: source in search AND medium === 'organic'
+      if (searchEngines.some(se => sLower.includes(se)) && mLower === 'organic') {
+        return {
+          channel: 'Organic Search',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#059669',
+          advice: `Natural organic search engine traffic.`
+        };
+      }
+
+      // 10. Email: source in email list OR medium in email regex
+      if (emailSources.some(em => sLower.includes(em)) || /^(.*email.*|e-mail|e_mail|newsletter)$/i.test(mLower)) {
+        return {
+          channel: 'Email',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#F59E0B',
+          advice: `Matches email regex (${mLower}). Correctly classified into Email.`
+        };
+      }
+
+      // 11. Affiliates: medium in affiliate regex
+      if (/^(.*affiliate.*|aff)$/i.test(mLower)) {
+        return {
+          channel: 'Affiliates',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#8B5CF6',
+          advice: `Matches affiliate regex (${mLower}). Correctly classified into Affiliates.`
+        };
+      }
+
+      // 12. Referral: medium in referral regex
+      if (/^(.*referral.*|app|link)$/i.test(mLower)) {
+        return {
+          channel: 'Referral',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#06B6D4',
+          advice: `Matches referral link regex (${mLower}). Classified into Referral.`
+        };
+      }
+
+      // 13. Audio: medium in audio regex
+      if (/^(audio|podcast|broadcast)$/i.test(mLower)) {
+        return {
+          channel: 'Audio',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#84CC16',
+          advice: `Matches audio broadcast regex (${mLower}). Classified into Audio.`
+        };
+      }
+
+      // 14. SMS: medium in sms regex
+      if (/^(sms|mms|text|whatsapp|telegram)$/i.test(mLower)) {
+        return {
+          channel: 'SMS',
+          status: 'valid',
+          statusText: '✅ Valid Match',
+          color: '#14B8A6',
+          advice: `Matches SMS messaging regex (${mLower}). Classified into SMS.`
+        };
+      }
+
+      // 15. Offline / QR (special case)
+      if (mLower === 'qr_code' || mLower === 'qr' || mLower === 'print') {
+        return {
+          channel: 'Referral / (Unassigned)',
+          status: 'warning',
+          statusText: '⚠️ Non-Standard Medium',
+          color: '#6366F1',
+          advice: `GA4 has no native Default Channel Group for QR codes or print. Unless mapped via Custom Channel Groups, "qr_code" falls into Referral or (Unassigned).`
+        };
+      }
+
+      // Fallthrough: Unassigned
+      return {
+        channel: '(Unassigned)',
+        status: 'broken',
+        statusText: '❌ Unassigned',
+        color: '#EF4444',
+        advice: `Medium "${m}" from source "${s}" does not match any GA4 Default Channel Grouping rule. Use standard mediums like cpc, paid_social, social, email, affiliate, display, or referral.`
+      };
+    }
+
+    // Connect Sandbox UI
+    const sourceInput = document.getElementById('sandbox-source');
+    const mediumInput = document.getElementById('sandbox-medium');
+    const channelNameEl = document.getElementById('sandbox-channel-text');
+    const channelDotEl = document.getElementById('sandbox-channel-dot');
+    const statusBadgeEl = document.getElementById('sandbox-status-badge');
+    const adviceTextEl = document.getElementById('sandbox-advice-text');
+    const builderLinkEl = document.getElementById('sandbox-builder-link');
+
+    function updateSandbox() {
+      const s = sourceInput.value;
+      const m = mediumInput.value;
+      const res = evaluateChannel(s, m);
+
+      channelNameEl.textContent = res.channel;
+      channelDotEl.style.backgroundColor = res.color;
+      adviceTextEl.innerHTML = res.advice;
+
+      // Update badge class
+      statusBadgeEl.className = 'status-badge ' + (
+        res.status === 'valid' ? 'status-valid' :
+        res.status === 'warning' ? 'status-warning' : 'status-broken'
+      );
+      statusBadgeEl.textContent = res.statusText;
+
+      // Update builder link
+      builderLinkEl.href = `/?utm_source=${encodeURIComponent(s.toLowerCase().trim())}&utm_medium=${encodeURIComponent(m.toLowerCase().trim())}`;
+    }
+
+    sourceInput.addEventListener('input', updateSandbox);
+    mediumInput.addEventListener('input', updateSandbox);
+
+    // Quick chips in sandbox
+    document.querySelectorAll('[data-set-source]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        sourceInput.value = btn.dataset.setSource;
+        updateSandbox();
+      });
+    });
+    document.querySelectorAll('[data-set-medium]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        mediumInput.value = btn.dataset.setMedium;
+        updateSandbox();
+      });
+    });
+
+    // Populate and Filter the Matrix Table
+    const tbody = document.getElementById('matrix-tbody');
+    const filterInput = document.getElementById('table-filter-input');
+    const filterPills = document.querySelectorAll('#table-filter-pills .filter-pill');
+    let activeFilter = 'all';
+
+    function renderTable() {
+      const q = filterInput.value.toLowerCase().trim();
+      tbody.innerHTML = '';
+
+      const filtered = MATRIX_DATA.filter(item => {
+        // Category filter
+        if (activeFilter === 'valid' && item.valid !== 'valid') return false;
+        if (activeFilter === 'broken' && item.valid !== 'broken') return false;
+        if (activeFilter === 'paid' && item.category !== 'paid') return false;
+        if (activeFilter === 'organic' && item.category !== 'organic') return false;
+        if (activeFilter === 'direct' && item.category !== 'direct') return false;
+
+        // Query filter
+        if (q) {
+          const matchSource = item.source.toLowerCase().includes(q);
+          const matchMedium = item.medium.toLowerCase().includes(q);
+          const matchChannel = item.channel.toLowerCase().includes(q);
+          const matchNotes = item.recommendation.toLowerCase().includes(q);
+          return matchSource || matchMedium || matchChannel || matchNotes;
+        }
+
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 2rem; color: var(--text-muted);">No matching source/medium rules found. Try searching for "cpc", "email", or "paid_social".</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'interactive-row';
+        tr.title = 'Click to test in live validator above';
+
+        const dotColor =
+          item.channel === 'Paid Search' ? '#4285F4' :
+          item.channel === 'Paid Social' ? '#1877F2' :
+          item.channel === 'Organic Social' ? '#10B981' :
+          item.channel === 'Email' ? '#F59E0B' :
+          item.channel === 'Affiliates' ? '#8B5CF6' :
+          item.channel === 'Display' ? '#EC4899' :
+          item.channel === 'Paid Video' || item.channel === 'Organic Video' ? '#EF4444' :
+          item.channel === '(Unassigned)' ? '#DC2626' : '#6B7280';
+
+        const statusClass =
+          item.valid === 'valid' ? 'status-valid' :
+          item.valid === 'warning' ? 'status-warning' : 'status-broken';
+
+        tr.innerHTML = `
+          <td><code>${item.source}</code></td>
+          <td><code>${item.medium}</code></td>
+          <td>
+            <span class="channel-cell-badge">
+              <span class="channel-cell-dot" style="background-color: ${dotColor};"></span>
+              <strong>${item.channel}</strong>
+            </span>
+          </td>
+          <td>
+            <span class="status-badge ${statusClass}">
+              ${item.valid === 'valid' ? '✅ Valid' : item.valid === 'warning' ? '⚠️ Warning' : '❌ Broken'}
+            </span>
+          </td>
+          <td>
+            ${item.recommendation}
+            <button type="button" class="btn-apply-row" data-test-source="${item.source}" data-test-medium="${item.medium}">Test ↑</button>
+          </td>
+        `;
+
+        tr.addEventListener('click', (e) => {
+          sourceInput.value = item.source;
+          mediumInput.value = item.medium;
+          updateSandbox();
+          window.scrollTo({ top: document.getElementById('interactive-validator').offsetTop - 80, behavior: 'smooth' });
+        });
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    filterInput.addEventListener('input', renderTable);
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        activeFilter = pill.dataset.filter;
+        renderTable();
+      });
+    });
+
+    // Initial render
+    updateSandbox();
+    renderTable();
+  </script>
+</body>
+</html>

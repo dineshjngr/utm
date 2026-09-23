@@ -12,6 +12,12 @@ function escapeAttr(str) {
   return str.replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+function formatPublishedDate(date) {
+  return new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
+    year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'
+  });
+}
+
 // Helper to extract FAQ questions and answers from article HTML
 function extractFaqSchema(contentHtml) {
   if (!contentHtml) return null;
@@ -69,6 +75,16 @@ function renderArticlePage(post) {
         "image": imageUrl,
         "datePublished": post.datePublished,
         "dateModified": post.dateModified,
+        "reviewedBy": {
+          "@type": "Organization",
+          "name": "UTMCraft Editorial Team",
+          "url": "https://utmcraft.com/"
+        },
+        "citation": (post.references || []).map(ref => ({
+          "@type": "CreativeWork",
+          "name": ref.title,
+          "url": ref.url
+        })),
         "author": {
           "@type": "Person",
           "name": post.author.name,
@@ -136,7 +152,7 @@ function renderArticlePage(post) {
         <p class="post-card-excerpt">${escapeAttr(rel.description)}</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
-          <span>${rel.reviewedDate}</span>
+            <span>Published ${formatPublishedDate(rel.datePublished)}</span>
         </div>
       </div>
     </a>`;
@@ -144,7 +160,7 @@ function renderArticlePage(post) {
 
   // References list HTML
   const referencesHtml = post.references && post.references.length > 0 ? `
-    <section class="article-references">
+    <section class="article-references" id="article-sources">
       <h3>Sources &amp; Authoritative References</h3>
       <ul class="references-list">
         ${post.references.map(ref => `
@@ -157,6 +173,16 @@ function renderArticlePage(post) {
       </ul>
     </section>
   ` : '';
+
+  const sourceLinks = [...new Map((post.references || []).map(ref => [ref.publisher, ref])).values()]
+    .map(ref => `<a href="${escapeAttr(ref.url)}" target="_blank" rel="noopener">${escapeAttr(ref.publisher)}</a>`)
+    .join(', ');
+  const editorialCredits = `<div class="article-editorial-credits" aria-label="Article authorship and sources">
+      <p><strong>Written by</strong> <a href="${escapeAttr(post.author.url)}">${escapeAttr(post.author.name)}</a></p>
+      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
+      <p><strong>Last reviewed</strong> <time datetime="${post.dateModified}">${escapeAttr(post.reviewedDate)}</time></p>
+      <p><strong>Sources</strong> ${sourceLinks} <a class="article-source-details" href="#article-sources">Full references</a></p>
+    </div>`;
 
   // Contextual Tool CTA Card HTML - High-Impact Interactive Showcase
   const toolCtaHtml = post.toolCta ? `
@@ -268,16 +294,12 @@ function renderArticlePage(post) {
             </a>
             <span class="article-reading-time">${post.readingTime}</span>
             <span class="article-meta-bullet">•</span>
-            <span class="article-date">Updated ${post.reviewedDate}</span>
+            <span class="article-date">Published ${formatPublishedDate(post.datePublished)}</span>
           </div>
 
           <h1 class="article-title">${escapeAttr(post.title)}</h1>
           <p class="article-description">${escapeAttr(post.description)}</p>
-
-          <div class="article-freshness-bar">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Platform rules verified for Google Analytics 4 (September 2026)</span>
-          </div>
+          ${editorialCredits}
 
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
@@ -398,7 +420,7 @@ function renderCategoryPage(category) {
         <p class="post-card-excerpt">${escapeAttr(post.description)}</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
-          <span>${post.reviewedDate}</span>
+          <span>Published ${formatPublishedDate(post.datePublished)}</span>
         </div>
       </div>
     </a>
@@ -478,7 +500,7 @@ function renderCategoryPage(category) {
           <div class="featured-pillar-footer">
             <span>${pillar.readingTime}</span>
             <span>•</span>
-            <span>Reviewed ${pillar.reviewedDate}</span>
+            <span>Published ${formatPublishedDate(pillar.datePublished)}</span>
           </div>
         </div>
       </a>
@@ -562,7 +584,7 @@ function renderBlogIndexPage() {
         <p class="post-card-excerpt">${escapeAttr(post.description)}</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
-          <span>${post.reviewedDate}</span>
+          <span>Published ${formatPublishedDate(post.datePublished)}</span>
         </div>
       </div>
     </a>`;
@@ -650,7 +672,7 @@ function renderBlogIndexPage() {
           <div class="featured-pillar-footer">
             <span>${pillar.readingTime}</span>
             <span>•</span>
-            <span>Updated ${pillar.reviewedDate}</span>
+            <span>Published ${formatPublishedDate(pillar.datePublished)}</span>
           </div>
         </div>
       </a>
@@ -691,6 +713,7 @@ function updateSitemap() {
     { loc: 'https://utmcraft.com/utm-checker/', priority: '0.85', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/utm-parameters/', priority: '0.8', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/utm-naming-conventions/', priority: '0.8', changefreq: 'monthly' },
+    { loc: 'https://utmcraft.com/ga4-default-channel-grouping/', priority: '0.85', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/utm-builder/google-ads/', priority: '0.85', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/utm-builder/facebook/', priority: '0.85', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/utm-builder/linkedin/', priority: '0.85', changefreq: 'monthly' },
@@ -734,7 +757,7 @@ ${u.lastmod ? `    <lastmod>${u.lastmod}</lastmod>\n` : ''}    <changefreq>${u.c
 function generatePostsReadme(blogPostsDir) {
   const readmePath = path.join(blogPostsDir, 'README.md');
   let md = `# UTMCraft Blog Articles Directory\n\n`;
-  md += `All 35 production guides are organized in this directory as individual HTML files.\n\n`;
+  md += `All ${blogPosts.length} active production guides are organized in this directory as individual HTML files.\n\n`;
   md += `## URL Architecture & Routing Governance\n\n`;
   md += `- **Source File:** \`blog/posts/[slug].html\`\n`;
   md += `- **Production Canonical URL:** \`https://utmcraft.com/[slug]/\` (flat URL, no category in slug)\n`;
@@ -757,6 +780,13 @@ function generatePostsReadme(blogPostsDir) {
 }
 
 export function buildBlog() {
+  const activeSlugs = new Set(blogPosts.map(post => post.slug));
+  for (const file of fs.readdirSync(path.join(rootDir, 'blog', 'posts'))) {
+    if (!file.endsWith('.html') || file === 'index.html') continue;
+    const slug = file.slice(0, -5);
+    if (!activeSlugs.has(slug)) fs.unlinkSync(path.join(rootDir, 'blog', 'posts', file));
+  }
+
   console.log(`Building blog system...`);
 
   const blogPostsDir = path.join(rootDir, 'blog', 'posts');
@@ -772,7 +802,7 @@ export function buildBlog() {
     }
   }
 
-  // 1. Build 35 Post Pages: blog/posts/[slug].html
+  // 1. Build article pages: blog/posts/[slug].html
   for (const post of blogPosts) {
     const postFilePath = path.join(blogPostsDir, `${post.slug}.html`);
     const html = renderArticlePage(post);

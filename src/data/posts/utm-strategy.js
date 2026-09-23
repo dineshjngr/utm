@@ -149,7 +149,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
           <strong>Common Mistake: Tagging Internal On-Site Links</strong>
         </div>
-        <p>Never put UTM parameters on internal banners, homepage sliders, or header navigation links pointing to other pages on your own website. When a user clicks an internal link with UTMs, GA4 immediately ends their current session, starts a new session, overwrites the original marketing referrer (e.g. Google Ads or Organic Search), and attributes all downstream conversions to your internal page!</p>
+        <p>Don't use UTMs on internal links such as banners, homepage sliders, or navigation. In GA4, a new campaign or traffic source does not start a new session. Mid-session campaign values can instead be associated with the events where they were collected, which can create misleading event-level campaign attribution. Use internal-promotion events to measure on-site promotions.</p>
       </div>
 
       <h2 id="migration-strategy">How to Migrate Away From Broken Historical UTMs</h2>
@@ -173,7 +173,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
         </div>
         <div class="faq-item">
           <h3>Why should UTM parameters never be used on internal website links?</h3>
-          <p>Appending UTMs to internal links (like banners or header navigation) causes GA4 to immediately terminate the visitor's current session and launch a brand new session with internal source data. This overwrites the original marketing origin (erasing Paid Search or Social ad attribution), artificially inflates session counts, and degrades conversion tracking.</p>
+          <p>Don't use UTMs on internal links. In GA4, they don't start a new session, but mid-session campaign values can be associated with the events where they were collected and create misleading event-level attribution. Use internal-promotion events to measure on-site promotions.</p>
         </div>
         <div class="faq-item">
           <h3>Who should own and manage campaign UTM taxonomy across an organization?</h3>

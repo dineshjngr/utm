@@ -7,8 +7,8 @@ import { blogCategories } from '../src/data/blog-categories.js';
 
 const rootDir = path.resolve(import.meta.dirname, '..');
 
-test('Blog Data Integrity: all 35 articles have required fields and no duplicates', () => {
-  assert.equal(blogPosts.length, 35, 'Should have exactly 35 articles');
+test('Blog Data Integrity: all active articles have required fields and no duplicates', () => {
+  assert.equal(blogPosts.length, 33, 'Should have exactly 33 active articles');
   assert.equal(blogCategories.length, 10, 'Should have exactly 10 categories');
 
   const slugs = new Set();
@@ -81,7 +81,7 @@ test('Category Data Integrity: all 10 categories have pillars and valid slugs', 
   }
 });
 
-test('Generated HTML Files: All 35 articles are in blog/posts/[slug].html and root is clean', () => {
+test('Generated HTML Files: All active articles are in blog/posts/[slug].html and root is clean', () => {
   for (const post of blogPosts) {
     // 1. Must exist in dedicated blog/posts folder
     const postFilePath = path.join(rootDir, 'blog', 'posts', `${post.slug}.html`);
@@ -179,6 +179,7 @@ test('Internal Link Integrity: all internal links across all 35 articles point t
     '/utm-checker/',
     '/utm-parameters/',
     '/utm-naming-conventions/',
+    '/ga4-default-channel-grouping/',
     '/utm-builder/google-ads/',
     '/utm-builder/facebook/',
     '/utm-builder/linkedin/',
@@ -227,7 +228,7 @@ test('Internal Link Integrity: all internal links across all 35 articles point t
   assert.equal(brokenLinks.length, 0, `Found broken internal links: ${JSON.stringify(brokenLinks, null, 2)}`);
 });
 
-test('Production Build Dual Routing: dist/ has flat post directory and blog subpath for all 35 articles', () => {
+test('Production Build Dual Routing: dist/ has flat post directory and blog subpath for all active articles', () => {
   const distDir = path.join(rootDir, 'dist');
   if (!fs.existsSync(distDir)) return; // Skipped if dist has not been built yet
 

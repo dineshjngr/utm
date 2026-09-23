@@ -51,6 +51,28 @@
       "image": "https://utmcraft.com/blog/images/ga4-utm-parameters-guide.webp",
       "datePublished": "2026-01-20",
       "dateModified": "2026-09-23",
+      "reviewedBy": {
+        "@type": "Organization",
+        "name": "UTMCraft Editorial Team",
+        "url": "https://utmcraft.com/"
+      },
+      "citation": [
+        {
+          "@type": "CreativeWork",
+          "name": "Dimensions & Metrics in Google Analytics 4",
+          "url": "https://support.google.com/analytics/answer/9143382"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Google Analytics 4 URL-Builder Documentation",
+          "url": "https://support.google.com/analytics/answer/10918862"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Uniform Resource Identifier (URI): Generic Syntax",
+          "url": "https://datatracker.ietf.org/doc/html/rfc3986"
+        }
+      ],
       "author": {
         "@type": "Person",
         "name": "DJ",
@@ -203,10 +225,10 @@
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
-              <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
             </a>
-            <a id="nav-taxonomy" href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item">
-              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
               <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
             </a>
             <a href="/utm-naming-conventions/" class="nav-dropdown-item">
@@ -260,16 +282,17 @@
             </a>
             <span class="article-reading-time">13 min read</span>
             <span class="article-meta-bullet">•</span>
-            <span class="article-date">Updated September 23, 2026</span>
+            <span class="article-date">Published January 20, 2026</span>
           </div>
 
           <h1 class="article-title">Complete UTM Parameters Guide for GA4: Manual Campaign Dimensions & Best Practices</h1>
           <p class="article-description">The definitive technical reference to all 9 UTM parameters in Google Analytics 4, dimension mappings, character limits, encoding rules, and reporting caveats.</p>
-
-          <div class="article-freshness-bar">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Platform rules verified for Google Analytics 4 (September 2026)</span>
-          </div>
+          <div class="article-editorial-credits" aria-label="Article authorship and sources">
+      <p><strong>Written by</strong> <a href="https://utmcraft.com/">DJ</a></p>
+      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
+      <p><strong>Last reviewed</strong> <time datetime="2026-09-23">September 23, 2026</time></p>
+      <p><strong>Sources</strong> <a href="https://support.google.com/analytics/answer/10918862" target="_blank" rel="noopener">Google Analytics Help</a>, <a href="https://datatracker.ietf.org/doc/html/rfc3986" target="_blank" rel="noopener">IETF</a> <a class="article-source-details" href="#article-sources">Full references</a></p>
+    </div>
 
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
@@ -316,75 +339,89 @@
         <!-- Main Prose Body -->
         <div class="article-prose">
           
-      <p class="lead-text">While traditional Universal Analytics only recognized 5 standard UTM parameters, Google Analytics 4 officially supports up to <strong>9 distinct campaign parameters</strong>. Understanding how GA4 parses, stores, and maps these keys to session and manual reporting dimensions is essential for accurate marketing measurement.</p>
+      <p class="lead-text">GA4 supports 9 manual campaign parameters: six commonly used/core parameters plus three additional GA4 parameters. Some newer parameters currently have reporting limitations.</p>
+
+      <p>Google documents the traditional manual parameters plus <code>utm_source_platform</code>, <code>utm_creative_format</code>, and <code>utm_marketing_tactic</code>; Google also separately documents and recommends <code>utm_id</code>. Google notes that <code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in GA4 properties.</p>
+
+      <p>The six commonly used/core parameters are <code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_id</code>, <code>utm_term</code>, and <code>utm_content</code>. The three additional GA4 parameters are <code>utm_source_platform</code>, <code>utm_creative_format</code>, and <code>utm_marketing_tactic</code>.</p>
 
       <h2 id="all-9-utm-parameters">The Complete Matrix: All 9 UTM Parameters in GA4</h2>
-      <p>Here is the definitive reference table showing all 9 UTM parameters supported in GA4, their scope, requirement level, and corresponding GA4 dimension names:</p>
+      <p>Here is the definitive reference table showing all 9 UTM parameters supported in GA4, organized by core parameters and additional GA4 parameters, with requirement levels and reporting status:</p>
 
       <div class="editorial-table-wrap">
         <table class="editorial-table">
           <thead>
             <tr>
               <th>UTM Parameter</th>
+              <th>Classification</th>
               <th>Requirement</th>
-              <th>GA4 Primary Dimension</th>
-              <th>Example Approved Value</th>
+              <th>GA4 Dimension</th>
+              <th>Reporting Status</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><code>utm_source</code></td>
+              <td>Core Parameter</td>
               <td><strong>Required</strong></td>
               <td>Session source / First user source / Manual source</td>
-              <td><code>google</code>, <code>linkedin</code>, <code>newsletter</code></td>
+              <td>Available in all standard reports</td>
             </tr>
             <tr>
               <td><code>utm_medium</code></td>
+              <td>Core Parameter</td>
               <td><strong>Required</strong></td>
               <td>Session medium / First user medium / Manual medium</td>
-              <td><code>cpc</code>, <code>paid_social</code>, <code>email</code>, <code>affiliate</code></td>
+              <td>Available in all standard reports (determines channel grouping)</td>
             </tr>
             <tr>
               <td><code>utm_campaign</code></td>
-              <td><strong>Required</strong></td>
+              <td>Core Parameter</td>
+              <td><strong>Recommended</strong></td>
               <td>Session campaign / First user campaign / Manual campaign</td>
-              <td><code>us_saas_trial-signup_2026q1</code></td>
+              <td>Available in all standard reports</td>
             </tr>
             <tr>
               <td><code>utm_id</code></td>
-              <td>Recommended</td>
-              <td>Manual campaign ID / Session campaign ID</td>
-              <td><code>cmp_98472910</code> (Ad network campaign ID)</td>
+              <td>Core Parameter</td>
+              <td>Recommended by Google</td>
+              <td>Campaign ID / Session campaign ID / Manual campaign ID</td>
+              <td>Available in standard &amp; Advertising reports; used for Cost Data Import</td>
             </tr>
             <tr>
               <td><code>utm_term</code></td>
+              <td>Core Parameter</td>
               <td>Optional</td>
-              <td>Manual term</td>
-              <td><code>b2b+crm+software</code> (Search keyword / target audience)</td>
+              <td>Session manual ad term / Manual term</td>
+              <td>Available in standard reports &amp; Explorations</td>
             </tr>
             <tr>
               <td><code>utm_content</code></td>
+              <td>Core Parameter</td>
               <td>Optional</td>
-              <td>Manual ad content</td>
-              <td><code>video_testimonial_30s</code>, <code>blue_cta_button</code></td>
+              <td>Session manual ad content / Manual ad content</td>
+              <td>Available in standard reports &amp; Explorations</td>
             </tr>
             <tr>
               <td><code>utm_source_platform</code></td>
+              <td>Additional GA4 Parameter</td>
               <td>Optional</td>
               <td>Manual source platform</td>
-              <td><code>Search Ads 360</code>, <code>Google Ads</code>, <code>Manual</code></td>
+              <td>Available in GA4 reports &amp; BigQuery export</td>
             </tr>
             <tr>
               <td><code>utm_creative_format</code></td>
+              <td>Additional GA4 Parameter</td>
               <td>Optional</td>
               <td>Manual creative format</td>
-              <td><code>display</code>, <code>video</code>, <code>carousel</code></td>
+              <td><strong>Reporting limitation:</strong> Google notes this is not currently reported in GA4 properties</td>
             </tr>
             <tr>
               <td><code>utm_marketing_tactic</code></td>
+              <td>Additional GA4 Parameter</td>
               <td>Optional</td>
               <td>Manual marketing tactic</td>
-              <td><code>retargeting</code>, <code>prospecting</code>, <code>onboarding</code></td>
+              <td><strong>Reporting limitation:</strong> Google notes this is not currently reported in GA4 properties</td>
             </tr>
           </tbody>
         </table>
@@ -414,7 +451,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <strong>Reporting Limitation Notice</strong>
         </div>
-        <p>While GA4 ingests <code>utm_creative_format</code> and <code>utm_marketing_tactic</code> into <em>Manual creative format</em> and <em>Manual marketing tactic</em> dimensions, they <strong>do not influence GA4 Default Channel Grouping</strong>. Furthermore, they are primarily accessible via <strong>GA4 Explorations</strong> and the <strong>BigQuery Event Export</strong>, rather than pre-built standard dashboard cards.</p>
+        <p>Google officially notes that <strong><code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in Google Analytics 4 properties</strong>. While GA4 captures these values on incoming hits and makes them available in the BigQuery Event Export and custom explorations (as <em>Manual creative format</em> and <em>Manual marketing tactic</em>), they do not appear in standard pre-built property reports and do not influence Default Channel Grouping rules.</p>
       </div>
 
       <h2 id="syntax-and-encoding-rules">Syntax, Parameter Order & URL Encoding Rules</h2>
@@ -554,7 +591,7 @@
   
 
           
-    <section class="article-references">
+    <section class="article-references" id="article-sources">
       <h3>Sources &amp; Authoritative References</h3>
       <ul class="references-list">
         
@@ -611,7 +648,7 @@
         <p class="post-card-excerpt">Learn what utm_source is, how Google Analytics 4 uses it to determine traffic origin, approved naming conventions, and common mistakes that split reporting.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
-          <span>September 23, 2026</span>
+            <span>Published February 4, 2026</span>
         </div>
       </div>
     </a>
@@ -628,7 +665,7 @@
         <p class="post-card-excerpt">Understand utm_medium and how GA4 uses it to classify sessions into Default Channel Groups. Avoid Unassigned traffic with exact medium naming rules.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
-          <span>September 23, 2026</span>
+            <span>Published February 8, 2026</span>
         </div>
       </div>
     </a>
@@ -645,7 +682,7 @@
         <p class="post-card-excerpt">Learn how to structure utm_campaign for clear GA4 reporting. Discover formula frameworks, campaign IDs (utm_id), delimiter best practices, and real examples.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
-          <span>September 23, 2026</span>
+            <span>Published February 15, 2026</span>
         </div>
       </div>
     </a>
@@ -729,7 +766,7 @@
             <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
-              <li><a href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy">GA4 Channel Taxonomy</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
               <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
               <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
             </ul>

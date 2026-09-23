@@ -44,75 +44,89 @@ export const utmParametersPosts = [
       { title: 'Uniform Resource Identifier (URI): Generic Syntax', url: 'https://datatracker.ietf.org/doc/html/rfc3986', publisher: 'IETF' }
     ],
     contentHtml: `
-      <p class="lead-text">While traditional Universal Analytics only recognized 5 standard UTM parameters, Google Analytics 4 officially supports up to <strong>9 distinct campaign parameters</strong>. Understanding how GA4 parses, stores, and maps these keys to session and manual reporting dimensions is essential for accurate marketing measurement.</p>
+      <p class="lead-text">GA4 supports 9 manual campaign parameters: six commonly used/core parameters plus three additional GA4 parameters. Some newer parameters currently have reporting limitations.</p>
+
+      <p>Google documents the traditional manual parameters plus <code>utm_source_platform</code>, <code>utm_creative_format</code>, and <code>utm_marketing_tactic</code>; Google also separately documents and recommends <code>utm_id</code>. Google notes that <code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in GA4 properties.</p>
+
+      <p>The six commonly used/core parameters are <code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_id</code>, <code>utm_term</code>, and <code>utm_content</code>. The three additional GA4 parameters are <code>utm_source_platform</code>, <code>utm_creative_format</code>, and <code>utm_marketing_tactic</code>.</p>
 
       <h2 id="all-9-utm-parameters">The Complete Matrix: All 9 UTM Parameters in GA4</h2>
-      <p>Here is the definitive reference table showing all 9 UTM parameters supported in GA4, their scope, requirement level, and corresponding GA4 dimension names:</p>
+      <p>Here is the definitive reference table showing all 9 UTM parameters supported in GA4, organized by core parameters and additional GA4 parameters, with requirement levels and reporting status:</p>
 
       <div class="editorial-table-wrap">
         <table class="editorial-table">
           <thead>
             <tr>
               <th>UTM Parameter</th>
+              <th>Classification</th>
               <th>Requirement</th>
-              <th>GA4 Primary Dimension</th>
-              <th>Example Approved Value</th>
+              <th>GA4 Dimension</th>
+              <th>Reporting Status</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><code>utm_source</code></td>
+              <td>Core Parameter</td>
               <td><strong>Required</strong></td>
               <td>Session source / First user source / Manual source</td>
-              <td><code>google</code>, <code>linkedin</code>, <code>newsletter</code></td>
+              <td>Available in all standard reports</td>
             </tr>
             <tr>
               <td><code>utm_medium</code></td>
+              <td>Core Parameter</td>
               <td><strong>Required</strong></td>
               <td>Session medium / First user medium / Manual medium</td>
-              <td><code>cpc</code>, <code>paid_social</code>, <code>email</code>, <code>affiliate</code></td>
+              <td>Available in all standard reports (determines channel grouping)</td>
             </tr>
             <tr>
               <td><code>utm_campaign</code></td>
-              <td><strong>Required</strong></td>
+              <td>Core Parameter</td>
+              <td><strong>Recommended</strong></td>
               <td>Session campaign / First user campaign / Manual campaign</td>
-              <td><code>us_saas_trial-signup_2026q1</code></td>
+              <td>Available in all standard reports</td>
             </tr>
             <tr>
               <td><code>utm_id</code></td>
-              <td>Recommended</td>
-              <td>Manual campaign ID / Session campaign ID</td>
-              <td><code>cmp_98472910</code> (Ad network campaign ID)</td>
+              <td>Core Parameter</td>
+              <td>Recommended by Google</td>
+              <td>Campaign ID / Session campaign ID / Manual campaign ID</td>
+              <td>Available in standard &amp; Advertising reports; used for Cost Data Import</td>
             </tr>
             <tr>
               <td><code>utm_term</code></td>
+              <td>Core Parameter</td>
               <td>Optional</td>
-              <td>Manual term</td>
-              <td><code>b2b+crm+software</code> (Search keyword / target audience)</td>
+              <td>Session manual ad term / Manual term</td>
+              <td>Available in standard reports &amp; Explorations</td>
             </tr>
             <tr>
               <td><code>utm_content</code></td>
+              <td>Core Parameter</td>
               <td>Optional</td>
-              <td>Manual ad content</td>
-              <td><code>video_testimonial_30s</code>, <code>blue_cta_button</code></td>
+              <td>Session manual ad content / Manual ad content</td>
+              <td>Available in standard reports &amp; Explorations</td>
             </tr>
             <tr>
               <td><code>utm_source_platform</code></td>
+              <td>Additional GA4 Parameter</td>
               <td>Optional</td>
               <td>Manual source platform</td>
-              <td><code>Search Ads 360</code>, <code>Google Ads</code>, <code>Manual</code></td>
+              <td>Available in GA4 reports &amp; BigQuery export</td>
             </tr>
             <tr>
               <td><code>utm_creative_format</code></td>
+              <td>Additional GA4 Parameter</td>
               <td>Optional</td>
               <td>Manual creative format</td>
-              <td><code>display</code>, <code>video</code>, <code>carousel</code></td>
+              <td><strong>Reporting limitation:</strong> Google notes this is not currently reported in GA4 properties</td>
             </tr>
             <tr>
               <td><code>utm_marketing_tactic</code></td>
+              <td>Additional GA4 Parameter</td>
               <td>Optional</td>
               <td>Manual marketing tactic</td>
-              <td><code>retargeting</code>, <code>prospecting</code>, <code>onboarding</code></td>
+              <td><strong>Reporting limitation:</strong> Google notes this is not currently reported in GA4 properties</td>
             </tr>
           </tbody>
         </table>
@@ -142,7 +156,7 @@ export const utmParametersPosts = [
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <strong>Reporting Limitation Notice</strong>
         </div>
-        <p>While GA4 ingests <code>utm_creative_format</code> and <code>utm_marketing_tactic</code> into <em>Manual creative format</em> and <em>Manual marketing tactic</em> dimensions, they <strong>do not influence GA4 Default Channel Grouping</strong>. Furthermore, they are primarily accessible via <strong>GA4 Explorations</strong> and the <strong>BigQuery Event Export</strong>, rather than pre-built standard dashboard cards.</p>
+        <p>Google officially notes that <strong><code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in Google Analytics 4 properties</strong>. While GA4 captures these values on incoming hits and makes them available in the BigQuery Event Export and custom explorations (as <em>Manual creative format</em> and <em>Manual marketing tactic</em>), they do not appear in standard pre-built property reports and do not influence Default Channel Grouping rules.</p>
       </div>
 
       <h2 id="syntax-and-encoding-rules">Syntax, Parameter Order & URL Encoding Rules</h2>

@@ -10,6 +10,15 @@ import { organicSocialPrPosts } from './posts/organic-social-pr.js';
 import { offlineQrPosts } from './posts/offline-qr.js';
 import { utmOperationsPosts } from './posts/utm-operations.js';
 
+// These guides were consolidated into their stronger parent pages. Keep their
+// slugs here so the redirect generator can preserve inbound links.
+export const mergedBlogPostRedirects = {
+  'meta-ads-utm-tracking': 'meta-ads-utm-guide',
+  'linkedin-ads-utm-tracking': 'linkedin-ads-utm-guide'
+};
+
+const mergedBlogPostSlugs = new Set(Object.keys(mergedBlogPostRedirects));
+
 export const blogPosts = [
   ...utmStrategyPosts,
   ...utmParametersPosts,
@@ -21,7 +30,7 @@ export const blogPosts = [
   ...organicSocialPrPosts,
   ...offlineQrPosts,
   ...utmOperationsPosts
-];
+].filter(post => !mergedBlogPostSlugs.has(post.slug));
 
 export function getPostBySlug(slug) {
   return blogPosts.find(p => p.slug === slug);

@@ -48,10 +48,10 @@
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
-              <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
             </a>
-            <a id="nav-taxonomy" href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item">
-              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
               <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
             </a>
             <a href="/utm-naming-conventions/" class="nav-dropdown-item">

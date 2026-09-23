@@ -161,10 +161,10 @@
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
-              <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
             </a>
-            <a id="nav-taxonomy" href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item">
-              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
               <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
             </a>
             <a href="/utm-naming-conventions/" class="nav-dropdown-item">
@@ -697,62 +697,84 @@
       </article>
 
       <article class="editorial-card">
-        <h2>The 6 Core Google Analytics 4 Campaign Parameters</h2>
-        <p>Google Analytics 4 reads query parameters appended to destination URLs to populate campaign reports, attribution paths, and conversion exploration funnels. Understanding each parameter ensures your data flows accurately into standard reports.</p>
+        <h2>Google Analytics 4 Campaign Parameters: Core &amp; Additional Parameters</h2>
+        <p>GA4 supports 9 manual campaign parameters: six commonly used/core parameters plus three additional GA4 parameters. Some newer parameters currently have reporting limitations. Google documents the traditional manual parameters plus <code>utm_source_platform</code>, <code>utm_creative_format</code>, and <code>utm_marketing_tactic</code>; Google also separately documents and recommends <code>utm_id</code>. Google notes that <code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in GA4 properties.</p>
+        <p style="margin-top: 0.5rem;">Below are the six core parameters commonly used in URL builders, followed by GA4's three additional campaign parameters:</p>
 
         <div class="editorial-table-wrap">
           <table class="editorial-table">
             <thead>
               <tr>
                 <th>Parameter</th>
+                <th>Classification</th>
                 <th>Required</th>
                 <th>GA4 Dimension</th>
-                <th>Example Value</th>
-                <th>Primary Use Case</th>
+                <th>Primary Use Case &amp; Reporting Status</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><code>utm_source</code></td>
+                <td>Core Parameter</td>
                 <td><strong>Yes</strong></td>
-                <td>Session source</td>
-                <td><code>google</code>, <code>newsletter</code>, <code>meta</code></td>
-                <td>Identifies the referrer or platform driving the user.</td>
+                <td>Session source / First user source</td>
+                <td>Identifies the referrer or platform driving the user. Reported in all standard reports.</td>
               </tr>
               <tr>
                 <td><code>utm_medium</code></td>
+                <td>Core Parameter</td>
                 <td><strong>Recommended</strong></td>
-                <td>Session medium</td>
-                <td><code>cpc</code>, <code>email</code>, <code>paid_social</code></td>
-                <td>Determines the marketing channel grouping in GA4.</td>
+                <td>Session medium / First user medium</td>
+                <td>Determines the marketing channel grouping in GA4. Required for channel grouping.</td>
               </tr>
               <tr>
                 <td><code>utm_campaign</code></td>
+                <td>Core Parameter</td>
                 <td><strong>Recommended</strong></td>
-                <td>Session campaign</td>
-                <td><code>summer_sale_2025</code>, <code>q4_launch</code></td>
-                <td>Names the specific product initiative, promotion, or theme.</td>
+                <td>Session campaign / First user campaign</td>
+                <td>Names the specific product initiative, promotion, or theme. Reported in all standard reports.</td>
               </tr>
               <tr>
                 <td><code>utm_id</code></td>
-                <td>Optional</td>
-                <td>Campaign ID</td>
-                <td><code>cid_984712</code>, <code>meta_c99</code></td>
-                <td>Used to match and upload offline cost data via GA4 Data Import.</td>
+                <td>Core Parameter</td>
+                <td>Recommended</td>
+                <td>Campaign ID / Session campaign ID</td>
+                <td>Recommended by Google to match and upload offline cost data via GA4 Data Import.</td>
               </tr>
               <tr>
                 <td><code>utm_term</code></td>
+                <td>Core Parameter</td>
                 <td>Optional</td>
                 <td>Session manual ad term</td>
-                <td><code>enterprise+crm</code>, <code>b2b+software</code></td>
                 <td>Tracks paid search keywords or specific audience segment targeting.</td>
               </tr>
               <tr>
                 <td><code>utm_content</code></td>
+                <td>Core Parameter</td>
                 <td>Optional</td>
                 <td>Session manual ad content</td>
-                <td><code>hero_btn_blue</code>, <code>carousel_v2</code></td>
-                <td>Differentiates creative variants, banner sizes, or copy variations.</td>
+                <td>Differentiates creative variants, banner sizes, or copy variations for A/B testing.</td>
+              </tr>
+              <tr>
+                <td><code>utm_source_platform</code></td>
+                <td>Additional GA4 Parameter</td>
+                <td>Optional</td>
+                <td>Manual source platform</td>
+                <td>Identifies the sending platform interface (e.g. Search Ads 360, Google Ads). Available in reports &amp; BigQuery.</td>
+              </tr>
+              <tr>
+                <td><code>utm_creative_format</code></td>
+                <td>Additional GA4 Parameter</td>
+                <td>Optional</td>
+                <td>Manual creative format</td>
+                <td>Identifies creative type (video, carousel). <strong>Reporting limitation:</strong> Google notes this is not currently reported in GA4 properties.</td>
+              </tr>
+              <tr>
+                <td><code>utm_marketing_tactic</code></td>
+                <td>Additional GA4 Parameter</td>
+                <td>Optional</td>
+                <td>Manual marketing tactic</td>
+                <td>Targeting strategy (prospecting, remarketing). <strong>Reporting limitation:</strong> Google notes this is not currently reported in GA4 properties.</td>
               </tr>
             </tbody>
           </table>
@@ -839,7 +861,7 @@
             <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
-              <li><a href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy">GA4 Channel Taxonomy</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
               <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
               <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
             </ul>

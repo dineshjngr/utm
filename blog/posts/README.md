@@ -1,6 +1,6 @@
 # UTMCraft Blog Articles Directory
 
-All 35 production guides are organized in this directory as individual HTML files.
+All 33 active production guides are organized in this directory as individual HTML files.
 
 ## URL Architecture & Routing Governance
 
@@ -32,16 +32,14 @@ Both the Vite development server and the production build automatically route re
 | GA4 Attribution & Troubleshooting | Supporting | How to Test and QA UTM Parameters in GA4 DebugView and Realtime | `how-to-test-utms.html` | [/how-to-test-utms/](https://utmcraft.com/how-to-test-utms/) |
 | Google Ads Tracking | **Pillar** | Google Ads UTM Tracking Guide: ValueTrack, Tracking Templates & GA4 Attribution | `google-ads-utm-guide.html` | [/google-ads-utm-guide/](https://utmcraft.com/google-ads-utm-guide/) |
 | Google Ads Tracking | Supporting | Google Ads Auto-Tagging vs UTMs: When to Use GCLID, UTMs, or Both | `google-ads-auto-tagging-vs-utms.html` | [/google-ads-auto-tagging-vs-utms/](https://utmcraft.com/google-ads-auto-tagging-vs-utms/) |
-| Google Ads Tracking | Supporting | GCLID vs UTM Parameters: Key Differences, Privacy Limits & Hybrid Tracking | `gclid-vs-utms.html` | [/gclid-vs-utms/](https://utmcraft.com/gclid-vs-utms/) |
-| Google Ads Tracking | Supporting | Google Ads Tracking Templates & ValueTrack Parameters: Complete Setup Guide | `google-ads-tracking-templates.html` | [/google-ads-tracking-templates/](https://utmcraft.com/google-ads-tracking-templates/) |
+| Google Ads Tracking | Supporting | GCLID vs UTM Parameters: Safari Privacy & Offline Conversion Tracking | `gclid-vs-utms.html` | [/gclid-vs-utms/](https://utmcraft.com/gclid-vs-utms/) |
+| Google Ads Tracking | Supporting | Google Ads Tracking Template Setup: Custom Parameters & Parallel Tracking | `google-ads-tracking-templates.html` | [/google-ads-tracking-templates/](https://utmcraft.com/google-ads-tracking-templates/) |
 | Meta Ads Tracking | **Pillar** | Meta Ads UTM Tracking Guide: Dynamic Parameters, Attribution Discrepancies & Setup | `meta-ads-utm-guide.html` | [/meta-ads-utm-guide/](https://utmcraft.com/meta-ads-utm-guide/) |
-| Meta Ads Tracking | Supporting | Meta Ads UTM Tracking: Setup, Placement Tracking & Reporting Best Practices | `meta-ads-utm-tracking.html` | [/meta-ads-utm-tracking/](https://utmcraft.com/meta-ads-utm-tracking/) |
-| Meta Ads Tracking | Supporting | Meta Dynamic URL Parameters: {{campaign.name}}, {{adset.name}}, and {{ad.name}} Guide | `meta-dynamic-url-parameters.html` | [/meta-dynamic-url-parameters/](https://utmcraft.com/meta-dynamic-url-parameters/) |
+| Meta Ads Tracking | Supporting | Meta Dynamic Parameters Not Working? Fix Raw Tokens & Syntax | `meta-dynamic-url-parameters.html` | [/meta-dynamic-url-parameters/](https://utmcraft.com/meta-dynamic-url-parameters/) |
 | LinkedIn Ads Tracking | **Pillar** | LinkedIn Ads UTM Tracking Guide: Dynamic Tokens, B2B Attribution & Campaign Setup | `linkedin-ads-utm-guide.html` | [/linkedin-ads-utm-guide/](https://utmcraft.com/linkedin-ads-utm-guide/) |
-| LinkedIn Ads Tracking | Supporting | LinkedIn Ads UTM Tracking: B2B Attribution & Hierarchy Setup Guide | `linkedin-ads-utm-tracking.html` | [/linkedin-ads-utm-tracking/](https://utmcraft.com/linkedin-ads-utm-tracking/) |
-| LinkedIn Ads Tracking | Supporting | LinkedIn Dynamic Tracking Parameters: CAMPAIGN_ID, AD_SET_ID, and AD_ID Guide | `linkedin-dynamic-parameters.html` | [/linkedin-dynamic-parameters/](https://utmcraft.com/linkedin-dynamic-parameters/) |
+| LinkedIn Ads Tracking | Supporting | LinkedIn Dynamic URL Parameters: Token Syntax & QA Guide | `linkedin-dynamic-parameters.html` | [/linkedin-dynamic-parameters/](https://utmcraft.com/linkedin-dynamic-parameters/) |
 | Email Marketing Tracking | **Pillar** | Email UTM Tracking Guide: Automated Flows, ESP Integration & Bot Filtering | `email-utm-guide.html` | [/email-utm-guide/](https://utmcraft.com/email-utm-guide/) |
-| Email Marketing Tracking | Supporting | Email Marketing UTM Tracking: ESP Tagging, Link Wrappers & Security Bot Defense | `email-utm-tracking.html` | [/email-utm-tracking/](https://utmcraft.com/email-utm-tracking/) |
+| Email Marketing Tracking | Supporting | Email UTM Link Wrappers: Preserve Tags Through ESP Redirects | `email-utm-tracking.html` | [/email-utm-tracking/](https://utmcraft.com/email-utm-tracking/) |
 | Organic Social, Influencer, PR & Partnerships | **Pillar** | How to Track Non-Paid Marketing With UTMs: Organic Social, PR & Partnerships | `non-paid-marketing-utm-tracking.html` | [/non-paid-marketing-utm-tracking/](https://utmcraft.com/non-paid-marketing-utm-tracking/) |
 | Organic Social, Influencer, PR & Partnerships | Supporting | Influencer & Creator UTM Tracking: Promo Codes, Bio Links & Partner Governance | `influencer-utm-tracking.html` | [/influencer-utm-tracking/](https://utmcraft.com/influencer-utm-tracking/) |
 | Offline & QR Tracking | **Pillar** | Offline Campaign Tracking With UTMs and QR Codes: Print, Events & Packaging | `offline-qr-utm-tracking.html` | [/offline-qr-utm-tracking/](https://utmcraft.com/offline-qr-utm-tracking/) |

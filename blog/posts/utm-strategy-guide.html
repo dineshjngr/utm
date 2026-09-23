@@ -51,6 +51,23 @@
       "image": "https://utmcraft.com/blog/images/utm-strategy-guide.webp",
       "datePublished": "2026-01-15",
       "dateModified": "2026-09-23",
+      "reviewedBy": {
+        "@type": "Organization",
+        "name": "UTMCraft Editorial Team",
+        "url": "https://utmcraft.com/"
+      },
+      "citation": [
+        {
+          "@type": "CreativeWork",
+          "name": "Google Analytics 4 Default Channel Grouping",
+          "url": "https://support.google.com/analytics/answer/9756891"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Dimensions & Metrics in GA4",
+          "url": "https://support.google.com/analytics/answer/9143382"
+        }
+      ],
       "author": {
         "@type": "Person",
         "name": "DJ",
@@ -130,7 +147,7 @@
           "name": "Why should UTM parameters never be used on internal website links?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Appending UTMs to internal links (like banners or header navigation) causes GA4 to immediately terminate the visitor's current session and launch a brand new session with internal source data. This overwrites the original marketing origin (erasing Paid Search or Social ad attribution), artificially inflates session counts, and degrades conversion tracking."
+            "text": "Don't use UTMs on internal links. In GA4, they don't start a new session, but mid-session campaign values can be associated with the events where they were collected and create misleading event-level attribution. Use internal-promotion events to measure on-site promotions."
           }
         },
         {
@@ -203,10 +220,10 @@
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
-              <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
             </a>
-            <a id="nav-taxonomy" href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item">
-              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
               <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
             </a>
             <a href="/utm-naming-conventions/" class="nav-dropdown-item">
@@ -260,16 +277,17 @@
             </a>
             <span class="article-reading-time">12 min read</span>
             <span class="article-meta-bullet">•</span>
-            <span class="article-date">Updated September 23, 2026</span>
+            <span class="article-date">Published January 15, 2026</span>
           </div>
 
           <h1 class="article-title">UTM Strategy Guide: How to Build a Tracking System That Stays Clean at Scale</h1>
           <p class="article-description">Learn how to build an enterprise-grade UTM tracking strategy. Prevent fragmented GA4 reports, establish naming standards, and enforce governance at scale.</p>
-
-          <div class="article-freshness-bar">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Platform rules verified for Google Analytics 4 (September 2026)</span>
-          </div>
+          <div class="article-editorial-credits" aria-label="Article authorship and sources">
+      <p><strong>Written by</strong> <a href="https://utmcraft.com/">DJ</a></p>
+      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
+      <p><strong>Last reviewed</strong> <time datetime="2026-09-23">September 23, 2026</time></p>
+      <p><strong>Sources</strong> <a href="https://support.google.com/analytics/answer/9143382" target="_blank" rel="noopener">Google Analytics Help</a> <a class="article-source-details" href="#article-sources">Full references</a></p>
+    </div>
 
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
@@ -422,7 +440,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
           <strong>Common Mistake: Tagging Internal On-Site Links</strong>
         </div>
-        <p>Never put UTM parameters on internal banners, homepage sliders, or header navigation links pointing to other pages on your own website. When a user clicks an internal link with UTMs, GA4 immediately ends their current session, starts a new session, overwrites the original marketing referrer (e.g. Google Ads or Organic Search), and attributes all downstream conversions to your internal page!</p>
+        <p>Don't use UTMs on internal links such as banners, homepage sliders, or navigation. In GA4, a new campaign or traffic source does not start a new session. Mid-session campaign values can instead be associated with the events where they were collected, which can create misleading event-level campaign attribution. Use internal-promotion events to measure on-site promotions.</p>
       </div>
 
       <h2 id="migration-strategy">How to Migrate Away From Broken Historical UTMs</h2>
@@ -446,7 +464,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
         </div>
         <div class="faq-item">
           <h3>Why should UTM parameters never be used on internal website links?</h3>
-          <p>Appending UTMs to internal links (like banners or header navigation) causes GA4 to immediately terminate the visitor's current session and launch a brand new session with internal source data. This overwrites the original marketing origin (erasing Paid Search or Social ad attribution), artificially inflates session counts, and degrades conversion tracking.</p>
+          <p>Don't use UTMs on internal links. In GA4, they don't start a new session, but mid-session campaign values can be associated with the events where they were collected and create misleading event-level attribution. Use internal-promotion events to measure on-site promotions.</p>
         </div>
         <div class="faq-item">
           <h3>Who should own and manage campaign UTM taxonomy across an organization?</h3>
@@ -491,7 +509,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
   
 
           
-    <section class="article-references">
+    <section class="article-references" id="article-sources">
       <h3>Sources &amp; Authoritative References</h3>
       <ul class="references-list">
         
@@ -542,7 +560,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
         <p class="post-card-excerpt">Master UTM naming conventions. Discover field-tested campaign naming formulas, delimiter rules, case-sensitivity guidelines, and downloadable taxonomy SOPs.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
-          <span>September 23, 2026</span>
+            <span>Published January 28, 2026</span>
         </div>
       </div>
     </a>
@@ -559,7 +577,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
         <p class="post-card-excerpt">How digital agencies manage UTM tracking governance across multiple client accounts, media teams, and ad platforms without breaking GA4 attribution.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
-          <span>September 23, 2026</span>
+            <span>Published February 12, 2026</span>
         </div>
       </div>
     </a>
@@ -576,7 +594,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
         <p class="post-card-excerpt">Prevent broken tracking before you launch. A comprehensive 16-step quality assurance checklist for validating UTM links, redirects, casing, and GA4 DebugView.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
-          <span>September 23, 2026</span>
+            <span>Published February 22, 2026</span>
         </div>
       </div>
     </a>
@@ -660,7 +678,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
             <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
-              <li><a href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy">GA4 Channel Taxonomy</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
               <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
               <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
             </ul>

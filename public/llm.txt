@@ -18,6 +18,7 @@ Canonical site: https://utmcraft.com/
 
 - [Guides index](https://utmcraft.com/blog/): Articles about UTM parameters, campaign taxonomy, GA4 attribution, advertising tracking, email, QR codes, and measurement workflows.
 - [UTM parameters reference](https://utmcraft.com/utm-parameters/)
+- [GA4 default channel grouping](https://utmcraft.com/ga4-default-channel-grouping/)
 - [UTM naming conventions](https://utmcraft.com/utm-naming-conventions/)
 - [UTM strategy guide](https://utmcraft.com/utm-strategy-guide/)
 

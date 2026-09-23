@@ -159,6 +159,39 @@
   margin-bottom: 1.5rem;
 }
 
+.article-editorial-credits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.25rem;
+  margin: -0.25rem 0 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.article-editorial-credits p {
+  margin: 0;
+}
+
+.article-editorial-credits strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.article-editorial-credits a {
+  color: var(--accent-text);
+  text-decoration: none;
+}
+
+.article-editorial-credits a:hover {
+  text-decoration: underline;
+}
+
+.article-editorial-credits .article-source-details {
+  margin-left: 0.35rem;
+  color: var(--text-muted);
+}
+
 .article-freshness-bar {
   display: inline-flex;
   align-items: center;

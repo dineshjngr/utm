@@ -20,7 +20,7 @@ function* htmlFiles(directory) {
 function activeNav(path) {
   if (path === 'index.html' || path.includes('campaign-url-builder/') || path.includes('bulk-utm-builder/') || path.includes('utm-builder/')) return 'builder';
   if (path.includes('utm-checker/')) return 'checker';
-  if (path.startsWith('blog/') || path.includes('utm-parameters/') || path.includes('utm-naming-conventions/')) return 'guides';
+  if (path.startsWith('blog/') || path.includes('utm-parameters/') || path.includes('utm-naming-conventions/') || path.includes('ga4-default-channel-grouping/')) return 'guides';
   return '';
 }
 

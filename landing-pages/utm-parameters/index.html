@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UTM Parameters Explained: GA4 Reference | UTMCraft</title>
-  <meta name="description" content="Everything you need to know about the 6 UTM parameters. Learn what each parameter does, valid values, GA4 channel mapping rules, and mistakes to avoid.">
-  <meta name="keywords" content="utm parameters, utm parameters explained, what are utm parameters, utm_source, utm_medium, utm_campaign, utm_term, utm_content, utm_id, ga4 utm parameters">
+  <title>UTM Parameters Explained: All 9 GA4 Manual Campaign Parameters | UTMCraft</title>
+  <meta name="description" content="GA4 supports 9 manual campaign parameters: 6 commonly used core parameters plus 3 additional parameters. Learn definitions, GA4 dimension mappings, and reporting limits.">
+  <meta name="keywords" content="utm parameters, utm parameters explained, what are utm parameters, utm_source, utm_medium, utm_campaign, utm_term, utm_content, utm_id, utm_source_platform, utm_creative_format, utm_marketing_tactic, ga4 utm parameters">
   <link rel="canonical" href="https://utmcraft.com/utm-parameters/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://utmcraft.com/utm-parameters/">
-  <meta property="og:title" content="UTM Parameters Explained: The Complete GA4 Reference Guide | UTMCraft">
-  <meta property="og:description" content="Everything you need to know about the 6 UTM parameters. Learn what each parameter does, valid values, GA4 channel mapping rules, and mistakes to avoid.">
+  <meta property="og:title" content="UTM Parameters Explained: All 9 GA4 Manual Campaign Parameters | UTMCraft">
+  <meta property="og:description" content="GA4 supports 9 manual campaign parameters: 6 commonly used core parameters plus 3 additional parameters. Learn definitions, GA4 dimension mappings, and reporting limits.">
   <meta property="og:image" content="https://utmcraft.com/og-image.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
   <meta name="twitter:url" content="https://utmcraft.com/utm-parameters/">
-  <meta name="twitter:title" content="UTM Parameters Explained: The Complete GA4 Reference Guide | UTMCraft">
-  <meta name="twitter:description" content="Everything you need to know about the 6 UTM parameters. Learn what each parameter does, valid values, GA4 channel mapping rules, and mistakes to avoid.">
+  <meta name="twitter:title" content="UTM Parameters Explained: All 9 GA4 Manual Campaign Parameters | UTMCraft">
+  <meta name="twitter:description" content="GA4 supports 9 manual campaign parameters: 6 commonly used core parameters plus 3 additional parameters. Learn definitions, GA4 dimension mappings, and reporting limits.">
 
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,8 +38,8 @@
     "@graph": [
       {
         "@type": "Article",
-        "headline": "UTM Parameters Explained - Complete Reference Guide",
-        "description": "Comprehensive explanation of all 6 UTM tracking parameters with GA4 dimension names, valid value examples, and best practices.",
+        "headline": "UTM Parameters Explained - Complete GA4 Manual Campaign Parameters Reference",
+        "description": "Comprehensive explanation of all 9 GA4 manual campaign parameters (six core parameters plus three additional GA4 parameters) with GA4 dimension mappings, valid value examples, and reporting limitations.",
         "url": "https://utmcraft.com/utm-parameters/",
         "publisher": {
           "@type": "Organization",
@@ -86,6 +86,14 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "utm_source identifies the specific referrer or publisher (e.g. 'google', 'facebook', 'newsletter_weekly'). utm_medium identifies the broad category or marketing channel type (e.g. 'cpc', 'email', 'paid_social', 'display'). GA4 uses medium - not source - to classify sessions into Default Channel Groups."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many UTM parameters does GA4 support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GA4 supports 9 manual campaign parameters: six commonly used/core parameters (utm_source, utm_medium, utm_campaign, utm_id, utm_term, utm_content) plus three additional GA4 parameters (utm_source_platform, utm_creative_format, utm_marketing_tactic). Some newer parameters currently have reporting limitations; Google notes that utm_creative_format and utm_marketing_tactic are not currently reported in standard GA4 properties."
             }
           },
           {
@@ -156,10 +164,10 @@
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
-              <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
             </a>
-            <a id="nav-taxonomy" href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item">
-              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
               <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
             </a>
             <a href="/utm-naming-conventions/" class="nav-dropdown-item">
@@ -207,7 +215,7 @@
     <header class="workspace-header">
       <div class="workspace-title-group">
         <h1 class="workspace-title">UTM Parameters <span class="workspace-title-muted">Explained</span></h1>
-        <p class="workspace-subtitle">Everything you need to know about the 6 UTM tracking parameters: what they do, how GA4 uses them, valid values for every major marketing channel, and common mistakes to avoid.</p>
+        <p class="workspace-subtitle">GA4 supports 9 manual campaign parameters: six commonly used/core parameters plus three additional GA4 parameters. Some newer parameters currently have reporting limitations.</p>
       </div>
 
       
@@ -242,94 +250,116 @@
         <span class="macro-chips-label">Jump to Section:</span>
         <div class="macro-chips-list">
           <a href="#what-are-utm-parameters" class="macro-chip-btn" style="text-decoration: none;">What Are UTM Parameters?</a>
-          <a href="#parameter-reference" class="macro-chip-btn" style="text-decoration: none;">Parameter Reference Table</a>
+          <a href="#parameter-reference" class="macro-chip-btn" style="text-decoration: none;">All 9 Parameters Table</a>
           <a href="#utm-source" class="macro-chip-btn" style="text-decoration: none;">utm_source</a>
           <a href="#utm-medium" class="macro-chip-btn" style="text-decoration: none;">utm_medium</a>
-          <a href="#utm-campaign" class="macro-chip-btn" style="text-decoration: none;">utm_campaign</a>
+          <a href="#utm-campaign" class="macro-chip-btn" style="text-decoration: none;">Core Parameters</a>
+          <a href="#additional-ga4-parameters" class="macro-chip-btn" style="text-decoration: none;">Additional GA4 Parameters</a>
           <a href="#common-mistakes" class="macro-chip-btn" style="text-decoration: none;">Common Mistakes</a>
         </div>
       </div>
     </header>
 
     
-
-    
     <main id="main-content" class="landing-guide-section" style="margin-top: 1.5rem;">
       <article class="editorial-card" id="what-are-utm-parameters">
         <h2>What Are UTM Parameters?</h2>
-        <p>UTM parameters (Urchin Tracking Modules) are short text snippets appended to any destination URL as query string key-value pairs. When a visitor clicks a tagged link, Google Analytics 4 reads these parameters and stores the marketing context as session-level dimensions - enabling precise attribution to the exact campaign, channel, and creative that drove each conversion.</p>
+        <p>UTM parameters (Urchin Tracking Modules) are query tags appended to destination URLs that pass campaign attribution data into analytics platforms. When a visitor clicks a tagged link, Google Analytics 4 reads these parameters and stores the marketing context as session-level and manual event-level dimensions - enabling precise attribution to the exact campaign, channel, and creative driving each conversion.</p>
 
         <p>A fully tagged URL looks like this:</p>
 
         <div class="code-block-wrap">
-          <pre>https://example.com/landing?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=spring_launch_2025&amp;utm_content=search_ad_v1&amp;utm_term=utm+builder+tool</pre>
+          <pre>https://example.com/landing?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=spring_launch_2025&amp;utm_id=cmp_98472&amp;utm_content=search_ad_v1&amp;utm_term=utm+builder+tool</pre>
         </div>
 
-        <p>UTM tags are the backbone of every digital marketing attribution model. Without them, organic and paid traffic is often misattributed - social clicks appear as Direct, newsletter traffic is lost, and ad spend cannot be confidently tied to revenue outcomes.</p>
+        <p>GA4 supports 9 manual campaign parameters: six commonly used/core parameters plus three additional GA4 parameters. Some newer parameters currently have reporting limitations.</p>
+
+        <p>Google documents the traditional manual parameters plus <code>utm_source_platform</code>, <code>utm_creative_format</code>, and <code>utm_marketing_tactic</code>; Google also separately documents and recommends <code>utm_id</code>. Google notes that <code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in GA4 properties.</p>
 
         <div class="editorial-callout">
           <h4>🔎 How GA4 Reads UTM Parameters</h4>
-          <p>GA4 reads UTM parameters on page load via the JavaScript SDK. They are stored as session-scoped dimensions in BigQuery export and campaign reports. They persist for the duration of the session (30 minutes of inactivity by default) and influence both Last Click and Data-Driven attribution models.</p>
+          <p>GA4 reads UTM parameters on page load via the JavaScript SDK. They are stored as session-scoped and manual event-scoped dimensions in BigQuery export and campaign reports. They persist for the duration of the session (30 minutes of inactivity by default) and influence both Last Click and Data-Driven attribution models.</p>
         </div>
       </article>
 
       <article class="editorial-card" id="parameter-reference">
         <h2>Complete UTM Parameter Reference Table</h2>
-        <p>Google Analytics 4 supports 6 standard UTM parameters. Each maps to a specific GA4 dimension name you can use in reports and explorations:</p>
+        <p>GA4 supports 9 manual campaign parameters: six commonly used/core parameters plus three additional GA4 parameters. Some newer parameters currently have reporting limitations. Google documents the traditional manual parameters plus <code>utm_source_platform</code>, <code>utm_creative_format</code>, and <code>utm_marketing_tactic</code>; Google also separately documents and recommends <code>utm_id</code>. Google notes that <code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in GA4 properties.</p>
 
         <div class="editorial-table-wrap">
           <table class="editorial-table">
             <thead>
               <tr>
                 <th>Parameter</th>
-                <th>Required?</th>
+                <th>Category</th>
+                <th>Requirement</th>
                 <th>GA4 Dimension Name</th>
-                <th>Max Length</th>
-                <th>Accepted Characters</th>
+                <th>Reporting Status</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><code>utm_source</code></td>
+                <td>Core Parameter</td>
                 <td><strong>Required</strong></td>
-                <td>Session source / First user source</td>
-                <td>No hard limit (keep &lt;100 chars)</td>
-                <td>Lowercase alphanumeric, hyphens, underscores</td>
+                <td>Session source / First user source / Manual source</td>
+                <td>Available in all standard reports</td>
               </tr>
               <tr>
                 <td><code>utm_medium</code></td>
-                <td><strong>Strongly Recommended</strong></td>
-                <td>Session medium / First user medium</td>
-                <td>No hard limit (keep &lt;50 chars)</td>
-                <td>Lowercase alphanumeric, hyphens, underscores</td>
+                <td>Core Parameter</td>
+                <td><strong>Required</strong> (for channel grouping)</td>
+                <td>Session medium / First user medium / Manual medium</td>
+                <td>Available in all standard reports</td>
               </tr>
               <tr>
                 <td><code>utm_campaign</code></td>
+                <td>Core Parameter</td>
                 <td><strong>Recommended</strong></td>
-                <td>Session campaign / First user campaign</td>
-                <td>No hard limit (keep &lt;100 chars)</td>
-                <td>Lowercase alphanumeric, hyphens, underscores</td>
+                <td>Session campaign / First user campaign / Manual campaign</td>
+                <td>Available in all standard reports</td>
               </tr>
               <tr>
                 <td><code>utm_id</code></td>
-                <td>Optional</td>
-                <td>Campaign ID</td>
-                <td>No hard limit</td>
-                <td>Alphanumeric and common symbols</td>
+                <td>Core Parameter</td>
+                <td><strong>Recommended</strong> (by Google)</td>
+                <td>Campaign ID / Session campaign ID / Manual campaign ID</td>
+                <td>Available in standard &amp; Advertising reports</td>
               </tr>
               <tr>
                 <td><code>utm_term</code></td>
+                <td>Core Parameter</td>
                 <td>Optional (Paid Search)</td>
-                <td>Session manual ad term</td>
-                <td>No hard limit</td>
-                <td>Lowercase, URL-encoded spaces as + or %20</td>
+                <td>Session manual ad term / Manual term</td>
+                <td>Available in reports &amp; Explorations</td>
               </tr>
               <tr>
                 <td><code>utm_content</code></td>
+                <td>Core Parameter</td>
                 <td>Optional (A/B testing)</td>
-                <td>Session manual ad content</td>
-                <td>No hard limit (keep &lt;100 chars)</td>
-                <td>Lowercase alphanumeric, hyphens, underscores</td>
+                <td>Session manual ad content / Manual ad content</td>
+                <td>Available in reports &amp; Explorations</td>
+              </tr>
+              <tr>
+                <td><code>utm_source_platform</code></td>
+                <td>Additional GA4 Parameter</td>
+                <td>Optional</td>
+                <td>Manual source platform</td>
+                <td>Available in reports &amp; BigQuery export</td>
+              </tr>
+              <tr>
+                <td><code>utm_creative_format</code></td>
+                <td>Additional GA4 Parameter</td>
+                <td>Optional</td>
+                <td>Manual creative format</td>
+                <td><strong>Reporting limitation:</strong> Not currently reported in GA4 properties</td>
+              </tr>
+              <tr>
+                <td><code>utm_marketing_tactic</code></td>
+                <td>Additional GA4 Parameter</td>
+                <td>Optional</td>
+                <td>Manual marketing tactic</td>
+                <td><strong>Reporting limitation:</strong> Not currently reported in GA4 properties</td>
               </tr>
             </tbody>
           </table>
@@ -456,7 +486,7 @@
       </article>
 
       <article class="editorial-card" id="utm-campaign">
-        <h2>utm_campaign, utm_id, utm_term &amp; utm_content</h2>
+        <h2>Core Parameters: utm_campaign, utm_id, utm_term &amp; utm_content</h2>
 
         <h3>utm_campaign - Campaign Name</h3>
         <p>Names the specific marketing initiative. Use descriptive, structured values: <code>product_launch_q4_2025</code>, <code>summer_sale_us</code>, <code>brand_awareness_emea</code>.</p>
@@ -464,8 +494,8 @@
         <p><strong>Best Practices:</strong> Never use spaces. Use underscores or hyphens as word separators. Include quarter and year for temporal filtering: <code>campaign_name_q4_2025</code>.</p>
 
         <h3>utm_id - Campaign Identifier</h3>
-        <p>A unique alphanumeric ID that matches the campaign record in your ad platform, CRM, or data warehouse. Essential for GA4 Cost Data Import to tie advertising spend to conversion outcomes in GA4 Advertising reports.</p>
-        <p><strong>GA4 Dimension:</strong> Campaign ID</p>
+        <p>A unique alphanumeric ID that matches the campaign record in your ad platform, CRM, or data warehouse. Separately documented and recommended by Google for GA4 Cost Data Import to tie advertising spend to conversion outcomes in GA4 Advertising reports.</p>
+        <p><strong>GA4 Dimension:</strong> Campaign ID / Manual campaign ID</p>
         <p><strong>Example:</strong> <code>utm_id=meta_c00298171</code> - where the value matches your Meta Ads campaign ID.</p>
 
         <h3>utm_term - Keyword or Audience Targeting</h3>
@@ -475,6 +505,31 @@
         <h3>utm_content - Creative Variant or CTA Label</h3>
         <p>Differentiates between multiple creatives, ad copy versions, or calls-to-action within the same campaign. Ideal for A/B creative testing: <code>hero_image_blue</code> vs <code>hero_image_green</code>.</p>
         <p><strong>GA4 Dimension:</strong> Session manual ad content</p>
+      </article>
+
+      <article class="editorial-card" id="additional-ga4-parameters">
+        <h2>Additional GA4 Parameters: utm_source_platform, utm_creative_format &amp; utm_marketing_tactic</h2>
+        <p>In addition to the six commonly used core parameters, Google Analytics 4 introduces three newer manual campaign parameters. However, marketers must be aware of their current reporting limitations:</p>
+
+        <h3>utm_source_platform - Campaign Source Platform</h3>
+        <p>Identifies the marketing platform that directed traffic to the website or app. While <code>utm_source</code> identifies the publisher or vendor (e.g. <code>google</code>), <code>utm_source_platform</code> identifies the sending platform interface (e.g. <code>Google Ads</code>, <code>Search Ads 360</code>, <code>Display &amp; Video 360</code>, or <code>Manual</code>).</p>
+        <p><strong>GA4 Dimension:</strong> <code>Manual source platform</code></p>
+        <p><strong>Example:</strong> <code>utm_source_platform=Search+Ads+360</code></p>
+
+        <h3>utm_creative_format - Campaign Creative Format</h3>
+        <p>Identifies the creative asset material type used in the campaign, such as display banner, carousel, responsive search ad, or short-form video.</p>
+        <p><strong>GA4 Dimension:</strong> <code>Manual creative format</code></p>
+        <p><strong>Example:</strong> <code>utm_creative_format=video_vertical_9x16</code> or <code>utm_creative_format=carousel</code></p>
+
+        <h3>utm_marketing_tactic - Campaign Marketing Tactic</h3>
+        <p>Identifies the high-level targeting strategy or marketing stage applied to the campaign, such as prospecting, brand awareness, onboarding, or dynamic remarketing.</p>
+        <p><strong>GA4 Dimension:</strong> <code>Manual marketing tactic</code></p>
+        <p><strong>Example:</strong> <code>utm_marketing_tactic=retargeting_cart_abandoners</code> or <code>utm_marketing_tactic=prospecting</code></p>
+
+        <div class="editorial-callout" style="border-left-color: #f59e0b;">
+          <h4>⚠️ Google GA4 Reporting Limitation Notice</h4>
+          <p>Google officially notes that <strong><code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in standard Google Analytics 4 properties</strong>. While GA4 captures these values on incoming events and passes them through to raw BigQuery event exports and custom explorations, they do not appear in pre-configured standard acquisition dashboard cards and do not influence Default Channel Grouping rules.</p>
+        </div>
       </article>
 
       <article class="editorial-card" id="common-mistakes">
@@ -500,6 +555,10 @@
       <article class="editorial-card">
         <h2>Frequently Asked Questions About UTM Parameters</h2>
         <div class="faq-block">
+          <details>
+            <summary>How many UTM parameters does GA4 support and which have reporting limitations?</summary>
+            <p>GA4 supports 9 manual campaign parameters: six commonly used/core parameters (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_id</code>, <code>utm_term</code>, <code>utm_content</code>) plus three additional GA4 parameters (<code>utm_source_platform</code>, <code>utm_creative_format</code>, <code>utm_marketing_tactic</code>). Google notes that <code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in standard GA4 properties.</p>
+          </details>
           <details>
             <summary>What does UTM stand for?</summary>
             <p>UTM stands for <strong>Urchin Tracking Module</strong>, named after Urchin Software, the web analytics company acquired by Google in 2005. Urchin's tracking technology became the foundation of Google Analytics.</p>
@@ -566,7 +625,7 @@
             <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
-              <li><a href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy">GA4 Channel Taxonomy</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
               <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
               <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
             </ul>

@@ -80,6 +80,12 @@ function blogUrlRoutingPlugin() {
         }
         writeFileSync(join(flatDir, 'index.html'), htmlContent, 'utf8');
 
+        // Output blog subpath directory: dist/blog/[slug]/index.html (https://utmcraft.com/blog/[slug]/)
+        const blogSlugDir = join(distDir, 'blog', post.slug);
+        if (!existsSync(blogSlugDir)) {
+          mkdirSync(blogSlugDir, { recursive: true });
+        }
+        writeFileSync(join(blogSlugDir, 'index.html'), htmlContent, 'utf8');
       }
 
       // Keep the source organized under landing-pages/ without changing public URLs.

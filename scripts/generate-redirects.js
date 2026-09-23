@@ -1,6 +1,6 @@
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { blogPosts } from '../src/data/blog-posts.js';
+import { blogPosts, mergedBlogPostRedirects } from '../src/data/blog-posts.js';
 
 const root = join(import.meta.dirname, '..');
 const landingPages = join(root, 'landing-pages');
@@ -36,6 +36,15 @@ for (const { slug } of blogPosts) {
   redirects.push([`/blog/${slug}/`, `/${slug}/`]);
   redirects.push([`/blog/${slug}/index.html`, `/${slug}/`]);
   redirects.push([`/blog/posts/${slug}.html`, `/${slug}/`]);
+}
+
+for (const [oldSlug, destinationSlug] of Object.entries(mergedBlogPostRedirects)) {
+  redirects.push([`/${oldSlug}`, `/${destinationSlug}/`]);
+  redirects.push([`/${oldSlug}/`, `/${destinationSlug}/`]);
+  redirects.push([`/blog/${oldSlug}`, `/${destinationSlug}/`]);
+  redirects.push([`/blog/${oldSlug}/`, `/${destinationSlug}/`]);
+  redirects.push([`/blog/${oldSlug}/index.html`, `/${destinationSlug}/`]);
+  redirects.push([`/blog/posts/${oldSlug}.html`, `/${destinationSlug}/`]);
 }
 
 // Hostinger serves the production domain with Apache.

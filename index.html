@@ -94,7 +94,7 @@
             "name": "What is a UTM code and how does UTM tracking work?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A UTM (Urchin Tracking Module) code consists of query parameters appended to a destination URL that allow analytics platforms like Google Analytics 4 (GA4) to identify the specific traffic source, medium, campaign name, keyword term, and creative content responsible for a visit."
+              "text": "UTM (Urchin Tracking Module) parameters are query tags appended to destination URLs to pass campaign attribution data into analytics platforms. GA4 supports 9 manual campaign parameters: six commonly used/core parameters (utm_source, utm_medium, utm_campaign, utm_id, utm_term, utm_content) plus three additional GA4 parameters (utm_source_platform, utm_creative_format, utm_marketing_tactic). Some newer parameters currently have reporting limitations; Google notes that utm_creative_format and utm_marketing_tactic are not currently reported in GA4 properties."
             }
           },
           {
@@ -236,10 +236,10 @@
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
-              <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
             </a>
-            <a id="nav-taxonomy" href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item">
-              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
               <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
             </a>
             <a href="/utm-naming-conventions/" class="nav-dropdown-item">
@@ -280,8 +280,8 @@
     <header class="workspace-header">
       <div class="workspace-heading-row">
         <div class="workspace-title-group">
-          <h1 class="workspace-title">Build Better <span class="workspace-title-muted">Campaign URLs</span></h1>
-          <p class="workspace-subtitle">Create clean, GA4-ready UTM links in seconds.</p>
+          <h1 class="workspace-title">Free UTM Builder <span class="workspace-title-muted">&amp; Campaign URL Generator</span></h1>
+          <p class="workspace-subtitle">Create clean, GA4-ready tracking URLs for Google Ads, Meta, LinkedIn, email and other marketing campaigns.</p>
         </div>
         <a id="nav-history" href="/#campaign-history" data-switch-tab="tab-history" class="history-utility-link">
           View History <span id="history-counter-badge" class="tab-badge">0</span>
@@ -1251,7 +1251,17 @@
           <details class="faq-item" open>
             <summary class="faq-summary">What are UTM parameters and why are they critical?</summary>
             <div class="faq-content">
-              <p>UTM (Urchin Tracking Module) parameters are five standard query tags appended to destination URLs (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_term</code>, <code>utm_content</code>). They enable web analytics platforms like Google Analytics 4 (GA4), Mixpanel, and HubSpot to pinpoint the exact origin, marketing channel, creative asset, and promotion driving each visitor and conversion.</p>
+              <p>UTM (Urchin Tracking Module) parameters are query tags appended to destination URLs to pass campaign attribution data into analytics platforms. GA4 supports 9 manual campaign parameters: six commonly used/core parameters plus three additional GA4 parameters. Some newer parameters currently have reporting limitations.</p>
+              <p style="margin-top: 0.5rem;">The six common/core parameters are:</p>
+              <ul style="margin-top: 0.25rem; padding-left: 1.25rem;">
+                <li><code>utm_source</code>: The traffic source, platform, or referrer (e.g. <code>google</code>, <code>newsletter</code>).</li>
+                <li><code>utm_medium</code>: The marketing channel or mechanism (e.g. <code>cpc</code>, <code>email</code>, <code>paid_social</code>).</li>
+                <li><code>utm_campaign</code>: The campaign name, theme, or promotion.</li>
+                <li><code>utm_id</code>: Campaign identifier, separately documented and recommended by Google for cost data import and cross-channel tracking.</li>
+                <li><code>utm_term</code>: Search keywords or audience targeting criteria.</li>
+                <li><code>utm_content</code>: Creative variant, ad copy, or CTA differentiator for A/B testing.</li>
+              </ul>
+              <p style="margin-top: 0.5rem;">The three additional GA4 parameters are <code>utm_source_platform</code> (the platform directing traffic, e.g. Search Ads 360 or Google Ads), <code>utm_creative_format</code> (creative asset type, such as video or display), and <code>utm_marketing_tactic</code> (targeting tactic, such as prospecting or retargeting). Google notes that <code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in GA4 properties.</p>
             </div>
           </details>
 
@@ -1298,7 +1308,7 @@
           <details class="faq-item">
             <summary class="faq-summary">Why should you NEVER use UTM tracking on internal website links?</summary>
             <div class="faq-content">
-              <p>Using UTM tags on links within your own domain (for example, placing a UTM link on a homepage slider pointing to your pricing page) immediately resets the analytics session and overwrites the initial campaign attribution. If a customer arrived from a $50 Google Ad and then clicked an internal banner with UTMs, Google Analytics assigns the final purchase to the internal banner, destroying your ad attribution data!</p>
+              <p>Don't use UTMs on internal links. In GA4, they don't start a new session, but they can affect event-level campaign attribution and create misleading campaign data. Use internal-promotion events instead.</p>
             </div>
           </details>
         </div>
@@ -1406,7 +1416,7 @@
             <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
-              <li><a href="/#ga4-taxonomy" data-switch-tab="tab-taxonomy">GA4 Channel Taxonomy</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
               <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
               <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
             </ul>

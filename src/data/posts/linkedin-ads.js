@@ -234,9 +234,9 @@ export const linkedinAdsPosts = [
   },
   {
     slug: 'linkedin-dynamic-parameters',
-    title: 'LinkedIn Dynamic Tracking Parameters: CAMPAIGN_ID, AD_SET_ID, and AD_ID Guide',
-    seoTitle: 'LinkedIn Dynamic Tracking Parameters: Full Guide | UTMCraft',
-    description: 'Learn how to use LinkedIn dynamic URL parameters: CAMPAIGN_ID, CAMPAIGN_NAME, AD_SET_ID, and AD_ID. Complete syntax rules and CRM mapping.',
+    title: 'LinkedIn Dynamic URL Parameters: Token Syntax & QA Guide',
+    seoTitle: 'LinkedIn Dynamic URL Parameters: Syntax & QA | UTMCraft',
+    description: 'Use LinkedIn Campaign Manager URL tokens correctly. Check uppercase syntax, map dynamic values to UTM fields, and verify expansion before launch.',
     category: 'linkedin-ads',
     isPillar: false,
     author: {
@@ -248,7 +248,7 @@ export const linkedinAdsPosts = [
     dateModified: '2026-09-23',
     reviewedDate: 'September 23, 2026',
     readingTime: '8 min read',
-    primaryKeyword: 'linkedin dynamic parameters',
+    primaryKeyword: 'linkedin dynamic url parameters syntax',
     secondaryKeywords: ['linkedin campaign_id parameter', 'linkedin ad_id dynamic token', 'linkedin url parameters macros', 'dynamic tracking linkedin ads'],
     semanticKeywords: ['uppercase double braces syntax', 'ad set id linkedin', 'b2b crm attribution', 'campaign manager dynamic tokens'],
     relatedEntities: ['LinkedIn Campaign Manager', 'Dynamic Tracking', 'B2B Attribution', 'Google Analytics 4'],
