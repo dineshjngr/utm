@@ -37,12 +37,13 @@ function blogUrlRoutingPlugin() {
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         if (!req.url) return next();
-        const parsedUrl = new URL(req.url, 'http://localhost');
-        const pathname = parsedUrl.pathname.replace(/\/$/, ''); // strip trailing slash
+        const [requestPath, query = ''] = req.url.split('?');
+        const pathname = requestPath.replace(/\/$/, ''); // strip trailing slash
+        const querySuffix = query ? `?${query}` : '';
 
         const landingRoute = pathname.replace(/^\//, '');
         if (landingPageRoutes.has(landingRoute)) {
-          req.url = `/landing-pages/${landingRoute}/index.html` + (parsedUrl.search || '');
+          req.url = `/landing-pages/${landingRoute}/index.html` + querySuffix;
           return next();
         }
 
@@ -52,7 +53,7 @@ function blogUrlRoutingPlugin() {
         if (cleanSlug && postSlugs.has(cleanSlug)) {
           const postFile = resolve(import.meta.dirname, 'blog', 'posts', `${cleanSlug}.html`);
           if (existsSync(postFile)) {
-            req.url = `/blog/posts/${cleanSlug}.html` + (parsedUrl.search || '');
+            req.url = `/blog/posts/${cleanSlug}.html` + querySuffix;
           }
         }
         next();
@@ -118,11 +119,9 @@ export default defineConfig({
   },
   server: {
     port: 3333,
-    host: '127.0.0.1',
     open: false
   },
   preview: {
-    port: 3333,
-    host: '127.0.0.1'
+    port: 3333
   }
 });

@@ -55,7 +55,7 @@ npm install
 ```bash
 npm run dev
 ```
-Open `http://localhost:5173` in your browser.
+Open the development URL printed by Vite in your browser.
 
 ### 3. Build for production
 ```bash
