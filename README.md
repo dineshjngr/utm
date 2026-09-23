@@ -68,23 +68,9 @@ The compiled, production-ready static assets are written to the `dist/` director
 npm test
 ```
 
-### 5. Deploy to Cloudflare
+### 5. Deploy to Hostinger
 
-This project is pre-configured for both **Cloudflare Pages** (via GitHub) and **Cloudflare Workers (Static Assets)**.
-
-#### Option A: Cloudflare Pages (Recommended with GitHub)
-1. Go to **Cloudflare Dashboard** → **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
-2. Select your repository (`utm`).
-3. Set build configuration:
-   - **Framework preset:** `Vite`
-   - **Build command:** `npm run build`
-   - **Build output directory:** `dist`
-4. Deploy! Cloudflare will automatically use Node 22 (via `.node-version`) and apply security/caching headers (via `public/_headers`).
-
-#### Option B: Direct CLI Deploy (Cloudflare Workers)
-```bash
-npx wrangler deploy
-```
+The live `utmcraft.com` site is hosted on Hostinger. Run `npm run build`, then deploy the **contents** of `dist/` as a prebuilt static site to its document root. Include hidden files: `dist/.htaccess` applies security headers and canonical redirects. Git pushes alone do not update the live site; there is no Git auto deployment configured for this domain.
 
 ---
 
@@ -94,10 +80,9 @@ npx wrangler deploy
 utm-builder/
 ├── index.html               # Main application layout and HTML structure
 ├── package.json             # Scripts & dependencies
-├── wrangler.jsonc           # Cloudflare Workers static assets configuration
 ├── .node-version            # Pinned Node.js 22 runtime for build environments
 ├── public/
-│   └── _headers             # Cloudflare security & asset caching headers
+│   └── .htaccess            # Hostinger security headers & canonical redirects
 ├── src/
 │   ├── main.js              # Application controller & state coordination
 │   ├── styles.css           # CSS custom properties, responsive layout & themes
