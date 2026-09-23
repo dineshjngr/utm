@@ -1,4 +1,4 @@
-import { readdirSync, writeFileSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { blogPosts } from '../src/data/blog-posts.js';
 
@@ -40,4 +40,20 @@ for (const { slug } of blogPosts) {
 }
 
 writeFileSync(join(root, 'public', '_redirects'), `${redirects.join('\n')}\n`);
+
+// Hostinger serves the production domain with Apache, so mirror these rules there.
+const apachePath = join(root, 'public', '.htaccess');
+const apache = readFileSync(apachePath, 'utf8');
+const startMarker = '# BEGIN GENERATED CANONICAL REDIRECTS';
+const endMarker = '# END GENERATED CANONICAL REDIRECTS';
+const start = apache.indexOf(startMarker);
+const end = apache.indexOf(endMarker);
+if (start < 0 || end < start) throw new Error('Missing canonical redirect markers in public/.htaccess');
+const apacheRules = redirects.slice(1).map(line => {
+  const [source, destination] = line.split(' ');
+  const pattern = source.slice(1).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return `RewriteRule ^${pattern}$ ${destination} [R=301,L]`;
+});
+const replacement = `${startMarker}\n${apacheRules.join('\n')}\n${endMarker}`;
+writeFileSync(apachePath, apache.slice(0, start) + replacement + apache.slice(end + endMarker.length));
 console.log(`Generated ${redirects.length - 1} canonical redirects.`);
