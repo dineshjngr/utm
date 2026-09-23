@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campaign URL Builder for Google Analytics 4 | UTMCraft</title>
+  <meta name="description" content="Build clean Google Analytics 4 campaign URLs, audit channel naming, shorten links, and export QR codes with a free privacy-first UTM tool.">
+  <meta name="keywords" content="campaign url builder, google campaign url builder, ga4 campaign url builder, google analytics url builder, custom url builder, campaign tracking url, utm generator">
+  <link rel="canonical" href="https://utmcraft.com/campaign-url-builder/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://utmcraft.com/campaign-url-builder/">
+  <meta property="og:title" content="Campaign URL Builder for Google Analytics 4 | UTMCraft">
+  <meta property="og:description" content="Free, privacy-first Campaign URL Builder for Google Analytics 4. Generate clean tracking links, audit GA4 channel compliance, shorten URLs, and export QR codes instantly.">
+  <meta property="og:image" content="https://utmcraft.com/og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
+  <meta name="twitter:url" content="https://utmcraft.com/campaign-url-builder/">
+  <meta name="twitter:title" content="Campaign URL Builder for Google Analytics 4 | UTMCraft">
+  <meta name="twitter:description" content="Free, privacy-first Campaign URL Builder for Google Analytics 4. Generate clean tracking links, audit GA4 channel compliance, shorten URLs, and export QR codes instantly.">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Campaign URL Builder for Google Analytics 4",
+        "url": "https://utmcraft.com/campaign-url-builder/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All modern web browsers",
+        "description": "A privacy-first campaign URL builder designed for Google Analytics 4. Create, audit, and shorten UTM links with real-time channel validation.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+          "GA4 channel grouping compliance validation",
+          "Optional one-click URL shortener",
+          "High-contrast QR code export (PNG & SVG)",
+          "Automatic lowercase and hyphen sanitization",
+          "Client-side private campaign history"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Campaign URL Builder", "item": "https://utmcraft.com/campaign-url-builder/" }
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://utmcraft.com/#organization",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "logo": "https://utmcraft.com/utmcraft-logo-light.png"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is this Campaign URL Builder different from Google's official DevSite tool?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Core URL generation and auditing run in your browser. Optional shortening sends the generated URL to a public shortening provider. The tool also provides GA4 channel scoring, QR export, bulk generation, and lowercase sanitization."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which parameters are mandatory in Google Analytics 4 Campaign URL Builder?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For proper GA4 attribution, your Destination URL and utm_source are strictly required. While utm_medium and utm_campaign are technically optional in the HTTP query string, GA4 requires utm_medium to place traffic into Default Channel Groups like Paid Search or Email; without it, sessions fall into (Unassigned)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this tool support GA4's utm_id parameter?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. utm_id identifies the specific campaign ID and allows you to upload cost data, impressions, and clicks via GA4 Data Import or sync with Google Ads, Meta Ads, and CRM platforms."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does my campaign traffic show as (Unassigned) in GA4 reports?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GA4 uses strict regex rules to categorize traffic. If your utm_medium uses non-standard terms (such as 'cpc-ads', 'social_post', or uppercase 'EMAIL'), GA4 cannot map it to a standard channel and labels it (Unassigned). This tool audits your parameters in real time to prevent this error."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body data-page="campaign-url-builder" data-default-source="google" data-default-medium="cpc" data-default-campaign="growth_initiative_q4">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Thin Minimal Top Navigation (64-72px) -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+
+      <nav class="header-nav" aria-label="Main Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-haspopup="true">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/" class="nav-dropdown-item active" role="menuitem">
+              <span class="dropdown-item-title">Standard Campaign Builder</span>
+              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/blog/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
+            </a>
+            <a href="/#ga4-taxonomy" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-shortcuts" class="btn-text-action" title="Keyboard Shortcuts (Press ?)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span>Shortcuts</span>
+        </button>
+
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <button type="button" id="btn-header-new" class="btn-primary-cta">
+          <span>New Link</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Grid Workspace Container -->
+  <div class="app-container">
+    
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/">Home</a></li><li class="breadcrumb-separator">/</li><li class="breadcrumb-item" aria-current="page">Campaign URL Builder</li>
+      </ol>
+    </nav>
+
+    <!-- Workspace Header directly above tool -->
+    <header class="workspace-header">
+      <div class="workspace-title-group">
+        <h1 class="workspace-title">Campaign URL Builder <span class="workspace-title-muted">for GA4</span></h1>
+        <p class="workspace-subtitle">Generate clean, audited Google Analytics 4 campaign tracking links with instant channel validation, URL shortening, and QR code export.</p>
+      </div>
+
+      
+      <!-- Navigation tabs directly above tool -->
+      <nav class="nav-tabs" aria-label="Tool Navigation">
+        <a href="/" class="nav-tab active">
+          <span>Single URL</span>
+        </a>
+
+        <a href="/bulk-utm-builder/" class="nav-tab">
+          <span>Bulk Generator</span>
+        </a>
+
+        <a href="/utm-checker/" class="nav-tab">
+          <span>UTM Checker</span>
+        </a>
+
+        <a href="/utm-builder/google-ads/" class="nav-tab">
+          <span>Google Ads</span>
+        </a>
+
+        <a href="/utm-builder/facebook/" class="nav-tab">
+          <span>Facebook Ads</span>
+        </a>
+
+        <a href="/utm-builder/linkedin/" class="nav-tab">
+          <span>LinkedIn Ads</span>
+        </a>
+      </nav>
+    </header>
+
+    
+    <!-- Core Tool Container (High on Page) -->
+    <main id="main-content" class="tool-content">
+      <!-- TAB 1: SINGLE BUILDER -->
+      <section id="tab-builder" class="tab-pane active">
+        <div class="builder-layout">
+        
+        <!-- Left Section: Parameters Form -->
+        <div class="builder-form-column">
+          
+          <div class="card">
+            <!-- Hero Destination Input -->
+            <div class="destination-field-group">
+              <div class="field-label-row destination-label-row">
+                <label for="input-base-url" class="destination-label">
+                  Destination URL <span class="required-dot">*</span>
+                </label>
+                <div class="field-actions">
+                  <span class="field-hint" id="base-url-hint">Paste your destination URL</span>
+                  <button type="button" id="btn-clear-url" class="btn btn-ghost btn-sm" title="Clear the destination URL">
+                    Clear URL
+                  </button>
+                </div>
+              </div>
+              
+              <div class="input-with-icon destination-input-wrap">
+                <span class="input-icon destination-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </span>
+                <input 
+                  type="url" 
+                  id="input-base-url" 
+                  class="form-input destination-input" 
+                  placeholder="yourwebsite.com"
+                  required
+                  autocomplete="off"
+                  inputmode="url"
+                  aria-describedby="base-url-hint"
+                >
+              </div>
+              <div class="error-message">
+                <span>⚠️</span> Please enter a valid URL (e.g. https://domain.com/path)
+              </div>
+
+              <!-- Detected UTMs Banner -->
+              <div id="detected-utms-container" style="display: none;"></div>
+
+              <!-- Quick Demo Fills -->
+              <div style="display: flex; gap: 0.4rem; margin-top: 0.5rem; flex-wrap: wrap; font-size: 0.78rem;">
+                <span style="color: var(--text-muted); align-self: center;">Quick fill:</span>
+                <button type="button" class="btn btn-ghost btn-sm quick-url-btn" data-url="https://acmestore.com/summer-sale">acmestore.com/sale</button>
+                <button type="button" class="btn btn-ghost btn-sm quick-url-btn" data-url="https://saascloud.io/pricing">saascloud.io/pricing</button>
+                <button type="button" class="btn btn-ghost btn-sm quick-url-btn" data-url="https://myblog.com/articles/marketing-guide">myblog.com/guide</button>
+              </div>
+            </div>
+
+
+
+            <!-- UTM Parameters Form -->
+            <div class="form-row-2">
+              <!-- utm_source -->
+              <div class="form-group">
+                <div class="field-label-row">
+                  <label for="input-utm-source" class="form-label">
+                    Campaign Source <span class="required-dot">*</span>
+                  </label>
+                  <span class="field-hint">utm_source</span>
+                </div>
+                <input 
+                  type="text" 
+                  id="input-utm-source" 
+                  class="form-input" 
+                  list="source-datalist" 
+                  placeholder="google, facebook, newsletter" 
+                  required
+                >
+                <datalist id="source-datalist">
+                  <option value="google"></option>
+                  <option value="facebook"></option>
+                  <option value="instagram"></option>
+                  <option value="linkedin"></option>
+                  <option value="twitter"></option>
+                  <option value="tiktok"></option>
+                  <option value="youtube"></option>
+                  <option value="newsletter"></option>
+                  <option value="partner"></option>
+                  <option value="reddit"></option>
+                  <option value="bing"></option>
+                </datalist>
+                <div class="error-message">Source is required for GA4 attribution.</div>
+              </div>
+
+              <!-- utm_medium -->
+              <div class="form-group">
+                <div class="field-label-row">
+                  <label for="input-utm-medium" class="form-label">
+                    Campaign Medium <span class="required-dot">*</span>
+                  </label>
+                  <span class="field-hint">utm_medium</span>
+                </div>
+                <input 
+                  type="text" 
+                  id="input-utm-medium" 
+                  class="form-input" 
+                  list="medium-datalist" 
+                  placeholder="cpc, email, paid_social" 
+                  required
+                >
+                <datalist id="medium-datalist">
+                  <option value="cpc">Paid Search (CPC)</option>
+                  <option value="paid_social">Paid Social Ads</option>
+                  <option value="social">Organic Social</option>
+                  <option value="email">Email Campaign</option>
+                  <option value="affiliate">Affiliate / Partner</option>
+                  <option value="referral">Referral Link</option>
+                  <option value="display">Display Banner</option>
+                  <option value="video">Video Ad</option>
+                  <option value="qr_code">QR Code / Print</option>
+                </datalist>
+                <div class="error-message">Medium is required (e.g. cpc, email, social).</div>
+              </div>
+            </div>
+
+            <!-- utm_campaign -->
+            <div class="form-group">
+              <div class="field-label-row">
+                <label for="input-utm-campaign" class="form-label">
+                  Campaign Name <span class="required-dot">*</span>
+                </label>
+                <span class="field-hint">utm_campaign</span>
+              </div>
+              <input 
+                type="text" 
+                id="input-utm-campaign" 
+                class="form-input" 
+                placeholder="summer_sale_2025, q4_leadgen, onboarding" 
+                required
+              >
+            </div>
+
+            <div class="form-row-2">
+              <!-- utm_term -->
+              <div class="form-group">
+                <div class="field-label-row">
+                  <label for="input-utm-term" class="form-label">Campaign Term</label>
+                  <span class="field-hint">utm_term (optional)</span>
+                </div>
+                <input 
+                  type="text" 
+                  id="input-utm-term" 
+                  class="form-input" 
+                  placeholder="keyword, audience segment"
+                >
+              </div>
+
+              <!-- utm_content -->
+              <div class="form-group">
+                <div class="field-label-row">
+                  <label for="input-utm-content" class="form-label">Campaign Content</label>
+                  <span class="field-hint">utm_content (optional)</span>
+                </div>
+                <input 
+                  type="text" 
+                  id="input-utm-content" 
+                  class="form-input" 
+                  placeholder="ad_variant_a, hero_btn, banner_top"
+                >
+              </div>
+            </div>
+
+            <!-- utm_id -->
+            <div class="form-group">
+              <div class="field-label-row">
+                <label for="input-utm-id" class="form-label">Campaign ID</label>
+                <span class="field-hint">utm_id (GA4 campaign identifier)</span>
+              </div>
+              <input 
+                type="text" 
+                id="input-utm-id" 
+                class="form-input" 
+                placeholder="e.g. cmp_94021"
+              >
+            </div>
+
+            <!-- Custom Parameters Accordion -->
+            <div style="margin-top: 1.25rem;">
+              <div class="field-label-row">
+                <span class="form-label">Dynamic &amp; Custom Query Parameters</span>
+                <button type="button" id="btn-add-custom-param" class="btn btn-ghost btn-sm" style="color: var(--accent-cyan);">
+                  + Add Custom Param
+                </button>
+              </div>
+              <div id="custom-params-container">
+                <!-- Custom param rows dynamically added here -->
+              </div>
+            </div>
+
+            <!-- Formatting & Sanitization Rules Bar -->
+            <div class="rules-accordion">
+              <button type="button" id="toggle-rules-btn" class="rules-toggle" aria-expanded="false">
+                <span>⚙️ Sanitization &amp; Formatting Options</span>
+                <span id="rules-toggle-arrow">▼</span>
+              </button>
+              <div id="rules-body" class="rules-body">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="rule-lowercase" checked>
+                  <span>Auto Lowercase (Recommended)</span>
+                </label>
+
+                <div>
+                  <label for="rule-space-replacement" style="font-size: 0.82rem; color: var(--text-secondary); display: block; margin-bottom: 0.2rem;">
+                    Space Replacement:
+                  </label>
+                  <select id="rule-space-replacement" class="form-select" style="padding: 0.35rem 0.6rem; font-size: 0.85rem;">
+                    <option value="-">Hyphen (-)</option>
+                    <option value="_">Underscore (_)</option>
+                    <option value="+">Plus (+)</option>
+                    <option value="%20">Percent (%20)</option>
+                  </select>
+                </div>
+
+                <label class="checkbox-label">
+                  <input type="checkbox" id="rule-auto-protocol" checked>
+                  <span>Auto Prepend https://</span>
+                </label>
+
+                <label class="checkbox-label">
+                  <input type="checkbox" id="rule-strip-duplicate" checked>
+                  <span>Strip Existing UTMs</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right Section: Live URL Output, Quality Score, & QR Code -->
+        <div class="preview-column">
+          
+          <!-- Live URL Card -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <span class="card-category">LIVE PREVIEW</span>
+                <h2 class="card-title">Generated Campaign URL</h2>
+                <p class="card-description">Real-time normalized URL with syntax highlighting &amp; validation.</p>
+              </div>
+              <span id="url-status-pill" class="score-badge high">Ready</span>
+            </div>
+
+            <!-- Syntax Highlighted URL Container -->
+            <div id="url-output-box" class="url-output-container" tabindex="0" role="region" aria-label="Generated URL preview">
+              <span class="url-placeholder">Your tracked URL will appear here in real-time...</span>
+            </div>
+
+            <div class="url-meta-bar">
+              <span id="url-char-count" class="url-length-badge">0 chars</span>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Standard limit &lt; 2048 chars</span>
+            </div>
+
+            <!-- Dominant Full-Width Primary Action -->
+            <div class="copy-action-dominant-wrap">
+              <button type="button" id="btn-copy-url" class="btn btn-primary btn-copy-dominant">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span id="btn-copy-text">Copy Campaign URL</span>
+              </button>
+            </div>
+
+            <!-- Secondary Actions Row Underneath -->
+            <div class="secondary-actions-row">
+              <button type="button" id="btn-shorten-url" class="btn btn-secondary btn-sm" title="Shorten UTM link for social & SMS">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                <span id="btn-shorten-text">Shorten</span>
+              </button>
+
+              <button type="button" id="btn-test-url" class="btn btn-secondary btn-sm" title="Open in new tab to test">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>Test Link</span>
+              </button>
+
+              <button type="button" id="btn-save-history" class="btn btn-secondary btn-sm" title="Save link to history">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                <span>Save</span>
+              </button>
+
+              <button type="button" id="btn-reset-form" class="btn btn-ghost btn-sm" title="Clear all fields">
+                Reset
+              </button>
+            </div>
+
+            <!-- Short URL Box -->
+            <div id="short-url-box" class="short-url-container" style="display: none;">
+              <div class="short-url-header">
+                <div class="short-url-title-group">
+                  <span class="short-url-badge">⚡ Short Link</span>
+                  <span id="short-url-savings-badge" class="short-url-savings"></span>
+                </div>
+                <div class="short-url-actions-top">
+                  <button type="button" id="btn-short-url-qr" class="short-url-action-btn" title="Use shortened link in QR Code">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    <span id="btn-short-url-qr-label">Use in QR</span>
+                  </button>
+                  <button type="button" id="btn-close-short-url" class="short-url-close-btn" title="Dismiss short link view" aria-label="Close short link">✕</button>
+                </div>
+              </div>
+              <div class="short-url-content-row">
+                <a id="short-url-link" class="short-url-link" href="#" target="_blank" rel="noopener noreferrer" title="Click to test short link in new tab"></a>
+                <div style="display: flex; gap: 0.35rem; align-items: center; flex-shrink: 0;">
+                  <button type="button" id="btn-copy-short-url" class="btn btn-primary btn-sm" title="Copy short URL">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <span id="btn-copy-short-text">Copy</span>
+                  </button>
+                  <button type="button" id="btn-test-short-url" class="btn btn-secondary btn-sm" title="Open short URL in new tab to verify redirect">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    <span>Test</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quality Scorecard -->
+            <div class="audit-scorecard">
+              <div class="scorecard-header">
+                <span>GA4 Compatibility</span>
+                <span id="score-number-badge" class="score-badge high">100 / 100</span>
+              </div>
+              <div id="audit-messages-container" class="audit-messages">
+                <!-- Real-time audit checklist items -->
+              </div>
+              <div style="margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px dashed var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                <span style="color: var(--text-muted);">Want to verify in GA4?</span>
+                <a href="#ga4-check-traffic-guide" data-switch-tab="tab-taxonomy" data-scroll-to="ga4-check-traffic-guide" style="color: var(--primary); text-decoration: none; font-weight: 500;">How to check in GA4 →</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- QR Code Card -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <span class="card-category">DISTRIBUTION</span>
+                <h2 class="card-title">Mobile QR Code</h2>
+                <p class="card-description">High-resolution vector SVG and PNG for print &amp; outdoor media.</p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span id="qr-target-badge" class="field-hint">Preview (Blurred)</span>
+                <button type="button" id="btn-regenerate-qr" class="btn-regenerate-qr" style="display: none;" title="Regenerate QR Code with current URL">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                  <span>Refresh</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="qr-container">
+              <div class="qr-canvas-wrapper" id="qr-canvas-wrapper">
+                <canvas id="qr-canvas" class="qr-canvas is-blurred" width="180" height="180"></canvas>
+                <div id="qr-generate-overlay" class="qr-generate-overlay">
+                  <button type="button" id="btn-generate-qr" class="btn-generate-qr">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    <span>Generate QR Code</span>
+                  </button>
+                  <span class="qr-overlay-hint">Instant high-res SVG &amp; PNG</span>
+                </div>
+              </div>
+
+              <div class="qr-actions">
+                <button type="button" id="btn-download-qr" class="btn btn-secondary btn-sm" title="Download QR code as PNG">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span>PNG</span>
+                </button>
+                <button type="button" id="btn-download-qr-svg" class="btn btn-secondary btn-sm" title="Download Vector SVG for high-res print">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                  <span>SVG</span>
+                </button>
+                <button type="button" id="btn-copy-qr" class="btn btn-secondary btn-sm" title="Copy QR image to clipboard">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      </section>
+    </main>
+
+    
+    <!-- Comprehensive Editorial & Guide Section -->
+    <section class="landing-guide-section">
+      <article class="editorial-card">
+        <h2>UTMCraft vs. Google’s Official Campaign URL Builder</h2>
+        <p>For over a decade, digital marketers relied on Google's standard DevSite Campaign URL Builder. While functional for single links, it was built in the Universal Analytics era and lacks the intelligence required for modern Google Analytics 4 (GA4) attribution pipelines. Below is a feature-by-feature comparison:</p>
+
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Feature / Capability</th>
+                <th>Google Classic URL Builder</th>
+                <th>UTMCraft Studio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Client-Side Execution</strong></td>
+                <td>Logs input parameters on Google servers</td>
+                <td><strong>100% In-Browser &amp; Zero Tracking</strong></td>
+              </tr>
+              <tr>
+                <td><strong>GA4 Channel Validation</strong></td>
+                <td>No validation (causes Unassigned traffic)</td>
+                <td><strong>Live Real-Time GA4 Rule Auditor</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Automatic Casing Sanitizer</strong></td>
+                <td>Manual (leads to fractured reporting)</td>
+                <td><strong>Auto-Lowercase &amp; Hyphen Normalization</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Link Shortening</strong></td>
+                <td>Disabled (bit.ly integration deprecated)</td>
+                <td><strong>Built-in 1-Click Shortener with Fallbacks</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Vector QR Code Generation</strong></td>
+                <td>Not available</td>
+                <td><strong>Instant High-Contrast SVG &amp; PNG Export</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Multi-Channel Bulk Matrix</strong></td>
+                <td>Not available (requires external spreadsheets)</td>
+                <td><strong>Built-in Multi-Channel Matrix &amp; CSV Export</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Ad Platform Dynamic Macros</strong></td>
+                <td>Manual typing required</td>
+                <td><strong>1-Click Meta &amp; Google ValueTrack Tokens</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="editorial-callout">
+          <h4>💡 Why Universal Analytics Practices Break GA4</h4>
+          <p>Universal Analytics (UA) was forgiving of mixed casing and non-standard mediums like <code>medium=social-media</code> or <code>medium=email-blast</code>. GA4 enforces rigid regular expression rules: if your medium does not strictly match its regex dictionary, your entire campaign session is assigned to <strong>(Unassigned)</strong>, permanently breaking attribution models.</p>
+        </div>
+      </article>
+
+      <article class="editorial-card">
+        <h2>The 6 Core Google Analytics 4 Campaign Parameters</h2>
+        <p>Google Analytics 4 reads query parameters appended to destination URLs to populate campaign reports, attribution paths, and conversion exploration funnels. Understanding each parameter ensures your data flows accurately into standard reports.</p>
+
+        <div class="editorial-table-wrap">
+          <table class="editorial-table">
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Required</th>
+                <th>GA4 Dimension</th>
+                <th>Example Value</th>
+                <th>Primary Use Case</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>utm_source</code></td>
+                <td><strong>Yes</strong></td>
+                <td>Session source</td>
+                <td><code>google</code>, <code>newsletter</code>, <code>meta</code></td>
+                <td>Identifies the referrer or platform driving the user.</td>
+              </tr>
+              <tr>
+                <td><code>utm_medium</code></td>
+                <td><strong>Recommended</strong></td>
+                <td>Session medium</td>
+                <td><code>cpc</code>, <code>email</code>, <code>paid_social</code></td>
+                <td>Determines the marketing channel grouping in GA4.</td>
+              </tr>
+              <tr>
+                <td><code>utm_campaign</code></td>
+                <td><strong>Recommended</strong></td>
+                <td>Session campaign</td>
+                <td><code>summer_sale_2025</code>, <code>q4_launch</code></td>
+                <td>Names the specific product initiative, promotion, or theme.</td>
+              </tr>
+              <tr>
+                <td><code>utm_id</code></td>
+                <td>Optional</td>
+                <td>Campaign ID</td>
+                <td><code>cid_984712</code>, <code>meta_c99</code></td>
+                <td>Used to match and upload offline cost data via GA4 Data Import.</td>
+              </tr>
+              <tr>
+                <td><code>utm_term</code></td>
+                <td>Optional</td>
+                <td>Session manual ad term</td>
+                <td><code>enterprise+crm</code>, <code>b2b+software</code></td>
+                <td>Tracks paid search keywords or specific audience segment targeting.</td>
+              </tr>
+              <tr>
+                <td><code>utm_content</code></td>
+                <td>Optional</td>
+                <td>Session manual ad content</td>
+                <td><code>hero_btn_blue</code>, <code>carousel_v2</code></td>
+                <td>Differentiates creative variants, banner sizes, or copy variations.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="editorial-card">
+        <h2>How to Build &amp; Deploy Campaign URLs: A 5-Step Process</h2>
+        <ol>
+          <li><strong>Identify the Clean Destination URL:</strong> Ensure your target page is live, resolves with an HTTPS protocol, and does not trigger an internal redirect that strips query strings.</li>
+          <li><strong>Apply Standardized Source &amp; Medium:</strong> Always consult GA4 Default Channel Grouping rules. For paid social ads, use <code>medium=paid_social</code>; for Google Ads Search, use <code>medium=cpc</code>.</li>
+          <li><strong>Name Your Campaign with Strict Conventions:</strong> Use lowercase text and hyphens to separate words. Example: <code>brand-awareness-na-2025</code> instead of <code>Brand Awareness (NA) 2025</code>.</li>
+          <li><strong>Differentiate Creatives with utm_content:</strong> If testing multiple images or ad copy angles in the same ad group, use <code>utm_content=static_infographic</code> vs <code>utm_content=short_video</code>.</li>
+          <li><strong>Verify in GA4 Realtime Reports:</strong> Before launching high-budget campaigns, click your tagged URL in an incognito window and check <em>Google Analytics 4 &rarr; Reports &rarr; Realtime</em> to ensure your source and medium appear correctly under Session Source / Medium.</li>
+        </ol>
+      </article>
+
+      <article class="editorial-card">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-block">
+          <details>
+            <summary>How is this Campaign URL Builder different from Google's official DevSite tool?</summary>
+            <p>Core URL generation and auditing run in your browser without storing campaign inputs in a UTMCraft account or database. If you choose the optional shortener, the generated URL is sent to a public shortening provider. The tool also adds GA4 channel scoring, QR export, bulk generation, and lowercase sanitization.</p>
+          </details>
+
+          <details>
+            <summary>Which parameters are mandatory in Google Analytics 4?</summary>
+            <p>For accurate attribution, your Destination URL and <code>utm_source</code> are strictly mandatory. However, without <code>utm_medium</code>, GA4 cannot classify your session into a Default Channel Group, causing the traffic to default to <strong>(Unassigned)</strong>.</p>
+          </details>
+
+          <details>
+            <summary>Does utm_id replace utm_campaign?</summary>
+            <p>No. <code>utm_id</code> complements <code>utm_campaign</code> by providing an alphanumeric identifier that matches campaign IDs across ad platforms (such as Google Ads or Meta Ads Manager). It is especially valuable when importing external cost or revenue data into GA4.</p>
+          </details>
+
+          <details>
+            <summary>Why should I never use UTM parameters on internal website links?</summary>
+            <p>Campaign UTMs should not be used on internal navigation. GA4 does not start a new session when new campaign values appear, but it can associate those values with mid-session events and distort event-scoped attribution. Use internal-promotion events instead.</p>
+          </details>
+
+          <details>
+            <summary>What happens if my destination page redirects (e.g. HTTP to HTTPS or non-www to www)?</summary>
+            <p>Many web servers strip query parameters during 301 or 302 redirects unless specifically configured with a query string pass-through (<code>QSA</code>). Always ensure your destination URL matches the final canonical URL to prevent parameter loss.</p>
+          </details>
+        </div>
+      </article>
+    </section>
+
+    <!-- Editorial SaaS Footer -->
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <div class="footer-contact-link" style="margin-top: 0.65rem; font-size: 0.8125rem; color: var(--text-secondary);">Direct Support: <a href="mailto:contact@utmcraft.com" style="color: var(--soft-green); text-decoration: none;">contact@utmcraft.com</a></div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Core Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">Campaign URL Builder</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Platform Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <ul class="footer-links">
+              <li><a href="/blog/">All Knowledge Guides</a></li>
+              <li><a href="/#ga4-taxonomy">GA4 Channel Taxonomy</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <ul class="footer-links">
+              <li><a href="/about/">About Us</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/terms.html">Terms and Conditions</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by DJ</div>
+          <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Custom Preset Modal -->
+  <div id="modal-save-preset" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-preset-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-preset-title" class="card-title">Save Custom Channel Preset</h3>
+        <button type="button" class="btn btn-ghost btn-sm btn-close-modal" aria-label="Close modal">✕</button>
+      </div>
+      <form id="form-save-preset">
+        <div class="form-group">
+          <label for="preset-name" class="form-label">Preset Name</label>
+          <input type="text" id="preset-name" class="form-input" placeholder="e.g. Pinterest Promoted Pin" required>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="preset-source" class="form-label">utm_source</label>
+            <input type="text" id="preset-source" class="form-input" placeholder="pinterest" required>
+          </div>
+          <div class="form-group">
+            <label for="preset-medium" class="form-label">utm_medium</label>
+            <input type="text" id="preset-medium" class="form-input" placeholder="paid_social" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="preset-campaign" class="form-label">Default Campaign (Optional)</label>
+          <input type="text" id="preset-campaign" class="form-input" placeholder="e.g. pin_shopping">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-close-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Preset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shortcuts Modal -->
+  <div id="modal-shortcuts" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-shortcuts-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-shortcuts-title" class="card-title">Keyboard Shortcuts</h3>
+        <button type="button" class="btn btn-ghost btn-sm btn-close-modal" aria-label="Close modal">✕</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+          <span>Copy Generated UTM URL</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">Cmd/Ctrl + Enter</kbd>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+          <span>Open Shortcuts Guide</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">?</kbd>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+          <span>Close Modal</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">Esc</kbd>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.5rem;">
+          <span>Switch Tabs</span>
+          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">1 - 5</kbd>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-close-modal">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

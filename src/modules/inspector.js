@@ -13,14 +13,16 @@ export function deconstructUrl(rawUrlString) {
   }
 
   let formatted = rawUrlString.trim();
-  if (!/^https?:\/\//i.test(formatted)) {
+  if (!/^[a-z][a-z\d+.-]*:\/\//i.test(formatted)) {
     formatted = 'https://' + formatted;
   }
 
   try {
     const parsed = new URL(formatted);
+    if (!['http:', 'https:'].includes(parsed.protocol)) throw new Error('Unsupported protocol');
     const utmParams = {};
     const otherParams = {};
+    const allParams = Array.from(parsed.searchParams.entries());
 
     for (const [key, value] of parsed.searchParams.entries()) {
       const lowerKey = key.toLowerCase();
@@ -52,8 +54,10 @@ export function deconstructUrl(rawUrlString) {
       hash: parsed.hash,
       utmParams,
       otherParams,
+      allParams,
+      fullUrl: parsed.toString(),
       audit,
-      totalParamsCount: Array.from(parsed.searchParams.keys()).length
+      totalParamsCount: allParams.length
     };
   } catch (err) {
     return {

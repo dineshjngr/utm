@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GA4 UTM Tracking Troubleshooting Guide | UTMCraft</title>
+  <meta name="description" content="Diagnose and fix broken UTM tracking in Google Analytics 4. Comprehensive root cause analysis for Unassigned traffic, Direct spikes, (not set), and stripped query strings.">
+  <meta name="keywords" content="ga4 utm troubleshooting, ga4 utm tracking not working, fix unassigned traffic ga4, ga4 direct traffic spike, ga4 not set campaign">
+  <link rel="canonical" href="https://utmcraft.com/ga4-utm-troubleshooting-guide/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utmcraft.com/ga4-utm-troubleshooting-guide/">
+  <meta property="og:title" content="GA4 UTM Tracking Troubleshooting Guide | UTMCraft">
+  <meta property="og:description" content="Diagnose and fix broken UTM tracking in Google Analytics 4. Comprehensive root cause analysis for Unassigned traffic, Direct spikes, (not set), and stripped query strings.">
+  <meta property="og:image" content="https://utmcraft.com/blog/images/ga4-utm-troubleshooting-guide.webp">
+  <meta property="article:published_time" content="2026-01-25">
+  <meta property="article:modified_time" content="2026-09-23">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utmcraft.com/ga4-utm-troubleshooting-guide/">
+  <meta name="twitter:title" content="GA4 UTM Tracking Troubleshooting Guide | UTMCraft">
+  <meta name="twitter:description" content="Diagnose and fix broken UTM tracking in Google Analytics 4. Comprehensive root cause analysis for Unassigned traffic, Direct spikes, (not set), and stripped query strings.">
+  <meta name="twitter:image" content="https://utmcraft.com/blog/images/ga4-utm-troubleshooting-guide.webp">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="stylesheet" href="/src/blog.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://utmcraft.com/ga4-utm-troubleshooting-guide/#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://utmcraft.com/ga4-utm-troubleshooting-guide/"
+      },
+      "headline": "GA4 UTM Tracking Troubleshooting Guide: Root Causes, Debugging & Solutions",
+      "description": "Diagnose and fix broken UTM tracking in Google Analytics 4. Comprehensive root cause analysis for Unassigned traffic, Direct spikes, (not set), and stripped query strings.",
+      "image": "https://utmcraft.com/blog/images/ga4-utm-troubleshooting-guide.webp",
+      "datePublished": "2026-01-25",
+      "dateModified": "2026-09-23",
+      "author": {
+        "@type": "Person",
+        "name": "DJ",
+        "jobTitle": "Attribution & Analytics Architect",
+        "url": "https://utmcraft.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://utmcraft.com/logo.svg"
+        }
+      },
+      "mainEntityOfPage": "https://utmcraft.com/ga4-utm-troubleshooting-guide/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://utmcraft.com/ga4-utm-troubleshooting-guide/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://utmcraft.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://utmcraft.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "GA4 Attribution & Troubleshooting",
+          "item": "https://utmcraft.com/blog/ga4-attribution/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "GA4 UTM Tracking Troubleshooting Guide: Root Causes, Debugging & Solutions",
+          "item": "https://utmcraft.com/ga4-utm-troubleshooting-guide/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://utmcraft.com/#organization",
+      "name": "UTMCraft",
+      "url": "https://utmcraft.com/",
+      "logo": "https://utmcraft.com/utmcraft-logo-light.png",
+      "email": "contact@utmcraft.com"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why does my campaign traffic show up as (Unassigned) in GA4?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Traffic is categorized as (Unassigned) when Google Analytics 4 cannot match the combination of utm_source and utm_medium to any rule in its Default Channel Grouping table. Common culprits include misspelled mediums (e.g. utm_medium=paidsocial instead of paid_social) or uppercase letters (e.g. utm_medium=CPC instead of cpc)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why are my paid campaign clicks showing as Direct traffic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This typically occurs when a server redirect (such as an HTTP-to-HTTPS redirect or missing trailing slash rewrite) strips query parameters during transit. Another frequent cause is Single Page Application (SPA) client routers clearing query parameters before the GA4 tracking tag executes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does GA4 take to show UTM campaign data in standard reports?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GA4 standard acquisition reports can take 24 to 48 hours to fully process and aggregate session data. To verify new campaign links immediately, inspect the Realtime report or enable debug_mode=true to monitor incoming hits live in Admin &gt; DebugView."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do URL shorteners strip UTM parameters?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most reputable URL shorteners preserve query parameters upon redirect. However, if a link shortener redirects to an HTTP URL that further redirects to HTTPS (a redirect chain), intermediate hops often drop parameters. Always test your final shortened link with a tool like UTMCraft UTM Checker to confirm parameter retention."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="blog-post">
+  <!-- Reading Progress Indicator -->
+  <div id="reading-progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  
+  <!-- Thin Minimal Top Navigation -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+
+      <nav class="header-nav" aria-label="Main Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Standard Campaign Builder</span>
+              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-haspopup="true">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/blog/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
+            </a>
+            <a href="/#ga4-taxonomy" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>New Link</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/">Guides</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/ga4-attribution/">GA4 Attribution & Troubleshooting</a></li>
+        <li class="separator">/</li>
+        <li class="current" aria-current="page">GA4 UTM Tracking Troubleshooting Guide: Root Causes, Debugging & Solutions</li>
+      </ol>
+    </nav>
+
+    <!-- Main Article Layout -->
+    <main id="main-content" class="blog-article-layout">
+      <!-- Article Content Column -->
+      <article class="article-main-column">
+        <header class="article-header">
+          <div class="article-meta-top">
+            <a href="/blog/ga4-attribution/" class="article-category-badge">
+              Diagnostics
+            </a>
+            <span class="article-reading-time">14 min read</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-date">Updated September 23, 2026</span>
+          </div>
+
+          <h1 class="article-title">GA4 UTM Tracking Troubleshooting Guide: Root Causes, Debugging & Solutions</h1>
+          <p class="article-description">Diagnose and fix broken UTM tracking in Google Analytics 4. Comprehensive root cause analysis for Unassigned traffic, Direct spikes, (not set), and stripped query strings.</p>
+
+          <div class="article-freshness-bar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Platform rules verified for Google Analytics 4 (September 2026)</span>
+          </div>
+
+          <!-- Featured Hero Image -->
+          <div class="article-featured-image">
+            <img src="/blog/images/ga4-utm-troubleshooting-guide.webp" alt="Diagnostic schematic showing GA4 tracking issues branching into root causes and resolution workflows" width="1200" height="630" fetchpriority="high">
+          </div>
+        </header>
+
+        <!-- Mobile Table of Contents Accordion -->
+        <details class="mobile-toc">
+          <summary>Table of Contents</summary>
+          <ol>
+            
+    <li>
+      <a href="#the-attribution-diagnostic-flowchart" class="toc-link">The GA4 Attribution Diagnostic Flowchart</a>
+    </li>
+  
+    <li>
+      <a href="#direct-traffic-spikes" class="toc-link">Issue 1: Traffic Showing as Direct Instead of Paid Campaign</a>
+    </li>
+  
+    <li>
+      <a href="#unassigned-channel-group" class="toc-link">Issue 2: Traffic Showing as &quot;Unassigned&quot;</a>
+    </li>
+  
+    <li>
+      <a href="#not-set-campaign-dimensions" class="toc-link">Issue 3: Campaign and Source Showing as &quot;(not set)&quot;</a>
+    </li>
+  
+    <li>
+      <a href="#referral-loops-payment-gateways" class="toc-link">Issue 4: Payment Gateway & Social Webview Referral Hijacking</a>
+    </li>
+  
+    <li>
+      <a href="#redirect-chains-parameter-loss" class="toc-link">Issue 5: Server 301/302 Redirects Stripping Query Strings</a>
+    </li>
+  
+    <li>
+      <a href="#consent-mode-v2-impact" class="toc-link">Issue 6: Consent Mode v2 Delays and Cookieless Pings</a>
+    </li>
+  
+    <li>
+      <a href="#testing-with-debugview" class="toc-link">Live Testing Protocol: Realtime & DebugView</a>
+    </li>
+  
+    <li>
+      <a href="#faq" class="toc-link">Frequently Asked Questions</a>
+    </li>
+  
+          </ol>
+        </details>
+
+        <!-- Main Prose Body -->
+        <div class="article-prose">
+          
+      <p class="lead-text">Attribution breakdowns in Google Analytics 4 are rarely caused by platform bugs. In 95% of cases, the failure occurs between the moment a user clicks an ad and the moment the GA4 JavaScript library executes on the destination page. This guide provides a systematic, engineer-level troubleshooting framework to diagnose and fix broken campaign tracking.</p>
+
+      <h2 id="the-attribution-diagnostic-flowchart">The GA4 Attribution Diagnostic Flowchart</h2>
+      <p>When campaign data fails to appear correctly in GA4, follow this symptom triage table:</p>
+
+      <div class="editorial-table-wrap">
+        <table class="editorial-table">
+          <thead>
+            <tr>
+              <th>Observed Symptom</th>
+              <th>Primary Suspect</th>
+              <th>Definitive Test</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Campaign traffic shows as <strong>Direct</strong></td>
+              <td>HTTP 301/302 redirect dropping query string; mobile webview; HTTPS to HTTP downgrade</td>
+              <td>Inspect Network tab in DevTools; check if query parameters survive final URL</td>
+            </tr>
+            <tr>
+              <td>Traffic shows as <strong>Unassigned</strong></td>
+              <td><code>utm_medium</code> does not match GA4 Default Channel Group regex rules</td>
+              <td>Examine <em>Session source / medium</em> in GA4 Explorations against Google channel rules</td>
+            </tr>
+            <tr>
+              <td>Campaign shows as <strong>(not set)</strong></td>
+              <td>Measurement Protocol hits without campaign parameters; session timeout; page_view fired before config</td>
+              <td>Verify <code>session_start</code> event payload in DebugView</td>
+            </tr>
+            <tr>
+              <td>Paid social shows as <strong>Referral</strong></td>
+              <td>UTM parameters stripped or missing; link wrapper stripped <code>fbclid</code> / <code>utm_*</code></td>
+              <td>Check if <code>utm_medium=paid_social</code> was included in ad destination URL</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="direct-traffic-spikes">Issue 1: Traffic Showing as Direct Instead of Paid Campaign</h2>
+      <p>Direct traffic in GA4 is a catch-all fallback: it means GA4 received an incoming session with <strong>no referrer header and no UTM parameters</strong>. If you are paying for ad clicks but seeing a spike in Direct traffic, one of three failures is occurring:</p>
+      
+      <div class="callout callout-warning">
+        <div class="callout-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <strong>Root Cause: Unhandled Trailing Slash or Protocol Redirect</strong>
+        </div>
+        <p>If you enter your destination URL as <code>https://example.com/signup?utm_source=meta</code>, but your web server enforces trailing slashes (<code>https://example.com/signup/</code>), Apache/Nginx may issue a 301 redirect that drops the query string entirely:</p>
+        <div class="code-block-wrap">
+          <pre><code># BROKEN REDIRECT (Query string stripped)
+GET /signup?utm_source=meta -&gt; 301 Moved Permanently
+Location: https://example.com/signup/  &lt;-- UTMs LOST!
+
+# CORRECT REDIRECT (Query string preserved)
+Location: https://example.com/signup/?utm_source=meta</code></pre>
+        </div>
+      </div>
+
+      <h2 id="unassigned-channel-group">Issue 2: Traffic Showing as "Unassigned"</h2>
+      <p>GA4 assigns traffic to the "Unassigned" channel group when an incoming session cannot be classified into any rule defined in the Default Channel Grouping specification. For example:</p>
+      <ul>
+        <li><code>utm_medium=paidsocial</code> vs <code>utm_medium=paid_social</code> (GA4 accepts both, but if source is unrecognized, it may fall into Unassigned).</li>
+        <li><code>utm_source=newsletter&amp;utm_medium=email_blast</code> (GA4 requires medium to match exact regex <code>email|e-mail|e_mail</code>; <code>email_blast</code> fails and becomes Unassigned!).</li>
+      </ul>
+
+      <h2 id="not-set-campaign-dimensions">Issue 3: Campaign and Source Showing as "(not set)"</h2>
+      <p>In GA4, <code>(not set)</code> indicates that GA4 collected an event, but the associated dimension has no recorded value. Common causes include:</p>
+      <ol>
+        <li><strong>Partial UTM Tagging:</strong> Supplying <code>utm_campaign=summer</code> without supplying <code>utm_source</code> or <code>utm_medium</code>. GA4 requires at least <code>utm_source</code>.</li>
+        <li><strong>Measurement Protocol Mismatch:</strong> Backend offline conversion events sent via the GA4 Measurement Protocol without an attached <code>client_id</code> or <code>session_id</code> to link to the original campaign session.</li>
+        <li><strong>Session Timeout Across Midnight:</strong> If a user remains idle on a page for 30 minutes, their original session expires. A subsequent interaction starts a new session without incoming UTMs, occasionally resulting in <code>(not set)</code> dimensions.</li>
+      </ol>
+
+      <h2 id="referral-loops-payment-gateways">Issue 4: Payment Gateway & Social Webview Referral Hijacking</h2>
+      <p>If your ecommerce store directs shoppers to external checkout systems (PayPal, Stripe Checkout, Klarna, Shopify Checkout) and returns them to your order confirmation page without proper cross-domain tracking, GA4 registers the return visit as a <strong>new session</strong> with the payment gateway as the referring source (e.g. <code>paypal.com / referral</code>). All revenue is stripped from your paid ads!</p>
+
+      <div class="callout callout-recommended">
+        <div class="callout-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <strong>The Fix: Configure Unwanted Referrals in GA4</strong>
+        </div>
+        <p>In GA4 Admin, navigate to <em>Data Streams &gt; Configure tag settings &gt; List unwanted referrals</em>. Add your payment domains (e.g. <code>paypal.com</code>, <code>checkout.stripe.com</code>). GA4 will ignore these referrers upon return and preserve the original campaign attribution.</p>
+      </div>
+
+      <h2 id="redirect-chains-parameter-loss">Issue 5: Server 301/302 Redirects Stripping Query Strings</h2>
+      <p>Redirect chains are the silent killer of marketing budgets. When marketing links pass through link shorteners (e.g. bit.ly), internal redirect tools, or vanity domain redirects, query parameters are frequently dropped at each hop. Always configure servers to append <code>$is_args$args</code> in Nginx or <code>[QSA]</code> (Query String Append) in Apache mod_rewrite.</p>
+
+      <h2 id="consent-mode-v2-impact">Issue 6: Consent Mode v2 Delays and Cookieless Pings</h2>
+      <p>Under Google Consent Mode v2 (mandatory in the EEA and UK), when a user lands on your site and has not yet accepted cookies, GA4 emits <strong>cookieless pings</strong> (<code>gcs=G100</code>). While cookieless pings preserve campaign parameters on the initial landing event, if the user accepts cookies on page 2, GA4 may create a second session identifier, causing attribution discrepancies unless Advanced Consent Mode is correctly configured.</p>
+
+      <h2 id="testing-with-debugview">Live Testing Protocol: Realtime & DebugView</h2>
+      <p>Never debug campaigns by waiting 24 to 48 hours for standard GA4 acquisition reports. Follow this real-time verification process:</p>
+      <ol>
+        <li>Append <code>?utm_source=qa_test&amp;utm_medium=paid_social&amp;utm_campaign=qa_audit&amp;debug_mode=true</code> to your destination URL.</li>
+        <li>Open the URL in an Incognito browser window.</li>
+        <li>In GA4, go to <strong>Admin &gt; DebugView</strong>. Select your active device stream.</li>
+        <li>Click on the <code>page_view</code> and <code>session_start</code> events.</li>
+      </ol>
+
+      <section class="article-faq-section">
+        <h2 id="faq">Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <h3>Why does my campaign traffic show up as (Unassigned) in GA4?</h3>
+          <p>Traffic is categorized as <code>(Unassigned)</code> when Google Analytics 4 cannot match the combination of <code>utm_source</code> and <code>utm_medium</code> to any rule in its Default Channel Grouping table. Common culprits include misspelled mediums (e.g. <code>utm_medium=paidsocial</code> instead of <code>paid_social</code>) or uppercase letters (e.g. <code>utm_medium=CPC</code> instead of <code>cpc</code>).</p>
+        </div>
+        <div class="faq-item">
+          <h3>Why are my paid campaign clicks showing as Direct traffic?</h3>
+          <p>This typically occurs when a server redirect (such as an HTTP-to-HTTPS redirect or missing trailing slash rewrite) strips query parameters during transit. Another frequent cause is Single Page Application (SPA) client routers clearing query parameters before the GA4 tracking tag executes.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How long does GA4 take to show UTM campaign data in standard reports?</h3>
+          <p>GA4 standard acquisition reports can take <strong>24 to 48 hours</strong> to fully process and aggregate session data. To verify new campaign links immediately, inspect the <strong>Realtime report</strong> or enable <code>debug_mode=true</code> to monitor incoming hits live in <strong>Admin &gt; DebugView</strong>.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do URL shorteners strip UTM parameters?</h3>
+          <p>Most reputable URL shorteners preserve query parameters upon redirect. However, if a link shortener redirects to an HTTP URL that further redirects to HTTPS (a redirect chain), intermediate hops often drop parameters. Always test your final shortened link with a tool like <a href="/utm-checker/">UTMCraft UTM Checker</a> to confirm parameter retention.</p>
+        </div>
+      </section>
+    
+
+          
+    <aside class="article-tool-cta" aria-label="Attribution Tool Callout">
+      <div class="article-tool-cta-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Recommended Measurement Tool</span>
+      </div>
+      <div class="article-tool-cta-inner">
+        <div class="article-tool-cta-content">
+          <h3 class="article-tool-cta-title">Diagnose Broken Links Instantly</h3>
+          <p class="article-tool-cta-desc">Audit any URL before spending money. UTMCraft checks for redirect parameter loss, invalid casing, and missing GA4 parameters in seconds.</p>
+          <div class="article-tool-cta-trust">
+            <span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              100% Client-Side Private
+            </span>
+            <span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              GA4 Taxonomy Validated
+            </span>
+            <span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Zero Server Storage
+            </span>
+          </div>
+        </div>
+        <div class="article-tool-cta-action">
+          <a href="/utm-checker/" class="article-tool-cta-btn">
+            <span>Launch UTM Link Checker</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+  
+
+          
+    <section class="article-references">
+      <h3>Sources &amp; Authoritative References</h3>
+      <ul class="references-list">
+        
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/9756891" target="_blank" rel="noopener">Troubleshoot Traffic Acquisition in GA4</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+        
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/7201382" target="_blank" rel="noopener">Verify Your Tag Implementation with DebugView</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+        
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/10327750" target="_blank" rel="noopener">Manage Unwanted Referrals in GA4</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+        
+      </ul>
+    </section>
+  
+
+          <!-- Author Box -->
+          <div class="article-author-card">
+            <div class="author-avatar" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="author-info">
+              <h4>DJ</h4>
+              <div class="author-role">Attribution & Analytics Architect</div>
+              <p class="author-bio">Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related Guides Grid -->
+        <section class="related-articles-section">
+          <h3>Related Measurement Guides</h3>
+          <div class="related-articles-grid">
+            
+    <a href="/ga4-utms-not-showing/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/ga4-utms-not-showing.webp" alt="Diagnostic diagram showing 9 failure points where UTM parameters are dropped before reaching GA4" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Diagnostics</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h4 class="post-card-title">Why UTMs Don't Appear in GA4: 9 Causes and Step-by-Step Fixes</h4>
+        <p class="post-card-excerpt">UTM parameters missing in Google Analytics 4? Diagnose the 9 most common reasons campaign data fails to appear in GA4 reports and fix them immediately.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>September 23, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/ga4-direct-traffic-troubleshooting/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/ga4-direct-traffic-troubleshooting.webp" alt="Flowchart showing how paid campaign traffic degrades into Direct traffic through redirects and missing UTMs" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Diagnostics</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h4 class="post-card-title">Why Campaign Traffic Shows as Direct in GA4 (and How to Fix It)</h4>
+        <p class="post-card-excerpt">Why is your paid traffic showing as Direct in GA4? Learn the 7 primary causes of false direct traffic, redirect parameter loss, and how to recover attribution.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>September 23, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/ga4-unassigned-traffic/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/ga4-unassigned-traffic.webp" alt="Diagram showing how mismatched utm_medium values fall through GA4 channel rules into the Unassigned bucket" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Diagnostics</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h4 class="post-card-title">How to Fix &quot;Unassigned&quot; Traffic in GA4: Complete Diagnosis Guide</h4>
+        <p class="post-card-excerpt">Why does GA4 show Unassigned traffic? Discover the exact channel grouping regex rules, common medium mistakes, and how to fix Unassigned traffic permanently.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>September 23, 2026</span>
+        </div>
+      </div>
+    </a>
+          </div>
+        </section>
+      </article>
+
+      <!-- Desktop Sticky Table of Contents Sidebar -->
+      <aside class="blog-sidebar">
+        <div class="toc-card">
+          <div class="toc-heading">Table of Contents</div>
+          <ul class="toc-list">
+            
+    <li>
+      <a href="#the-attribution-diagnostic-flowchart" class="toc-link">The GA4 Attribution Diagnostic Flowchart</a>
+    </li>
+  
+    <li>
+      <a href="#direct-traffic-spikes" class="toc-link">Issue 1: Traffic Showing as Direct Instead of Paid Campaign</a>
+    </li>
+  
+    <li>
+      <a href="#unassigned-channel-group" class="toc-link">Issue 2: Traffic Showing as &quot;Unassigned&quot;</a>
+    </li>
+  
+    <li>
+      <a href="#not-set-campaign-dimensions" class="toc-link">Issue 3: Campaign and Source Showing as &quot;(not set)&quot;</a>
+    </li>
+  
+    <li>
+      <a href="#referral-loops-payment-gateways" class="toc-link">Issue 4: Payment Gateway & Social Webview Referral Hijacking</a>
+    </li>
+  
+    <li>
+      <a href="#redirect-chains-parameter-loss" class="toc-link">Issue 5: Server 301/302 Redirects Stripping Query Strings</a>
+    </li>
+  
+    <li>
+      <a href="#consent-mode-v2-impact" class="toc-link">Issue 6: Consent Mode v2 Delays and Cookieless Pings</a>
+    </li>
+  
+    <li>
+      <a href="#testing-with-debugview" class="toc-link">Live Testing Protocol: Realtime & DebugView</a>
+    </li>
+  
+    <li>
+      <a href="#faq" class="toc-link">Frequently Asked Questions</a>
+    </li>
+  
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    
+  <!-- Editorial SaaS Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col-brand">
+          <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+            <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+            <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+          </a>
+          <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+          <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+          <div class="footer-contact-link" style="margin-top: 0.65rem; font-size: 0.8125rem; color: var(--text-secondary);">Direct Support: <a href="mailto:contact@utmcraft.com" style="color: var(--soft-green); text-decoration: none;">contact@utmcraft.com</a></div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Core Builders</h4>
+          <ul class="footer-links">
+            <li><a href="/">Single URL Builder</a></li>
+            <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+            <li><a href="/utm-checker/">UTM Link Checker</a></li>
+            <li><a href="/utm-builder/google-ads/">Google Ads ValueTrack</a></li>
+            <li><a href="/utm-builder/facebook/">Meta Ads Builder</a></li>
+            <li><a href="/utm-builder/linkedin/">LinkedIn Ads Builder</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Attribution Guides</h4>
+          <ul class="footer-links">
+            <li><a href="/blog/">All Knowledge Guides</a></li>
+            <li><a href="/utm-strategy-guide/">UTM Strategy Guide</a></li>
+            <li><a href="/ga4-utm-parameters-guide/">GA4 Parameters Guide</a></li>
+            <li><a href="/ga4-utm-troubleshooting-guide/">GA4 Troubleshooting</a></li>
+            <li><a href="/google-ads-utm-guide/">Google Ads Tracking</a></li>
+            <li><a href="/meta-ads-utm-guide/">Meta Ads Tracking</a></li>
+            <li><a href="/linkedin-ads-utm-guide/">LinkedIn Ads Tracking</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Taxonomy Clusters</h4>
+          <ul class="footer-links">
+            <li><a href="/blog/utm-strategy/">Strategy &amp; Governance</a></li>
+            <li><a href="/blog/ga4-attribution/">GA4 Diagnostics</a></li>
+            <li><a href="/blog/email-tracking/">Email Attribution</a></li>
+            <li><a href="/blog/organic-social-pr/">Non-Paid &amp; PR</a></li>
+            <li><a href="/blog/offline-qr/">Offline &amp; QR Codes</a></li>
+            <li><a href="/blog/utm-operations/">UTM Operations &amp; CRM</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Company &amp; Trust</h4>
+          <ul class="footer-links">
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="/contact/">Contact Us</a></li>
+            <li><a href="/terms.html">Terms and Conditions</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/sitemap.xml">XML Sitemap</a></li>
+            <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+        <div class="footer-credit">Made with ❤️ by DJ</div>
+        <div class="footer-legal-links">
+          <a href="/about/">About</a>
+          <span>•</span>
+          <a href="/contact/">Contact</a>
+          <span>•</span>
+          <a href="/privacy.html">Privacy Policy</a>
+          <span>•</span>
+          <a href="/terms.html">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </div>
+
+  <script type="module" src="/src/blog.js"></script>
+</body>
+</html>

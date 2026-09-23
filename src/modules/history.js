@@ -8,7 +8,18 @@ const MAX_HISTORY_ITEMS = 150;
 export function getHistory() {
   try {
     const raw = localStorage.getItem(HISTORY_STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const parsed = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(item => item && typeof item === 'object' && typeof item.url === 'string')
+      .map(item => ({
+        id: String(item.id || ''), url: item.url.slice(0, 10000),
+        shortUrl: String(item.shortUrl || '').slice(0, 2000),
+        baseUrl: String(item.baseUrl || '').slice(0, 10000),
+        source: String(item.source || '').slice(0, 500), medium: String(item.medium || '').slice(0, 500),
+        campaign: String(item.campaign || '').slice(0, 1000), term: String(item.term || '').slice(0, 1000),
+        content: String(item.content || '').slice(0, 1000), customParams: item.customParams || {},
+        starred: item.starred === true, timestamp: Number.isFinite(Number(item.timestamp)) ? Number(item.timestamp) : Date.now()
+      }));
   } catch (err) {
     console.error('Failed to load history:', err);
     return [];
@@ -81,18 +92,17 @@ export function exportHistoryToCSV() {
   const headers = ['Date', 'Final Tracked URL', 'Short URL', 'Base URL', 'Source', 'Medium', 'Campaign', 'Term', 'Content'];
   const rows = history.map(item => [
     new Date(item.timestamp).toISOString(),
-    `"${(item.url || '').replace(/"/g, '""')}"`,
-    `"${(item.shortUrl || '').replace(/"/g, '""')}"`,
-    `"${(item.baseUrl || '').replace(/"/g, '""')}"`,
-    `"${(item.source || '').replace(/"/g, '""')}"`,
-    `"${(item.medium || '').replace(/"/g, '""')}"`,
-    `"${(item.campaign || '').replace(/"/g, '""')}"`,
-    `"${(item.term || '').replace(/"/g, '""')}"`,
-    `"${(item.content || '').replace(/"/g, '""')}"`
-  ]);
+    item.url, item.shortUrl, item.baseUrl, item.source, item.medium, item.campaign, item.term, item.content
+  ].map(csvCell));
 
   const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
   return csvContent;
+}
+
+function csvCell(value) {
+  let safe = String(value ?? '');
+  if (/^[\s\u0000-\u001f]*[=+\-@]/.test(safe)) safe = `'${safe}`;
+  return `"${safe.replace(/"/g, '""')}"`;
 }
 
 export function exportHistoryToJSON() {

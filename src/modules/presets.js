@@ -205,7 +205,22 @@ const CUSTOM_PRESETS_STORAGE_KEY = 'utm_custom_presets_v1';
 export function getCustomPresets() {
   try {
     const raw = localStorage.getItem(CUSTOM_PRESETS_STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const parsed = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(p => p && typeof p === 'object' && typeof p.id === 'string')
+      .map(p => ({
+        id: p.id.slice(0, 100),
+        name: String(p.name || '').slice(0, 100),
+        source: String(p.source || '').slice(0, 200),
+        medium: String(p.medium || '').slice(0, 200),
+        defaultCampaign: String(p.defaultCampaign || '').slice(0, 200),
+        term: String(p.term || '').slice(0, 200),
+        content: String(p.content || '').slice(0, 200),
+        color: /^#[\da-f]{6}$/i.test(p.color) ? p.color : '#6366f1',
+        isCustom: true,
+        category: 'Custom Presets',
+        badge: 'User Custom'
+      }));
   } catch (err) {
     console.error('Error loading custom presets:', err);
     return [];

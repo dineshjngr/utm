@@ -25,11 +25,13 @@ import { shortenUrl, calculateSavings } from './modules/shortener.js';
 // =========================================================
 // APPLICATION STATE
 // =========================================================
+const DESTINATION_STORAGE_KEY = 'utmc_destination_url';
+
 const state = {
   theme: localStorage.getItem('utmc_theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'),
   activeTab: 'tab-builder',
   single: {
-    baseUrl: 'https://example.com/landing',
+    baseUrl: localStorage.getItem(DESTINATION_STORAGE_KEY) || '',
     source: 'google',
     medium: 'cpc',
     campaign: 'summer_sale_2025',
@@ -66,7 +68,12 @@ export function showToast(message, type = 'success') {
   toast.className = `toast ${type}`;
 
   const icon = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
-  toast.innerHTML = `<span style="font-weight: 700; font-size: 1rem;">${icon}</span> <span>${message}</span>`;
+  const iconEl = document.createElement('span');
+  iconEl.style.cssText = 'font-weight: 700; font-size: 1rem;';
+  iconEl.textContent = icon;
+  const messageEl = document.createElement('span');
+  messageEl.textContent = message;
+  toast.append(iconEl, messageEl);
   container.appendChild(toast);
 
   setTimeout(() => {
@@ -75,6 +82,15 @@ export function showToast(message, type = 'success') {
     toast.style.transition = 'all 0.25s ease';
     setTimeout(() => toast.remove(), 250);
   }, 2800);
+}
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+}
+
+function safeHttpUrl(value) {
+  try { const url = new URL(String(value)); return ['http:', 'https:'].includes(url.protocol) ? url.href : ''; }
+  catch { return ''; }
 }
 
 // =========================================================
@@ -688,6 +704,14 @@ function generateActiveQRCode(showToastMsg = false, isRegen = false) {
   const qrBadge = document.getElementById('qr-target-badge');
   if (!qrCanvas) return;
 
+  const url = (state.qrTarget === 'short' && state.shortUrl)
+    ? state.shortUrl
+    : state.currentGeneratedUrl;
+  if (!url) {
+    showToast('Enter a destination URL before generating a QR code.', 'error');
+    return;
+  }
+
   state.qrGenerated = true;
 
   // Unblur canvas smoothly
@@ -698,10 +722,6 @@ function generateActiveQRCode(showToastMsg = false, isRegen = false) {
     qrBadge.textContent = state.qrTarget === 'short' ? '⚡ Short QR Active' : '● Active & Ready';
     qrBadge.style.color = 'var(--soft-green)';
   }
-
-  const url = (state.qrTarget === 'short' && state.shortUrl)
-    ? state.shortUrl
-    : (state.currentGeneratedUrl || state.single.baseUrl || 'https://example.com');
 
   renderQRCode(qrCanvas, url, {
     darkColor: '#182126',
@@ -722,7 +742,14 @@ function readSingleInputs() {
   const bCnt = document.getElementById('input-utm-content');
   const bId = document.getElementById('input-utm-id');
 
-  if (bUrl) state.single.baseUrl = bUrl.value;
+  if (bUrl) {
+    state.single.baseUrl = bUrl.value;
+    if (bUrl.value.trim()) {
+      localStorage.setItem(DESTINATION_STORAGE_KEY, bUrl.value);
+    } else {
+      localStorage.removeItem(DESTINATION_STORAGE_KEY);
+    }
+  }
   if (bSrc) state.single.source = bSrc.value;
   if (bMed) state.single.medium = bMed.value;
   if (bCmp) state.single.campaign = bCmp.value;
@@ -790,7 +817,9 @@ function updateQRCode() {
 
   const url = (state.qrTarget === 'short' && state.shortUrl)
     ? state.shortUrl
-    : (state.currentGeneratedUrl || state.single.baseUrl || 'https://example.com');
+    : state.currentGeneratedUrl;
+
+  if (!url) return;
 
   renderQRCode(qrCanvas, url, {
     darkColor: '#182126',
@@ -832,15 +861,15 @@ function updateScorecard() {
     } else {
       const listHtml = [
         ...audit.issues.map(i => `
-          <div class="audit-msg ${i.level}">
+          <div class="audit-msg ${escapeHtml(i.level)}">
             <span>${i.level === 'error' ? '✕' : '⚠'}</span>
-            <span>${i.message}</span>
+            <span>${escapeHtml(i.message)}</span>
           </div>
         `),
         ...audit.suggestions.map(s => `
           <div class="audit-msg suggestion">
             <span>•</span>
-            <span>${s.message}</span>
+            <span>${escapeHtml(s.message)}</span>
           </div>
         `)
       ].join('');
@@ -1029,8 +1058,9 @@ function renderPresetChips() {
     chip.setAttribute('data-preset-id', p.id);
     chip.innerHTML = `
       <span class="preset-chip-dot" style="color: ${p.color || 'var(--primary)'}"></span>
-      <span>${p.name}</span>
+      <span></span>
     `;
+    chip.querySelector('span:last-child').textContent = p.name || 'Unnamed preset';
 
     if (p.isCustom) {
       const delBtn = document.createElement('span');
@@ -1126,11 +1156,13 @@ function renderCustomParams() {
   state.single.customParams.forEach((param, index) => {
     const row = document.createElement('div');
     row.className = 'custom-param-row';
-    row.innerHTML = `
-      <input type="text" class="form-input custom-param-key" placeholder="Parameter Key (e.g. ref, partner)" value="${param.key}" aria-label="Custom parameter key">
-      <input type="text" class="form-input custom-param-val" placeholder="Value (e.g. 12345)" value="${param.value}" aria-label="Custom parameter value">
-      <button type="button" class="btn-remove-param" title="Remove parameter" aria-label="Remove parameter">✕</button>
-    `;
+    const keyInputEl = document.createElement('input');
+    keyInputEl.type = 'text'; keyInputEl.className = 'form-input custom-param-key'; keyInputEl.placeholder = 'Parameter Key (e.g. ref, partner)'; keyInputEl.setAttribute('aria-label', 'Custom parameter key'); keyInputEl.value = param.key || '';
+    const valInputEl = document.createElement('input');
+    valInputEl.type = 'text'; valInputEl.className = 'form-input custom-param-val'; valInputEl.placeholder = 'Value (e.g. 12345)'; valInputEl.setAttribute('aria-label', 'Custom parameter value'); valInputEl.value = param.value || '';
+    const removeBtnEl = document.createElement('button');
+    removeBtnEl.type = 'button'; removeBtnEl.className = 'btn-remove-param'; removeBtnEl.title = 'Remove parameter'; removeBtnEl.setAttribute('aria-label', 'Remove parameter'); removeBtnEl.textContent = '✕';
+    row.append(keyInputEl, valInputEl, removeBtnEl);
 
     const keyInput = row.querySelector('.custom-param-key');
     const valInput = row.querySelector('.custom-param-val');
@@ -1170,8 +1202,9 @@ function initBatchGenerator() {
     label.className = 'channel-check-card';
     label.innerHTML = `
       <input type="checkbox" data-channel-id="${ch.id}" ${ch.checked ? 'checked' : ''}>
-      <span>${ch.name}</span>
+      <span></span>
     `;
+    label.querySelector('span').textContent = ch.name;
 
     label.querySelector('input').addEventListener('change', (e) => {
       ch.checked = e.target.checked;
@@ -1243,6 +1276,12 @@ function handleGenerateBatch() {
     return;
   }
 
+  const filledUrls = rawUrls.filter(u => u.trim());
+  if (filledUrls.length > 100 || filledUrls.length * selectedChannels.length > 1000) {
+    showToast('Bulk generation is limited to 100 landing pages and 1,000 total links per run.', 'error');
+    return;
+  }
+
   const results = generateBatchMatrix({
     urls: rawUrls,
     campaign,
@@ -1272,11 +1311,11 @@ function renderBatchTable(results) {
   results.forEach(item => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td><strong>${item.channelName}</strong></td>
-      <td><span class="mini-badge" style="color: #38bdf8;">${item.source}</span></td>
-      <td><span class="mini-badge" style="color: #34d399;">${item.medium}</span></td>
-      <td>${item.campaign || '<span style="color: var(--text-muted);">-</span>'}</td>
-      <td class="url-cell" title="${item.url}">${item.url}</td>
+      <td><strong>${escapeHtml(item.channelName)}</strong></td>
+      <td><span class="mini-badge" style="color: #38bdf8;">${escapeHtml(item.source)}</span></td>
+      <td><span class="mini-badge" style="color: #34d399;">${escapeHtml(item.medium)}</span></td>
+      <td>${escapeHtml(item.campaign || '-')}</td>
+      <td class="url-cell" title="${escapeHtml(item.url)}">${escapeHtml(item.url)}</td>
       <td style="text-align: right; white-space: nowrap;">
         <button type="button" class="btn btn-secondary btn-sm btn-batch-row-copy" title="Copy URL">📋</button>
         <button type="button" class="btn btn-ghost btn-sm btn-batch-row-open" title="Open Link">↗</button>
@@ -1368,26 +1407,24 @@ function initInspector() {
     loadBtn.addEventListener('click', () => {
       if (!currentInspected) return;
 
-      // Load into Single Builder
-      const bUrl = document.getElementById('input-base-url');
-      if (bUrl) bUrl.value = currentInspected.baseUrl;
-      const bSrc = document.getElementById('input-utm-source');
-      if (bSrc) bSrc.value = currentInspected.utmParams['utm_source'] || '';
-      const bMed = document.getElementById('input-utm-medium');
-      if (bMed) bMed.value = currentInspected.utmParams['utm_medium'] || '';
-      const bCmp = document.getElementById('input-utm-campaign');
-      if (bCmp) bCmp.value = currentInspected.utmParams['utm_campaign'] || '';
-      const bTrm = document.getElementById('input-utm-term');
-      if (bTrm) bTrm.value = currentInspected.utmParams['utm_term'] || '';
-      const bCnt = document.getElementById('input-utm-content');
-      if (bCnt) bCnt.value = currentInspected.utmParams['utm_content'] || '';
-      const bId = document.getElementById('input-utm-id');
-      if (bId) bId.value = currentInspected.utmParams['utm_id'] || '';
-
+      const destinationInput = document.getElementById('input-base-url');
+      if (destinationInput) destinationInput.value = currentInspected.fullUrl;
+      const importedFields = {
+        'input-utm-source': 'utm_source', 'input-utm-medium': 'utm_medium',
+        'input-utm-campaign': 'utm_campaign', 'input-utm-term': 'utm_term',
+        'input-utm-content': 'utm_content', 'input-utm-id': 'utm_id'
+      };
+      Object.entries(importedFields).forEach(([id, key]) => {
+        const field = document.getElementById(id);
+        if (field) field.value = currentInspected.utmParams[key] || '';
+      });
       readSingleInputs();
+      const stripOption = state.options.stripDuplicateUtms;
+      state.options.stripDuplicateUtms = false;
       recalculateSingleUrl();
+      state.options.stripDuplicateUtms = stripOption;
       switchTab('tab-builder');
-      showToast('Loaded inspected link into Builder for editing!', 'info');
+      showToast('Loaded the complete inspected URL into the destination field. Existing query parameters are preserved.', 'info');
     });
   }
 }
@@ -1412,8 +1449,8 @@ function renderInspection(data) {
     `;
   } else {
     issuesBox.innerHTML = [
-      ...data.audit.issues.map(i => `<div class="audit-msg ${i.level}"><span>${i.level === 'error' ? '❌' : '⚠️'}</span> <span>${i.message}</span></div>`),
-      ...data.audit.suggestions.map(s => `<div class="audit-msg suggestion"><span>💡</span> <span>${s.message}</span></div>`)
+    ...data.audit.issues.map(i => `<div class="audit-msg ${escapeHtml(i.level)}"><span>${i.level === 'error' ? '❌' : '⚠️'}</span> <span>${escapeHtml(i.message)}</span></div>`),
+    ...data.audit.suggestions.map(s => `<div class="audit-msg suggestion"><span>💡</span> <span>${escapeHtml(s.message)}</span></div>`)
     ].join('');
   }
 
@@ -1429,24 +1466,29 @@ function renderInspection(data) {
   ];
 
   // Other params
-  const otherKeys = Object.keys(data.otherParams);
-  if (otherKeys.length > 0) {
-    otherKeys.forEach(k => {
-      cards.push({
-        key: k,
-        val: data.otherParams[k],
-        note: 'Non-UTM query parameter'
-      });
-    });
-  }
+  const paramCounts = new Map();
+  data.allParams.forEach(([key]) => {
+    const normalized = key.toLowerCase();
+    paramCounts.set(normalized, (paramCounts.get(normalized) || 0) + 1);
+  });
+  const paramSeen = new Map();
+  data.allParams.forEach(([key, value]) => {
+    const normalized = key.toLowerCase();
+    const occurrence = (paramSeen.get(normalized) || 0) + 1;
+    paramSeen.set(normalized, occurrence);
+    const standardUtm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id'].includes(normalized);
+    if (standardUtm && paramCounts.get(normalized) === 1) return;
+    const label = standardUtm ? `${key} (occurrence ${occurrence} of ${paramCounts.get(normalized)})` : (occurrence > 1 ? `${key} (duplicate ${occurrence})` : key);
+    cards.push({ key: label, val: value, note: normalized.startsWith('utm_') ? 'Additional UTM query parameter' : 'Non-UTM query parameter' });
+  });
 
   cardsGrid.innerHTML = cards.map(c => `
     <div class="param-inspector-card">
       <div class="param-key-header">
-        <span class="param-key-tag">${c.key}</span>
+        <span class="param-key-tag">${escapeHtml(c.key)}</span>
       </div>
-      <div class="param-value-box">${c.val}</div>
-      <div class="param-explanation">${c.note}</div>
+      <div class="param-value-box">${escapeHtml(c.val)}</div>
+      <div class="param-explanation">${escapeHtml(c.note)}</div>
     </div>
   `).join('');
 }
@@ -1480,7 +1522,7 @@ function initTaxonomyGuide() {
     if (filtered.length === 0) {
       cardsGrid.innerHTML = `
         <div style="grid-column: 1 / -1; padding: 2rem; text-align: center; color: var(--text-secondary);">
-          No matching GA4 channels found for "${query}". Try searching for "cpc", "email", or "social".
+          No matching GA4 channels found for "${escapeHtml(query)}". Try searching for "cpc", "email", or "social".
         </div>
       `;
       return;
@@ -1685,22 +1727,23 @@ function renderHistoryView() {
       minute: '2-digit'
     });
 
+    const shortUrl = safeHttpUrl(item.shortUrl);
     return `
-      <div class="history-item-row" data-history-id="${item.id}">
+      <div class="history-item-row" data-history-id="${escapeHtml(item.id)}">
         <div class="history-info">
           <div class="history-campaign-title">
-            <span>${item.campaign || 'Untitled Campaign'}</span>
+            <span>${escapeHtml(item.campaign || 'Untitled Campaign')}</span>
             <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: normal;">• ${dateStr}</span>
           </div>
           <div class="history-badges">
-            <span class="mini-badge" style="color: #38bdf8;">${item.source || 'no-source'}</span>
-            <span class="mini-badge" style="color: #34d399;">${item.medium || 'no-medium'}</span>
-            ${item.term ? `<span class="mini-badge" style="color: #c084fc;">term: ${item.term}</span>` : ''}
+            <span class="mini-badge" style="color: #38bdf8;">${escapeHtml(item.source || 'no-source')}</span>
+            <span class="mini-badge" style="color: #34d399;">${escapeHtml(item.medium || 'no-medium')}</span>
+            ${item.term ? `<span class="mini-badge" style="color: #c084fc;">term: ${escapeHtml(item.term)}</span>` : ''}
           </div>
-          <div class="history-url-text" title="${item.url}">${item.url}</div>
-          ${item.shortUrl ? `
+          <div class="history-url-text" title="${escapeHtml(item.url)}">${escapeHtml(item.url)}</div>
+          ${shortUrl ? `
             <div style="margin-top: 0.2rem; display: flex; align-items: center; gap: 0.5rem;">
-              <a href="${item.shortUrl}" target="_blank" rel="noopener noreferrer" class="history-short-link" title="Open short link in new tab">⚡ ${item.shortUrl}</a>
+              <a href="${escapeHtml(shortUrl)}" target="_blank" rel="noopener noreferrer" class="history-short-link" title="Open short link in new tab">⚡ ${escapeHtml(shortUrl)}</a>
               <button type="button" class="btn btn-ghost btn-sm btn-hist-copy-short" style="padding: 0 0.35rem; font-size: 0.7rem; min-height: 20px; line-height: 1;" title="Copy short link">Copy Short</button>
             </div>
           ` : ''}
@@ -1930,15 +1973,24 @@ function initModals() {
 // HEADER DROPDOWN NAVIGATION
 // =========================================================
 function initHeaderDropdowns() {
-  document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  dropdowns.forEach(dropdown => {
     const toggleBtn = dropdown.querySelector('.nav-dropdown-toggle');
     const menu = dropdown.querySelector('.nav-dropdown-menu');
     if (!toggleBtn) return;
 
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isOpen = dropdown.classList.toggle('is-open');
-      toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      const willBeOpen = !dropdown.classList.contains('is-open');
+      dropdowns.forEach(other => {
+        if (other !== dropdown) {
+          other.classList.remove('is-open');
+          const otherBtn = other.querySelector('.nav-dropdown-toggle');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      dropdown.classList.toggle('is-open', willBeOpen);
+      toggleBtn.setAttribute('aria-expanded', willBeOpen ? 'true' : 'false');
     });
 
     // Close on click outside

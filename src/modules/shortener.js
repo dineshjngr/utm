@@ -55,10 +55,11 @@ export async function shortenUrl(longUrl, options = {}) {
 
     if (response.ok) {
       const text = (await response.text()).trim();
-      if (text.startsWith('http://') || text.startsWith('https://')) {
+      const shortUrl = normalizeShortUrl(text);
+      if (shortUrl) {
         return {
           success: true,
-          shortUrl: text,
+          shortUrl,
           originalUrl: trimmed,
           provider: 'da.gd'
         };
@@ -88,7 +89,8 @@ export async function shortenUrl(longUrl, options = {}) {
     if (response.ok) {
       const data = await response.json();
       if (data && data.short_url) {
-        const shortHttps = data.short_url.replace(/^http:\/\//i, 'https://');
+        const shortHttps = normalizeShortUrl(data.short_url.replace(/^http:\/\//i, 'https://'));
+        if (!shortHttps) throw new Error('Shortener returned an invalid link');
         return {
           success: true,
           shortUrl: shortHttps,
@@ -115,10 +117,11 @@ export async function shortenUrl(longUrl, options = {}) {
 
     if (response.ok) {
       const text = (await response.text()).trim();
-      if (text.startsWith('http://') || text.startsWith('https://')) {
+      const shortUrl = normalizeShortUrl(text);
+      if (shortUrl) {
         return {
           success: true,
-          shortUrl: text,
+          shortUrl,
           originalUrl: trimmed,
           provider: 'clck.ru'
         };
@@ -132,6 +135,15 @@ export async function shortenUrl(longUrl, options = {}) {
     success: false,
     error: 'Could not shorten URL. Please check your network connection and try again.'
   };
+}
+
+function normalizeShortUrl(value) {
+  try {
+    const parsed = new URL(String(value).trim());
+    return ['http:', 'https:'].includes(parsed.protocol) ? parsed.href : '';
+  } catch {
+    return '';
+  }
 }
 
 /**

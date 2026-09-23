@@ -17,7 +17,7 @@
   <meta property="og:description" content="Build clean, GA4-ready campaign URLs, bulk link matrices, QR codes, and audit tracking parameters directly in your browser.">
   <meta property="og:url" content="https://utmcraft.com/">
   <meta property="og:image" content="https://utmcraft.com/og-image.png">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
   <meta name="twitter:url" content="https://utmcraft.com/">
   <meta name="twitter:title" content="Free UTM Builder &amp; GA4 Campaign URL Generator | UTMCraft">
@@ -32,6 +32,31 @@
   {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://utmcraft.com/#website",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "description": "Free client-side UTM builder, bulk campaign matrix generator, link inspector, and GA4 tracking taxonomy guide.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://utmcraft.com/blog/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://utmcraft.com/#organization",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "logo": "https://utmcraft.com/utmcraft-logo-light.png",
+        "email": "contact@utmcraft.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "contact@utmcraft.com",
+          "contactType": "customer support"
+        }
+      },
       {
         "@type": "WebApplication",
         "name": "UTMCraft UTM Builder",
@@ -59,7 +84,7 @@
             "@type": "HowToStep",
             "position": 1,
             "name": "Enter Destination URL",
-            "text": "Paste your canonical landing page URL (e.g. https://yourwebsite.com/landing)."
+            "text": "Paste your destination page URL, such as yourwebsite.com."
           },
           {
             "@type": "HowToStep",
@@ -139,7 +164,7 @@
             "name": "Does shortening a URL break UTM parameters or analytics tracking?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No. When using standard HTTP 301 or 302 redirects (such as those provided by UTMCraft's shortener), the destination URL including all UTM parameters is passed directly to the browser, preserving analytics attribution."
+              "text": "A public shortening provider creates the redirect and receives the complete URL. Its redirect usually forwards UTM parameters, but test the short link and confirm the final destination retains them."
             }
           },
           {
@@ -178,18 +203,8 @@
   <header class="app-header">
     <div class="header-inner">
       <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
-        <div class="brand-icon" aria-hidden="true">
-          <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
-            <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
-            <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
-            <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
-          </svg>
-        </div>
-        <div class="brand-text-group">
-          <span class="brand-title">UTMCraft</span>
-          <span class="brand-pill">Studio</span>
-        </div>
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
       </a>
 
       <nav class="header-nav" aria-label="Main Navigation">
@@ -199,13 +214,9 @@
             <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="nav-dropdown-menu" role="menu">
-            <a href="/" class="nav-dropdown-item" role="menuitem">
+            <a href="/" class="nav-dropdown-item active" role="menuitem">
               <span class="dropdown-item-title">Standard Campaign Builder</span>
               <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
-            </a>
-            <a href="#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
-              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item" role="menuitem">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -227,9 +238,30 @@
         </div>
         <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
         <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
-        <a href="#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-header-link">GA4 Taxonomy</a>
-        <a href="/utm-parameters/" class="nav-header-link">Parameters</a>
-        <a href="/utm-naming-conventions/" class="nav-header-link">Taxonomy SOP</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/blog/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
+            </a>
+            <a href="#ga4-taxonomy" data-switch-tab="tab-taxonomy" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
       </nav>
 
       <div class="header-actions">
@@ -274,10 +306,6 @@
           <span>UTM Checker</span>
         </a>
 
-        <button type="button" id="nav-taxonomy" class="nav-tab" data-tab="tab-taxonomy">
-          <span>GA4 Taxonomy</span>
-        </button>
-
         <a href="/utm-builder/google-ads/" class="nav-tab">
           <span>Google Ads</span>
         </a>
@@ -290,15 +318,7 @@
           <span>LinkedIn Ads</span>
         </a>
 
-        <a href="/utm-parameters/" class="nav-tab">
-          <span>Parameters</span>
-        </a>
-
-        <a href="/utm-naming-conventions/" class="nav-tab">
-          <span>Taxonomy SOP</span>
-        </a>
-
-        <button type="button" id="nav-history" class="nav-tab" data-tab="tab-history">
+        <button type="button" id="nav-history" class="nav-tab" data-tab="tab-history" aria-controls="tab-history" aria-pressed="false">
           <span>History</span>
           <span id="history-counter-badge" class="tab-badge">0</span>
         </button>
@@ -336,8 +356,8 @@
                   type="url" 
                   id="input-base-url" 
                   class="form-input destination-input" 
-                  placeholder="https://yourwebsite.com/landing" 
-                  required 
+                  placeholder="yourwebsite.com"
+                  required
                   autocomplete="off"
                   inputmode="url"
                   aria-describedby="base-url-hint"
@@ -600,6 +620,7 @@
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                 <span id="btn-shorten-text">Shorten</span>
               </button>
+              <small class="shortener-privacy-note" id="shortener-privacy-note">Optional shortening sends this complete URL to a public provider (da.gd, spoo.me, or clck.ru).</small>
 
               <button type="button" id="btn-test-url" class="btn btn-secondary btn-sm" title="Open in new tab to test">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -745,10 +766,11 @@
           <!-- Landing Pages list -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="batch-urls-input" class="form-label">Landing Page URLs (One per line)</label>
+              <label for="batch-urls-input" class="form-label">Landing Page URLs (One per line; maximum 100)</label>
               <span class="field-hint">Supports multiple landing pages</span>
             </div>
-            <textarea id="batch-urls-input" class="form-textarea" rows="4" placeholder="https://example.com/product&#10;https://example.com/pricing&#10;https://example.com/demo"></textarea>
+            <textarea id="batch-urls-input" class="form-textarea" rows="4" aria-describedby="batch-url-limit" placeholder="https://example.com/product&#10;https://example.com/pricing&#10;https://example.com/demo"></textarea>
+            <small id="batch-url-limit" class="field-hint">Generation is capped at 1,000 links per run.</small>
           </div>
 
           <!-- Campaign & Term -->
@@ -1315,7 +1337,7 @@
           <details class="faq-item">
             <summary class="faq-summary">Does shortening a URL break UTM tracking or GA4 data?</summary>
             <div class="faq-content">
-              <p>No. When a short link executes an HTTP 301 (Permanent) or HTTP 302 (Temporary) redirect, modern browsers pass the complete query string to the destination page. Analytics tags (such as Google Tag Manager or gtag.js) fire on the destination page and capture all UTM parameters seamlessly.</p>
+              <p>A shortener may preserve query parameters through its redirect, but behavior depends on that provider and destination. Test the link and confirm it lands on the expected URL with all UTM values intact before using it in a campaign.</p>
             </div>
           </details>
 
@@ -1363,19 +1385,12 @@
         <div class="footer-grid">
           <div class="footer-col-brand">
             <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
-              <div class="brand-icon" aria-hidden="true">
-                <svg width="16" height="16" viewBox="4 4 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 15a4.5 4.5 0 0 0-6.36-.54l-2.8 2.8a4.5 4.5 0 0 0 6.36 6.36l1.5-1.5"></path>
-                  <path d="M14 17a4.5 4.5 0 0 0 6.36.54l2.8-2.8a4.5 4.5 0 0 0-6.36-6.36l-1.5 1.5"></path>
-                  <line class="brand-bridge" x1="12" y1="20" x2="20" y2="12"></line>
-                  <circle class="brand-beacon" cx="23.5" cy="8.5" r="2.2"></circle>
-                </svg>
-              </div>
-              <span class="brand-title">UTMCraft</span>
-              <span class="brand-pill">Studio</span>
-            </a>
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
             <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
             <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <div class="footer-contact-link" style="margin-top: 0.65rem; font-size: 0.8125rem; color: var(--text-secondary);">Direct Support: <a href="mailto:contact@utmcraft.com" style="color: var(--soft-green); text-decoration: none;">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
@@ -1400,6 +1415,7 @@
           <div class="footer-col">
             <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
             <ul class="footer-links">
+              <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="#ga4-taxonomy" data-switch-tab="tab-taxonomy">GA4 Channel Taxonomy</a></li>
               <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
               <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
@@ -1407,8 +1423,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Legal &amp; Privacy</h4>
+            <h4 class="footer-heading">Company &amp; Trust</h4>
             <ul class="footer-links">
+              <li><a href="/about/">About Us</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
               <li><a href="/terms.html">Terms and Conditions</a></li>
               <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
@@ -1421,6 +1439,10 @@
           <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
           <div class="footer-credit">Made with ❤️ by DJ</div>
           <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
             <a href="/privacy.html">Privacy Policy</a>
             <span>•</span>
             <a href="/terms.html">Terms &amp; Conditions</a>

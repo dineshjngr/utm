@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Dynamic Tracking Parameters: Full Guide | UTMCraft</title>
+  <meta name="description" content="Learn how to use LinkedIn dynamic URL parameters: CAMPAIGN_ID, CAMPAIGN_NAME, AD_SET_ID, and AD_ID. Complete syntax rules and CRM mapping.">
+  <meta name="keywords" content="linkedin dynamic parameters, linkedin campaign_id parameter, linkedin ad_id dynamic token, linkedin url parameters macros, dynamic tracking linkedin ads">
+  <link rel="canonical" href="https://utmcraft.com/linkedin-dynamic-parameters/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utmcraft.com/linkedin-dynamic-parameters/">
+  <meta property="og:title" content="LinkedIn Dynamic Tracking Parameters: Full Guide | UTMCraft">
+  <meta property="og:description" content="Learn how to use LinkedIn dynamic URL parameters: CAMPAIGN_ID, CAMPAIGN_NAME, AD_SET_ID, and AD_ID. Complete syntax rules and CRM mapping.">
+  <meta property="og:image" content="https://utmcraft.com/blog/images/linkedin-dynamic-parameters.webp">
+  <meta property="article:published_time" content="2026-03-03">
+  <meta property="article:modified_time" content="2026-09-23">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utmcraft.com/linkedin-dynamic-parameters/">
+  <meta name="twitter:title" content="LinkedIn Dynamic Tracking Parameters: Full Guide | UTMCraft">
+  <meta name="twitter:description" content="Learn how to use LinkedIn dynamic URL parameters: CAMPAIGN_ID, CAMPAIGN_NAME, AD_SET_ID, and AD_ID. Complete syntax rules and CRM mapping.">
+  <meta name="twitter:image" content="https://utmcraft.com/blog/images/linkedin-dynamic-parameters.webp">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="stylesheet" href="/src/blog.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://utmcraft.com/linkedin-dynamic-parameters/#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://utmcraft.com/linkedin-dynamic-parameters/"
+      },
+      "headline": "LinkedIn Dynamic Tracking Parameters: CAMPAIGN_ID, AD_SET_ID, and AD_ID Guide",
+      "description": "Learn how to use LinkedIn dynamic URL parameters: CAMPAIGN_ID, CAMPAIGN_NAME, AD_SET_ID, and AD_ID. Complete syntax rules and CRM mapping.",
+      "image": "https://utmcraft.com/blog/images/linkedin-dynamic-parameters.webp",
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-09-23",
+      "author": {
+        "@type": "Person",
+        "name": "DJ",
+        "jobTitle": "Attribution & Analytics Architect",
+        "url": "https://utmcraft.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://utmcraft.com/logo.svg"
+        }
+      },
+      "mainEntityOfPage": "https://utmcraft.com/linkedin-dynamic-parameters/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://utmcraft.com/linkedin-dynamic-parameters/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://utmcraft.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://utmcraft.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "LinkedIn Ads Tracking",
+          "item": "https://utmcraft.com/blog/linkedin-ads/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "LinkedIn Dynamic Tracking Parameters: CAMPAIGN_ID, AD_SET_ID, and AD_ID Guide",
+          "item": "https://utmcraft.com/linkedin-dynamic-parameters/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://utmcraft.com/#organization",
+      "name": "UTMCraft",
+      "url": "https://utmcraft.com/",
+      "logo": "https://utmcraft.com/utmcraft-logo-light.png",
+      "email": "contact@utmcraft.com"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="blog-post">
+  <!-- Reading Progress Indicator -->
+  <div id="reading-progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  
+  <!-- Thin Minimal Top Navigation -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+
+      <nav class="header-nav" aria-label="Main Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Standard Campaign Builder</span>
+              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-haspopup="true">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/blog/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Complete manual on all 8 standard &amp; custom parameters</span>
+            </a>
+            <a href="/#ga4-taxonomy" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">GA4 Channel Taxonomy</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item" role="menuitem">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>New Link</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/">Guides</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/linkedin-ads/">LinkedIn Ads Tracking</a></li>
+        <li class="separator">/</li>
+        <li class="current" aria-current="page">LinkedIn Dynamic Tracking Parameters: CAMPAIGN_ID, AD_SET_ID, and AD_ID Guide</li>
+      </ol>
+    </nav>
+
+    <!-- Main Article Layout -->
+    <main id="main-content" class="blog-article-layout">
+      <!-- Article Content Column -->
+      <article class="article-main-column">
+        <header class="article-header">
+          <div class="article-meta-top">
+            <a href="/blog/linkedin-ads/" class="article-category-badge">
+              B2B Ads
+            </a>
+            <span class="article-reading-time">8 min read</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-date">Updated September 23, 2026</span>
+          </div>
+
+          <h1 class="article-title">LinkedIn Dynamic Tracking Parameters: CAMPAIGN_ID, AD_SET_ID, and AD_ID Guide</h1>
+          <p class="article-description">Learn how to use LinkedIn dynamic URL parameters: CAMPAIGN_ID, CAMPAIGN_NAME, AD_SET_ID, and AD_ID. Complete syntax rules and CRM mapping.</p>
+
+          <div class="article-freshness-bar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Platform rules verified for Google Analytics 4 (September 2026)</span>
+          </div>
+
+          <!-- Featured Hero Image -->
+          <div class="article-featured-image">
+            <img src="/blog/images/linkedin-dynamic-parameters.webp" alt="Technical diagram showing LinkedIn dynamic tokens expanding upon ad click into CRM lead records" width="1200" height="630" fetchpriority="high">
+          </div>
+        </header>
+
+        <!-- Mobile Table of Contents Accordion -->
+        <details class="mobile-toc">
+          <summary>Table of Contents</summary>
+          <ol>
+            
+    <li>
+      <a href="#complete-token-list" class="toc-link">Complete List of LinkedIn Dynamic Tracking Tokens</a>
+    </li>
+  
+    <li>
+      <a href="#syntax-rules" class="toc-link">Critical Syntax Rules: Case and Braces</a>
+    </li>
+  
+    <li>
+      <a href="#mapping-to-crm-fields" class="toc-link">Mapping Dynamic Parameters to CRM Lead Properties</a>
+    </li>
+  
+    <li>
+      <a href="#qa-and-verification" class="toc-link">How to QA LinkedIn Dynamic Links Before Publishing</a>
+    </li>
+  
+          </ol>
+        </details>
+
+        <!-- Main Prose Body -->
+        <div class="article-prose">
+          
+      <p class="lead-text">LinkedIn's dynamic URL parameters allow B2B performance marketers to scale ad creative testing without manually tagging every single ad link. Understanding the exact syntax requirements ensures that your parameters expand reliably at click time.</p>
+
+      <h2 id="complete-token-list">Complete List of LinkedIn Dynamic Tracking Tokens</h2>
+      <p>LinkedIn Campaign Manager supports the following dynamic tokens:</p>
+      <ul>
+        <li><code>{{CAMPAIGN_ID}}</code> - The unique numerical ID for the campaign.</li>
+        <li><code>{{CAMPAIGN_NAME}}</code> - The campaign name as set in Campaign Manager.</li>
+        <li><code>{{AD_SET_ID}}</code> - The unique numerical ID for the ad set.</li>
+        <li><code>{{AD_SET_NAME}}</code> - The ad set name.</li>
+        <li><code>{{AD_ID}}</code> - The unique numerical ID for the ad creative.</li>
+        <li><code>{{AD_NAME}}</code> - The ad creative name.</li>
+        <li><code>{{ACCOUNT_ID}}</code> - The numerical ID of the ad account.</li>
+        <li><code>{{ACCOUNT_NAME}}</code> - The name of the ad account.</li>
+      </ul>
+
+      <h2 id="syntax-rules">Critical Syntax Rules: Case and Braces</h2>
+      <div class="callout callout-warning">
+        <div class="callout-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <strong>Must Be Uppercase Inside Double Braces</strong>
+        </div>
+        <p>Never lowercase LinkedIn tokens. While Meta uses <code>{{campaign.name}}</code>, LinkedIn requires <code>{{CAMPAIGN_NAME}}</code>. If you use lowercase, LinkedIn treats it as ordinary text and will literally pass <code>{{campaign_name}}</code> into the browser address bar.</p>
+      </div>
+
+      <h2 id="mapping-to-crm-fields">Mapping Dynamic Parameters to CRM Lead Properties</h2>
+      <p>In B2B lead generation, pass these parameters into hidden form inputs:</p>
+      <ul>
+        <li><code>utm_campaign</code> maps to <em>First Touch Campaign Name</em>.</li>
+        <li><code>utm_id</code> maps to <em>First Touch Campaign ID</em>.</li>
+        <li><code>utm_content</code> maps to <em>First Touch Ad Creative</em>.</li>
+        <li><code>utm_term</code> maps to <em>First Touch Audience / Ad Set</em>.</li>
+      </ul>
+      <p>This allows your RevOps team to run closed-won revenue reports in Salesforce or HubSpot by specific LinkedIn audience segment.</p>
+
+      <h2 id="qa-and-verification">How to QA LinkedIn Dynamic Links Before Publishing</h2>
+      <p>Click "Preview" on your LinkedIn ad in Campaign Manager. Note: in preview mode, LinkedIn does not expand dynamic parameters. To verify live expansion, launch the ad with a minimal test budget ($5), click the live ad in your LinkedIn feed from a personal account, and verify that the destination URL in your browser address bar contains the actual campaign and ad names.</p>
+    
+
+          
+    <aside class="article-tool-cta" aria-label="Attribution Tool Callout">
+      <div class="article-tool-cta-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Recommended Measurement Tool</span>
+      </div>
+      <div class="article-tool-cta-inner">
+        <div class="article-tool-cta-content">
+          <h3 class="article-tool-cta-title">Generate LinkedIn Dynamic Links</h3>
+          <p class="article-tool-cta-desc">Build error-free LinkedIn dynamic parameter URLs configured with exact uppercase double-bracket syntax.</p>
+          <div class="article-tool-cta-trust">
+            <span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              100% Client-Side Private
+            </span>
+            <span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              GA4 Taxonomy Validated
+            </span>
+            <span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Zero Server Storage
+            </span>
+          </div>
+        </div>
+        <div class="article-tool-cta-action">
+          <a href="/utm-builder/linkedin/" class="article-tool-cta-btn">
+            <span>Open LinkedIn Builder</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+  
+
+          
+    <section class="article-references">
+      <h3>Sources &amp; Authoritative References</h3>
+      <ul class="references-list">
+        
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://www.linkedin.com/help/lms/answer/a518057" target="_blank" rel="noopener">Dynamic URL Parameters in LinkedIn Campaign Manager</a>
+            <span class="ref-publisher">(LinkedIn Help Center)</span>
+          </li>
+        
+      </ul>
+    </section>
+  
+
+          <!-- Author Box -->
+          <div class="article-author-card">
+            <div class="author-avatar" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="author-info">
+              <h4>DJ</h4>
+              <div class="author-role">Attribution & Analytics Architect</div>
+              <p class="author-bio">Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related Guides Grid -->
+        <section class="related-articles-section">
+          <h3>Related Measurement Guides</h3>
+          <div class="related-articles-grid">
+            
+    <a href="/linkedin-ads-utm-guide/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/linkedin-ads-utm-guide.webp" alt="Architectural breakdown of LinkedIn Campaign Manager dynamic hierarchy mapping into GA4 and B2B CRMs" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">B2B Ads</span>
+          <span class="post-card-readtime">12 min read</span>
+        </div>
+        <h4 class="post-card-title">LinkedIn Ads UTM Tracking Guide: Dynamic Tokens, B2B Attribution & Campaign Setup</h4>
+        <p class="post-card-excerpt">Complete guide to LinkedIn Ads UTM tracking. Configure dynamic URL parameters (CAMPAIGN_ID, AD_SET_ID, AD_ID), B2B hierarchy, and GA4 Paid Social reporting.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>September 23, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/linkedin-ads-utm-tracking/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/linkedin-ads-utm-tracking.webp" alt="Diagram showing how LinkedIn campaign hierarchy maps into GA4 traffic acquisition reports" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">B2B Ads</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h4 class="post-card-title">LinkedIn Ads UTM Tracking: B2B Attribution & Hierarchy Setup Guide</h4>
+        <p class="post-card-excerpt">Learn how to configure LinkedIn Ads UTM tracking across Campaign Groups, Campaigns, and Ads. Best practices for GA4 Paid Social channel mapping.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>September 23, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/meta-dynamic-url-parameters/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/meta-dynamic-url-parameters.webp" alt="Syntax illustration of Meta dynamic macro tokens expanding into actual campaign names upon click" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Paid Social</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h4 class="post-card-title">Meta Dynamic URL Parameters: {{campaign.name}}, {{adset.name}}, and {{ad.name}} Guide</h4>
+        <p class="post-card-excerpt">Master Meta dynamic URL parameters. Learn syntax rules, how tokens expand at click time, and how to prevent raw token strings from appearing in GA4.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>September 23, 2026</span>
+        </div>
+      </div>
+    </a>
+          </div>
+        </section>
+      </article>
+
+      <!-- Desktop Sticky Table of Contents Sidebar -->
+      <aside class="blog-sidebar">
+        <div class="toc-card">
+          <div class="toc-heading">Table of Contents</div>
+          <ul class="toc-list">
+            
+    <li>
+      <a href="#complete-token-list" class="toc-link">Complete List of LinkedIn Dynamic Tracking Tokens</a>
+    </li>
+  
+    <li>
+      <a href="#syntax-rules" class="toc-link">Critical Syntax Rules: Case and Braces</a>
+    </li>
+  
+    <li>
+      <a href="#mapping-to-crm-fields" class="toc-link">Mapping Dynamic Parameters to CRM Lead Properties</a>
+    </li>
+  
+    <li>
+      <a href="#qa-and-verification" class="toc-link">How to QA LinkedIn Dynamic Links Before Publishing</a>
+    </li>
+  
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    
+  <!-- Editorial SaaS Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col-brand">
+          <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+            <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+            <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+          </a>
+          <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+          <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+          <div class="footer-contact-link" style="margin-top: 0.65rem; font-size: 0.8125rem; color: var(--text-secondary);">Direct Support: <a href="mailto:contact@utmcraft.com" style="color: var(--soft-green); text-decoration: none;">contact@utmcraft.com</a></div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Core Builders</h4>
+          <ul class="footer-links">
+            <li><a href="/">Single URL Builder</a></li>
+            <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+            <li><a href="/utm-checker/">UTM Link Checker</a></li>
+            <li><a href="/utm-builder/google-ads/">Google Ads ValueTrack</a></li>
+            <li><a href="/utm-builder/facebook/">Meta Ads Builder</a></li>
+            <li><a href="/utm-builder/linkedin/">LinkedIn Ads Builder</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Attribution Guides</h4>
+          <ul class="footer-links">
+            <li><a href="/blog/">All Knowledge Guides</a></li>
+            <li><a href="/utm-strategy-guide/">UTM Strategy Guide</a></li>
+            <li><a href="/ga4-utm-parameters-guide/">GA4 Parameters Guide</a></li>
+            <li><a href="/ga4-utm-troubleshooting-guide/">GA4 Troubleshooting</a></li>
+            <li><a href="/google-ads-utm-guide/">Google Ads Tracking</a></li>
+            <li><a href="/meta-ads-utm-guide/">Meta Ads Tracking</a></li>
+            <li><a href="/linkedin-ads-utm-guide/">LinkedIn Ads Tracking</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Taxonomy Clusters</h4>
+          <ul class="footer-links">
+            <li><a href="/blog/utm-strategy/">Strategy &amp; Governance</a></li>
+            <li><a href="/blog/ga4-attribution/">GA4 Diagnostics</a></li>
+            <li><a href="/blog/email-tracking/">Email Attribution</a></li>
+            <li><a href="/blog/organic-social-pr/">Non-Paid &amp; PR</a></li>
+            <li><a href="/blog/offline-qr/">Offline &amp; QR Codes</a></li>
+            <li><a href="/blog/utm-operations/">UTM Operations &amp; CRM</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-heading">Company &amp; Trust</h4>
+          <ul class="footer-links">
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="/contact/">Contact Us</a></li>
+            <li><a href="/terms.html">Terms and Conditions</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/sitemap.xml">XML Sitemap</a></li>
+            <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+        <div class="footer-credit">Made with ❤️ by DJ</div>
+        <div class="footer-legal-links">
+          <a href="/about/">About</a>
+          <span>•</span>
+          <a href="/contact/">Contact</a>
+          <span>•</span>
+          <a href="/privacy.html">Privacy Policy</a>
+          <span>•</span>
+          <a href="/terms.html">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </div>
+
+  <script type="module" src="/src/blog.js"></script>
+</body>
+</html>

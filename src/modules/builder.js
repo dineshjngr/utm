@@ -63,6 +63,10 @@ export function buildUTMUrl(input, options = {}) {
     };
   }
 
+  if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
+    return { isValid: false, url: '', error: 'Only HTTP and HTTPS destination URLs are supported.' };
+  }
+
   // Handle existing parameters: strip existing utm params if requested
   if (options.stripDuplicateUtms !== false) {
     const keysToRemove = [];
@@ -81,22 +85,33 @@ export function buildUTMUrl(input, options = {}) {
   const cleanContent = sanitizeValue(content, options);
   const cleanUtmId = sanitizeValue(utmId, options);
 
-  if (cleanSource) parsedUrl.searchParams.set('utm_source', cleanSource);
-  if (cleanMedium) parsedUrl.searchParams.set('utm_medium', cleanMedium);
-  if (cleanCampaign) parsedUrl.searchParams.set('utm_campaign', cleanCampaign);
-  if (cleanUtmId) parsedUrl.searchParams.set('utm_id', cleanUtmId);
-  if (cleanTerm) parsedUrl.searchParams.set('utm_term', cleanTerm);
-  if (cleanContent) parsedUrl.searchParams.set('utm_content', cleanContent);
+  const setUtm = (key, value) => {
+    if (!value) return;
+    if (options.stripDuplicateUtms === false) setLastParamPreservingDuplicates(parsedUrl.searchParams, key, value);
+    else parsedUrl.searchParams.set(key, value);
+  };
+  setUtm('utm_source', cleanSource);
+  setUtm('utm_medium', cleanMedium);
+  setUtm('utm_campaign', cleanCampaign);
+  setUtm('utm_id', cleanUtmId);
+  setUtm('utm_term', cleanTerm);
+  setUtm('utm_content', cleanContent);
 
   // Custom parameters
   if (Array.isArray(customParams)) {
-    customParams.forEach(param => {
+    const seenKeys = new Set();
+    for (const param of customParams) {
       if (param && param.key && param.key.trim() && param.value && param.value.trim()) {
         const cleanKey = sanitizeValue(param.key, { ...options, lowercase: false });
         const cleanVal = sanitizeValue(param.value, options);
-        parsedUrl.searchParams.set(cleanKey, cleanVal);
+        const normalizedKey = cleanKey.toLowerCase();
+        if (normalizedKey.startsWith('utm_')) return {
+          isValid: false, url: '', error: 'Custom parameter names cannot start with utm_; use the dedicated UTM fields.'
+        };
+        if (!seenKeys.has(normalizedKey)) parsedUrl.searchParams.set(cleanKey, cleanVal);
+        seenKeys.add(normalizedKey);
       }
-    });
+    }
   }
 
   let finalUrl = parsedUrl.toString();
@@ -111,6 +126,16 @@ export function buildUTMUrl(input, options = {}) {
     parsed: parsedUrl,
     error: null
   };
+}
+
+function setLastParamPreservingDuplicates(params, key, value) {
+  const entries = Array.from(params.entries());
+  let lastIndex = -1;
+  entries.forEach(([existingKey], index) => { if (existingKey === key) lastIndex = index; });
+  if (lastIndex === -1) entries.push([key, value]);
+  else entries[lastIndex][1] = value;
+  while (params.size) params.delete(params.keys().next().value);
+  entries.forEach(([entryKey, entryValue]) => params.append(entryKey, entryValue));
 }
 
 /**

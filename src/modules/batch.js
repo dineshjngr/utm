@@ -13,16 +13,18 @@ export const BATCH_CHANNELS = DEFAULT_PRESETS.slice(0, 10).map(p => ({
   checked: ['google-cpc', 'meta-feed', 'linkedin-sponsored', 'email-newsletter'].includes(p.id)
 }));
 
+export const MAX_BATCH_URLS = 100;
+export const MAX_BATCH_RESULTS = 1000;
+
 export function generateBatchMatrix({ urls, campaign, term, content, channels, options = {} }) {
   if (!urls || urls.length === 0) return [];
   if (!channels || channels.length === 0) return [];
+  const cleanedUrls = urls.map(url => String(url || '').trim()).filter(Boolean);
+  if (cleanedUrls.length > MAX_BATCH_URLS || cleanedUrls.length * channels.length > MAX_BATCH_RESULTS) return [];
 
   const results = [];
 
-  for (const rawUrl of urls) {
-    const trimmedUrl = rawUrl.trim();
-    if (!trimmedUrl) continue;
-
+  for (const trimmedUrl of cleanedUrls) {
     for (const ch of channels) {
       const buildResult = buildUTMUrl({
         baseUrl: trimmedUrl,
@@ -54,16 +56,15 @@ export function exportBatchToCSV(batchResults) {
   if (!batchResults || batchResults.length === 0) return null;
 
   const headers = ['Channel Name', 'Source', 'Medium', 'Campaign', 'Base URL', 'Final UTM URL'];
-  const rows = batchResults.map(r => [
-    `"${(r.channelName || '').replace(/"/g, '""')}"`,
-    `"${(r.source || '').replace(/"/g, '""')}"`,
-    `"${(r.medium || '').replace(/"/g, '""')}"`,
-    `"${(r.campaign || '').replace(/"/g, '""')}"`,
-    `"${(r.baseUrl || '').replace(/"/g, '""')}"`,
-    `"${(r.url || '').replace(/"/g, '""')}"`
-  ]);
+  const rows = batchResults.map(r => [r.channelName, r.source, r.medium, r.campaign, r.baseUrl, r.url].map(csvCell));
 
   return [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+}
+
+function csvCell(value) {
+  let safe = String(value ?? '');
+  if (/^[\s\u0000-\u001f]*[=+\-@]/.test(safe)) safe = `'${safe}`;
+  return `"${safe.replace(/"/g, '""')}"`;
 }
 
 export function exportBatchToTSV(batchResults) {
@@ -77,7 +78,13 @@ export function exportBatchToTSV(batchResults) {
     r.campaign || '',
     r.baseUrl || '',
     r.url || ''
-  ]);
+  ].map(value => tsvCell(value)));
 
   return [headers.join('\t'), ...rows.map(r => r.join('\t'))].join('\n');
+}
+
+function tsvCell(value) {
+  let safe = String(value ?? '').replace(/[\t\r\n]/g, ' ');
+  if (/^[\s\u0000-\u001f]*[=+\-@]/.test(safe)) safe = `'${safe}`;
+  return safe;
 }
