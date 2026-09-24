@@ -697,7 +697,7 @@ function updateSitemap() {
   const now = new Date().toISOString().split('T')[0];
 
   const staticUrls = [
-    { loc: 'https://utmcraft.com/', priority: '1.0', changefreq: 'weekly' },
+    { loc: 'https://utmcraft.com/', lastmod: '2026-09-24', priority: '1.0', changefreq: 'weekly' },
     { loc: 'https://utmcraft.com/bulk-utm-builder/', priority: '0.85', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/campaign-url-builder/', priority: '0.9', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/utm-checker/', priority: '0.85', changefreq: 'monthly' },
@@ -709,7 +709,7 @@ function updateSitemap() {
     { loc: 'https://utmcraft.com/utm-builder/linkedin/', priority: '0.85', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/terms.html', priority: '0.5', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/privacy.html', priority: '0.5', changefreq: 'monthly' },
-    { loc: 'https://utmcraft.com/about/', priority: '0.6', changefreq: 'monthly' },
+    { loc: 'https://utmcraft.com/about/', lastmod: '2026-09-24', priority: '0.6', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/contact/', priority: '0.6', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/blog/', priority: '0.9', changefreq: 'weekly' }
   ];
