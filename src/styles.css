@@ -812,6 +812,125 @@ summary:focus-visible {
   line-height: 1.55;
 }
 
+.version-history-page {
+  width: min(100% - 40px, 840px);
+  margin: 48px auto 88px;
+}
+
+.version-history-back {
+  display: inline-block;
+  margin-bottom: 42px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.version-history-back:hover,
+.version-history-note a:hover {
+  color: var(--primary);
+}
+
+.version-history-hero {
+  margin-bottom: 34px;
+}
+
+.version-history-hero h1 {
+  margin: 6px 0 10px;
+  color: var(--text-main);
+  font-size: clamp(34px, 5vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.version-history-hero p,
+.version-history-note,
+.version-current-note {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.version-current-note {
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.version-current-note strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.version-entry {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 28px;
+  padding: 26px 0;
+  border-top: 1px solid var(--border-section);
+}
+
+.version-entry-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.version-badge {
+  padding: 5px 9px;
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-pill);
+  background: var(--bg-accent-soft);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.version-entry-content h2 {
+  margin-bottom: 12px;
+  color: var(--text-main);
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.version-entry-content ul {
+  display: grid;
+  gap: 9px;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.version-history-note {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-section);
+  font-size: 13px;
+}
+
+.version-history-note a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .version-history-page {
+    width: min(100% - 32px, 840px);
+    margin-top: 32px;
+  }
+
+  .version-entry {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .version-entry-meta {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
 /* =========================================================
    Editorial Cards
    ========================================================= */
@@ -3966,10 +4085,6 @@ body.has-mobile-sticky-bar {
     justify-content: flex-end;
   }
 
-  #btn-shortcuts span {
-    display: none;
-  }
-
   .footer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem 1.25rem;
@@ -4005,7 +4120,6 @@ body.has-mobile-sticky-bar {
 }
 
 @media (max-width: 480px) {
-  .header-actions #btn-shortcuts,
   .mobile-menu-toggle span {
     display: none;
   }

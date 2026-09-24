@@ -34,7 +34,7 @@ for (const file of htmlFiles(root)) {
   if (!headerPattern.test(before) || !footerPattern.test(before)) {
     throw new Error(`Missing shared header or footer: ${path}`);
   }
-  const app = before.includes('id="btn-shortcuts"');
+  const app = before.includes('id="btn-header-new"');
   const after = before
     .replace(headerPattern, renderHeader(activeNav(path), { app }))
     .replace(footerPattern, renderFooter());

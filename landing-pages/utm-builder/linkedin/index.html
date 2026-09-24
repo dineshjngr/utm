@@ -161,11 +161,6 @@
       </nav>
 
       <div class="header-actions">
-        <button type="button" id="btn-shortcuts" class="btn-text-action" title="Keyboard Shortcuts (Press ?)" aria-label="Keyboard shortcuts">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-          <span>Shortcuts</span>
-        </button>
-
         <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
           <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
           <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
@@ -938,6 +933,7 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign={{CAMPAIGN_NAME}
               <li><a href="/contact/">Contact Us</a></li>
               <li><a href="/terms.html">Terms and Conditions</a></li>
               <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
             </ul>
@@ -997,40 +993,7 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign={{CAMPAIGN_NAME}
         </div>
       </form>
     </div>
-  </div>
-
-  <!-- Shortcuts Modal -->
-  <div id="modal-shortcuts" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-shortcuts-title">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h3 id="modal-shortcuts-title" class="card-title">Keyboard Shortcuts</h3>
-        <button type="button" class="btn btn-ghost btn-sm btn-close-modal" aria-label="Close modal">✕</button>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.9rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
-          <span>Copy Generated UTM URL</span>
-          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">Cmd/Ctrl + Enter</kbd>
-        </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
-          <span>Open Shortcuts Guide</span>
-          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">?</kbd>
-        </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
-          <span>Close Modal</span>
-          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">Esc</kbd>
-        </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.5rem;">
-          <span>Switch Tabs</span>
-          <kbd style="padding: 0.2rem 0.5rem; background: var(--bg-input); border-radius: 4px; font-family: var(--font-mono);">1 - 5</kbd>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-close-modal">Got it</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile Sticky Copy Bar -->
+  </div>  <!-- Mobile Sticky Copy Bar -->
   <div id="mobile-sticky-bar" class="mobile-sticky-bar" role="region" aria-label="Sticky URL Actions">
     <div class="mobile-sticky-inner">
       <div class="mobile-sticky-details">

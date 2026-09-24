@@ -2301,16 +2301,6 @@ function initModals() {
     });
   }
 
-  // Shortcuts modal
-  const openShortcutsBtn = document.getElementById('btn-shortcuts');
-  const shortcutsModal = document.getElementById('modal-shortcuts');
-
-  if (openShortcutsBtn && shortcutsModal) {
-    openShortcutsBtn.addEventListener('click', () => {
-      shortcutsModal.classList.add('open');
-    });
-  }
-
   // Close modals
   document.querySelectorAll('.btn-close-modal').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2326,31 +2316,13 @@ function initModals() {
     });
   });
 
-  // Global Keyboard shortcuts
+  // Escape closes open modals.
   window.addEventListener('keydown', (e) => {
     // Esc closes modals
     if (e.key === 'Escape') {
       document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
     }
 
-    // ? opens shortcuts modal if not typing in input
-    if (e.key === '?' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
-      e.preventDefault();
-      if (shortcutsModal) shortcutsModal.classList.add('open');
-    }
-
-    // Cmd/Ctrl + Enter copies generated URL
-    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
-      e.preventDefault();
-      handleCopyUrl();
-    }
-
-    // Tab numbers 1-5 when not typing
-    if (['1', '2', '3', '4', '5'].includes(e.key) && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
-      const tabIds = ['tab-builder', 'tab-batch', 'tab-inspector', 'tab-taxonomy', 'tab-history'];
-      const targetTab = tabIds[parseInt(e.key, 10) - 1];
-      if (targetTab) switchTab(targetTab);
-    }
   });
 }
 
@@ -2381,14 +2353,6 @@ function initFooterNavigation() {
     });
   });
 
-  const btnOpenShortcuts = document.getElementById('footer-btn-shortcuts');
-  if (btnOpenShortcuts) {
-    btnOpenShortcuts.addEventListener('click', (e) => {
-      e.preventDefault();
-      const modal = document.getElementById('modal-shortcuts');
-      if (modal) modal.classList.add('open');
-    });
-  }
 }
 
 // =========================================================

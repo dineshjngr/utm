@@ -3,12 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, follow">
-  <meta name="theme-color" content="#FCFCFB">
-  <title>Page Not Found | UTMCraft</title>
   <script type="module" src="/src/theme.js"></script>
-  <link rel="stylesheet" href="/src/styles.css">
+  <title>Version History | UTMCraft</title>
+  <meta name="description" content="See what’s new in UTMCraft, including product improvements, builder updates, and tracking workflow changes.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#FCFCFB">
+  <link rel="canonical" href="https://utmcraft.com/version-history.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="UTMCraft">
+  <meta property="og:title" content="Version History | UTMCraft">
+  <meta property="og:description" content="Product updates and improvements to UTMCraft.">
+  <meta property="og:url" content="https://utmcraft.com/version-history.html">
+  <meta property="og:image" content="https://utmcraft.com/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles.css">
   <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body class="legal-page-body">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -93,12 +105,55 @@
     </div>
     <script type="module" src="/src/site.js"></script>
   </header>
-  <main id="main-content" style="flex: 1; width: min(600px, calc(100% - 48px)); margin: 4rem auto; text-align: center;">
-    <p style="color: var(--accent-text); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em;">404 · URL NOT FOUND</p>
-    <h1 style="font-size: clamp(2rem, 7vw, 3.5rem); letter-spacing: -0.04em; margin: 0.75rem 0;">This campaign path is missing.</h1>
-    <p style="color: var(--text-secondary);">The URL may be outdated or mistyped. Return to UTMCraft to build, inspect, or repair a campaign link.</p>
-    <a href="/" class="btn-primary-cta" style="display: inline-flex; margin-top: 1.25rem; text-decoration: none;">Open UTMCraft</a>
-  </main>
+  <div class="app-container">
+    <main id="main-content" class="version-history-page">
+      <a class="version-history-back" href="/">← Back to UTMCraft</a>
+      <header class="version-history-hero">
+        <span class="card-category">PRODUCT UPDATES</span>
+        <h1>Version history</h1>
+        <p>A record of improvements to UTMCraft’s campaign building and measurement tools.</p>
+      </header>
+      <p class="version-current-note">Current project version: <strong>v1.0.0</strong>. Earlier milestones below are grouped by the dates in the project history; they are not separate numbered releases.</p>
+      <section class="version-entry" aria-labelledby="version-2026-09-24">
+        <div class="version-entry-meta"><span class="version-badge">v1.0.0</span><time datetime="2026-09-24">September 24, 2026</time></div>
+        <div class="version-entry-content">
+          <h2 id="version-2026-09-24">Builder and content polish</h2>
+          <ul>
+            <li>Added compact Quick fill examples and a clearer overview of UTMCraft’s build, validate, standardize, and measure workflows.</li>
+            <li>Added a short privacy and GA4 trust strip near the builder.</li>
+            <li>Refined the homepage hero and campaign formula labels.</li>
+            <li>Improved blog browsing, repaired article citations, and refreshed sitemap metadata.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="version-entry" aria-labelledby="version-2026-09-23">
+        <div class="version-entry-meta"><time datetime="2026-09-23">September 23, 2026</time></div>
+        <div class="version-entry-content">
+          <h2 id="version-2026-09-23">Site-wide release and hosting updates</h2>
+          <ul>
+            <li>Unified shared navigation, footer, analytics, mobile menu behavior, and redirects across the site.</li>
+            <li>Added canonical redirects for the Hostinger Apache setup and removed Cloudflare staging configuration.</li>
+            <li>Updated branding, favicon assets, SEO metadata, and Search Console verification.</li>
+            <li>Expanded campaign tracking content and improved responsive navigation and page layouts.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="version-entry" aria-labelledby="version-2026-09-22">
+        <div class="version-entry-meta"><time datetime="2026-09-22">September 22, 2026</time></div>
+        <div class="version-entry-content">
+          <h2 id="version-2026-09-22">Core toolkit and campaign builder launch</h2>
+          <ul>
+            <li>Built the UTM campaign URL builder with presets, validation, GA4 taxonomy checks, and campaign history.</li>
+            <li>Added bulk URL generation, QR code creation, and a client-side URL shortener with a redirect fallback.</li>
+            <li>Introduced dedicated Google Ads, Meta, LinkedIn, bulk builder, checker, and UTM guide landing pages.</li>
+            <li>Added terms and privacy pages, GA4 channel guidance, and a shared site-wide navigation and footer.</li>
+            <li>Set up Cloudflare deployment configuration, then refined redirects and deployment settings as hosting evolved.</li>
+          </ul>
+        </div>
+      </section>
+      <p class="version-history-note">This timeline summarizes the recorded project milestones. For the complete commit-by-commit record, see the <a href="https://github.com/dineshjngr/utm/commits/main" target="_blank" rel="noopener">project commit history</a>.</p>
+    </main>
+  </div>
   <footer class="app-footer">
       <div class="footer-container">
         <div class="footer-grid">
@@ -171,6 +226,5 @@
         </div>
       </div>
     </footer>
-  <script type="module" src="/src/blog.js"></script>
 </body>
 </html>

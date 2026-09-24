@@ -39,7 +39,7 @@ A modern, high-performance web application designed for digital marketers, growt
 
 - **🎨 Modern UX & Accessibility**:
   - Dark / Light mode toggle with smooth theme transition.
-  - Keyboard shortcuts (`?` for shortcuts modal, `Cmd/Ctrl + Enter` to copy, `1-5` for tabs).
+  - Escape key closes open dialogs.
   - Modern form validation following web standards (`:user-valid` and `:user-invalid`).
 
 ---
