@@ -40,6 +40,34 @@ test('buildUTMUrl should correctly construct URL with standard UTMs', () => {
   assert.equal(parsed.searchParams.get('utm_content'), 'hero-banner');
 });
 
+test('buildUTMUrl should support plus (+) and percent (%20) space replacement without double encoding', () => {
+  const resultPlus = buildUTMUrl({
+    baseUrl: 'https://example.com/promo',
+    source: 'google',
+    medium: 'cpc',
+    campaign: 'summer sale deals'
+  }, {
+    lowercase: true,
+    spaceReplacement: '+'
+  });
+  assert.equal(resultPlus.isValid, true);
+  assert.ok(resultPlus.url.includes('utm_campaign=summer+sale+deals'), `Expected '+' in URL but got: ${resultPlus.url}`);
+  assert.ok(!resultPlus.url.includes('%2B'), `URL should not contain encoded %2B for space replacement: ${resultPlus.url}`);
+
+  const resultPercent = buildUTMUrl({
+    baseUrl: 'https://example.com/promo',
+    source: 'google',
+    medium: 'cpc',
+    campaign: 'summer sale deals'
+  }, {
+    lowercase: true,
+    spaceReplacement: '%20'
+  });
+  assert.equal(resultPercent.isValid, true);
+  assert.ok(resultPercent.url.includes('utm_campaign=summer%20sale%20deals'), `Expected '%20' in URL but got: ${resultPercent.url}`);
+  assert.ok(!resultPercent.url.includes('%2520'), `URL should not contain double-encoded %2520: ${resultPercent.url}`);
+});
+
 test('buildUTMUrl should strip old UTMs and keep non-UTM parameters and hash', () => {
   const result = buildUTMUrl({
     baseUrl: 'https://example.com/pricing?ref=partner123&utm_source=old#details',

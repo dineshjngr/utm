@@ -115,6 +115,17 @@ export function buildUTMUrl(input, options = {}) {
   }
 
   let finalUrl = parsedUrl.toString();
+
+  // Handle URL encoding for specific space replacement options:
+  // URLSearchParams automatically encodes '+' as '%2B' and '%' as '%25'.
+  // If the user intentionally chose '+' or '%20' as their space delimiter,
+  // decode those specific tokens so the query string matches their exact choice.
+  if (options.spaceReplacement === '+') {
+    finalUrl = finalUrl.replace(/%2B/g, '+');
+  } else if (options.spaceReplacement === '%20') {
+    finalUrl = finalUrl.replace(/%2520/g, '%20');
+  }
+
   // Preserve ad network dynamic macro tokens ({keyword}, {{campaign.name}})
   finalUrl = finalUrl
     .replace(/%7B%7B([^%]+)%7D%7D/g, '{{$1}}')
@@ -145,25 +156,35 @@ export function getHighlightedUrlHtml(urlString) {
   if (!urlString) return '<span class="url-placeholder">Your tracked URL will appear here in real-time...</span>';
 
   try {
-    const urlObj = new URL(urlString);
-    const originAndPath = `${urlObj.origin}${urlObj.pathname}`;
-    const hash = urlObj.hash;
-    const searchParams = urlObj.searchParams;
+    const hashIndex = urlString.indexOf('#');
+    const hash = hashIndex !== -1 ? urlString.slice(hashIndex) : '';
+    const withoutHash = hashIndex !== -1 ? urlString.slice(0, hashIndex) : urlString;
+
+    const qIndex = withoutHash.indexOf('?');
+    const originAndPath = qIndex !== -1 ? withoutHash.slice(0, qIndex) : withoutHash;
+    const rawQuery = qIndex !== -1 ? withoutHash.slice(qIndex + 1) : '';
 
     let html = `<span class="url-part-base">${escapeHtml(originAndPath)}</span>`;
 
-    if (searchParams && Array.from(searchParams.entries()).length > 0) {
+    if (rawQuery) {
       html += `<span class="url-part-delimiter">?</span>`;
+      const pairs = rawQuery.split('&');
       const parts = [];
 
-      for (const [key, val] of searchParams.entries()) {
+      for (const pair of pairs) {
+        if (!pair) continue;
+        const eqIdx = pair.indexOf('=');
+        const key = eqIdx !== -1 ? pair.slice(0, eqIdx) : pair;
+        const val = eqIdx !== -1 ? pair.slice(eqIdx + 1) : '';
+
         let tagClass = 'url-param-custom';
-        if (key === 'utm_source') tagClass = 'url-param-source';
-        else if (key === 'utm_medium') tagClass = 'url-param-medium';
-        else if (key === 'utm_campaign') tagClass = 'url-param-campaign';
-        else if (key === 'utm_term') tagClass = 'url-param-term';
-        else if (key === 'utm_content') tagClass = 'url-param-content';
-        else if (key === 'utm_id') tagClass = 'url-param-id';
+        const lowerKey = key.toLowerCase();
+        if (lowerKey === 'utm_source') tagClass = 'url-param-source';
+        else if (lowerKey === 'utm_medium') tagClass = 'url-param-medium';
+        else if (lowerKey === 'utm_campaign') tagClass = 'url-param-campaign';
+        else if (lowerKey === 'utm_term') tagClass = 'url-param-term';
+        else if (lowerKey === 'utm_content') tagClass = 'url-param-content';
+        else if (lowerKey === 'utm_id') tagClass = 'url-param-id';
 
         parts.push(
           `<span class="url-param-item ${tagClass}" data-param-key="${escapeHtml(key)}" title="Click to edit ${escapeHtml(key)}">` +

@@ -389,96 +389,194 @@
               >
             </div>
 
-            <div class="form-row-2">
-              <!-- utm_term -->
-              <div class="form-group">
-                <div class="field-label-row">
-                  <label for="input-utm-term" class="form-label">Campaign Term</label>
-                  <span class="field-hint">utm_term (optional)</span>
+            <!-- Optional Parameters Accordion -->
+            <div class="form-section-accordion" id="accordion-optional-params">
+              <button type="button" id="toggle-optional-params-btn" class="form-section-toggle" aria-expanded="false" aria-controls="optional-params-body">
+                <div class="form-section-toggle-left">
+                  <span class="form-section-toggle-title">Optional Parameters</span>
+                  <span class="form-section-toggle-subtitle">Term, Content &amp; ID</span>
+                  <span class="form-section-badge" id="badge-optional-count">0 filled</span>
                 </div>
-                <input 
-                  type="text" 
-                  id="input-utm-term" 
-                  class="form-input" 
-                  placeholder="keyword, audience segment"
-                >
-              </div>
-
-              <!-- utm_content -->
-              <div class="form-group">
-                <div class="field-label-row">
-                  <label for="input-utm-content" class="form-label">Campaign Content</label>
-                  <span class="field-hint">utm_content (optional)</span>
-                </div>
-                <input 
-                  type="text" 
-                  id="input-utm-content" 
-                  class="form-input" 
-                  placeholder="ad_variant_a, hero_btn, banner_top"
-                >
-              </div>
-            </div>
-
-            <!-- utm_id -->
-            <div class="form-group">
-              <div class="field-label-row">
-                <label for="input-utm-id" class="form-label">Campaign ID</label>
-                <span class="field-hint">utm_id (GA4 campaign identifier)</span>
-              </div>
-              <input 
-                type="text" 
-                id="input-utm-id" 
-                class="form-input" 
-                placeholder="e.g. cmp_94021"
-              >
-            </div>
-
-            <!-- Custom Parameters Accordion -->
-            <div style="margin-top: 1.25rem;">
-              <div class="field-label-row">
-                <span class="form-label">Dynamic &amp; Custom Query Parameters</span>
-                <button type="button" id="btn-add-custom-param" class="btn btn-ghost btn-sm" style="color: var(--accent-cyan);">
-                  + Add Custom Param
-                </button>
-              </div>
-              <div id="custom-params-container">
-                <!-- Custom param rows dynamically added here -->
-              </div>
-            </div>
-
-            <!-- Formatting & Sanitization Rules Bar -->
-            <div class="rules-accordion">
-              <button type="button" id="toggle-rules-btn" class="rules-toggle" aria-expanded="false">
-                <span>⚙️ Sanitization &amp; Formatting Options</span>
-                <span id="rules-toggle-arrow">▼</span>
+                <span id="optional-toggle-arrow" class="form-section-toggle-arrow" aria-hidden="true">▼</span>
               </button>
-              <div id="rules-body" class="rules-body">
-                <label class="checkbox-label">
-                  <input type="checkbox" id="rule-lowercase" checked>
-                  <span>Auto Lowercase (Recommended)</span>
-                </label>
+              <div id="optional-params-body" class="form-section-body" role="region" aria-label="Optional Parameters">
+                <div class="form-row-2">
+                  <!-- utm_term -->
+                  <div class="form-group">
+                    <div class="field-label-row">
+                      <label for="input-utm-term" class="form-label">Campaign Term</label>
+                      <span class="field-hint">utm_term (optional)</span>
+                    </div>
+                    <input 
+                      type="text" 
+                      id="input-utm-term" 
+                      class="form-input" 
+                      placeholder="keyword, audience segment"
+                    >
+                  </div>
 
-                <div>
-                  <label for="rule-space-replacement" style="font-size: 0.82rem; color: var(--text-secondary); display: block; margin-bottom: 0.2rem;">
-                    Space Replacement:
-                  </label>
-                  <select id="rule-space-replacement" class="form-select" style="padding: 0.35rem 0.6rem; font-size: 0.85rem;">
-                    <option value="-">Hyphen (-)</option>
-                    <option value="_">Underscore (_)</option>
-                    <option value="+">Plus (+)</option>
-                    <option value="%20">Percent (%20)</option>
-                  </select>
+                  <!-- utm_content -->
+                  <div class="form-group">
+                    <div class="field-label-row">
+                      <label for="input-utm-content" class="form-label">Campaign Content</label>
+                      <span class="field-hint">utm_content (optional)</span>
+                    </div>
+                    <input 
+                      type="text" 
+                      id="input-utm-content" 
+                      class="form-input" 
+                      placeholder="ad_variant_a, hero_btn, banner_top"
+                    >
+                  </div>
                 </div>
 
-                <label class="checkbox-label">
-                  <input type="checkbox" id="rule-auto-protocol" checked>
-                  <span>Auto Prepend https://</span>
-                </label>
+                <!-- utm_id -->
+                <div class="form-group">
+                  <div class="field-label-row">
+                    <label for="input-utm-id" class="form-label">Campaign ID</label>
+                    <span class="field-hint">utm_id (GA4 campaign identifier)</span>
+                  </div>
+                  <input 
+                    type="text" 
+                    id="input-utm-id" 
+                    class="form-input" 
+                    placeholder="e.g. cmp_94021"
+                  >
+                </div>
+              </div>
+            </div>
 
-                <label class="checkbox-label">
-                  <input type="checkbox" id="rule-strip-duplicate" checked>
-                  <span>Strip Existing UTMs</span>
-                </label>
+            <!-- Advanced Configuration Accordion -->
+            <div class="form-section-accordion" id="accordion-advanced-params">
+              <button type="button" id="toggle-advanced-params-btn" class="form-section-toggle" aria-expanded="false" aria-controls="advanced-params-body">
+                <div class="form-section-toggle-left">
+                  <span class="form-section-toggle-title">Advanced</span>
+                  <span class="form-section-toggle-subtitle">Custom Tags &amp; Formatting</span>
+                  <span class="form-section-badge" id="badge-advanced-count">Standard</span>
+                </div>
+                <span id="advanced-toggle-arrow" class="form-section-toggle-arrow" aria-hidden="true">▼</span>
+              </button>
+              <div id="advanced-params-body" class="form-section-body" role="region" aria-label="Advanced Configuration">
+                <!-- Custom Parameters -->
+                <div>
+                  <div class="field-label-row">
+                    <span class="form-label">Dynamic &amp; Custom Query Parameters</span>
+                    <button type="button" id="btn-add-custom-param" class="btn btn-ghost btn-sm" style="color: var(--accent-cyan);">
+                      + Add Custom Param
+                    </button>
+                  </div>
+                  <div id="custom-params-container">
+                    <!-- Custom param rows dynamically added here -->
+                  </div>
+                </div>
+
+                <!-- Formatting & Sanitization Rules Bar -->
+                <div class="rules-accordion">
+                  <button type="button" id="toggle-rules-btn" class="rules-toggle" aria-expanded="false" aria-controls="rules-body">
+                    <div class="rules-toggle-left">
+                      <span class="rules-toggle-icon" aria-hidden="true">⚙️</span>
+                      <span class="rules-toggle-title">Sanitization &amp; Formatting Options</span>
+                    </div>
+                    <div class="rules-toggle-badges" id="rules-summary-badges">
+                      <span class="rules-badge is-active" id="badge-rule-case">lowercase</span>
+                      <span class="rules-badge is-active" id="badge-rule-space">delimiter: -</span>
+                      <span class="rules-badge is-active" id="badge-rule-proto">https://</span>
+                      <span class="rules-badge is-active" id="badge-rule-clean">strip utms</span>
+                    </div>
+                    <span id="rules-toggle-arrow" class="rules-toggle-arrow" aria-hidden="true">▼</span>
+                  </button>
+
+                  <div id="rules-body" class="rules-body" role="region" aria-label="Sanitization and Formatting Settings">
+                    
+                    <!-- Group 1: UTM Parameters Formatting -->
+                    <div class="rules-group">
+                      <div class="rules-group-header">
+                        <span class="rules-group-title">UTM Parameter Formatting</span>
+                        <span class="rules-group-desc">Standardizes source, medium, campaign, term, content, and campaign ID</span>
+                      </div>
+
+                      <div class="rules-controls-grid">
+                        <div class="rules-control-item">
+                          <label class="checkbox-label" for="rule-lowercase">
+                            <input type="checkbox" id="rule-lowercase" checked>
+                            <span class="rules-label-text">Auto Lowercase (GA4 Best Practice)</span>
+                          </label>
+                          <p class="rules-hint-text">Converts UTM values to lowercase. GA4 is strictly case-sensitive and splits "Email" vs "email".</p>
+                        </div>
+
+                        <div class="rules-control-item">
+                          <label for="rule-space-replacement" class="rules-select-label">
+                            Space Replacement Delimiter:
+                          </label>
+                          <div class="rules-select-wrapper">
+                            <select id="rule-space-replacement" class="form-select rules-select">
+                              <option value="-">Hyphen (-) • Recommended for GA4</option>
+                              <option value="_">Underscore (_)</option>
+                              <option value="+">Plus (+)</option>
+                              <option value="%20">Percent Encoded (%20)</option>
+                              <option value="none">None (Keep literal spaces)</option>
+                            </select>
+                            <div class="rules-preview-row">
+                              <span class="rules-preview-label">Preview:</span>
+                              <code id="rules-delimiter-preview" class="rules-preview-code">summer-sale-2025</code>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Group 2: Destination URL Formatting -->
+                    <div class="rules-group">
+                      <div class="rules-group-header">
+                        <span class="rules-group-title">Destination URL Normalization</span>
+                        <span class="rules-group-desc">Controls destination web link protocol and query string deduplication</span>
+                      </div>
+
+                      <div class="rules-controls-grid">
+                        <div class="rules-control-item">
+                          <label class="checkbox-label" for="rule-auto-protocol">
+                            <input type="checkbox" id="rule-auto-protocol" checked>
+                            <span class="rules-label-text">Auto Prepend https://</span>
+                          </label>
+                          <p class="rules-hint-text">Prepends secure HTTPS protocol if missing from the destination URL.</p>
+                        </div>
+
+                        <div class="rules-control-item">
+                          <label class="checkbox-label" for="rule-strip-duplicate">
+                            <input type="checkbox" id="rule-strip-duplicate" checked>
+                            <span class="rules-label-text">Strip Existing UTMs from URL</span>
+                          </label>
+                          <p class="rules-hint-text">Removes conflicting utm_* parameters already present in pasted target links.</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Group 3: Apply & Synchronize Actions -->
+                    <div class="rules-group rules-actions-group">
+                      <div class="rules-group-header">
+                        <span class="rules-group-title">Apply Settings to Input Fields</span>
+                        <span class="rules-group-desc">Apply your active formatting rules directly into the form fields above</span>
+                      </div>
+
+                      <div class="rules-actions-row">
+                        <button type="button" id="btn-apply-rules-to-fields" class="rules-btn-apply" title="Apply active sanitization rules directly to form fields">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                          <span>Apply Settings to Form Fields</span>
+                        </button>
+
+                        <label class="checkbox-label rules-auto-apply-label" for="rule-auto-apply-fields">
+                          <input type="checkbox" id="rule-auto-apply-fields">
+                          <span class="rules-label-text">Auto-clean fields on blur (format inputs when leaving field)</span>
+                        </label>
+
+                        <button type="button" id="btn-reset-rules-defaults" class="rules-btn-reset" title="Reset all rules to GA4 recommended settings">
+                          ↺ Reset GA4 Defaults
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -518,21 +616,26 @@
               </button>
             </div>
 
-            <!-- Secondary Actions Row Underneath -->
+            <!-- Secondary Actions Row Underneath: Test • QR • Save • Shorten -->
             <div class="secondary-actions-row">
-              <button type="button" id="btn-shorten-url" class="btn btn-secondary btn-sm" title="Shorten UTM link for social & SMS">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-                <span id="btn-shorten-text">Shorten</span>
-              </button>
-
               <button type="button" id="btn-test-url" class="btn btn-secondary btn-sm" title="Open in new tab to test">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                <span>Test Link</span>
+                <span>Test</span>
+              </button>
+
+              <button type="button" id="btn-jump-qr" class="btn btn-secondary btn-sm" title="View or generate QR code">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                <span>QR</span>
               </button>
 
               <button type="button" id="btn-save-history" class="btn btn-secondary btn-sm" title="Save link to history">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
                 <span>Save</span>
+              </button>
+
+              <button type="button" id="btn-shorten-url" class="btn btn-secondary btn-sm" title="Shorten UTM link for social & SMS">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                <span id="btn-shorten-text">Shorten</span>
               </button>
 
               <button type="button" id="btn-reset-form" class="btn btn-ghost btn-sm" title="Clear all fields">
@@ -943,6 +1046,30 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary btn-close-modal">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Sticky Copy Bar -->
+  <div id="mobile-sticky-bar" class="mobile-sticky-bar" role="region" aria-label="Sticky URL Actions">
+    <div class="mobile-sticky-inner">
+      <div class="mobile-sticky-details">
+        <span class="mobile-sticky-badge">Ready</span>
+        <span id="mobile-sticky-url-text" class="mobile-sticky-url-text">https://...</span>
+      </div>
+      <div class="mobile-sticky-actions">
+        <button type="button" id="btn-mobile-sticky-copy" class="btn btn-primary btn-sm mobile-sticky-btn-copy" title="Copy campaign URL">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span id="btn-mobile-sticky-copy-text">Copy URL</span>
+        </button>
+
+        <button type="button" id="btn-mobile-sticky-test" class="btn btn-secondary btn-sm mobile-sticky-btn-icon" title="Test URL in new tab" aria-label="Test URL">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </button>
+
+        <button type="button" id="btn-mobile-sticky-qr" class="btn btn-secondary btn-sm mobile-sticky-btn-icon" title="View QR Code" aria-label="View QR Code">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        </button>
       </div>
     </div>
   </div>

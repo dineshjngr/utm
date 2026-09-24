@@ -1,4 +1,4 @@
-import { buildUTMUrl, getHighlightedUrlHtml } from './modules/builder.js';
+import { buildUTMUrl, getHighlightedUrlHtml, sanitizeValue } from './modules/builder.js';
 import { getAllPresets, saveCustomPreset, deleteCustomPreset } from './modules/presets.js';
 import { renderQRCode, downloadQRCode, downloadQRCodeSVG, copyQRCodeImage } from './modules/qr.js';
 import { 
@@ -45,7 +45,8 @@ const state = {
     spaceReplacement: '-',
     autoProtocol: true,
     stripDuplicateUtms: true,
-    trimSpaces: true
+    trimSpaces: true,
+    autoApplyFields: typeof localStorage !== 'undefined' && localStorage.getItem('utmc_rule_auto_apply') === 'true'
   },
   currentGeneratedUrl: '',
   shortUrl: '',
@@ -304,6 +305,10 @@ function initSingleBuilder() {
   const ruleSpace = document.getElementById('rule-space-replacement');
   const ruleProtocol = document.getElementById('rule-auto-protocol');
   const ruleDuplicate = document.getElementById('rule-strip-duplicate');
+  const ruleAutoApply = document.getElementById('rule-auto-apply-fields');
+  const btnApplyRules = document.getElementById('btn-apply-rules-to-fields');
+  const btnResetRules = document.getElementById('btn-reset-rules-defaults');
+  const previewDelimiter = document.getElementById('rules-delimiter-preview');
 
   // Initial populate from state
   if (inputBaseUrl) inputBaseUrl.value = state.single.baseUrl;
@@ -415,29 +420,265 @@ function initSingleBuilder() {
     });
   }
 
+  // Rules badge and preview updater
+  function updateRulesSummaryBadges() {
+    const badgeCase = document.getElementById('badge-rule-case');
+    const badgeSpace = document.getElementById('badge-rule-space');
+    const badgeProto = document.getElementById('badge-rule-proto');
+    const badgeClean = document.getElementById('badge-rule-clean');
+
+    if (badgeCase) {
+      const active = state.options.lowercase !== false;
+      badgeCase.className = `rules-badge ${active ? 'is-active' : 'is-inactive'}`;
+      badgeCase.textContent = active ? 'lowercase' : 'no-lowercase';
+    }
+
+    if (badgeSpace) {
+      const repl = state.options.spaceReplacement;
+      let display = 'delimiter: -';
+      if (repl === '_') display = 'delimiter: _';
+      else if (repl === '+') display = 'delimiter: +';
+      else if (repl === '%20') display = 'delimiter: %20';
+      else if (repl === 'none') display = 'delimiter: space';
+      badgeSpace.className = 'rules-badge is-active';
+      badgeSpace.textContent = display;
+    }
+
+    if (badgeProto) {
+      const active = state.options.autoProtocol !== false;
+      badgeProto.className = `rules-badge ${active ? 'is-active' : 'is-inactive'}`;
+      badgeProto.textContent = active ? 'https://' : 'no-protocol';
+    }
+
+    if (badgeClean) {
+      const active = state.options.stripDuplicateUtms !== false;
+      badgeClean.className = `rules-badge ${active ? 'is-active' : 'is-inactive'}`;
+      badgeClean.textContent = active ? 'strip utms' : 'keep utms';
+    }
+
+    if (previewDelimiter) {
+      const sample = 'summer sale 2025';
+      previewDelimiter.textContent = sanitizeValue(sample, state.options);
+    }
+  }
+
+  // Apply active sanitization & formatting rules directly to form inputs
+  function applyRulesToFields({ showFeedback = true } = {}) {
+    const utmFields = [
+      { el: inputSource, key: 'source' },
+      { el: inputMedium, key: 'medium' },
+      { el: inputCampaign, key: 'campaign' },
+      { el: inputTerm, key: 'term' },
+      { el: inputContent, key: 'content' },
+      { el: inputUtmId, key: 'utmId' }
+    ];
+
+    const updatedElements = [];
+
+    utmFields.forEach(({ el, key }) => {
+      if (el && el.value.trim()) {
+        const original = el.value;
+        const cleaned = sanitizeValue(original, state.options);
+        if (cleaned !== original) {
+          el.value = cleaned;
+          state.single[key] = cleaned;
+          updatedElements.push(el);
+        }
+      }
+    });
+
+    // Sanitize custom parameters
+    if (Array.isArray(state.single.customParams) && state.single.customParams.length > 0) {
+      let customChanged = false;
+      state.single.customParams.forEach(param => {
+        if (param.value && param.value.trim()) {
+          const original = param.value;
+          const cleaned = sanitizeValue(original, state.options);
+          if (cleaned !== original) {
+            param.value = cleaned;
+            customChanged = true;
+          }
+        }
+      });
+      if (customChanged) {
+        renderCustomParams();
+      }
+    }
+
+    // Sanitize destination URL
+    if (inputBaseUrl && inputBaseUrl.value.trim()) {
+      let val = inputBaseUrl.value.trim();
+      const originalVal = val;
+      if (state.options.autoProtocol !== false && !/^https?:\/\//i.test(val)) {
+        val = `https://${val}`;
+      }
+      if (state.options.stripDuplicateUtms !== false) {
+        try {
+          const testBase = val.startsWith('http') ? val : `https://${val}`;
+          const u = new URL(testBase);
+          const keysToRemove = Array.from(u.searchParams.keys()).filter(k => k.toLowerCase().startsWith('utm_'));
+          if (keysToRemove.length > 0) {
+            keysToRemove.forEach(k => u.searchParams.delete(k));
+            val = u.toString();
+          }
+        } catch {}
+      }
+      if (val !== originalVal) {
+        inputBaseUrl.value = val;
+        state.single.baseUrl = val;
+        updatedElements.push(inputBaseUrl);
+      }
+    }
+
+    readSingleInputs();
+    recalculateSingleUrl();
+
+    if (showFeedback) {
+      const pulseTargets = updatedElements.length > 0 ? updatedElements : formInputs;
+      pulseTargets.forEach(el => {
+        if (!el) return;
+        el.classList.remove('field-sanitized-pulse');
+        void el.offsetWidth;
+        el.classList.add('field-sanitized-pulse');
+        setTimeout(() => el.classList.remove('field-sanitized-pulse'), 800);
+      });
+
+      const count = updatedElements.length;
+      showToast(count > 0 
+        ? `✨ Applied formatting rules to ${count} field${count > 1 ? 's' : ''}!`
+        : '✨ Formatting rules verified (all fields already clean)!', 'success');
+    }
+  }
+
+  // Auto-clean fields on blur if option is enabled
+  const utmParamInputs = [inputSource, inputMedium, inputCampaign, inputTerm, inputContent, inputUtmId].filter(Boolean);
+  utmParamInputs.forEach(el => {
+    el.addEventListener('blur', () => {
+      if (state.options.autoApplyFields && el.value.trim()) {
+        const cleaned = sanitizeValue(el.value, state.options);
+        if (cleaned !== el.value) {
+          el.value = cleaned;
+          readSingleInputs();
+          recalculateSingleUrl();
+          el.classList.remove('field-sanitized-pulse');
+          void el.offsetWidth;
+          el.classList.add('field-sanitized-pulse');
+          setTimeout(() => el.classList.remove('field-sanitized-pulse'), 800);
+        }
+      }
+    });
+  });
+
+  if (inputBaseUrl) {
+    inputBaseUrl.addEventListener('blur', () => {
+      if (state.options.autoApplyFields && inputBaseUrl.value.trim()) {
+        let val = inputBaseUrl.value.trim();
+        const originalVal = val;
+        if (state.options.autoProtocol !== false && !/^https?:\/\//i.test(val)) {
+          val = `https://${val}`;
+        }
+        if (val !== originalVal) {
+          inputBaseUrl.value = val;
+          readSingleInputs();
+          recalculateSingleUrl();
+          inputBaseUrl.classList.remove('field-sanitized-pulse');
+          void inputBaseUrl.offsetWidth;
+          inputBaseUrl.classList.add('field-sanitized-pulse');
+          setTimeout(() => inputBaseUrl.classList.remove('field-sanitized-pulse'), 800);
+        }
+      }
+    });
+  }
+
+  // Initial populate of rules controls
+  if (ruleLowercase) ruleLowercase.checked = state.options.lowercase !== false;
+  if (ruleSpace) ruleSpace.value = state.options.spaceReplacement || '-';
+  if (ruleProtocol) ruleProtocol.checked = state.options.autoProtocol !== false;
+  if (ruleDuplicate) ruleDuplicate.checked = state.options.stripDuplicateUtms !== false;
+  if (ruleAutoApply) ruleAutoApply.checked = !!state.options.autoApplyFields;
+
+  updateRulesSummaryBadges();
+
+  if (btnApplyRules) {
+    btnApplyRules.addEventListener('click', () => {
+      applyRulesToFields({ showFeedback: true });
+    });
+  }
+
+  if (ruleAutoApply) {
+    ruleAutoApply.addEventListener('change', () => {
+      state.options.autoApplyFields = ruleAutoApply.checked;
+      try {
+        localStorage.setItem('utmc_rule_auto_apply', String(ruleAutoApply.checked));
+      } catch {}
+      if (ruleAutoApply.checked) {
+        applyRulesToFields({ showFeedback: true });
+      }
+    });
+  }
+
+  if (btnResetRules) {
+    btnResetRules.addEventListener('click', () => {
+      state.options.lowercase = true;
+      state.options.spaceReplacement = '-';
+      state.options.autoProtocol = true;
+      state.options.stripDuplicateUtms = true;
+      state.options.autoApplyFields = false;
+      try {
+        localStorage.removeItem('utmc_rule_auto_apply');
+      } catch {}
+
+      if (ruleLowercase) ruleLowercase.checked = true;
+      if (ruleSpace) ruleSpace.value = '-';
+      if (ruleProtocol) ruleProtocol.checked = true;
+      if (ruleDuplicate) ruleDuplicate.checked = true;
+      if (ruleAutoApply) ruleAutoApply.checked = false;
+
+      updateRulesSummaryBadges();
+      recalculateSingleUrl();
+      showToast('Restored GA4 recommended formatting rules', 'info');
+    });
+  }
+
   // Rules toggles
   if (ruleLowercase) {
     ruleLowercase.addEventListener('change', () => {
       state.options.lowercase = ruleLowercase.checked;
+      updateRulesSummaryBadges();
       recalculateSingleUrl();
+      if (state.options.autoApplyFields) {
+        applyRulesToFields({ showFeedback: false });
+      }
     });
   }
   if (ruleSpace) {
     ruleSpace.addEventListener('change', () => {
       state.options.spaceReplacement = ruleSpace.value;
+      updateRulesSummaryBadges();
       recalculateSingleUrl();
+      if (state.options.autoApplyFields) {
+        applyRulesToFields({ showFeedback: false });
+      }
     });
   }
   if (ruleProtocol) {
     ruleProtocol.addEventListener('change', () => {
       state.options.autoProtocol = ruleProtocol.checked;
+      updateRulesSummaryBadges();
       recalculateSingleUrl();
+      if (state.options.autoApplyFields) {
+        applyRulesToFields({ showFeedback: false });
+      }
     });
   }
   if (ruleDuplicate) {
     ruleDuplicate.addEventListener('change', () => {
       state.options.stripDuplicateUtms = ruleDuplicate.checked;
+      updateRulesSummaryBadges();
       recalculateSingleUrl();
+      if (state.options.autoApplyFields) {
+        applyRulesToFields({ showFeedback: false });
+      }
     });
   }
 
@@ -494,6 +735,65 @@ function initSingleBuilder() {
         showToast('Please enter a valid URL first', 'error');
       }
     });
+  }
+
+  // Action: Jump to QR code (Test • QR • Save)
+  function jumpToQrCode() {
+    if (!state.currentGeneratedUrl) {
+      showToast('Please enter a destination URL first', 'error');
+      return;
+    }
+    if (!state.qrGenerated) {
+      generateActiveQRCode(false, false);
+    }
+    const qrSection = document.getElementById('qr-canvas')?.closest('.card');
+    if (qrSection) {
+      qrSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      qrSection.classList.remove('field-sanitized-pulse');
+      void qrSection.offsetWidth;
+      qrSection.classList.add('field-sanitized-pulse');
+      setTimeout(() => qrSection.classList.remove('field-sanitized-pulse'), 1200);
+    }
+  }
+
+  const jumpQrBtn = document.getElementById('btn-jump-qr');
+  if (jumpQrBtn) {
+    jumpQrBtn.addEventListener('click', jumpToQrCode);
+  }
+
+  // Mobile Sticky Bar Actions
+  const mobileStickyCopyBtn = document.getElementById('btn-mobile-sticky-copy');
+  if (mobileStickyCopyBtn) {
+    mobileStickyCopyBtn.addEventListener('click', async () => {
+      await handleCopyUrl();
+      if (navigator.vibrate) {
+        try { navigator.vibrate(35); } catch {}
+      }
+      const copyText = document.getElementById('btn-mobile-sticky-copy-text');
+      if (copyText) {
+        const origText = copyText.textContent;
+        copyText.textContent = '✓ Copied!';
+        setTimeout(() => {
+          copyText.textContent = origText;
+        }, 1800);
+      }
+    });
+  }
+
+  const mobileStickyTestBtn = document.getElementById('btn-mobile-sticky-test');
+  if (mobileStickyTestBtn) {
+    mobileStickyTestBtn.addEventListener('click', () => {
+      if (state.currentGeneratedUrl) {
+        window.open(state.currentGeneratedUrl, '_blank', 'noopener,noreferrer');
+      } else {
+        showToast('Please enter a valid URL first', 'error');
+      }
+    });
+  }
+
+  const mobileStickyQrBtn = document.getElementById('btn-mobile-sticky-qr');
+  if (mobileStickyQrBtn) {
+    mobileStickyQrBtn.addEventListener('click', jumpToQrCode);
   }
 
   // Action: Save to History
@@ -606,6 +906,33 @@ function initSingleBuilder() {
         icon.style.transform = isCompact ? 'rotate(0deg)' : 'rotate(180deg)';
       }
     });
+  }
+
+  // Collapsible Form Section Accordions (Optional Parameters & Advanced)
+  const optToggleBtn = document.getElementById('toggle-optional-params-btn');
+  const optBody = document.getElementById('optional-params-body') || document.getElementById('accordion-optional-body');
+  const optArrow = document.getElementById('optional-toggle-arrow') || document.getElementById('toggle-optional-params-arrow');
+
+  const advToggleBtn = document.getElementById('toggle-advanced-params-btn');
+  const advBody = document.getElementById('advanced-params-body') || document.getElementById('accordion-advanced-body');
+  const advArrow = document.getElementById('advanced-toggle-arrow') || document.getElementById('toggle-advanced-params-arrow');
+
+  function toggleAccordion(btn, body, arrow) {
+    if (!btn || !body) return;
+    const isOpening = !body.classList.contains('open');
+    body.classList.toggle('open', isOpening);
+    btn.setAttribute('aria-expanded', isOpening ? 'true' : 'false');
+    if (arrow) {
+      arrow.textContent = isOpening ? '▲' : '▼';
+    }
+  }
+
+  if (optToggleBtn && optBody) {
+    optToggleBtn.addEventListener('click', () => toggleAccordion(optToggleBtn, optBody, optArrow));
+  }
+
+  if (advToggleBtn && advBody) {
+    advToggleBtn.addEventListener('click', () => toggleAccordion(advToggleBtn, advBody, advArrow));
   }
 
   // Collapsible Rules Accordion
@@ -808,7 +1135,53 @@ function recalculateSingleUrl() {
     }
   }
 
+  // Update mobile sticky bottom copy bar
+  const stickyBar = document.getElementById('mobile-sticky-bar');
+  const stickyUrlText = document.getElementById('mobile-sticky-url-text');
+  if (stickyBar) {
+    if (result.isValid) {
+      stickyBar.classList.add('is-visible');
+      document.body.classList.add('has-mobile-sticky-bar');
+      if (stickyUrlText) {
+        stickyUrlText.textContent = result.url;
+      }
+    } else {
+      stickyBar.classList.remove('is-visible');
+      document.body.classList.remove('has-mobile-sticky-bar');
+    }
+  }
+
+  updateAccordionBadges();
   updateScorecard();
+}
+
+function updateAccordionBadges() {
+  const optBadge = document.getElementById('badge-optional-count');
+  const advBadge = document.getElementById('badge-advanced-count');
+
+  if (optBadge) {
+    let count = 0;
+    if (state.single.term && state.single.term.trim()) count++;
+    if (state.single.content && state.single.content.trim()) count++;
+    if (state.single.utmId && state.single.utmId.trim()) count++;
+    optBadge.textContent = count > 0 ? `${count} filled` : '0 filled';
+    optBadge.classList.toggle('is-active', count > 0);
+  }
+
+  if (advBadge) {
+    const customCount = Array.isArray(state.single.customParams) ? state.single.customParams.length : 0;
+    const isModifiedRules = state.options.lowercase !== true || state.options.spaceReplacement !== '-' || state.options.autoProtocol !== true || state.options.stripDuplicateUtms !== true;
+    if (customCount > 0) {
+      advBadge.textContent = `${customCount} custom`;
+      advBadge.classList.add('is-active');
+    } else if (isModifiedRules) {
+      advBadge.textContent = 'Custom rules';
+      advBadge.classList.add('is-active');
+    } else {
+      advBadge.textContent = 'Standard';
+      advBadge.classList.remove('is-active');
+    }
+  }
 }
 
 function updateQRCode() {
@@ -1102,6 +1475,18 @@ function applyPreset(preset) {
   }
   if (preset.content) {
     document.getElementById('input-utm-content').value = preset.content;
+  }
+
+  // If preset populates optional parameters, auto-expand the optional accordion so user sees them
+  if (preset.term || preset.content) {
+    const optBody = document.getElementById('optional-params-body') || document.getElementById('accordion-optional-body');
+    const optToggleBtn = document.getElementById('toggle-optional-params-btn');
+    const optArrow = document.getElementById('optional-toggle-arrow') || document.getElementById('toggle-optional-params-arrow');
+    if (optBody && !optBody.classList.contains('open')) {
+      optBody.classList.add('open');
+      if (optToggleBtn) optToggleBtn.setAttribute('aria-expanded', 'true');
+      if (optArrow) optArrow.textContent = '▲';
+    }
   }
 
   readSingleInputs();

@@ -18,6 +18,12 @@ function formatPublishedDate(date) {
   });
 }
 
+function formatUpdatedDate(date) {
+  return new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
+    year: 'numeric', month: 'long', timeZone: 'UTC'
+  });
+}
+
 // Helper to extract FAQ questions and answers from article HTML
 function extractFaqSchema(contentHtml) {
   if (!contentHtml) return null;
@@ -178,47 +184,29 @@ function renderArticlePage(post) {
     .map(ref => `<a href="${escapeAttr(ref.url)}" target="_blank" rel="noopener">${escapeAttr(ref.publisher)}</a>`)
     .join(', ');
   const editorialCredits = `<div class="article-editorial-credits" aria-label="Article authorship and sources">
-      <p><strong>Written by</strong> <a href="${escapeAttr(post.author.url)}">${escapeAttr(post.author.name)}</a></p>
       <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
       <p><strong>Last reviewed</strong> <time datetime="${post.dateModified}">${escapeAttr(post.reviewedDate)}</time></p>
       <p><strong>Sources</strong> ${sourceLinks} <a class="article-source-details" href="#article-sources">Full references</a></p>
     </div>`;
 
-  // Contextual Tool CTA Card HTML - High-Impact Interactive Showcase
+  // Contextual tool link for the end of each guide
   const toolCtaHtml = post.toolCta ? `
-    <aside class="article-tool-cta" aria-label="Attribution Tool Callout">
-      <div class="article-tool-cta-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <span>Recommended Measurement Tool</span>
-      </div>
+    <aside class="article-tool-cta" aria-label="Related tool">
       <div class="article-tool-cta-inner">
         <div class="article-tool-cta-content">
+          <p class="article-tool-cta-label">Related tool</p>
           <h3 class="article-tool-cta-title">${escapeAttr(post.toolCta.title)}</h3>
           <p class="article-tool-cta-desc">${escapeAttr(post.toolCta.description)}</p>
-          <div class="article-tool-cta-trust">
-            <span>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              100% Client-Side Private
-            </span>
-            <span>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              GA4 Taxonomy Validated
-            </span>
-            <span>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Zero Server Storage
-            </span>
-          </div>
         </div>
         <div class="article-tool-cta-action">
           <a href="${post.toolCta.link}" class="article-tool-cta-btn">
-            <span>${escapeAttr(post.toolCta.buttonText)}</span>
+            <span>${escapeAttr(post.toolCta.buttonText || 'Build this with UTMCraft')}</span>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
           </a>
         </div>
       </div>
     </aside>
-  ` : '';
+  `.trim() : '';
 
   return `<!DOCTYPE html>
 <html lang="en" data-theme="light">
@@ -288,17 +276,19 @@ function renderArticlePage(post) {
       <!-- Article Content Column -->
       <article class="article-main-column">
         <header class="article-header">
-          <div class="article-meta-top">
-            <a href="/blog/${category.slug}/" class="article-category-badge">
-              ${category.badge}
-            </a>
-            <span class="article-reading-time">${post.readingTime}</span>
-            <span class="article-meta-bullet">•</span>
-            <span class="article-date">Published ${formatPublishedDate(post.datePublished)}</span>
-          </div>
+          <a href="/blog/${category.slug}/" class="article-category-badge">
+            ${category.badge}
+          </a>
 
           <h1 class="article-title">${escapeAttr(post.title)}</h1>
           <p class="article-description">${escapeAttr(post.description)}</p>
+          <div class="article-meta-top">
+            <span class="article-date">Updated ${formatUpdatedDate(post.dateModified)}</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-reading-time">${post.readingTime}</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-author-byline">Written by <a href="${escapeAttr(post.author.url)}">${escapeAttr(post.author.name)}</a></span>
+          </div>
           ${editorialCredits}
 
           <!-- Featured Hero Image -->
@@ -319,8 +309,6 @@ function renderArticlePage(post) {
         <div class="article-prose">
           ${post.contentHtml}
 
-          ${toolCtaHtml}
-
           ${referencesHtml}
 
           <!-- Author Box -->
@@ -335,6 +323,8 @@ function renderArticlePage(post) {
             </div>
           </div>
         </div>
+
+${toolCtaHtml}
 
         <!-- Related Guides Grid -->
         <section class="related-articles-section">
