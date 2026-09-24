@@ -9,6 +9,7 @@ import { emailTrackingPosts } from './posts/email-tracking.js';
 import { organicSocialPrPosts } from './posts/organic-social-pr.js';
 import { offlineQrPosts } from './posts/offline-qr.js';
 import { utmOperationsPosts } from './posts/utm-operations.js';
+import { utmMistakesPosts } from './posts/utm-mistakes.js';
 
 // These guides were consolidated into their stronger parent pages. Keep their
 // slugs here so the redirect generator can preserve inbound links.
@@ -29,7 +30,8 @@ export const blogPosts = [
   ...emailTrackingPosts,
   ...organicSocialPrPosts,
   ...offlineQrPosts,
-  ...utmOperationsPosts
+  ...utmOperationsPosts,
+  ...utmMistakesPosts
 ].filter(post => !mergedBlogPostSlugs.has(post.slug));
 
 export function getPostBySlug(slug) {

@@ -40,7 +40,7 @@ export const googleAdsPosts = [
     relatedSlugs: ['google-ads-auto-tagging-vs-utms', 'gclid-vs-utms', 'google-ads-tracking-templates', 'ga4-utm-parameters-guide'],
     references: [
       { title: 'Set up tracking with ValueTrack parameters', url: 'https://support.google.com/google-ads/answer/6305348', publisher: 'Google Ads Help' },
-      { title: 'About auto-tagging in Google Ads', url: 'https://support.google.com/google-ads/answer/1752125', publisher: 'Google Ads Help' },
+      { title: 'Auto-tagging: Definition', url: 'https://support.google.com/google-ads/answer/1752125', publisher: 'Google Ads Help' },
       { title: 'Link Google Ads and Google Analytics', url: 'https://support.google.com/analytics/answer/9379420', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
@@ -308,7 +308,8 @@ export const googleAdsPosts = [
     },
     relatedSlugs: ['google-ads-utm-guide', 'google-ads-auto-tagging-vs-utms', 'google-ads-tracking-templates'],
     references: [
-      { title: 'Google Click Identifier (GCLID) Overview', url: 'https://support.google.com/google-ads/answer/2938246', publisher: 'Google Ads Help' },
+      { title: 'Google Click Identifier (GCLID): Definition', url: 'https://support.google.com/google-ads/answer/9744275', publisher: 'Google Ads Help' },
+      { title: 'Set up offline conversions using Google Click ID (GCLID)', url: 'https://support.google.com/google-ads/answer/7012522', publisher: 'Google Ads Help' },
       { title: 'WebKit Intelligent Tracking Prevention 2.1', url: 'https://webkit.org/blog/8613/intelligent-tracking-prevention-2-1/', publisher: 'WebKit' }
     ],
     contentHtml: `

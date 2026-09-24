@@ -39,7 +39,7 @@ export const emailTrackingPosts = [
     relatedSlugs: ['email-utm-tracking', 'utm-medium-guide', 'utm-strategy-guide', 'ga4-unassigned-traffic'],
     references: [
       { title: 'Default Channel Grouping in GA4 (Email Category)', url: 'https://support.google.com/analytics/answer/9756891', publisher: 'Google Analytics Help' },
-      { title: 'Managing UTM Tracking in Klaviyo', url: 'https://help.klaviyo.com/hc/en-us/articles/115005080847', publisher: 'Klaviyo Help Center' }
+      { title: 'Understanding UTM tracking in Klaviyo', url: 'https://help.klaviyo.com/hc/en-us/articles/115005247808', publisher: 'Klaviyo Help Center' }
     ],
     contentHtml: `
       <p class="lead-text">Email marketing is one of the highest ROI channels in digital commerce, yet email attribution in Google Analytics 4 is routinely degraded by missing tags, automated enterprise spam scanners, and inconsistent naming between one-off broadcasts and automated lifecycle flows. This guide outlines how to build a clean, bot-resistant email tracking architecture.</p>

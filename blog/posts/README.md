@@ -1,6 +1,6 @@
 # UTMCraft Blog Articles Directory
 
-All 33 active production guides are organized in this directory as individual HTML files.
+All 49 active production guides are organized in this directory as individual HTML files.
 
 ## URL Architecture & Routing Governance
 
@@ -48,3 +48,19 @@ Both the Vite development server and the production build automatically route re
 | UTM Operations, Automation & QA | Supporting | Bulk UTM Creation Workflow: Generating Hundreds of Tagged Links Without Errors | `bulk-utm-workflow.html` | [/bulk-utm-workflow/](https://utmcraft.com/bulk-utm-workflow/) |
 | UTM Operations, Automation & QA | Supporting | First-Touch vs Last-Touch UTM Attribution: Capture Models, Cookies & CRM Sync | `first-touch-vs-last-touch-utm.html` | [/first-touch-vs-last-touch-utm/](https://utmcraft.com/first-touch-vs-last-touch-utm/) |
 | UTM Operations, Automation & QA | Supporting | How to Store UTM Parameters in CRM Hidden Fields (Salesforce, HubSpot & Forms) | `storing-utm-parameters-in-crm.html` | [/storing-utm-parameters-in-crm/](https://utmcraft.com/storing-utm-parameters-in-crm/) |
+| UTM Mistakes & Tracking Audits | **Pillar** | 15 UTM Tracking Mistakes That Ruin Your GA4 Data (and How to Fix Them) | `utm-tracking-mistakes.html` | [/utm-tracking-mistakes/](https://utmcraft.com/utm-tracking-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 7 UTM Naming Mistakes Marketing Teams Keep Making | `utm-naming-mistakes.html` | [/utm-naming-mistakes/](https://utmcraft.com/utm-naming-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 5 utm_source Mistakes That Break Attribution in GA4 | `utm-source-mistakes.html` | [/utm-source-mistakes/](https://utmcraft.com/utm-source-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 5 utm_medium Mistakes That Send Traffic to the Wrong GA4 Channel | `utm-medium-mistakes.html` | [/utm-medium-mistakes/](https://utmcraft.com/utm-medium-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 10 Facebook Ads UTM Mistakes to Avoid in Meta Campaigns | `facebook-ads-utm-mistakes.html` | [/facebook-ads-utm-mistakes/](https://utmcraft.com/facebook-ads-utm-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 7 Google Ads Tracking Mistakes That Cause Bad Attribution | `google-ads-tracking-mistakes.html` | [/google-ads-tracking-mistakes/](https://utmcraft.com/google-ads-tracking-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 6 LinkedIn UTM Mistakes That Make Campaign Reporting Messy | `linkedin-utm-mistakes.html` | [/linkedin-utm-mistakes/](https://utmcraft.com/linkedin-utm-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 8 Email UTM Mistakes That Create Direct or Unassigned Traffic | `email-utm-mistakes.html` | [/email-utm-mistakes/](https://utmcraft.com/email-utm-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 5 QR Code Tracking Mistakes to Avoid in Print & Offline Campaigns | `qr-code-tracking-mistakes.html` | [/qr-code-tracking-mistakes/](https://utmcraft.com/qr-code-tracking-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 7 UTM Mistakes Agencies Make Across Client Accounts | `agency-utm-mistakes.html` | [/agency-utm-mistakes/](https://utmcraft.com/agency-utm-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 5 UTM Mistakes SaaS Companies Make in Lead Generation | `saas-utm-mistakes.html` | [/saas-utm-mistakes/](https://utmcraft.com/saas-utm-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 6 Ecommerce UTM Mistakes That Make Revenue Attribution Harder | `ecommerce-utm-mistakes.html` | [/ecommerce-utm-mistakes/](https://utmcraft.com/ecommerce-utm-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 5 Redirect Mistakes That Strip UTM Parameters and GCLIDs | `redirect-utm-mistakes.html` | [/redirect-utm-mistakes/](https://utmcraft.com/redirect-utm-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 7 Campaign Naming Mistakes That Fragment GA4 Reports | `campaign-naming-mistakes.html` | [/campaign-naming-mistakes/](https://utmcraft.com/campaign-naming-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 5 UTM Mistakes to Fix Before Launching a Paid Campaign | `pre-launch-utm-mistakes.html` | [/pre-launch-utm-mistakes/](https://utmcraft.com/pre-launch-utm-mistakes/) |
+| UTM Mistakes & Tracking Audits | Supporting | 10 Signs Your UTM Tracking System Needs an Immediate Audit | `utm-tracking-audit-signs.html` | [/utm-tracking-audit-signs/](https://utmcraft.com/utm-tracking-audit-signs/) |

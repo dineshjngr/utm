@@ -33,6 +33,8 @@ function getCategoryTheme(categoryId) {
       return { accent: '#F472B6', accentMuted: '#DB2777', glow: 'rgba(244, 114, 182, 0.12)', label: 'OFFLINE & QR' };
     case 'utm-operations':
       return { accent: '#2DD4BF', accentMuted: '#0D9488', glow: 'rgba(45, 212, 191, 0.12)', label: 'REVOPS & QA' };
+    case 'utm-mistakes':
+      return { accent: '#F59E0B', accentMuted: '#D97706', glow: 'rgba(245, 158, 11, 0.12)', label: 'MISTAKES & QA' };
     default:
       return { accent: '#34D399', accentMuted: '#059669', glow: 'rgba(52, 211, 153, 0.12)', label: 'ATTRIBUTION' };
   }
@@ -1041,7 +1043,7 @@ function createSvgForPost(post) {
 
         <!-- Category Badge Pill -->
         <rect x="165" y="-1" width="${badgeText.length * 8 + 26}" height="26" rx="13" fill="${theme.glow}" stroke="${theme.accent}" stroke-width="1.2"/>
-        <text x="${165 + (badgeText.length * 8 + 26)/2}" y="16" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="${theme.accent}" letter-spacing="0.5">${badgeText}</text>
+        <text x="${165 + (badgeText.length * 8 + 26)/2}" y="16" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="${theme.accent}" letter-spacing="0.5">${escapeXml(badgeText)}</text>
       </g>
 
       <!-- Category Kicker -->

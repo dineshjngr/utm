@@ -39,8 +39,8 @@ export const linkedinAdsPosts = [
     },
     relatedSlugs: ['linkedin-ads-utm-tracking', 'linkedin-dynamic-parameters', 'storing-utm-parameters-in-crm', 'ga4-unassigned-traffic'],
     references: [
-      { title: 'URL Tracking in LinkedIn Campaign Manager', url: 'https://www.linkedin.com/help/lms/answer/a423376', publisher: 'LinkedIn Help Center' },
-      { title: 'Dynamic URL Parameters in Campaign Manager', url: 'https://www.linkedin.com/help/lms/answer/a518057', publisher: 'LinkedIn Help Center' }
+      { title: 'URL tracking parameters in Campaign Manager', url: 'https://www.linkedin.com/help/lms/answer/a5968064', publisher: 'LinkedIn Help Center' },
+      { title: 'URL tracking parameters in Campaign Manager', url: 'https://www.linkedin.com/help/lms/answer/a5968064', publisher: 'LinkedIn Help Center' }
     ],
     contentHtml: `
       <p class="lead-text">Historically, LinkedIn Campaign Manager lacked native dynamic tracking macros, forcing B2B marketers to manually append parameters to every ad link. Today, LinkedIn natively supports dynamic URL tracking parameters across its campaign hierarchy. This guide covers how to implement dynamic LinkedIn tracking to fuel clean GA4 reporting and pipeline attribution in your CRM.</p>
@@ -196,7 +196,7 @@ export const linkedinAdsPosts = [
     },
     relatedSlugs: ['linkedin-ads-utm-guide', 'linkedin-dynamic-parameters', 'ga4-unassigned-traffic'],
     references: [
-      { title: 'Set up tracking in LinkedIn Campaign Manager', url: 'https://www.linkedin.com/help/lms/answer/a423376', publisher: 'LinkedIn Help Center' }
+      { title: 'URL tracking parameters in Campaign Manager', url: 'https://www.linkedin.com/help/lms/answer/a5968064', publisher: 'LinkedIn Help Center' }
     ],
     contentHtml: `
       <p class="lead-text">Tracking LinkedIn Ads in Google Analytics 4 requires a clear understanding of LinkedIn's multi-tier account hierarchy and strict adherence to GA4 Paid Social channel rules. Here is how to configure your campaigns for seamless B2B attribution.</p>
@@ -269,7 +269,7 @@ export const linkedinAdsPosts = [
     },
     relatedSlugs: ['linkedin-ads-utm-guide', 'linkedin-ads-utm-tracking', 'meta-dynamic-url-parameters'],
     references: [
-      { title: 'Dynamic URL Parameters in LinkedIn Campaign Manager', url: 'https://www.linkedin.com/help/lms/answer/a518057', publisher: 'LinkedIn Help Center' }
+      { title: 'URL tracking parameters in Campaign Manager', url: 'https://www.linkedin.com/help/lms/answer/a5968064', publisher: 'LinkedIn Help Center' }
     ],
     contentHtml: `
       <p class="lead-text">LinkedIn's dynamic URL parameters allow B2B performance marketers to scale ad creative testing without manually tagging every single ad link. Understanding the exact syntax requirements ensures that your parameters expand reliably at click time.</p>

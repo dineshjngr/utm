@@ -71,3 +71,25 @@ This audit compares each guide's current subject with the other UTMCraft guides.
 | Bulk UTM Creation Workflow | Generate and distribute many campaign URLs consistently | Keep; bulk-production task |
 | First-Touch vs Last-Touch UTM Attribution | Store and report first- and last-touch attribution | Keep; attribution capture model comparison |
 | Store UTM Parameters in CRM Hidden Fields | Capture landing-page UTMs in forms and CRM fields | Keep; form and CRM implementation |
+
+## UTM Mistakes & Tracking Audits
+
+| Guide | Distinct query or task | Decision |
+|---|---|---|
+| 15 UTM Tracking Mistakes That Ruin Your GA4 Data | Comprehensive catalog of destructive tracking errors across platforms | Keep as the cluster pillar guide |
+| 7 UTM Naming Mistakes Marketing Teams Keep Making | Diagnose and fix team naming drift, inconsistent casing, and delimiters | Keep; naming and taxonomy governance focus |
+| 5 utm_source Mistakes That Break Attribution | Eliminate entity vs channel confusion and fragmented source rows | Keep; source-specific parameter diagnosis |
+| 5 utm_medium Mistakes That Send Traffic to the Wrong GA4 Channel | Prevent Unassigned traffic caused by non-standard mediums and casing | Keep; channel grouping compliance focus |
+| 10 Facebook Ads UTM Mistakes to Avoid | Fix Meta Ads Manager URL parameters, dynamic tokens, and link shims | Keep; Meta-specific ad attribution focus |
+| 7 Google Ads Tracking Mistakes That Cause Bad Attribution | Resolve ValueTrack syntax, auto-tagging conflicts, and suffix errors | Keep; Google Ads tracking template focus |
+| 6 LinkedIn UTM Mistakes That Make Campaign Reporting Messy | Fix uppercase macro tokens and prevent lnkd.in referral categorization | Keep; LinkedIn B2B ad attribution focus |
+| 8 Email UTM Mistakes That Create Direct or Unassigned Traffic | Fix referrerless clicks, ESP link wrapper drops, and security bot skew | Keep; email channel attribution focus |
+| 5 QR Code Tracking Mistakes to Avoid | Prevent offline print and packaging scans from turning into Direct | Keep; offline QR implementation focus |
+| 7 UTM Mistakes Agencies Make Across Client Accounts | Enforce cross-client naming standards and prevent client taxonomy overwrites | Keep; agency media operations focus |
+| 5 UTM Mistakes SaaS Companies Make in Lead Generation | Bridge marketing site to app subdomain drops and preserve lead attribution | Keep; B2B SaaS pipeline attribution focus |
+| 6 Ecommerce UTM Mistakes That Make Revenue Attribution Harder | Eliminate payment gateway referral overwrites and internal promo drops | Keep; ecommerce purchase attribution focus |
+| 5 Redirect Mistakes That Strip UTM Parameters | Fix 301 server rewrites, protocol upgrades, and trailing slash drops | Keep; web server & redirect architecture focus |
+| 7 Campaign Naming Mistakes That Fragment GA4 Reports | Prevent duplicate campaign rows and design durable naming formulas | Keep; campaign taxonomy structure focus |
+| 5 UTM Mistakes to Fix Before Launching a Paid Campaign | Run pre-flight QA testing in DebugView and incognito browser checks | Keep; pre-launch verification checklist focus |
+| 10 Signs Your UTM Tracking System Needs an Audit | Recognize early warning signals of failing attribution data hygiene | Keep; diagnostic triage & audit trigger focus |
+

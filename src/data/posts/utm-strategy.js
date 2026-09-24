@@ -220,7 +220,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
     },
     relatedSlugs: ['utm-strategy-guide', 'utm-campaign-guide', 'agency-utm-governance', 'utm-qa-checklist'],
     references: [
-      { title: 'Campaign & Traffic Source Dimensions in GA4', url: 'https://support.google.com/analytics/answer/9355604', publisher: 'Google Analytics Help' },
+      { title: 'Traffic-source dimensions in GA4', url: 'https://support.google.com/analytics/answer/15567068', publisher: 'Google Analytics Help' },
       { title: 'URI Syntax Specification (RFC 3986)', url: 'https://www.ietf.org/rfc/rfc3986.txt', publisher: 'IETF' }
     ],
     contentHtml: `
@@ -364,7 +364,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
     },
     relatedSlugs: ['utm-strategy-guide', 'utm-qa-checklist', 'utm-naming-conventions-guide', 'bulk-utm-workflow'],
     references: [
-      { title: 'Google Analytics 4 Multi-Account Management', url: 'https://support.google.com/analytics/answer/1009618', publisher: 'Google Analytics Help' }
+      { title: 'Google Analytics 4 account structure', url: 'https://support.google.com/analytics/answer/9679158', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
       <p class="lead-text">For digital agencies, tracking errors are not just an internal analytics inconvenience—they are a client retention risk. When an agency's media buyers tag paid social campaigns with non-standard UTMs that land in GA4 "Unassigned," the client's executive dashboard fails to reflect return on ad spend (ROAS), triggering uncomfortable budget meetings.</p>

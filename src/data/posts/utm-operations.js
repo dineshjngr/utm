@@ -39,7 +39,7 @@ export const utmOperationsPosts = [
     },
     relatedSlugs: ['bulk-utm-workflow', 'first-touch-vs-last-touch-utm', 'storing-utm-parameters-in-crm', 'utm-strategy-guide'],
     references: [
-      { title: 'HubSpot Tracking Code & Parameters', url: 'https://knowledge.hubspot.com/analytics-tools/how-does-hubspot-track-visitors', publisher: 'HubSpot Knowledge Base' },
+      { title: 'Create HubSpot tracking URLs', url: 'https://knowledge.hubspot.com/settings/how-do-i-create-a-tracking-url', publisher: 'HubSpot Knowledge Base' },
       { title: 'Web Storage API Specification', url: 'https://html.spec.whatwg.org/multipage/webstorage.html', publisher: 'WHATWG' }
     ],
     contentHtml: `
@@ -211,7 +211,7 @@ export const utmOperationsPosts = [
     },
     relatedSlugs: ['utm-operations-workflow', 'utm-strategy-guide', 'utm-qa-checklist'],
     references: [
-      { title: 'Google Analytics 4 URL Builder Documentation', url: 'https://support.google.com/analytics/answer/10918862', publisher: 'Google Analytics Help' }
+      { title: 'GA4 URL builders: Collect campaign data with custom URLs', url: 'https://support.google.com/analytics/answer/10917952', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
       <p class="lead-text">Launching a major quarterly promotion or seasonal sale across Google, Meta, LinkedIn, Email, and Influencer partners requires generating dozens—sometimes hundreds—of tagged URLs. Generating these links manually one-by-one invites typos and inconsistent casing. Here is how to execute a professional bulk UTM workflow.</p>
@@ -360,7 +360,7 @@ function storeTouchpoints(utmParams) {
     },
     relatedSlugs: ['first-touch-vs-last-touch-utm', 'utm-operations-workflow', 'utm-qa-checklist'],
     references: [
-      { title: 'Pass UTM parameters in HubSpot forms', url: 'https://knowledge.hubspot.com/forms/pass-contact-properties-through-hidden-form-fields', publisher: 'HubSpot Knowledge Base' }
+      { title: 'Set property values with hidden form fields', url: 'https://knowledge.hubspot.com/forms/pass-contact-property-values-with-hidden-form-fields', publisher: 'HubSpot Knowledge Base' }
     ],
     contentHtml: `
       <p class="lead-text">If your web forms only collect Name, Email, and Company, your sales team is operating in the dark. By adding hidden input fields and a simple cookie persistence script, you can automatically capture <code>utm_source</code>, <code>utm_campaign</code>, and <code>gclid</code> on every lead submission without adding friction to the user experience.</p>

@@ -8,8 +8,8 @@ import { blogCategories } from '../src/data/blog-categories.js';
 const rootDir = path.resolve(import.meta.dirname, '..');
 
 test('Blog Data Integrity: all active articles have required fields and no duplicates', () => {
-  assert.equal(blogPosts.length, 33, 'Should have exactly 33 active articles');
-  assert.equal(blogCategories.length, 10, 'Should have exactly 10 categories');
+  assert.equal(blogPosts.length, 49, 'Should have exactly 49 active articles');
+  assert.equal(blogCategories.length, 11, 'Should have exactly 11 categories');
 
   const slugs = new Set();
   const titles = new Set();
@@ -65,7 +65,7 @@ test('Blog Data Integrity: all active articles have required fields and no dupli
   }
 });
 
-test('Category Data Integrity: all 10 categories have pillars and valid slugs', () => {
+test('Category Data Integrity: all 11 categories have pillars and valid slugs', () => {
   for (const cat of blogCategories) {
     assert.ok(cat.id, 'Category must have id');
     assert.ok(cat.name, 'Category must have name');
@@ -122,7 +122,7 @@ test('Generated HTML Files: All active articles are in blog/posts/[slug].html an
   }
 });
 
-test('Generated Category Pages: All 10 category pages exist with BreadcrumbList schema', () => {
+test('Generated Category Pages: All 11 category pages exist with BreadcrumbList schema', () => {
   for (const cat of blogCategories) {
     const catFilePath = path.join(rootDir, 'blog', cat.slug, 'index.html');
     assert.ok(fs.existsSync(catFilePath), `Category file does not exist: ${catFilePath}`);
@@ -151,7 +151,7 @@ test('Blog Homepage: /blog/ exists with search, filter pills, and valid structur
   assert.equal(h1Matches.length, 1, 'Blog index must have exactly one <h1>');
 });
 
-test('XML Sitemap: Includes all 35 articles, 10 categories, and blog index with utmcraft.com domain', () => {
+test('XML Sitemap: Includes all 49 articles, 11 categories, and blog index with utmcraft.com domain', () => {
   const sitemapPath = path.join(rootDir, 'public', 'sitemap.xml');
   assert.ok(fs.existsSync(sitemapPath), 'sitemap.xml must exist');
 
@@ -167,7 +167,7 @@ test('XML Sitemap: Includes all 35 articles, 10 categories, and blog index with 
   }
 });
 
-test('Internal Link Integrity: all internal links across all 35 articles point to valid local pages', () => {
+test('Internal Link Integrity: all internal links across all 49 articles point to valid local pages', () => {
   const linkRegex = /href="(\/[^"#?]*)[#?]?/g;
   const brokenLinks = [];
 

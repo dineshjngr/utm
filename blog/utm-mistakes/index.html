@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTM Mistakes & Tracking Audits Guides &amp; Taxonomy | UTMCraft</title>
+  <script type="module" src="/src/theme.js"></script>
+  <meta name="description" content="Diagnose common UTM tracking mistakes, broken attribution traps, naming errors, and field-tested fixes to safeguard your GA4 reports and ad spend.">
+  <link rel="canonical" href="https://utmcraft.com/blog/utm-mistakes/">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://utmcraft.com/blog/utm-mistakes/">
+  <meta property="og:title" content="UTM Mistakes & Tracking Audits Guides &amp; Taxonomy | UTMCraft">
+  <meta property="og:description" content="Diagnose common UTM tracking mistakes, broken attribution traps, naming errors, and field-tested fixes to safeguard your GA4 reports and ad spend.">
+  <meta property="og:image" content="https://utmcraft.com/og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UTM Mistakes & Tracking Audits Guides &amp; Taxonomy | UTMCraft">
+  <meta name="twitter:description" content="Diagnose common UTM tracking mistakes, broken attribution traps, naming errors, and field-tested fixes to safeguard your GA4 reports and ad spend.">
+  <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="stylesheet" href="/src/blog.css">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://utmcraft.com/blog/utm-mistakes/#collection",
+      "url": "https://utmcraft.com/blog/utm-mistakes/",
+      "name": "UTM Mistakes & Tracking Audits Guides & Taxonomy | UTMCraft",
+      "description": "Diagnose common UTM tracking mistakes, broken attribution traps, naming errors, and field-tested fixes to safeguard your GA4 reports and ad spend.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://utmcraft.com/#website",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://utmcraft.com/blog/utm-mistakes/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://utmcraft.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://utmcraft.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "UTM Mistakes & Tracking Audits",
+          "item": "https://utmcraft.com/blog/utm-mistakes/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://utmcraft.com/#organization",
+      "name": "UTMCraft",
+      "url": "https://utmcraft.com/",
+      "logo": "https://utmcraft.com/utmcraft-logo-light.png"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="blog-category">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+
+      <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-controls="builder-nav-options">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="builder-nav-options" class="nav-dropdown-menu">
+            <a href="/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Standard Campaign Builder</span>
+              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-controls="guide-nav-options">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="guide-nav-options" class="nav-dropdown-menu">
+            <a href="/blog/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
+            </a>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>New Link</span>
+        </a>
+      </div>
+      <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+    <script type="module" src="/src/site.js"></script>
+  </header>
+
+  <div class="app-container">
+    <nav class="blog-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/">Guides</a></li>
+        <li class="separator">/</li>
+        <li class="current" aria-current="page">UTM Mistakes & Tracking Audits</li>
+      </ol>
+    </nav>
+
+    <header class="blog-hero">
+      <div style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+        <span class="article-category-badge">Mistakes & QA</span>
+      </div>
+      <h1 class="blog-hero-title">UTM Mistakes & Tracking Audits</h1>
+      <p class="blog-hero-subtitle">Diagnose common UTM tracking mistakes, broken attribution traps, naming errors, and field-tested fixes to safeguard your GA4 reports and ad spend.</p>
+    </header>
+
+    <main id="main-content">
+      
+      <!-- Highlighted Category Pillar Guide -->
+      <a href="/utm-tracking-mistakes/" class="featured-pillar-card">
+        <div class="featured-pillar-image">
+          <img src="/blog/images/utm-tracking-mistakes.webp" alt="Diagnostic flowchart showing common UTM tracking errors leading to Unassigned and Direct traffic in GA4" width="1200" height="630" fetchpriority="high">
+        </div>
+        <div class="featured-pillar-content">
+          <span class="featured-pillar-badge">Core Pillar Guide</span>
+          <h2 class="featured-pillar-title">15 UTM Tracking Mistakes That Ruin Your GA4 Data (and How to Fix Them)</h2>
+          <p class="featured-pillar-desc">Discover the 15 most destructive UTM tracking mistakes breaking GA4 attribution, causing Unassigned traffic, and corrupting ad ROI—with actionable fixes.</p>
+          <div class="featured-pillar-footer">
+            <span>16 min read</span>
+            <span>•</span>
+            <span>Published September 24, 2026</span>
+          </div>
+        </div>
+      </a>
+      
+
+      <div style="margin: 2.5rem 0 1.25rem;">
+        <h2 style="font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em;">Supporting Cluster Guides</h2>
+      </div>
+
+      <div class="posts-grid">
+        
+    <a href="/utm-naming-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/utm-naming-mistakes.webp" alt="Comparison chart of chaotic UTM naming examples versus clean, standardized campaign taxonomy" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h3 class="post-card-title">7 UTM Naming Mistakes Marketing Teams Keep Making</h3>
+        <p class="post-card-excerpt">Avoid the 7 most common UTM naming mistakes that fragment campaign reports, create duplicate rows in GA4, and derail marketing attribution.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/utm-source-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/utm-source-mistakes.webp" alt="Diagram showing how invalid utm_source values split data in GA4 Traffic Acquisition reports" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h3 class="post-card-title">5 utm_source Mistakes That Break Attribution in GA4</h3>
+        <p class="post-card-excerpt">Fix the 5 critical utm_source mistakes causing messy GA4 reports, duplicate platform rows, and broken cross-channel marketing attribution.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/utm-medium-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/utm-medium-mistakes.webp" alt="Diagram showing how incorrect utm_medium values trigger the GA4 Unassigned traffic bucket" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h3 class="post-card-title">5 utm_medium Mistakes That Send Traffic to the Wrong GA4 Channel</h3>
+        <p class="post-card-excerpt">Discover why non-standard utm_medium tags route your traffic to Unassigned in GA4. Learn the exact casing and syntax rules to maintain clean channel grouping.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/facebook-ads-utm-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/facebook-ads-utm-mistakes.webp" alt="Meta Ads Manager interface highlighting the URL Parameters box and common dynamic macro errors" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">12 min read</span>
+        </div>
+        <h3 class="post-card-title">10 Facebook Ads UTM Mistakes to Avoid in Meta Campaigns</h3>
+        <p class="post-card-excerpt">Avoid the 10 most common Facebook and Meta Ads UTM mistakes that turn paid social traffic into Direct or Referral in GA4 and break ad attribution.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/google-ads-tracking-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/google-ads-tracking-mistakes.webp" alt="Google Ads interface highlighting the Final URL Suffix field and ValueTrack parameter configuration" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">10 min read</span>
+        </div>
+        <h3 class="post-card-title">7 Google Ads Tracking Mistakes That Cause Bad Attribution</h3>
+        <p class="post-card-excerpt">Diagnose and resolve the 7 most common Google Ads tracking errors, ValueTrack syntax mistakes, and auto-tagging conflicts breaking your GA4 data.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/linkedin-utm-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/linkedin-utm-mistakes.webp" alt="LinkedIn Campaign Manager showing dynamic macro URL parameter setup and common syntax pitfalls" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h3 class="post-card-title">6 LinkedIn UTM Mistakes That Make Campaign Reporting Messy</h3>
+        <p class="post-card-excerpt">Stop LinkedIn traffic from landing in Referral or Organic Social. Fix the 6 critical UTM errors in Sponsored Content, Message Ads, and dynamic macros.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/email-utm-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/email-utm-mistakes.webp" alt="Email client opening web links with redirect hops and potential UTM parameter stripping" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">11 min read</span>
+        </div>
+        <h3 class="post-card-title">8 Email UTM Mistakes That Create Direct or Unassigned Traffic</h3>
+        <p class="post-card-excerpt">Prevent email campaigns from showing as Direct or Unassigned in GA4. Fix click-tracking redirect drops, non-standard mediums, and security bot skew.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/qr-code-tracking-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/qr-code-tracking-mistakes.webp" alt="Physical printed flyer with QR code and mobile phone camera scanning diagnostic overlay" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h3 class="post-card-title">5 QR Code Tracking Mistakes to Avoid in Print & Offline Campaigns</h3>
+        <p class="post-card-excerpt">Don't let offline campaigns get lost as Direct traffic. Avoid these 5 QR code tracking mistakes that break scanning, strip UTMs, or corrupt GA4 attribution.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/agency-utm-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/agency-utm-mistakes.webp" alt="Agency operations dashboard showing multi-client campaign tracking governance and quality checks" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">10 min read</span>
+        </div>
+        <h3 class="post-card-title">7 UTM Mistakes Agencies Make Across Client Accounts</h3>
+        <p class="post-card-excerpt">Agency media buyers often introduce rogue taxonomy across client brands. Learn the 7 critical governance mistakes and how to standardize UTMs at scale.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/saas-utm-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/saas-utm-mistakes.webp" alt="SaaS marketing funnel diagram showing visitor flow from marketing site to app subdomain with UTM capture" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h3 class="post-card-title">5 UTM Mistakes SaaS Companies Make in Lead Generation</h3>
+        <p class="post-card-excerpt">Cross-domain drops, missing hidden form fields, and overwritten touchpoints cost B2B SaaS pipeline clarity. Fix these 5 critical SaaS UTM tracking mistakes.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/ecommerce-utm-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/ecommerce-utm-mistakes.webp" alt="Ecommerce checkout flow showing payment gateway return and traffic source attribution overwrite" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">10 min read</span>
+        </div>
+        <h3 class="post-card-title">6 Ecommerce UTM Mistakes That Make Revenue Attribution Harder</h3>
+        <p class="post-card-excerpt">Third-party payment gateways, internal promo banners, and affiliate link drops corrupt ecommerce revenue. Fix these 6 critical GA4 ecommerce UTM errors.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/redirect-utm-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/redirect-utm-mistakes.webp" alt="Server redirect chain showing initial URL with UTMs and final destination URL with stripped parameters" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h3 class="post-card-title">5 Redirect Mistakes That Strip UTM Parameters and GCLIDs</h3>
+        <p class="post-card-excerpt">Discover how 301 server redirects, HTTP-to-HTTPS hops, and trailing-slash mismatches silently erase campaign parameters and turn paid ads into Direct.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/campaign-naming-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/campaign-naming-mistakes.webp" alt="GA4 exploration report showing fragmented campaign rows caused by inconsistent naming taxonomy" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h3 class="post-card-title">7 Campaign Naming Mistakes That Fragment GA4 Reports</h3>
+        <p class="post-card-excerpt">Stop fragmenting campaign reporting across dozens of duplicate rows. Learn the 7 campaign naming mistakes to avoid and how to design durable taxonomies.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/pre-launch-utm-mistakes/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/pre-launch-utm-mistakes.webp" alt="Pre-flight marketing QA checklist showing verified UTM parameters and test click validation in GA4" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h3 class="post-card-title">5 UTM Mistakes to Fix Before Launching a Paid Campaign</h3>
+        <p class="post-card-excerpt">Protect your ad spend before opening the budget floodgates. Run this 5-step pre-launch UTM QA checklist to catch tracking errors before ads go live.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+    <a href="/utm-tracking-audit-signs/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/utm-tracking-audit-signs.webp" alt="Analytics audit dashboard displaying red warning flags for Unassigned traffic and attribution anomalies" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">11 min read</span>
+        </div>
+        <h3 class="post-card-title">10 Signs Your UTM Tracking System Needs an Immediate Audit</h3>
+        <p class="post-card-excerpt">High Unassigned traffic, Direct spikes, and blank CRM lead sources mean your attribution is compromised. Recognize these 10 warning signs and audit your system.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+  
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+              <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+              <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+            </a>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Core Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+              <li><a href="/#campaign-history" data-switch-tab="tab-history">Campaign History</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Platform Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <ul class="footer-links">
+              <li><a href="/blog/">All Knowledge Guides</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <ul class="footer-links">
+              <li><a href="/about/">About Us</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/terms.html">Terms and Conditions</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by DJ</div>
+          <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/blog.js"></script>
+</body>
+</html>

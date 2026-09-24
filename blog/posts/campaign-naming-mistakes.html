@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script type="module" src="/src/theme.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7 Campaign Naming Mistakes Fragmenting GA4 Reports | UTMCraft</title>
+  <meta name="description" content="Stop fragmenting campaign reporting across dozens of duplicate rows. Learn the 7 campaign naming mistakes to avoid and how to design durable taxonomies.">
+  <meta name="keywords" content="campaign naming mistakes, utm_campaign best practices, ga4 campaign fragmentation, marketing taxonomy standards, campaign naming formulas">
+  <link rel="canonical" href="https://utmcraft.com/campaign-naming-mistakes/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utmcraft.com/campaign-naming-mistakes/">
+  <meta property="og:title" content="7 Campaign Naming Mistakes Fragmenting GA4 Reports | UTMCraft">
+  <meta property="og:description" content="Stop fragmenting campaign reporting across dozens of duplicate rows. Learn the 7 campaign naming mistakes to avoid and how to design durable taxonomies.">
+  <meta property="og:image" content="https://utmcraft.com/blog/images/campaign-naming-mistakes.webp">
+  <meta property="article:published_time" content="2026-09-24">
+  <meta property="article:modified_time" content="2026-09-24">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utmcraft.com/campaign-naming-mistakes/">
+  <meta name="twitter:title" content="7 Campaign Naming Mistakes Fragmenting GA4 Reports | UTMCraft">
+  <meta name="twitter:description" content="Stop fragmenting campaign reporting across dozens of duplicate rows. Learn the 7 campaign naming mistakes to avoid and how to design durable taxonomies.">
+  <meta name="twitter:image" content="https://utmcraft.com/blog/images/campaign-naming-mistakes.webp">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="stylesheet" href="/src/blog.css">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://utmcraft.com/campaign-naming-mistakes/#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://utmcraft.com/campaign-naming-mistakes/"
+      },
+      "headline": "7 Campaign Naming Mistakes That Fragment GA4 Reports",
+      "description": "Stop fragmenting campaign reporting across dozens of duplicate rows. Learn the 7 campaign naming mistakes to avoid and how to design durable taxonomies.",
+      "image": "https://utmcraft.com/blog/images/campaign-naming-mistakes.webp",
+      "datePublished": "2026-09-24",
+      "dateModified": "2026-09-24",
+      "reviewedBy": {
+        "@type": "Organization",
+        "name": "UTMCraft Editorial Team",
+        "url": "https://utmcraft.com/"
+      },
+      "citation": [
+        {
+          "@type": "CreativeWork",
+          "name": "Campaigns and traffic sources in GA4",
+          "url": "https://support.google.com/analytics/answer/11242841"
+        }
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "DJ",
+        "jobTitle": "Attribution & Analytics Architect",
+        "url": "https://utmcraft.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://utmcraft.com/utmcraft-logo-light.png"
+        }
+      },
+      "mainEntityOfPage": "https://utmcraft.com/campaign-naming-mistakes/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://utmcraft.com/campaign-naming-mistakes/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://utmcraft.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://utmcraft.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "UTM Mistakes & Tracking Audits",
+          "item": "https://utmcraft.com/blog/utm-mistakes/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "7 Campaign Naming Mistakes That Fragment GA4 Reports",
+          "item": "https://utmcraft.com/campaign-naming-mistakes/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://utmcraft.com/#organization",
+      "name": "UTMCraft",
+      "url": "https://utmcraft.com/",
+      "logo": "https://utmcraft.com/utmcraft-logo-light.png",
+      "email": "contact@utmcraft.com"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I merge fragmented campaign rows directly in GA4?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. GA4 does not allow retroactive data edits. You must consolidate fragmented names in reporting layers like Looker Studio using CASE statements or REGEX."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I put dates in utm_campaign?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Including the year or year-month (e.g., 2026 or 2026-q2) prevents seasonal campaigns from colliding with past or future iterations."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="blog-post">
+  <!-- Reading Progress Indicator -->
+  <div id="reading-progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+
+      <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-controls="builder-nav-options">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="builder-nav-options" class="nav-dropdown-menu">
+            <a href="/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Standard Campaign Builder</span>
+              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-controls="guide-nav-options">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="guide-nav-options" class="nav-dropdown-menu">
+            <a href="/blog/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
+            </a>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>New Link</span>
+        </a>
+      </div>
+      <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+    <script type="module" src="/src/site.js"></script>
+  </header>
+
+  <div class="app-container">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/">Guides</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/utm-mistakes/">UTM Mistakes & Tracking Audits</a></li>
+        <li class="separator">/</li>
+        <li class="current" aria-current="page">7 Campaign Naming Mistakes That Fragment GA4 Reports</li>
+      </ol>
+    </nav>
+
+    <!-- Main Article Layout -->
+    <main id="main-content" class="blog-article-layout">
+      <!-- Article Content Column -->
+      <article class="article-main-column">
+        <header class="article-header">
+          <a href="/blog/utm-mistakes/" class="article-category-badge">
+            Mistakes & QA
+          </a>
+
+          <h1 class="article-title">7 Campaign Naming Mistakes That Fragment GA4 Reports</h1>
+          <p class="article-description">Stop fragmenting campaign reporting across dozens of duplicate rows. Learn the 7 campaign naming mistakes to avoid and how to design durable taxonomies.</p>
+          <div class="article-meta-top">
+            <span class="article-date">Updated September 2026</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-reading-time">9 min read</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-author-byline">Written by <a href="https://utmcraft.com/">DJ</a></span>
+          </div>
+          <div class="article-editorial-credits" aria-label="Article authorship and sources">
+      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
+      <p><strong>Last reviewed</strong> <time datetime="2026-09-24">September 24, 2026</time></p>
+      <p><strong>Sources</strong> <a href="https://support.google.com/analytics/answer/11242841" target="_blank" rel="noopener">Google Support</a> <a class="article-source-details" href="#article-sources">Full references</a></p>
+    </div>
+
+          <!-- Featured Hero Image -->
+          <div class="article-featured-image">
+            <img src="/blog/images/campaign-naming-mistakes.webp" alt="GA4 exploration report showing fragmented campaign rows caused by inconsistent naming taxonomy" width="1200" height="630" fetchpriority="high">
+          </div>
+        </header>
+
+        <!-- Mobile Table of Contents Accordion -->
+        <details class="mobile-toc">
+          <summary>Table of Contents</summary>
+          <ol>
+            
+    <li>
+      <a href="#the-fragmentation-nightmare" class="toc-link">Why Fragmented Campaign Names Break Reporting</a>
+    </li>
+  
+    <li>
+      <a href="#7-campaign-naming-mistakes" class="toc-link">The 7 Worst Campaign Naming Mistakes</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-1-duplicate-variations" class="toc-link">1. Creating 15 Variations of the Same Campaign Name</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-2-omitting-year-season" class="toc-link">2. Omitting Year or Quarter Identifiers</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-3-overstuffing-parameters" class="toc-link">3. Overstuffing Targeting Details into Campaign Name</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-4-delimiter-anarchy" class="toc-link">4. Delimiter Anarchy (Mixing -, _, and %20)</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-5-mid-flight-renaming" class="toc-link">5. Renaming Campaigns Mid-Flight in Ad Platforms</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-6-non-iso-dates" class="toc-link">6. Using Non-Standard Date Conventions</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-7-generic-placeholders" class="toc-link">7. Using Generic Placeholders (promo, test, campaign1)</a>
+    </li>
+  
+    <li>
+      <a href="#durable-taxonomy-formula" class="toc-link">The 4-Part Durable Taxonomy Formula</a>
+    </li>
+  
+    <li>
+      <a href="#faq" class="toc-link">Frequently Asked Questions</a>
+    </li>
+  
+          </ol>
+        </details>
+
+        <!-- Main Prose Body -->
+        <div class="article-prose">
+          
+      <p class="lead-text">Open Google Analytics 4, navigate to <strong>Acquisition > Traffic Acquisition</strong>, and set the primary dimension to <strong>Session campaign</strong>. If you see ten slightly different rows for your Summer Sale campaign, your naming taxonomy is broken.</p>
+
+      <h2 id="the-fragmentation-nightmare">Why Fragmented Campaign Names Break Reporting</h2>
+      <p>When campaign names are not standardized, performance data fragments across multiple rows. Media teams spend hours exporting data to spreadsheets and writing manual VLOOKUPs just to calculate total campaign ROI.</p>
+
+      <h2 id="7-campaign-naming-mistakes">The 7 Worst Campaign Naming Mistakes</h2>
+
+      <h3 id="mistake-1-duplicate-variations">1. Creating 15 Variations of the Same Campaign Name</h3>
+      <p>Team members write <code>summer_sale</code>, <code>SummerSale</code>, <code>summer-sale-2026</code>, and <code>summersale</code>. In GA4, these are four independent reporting entities.</p>
+
+      <h3 id="mistake-2-omitting-year-season">2. Omitting Year or Quarter Identifiers</h3>
+      <p>Naming a campaign <code>black-friday</code> without a year means 2024, 2025, and 2026 data will aggregate into a single row or conflict historically.</p>
+
+      <h3 id="mistake-3-overstuffing-parameters">3. Overstuffing Targeting Details into Campaign Name</h3>
+      <p>Do not pack audience criteria, creative versions, and placements into <code>utm_campaign</code>. That is what <code>utm_term</code> and <code>utm_content</code> are designed for.</p>
+
+      <h3 id="mistake-4-delimiter-anarchy">4. Delimiter Anarchy (Mixing -, _, and %20)</h3>
+      <p>Establish one delimiter standard. We recommend standard hyphens (<code>kebab-case</code>) for all campaign names.</p>
+
+      <h3 id="mistake-5-mid-flight-renaming">5. Renaming Campaigns Mid-Flight in Ad Platforms</h3>
+      <p>Changing your campaign name in Meta Ads Manager mid-campaign splits GA4 attribution across two distinct entities, destroying trend analysis.</p>
+
+      <h3 id="mistake-6-non-iso-dates">6. Using Non-Standard Date Conventions</h3>
+      <p>Avoid <code>May2026</code> or <code>05-26</code>. Use standard ISO formats (<code>2026-05</code>) so your reports sort chronologically.</p>
+
+      <h3 id="mistake-7-generic-placeholders">7. Using Generic Placeholders (promo, test, campaign1)</h3>
+      <p>Generic placeholder names provide zero analytical context and devalue your historical analytics archives.</p>
+
+      <h2 id="durable-taxonomy-formula">The 4-Part Durable Taxonomy Formula</h2>
+      <pre><code>[market]-[objective]-[theme]-[year]
+Example: eu-acquisition-saas-launch-2026</code></pre>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>Can I merge fragmented campaign rows directly in GA4?</h3>
+        <p>No. GA4 does not allow retroactive data edits. You must consolidate fragmented names in reporting layers like Looker Studio using CASE statements or REGEX.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Should I put dates in utm_campaign?</h3>
+        <p>Yes. Including the year or year-month (e.g., 2026 or 2026-q2) prevents seasonal campaigns from colliding with past or future iterations.</p>
+      </div>
+    
+
+          
+    <section class="article-references" id="article-sources">
+      <h3>Sources &amp; Authoritative References</h3>
+      <ul class="references-list">
+        
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/11242841" target="_blank" rel="noopener">Campaigns and traffic sources in GA4</a>
+            <span class="ref-publisher">(Google Support)</span>
+          </li>
+        
+      </ul>
+    </section>
+  
+
+          <!-- Author Box -->
+          <div class="article-author-card">
+            <div class="author-avatar" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="author-info">
+              <h4>DJ</h4>
+              <div class="author-role">Attribution & Analytics Architect</div>
+              <p class="author-bio">Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.</p>
+            </div>
+          </div>
+        </div>
+
+<aside class="article-tool-cta" aria-label="Related tool">
+      <div class="article-tool-cta-inner">
+        <div class="article-tool-cta-content">
+          <p class="article-tool-cta-label">Related tool</p>
+          <h3 class="article-tool-cta-title">Build Standardized Campaign URLs</h3>
+          <p class="article-tool-cta-desc">Use the UTMCraft Campaign URL Builder to enforce clean, lowercase, hyphen-separated campaign naming standards across your entire organization.</p>
+        </div>
+        <div class="article-tool-cta-action">
+          <a href="/campaign-url-builder/" class="article-tool-cta-btn">
+            <span>Build Campaign Links</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+        <!-- Related Guides Grid -->
+        <section class="related-articles-section">
+          <h3>Related Measurement Guides</h3>
+          <div class="related-articles-grid">
+            
+    <a href="/utm-campaign-guide/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/utm-campaign-guide.webp" alt="Taxonomy block diagram illustrating the structured tokens that compose an enterprise utm_campaign string" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Taxonomy</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h4 class="post-card-title">What Is utm_campaign? Campaign Naming Frameworks, IDs & Taxonomy</h4>
+        <p class="post-card-excerpt">Learn how to structure utm_campaign for clear GA4 reporting. Discover formula frameworks, campaign IDs (utm_id), delimiter best practices, and real examples.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published February 15, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/utm-naming-mistakes/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/utm-naming-mistakes.webp" alt="Comparison chart of chaotic UTM naming examples versus clean, standardized campaign taxonomy" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Mistakes & QA</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h4 class="post-card-title">7 UTM Naming Mistakes Marketing Teams Keep Making</h4>
+        <p class="post-card-excerpt">Avoid the 7 most common UTM naming mistakes that fragment campaign reports, create duplicate rows in GA4, and derail marketing attribution.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published September 24, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/utm-naming-conventions-guide/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/utm-naming-conventions-guide.webp" alt="Taxonomy block diagram illustrating structured components of a standard enterprise campaign naming convention" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Governance</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h4 class="post-card-title">UTM Naming Conventions: Frameworks, Formats, and Governance Rules</h4>
+        <p class="post-card-excerpt">Master UTM naming conventions. Discover field-tested campaign naming formulas, delimiter rules, case-sensitivity guidelines, and downloadable taxonomy SOPs.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published January 28, 2026</span>
+        </div>
+      </div>
+    </a>
+          </div>
+        </section>
+      </article>
+
+      <!-- Desktop Sticky Table of Contents Sidebar -->
+      <aside class="blog-sidebar">
+        <div class="toc-card">
+          <div class="toc-heading">Table of Contents</div>
+          <ul class="toc-list">
+            
+    <li>
+      <a href="#the-fragmentation-nightmare" class="toc-link">Why Fragmented Campaign Names Break Reporting</a>
+    </li>
+  
+    <li>
+      <a href="#7-campaign-naming-mistakes" class="toc-link">The 7 Worst Campaign Naming Mistakes</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-1-duplicate-variations" class="toc-link">1. Creating 15 Variations of the Same Campaign Name</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-2-omitting-year-season" class="toc-link">2. Omitting Year or Quarter Identifiers</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-3-overstuffing-parameters" class="toc-link">3. Overstuffing Targeting Details into Campaign Name</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-4-delimiter-anarchy" class="toc-link">4. Delimiter Anarchy (Mixing -, _, and %20)</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-5-mid-flight-renaming" class="toc-link">5. Renaming Campaigns Mid-Flight in Ad Platforms</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-6-non-iso-dates" class="toc-link">6. Using Non-Standard Date Conventions</a>
+    </li>
+  
+    <li>
+      <a href="#mistake-7-generic-placeholders" class="toc-link">7. Using Generic Placeholders (promo, test, campaign1)</a>
+    </li>
+  
+    <li>
+      <a href="#durable-taxonomy-formula" class="toc-link">The 4-Part Durable Taxonomy Formula</a>
+    </li>
+  
+    <li>
+      <a href="#faq" class="toc-link">Frequently Asked Questions</a>
+    </li>
+  
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+              <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+              <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+            </a>
+            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
+            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Core Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+              <li><a href="/#campaign-history" data-switch-tab="tab-history">Campaign History</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Platform Builders</h4>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <ul class="footer-links">
+              <li><a href="/blog/">All Knowledge Guides</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <ul class="footer-links">
+              <li><a href="/about/">About Us</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/terms.html">Terms and Conditions</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by DJ</div>
+          <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/blog.js"></script>
+</body>
+</html>

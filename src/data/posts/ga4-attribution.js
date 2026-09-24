@@ -41,7 +41,7 @@ export const ga4AttributionPosts = [
     },
     relatedSlugs: ['ga4-utms-not-showing', 'ga4-direct-traffic-troubleshooting', 'ga4-unassigned-traffic', 'ga4-not-set', 'redirects-removing-utms'],
     references: [
-      { title: 'Troubleshoot Traffic Acquisition in GA4', url: 'https://support.google.com/analytics/answer/9756891', publisher: 'Google Analytics Help' },
+      { title: 'GA4 Default Channel Grouping', url: 'https://support.google.com/analytics/answer/9756891', publisher: 'Google Analytics Help' },
       { title: 'Verify Your Tag Implementation with DebugView', url: 'https://support.google.com/analytics/answer/7201382', publisher: 'Google Analytics Help' },
       { title: 'Manage Unwanted Referrals in GA4', url: 'https://support.google.com/analytics/answer/10327750', publisher: 'Google Analytics Help' }
     ],
@@ -205,7 +205,7 @@ Location: https://example.com/signup/?utm_source=meta</code></pre>
     },
     relatedSlugs: ['ga4-utm-troubleshooting-guide', 'ga4-direct-traffic-troubleshooting', 'redirects-removing-utms', 'how-to-test-utms'],
     references: [
-      { title: 'Data Processing Latency in GA4', url: 'https://support.google.com/analytics/answer/11198165', publisher: 'Google Analytics Help' }
+      { title: 'GA4 Data Freshness', url: 'https://support.google.com/analytics/answer/11198161', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
       <p class="lead-text">You configured UTM parameters, launched your ads, but your GA4 acquisition reports show zero campaign visits. Before panicking or rewriting your entire campaign setup, review these 9 root causes and their verified technical solutions.</p>
@@ -293,7 +293,7 @@ Location: https://example.com/signup/?utm_source=meta</code></pre>
     },
     relatedSlugs: ['ga4-utm-troubleshooting-guide', 'redirects-removing-utms', 'ga4-utms-not-showing', 'utm-qa-checklist'],
     references: [
-      { title: 'Default Channel Grouping in GA4', url: 'https://support.google.com/analytics/answer/9756891', publisher: 'Google Analytics Help' }
+      { title: 'Understand (direct) / (none) traffic in GA4', url: 'https://support.google.com/analytics/answer/15258820', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
       <p class="lead-text">In GA4, "Direct" is not a marketing channel—it is an admission of failure. It indicates that Google Analytics received a session hit with <strong>zero referrer data and zero campaign parameters</strong>. When you spend ad budget and your traffic lands in Direct, your return on investment becomes invisible.</p>
@@ -442,7 +442,7 @@ Location: https://example.com/signup/?utm_source=meta</code></pre>
     },
     relatedSlugs: ['ga4-utm-troubleshooting-guide', 'ga4-unassigned-traffic', 'ga4-utms-not-showing'],
     references: [
-      { title: 'Why (not set) Appears in GA4 Reports', url: 'https://support.google.com/analytics/answer/2820710', publisher: 'Google Analytics Help' }
+      { title: 'What the value (not set) means in GA4 reports', url: 'https://support.google.com/analytics/answer/13504892', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
       <p class="lead-text">Seeing <code>(not set)</code> in your Google Analytics 4 reports indicates that GA4 recorded an event, but the queried dimension was completely missing from the incoming event payload. Understanding why this happens allows you to fix underlying implementation defects.</p>
@@ -507,7 +507,7 @@ Location: https://example.com/signup/?utm_source=meta</code></pre>
     },
     relatedSlugs: ['ga4-utm-troubleshooting-guide', 'ga4-direct-traffic-troubleshooting', 'how-to-test-utms', 'utm-qa-checklist'],
     references: [
-      { title: 'HTTP/1.1 Redirection Specification (RFC 7231)', url: 'https://datatracker.ietf.org/doc/html/rfc7231#section-6.4', publisher: 'IETF' }
+      { title: 'HTTP Semantics: Redirection (RFC 9110)', url: 'https://datatracker.ietf.org/doc/html/rfc9110#section-15.4', publisher: 'IETF' }
     ],
     contentHtml: `
       <p class="lead-text">Server redirects are responsible for more lost marketing attribution than ad blockers and iOS privacy updates combined. If your marketing URL undergoes a 301 or 302 redirect that does not explicitly append the incoming query string, every single UTM parameter is discarded before the visitor hits your analytics tracking tag.</p>

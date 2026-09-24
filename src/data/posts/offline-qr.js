@@ -187,7 +187,7 @@ export const offlineQrPosts = [
     },
     relatedSlugs: ['offline-qr-utm-tracking', 'redirects-removing-utms', 'utm-qa-checklist'],
     references: [
-      { title: 'ISO/IEC 18004 QR Code Standard', url: 'https://www.iso.org/standard/62021.html', publisher: 'ISO' }
+      { title: 'ISO/IEC 18004:2024 QR Code Standard', url: 'https://www.iso.org/standard/83389.html', publisher: 'ISO' }
     ],
     contentHtml: `
       <p class="lead-text">Printing a QR code without UTM parameters is an irreversible tracking error. Once ink hits paper on thousands of flyers or product boxes, you cannot retrofit analytics. Here is how to create, test, and deploy tracking QR codes properly.</p>

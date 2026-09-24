@@ -177,7 +177,7 @@ export const organicSocialPrPosts = [
     },
     relatedSlugs: ['non-paid-marketing-utm-tracking', 'utm-strategy-guide', 'bulk-utm-workflow'],
     references: [
-      { title: 'Campaign Tracking in Google Analytics 4', url: 'https://support.google.com/analytics/answer/10918862', publisher: 'Google Analytics Help' }
+      { title: 'GA4 URL builders: Collect campaign data with custom URLs', url: 'https://support.google.com/analytics/answer/10917952', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
       <p class="lead-text">Influencer marketing without standardized link tracking produces anecdotal metrics (likes and vanity impressions) instead of measurable pipeline and revenue. Here is how to structure tracking for 10 or 1,000 creator partnerships.</p>

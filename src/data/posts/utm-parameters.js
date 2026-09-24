@@ -40,7 +40,7 @@ export const utmParametersPosts = [
     relatedSlugs: ['utm-source-guide', 'utm-medium-guide', 'utm-campaign-guide', 'ga4-utm-troubleshooting-guide'],
     references: [
       { title: 'Dimensions & Metrics in Google Analytics 4', url: 'https://support.google.com/analytics/answer/9143382', publisher: 'Google Analytics Help' },
-      { title: 'Google Analytics 4 URL-Builder Documentation', url: 'https://support.google.com/analytics/answer/10918862', publisher: 'Google Analytics Help' },
+      { title: 'GA4 URL builders: Collect campaign data with custom URLs', url: 'https://support.google.com/analytics/answer/10917952', publisher: 'Google Analytics Help' },
       { title: 'Uniform Resource Identifier (URI): Generic Syntax', url: 'https://datatracker.ietf.org/doc/html/rfc3986', publisher: 'IETF' }
     ],
     contentHtml: `
@@ -297,7 +297,7 @@ export const utmParametersPosts = [
     },
     relatedSlugs: ['ga4-utm-parameters-guide', 'utm-medium-guide', 'utm-campaign-guide', 'ga4-unassigned-traffic'],
     references: [
-      { title: 'GA4 Traffic Source Dimensions', url: 'https://support.google.com/analytics/answer/9355604', publisher: 'Google Analytics Help' }
+      { title: 'Traffic-source dimensions in GA4', url: 'https://support.google.com/analytics/answer/15567068', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
       <p class="lead-text"><code>utm_source</code> is the foundational parameter in web attribution. It answers a single, direct question: <strong>Which specific platform, publisher, or partner sent this visitor to your website?</strong></p>
@@ -521,7 +521,7 @@ export const utmParametersPosts = [
     },
     relatedSlugs: ['ga4-utm-parameters-guide', 'utm-strategy-guide', 'utm-naming-conventions-guide', 'bulk-utm-workflow'],
     references: [
-      { title: 'Cost Data Import in GA4 via utm_id', url: 'https://support.google.com/analytics/answer/10071301', publisher: 'Google Analytics Help' }
+      { title: 'Campaigns and traffic sources in GA4', url: 'https://support.google.com/analytics/answer/11242841', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
       <p class="lead-text"><code>utm_campaign</code> is the primary grouping dimension for all your promotional initiatives. It tells your analytics suite which specific promotion, product launch, seasonal sale, or strategic initiative prompted a user's visit.</p>

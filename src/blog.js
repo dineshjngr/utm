@@ -85,32 +85,91 @@ function initCopyCodeButtons() {
 // 4. Instant Client-Side Search for Blog Home & Category Pages
 function initBlogSearch() {
   const searchInput = document.getElementById('blog-search-input');
-  const cards = document.querySelectorAll('.post-card');
+  const cards = Array.from(document.querySelectorAll('body[data-page="blog-index"] .post-card'));
   const emptyState = document.getElementById('blog-empty-state');
-  if (!searchInput || cards.length === 0) return;
+  if (cards.length === 0) return;
 
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.trim().toLowerCase();
-    let visibleCount = 0;
+  const pageSize = 12;
+  const postsGrid = cards[0].parentElement;
+  if (!postsGrid) return;
 
-    cards.forEach(card => {
+  const pagination = document.createElement('nav');
+  pagination.className = 'blog-pagination';
+  pagination.setAttribute('aria-label', 'Blog pages');
+  postsGrid.insertAdjacentElement('afterend', pagination);
+
+  let currentPage = Math.max(1, Number.parseInt(new URLSearchParams(window.location.search).get('page'), 10) || 1);
+
+  function getMatchingCards() {
+    const query = searchInput?.value.trim().toLowerCase() || '';
+    return cards.filter(card => {
       const title = card.querySelector('.post-card-title')?.textContent.toLowerCase() || '';
       const excerpt = card.querySelector('.post-card-excerpt')?.textContent.toLowerCase() || '';
       const category = card.querySelector('.post-card-category')?.textContent.toLowerCase() || '';
+      return title.includes(query) || excerpt.includes(query) || category.includes(query);
+    });
+  }
 
-      const match = title.includes(query) || excerpt.includes(query) || category.includes(query);
-      if (match) {
-        card.style.display = 'flex';
-        visibleCount++;
-      } else {
-        card.style.display = 'none';
-      }
+  function renderPage() {
+    const matchingCards = getMatchingCards();
+    const pageCount = Math.max(1, Math.ceil(matchingCards.length / pageSize));
+    currentPage = Math.min(currentPage, pageCount);
+    const start = (currentPage - 1) * pageSize;
+    const pageCards = new Set(matchingCards.slice(start, start + pageSize));
+
+    cards.forEach(card => {
+      card.style.display = pageCards.has(card) ? 'flex' : 'none';
     });
 
     if (emptyState) {
-      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+      emptyState.style.display = matchingCards.length === 0 ? 'block' : 'none';
     }
+
+    pagination.replaceChildren();
+    if (matchingCards.length <= pageSize) return;
+
+    const summary = document.createElement('p');
+    summary.className = 'blog-pagination-summary';
+    summary.textContent = `Showing ${start + 1}–${Math.min(start + pageSize, matchingCards.length)} of ${matchingCards.length} guides`;
+    pagination.append(summary);
+
+    const links = document.createElement('div');
+    links.className = 'blog-pagination-links';
+    pagination.append(links);
+
+    function addPageLink(label, page, { current = false, disabled = false, ariaLabel } = {}) {
+      const link = document.createElement('a');
+      link.className = 'blog-pagination-link';
+      link.textContent = label;
+      link.href = page === 1 ? window.location.pathname : `${window.location.pathname}?page=${page}`;
+      if (current) {
+        link.setAttribute('aria-current', 'page');
+        link.classList.add('is-current');
+      }
+      if (disabled) {
+        link.setAttribute('aria-disabled', 'true');
+        link.tabIndex = -1;
+        link.classList.add('is-disabled');
+        link.addEventListener('click', event => event.preventDefault());
+      }
+      if (ariaLabel) link.setAttribute('aria-label', ariaLabel);
+      links.append(link);
+    }
+
+    addPageLink('Previous', Math.max(1, currentPage - 1), { disabled: currentPage === 1, ariaLabel: 'Previous page' });
+    for (let page = 1; page <= pageCount; page++) {
+      addPageLink(String(page), page, { current: page === currentPage, ariaLabel: `Page ${page}` });
+    }
+    addPageLink('Next', Math.min(pageCount, currentPage + 1), { disabled: currentPage === pageCount, ariaLabel: 'Next page' });
+  }
+
+  searchInput?.addEventListener('input', () => {
+    currentPage = 1;
+    window.history.replaceState({}, '', window.location.pathname);
+    renderPage();
   });
+
+  renderPage();
 }
 
 // 5. Theme Toggle Synchronization
