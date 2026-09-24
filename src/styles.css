@@ -572,7 +572,7 @@ summary:focus-visible {
 .workspace-title-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .workspace-title {
@@ -594,11 +594,11 @@ summary:focus-visible {
 }
 
 .workspace-subtitle {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-secondary);
   font-weight: 400;
   letter-spacing: -0.01em;
-  line-height: 1.45;
+  line-height: 1.5;
   margin: 0;
 }
 
