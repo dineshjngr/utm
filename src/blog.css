@@ -1130,6 +1130,42 @@ details.article-faq-item > p {
   margin: 0;
 }
 
+.author-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.author-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 34px;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--border-card);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  font-size: 0.8rem;
+  font-weight: 550;
+  line-height: 1;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.author-social-link:hover {
+  color: var(--accent-text);
+  border-color: var(--border-hover);
+  background: var(--bg-accent-soft);
+}
+
+.author-social-link svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
 /* Related Articles - Spacious Banner Showcase Grid */
 .related-articles-section {
   margin-top: 4.5rem;

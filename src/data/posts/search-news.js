@@ -78,9 +78,15 @@ export const searchNewsPosts = [
     category: 'search-news',
     isPillar: false,
     author: {
-      name: 'DJ',
-      role: 'Search & Analytics Editor',
-      url: 'https://utmcraft.com/about/'
+      name: 'Dinesh Jeengar',
+      role: 'Digital Marketing & Technical SEO',
+      url: 'https://dineshjeengar.com/',
+      bio: 'Digital marketing and technical SEO professional based in Dubai, focused on data-led campaigns and measurable growth.',
+      socials: [
+        { label: 'Website', type: 'website', url: 'https://dineshjeengar.com/' },
+        { label: 'LinkedIn', type: 'linkedin', url: 'https://www.linkedin.com/in/dinesh-jeengar/' },
+        { label: 'Instagram', type: 'instagram', url: 'https://www.instagram.com/dinesshjngr/' }
+      ]
     },
     datePublished: '2026-09-28',
     dateModified: '2026-09-28',

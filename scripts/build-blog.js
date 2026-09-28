@@ -64,6 +64,16 @@ export function renderArticlePage(post) {
   const related = getRelatedPosts(post, 3);
   const canonicalUrl = `https://utmcraft.com/${post.slug}/`;
   const imageUrl = `https://utmcraft.com${post.featuredImage}`;
+  const authorIcons = {
+    website: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>',
+    linkedin: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>',
+    instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>'
+  };
+  const authorSocialLinks = (post.author.socials || []).map(social => `
+    <a class="author-social-link" href="${escapeAttr(social.url)}" target="_blank" rel="me noopener noreferrer" aria-label="${escapeAttr(post.author.name)} on ${escapeAttr(social.label)}">
+      ${authorIcons[social.type] || authorIcons.website}<span>${escapeAttr(social.label)}</span>
+    </a>
+  `).join('');
 
   // Structured Data: BlogPosting & BreadcrumbList
   const jsonLd = {
@@ -95,7 +105,8 @@ export function renderArticlePage(post) {
           "@type": "Person",
           "name": post.author.name,
           "jobTitle": post.author.role,
-          "url": post.author.url
+          "url": post.author.url,
+          ...(post.author.socials?.length ? { "sameAs": post.author.socials.map(social => social.url) } : {})
         },
         "publisher": {
           "@type": "Organization",
@@ -319,7 +330,8 @@ export function renderArticlePage(post) {
             <div class="author-info">
               <h4>${escapeAttr(post.author.name)}</h4>
               <div class="author-role">${escapeAttr(post.author.role)}</div>
-              <p class="author-bio">Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.</p>
+              <p class="author-bio">${escapeAttr(post.author.bio || 'Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.')}</p>
+              ${authorSocialLinks ? `<nav class="author-social-links" aria-label="Author links">${authorSocialLinks}</nav>` : ''}
             </div>
           </div>
         </div>
