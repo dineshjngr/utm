@@ -7,7 +7,7 @@ export const utmParametersPosts = [
     category: 'utm-parameters',
     isPillar: true,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -268,7 +268,7 @@ export const utmParametersPosts = [
     category: 'utm-parameters',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -380,7 +380,7 @@ export const utmParametersPosts = [
     category: 'utm-parameters',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -492,7 +492,7 @@ export const utmParametersPosts = [
     category: 'utm-parameters',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },

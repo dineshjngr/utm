@@ -7,7 +7,7 @@ export const organicSocialPrPosts = [
     category: 'organic-social-pr',
     isPillar: true,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -148,7 +148,7 @@ export const organicSocialPrPosts = [
     category: 'organic-social-pr',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },

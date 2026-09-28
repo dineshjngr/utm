@@ -78,3 +78,37 @@ const googleTag = document.createElement('script');
 googleTag.async = true;
 googleTag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
 document.head.append(googleTag);
+
+const backToTop = document.querySelector('.back-to-top');
+if (backToTop) {
+  let progressFrame = 0;
+
+  const updateScrollProgress = () => {
+    progressFrame = 0;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+    const isAtBottom = scrollable > 0 && window.scrollY >= scrollable - 1;
+    const percent = isAtBottom ? 100 : Math.min(99, Math.round(ratio * 100));
+    const isVisible = ratio >= 0.4;
+    backToTop.style.setProperty('--scroll-progress', `${percent}%`);
+    backToTop.classList.toggle('is-visible', isVisible);
+    backToTop.classList.toggle('is-at-bottom', isAtBottom);
+    backToTop.setAttribute('aria-hidden', String(!isVisible));
+    backToTop.tabIndex = isVisible ? 0 : -1;
+    backToTop.setAttribute('aria-label', isAtBottom ? 'Back to top' : 'Back to top, scroll progress indicator');
+  };
+
+  const scheduleProgressUpdate = () => {
+    if (!progressFrame) progressFrame = window.requestAnimationFrame(updateScrollProgress);
+  };
+
+  window.addEventListener('scroll', scheduleProgressUpdate, { passive: true });
+  window.addEventListener('resize', scheduleProgressUpdate, { passive: true });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+    });
+  });
+  updateScrollProgress();
+}

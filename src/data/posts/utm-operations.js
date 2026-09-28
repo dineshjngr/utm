@@ -7,7 +7,7 @@ export const utmOperationsPosts = [
     category: 'utm-operations',
     isPillar: true,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -182,7 +182,7 @@ export const utmOperationsPosts = [
     category: 'utm-operations',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -214,7 +214,7 @@ export const utmOperationsPosts = [
       { title: 'GA4 URL builders: Collect campaign data with custom URLs', url: 'https://support.google.com/analytics/answer/10917952', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text">Launching a major quarterly promotion or seasonal sale across Google, Meta, LinkedIn, Email, and Influencer partners requires generating dozens—sometimes hundreds—of tagged URLs. Generating these links manually one-by-one invites typos and inconsistent casing. Here is how to execute a professional bulk UTM workflow.</p>
+      <p class="lead-text">Launching a major quarterly promotion or seasonal sale across Google, Meta, LinkedIn, Email, and Influencer partners requires generating dozens-sometimes hundreds-of tagged URLs. Generating these links manually one-by-one invites typos and inconsistent casing. Here is how to execute a professional bulk UTM workflow.</p>
 
       <h2 id="the-problem-with-spreadsheets">Why Campaign Spreadsheets Create Tracking Debt</h2>
       <p>Most marketing organizations rely on a shared Google Sheet. Over time, team members accidentally overwrite formulas, introduce trailing spaces, paste uppercase characters, or create duplicate parameters. These spreadsheet errors slip silently into live ad campaigns, breaking GA4 attribution.</p>
@@ -243,7 +243,7 @@ export const utmOperationsPosts = [
     category: 'utm-operations',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -330,7 +330,7 @@ function storeTouchpoints(utmParams) {
     category: 'utm-operations',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },

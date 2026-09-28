@@ -7,7 +7,7 @@ export const metaAdsPosts = [
     category: 'meta-ads',
     isPillar: true,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -177,7 +177,7 @@ export const metaAdsPosts = [
     category: 'meta-ads',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -244,7 +244,7 @@ export const metaAdsPosts = [
     category: 'meta-ads',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },

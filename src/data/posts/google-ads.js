@@ -7,7 +7,7 @@ export const googleAdsPosts = [
     category: 'google-ads',
     isPillar: true,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -173,7 +173,7 @@ export const googleAdsPosts = [
     category: 'google-ads',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -280,7 +280,7 @@ export const googleAdsPosts = [
     category: 'google-ads',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -344,7 +344,7 @@ export const googleAdsPosts = [
     category: 'google-ads',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },

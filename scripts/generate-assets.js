@@ -1088,8 +1088,13 @@ function createSvgForPost(post) {
 export async function generateAllBannerImages() {
   console.log(`Generating ${blogPosts.length} WebP banner images (1200x630)...`);
   for (const post of blogPosts) {
-    const svg = createSvgForPost(post);
     const destPath = path.join(outDir, `${post.slug}.webp`);
+    if (post.preserveFeaturedImage && fs.existsSync(destPath)) {
+      console.log(`Keeping supplied banner for ${post.slug}`);
+      continue;
+    }
+
+    const svg = createSvgForPost(post);
     await sharp(Buffer.from(svg))
       .webp({ quality: 92 })
       .toFile(destPath);

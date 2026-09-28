@@ -1141,13 +1141,11 @@ function recalculateSingleUrl() {
   if (stickyBar) {
     if (result.isValid) {
       stickyBar.classList.add('is-visible');
-      document.body.classList.add('has-mobile-sticky-bar');
       if (stickyUrlText) {
         stickyUrlText.textContent = result.url;
       }
     } else {
       stickyBar.classList.remove('is-visible');
-      document.body.classList.remove('has-mobile-sticky-bar');
     }
   }
 
@@ -2398,6 +2396,17 @@ function initMacroChips() {
 // =========================================================
 // BOOTSTRAP INITIALIZATION
 // =========================================================
+function initMobileStickyBarFooterAvoidance() {
+  const stickyBar = document.getElementById('mobile-sticky-bar');
+  const footer = document.querySelector('.app-footer');
+  if (!stickyBar || !footer || !('IntersectionObserver' in window)) return;
+
+  const footerObserver = new IntersectionObserver(([entry]) => {
+    stickyBar.classList.toggle('is-footer-visible', entry.isIntersecting);
+  });
+  footerObserver.observe(footer);
+}
+
 function initApp() {
   applyPageOverrides();
   initTheme();
@@ -2410,6 +2419,7 @@ function initApp() {
   initModals();
   initFooterNavigation();
   initMacroChips();
+  initMobileStickyBarFooterAvoidance();
   updateHistoryBadge();
 }
 

@@ -7,7 +7,7 @@ export const emailTrackingPosts = [
     category: 'email-tracking',
     isPillar: true,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -162,7 +162,7 @@ Footer link:     utm_content=footer_terms_link</code></pre>
     category: 'email-tracking',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },

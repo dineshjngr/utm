@@ -69,7 +69,12 @@ export function renderArticlePage(post) {
     linkedin: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>',
     instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>'
   };
-  const authorSocialLinks = (post.author.socials || []).map(social => `
+  const authorSocials = post.author.socials?.length ? post.author.socials : [
+    { label: 'Website', type: 'website', url: 'https://dineshjeengar.com/' },
+    { label: 'LinkedIn', type: 'linkedin', url: 'https://www.linkedin.com/in/dinesh-jeengar/' },
+    { label: 'Instagram', type: 'instagram', url: 'https://www.instagram.com/dinesshjngr/' }
+  ];
+  const authorSocialLinks = authorSocials.map(social => `
     <a class="author-social-link" href="${escapeAttr(social.url)}" target="_blank" rel="me noopener noreferrer" aria-label="${escapeAttr(post.author.name)} on ${escapeAttr(social.label)}">
       ${authorIcons[social.type] || authorIcons.website}<span>${escapeAttr(social.label)}</span>
     </a>
@@ -298,7 +303,7 @@ export function renderArticlePage(post) {
             <span class="article-meta-bullet">•</span>
             <span class="article-reading-time">${post.readingTime}</span>
             <span class="article-meta-bullet">•</span>
-            <span class="article-author-byline">Written by <a href="${escapeAttr(post.author.url)}">${escapeAttr(post.author.name)}</a></span>
+            <span class="article-author-byline">Written by ${escapeAttr(post.author.name)}</span>
           </div>
           ${editorialCredits}
 
@@ -704,7 +709,7 @@ function updateSitemap() {
   const now = new Date().toISOString().split('T')[0];
 
   const staticUrls = [
-    { loc: 'https://utmcraft.com/', lastmod: '2026-09-24', priority: '1.0', changefreq: 'weekly' },
+    { loc: 'https://utmcraft.com/', lastmod: '2026-09-28', priority: '1.0', changefreq: 'weekly' },
     { loc: 'https://utmcraft.com/bulk-utm-builder/', priority: '0.85', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/campaign-url-builder/', priority: '0.9', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/utm-checker/', priority: '0.85', changefreq: 'monthly' },
@@ -716,9 +721,10 @@ function updateSitemap() {
     { loc: 'https://utmcraft.com/utm-builder/linkedin/', priority: '0.85', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/terms.html', priority: '0.5', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/privacy.html', priority: '0.5', changefreq: 'monthly' },
-    { loc: 'https://utmcraft.com/about/', lastmod: '2026-09-24', priority: '0.6', changefreq: 'monthly' },
+    { loc: 'https://utmcraft.com/about/', lastmod: '2026-09-28', priority: '0.6', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/contact/', priority: '0.6', changefreq: 'monthly' },
-    { loc: 'https://utmcraft.com/blog/', priority: '0.9', changefreq: 'weekly' }
+    { loc: 'https://utmcraft.com/version-history.html', lastmod: '2026-09-28', priority: '0.5', changefreq: 'monthly' },
+    { loc: 'https://utmcraft.com/blog/', lastmod: '2026-09-28', priority: '0.9', changefreq: 'weekly' }
   ];
 
   const categoryUrls = blogCategories.map(cat => ({

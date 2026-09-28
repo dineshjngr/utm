@@ -7,7 +7,7 @@ export const offlineQrPosts = [
     category: 'offline-qr',
     isPillar: true,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -158,7 +158,7 @@ export const offlineQrPosts = [
     category: 'offline-qr',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },

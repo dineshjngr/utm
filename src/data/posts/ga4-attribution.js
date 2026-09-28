@@ -7,7 +7,7 @@ export const ga4AttributionPosts = [
     category: 'ga4-attribution',
     isPillar: true,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -174,7 +174,7 @@ Location: https://example.com/signup/?utm_source=meta</code></pre>
     category: 'ga4-attribution',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -264,7 +264,7 @@ Location: https://example.com/signup/?utm_source=meta</code></pre>
     category: 'ga4-attribution',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -296,7 +296,7 @@ Location: https://example.com/signup/?utm_source=meta</code></pre>
       { title: 'Understand (direct) / (none) traffic in GA4', url: 'https://support.google.com/analytics/answer/15258820', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text">In GA4, "Direct" is not a marketing channel—it is an admission of failure. It indicates that Google Analytics received a session hit with <strong>zero referrer data and zero campaign parameters</strong>. When you spend ad budget and your traffic lands in Direct, your return on investment becomes invisible.</p>
+      <p class="lead-text">In GA4, "Direct" is not a marketing channel-it is an admission of failure. It indicates that Google Analytics received a session hit with <strong>zero referrer data and zero campaign parameters</strong>. When you spend ad budget and your traffic lands in Direct, your return on investment becomes invisible.</p>
 
       <h2 id="what-direct-actually-means">What "Direct" Actually Means in GA4</h2>
       <p>A session is labeled as <code>Direct / (none)</code> only when both of the following are true:</p>
@@ -331,7 +331,7 @@ Location: https://example.com/signup/?utm_source=meta</code></pre>
     category: 'ga4-attribution',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -413,7 +413,7 @@ Location: https://example.com/signup/?utm_source=meta</code></pre>
     category: 'ga4-attribution',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -478,7 +478,7 @@ Location: https://example.com/signup/?utm_source=meta</code></pre>
     category: 'ga4-attribution',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -564,7 +564,7 @@ RewriteRule ^signup$ /signup/ [R=301,L,QSA]</code></pre>
     category: 'ga4-attribution',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },

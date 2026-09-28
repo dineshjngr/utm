@@ -1,6 +1,6 @@
 # UTMCraft Blog Articles Directory
 
-All 51 active production articles and guides are organized in this directory as individual HTML files.
+All 51 active production guides are organized in this directory as individual HTML files.
 
 ## URL Architecture & Routing Governance
 

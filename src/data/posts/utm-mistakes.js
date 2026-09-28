@@ -3,11 +3,11 @@ export const utmMistakesPosts = [
     slug: 'utm-tracking-mistakes',
     title: '15 UTM Tracking Mistakes That Ruin Your GA4 Data (and How to Fix Them)',
     seoTitle: '15 UTM Tracking Mistakes Ruining GA4 Data | UTMCraft',
-    description: 'Discover the 15 most destructive UTM tracking mistakes breaking GA4 attribution, causing Unassigned traffic, and corrupting ad ROI—with actionable fixes.',
+    description: 'Discover the 15 most destructive UTM tracking mistakes breaking GA4 attribution, causing Unassigned traffic, and corrupting ad ROI-with actionable fixes.',
     category: 'utm-mistakes',
     isPillar: true,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -62,7 +62,7 @@ export const utmMistakesPosts = [
       { title: 'RFC 3986: Uniform Resource Identifier (URI) Generic Syntax', url: 'https://datatracker.ietf.org/doc/html/rfc3986', publisher: 'IETF' }
     ],
     contentHtml: `
-      <p class="lead-text">Marketers spend billions on paid search, social campaigns, and email sequences, yet up to 40% of campaign traffic lands in Google Analytics 4 as <strong>Direct</strong> or <strong>Unassigned</strong>. The problem is almost never the ad platform or GA4 itself—it is subtle, systemic UTM tracking mistakes that silently corrupt attribution pipelines.</p>
+      <p class="lead-text">Marketers spend billions on paid search, social campaigns, and email sequences, yet up to 40% of campaign traffic lands in Google Analytics 4 as <strong>Direct</strong> or <strong>Unassigned</strong>. The problem is almost never the ad platform or GA4 itself-it is subtle, systemic UTM tracking mistakes that silently corrupt attribution pipelines.</p>
 
       <h2 id="why-utm-mistakes-are-expensive">Why UTM Mistakes Silently Destroy Marketing ROI</h2>
       <p>When UTM parameters fail, three expensive consequences follow:</p>
@@ -173,7 +173,7 @@ export const utmMistakesPosts = [
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -270,7 +270,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -366,7 +366,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -462,7 +462,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -570,7 +570,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -666,7 +666,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -756,7 +756,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -804,7 +804,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       <p class="lead-text">Desktop email clients like Microsoft Outlook and Apple Mail, as well as native mobile mail apps, do not pass an HTTP referrer header when a subscriber clicks a link. Without explicit UTM parameters, 100% of your email marketing traffic lands in GA4 as <strong>Direct</strong>.</p>
 
       <h2 id="the-email-referrer-dilemma">Why Email Attribution Fails by Default</h2>
-      <p>Unlike a website link, an email client is an independent desktop or mobile application. When a user clicks, the browser opens without any referrer information. Email UTM tags are not optional—they are the only attribution link between your ESP and GA4.</p>
+      <p>Unlike a website link, an email client is an independent desktop or mobile application. When a user clicks, the browser opens without any referrer information. Email UTM tags are not optional-they are the only attribution link between your ESP and GA4.</p>
 
       <h2 id="8-email-utm-mistakes">The 8 Critical Email UTM Mistakes</h2>
 
@@ -857,7 +857,7 @@ utm_content=hero_cta_button</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -947,7 +947,7 @@ utm_content=hero_cta_button</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -1041,7 +1041,7 @@ utm_content=hero_cta_button</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -1127,7 +1127,7 @@ utm_content=hero_cta_button</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -1218,7 +1218,7 @@ utm_content=hero_cta_button</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -1308,7 +1308,7 @@ utm_content=hero_cta_button</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -1403,7 +1403,7 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -1495,7 +1495,7 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
     category: 'utm-mistakes',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },

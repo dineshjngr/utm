@@ -7,7 +7,7 @@ export const searchNewsPosts = [
     category: 'search-news',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Search & Analytics Editor',
       url: 'https://utmcraft.com/about/'
     },
@@ -22,6 +22,7 @@ export const searchNewsPosts = [
     searchIntent: 'Search News & Ranking Update',
     featuredImage: '/blog/images/google-september-2026-spam-update.webp',
     featuredImageAlt: 'Google Search Console shown through a magnifying glass beside a graphic about the September 2026 spam update',
+    preserveFeaturedImage: true,
     tableOfContents: [
       { id: 'what-google-confirmed', title: 'What Google Confirmed', level: 2 },
       { id: 'how-this-rollout-compares', title: 'How This Rollout Compares With Earlier 2026 Spam Updates', level: 2 },
@@ -36,7 +37,7 @@ export const searchNewsPosts = [
     },
     relatedSlugs: ['utm-tracking-audit-signs', 'ga4-utms-not-showing', 'utm-tracking-mistakes'],
     references: [
-      { title: 'September 2026 spam update — Google Search Status Dashboard', url: 'https://status.search.google.com/incidents/XhUDXP7A67iHCD2kmbVu', publisher: 'Google Search Status Dashboard' },
+      { title: 'September 2026 spam update - Google Search Status Dashboard', url: 'https://status.search.google.com/incidents/XhUDXP7A67iHCD2kmbVu', publisher: 'Google Search Status Dashboard' },
       { title: 'Google Search ranking updates history', url: 'https://status.search.google.com/summary', publisher: 'Google Search Status Dashboard' },
       { title: 'Google Search spam updates and your site', url: 'https://developers.google.com/search/docs/appearance/spam-updates', publisher: 'Google Search Central' }
     ],
@@ -149,7 +150,7 @@ export const searchNewsPosts = [
 
       <h2 id="what-changes">What Changes During an Upgrade</h2>
       <p>Google’s upgrade guidance describes several structural changes. Dynamic ad groups convert to standard ad groups, and existing Dynamic Search Ads become responsive search ads. Google generates the minimum static assets needed using text customization. You can choose whether to enable Final URL expansion and use URL exclusions to control destinations.</p>
-      <p>Review legacy URL rules carefully. Google says some older rule types—such as rules based on page title or page content—become read-only after upgrading. If a rule is unsupported, the upgrade dialog can identify it and mark it read-only. Save a record of your current rules and verify the resulting targeting before moving important spend.</p>
+      <p>Review legacy URL rules carefully. Google says some older rule types-such as rules based on page title or page content-become read-only after upgrading. If a rule is unsupported, the upgrade dialog can identify it and mark it read-only. Save a record of your current rules and verify the resulting targeting before moving important spend.</p>
       <p>Google says the upgrade tools map DSA targets to modern equivalents and are intended to preserve historical reporting and reduce learning disruption. Treat that as the migration design, then verify the details in your account. Keep the original and post-upgrade reports available so you can compare performance on equivalent dates and conversion definitions.</p>
 
       <h2 id="google-overview">Google’s Comparison Graphic and Video</h2>
@@ -173,7 +174,7 @@ export const searchNewsPosts = [
         <li><strong>Capture a fair baseline.</strong> Save a representative period of cost, qualified leads or sales, conversion value, search terms, and landing pages. Use the same attribution model and conversion actions when you compare results later.</li>
         <li><strong>Check measurement before changing campaigns.</strong> Document account, campaign, ad-group, and dynamic-target tracking templates; Final URL suffixes; ValueTrack tokens; auto-tagging; and any UTMs your CRM or analytics tools require. See our <a href="/google-ads-utm-guide/">Google Ads tracking guide</a> for a review of ValueTrack and UTM setup.</li>
         <li><strong>Test one representative campaign.</strong> Use Google Ads’ upgrade flow or an eligible experiment. Confirm the target mapping, generated responsive search ads, policy status, final URLs, URL exclusions, and conversion actions before expanding the rollout.</li>
-        <li><strong>Monitor business outcomes after the change.</strong> Compare qualified conversions, revenue or lead quality, cost per result, search terms, and landing pages—not just clicks. Check that the intended tracking parameters reach the final page and remain available in downstream analytics or CRM records.</li>
+        <li><strong>Monitor business outcomes after the change.</strong> Compare qualified conversions, revenue or lead quality, cost per result, search terms, and landing pages-not just clicks. Check that the intended tracking parameters reach the final page and remain available in downstream analytics or CRM records.</li>
       </ol>
       <p>If you use UTMs alongside Google Ads auto-tagging, keep the naming convention stable while you test. Changing campaign structure and tagging at the same time makes it harder to tell whether a result came from the migration or from a measurement change. Our guide to <a href="/google-ads-auto-tagging-vs-utms/">Google Ads auto-tagging and UTMs</a> explains how to use both consistently.</p>
 

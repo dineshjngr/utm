@@ -3,6 +3,8 @@
  * Reading Progress, TOC ScrollSpy, Code Copying, Client-Side Search
  */
 
+import './site.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   initReadingProgress();
   initTableOfContents();

@@ -7,7 +7,7 @@ export const utmStrategyPosts = [
     category: 'utm-strategy',
     isPillar: true,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -190,7 +190,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
     category: 'utm-strategy',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -336,7 +336,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
     category: 'utm-strategy',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -367,7 +367,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
       { title: 'Google Analytics 4 account structure', url: 'https://support.google.com/analytics/answer/9679158', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text">For digital agencies, tracking errors are not just an internal analytics inconvenience—they are a client retention risk. When an agency's media buyers tag paid social campaigns with non-standard UTMs that land in GA4 "Unassigned," the client's executive dashboard fails to reflect return on ad spend (ROAS), triggering uncomfortable budget meetings.</p>
+      <p class="lead-text">For digital agencies, tracking errors are not just an internal analytics inconvenience-they are a client retention risk. When an agency's media buyers tag paid social campaigns with non-standard UTMs that land in GA4 "Unassigned," the client's executive dashboard fails to reflect return on ad spend (ROAS), triggering uncomfortable budget meetings.</p>
 
       <h2 id="the-agency-tracking-problem">The Multi-Client Attribution Dilemma</h2>
       <p>Agencies face unique operational hurdles that in-house teams rarely encounter:</p>
@@ -412,7 +412,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
     category: 'utm-strategy',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },

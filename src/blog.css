@@ -1154,6 +1154,11 @@ details.article-faq-item > p {
   transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
 }
 
+.author-social-link:hover,
+.author-social-link:focus-visible {
+  text-decoration: none;
+}
+
 .author-social-link:hover {
   color: var(--accent-text);
   border-color: var(--border-hover);

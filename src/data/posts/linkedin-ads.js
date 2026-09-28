@@ -7,7 +7,7 @@ export const linkedinAdsPosts = [
     category: 'linkedin-ads',
     isPillar: true,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -167,7 +167,7 @@ export const linkedinAdsPosts = [
     category: 'linkedin-ads',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
@@ -240,7 +240,7 @@ export const linkedinAdsPosts = [
     category: 'linkedin-ads',
     isPillar: false,
     author: {
-      name: 'DJ',
+      name: 'Dinesh Jeengar',
       role: 'Attribution & Analytics Architect',
       url: 'https://utmcraft.com/'
     },
