@@ -59,7 +59,7 @@ function extractFaqSchema(contentHtml) {
 }
 
 // Generate Individual Article Page HTML
-function renderArticlePage(post) {
+export function renderArticlePage(post) {
   const category = getCategoryById(post.category);
   const related = getRelatedPosts(post, 3);
   const canonicalUrl = `https://utmcraft.com/${post.slug}/`;
@@ -139,7 +139,7 @@ function renderArticlePage(post) {
     <li>
       <a href="#${item.id}" class="toc-link">${escapeAttr(item.title)}</a>
     </li>
-  `).join('');
+  `.trim()).join('\n');
 
   // Related Cards HTML - Generous Banner Showcase Cards
   const relatedCards = related.map(rel => {
@@ -328,7 +328,7 @@ ${toolCtaHtml}
 
         <!-- Related Guides Grid -->
         <section class="related-articles-section">
-          <h3>Related Measurement Guides</h3>
+          <h3>Related Articles &amp; Guides</h3>
           <div class="related-articles-grid">
             ${relatedCards}
           </div>
@@ -355,7 +355,7 @@ ${toolCtaHtml}
 }
 
 // Generate Category Archive Page HTML
-function renderCategoryPage(category) {
+export function renderCategoryPage(category) {
   const posts = blogPosts.filter(p => p.category === category.id);
   const pillar = posts.find(p => p.isPillar) || posts[0];
   const supporting = posts.filter(p => p.slug !== pillar?.slug);
@@ -368,7 +368,7 @@ function renderCategoryPage(category) {
         "@type": "CollectionPage",
         "@id": `${canonicalUrl}#collection`,
         "url": canonicalUrl,
-        "name": `${category.name} Guides & Taxonomy | UTMCraft`,
+        "name": `${category.name} | UTMCraft`,
         "description": category.description,
         "isPartOf": {
           "@type": "WebSite",
@@ -421,7 +421,7 @@ function renderCategoryPage(category) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${escapeAttr(category.name)} Guides &amp; Taxonomy | UTMCraft</title>
+  <title>${escapeAttr(category.name)} | UTMCraft</title>
   <script type="module" src="/src/theme.js"></script>
   <meta name="description" content="${escapeAttr(category.description)}">
   <link rel="canonical" href="${canonicalUrl}">
@@ -430,13 +430,13 @@ function renderCategoryPage(category) {
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="${canonicalUrl}">
-  <meta property="og:title" content="${escapeAttr(category.name)} Guides &amp; Taxonomy | UTMCraft">
+  <meta property="og:title" content="${escapeAttr(category.name)} | UTMCraft">
   <meta property="og:description" content="${escapeAttr(category.description)}">
   <meta property="og:image" content="https://utmcraft.com/og-image.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${escapeAttr(category.name)} Guides &amp; Taxonomy | UTMCraft">
+  <meta name="twitter:title" content="${escapeAttr(category.name)} | UTMCraft">
   <meta name="twitter:description" content="${escapeAttr(category.description)}">
   <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
 
@@ -484,7 +484,7 @@ function renderCategoryPage(category) {
           <img src="${pillar.featuredImage}" alt="${escapeAttr(pillar.featuredImageAlt)}" width="1200" height="630" fetchpriority="high">
         </div>
         <div class="featured-pillar-content">
-          <span class="featured-pillar-badge">Core Pillar Guide</span>
+          <span class="featured-pillar-badge">${pillar.isPillar ? 'Core Pillar Guide' : 'Featured Article'}</span>
           <h2 class="featured-pillar-title">${escapeAttr(pillar.title)}</h2>
           <p class="featured-pillar-desc">${escapeAttr(pillar.description)}</p>
           <div class="featured-pillar-footer">
@@ -496,13 +496,14 @@ function renderCategoryPage(category) {
       </a>
       ` : ''}
 
+      ${supporting.length ? `
       <div style="margin: 2.5rem 0 1.25rem;">
         <h2 style="font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em;">Supporting Cluster Guides</h2>
       </div>
 
       <div class="posts-grid">
         ${supportingCards}
-      </div>
+      </div>` : ''}
     </main>
 
     ${renderFooter()}
@@ -514,9 +515,13 @@ function renderCategoryPage(category) {
 }
 
 // Generate Main Blog Index Page HTML
-function renderBlogIndexPage() {
+export function renderBlogIndexPage() {
   const canonicalUrl = `https://utmcraft.com/blog/`;
-  const pillar = blogPosts.find(p => p.slug === 'utm-strategy-guide') || blogPosts[0];
+  const sortedPosts = [...blogPosts].sort((a, b) =>
+    b.datePublished.localeCompare(a.datePublished) ||
+    b.dateModified.localeCompare(a.dateModified) ||
+    a.title.localeCompare(b.title)
+  );
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -556,14 +561,14 @@ function renderBlogIndexPage() {
     <li>
       <a href="/blog/${cat.slug}/" class="category-pill-btn">${cat.name}</a>
     </li>
-  `).join('');
+  `.trim()).join('\n');
 
-  const postCards = blogPosts.map(post => {
+  const postCards = sortedPosts.map((post, index) => {
     const cat = getCategoryById(post.category);
     return `
-    <a href="/${post.slug}/" class="post-card">
+    <a href="/${post.slug}/" class="post-card" data-published="${post.datePublished}" data-updated="${post.dateModified}">
       <div class="post-card-thumb-wrap">
-        <img src="${post.featuredImage}" alt="${escapeAttr(post.featuredImageAlt)}" class="post-card-thumb" width="1200" height="630" loading="lazy">
+        <img src="${post.featuredImage}" alt="${escapeAttr(post.featuredImageAlt)}" class="post-card-thumb" width="1200" height="630" loading="${index === 0 ? 'eager' : 'lazy'}"${index === 0 ? ' fetchpriority="high"' : ''}>
       </div>
       <div class="post-card-content">
         <div class="post-card-header">
@@ -574,7 +579,8 @@ function renderBlogIndexPage() {
         <p class="post-card-excerpt">${escapeAttr(post.description)}</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
-          <span>Published ${formatPublishedDate(post.datePublished)}</span>
+          <time class="post-card-published" datetime="${post.datePublished}">Published ${formatPublishedDate(post.datePublished)}</time>
+          <time class="post-card-updated" datetime="${post.dateModified}">Updated ${formatPublishedDate(post.dateModified)}</time>
         </div>
       </div>
     </a>`;
@@ -649,27 +655,16 @@ function renderBlogIndexPage() {
     </div>
 
     <main id="main-content">
-      ${pillar ? `
-      <!-- Featured Pillar Guide -->
-      <a href="/${pillar.slug}/" class="featured-pillar-card">
-        <div class="featured-pillar-image">
-          <img src="${pillar.featuredImage}" alt="${escapeAttr(pillar.featuredImageAlt)}" width="1200" height="630" fetchpriority="high">
+      <div class="blog-results-toolbar">
+        <h2>All Practical Tracking Guides (${blogPosts.length})</h2>
+        <div class="blog-sort-wrap">
+          <label for="blog-sort-select">Sort by</label>
+          <select id="blog-sort-select" class="blog-sort-select">
+            <option value="newest">Newest published</option>
+            <option value="oldest">Oldest published</option>
+            <option value="updated">Recently updated</option>
+          </select>
         </div>
-        <div class="featured-pillar-content">
-          <span class="featured-pillar-badge">Featured Strategic Pillar</span>
-          <h2 class="featured-pillar-title">${escapeAttr(pillar.title)}</h2>
-          <p class="featured-pillar-desc">${escapeAttr(pillar.description)}</p>
-          <div class="featured-pillar-footer">
-            <span>${pillar.readingTime}</span>
-            <span>•</span>
-            <span>Published ${formatPublishedDate(pillar.datePublished)}</span>
-          </div>
-        </div>
-      </a>
-      ` : ''}
-
-      <div style="margin: 2.5rem 0 1.25rem;">
-        <h2 style="font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em;">All Practical Tracking Guides (${blogPosts.length})</h2>
       </div>
 
       <!-- Live Search Empty State -->

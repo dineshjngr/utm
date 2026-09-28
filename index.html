@@ -773,20 +773,19 @@
           </div>
 
           <!-- QR Code Card -->
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <span class="card-category">DISTRIBUTION</span>
+          <div class="card qr-code-card">
+            <div class="card-header qr-card-header">
+              <div class="qr-card-title-row">
                 <h2 class="card-title">Mobile QR Code</h2>
-                <p class="card-description">High-resolution vector SVG and PNG for print &amp; outdoor media.</p>
+                <div class="qr-status-controls">
+                  <span id="qr-target-badge" class="field-hint">Preview (Blurred)</span>
+                  <button type="button" id="btn-regenerate-qr" class="btn-regenerate-qr" style="display: none;" title="Regenerate QR Code with current URL">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                    <span>Refresh</span>
+                  </button>
+                </div>
               </div>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span id="qr-target-badge" class="field-hint">Preview (Blurred)</span>
-                <button type="button" id="btn-regenerate-qr" class="btn-regenerate-qr" style="display: none;" title="Regenerate QR Code with current URL">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-                  <span>Refresh</span>
-                </button>
-              </div>
+              <p class="card-description qr-card-description">High-resolution SVG and PNG for print &amp; outdoor media.</p>
             </div>
 
             <div class="qr-container">
@@ -802,6 +801,7 @@
               </div>
 
               <div class="qr-actions">
+                <span class="qr-actions-label">Save or share</span>
                 <button type="button" id="btn-download-qr" class="btn btn-secondary btn-sm" title="Download QR code as PNG">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                   <span>PNG</span>

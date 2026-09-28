@@ -34,7 +34,7 @@ const state = {
     baseUrl: localStorage.getItem(DESTINATION_STORAGE_KEY) || '',
     source: 'google',
     medium: 'cpc',
-    campaign: 'summer_sale_2025',
+    campaign: '',
     term: '',
     content: '',
     utmId: '',
@@ -1046,8 +1046,8 @@ function generateActiveQRCode(showToastMsg = false, isRegen = false) {
   if (qrOverlay) qrOverlay.classList.add('hidden');
   if (regenQrBtn) regenQrBtn.style.display = 'inline-flex';
   if (qrBadge) {
-    qrBadge.textContent = state.qrTarget === 'short' ? '⚡ Short QR Active' : '● Active & Ready';
-    qrBadge.style.color = 'var(--soft-green)';
+    qrBadge.textContent = state.qrTarget === 'short' ? 'Short QR Active' : 'Active & Ready';
+    qrBadge.classList.add('is-ready');
   }
 
   renderQRCode(qrCanvas, url, {

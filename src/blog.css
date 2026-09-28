@@ -246,6 +246,33 @@
   object-fit: cover;
 }
 
+.article-source-media {
+  margin: 1.75rem 0 2rem;
+  overflow: hidden;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-card);
+  background: var(--bg-subtle);
+}
+
+.article-source-media img,
+.article-source-media video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.article-source-media video {
+  aspect-ratio: 16 / 9;
+  background: #101827;
+}
+
+.article-source-media figcaption {
+  padding: 0.8rem 1rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
 /* Mobile Table of Contents */
 .mobile-toc {
   display: none;
@@ -1284,6 +1311,48 @@ details.article-faq-item > p {
   pointer-events: none;
 }
 
+.blog-results-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.75rem 0 1.25rem;
+}
+
+.blog-results-toolbar h2 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.blog-sort-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.blog-sort-select {
+  min-height: 38px;
+  padding: 0.45rem 2rem 0.45rem 0.75rem;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-btn);
+  background: var(--bg-input);
+  color: var(--text-main);
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.blog-sort-select:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
 /* Featured Pillar Guide Card */
 .featured-pillar-card {
   display: grid;
@@ -1584,4 +1653,17 @@ details.article-faq-item > p {
 .post-card-footer > :last-child {
   text-align: right;
   color: var(--text-muted);
+}
+
+.post-card-footer time {
+  text-align: right;
+}
+
+.post-card-updated,
+.posts-grid[data-sort="updated"] .post-card-published {
+  display: none;
+}
+
+.posts-grid[data-sort="updated"] .post-card-updated {
+  display: inline;
 }

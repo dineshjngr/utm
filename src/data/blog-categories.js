@@ -97,5 +97,14 @@ export const blogCategories = [
     description: 'Diagnose common UTM tracking mistakes, broken attribution traps, naming errors, and field-tested fixes to safeguard your GA4 reports and ad spend.',
     badge: 'Mistakes & QA',
     icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`
+  },
+  {
+    id: 'search-news',
+    name: 'Search News & Updates',
+    slug: 'search-news',
+    pillarSlug: 'google-september-2026-spam-update',
+    description: 'Verified updates and reporting on Google Search, ranking changes, and developments that affect organic visibility.',
+    badge: 'Search News',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/><path d="M2 7v13a2 2 0 0 0 2 2"/></svg>`
   }
 ];

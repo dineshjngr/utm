@@ -62,12 +62,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://utmcraft.com/version-history.html</loc>
-    <lastmod>2026-09-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://utmcraft.com/about/</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -429,6 +423,24 @@
   <url>
     <loc>https://utmcraft.com/utm-tracking-audit-signs/</loc>
     <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://utmcraft.com/blog/search-news/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://utmcraft.com/google-september-2026-spam-update/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://utmcraft.com/google-dsa-ai-max-migration-2027/</loc>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>

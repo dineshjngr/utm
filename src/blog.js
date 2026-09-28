@@ -85,6 +85,7 @@ function initCopyCodeButtons() {
 // 4. Instant Client-Side Search for Blog Home & Category Pages
 function initBlogSearch() {
   const searchInput = document.getElementById('blog-search-input');
+  const sortSelect = document.getElementById('blog-sort-select');
   const cards = Array.from(document.querySelectorAll('body[data-page="blog-index"] .post-card'));
   const emptyState = document.getElementById('blog-empty-state');
   if (cards.length === 0) return;
@@ -98,11 +99,35 @@ function initBlogSearch() {
   pagination.setAttribute('aria-label', 'Blog pages');
   postsGrid.insertAdjacentElement('afterend', pagination);
 
-  let currentPage = Math.max(1, Number.parseInt(new URLSearchParams(window.location.search).get('page'), 10) || 1);
+  const initialParams = new URLSearchParams(window.location.search);
+  const allowedSorts = new Set(['newest', 'oldest', 'updated']);
+  const initialSort = initialParams.get('sort');
+  if (sortSelect) sortSelect.value = allowedSorts.has(initialSort) ? initialSort : 'newest';
+  let currentPage = Math.max(1, Number.parseInt(initialParams.get('page'), 10) || 1);
+
+  function compareCards(a, b) {
+    const published = a.dataset.published.localeCompare(b.dataset.published);
+    const updated = a.dataset.updated.localeCompare(b.dataset.updated);
+    const title = a.querySelector('.post-card-title')?.textContent || '';
+    const otherTitle = b.querySelector('.post-card-title')?.textContent || '';
+    if (sortSelect?.value === 'oldest') return published || updated || title.localeCompare(otherTitle);
+    if (sortSelect?.value === 'updated') return -updated || -published || title.localeCompare(otherTitle);
+    return -published || -updated || title.localeCompare(otherTitle);
+  }
+
+  function pageUrl(page) {
+    const params = new URLSearchParams();
+    if (sortSelect?.value && sortSelect.value !== 'newest') params.set('sort', sortSelect.value);
+    if (page > 1) params.set('page', String(page));
+    const query = params.toString();
+    return `${window.location.pathname}${query ? `?${query}` : ''}`;
+  }
 
   function getMatchingCards() {
     const query = searchInput?.value.trim().toLowerCase() || '';
-    return cards.filter(card => {
+    const orderedCards = [...cards].sort(compareCards);
+    postsGrid.append(...orderedCards);
+    return orderedCards.filter(card => {
       const title = card.querySelector('.post-card-title')?.textContent.toLowerCase() || '';
       const excerpt = card.querySelector('.post-card-excerpt')?.textContent.toLowerCase() || '';
       const category = card.querySelector('.post-card-category')?.textContent.toLowerCase() || '';
@@ -111,6 +136,7 @@ function initBlogSearch() {
   }
 
   function renderPage() {
+    postsGrid.dataset.sort = sortSelect?.value || 'newest';
     const matchingCards = getMatchingCards();
     const pageCount = Math.max(1, Math.ceil(matchingCards.length / pageSize));
     currentPage = Math.min(currentPage, pageCount);
@@ -141,7 +167,7 @@ function initBlogSearch() {
       const link = document.createElement('a');
       link.className = 'blog-pagination-link';
       link.textContent = label;
-      link.href = page === 1 ? window.location.pathname : `${window.location.pathname}?page=${page}`;
+      link.href = pageUrl(page);
       if (current) {
         link.setAttribute('aria-current', 'page');
         link.classList.add('is-current');
@@ -165,7 +191,13 @@ function initBlogSearch() {
 
   searchInput?.addEventListener('input', () => {
     currentPage = 1;
-    window.history.replaceState({}, '', window.location.pathname);
+    window.history.replaceState({}, '', pageUrl(1));
+    renderPage();
+  });
+
+  sortSelect?.addEventListener('change', () => {
+    currentPage = 1;
+    window.history.replaceState({}, '', pageUrl(1));
     renderPage();
   });
 

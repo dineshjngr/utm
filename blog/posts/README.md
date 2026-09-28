@@ -1,6 +1,6 @@
 # UTMCraft Blog Articles Directory
 
-All 49 active production guides are organized in this directory as individual HTML files.
+All 51 active production articles and guides are organized in this directory as individual HTML files.
 
 ## URL Architecture & Routing Governance
 
@@ -64,3 +64,5 @@ Both the Vite development server and the production build automatically route re
 | UTM Mistakes & Tracking Audits | Supporting | 7 Campaign Naming Mistakes That Fragment GA4 Reports | `campaign-naming-mistakes.html` | [/campaign-naming-mistakes/](https://utmcraft.com/campaign-naming-mistakes/) |
 | UTM Mistakes & Tracking Audits | Supporting | 5 UTM Mistakes to Fix Before Launching a Paid Campaign | `pre-launch-utm-mistakes.html` | [/pre-launch-utm-mistakes/](https://utmcraft.com/pre-launch-utm-mistakes/) |
 | UTM Mistakes & Tracking Audits | Supporting | 10 Signs Your UTM Tracking System Needs an Immediate Audit | `utm-tracking-audit-signs.html` | [/utm-tracking-audit-signs/](https://utmcraft.com/utm-tracking-audit-signs/) |
+| Search News & Updates | Supporting | Google Begins September 2026 Spam Update: Global Rollout May Take Two Weeks | `google-september-2026-spam-update.html` | [/google-september-2026-spam-update/](https://utmcraft.com/google-september-2026-spam-update/) |
+| Search News & Updates | Supporting | Google Delays DSA Migration to AI Max Until February 2027: What Advertisers Should Do | `google-dsa-ai-max-migration-2027.html` | [/google-dsa-ai-max-migration-2027/](https://utmcraft.com/google-dsa-ai-max-migration-2027/) |

@@ -3,27 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search News & Updates | UTMCraft</title>
   <script type="module" src="/src/theme.js"></script>
-  <title>Version History | UTMCraft</title>
-  <meta name="description" content="See what’s new in UTMCraft, including product improvements, builder updates, and tracking workflow changes.">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#FCFCFB">
-  <link rel="canonical" href="https://utmcraft.com/version-history.html">
+  <meta name="description" content="Verified updates and reporting on Google Search, ranking changes, and developments that affect organic visibility.">
+  <link rel="canonical" href="https://utmcraft.com/blog/search-news/">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="UTMCraft">
-  <meta property="og:title" content="Version History | UTMCraft">
-  <meta property="og:description" content="Product updates and improvements to UTMCraft.">
-  <meta property="og:url" content="https://utmcraft.com/version-history.html">
+  <meta property="og:url" content="https://utmcraft.com/blog/search-news/">
+  <meta property="og:title" content="Search News & Updates | UTMCraft">
+  <meta property="og:description" content="Verified updates and reporting on Google Search, ranking changes, and developments that affect organic visibility.">
   <meta property="og:image" content="https://utmcraft.com/og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Search News & Updates | UTMCraft">
+  <meta name="twitter:description" content="Verified updates and reporting on Google Search, ranking changes, and developments that affect organic visibility.">
+  <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
+
+  <!-- Fonts & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./src/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="stylesheet" href="/src/blog.css">
   <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://utmcraft.com/blog/search-news/#collection",
+      "url": "https://utmcraft.com/blog/search-news/",
+      "name": "Search News & Updates | UTMCraft",
+      "description": "Verified updates and reporting on Google Search, ranking changes, and developments that affect organic visibility.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://utmcraft.com/#website",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://utmcraft.com/blog/search-news/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://utmcraft.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://utmcraft.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Search News & Updates",
+          "item": "https://utmcraft.com/blog/search-news/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://utmcraft.com/#organization",
+      "name": "UTMCraft",
+      "url": "https://utmcraft.com/",
+      "logo": "https://utmcraft.com/utmcraft-logo-light.png"
+    }
+  ]
+}
+  </script>
 </head>
-<body class="legal-page-body">
+<body data-page="blog-category">
   <a class="skip-link" href="#main-content">Skip to content</a>
+
   <header class="app-header">
     <div class="header-inner">
       <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
@@ -63,7 +124,7 @@
         <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
         <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
         <div class="nav-dropdown">
-          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-controls="guide-nav-options">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-controls="guide-nav-options">
             <span>Guides</span>
             <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
@@ -105,68 +166,75 @@
     </div>
     <script type="module" src="/src/site.js"></script>
   </header>
+
   <div class="app-container">
-    <main id="main-content" class="version-history-page">
-      <a class="version-history-back" href="/">← Back to UTMCraft</a>
-      <header class="version-history-hero">
-        <span class="card-category">PRODUCT UPDATES</span>
-        <h1>Version history</h1>
-        <p>A record of improvements to UTMCraft’s campaign building and measurement tools.</p>
-      </header>
-      <p class="version-current-note">Current project version: <strong>v1.0.0</strong>. Earlier milestones below are grouped by the dates in the project history; they are not separate numbered releases.</p>
-      <section class="version-entry" aria-labelledby="version-2026-09-28">
-        <div class="version-entry-meta"><time datetime="2026-09-28">September 28, 2026</time></div>
-        <div class="version-entry-content">
-          <h2 id="version-2026-09-28">Search news and blog improvements</h2>
-          <ul>
-            <li>Added a Search News category and source-backed coverage of Google’s September 2026 spam update and DSA-to-AI Max migration timeline.</li>
-            <li>Added blog sorting for newest published, oldest published, and recently updated articles.</li>
-            <li>Added the Google Ads DSA comparison graphic and video to the migration article with source attribution, plus a timeline-corrected banner.</li>
-            <li>Improved blog article imagery, accessibility text, and local search news navigation.</li>
-          </ul>
+    <nav class="blog-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/">Guides</a></li>
+        <li class="separator">/</li>
+        <li class="current" aria-current="page">Search News & Updates</li>
+      </ol>
+    </nav>
+
+    <header class="blog-hero">
+      <div style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+        <span class="article-category-badge">Search News</span>
+      </div>
+      <h1 class="blog-hero-title">Search News & Updates</h1>
+      <p class="blog-hero-subtitle">Verified updates and reporting on Google Search, ranking changes, and developments that affect organic visibility.</p>
+    </header>
+
+    <main id="main-content">
+
+      <!-- Highlighted Category Pillar Guide -->
+      <a href="/google-september-2026-spam-update/" class="featured-pillar-card">
+        <div class="featured-pillar-image">
+          <img src="/blog/images/google-september-2026-spam-update.webp" alt="Google Search Console shown through a magnifying glass beside a graphic about the September 2026 spam update" width="1200" height="630" fetchpriority="high">
         </div>
-      </section>
-      <section class="version-entry" aria-labelledby="version-2026-09-24">
-        <div class="version-entry-meta"><span class="version-badge">v1.0.0</span><time datetime="2026-09-24">September 24, 2026</time></div>
-        <div class="version-entry-content">
-          <h2 id="version-2026-09-24">Builder and content polish</h2>
-          <ul>
-            <li>Added compact Quick fill examples and a clearer overview of UTMCraft’s build, validate, standardize, and measure workflows.</li>
-            <li>Added a short privacy and GA4 trust strip near the builder.</li>
-            <li>Refined the homepage hero and campaign formula labels.</li>
-            <li>Improved blog browsing, repaired article citations, and refreshed sitemap metadata.</li>
-          </ul>
+        <div class="featured-pillar-content">
+          <span class="featured-pillar-badge">Featured Article</span>
+          <h2 class="featured-pillar-title">Google Begins September 2026 Spam Update: Global Rollout May Take Two Weeks</h2>
+          <p class="featured-pillar-desc">Google began its September 2026 spam update on September 24. The rollout applies globally, covers all languages, and may take up to two weeks.</p>
+          <div class="featured-pillar-footer">
+            <span>4 min read</span>
+            <span>•</span>
+            <span>Published September 28, 2026</span>
+          </div>
         </div>
-      </section>
-      <section class="version-entry" aria-labelledby="version-2026-09-23">
-        <div class="version-entry-meta"><time datetime="2026-09-23">September 23, 2026</time></div>
-        <div class="version-entry-content">
-          <h2 id="version-2026-09-23">Site-wide release and hosting updates</h2>
-          <ul>
-            <li>Unified shared navigation, footer, analytics, mobile menu behavior, and redirects across the site.</li>
-            <li>Added canonical redirects for the Hostinger Apache setup and removed Cloudflare staging configuration.</li>
-            <li>Updated branding, favicon assets, SEO metadata, and Search Console verification.</li>
-            <li>Expanded campaign tracking content and improved responsive navigation and page layouts.</li>
-          </ul>
+      </a>
+
+
+
+      <div style="margin: 2.5rem 0 1.25rem;">
+        <h2 style="font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em;">Supporting Cluster Guides</h2>
+      </div>
+
+      <div class="posts-grid">
+
+    <a href="/google-dsa-ai-max-migration-2027/" class="post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/google-dsa-ai-max-migration.webp" alt="Timeline graphic showing new Google Ads DSA creation ending in January 2027 and automatic DSA upgrades beginning in February 2027" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Search News</span>
+          <span class="post-card-readtime">7 min read</span>
         </div>
-      </section>
-      <section class="version-entry" aria-labelledby="version-2026-09-22">
-        <div class="version-entry-meta"><time datetime="2026-09-22">September 22, 2026</time></div>
-        <div class="version-entry-content">
-          <h2 id="version-2026-09-22">Core toolkit and campaign builder launch</h2>
-          <ul>
-            <li>Built the UTM campaign URL builder with presets, validation, GA4 taxonomy checks, and campaign history.</li>
-            <li>Added bulk URL generation, QR code creation, and a client-side URL shortener with a redirect fallback.</li>
-            <li>Introduced dedicated Google Ads, Meta, LinkedIn, bulk builder, checker, and UTM guide landing pages.</li>
-            <li>Added terms and privacy pages, GA4 channel guidance, and a shared site-wide navigation and footer.</li>
-            <li>Set up Cloudflare deployment configuration, then refined redirects and deployment settings as hosting evolved.</li>
-          </ul>
+        <h3 class="post-card-title">Google Delays DSA Migration to AI Max Until February 2027: What Advertisers Should Do</h3>
+        <p class="post-card-excerpt">Google moved Dynamic Search Ads auto-migration to February 2027. See the January creation cutoff, what campaign controls change, and a practical tracking and testing checklist.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+          <span>Published September 28, 2026</span>
         </div>
-      </section>
-      <p class="version-history-note">This timeline summarizes the recorded project milestones. For the complete commit-by-commit record, see the <a href="https://github.com/dineshjngr/utm/commits/main" target="_blank" rel="noopener">project commit history</a>.</p>
+      </div>
+    </a>
+
+      </div>
     </main>
-  </div>
-  <footer class="app-footer">
+
+    <footer class="app-footer">
       <div class="footer-container">
         <div class="footer-grid">
           <div class="footer-col-brand">
@@ -238,5 +306,8 @@
         </div>
       </div>
     </footer>
+  </div>
+
+  <script type="module" src="/src/blog.js"></script>
 </body>
 </html>
