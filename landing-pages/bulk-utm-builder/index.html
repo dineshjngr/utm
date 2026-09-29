@@ -33,7 +33,7 @@
 
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -43,19 +43,33 @@
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "All modern web browsers",
         "description": "A high-speed bulk UTM generator that produces standardized tracking links across multiple channels simultaneously with instant CSV/TSV export.",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
         "featureList": [
           "Simultaneous multi-channel link generation",
           "One-click CSV and TSV campaign matrix export",
-          "Automated GA4 channel compliance verification",
-          "Private in-browser generation without spreadsheet errors"
+          "Bulk URL generation with browser-based processing",
+          "Campaign fields are processed in the browser; optional shortening uses external providers"
         ]
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Bulk UTM Builder", "item": "https://utmcraft.com/bulk-utm-builder/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://utmcraft.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Bulk UTM Builder",
+            "item": "https://utmcraft.com/bulk-utm-builder/"
+          }
         ]
       },
       {
@@ -64,35 +78,6 @@
         "name": "UTMCraft",
         "url": "https://utmcraft.com/",
         "logo": "https://utmcraft.com/utmcraft-logo-light.png"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Why use a Bulk UTM Generator instead of a Google Sheets spreadsheet?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Spreadsheets suffer from formula breakage, copy-paste casing inconsistencies, accidental duplicate parameters, and lack of real-time GA4 regex validation. A dedicated bulk builder enforces lowercase casing, hyphen separation, and exact GA4 channel grouping rules automatically."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I export the bulk UTM matrix to CSV or Excel?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. UTMCraft allows you to copy all generated URLs with one click or export the entire campaign matrix as a structured CSV or TSV file formatted for direct import into Google Ads Editor, Meta Ads Manager, or agency media plans."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Are the generated bulk UTM links private?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Bulk URL building, string manipulation, and file downloads run inside your browser. Generated campaign data is not stored in a UTMCraft account or application database."
-            }
-          }
-        ]
       }
     ]
   }
@@ -117,8 +102,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -148,7 +133,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -358,7 +343,7 @@
               <tr>
                 <td><strong>Accidental Formula Overwrites</strong></td>
                 <td>Broken CONCATENATE strings, missing <code>?</code> or <code>&amp;</code> delimiters.</td>
-                <td>Zero formulas to break. Web standard URL parsing ensures 100% valid query strings.</td>
+                <td>Uses browser URL parsing to assemble query strings and avoids spreadsheet formulas.</td>
               </tr>
               <tr>
                 <td><strong>Casing Inconsistencies</strong></td>
@@ -367,8 +352,8 @@
               </tr>
               <tr>
                 <td><strong>Non-Standard Mediums</strong></td>
-                <td>Marketers invent custom terms like <code>social-media</code>, forcing traffic into (Unassigned).</td>
-                <td>Pre-mapped to strict GA4 Default Channel Grouping regular expressions.</td>
+                <td>A custom term such as <code>social-media</code> may not match a default channel definition by itself; classification depends on the other available traffic-source information.</td>
+                <td>Includes limited source and medium pattern feedback; verify against Google's current definitions and your own GA4 data.</td>
               </tr>
               <tr>
                 <td><strong>Missing Campaign IDs</strong></td>
@@ -466,7 +451,7 @@
 
           <details>
             <summary>Does the bulk generator enforce lowercase characters?</summary>
-            <p>Yes. All generated bulk URLs are strictly lowercase and spaces are replaced with standard hyphens to ensure 100% compliance with Google Analytics 4 regular expressions.</p>
+            <p>The builder can format generated values in lowercase and replace spaces with the selected separator. This supports consistent naming, but it does not guarantee compliance with every current GA4 channel definition or predict live session attribution.</p>
           </details>
         </div>
       </article>
@@ -481,15 +466,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -498,7 +483,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -507,7 +492,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -517,12 +502,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

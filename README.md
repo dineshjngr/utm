@@ -20,7 +20,7 @@ A modern, high-performance web application designed for digital marketers, growt
 
 - **🔍 UTM Inspector & Deconstructor**:
   - Paste any existing long URL to unpack and analyze each parameter.
-  - Automated GA4 compliance audit detecting uppercase letters, unencoded spaces, missing core tags, and non-standard mediums.
+  - URL quality checks for casing consistency, spaces, missing campaign fields, and medium values that may not match common GA4 default channel patterns. This is a guide, not a guarantee of live GA4 classification.
   - One-click **"Open in Builder to Edit & Fix"** transfers inspected parameters into the single builder.
 
 - **📱 Offline Dynamic QR Code Generator**:

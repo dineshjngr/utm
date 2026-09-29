@@ -24,40 +24,6 @@ function formatUpdatedDate(date) {
   });
 }
 
-// Helper to extract FAQ questions and answers from article HTML
-function extractFaqSchema(contentHtml) {
-  if (!contentHtml) return null;
-  const faqRegex = /<div class="faq-item">([\s\S]*?)<\/div>/gi;
-  const questions = [];
-  let match;
-  while ((match = faqRegex.exec(contentHtml)) !== null) {
-    const block = match[1];
-    const qMatch = block.match(/<h3[^>]*>([\s\S]*?)<\/h3>/i);
-    const pMatches = [...block.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)];
-    if (qMatch && pMatches.length > 0) {
-      const qText = qMatch[1].replace(/<[^>]+>/g, '').trim();
-      const aText = pMatches.map(m => m[1].replace(/<[^>]+>/g, '').trim()).join(' ');
-      if (qText && aText) {
-        questions.push({
-          "@type": "Question",
-          "name": qText,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": aText
-          }
-        });
-      }
-    }
-  }
-
-  if (questions.length === 0) return null;
-
-  return {
-    "@type": "FAQPage",
-    "mainEntity": questions
-  };
-}
-
 // Generate Individual Article Page HTML
 export function renderArticlePage(post) {
   const category = getCategoryById(post.category);
@@ -96,11 +62,6 @@ export function renderArticlePage(post) {
         "image": imageUrl,
         "datePublished": post.datePublished,
         "dateModified": post.dateModified,
-        "reviewedBy": {
-          "@type": "Organization",
-          "name": "UTMCraft Editorial Team",
-          "url": "https://utmcraft.com/"
-        },
         "citation": (post.references || []).map(ref => ({
           "@type": "CreativeWork",
           "name": ref.title,
@@ -145,11 +106,6 @@ export function renderArticlePage(post) {
     ]
   };
 
-  const faqSchema = extractFaqSchema(post.contentHtml);
-  if (faqSchema) {
-    jsonLd['@graph'].push(faqSchema);
-  }
-
   // Sticky TOC List items
   const tocItems = post.tableOfContents.map(item => `
     <li>
@@ -183,7 +139,7 @@ export function renderArticlePage(post) {
   // References list HTML
   const referencesHtml = post.references && post.references.length > 0 ? `
     <section class="article-references" id="article-sources">
-      <h3>Sources &amp; Authoritative References</h3>
+      <h3>References</h3>
       <ul class="references-list">
         ${post.references.map(ref => `
           <li>
@@ -195,15 +151,6 @@ export function renderArticlePage(post) {
       </ul>
     </section>
   ` : '';
-
-  const sourceLinks = [...new Map((post.references || []).map(ref => [ref.publisher, ref])).values()]
-    .map(ref => `<a href="${escapeAttr(ref.url)}" target="_blank" rel="noopener">${escapeAttr(ref.publisher)}</a>`)
-    .join(', ');
-  const editorialCredits = `<div class="article-editorial-credits" aria-label="Article authorship and sources">
-      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
-      <p><strong>Last reviewed</strong> <time datetime="${post.dateModified}">${escapeAttr(post.reviewedDate)}</time></p>
-      <p><strong>Sources</strong> ${sourceLinks} <a class="article-source-details" href="#article-sources">Full references</a></p>
-    </div>`;
 
   // Contextual tool link for the end of each guide
   const toolCtaHtml = post.toolCta ? `
@@ -305,7 +252,6 @@ export function renderArticlePage(post) {
             <span class="article-meta-bullet">•</span>
             <span class="article-author-byline">Written by ${escapeAttr(post.author.name)}</span>
           </div>
-          ${editorialCredits}
 
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
@@ -335,7 +281,7 @@ export function renderArticlePage(post) {
             <div class="author-info">
               <h4>${escapeAttr(post.author.name)}</h4>
               <div class="author-role">${escapeAttr(post.author.role)}</div>
-              <p class="author-bio">${escapeAttr(post.author.bio || 'Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.')}</p>
+              <p class="author-bio">${escapeAttr(post.author.bio || 'Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.')}</p>
               ${authorSocialLinks ? `<nav class="author-social-links" aria-label="Author links">${authorSocialLinks}</nav>` : ''}
             </div>
           </div>
@@ -374,7 +320,7 @@ ${toolCtaHtml}
 // Generate Category Archive Page HTML
 export function renderCategoryPage(category) {
   const posts = blogPosts.filter(p => p.category === category.id);
-  const pillar = posts.find(p => p.isPillar) || posts[0];
+  const pillar = posts.find(p => p.slug === (category.pillarSlug || category.featuredSlug)) || posts[0];
   const supporting = posts.filter(p => p.slug !== pillar?.slug);
   const canonicalUrl = `https://utmcraft.com/blog/${category.slug}/`;
 

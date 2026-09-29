@@ -33,7 +33,7 @@
 
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -41,13 +41,27 @@
         "headline": "UTM Naming Conventions & Taxonomy SOP Template",
         "description": "A practical guide to creating standardized UTM naming conventions across an entire marketing organization, including a ready-to-use campaign taxonomy SOP template.",
         "url": "https://utmcraft.com/utm-naming-conventions/",
-        "publisher": { "@type": "Organization", "name": "UTMCraft Studio", "url": "https://utmcraft.com/" }
+        "publisher": {
+          "@type": "Organization",
+          "name": "UTMCraft Studio",
+          "url": "https://utmcraft.com/"
+        }
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
-          { "@type": "ListItem", "position": 2, "name": "UTM Naming Conventions", "item": "https://utmcraft.com/utm-naming-conventions/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://utmcraft.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "UTM Naming Conventions",
+            "item": "https://utmcraft.com/utm-naming-conventions/"
+          }
         ]
       },
       {
@@ -56,35 +70,6 @@
         "name": "UTMCraft",
         "url": "https://utmcraft.com/",
         "logo": "https://utmcraft.com/utmcraft-logo-light.png"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What are UTM naming conventions?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "UTM naming conventions are a set of agreed-upon rules within a marketing team or organization that standardize how each UTM parameter should be formatted, cased, and structured. They define which words are permitted for each channel, how campaign names should be constructed (e.g. using underscores, quarter/year suffixes), and who is responsible for enforcing compliance."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is a UTM Taxonomy SOP?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "A UTM Taxonomy SOP (Standard Operating Procedure) is a documented governance document that defines every approved UTM source, medium, and campaign name pattern for an organization. It typically covers: approved medium values, campaign name structure formula, required and optional parameter rules, tool workflow, and QA review process."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Why are consistent UTM naming conventions important?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Without standardized naming conventions, GA4 reports fragment into dozens of near-identical rows - 'Google', 'google', 'Google LLC', 'google ads' each become separate acquisition sources. This makes it impossible to accurately aggregate performance data, calculate true channel ROI, or build reliable marketing dashboards."
-            }
-          }
-        ]
       }
     ]
   }
@@ -109,8 +94,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -140,7 +125,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -190,7 +175,7 @@
     <header class="workspace-header">
       <div class="workspace-title-group">
         <h1 class="workspace-title">UTM Naming Conventions &amp; <span class="workspace-title-muted">Taxonomy SOP</span></h1>
-        <p class="workspace-subtitle">An enterprise governance framework for consistent, error-free marketing attribution. Standardize campaign tagging across teams, agencies, and advertising channels.</p>
+        <p class="workspace-subtitle">A practical framework for consistent campaign naming across teams, agencies, and advertising channels.</p>
       </div>
 
       
@@ -247,7 +232,7 @@ Email team:   utm_source=newsletter&amp;utm_medium=Email&amp;utm_campaign=valent
 Social team:  utm_source=facebook&amp;utm_medium=social_ad&amp;utm_campaign=valentine-2025</pre>
         </div>
 
-        <p>In your GA4 Campaign report, this single promotion now appears as <strong>at least 5 separate campaign rows</strong> - impossible to aggregate, compare, or attribute accurately to total spend. Your attribution model is permanently corrupted for that period.</p>
+        <p>In your GA4 Campaign report, the same promotion may appear in separate rows when its campaign values differ. Consistent naming makes those rows easier to compare and aggregate; changing a live naming convention does not automatically rewrite data already processed by GA4.</p>
 
         <p>This is exactly why every marketing organization needs a formally documented UTM taxonomy SOP before any campaign goes live.</p>
       </article>
@@ -257,8 +242,8 @@ Social team:  utm_source=facebook&amp;utm_medium=social_ad&amp;utm_campaign=vale
 
         <ol>
           <li style="margin-bottom: 1.25rem;">
-            <strong>Always Lowercase. No Exceptions.</strong><br>
-            <span style="color: var(--text-secondary); font-size: 0.9375rem;">Google Analytics 4 treats every character as case-sensitive. Enforce strict lowercase for every parameter value across the entire team. Use tooling (like UTMCraft) to auto-enforce casing rather than relying on human discipline.</span>
+            <strong>Choose a Consistent Casing Convention.</strong><br>
+            <span style="color: var(--text-secondary); font-size: 0.9375rem;">GA4 default channel definitions are not case-sensitive. A consistent convention, such as lowercase, can make manual source and campaign values easier to compare in reports. Use tooling (like UTMCraft) to apply your team's chosen convention consistently.</span>
           </li>
           <li style="margin-bottom: 1.25rem;">
             <strong>Use Hyphens or Underscores as Word Separators. Pick One and Never Mix.</strong><br>
@@ -273,8 +258,8 @@ Social team:  utm_source=facebook&amp;utm_medium=social_ad&amp;utm_campaign=vale
             <span style="color: var(--text-secondary); font-size: 0.9375rem;">Never allow team members to invent new source or medium values. Maintain a shared "Allowed Values" spreadsheet and review it quarterly. Any new channel or partner requires a governance approval process.</span>
           </li>
           <li style="margin-bottom: 1.25rem;">
-            <strong>QA Every Link Before Publishing. Zero Exceptions.</strong><br>
-            <span style="color: var(--text-secondary); font-size: 0.9375rem;">Require every team member to run tagged URLs through a UTM checker (<a href="/utm-checker/" style="color: var(--accent-text);">UTMCraft's inspector</a>) and confirm the audit score is 100% before any link is shared, sent, or published.</span>
+            <strong>Review Links Before Publishing.</strong><br>
+            <span style="color: var(--text-secondary); font-size: 0.9375rem;">Ask team members to review tagged URLs with a checker (<a href="/utm-checker/" style="color: var(--accent-text);">UTMCraft's inspector</a>) and resolve any flagged syntax or naming issues before a link is shared, sent, or published. A checker score does not guarantee live GA4 attribution.</span>
           </li>
         </ol>
       </article>
@@ -392,7 +377,7 @@ used in digital marketing campaigns. All campaign tracking links must follow the
 rules before being shared, scheduled, or published.
 
 ### 2. MANDATORY FORMATTING RULES
-- ALL parameter values must be LOWERCASE with NO EXCEPTIONS
+- Use the team's chosen casing convention consistently; lowercase is a practical option
 - Use UNDERSCORES (_) as word separators (or define hyphens if preferred - do not mix)
 - No spaces in any parameter value
 - No special characters (!, @, #, $, %) in parameter values
@@ -419,7 +404,7 @@ Examples:
 ### 6. QA REVIEW PROCESS
 Before publishing any campaign link:
 1. Paste URL into UTMCraft UTM Checker at https://utmcraft.com/utm-checker/
-2. Verify audit score = 100%
+2. Review and resolve any URL issues flagged by the checker
 3. Confirm GA4 Channel Group matches expected channel
 4. Test link in incognito window - confirm page loads correctly
 5. Verify live session in GA4 Realtime Report before campaign goes live
@@ -439,17 +424,17 @@ Before publishing any campaign link:
         <p>Assign a single analytics team member or marketing operations lead as the UTM Taxonomy Owner. They are responsible for maintaining the approved values list, reviewing new channel additions, and onboarding new team members.</p>
 
         <h3>2. Integrate UTM Tagging Into Campaign Launch Checklists</h3>
-        <p>Add a UTM compliance step to every campaign launch approval workflow. No campaign should go live in your project management tool (Asana, Jira, Monday.com) without a UTM audit score attached.</p>
+        <p>Add a URL review step to campaign launch workflows. Check syntax, selected parameters, and naming consistency before publishing; a checker score does not verify live GA4 attribution.</p>
 
         <h3>3. Audit Historical Data Quarterly</h3>
-        <p>At the start of each quarter, run a GA4 Traffic Acquisition report and filter by source/medium. Look for any unexpected row values (often caused by typos or new hires using non-approved values). Create custom channel group overrides in GA4 Admin if historical corrections are needed.</p>
+        <p>At the start of each quarter, review source/medium values in a GA4 Traffic Acquisition report and investigate unexpected values. Document naming changes for future campaigns; custom channel groups can support alternative reporting categories but do not rewrite collected UTM values.</p>
 
         <h3>4. Use UTMCraft GA4 Taxonomy Guide as Your Team Reference</h3>
-        <p>The <a href="/" style="color: var(--accent-text);">UTMCraft GA4 Taxonomy tab</a> provides a searchable, filterable lookup of all GA4 Default Channel Grouping rules - use it as a real-time reference during campaign planning. Share the URL with your media buyers, email marketers, and agency partners.</p>
+        <p>The <a href="/" style="color: var(--accent-text);">UTMCraft GA4 Taxonomy tab</a> provides examples and selected source/medium patterns for campaign planning. Compare consequential decisions with Google's current Default Channel Group definitions.</p>
 
         <div class="editorial-callout">
           <h4>🎯 Apply These Conventions Instantly</h4>
-          <p>Use the <a href="/" style="color: var(--accent-text);">Campaign URL Builder</a> to generate links that automatically enforce all the naming conventions in this guide. It applies strict lowercase, hyphens/underscores, and validates GA4 channel compliance on every link you build.</p>
+          <p>Use the <a href="/" style="color: var(--accent-text);">Campaign URL Builder</a> to apply naming conventions to generated links. It can format casing and separators and provide limited source/medium pattern feedback; it does not guarantee GA4 channel assignment.</p>
         </div>
       </article>
 
@@ -488,15 +473,15 @@ Before publishing any campaign link:
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -505,7 +490,7 @@ Before publishing any campaign link:
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -514,7 +499,7 @@ Before publishing any campaign link:
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -524,12 +509,10 @@ Before publishing any campaign link:
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

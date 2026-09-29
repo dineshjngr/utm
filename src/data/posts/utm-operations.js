@@ -8,7 +8,7 @@ export const utmOperationsPosts = [
     isPillar: true,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-17',
@@ -33,7 +33,7 @@ export const utmOperationsPosts = [
     ],
     toolCta: {
       title: 'Streamline Your Link Generation',
-      description: 'Replace error-prone spreadsheets with UTMCraft Bulk Matrix Generator. Create hundreds of clean campaign links with verified taxonomy.',
+      description: 'Create campaign links in bulk from shared naming conventions, then review the exported URLs before launch.',
       link: '/bulk-utm-builder/',
       buttonText: 'Open Bulk Matrix Generator'
     },
@@ -55,7 +55,7 @@ export const utmOperationsPosts = [
       </ol>
 
       <h2 id="browser-capture-cookies-vs-localstorage">Browser Capture: Cookies vs localStorage vs sessionStorage</h2>
-      <p>When a prospect lands on <code>example.com/?utm_source=linkedin&amp;utm_campaign=q4_demo</code>, they rarely submit a form on the initial landing page. They browse to the Product page, inspect Pricing, read customer stories, and convert 4 pages later. If you do not persist the UTM parameters across pageviews, the query string is lost, and the form submission receives zero attribution.</p>
+      <p>When a prospect lands on <code>example.com/?utm_source=linkedin&amp;utm_campaign=q4_demo</code>, they may browse several pages before submitting a form. If your form needs campaign values in the CRM, capture and persist the relevant values using a tested implementation; otherwise, the form record may not contain that context. GA4 session attribution follows its own collection and processing rules.</p>
 
       <div class="editorial-table-wrap">
         <table class="editorial-table">
@@ -168,8 +168,8 @@ export const utmOperationsPosts = [
           <p><code>sessionStorage</code> is wiped as soon as the visitor closes their browser tab. In B2B and high-consideration purchases, prospects frequently research across multiple days before submitting a form. First-party cookies or <code>localStorage</code> preserve attribution data across return visits.</p>
         </div>
         <div class="faq-item">
-          <h3>What is the fastest way to QA high volumes of UTM links before launching?</h3>
-          <p>Use an automated validator like <a href="/utm-checker/">UTMCraft UTM Checker</a>. It inspects parameters against official GA4 Default Channel Grouping regexes, flags missing required fields, checks for mixed-case errors, and tests for server redirect query parameter loss.</p>
+          <h3>How can I QA a high volume of UTM links before launching?</h3>
+          <p>Use the <a href="/utm-checker/">UTMCraft UTM Checker</a> to review URL syntax, selected parameter presence, naming consistency, spaces, and a limited set of source/medium patterns. It does not reproduce all GA4 channel definitions, test live redirects, or guarantee live channel assignment.</p>
         </div>
       </section>
     `
@@ -183,7 +183,7 @@ export const utmOperationsPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-06',
@@ -205,7 +205,7 @@ export const utmOperationsPosts = [
     ],
     toolCta: {
       title: 'Generate Your Bulk Link Matrix',
-      description: 'Build dozens of cross-channel tracking URLs in seconds. Export directly to CSV or copy clean tables instantly.',
+      description: 'Create cross-channel tracking URLs in bulk, then review the output before using or exporting it.',
       link: '/bulk-utm-builder/',
       buttonText: 'Try Bulk UTM Builder'
     },
@@ -228,7 +228,7 @@ export const utmOperationsPosts = [
         <li>Paste your list of destination landing page URLs (one per line).</li>
         <li>Enter your standardized <code>utm_campaign</code> value (e.g. <code>us_saas_trial_2026q2</code>).</li>
         <li>Select your active marketing channels from the preset checklist (Google Ads, Meta Ads, LinkedIn, Email, Affiliate).</li>
-        <li>UTMCraft instantly compiles the cross-product matrix with pre-validated source and medium pairs, automatically enforcing lowercase and converting spaces to hyphens.</li>
+        <li>UTMCraft generates a matrix using preset source and medium values. Formatting options can apply lowercase and replace spaces with hyphens; review the resulting URLs before launch.</li>
       </ol>
 
       <h2 id="export-and-distribution">Exporting to CSV, TSV, and Ad Automation Tools</h2>
@@ -244,7 +244,7 @@ export const utmOperationsPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-09',
@@ -267,7 +267,7 @@ export const utmOperationsPosts = [
     ],
     toolCta: {
       title: 'Inspect Parameters for Both Touchpoints',
-      description: 'Audit your links to guarantee that parameter values are structured for clean capture in both first-touch and last-touch models.',
+      description: 'Audit selected URL fields and parameter values for consistency before using links in first-touch and last-touch reporting.',
       link: '/utm-checker/',
       buttonText: 'Inspect Tracking Parameters'
     },
@@ -285,7 +285,7 @@ export const utmOperationsPosts = [
         <li><strong>Day 14:</strong> Prospect Googles your brand, clicks an organic search result, and downloads a whitepaper.</li>
         <li><strong>Day 30:</strong> Prospect clicks a retargeting ad on Google Display (<code>utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=retargeting-demo</code>) and requests a demo.</li>
       </ul>
-      <p>If you only record last-touch, you attribute 100% of the deal to Google Search, falsely concluding that LinkedIn ads produced zero revenue. If you record only first-touch, you never learn which ad tipped them over the edge.</p>
+      <p>A last-touch view may give most or all recorded credit to Google Search even when LinkedIn helped introduce the prospect. A first-touch view answers a different question and may not show which later interaction influenced the decision. Compare attribution models and CRM touchpoints when evaluating the journey.</p>
 
       <h2 id="first-touch-scope-ga4-vs-crm">First-Touch in GA4 vs First-Touch in Your CRM</h2>
       <ul>
@@ -331,7 +331,7 @@ function storeTouchpoints(utmParams) {
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-11',

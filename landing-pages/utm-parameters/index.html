@@ -33,7 +33,7 @@
 
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -50,8 +50,18 @@
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
-          { "@type": "ListItem", "position": 2, "name": "UTM Parameters Guide", "item": "https://utmcraft.com/utm-parameters/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://utmcraft.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "UTM Parameters Guide",
+            "item": "https://utmcraft.com/utm-parameters/"
+          }
         ]
       },
       {
@@ -60,51 +70,6 @@
         "name": "UTMCraft",
         "url": "https://utmcraft.com/",
         "logo": "https://utmcraft.com/utmcraft-logo-light.png"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What does UTM stand for?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "UTM stands for Urchin Tracking Module, named after Urchin Software Corporation, the company that created the web analytics platform acquired by Google in 2005, which evolved into Google Analytics. UTM parameters are query string key-value pairs appended to destination URLs to pass campaign attribution data to analytics platforms."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Are UTM parameters visible to website visitors?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. UTM parameters are visible in the browser address bar. They do not collect personal data; they only describe the marketing context of a click. Many marketers use a URL shortener to hide the raw parameter string in shared links."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is the difference between utm_source and utm_medium?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "utm_source identifies the specific referrer or publisher (e.g. 'google', 'facebook', 'newsletter_weekly'). utm_medium identifies the broad category or marketing channel type (e.g. 'cpc', 'email', 'paid_social', 'display'). GA4 uses medium - not source - to classify sessions into Default Channel Groups."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How many UTM parameters does GA4 support?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "GA4 supports 9 manual campaign parameters: six commonly used/core parameters (utm_source, utm_medium, utm_campaign, utm_id, utm_term, utm_content) plus three additional GA4 parameters (utm_source_platform, utm_creative_format, utm_marketing_tactic). Some newer parameters currently have reporting limitations; Google notes that utm_creative_format and utm_marketing_tactic are not currently reported in standard GA4 properties."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do UTM parameters affect SEO rankings?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "UTM parameters do not directly affect organic search rankings. However, if Google crawls and indexes URLs with UTM parameters instead of the canonical version, it may cause duplicate content signals. Always configure a canonical tag pointing to the clean URL and optionally block UTM-parameterized URLs in Google Search Console's URL parameters tool."
-            }
-          }
-        ]
       }
     ]
   }
@@ -129,8 +94,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -160,7 +125,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -259,7 +224,7 @@
     <main id="main-content" class="landing-guide-section" style="margin-top: 1.5rem;">
       <article class="editorial-card" id="what-are-utm-parameters">
         <h2>What Are UTM Parameters?</h2>
-        <p>UTM parameters (Urchin Tracking Modules) are query tags appended to destination URLs that pass campaign attribution data into analytics platforms. When a visitor clicks a tagged link, Google Analytics 4 reads these parameters and stores the marketing context as session-level and manual event-level dimensions - enabling precise attribution to the exact campaign, channel, and creative driving each conversion.</p>
+        <p>UTM parameters (Urchin Tracking Modules) are query tags appended to destination URLs to provide campaign information to analytics platforms. Google Analytics 4 can use these values in campaign dimensions and channel classification, subject to the information collected and GA4 processing. They help with reporting but do not guarantee attribution to a particular campaign, channel, or creative.</p>
 
         <p>A fully tagged URL looks like this:</p>
 
@@ -475,8 +440,8 @@
         </div>
 
         <div class="editorial-callout">
-          <h4>⚠️ The Single Most Costly utm_medium Mistake</h4>
-          <p>Using <code>utm_medium=email</code> as <code>utm_source</code> instead of <code>utm_medium</code> is the #1 error teams make. <strong>Source</strong> = where it came from (a specific newsletter name). <strong>Medium</strong> = what type of channel (<code>email</code>). They are different fields.</p>
+          <h4>⚠️ A Common utm_medium Mistake</h4>
+          <p>One common tagging mix-up is putting an email medium in <code>utm_source</code>. <strong>Source</strong> identifies where the visit came from (such as a newsletter name); <strong>medium</strong> describes the acquisition method (such as <code>email</code>). They are different fields.</p>
         </div>
       </article>
 
@@ -533,17 +498,17 @@
           <li><strong>Uppercase characters:</strong> <code>Google</code> and <code>google</code> create two different rows in GA4 reports.</li>
           <li><strong>Spaces in parameter values:</strong> Spaces must be replaced with hyphens or underscores to avoid URL encoding issues.</li>
           <li><strong>Tagging internal links:</strong> Avoid campaign UTMs between pages on your own domain. GA4 does not start a new session, but mid-session campaign values can distort event-scoped attribution. Use internal-promotion events instead.</li>
-          <li><strong>Missing utm_medium:</strong> Sessions without a recognized medium value fall into (Unassigned) in the Default Channel Grouping report.</li>
-          <li><strong>Inventing custom mediums:</strong> Channels like <code>promo</code>, <code>organic_social</code>, <code>pdf</code>, and <code>blog_post</code> do not match GA4's built-in regex rules and generate (Unassigned) rows.</li>
+          <li><strong>Missing or unexpected utm_medium:</strong> This can limit channel classification. GA4 uses available traffic-source information and assigns Unassigned when no applicable default channel definition matches.</li>
+          <li><strong>Inventing custom mediums:</strong> A value like <code>promo</code>, <code>pdf</code>, or <code>blog_post</code> may not match a default channel definition by itself. Check Google's current rules and the other traffic-source information before drawing a conclusion about classification.</li>
           <li><strong>Using #hash anchors before UTM tags:</strong> Query parameters placed after a # hash fragment are never sent to the web server or analytics.</li>
           <li><strong>Double-tagging redirected URLs:</strong> Adding UTMs to a URL that already has UTMs (e.g. via a redirect) creates duplicate or malformed parameter strings.</li>
           <li><strong>URL-encoding the &amp; delimiter:</strong> Some tools double-encode <code>&amp;amp;</code> resulting in broken parameter strings.</li>
-          <li><strong>Inconsistent capitalization across the team:</strong> Without a shared taxonomy document, each team member invents their own casing and naming conventions, permanently fragmenting reports.</li>
+          <li><strong>Inconsistent capitalization across the team:</strong> Differently capitalized manual source and campaign values can appear separately in reports. A shared naming convention makes those values easier to compare; GA4 default channel definitions are not case-sensitive.</li>
         </ol>
 
         <div class="editorial-callout">
           <h4>✅ Solve All 9 Problems Automatically</h4>
-          <p>The <a href="/" style="color: var(--accent-text);">UTMCraft Campaign URL Builder</a> enforces lowercase, strips duplicate UTMs, validates GA4 channel compliance in real time, and warns you about each of these errors before you deploy your links.</p>
+          <p>The <a href="/" style="color: var(--accent-text);">UTMCraft Campaign URL Builder</a> can apply lowercase formatting, remove duplicate UTMs, and provide limited source/medium pattern feedback. These checks do not test live redirects or guarantee GA4 channel assignment.</p>
         </div>
       </article>
 
@@ -591,15 +556,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -608,7 +573,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -617,7 +582,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -627,12 +592,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

@@ -226,7 +226,7 @@ const TAB_META = {
   'tab-inspector': {
     slug: 'utm-inspector',
     title: 'UTM Link Checker & URL Inspector | UTMCraft',
-    description: 'Inspect campaign URLs, extract UTM parameters, audit GA4 compliance, and fix inconsistent tracking links in your browser.'
+    description: 'Inspect campaign URL syntax, selected UTM parameters, naming consistency, and limited source/medium patterns in your browser.'
   },
   'tab-taxonomy': {
     slug: 'ga4-taxonomy',
@@ -1827,7 +1827,7 @@ function renderInspection(data) {
   if (data.audit.issues.length === 0 && data.audit.suggestions.length === 0) {
     issuesBox.innerHTML = `
       <div class="audit-msg" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-emerald);">
-        ✓ No errors or anti-patterns detected. URL is fully GA4 compliant.
+        ✓ No issues found by these URL checks. This does not guarantee live GA4 attribution or channel assignment.
       </div>
     `;
   } else {

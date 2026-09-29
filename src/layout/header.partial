@@ -13,8 +13,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -44,7 +44,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>

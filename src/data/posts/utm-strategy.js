@@ -8,7 +8,7 @@ export const utmStrategyPosts = [
     isPillar: true,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-01-15',
@@ -32,8 +32,8 @@ export const utmStrategyPosts = [
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
     toolCta: {
-      title: 'Enforce Team-Wide Taxonomy With UTMCraft',
-      description: 'Stop campaign naming fragmentation before it reaches GA4. Build, validate, and audit links against strict channel rules in real time.',
+      title: 'Create Campaign Links From Shared Naming Rules',
+      description: 'Use shared presets when creating links, then review parameter values and GA4 reports as part of your team workflow.',
       link: '/bulk-utm-builder/',
       buttonText: 'Open Bulk Matrix Generator'
     },
@@ -50,14 +50,14 @@ export const utmStrategyPosts = [
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           <strong>Core Rule for Scale</strong>
         </div>
-        <p>Your analytics platform (GA4) cannot fix bad input retrospectively. In GA4, <code>Session source / medium</code> dimensions are immutable once processed. An error in an active paid campaign corrupts multi-touch attribution, custom channel groupings, and revenue reporting permanently for that cohort.</p>
+        <p>Changing a live tag does not automatically rewrite campaign values already processed by GA4. If you find an error, document the affected period, correct future links, and review how the collected data should be reported. Channel and conversion outcomes depend on GA4's processing and your reporting setup.</p>
       </div>
 
       <h2 id="why-utm-strategies-fail">Why Most UTM Tracking Strategies Collapse at Scale</h2>
       <p>Tracking systems rarely fail because marketers don't understand what UTM parameters stand for. They fail because of organizational entropy across three fault lines:</p>
       <ol>
-        <li><strong>Channel Team Isolation:</strong> The paid social team uses <code>utm_medium=paid-social</code>, the influencer agency uses <code>utm_medium=influencer</code>, and the performance search agency uses <code>utm_medium=cpc</code>. GA4 dumps the first two into "Unassigned" because they fail GA4's default channel grouping regex.</li>
-        <li><strong>Case-Sensitivity Fragmentation:</strong> Without client-side sanitization, team members type <code>Google</code>, <code>google</code>, <code>Facebook</code>, <code>FB</code>, and <code>ig</code>. GA4 treats each variation as a distinct source entity.</li>
+        <li><strong>Inconsistent Medium Naming:</strong> Teams may use values such as <code>paid-social</code>, <code>influencer</code>, and <code>cpc</code>. A value that does not match a default channel definition can affect classification; review the other traffic-source information and Google's current rules before diagnosing <code>Unassigned</code>.</li>
+        <li><strong>Inconsistent Source Naming:</strong> Teams may use values such as <code>Google</code>, <code>google</code>, <code>Facebook</code>, and <code>FB</code>. Differently capitalized or abbreviated manual source values can appear separately in reports; consistent naming makes comparisons easier. GA4 default channel definitions are not case-sensitive.</li>
         <li><strong>Free-Form Campaign Inputs:</strong> Marketing managers name campaigns after their internal project codes (<code>q4-launch-final-v2</code>), stripping all programmatic context needed by BI and RevOps to analyze offer types or audience tiers.</li>
       </ol>
 
@@ -191,7 +191,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-01-28',
@@ -213,8 +213,8 @@ GROUP BY 1, 2, 3, 4;</code></pre>
       { id: 'sop-checklist', title: 'Team Rollout SOP & Quality Assurance', level: 2 }
     ],
     toolCta: {
-      title: 'Automate Your Naming Convention',
-      description: 'Generate standardized campaign URLs automatically without typing mistakes. Enforce lowercase and delimiter formatting instantly.',
+      title: 'Create Links From Your Naming Convention',
+      description: 'Build URLs using a consistent naming approach, then review parameter values before sharing or publishing them.',
       link: '/utm-naming-conventions/',
       buttonText: 'View Taxonomy SOP Template'
     },
@@ -224,7 +224,7 @@ GROUP BY 1, 2, 3, 4;</code></pre>
       { title: 'URI Syntax Specification (RFC 3986)', url: 'https://www.ietf.org/rfc/rfc3986.txt', publisher: 'IETF' }
     ],
     contentHtml: `
-      <p class="lead-text">Inconsistent UTM naming conventions are the #1 cause of corrupt marketing analytics. When your team uses <code>Facebook</code>, <code>facebook</code>, <code>fb_ad</code>, and <code>cpc</code> interchangeably, your GA4 reporting splits a single campaign across a dozen disjointed rows.</p>
+      <p class="lead-text">Inconsistent UTM naming conventions can make campaign reports harder to compare. For example, a team may use <code>Facebook</code>, <code>facebook</code>, and <code>FB</code> for the same source; differing manual values can appear separately in reports.</p>
 
       <h2 id="the-five-golden-rules">The 5 Golden Rules of UTM Naming</h2>
       <p>Before designing a naming formula, your organization must adopt these five structural rules as law:</p>
@@ -232,9 +232,9 @@ GROUP BY 1, 2, 3, 4;</code></pre>
       <div class="callout callout-recommended">
         <div class="callout-header">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <strong>Rule 1: Always Enforce Lowercase. No Exceptions.</strong>
+          <strong>Rule 1: Use Consistent Casing.</strong>
         </div>
-        <p>Google Analytics 4 is strictly case-sensitive. <code>utm_source=LinkedIn</code> and <code>utm_source=linkedin</code> will appear as two distinct rows in your acquisition reports, splitting session counts and muddling attribution. Configure your link builder tool to lowercase every input automatically.</p>
+        <p>GA4 default channel definitions are not case-sensitive. Differently capitalized manual source or campaign values can appear as separate values in reports. Choose a consistent convention, such as lowercase, to make those reports easier to compare.</p>
       </div>
 
       <div class="callout callout-warning">
@@ -245,11 +245,11 @@ GROUP BY 1, 2, 3, 4;</code></pre>
         <p>Spaces in URLs are converted to ugly, hard-to-read encoded sequences like <code>%20</code> or <code>+</code> (e.g. <code>utm_campaign=summer%20sale%202026</code>). Always replace spaces with hyphens or underscores.</p>
       </div>
 
-      <p><strong>Rule 3: Match <code>utm_medium</code> to GA4 Default Channel Groupings.</strong> GA4 classifies traffic into channels (Paid Social, Paid Search, Email, Affiliates) based on strict regex matches against <code>utm_medium</code> and <code>utm_source</code>. If you use non-standard mediums like <code>promoted-post</code> instead of <code>paid_social</code>, GA4 assigns the traffic to "Unassigned".</p>
+      <p><strong>Rule 3: Match <code>utm_medium</code> to GA4 Default Channel Groupings.</strong> GA4 uses available traffic-source information, including medium and source, when applying its current channel definitions. A non-standard medium such as <code>promoted-post</code> may not match a default channel on its own, but the resulting classification depends on the other available values and applicable rules.</p>
 
       <p><strong>Rule 4: Separate Metadata With a Consistent Delimiter.</strong> Standardize on <code>_</code> as your token delimiter in campaign strings to allow programmatic parsing in SQL or BI dashboards.</p>
 
-      <p><strong>Rule 5: Keep PII Out of Tracking Links.</strong> Never include email addresses, customer names, phone numbers, or user IDs in UTM strings. This violates Google Analytics Terms of Service and data protection regulations (GDPR/CCPA).</p>
+      <p><strong>Rule 5: Keep PII Out of Tracking Links.</strong> Do not include email addresses, phone numbers, or other personally identifiable information in UTM strings. Google Analytics policies prohibit sending PII to Analytics; legal requirements vary by jurisdiction and use case.</p>
 
       <h2 id="universal-campaign-formula">The Universal Campaign Naming Formula</h2>
       <p>A battle-tested campaign name formula answers four strategic questions when viewed in an analytics report:</p>
@@ -298,7 +298,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
 
       <h2 id="field-by-field-breakdown">Field-by-Field Parameter Standards</h2>
       <ul>
-        <li><strong>utm_source:</strong> The specific platform sending traffic (e.g. <code>google</code>, <code>facebook</code>, <code>linkedin</code>, <code>newsletter-weekly</code>, <code>partner-acme</code>). Always lowercase.</li>
+        <li><strong>utm_source:</strong> The specific platform sending traffic (e.g. <code>google</code>, <code>facebook</code>, <code>linkedin</code>, <code>newsletter-weekly</code>, <code>partner-acme</code>). Choose a consistent casing convention; these examples use lowercase.</li>
         <li><strong>utm_medium:</strong> The high-level distribution mechanism. Must align with GA4: <code>cpc</code>, <code>paid_social</code>, <code>email</code>, <code>affiliate</code>, <code>referral</code>, <code>display</code>, <code>video</code>.</li>
         <li><strong>utm_campaign:</strong> The structured campaign formula described above.</li>
         <li><strong>utm_content:</strong> Used to differentiate creatives, ad formats, or CTA placements (e.g. <code>video-testimonial-60s</code>, <code>static-blue-banner</code>, <code>header-cta-button</code>).</li>
@@ -337,7 +337,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-12',
@@ -357,8 +357,8 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
       { id: 'client-onboarding-sop', title: 'Client Onboarding Tracking Audit Checklist', level: 2 }
     ],
     toolCta: {
-      title: 'Equip Your Agency Media Teams',
-      description: 'Generate multi-channel campaign URLs with client-approved presets. Eliminate typos and inconsistent casing across your entire agency roster.',
+      title: 'Create Campaign URLs for Agency Workflows',
+      description: 'Use presets when creating multi-channel URLs, then review values against each client’s documented conventions.',
       link: '/bulk-utm-builder/',
       buttonText: 'Try Bulk UTM Builder'
     },
@@ -388,11 +388,11 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
         <p>Never allow buyers to type freeform values. Maintain dedicated preset profiles for each client account in your link generator, locking <code>utm_source</code>, <code>utm_medium</code>, and delimiter patterns to client-approved standards.</p>
       </div>
 
-      <p><strong>2. Dynamic Platform Macros as Agency Standard:</strong> Use dynamic ValueTrack tokens in Google Ads (<code>{campaignid}</code>, <code>{keyword}</code>) and Meta tokens (<code>{{campaign.id}}</code>, <code>{{adset.id}}</code>). This guarantees that client campaign renaming in ad managers never breaks tracking links in flight.</p>
+      <p><strong>2. Dynamic Platform Macros as Agency Standard:</strong> Use dynamic ValueTrack tokens in Google Ads (<code>{campaignid}</code>, <code>{keyword}</code>) and Meta tokens (<code>{{campaign.id}}</code>, <code>{{adset.id}}</code>). Dynamic IDs can reduce the need to update tracking links when campaign names change; test the expanded URLs in each platform.</p>
 
       <p><strong>3. Mandatory Pre-Flight QA Gate:</strong> No campaign goes live until an independent QA specialist or peer tester audits the finalized landing page URL with <a href="/utm-checker/">UTM Checker</a> to verify HTTP 200 response and query string retention.</p>
 
-      <p><strong>4. Monthly Acquisition Cleanliness Audits:</strong> Run monthly scans in the client's GA4 property to ensure that less than 1% of total sessions land in "Unassigned" or "(not set)".</p>
+      <p><strong>4. Monthly Acquisition Reviews:</strong> Review trends and unusual changes in <code>Unassigned</code> and <code>(not set)</code> against the client's own baseline. Investigate the underlying source, medium, referrer, campaign, and implementation data rather than using a universal target percentage.</p>
 
       <h2 id="client-onboarding-sop">Client Onboarding Tracking Audit Checklist</h2>
       <p>During the first week of any new client engagement, run this 5-point attribution audit:</p>
@@ -413,7 +413,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-22',
@@ -433,8 +433,8 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
       { id: 'browser-testing-procedure', title: 'Step-by-Step Live Browser Testing Procedure', level: 2 }
     ],
     toolCta: {
-      title: 'Inspect Your URLs in Seconds',
-      description: 'Audit any tracking URL for case sensitivity, duplicate parameters, missing tokens, and malformed query strings instantly.',
+      title: 'Check URL Syntax and Selected Fields',
+      description: 'Review URL syntax, selected parameter fields, naming consistency, and a limited set of source/medium patterns.',
       link: '/utm-checker/',
       buttonText: 'Run Link Audit in UTM Checker'
     },
@@ -443,10 +443,10 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
       { title: 'Monitor Events in GA4 DebugView', url: 'https://support.google.com/analytics/answer/7201382', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text">Launching a paid campaign without pre-flight UTM verification is the marketing equivalent of shipping software without running unit tests. One typo, one accidental uppercase letter, or an unhandled 301 redirect can turn tens of thousands of dollars of ad spend into a massive spike of untracked Direct traffic.</p>
+      <p class="lead-text">Checking a paid campaign URL before launch can catch syntax issues, unexpected parameter values, or redirects that alter campaign information. The effect on GA4 reporting depends on the data received and processed, so verify the final landing URL and analytics implementation as part of pre-flight review.</p>
 
       <h2 id="why-qa-matters">Why Pre-Launch QA Saves Five-Figure Ad Budgets</h2>
-      <p>Tracking failures cannot be repaired after the campaign has launched. If you spend $20,000 on a product drop over a weekend and your landing page stripped UTM parameters, GA4 records 10,000 "Direct" sessions with 0 attributed revenue. Your client or CMO will ask why paid ads drove no sales, and you will have no data to defend your performance.</p>
+      <p>When campaign parameters are lost before the analytics tag receives them, reports may not show the intended campaign values. Processed reporting is not necessarily retroactively corrected by changing a live link, so document the issue and investigate what data was collected before deciding how to report the affected period.</p>
 
       <h2 id="the-16-point-checklist">The 16-Point Pre-Launch QA Checklist</h2>
       <div class="editorial-table-wrap">
@@ -472,7 +472,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
             <tr>
               <td><strong>Syntax</strong></td>
               <td>3. Case formatting</td>
-              <td>100% lowercase across all parameter keys and values.</td>
+              <td>Use a consistent convention; lowercase is recommended for easier comparison.</td>
             </tr>
             <tr>
               <td><strong>Syntax</strong></td>
@@ -491,8 +491,8 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
             </tr>
             <tr>
               <td><strong>Taxonomy</strong></td>
-              <td>7. utm_medium compliance</td>
-              <td>Complies with GA4 Channel Grouping (e.g. <code>paid_social</code>, <code>cpc</code>, <code>email</code>).</td>
+              <td>7. utm_medium pattern review</td>
+              <td>Compare chosen values (e.g. <code>paid_social</code>, <code>cpc</code>, <code>email</code>) with current GA4 definitions; live assignment depends on collected traffic-source data.</td>
             </tr>
             <tr>
               <td><strong>Taxonomy</strong></td>

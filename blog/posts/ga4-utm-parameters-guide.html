@@ -51,11 +51,6 @@
       "image": "https://utmcraft.com/blog/images/ga4-utm-parameters-guide.webp",
       "datePublished": "2026-01-20",
       "dateModified": "2026-09-23",
-      "reviewedBy": {
-        "@type": "Organization",
-        "name": "UTMCraft Editorial Team",
-        "url": "https://utmcraft.com/"
-      },
       "citation": [
         {
           "@type": "CreativeWork",
@@ -76,7 +71,7 @@
       "author": {
         "@type": "Person",
         "name": "Dinesh Jeengar",
-        "jobTitle": "Attribution & Analytics Architect",
+        "jobTitle": "Founder, UTMCraft",
         "url": "https://utmcraft.com/"
       },
       "publisher": {
@@ -127,43 +122,6 @@
       "url": "https://utmcraft.com/",
       "logo": "https://utmcraft.com/utmcraft-logo-light.png",
       "email": "contact@utmcraft.com"
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Are UTM parameters case-sensitive in Google Analytics 4?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. GA4 is strictly case-sensitive. If you tag campaigns with utm_source=Google, utm_source=google, and utm_source=GOOGLE, GA4 records three completely separate source rows in your Traffic Acquisition reports. To avoid fractured analytics, always force all parameters to lowercase."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What happens if utm_source or utm_medium is missing from a link?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "If utm_source is missing, GA4 cannot determine the traffic origin and will typically categorize the session as (direct) / (none) or use the HTTP referrer header. If utm_medium is missing, GA4 fails standard channel classification rules and buckets the session under (Unassigned)."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Why doesn't GA4 report utm_creative_format in standard campaign dashboards?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Google Analytics 4 collects utm_creative_format into the Manual creative format dimension. However, it does not currently map into standard Default Channel Groups or pre-configured Traffic Acquisition dashboard cards. To analyze it, you must build a custom report in GA4 Explorations or query the BigQuery Event Export."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the difference between utm_term and utm_content?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "utm_term was originally designed for search keywords (e.g. crm+software or dynamic ValueTrack {keyword}). utm_content is designed for creative asset differentiation, such as A/B testing variations (e.g. blue-cta-btn vs green-cta-btn) or distinguishing header links from footer links in an email."
-          }
-        }
-      ]
     }
   ]
 }
@@ -190,8 +148,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -221,7 +179,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -289,11 +247,6 @@
             <span class="article-meta-bullet">•</span>
             <span class="article-author-byline">Written by Dinesh Jeengar</span>
           </div>
-          <div class="article-editorial-credits" aria-label="Article authorship and sources">
-      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
-      <p><strong>Last reviewed</strong> <time datetime="2026-09-23">September 23, 2026</time></p>
-      <p><strong>Sources</strong> <a href="https://support.google.com/analytics/answer/10917952" target="_blank" rel="noopener">Google Analytics Help</a>, <a href="https://datatracker.ietf.org/doc/html/rfc3986" target="_blank" rel="noopener">IETF</a> <a class="article-source-details" href="#article-sources">Full references</a></p>
-    </div>
 
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
@@ -531,11 +484,11 @@
         <h2 id="faq">Frequently Asked Questions</h2>
         <div class="faq-item">
           <h3>Are UTM parameters case-sensitive in Google Analytics 4?</h3>
-          <p>Yes. GA4 is strictly case-sensitive. If you tag campaigns with <code>utm_source=Google</code>, <code>utm_source=google</code>, and <code>utm_source=GOOGLE</code>, GA4 records three completely separate source rows in your Traffic Acquisition reports. To avoid fractured analytics, always force all parameters to lowercase.</p>
+          <p>GA4 default channel definitions are not case-sensitive. Differently capitalized manual source or campaign values can appear as separate values in reports, so using a consistent convention such as lowercase can make reporting easier to compare.</p>
         </div>
         <div class="faq-item">
-          <h3>What happens if utm_source or utm_medium is missing from a link?</h3>
-          <p>If <code>utm_source</code> is missing, GA4 cannot determine the traffic origin and will typically categorize the session as <code>(direct) / (none)</code> or use the HTTP referrer header. If <code>utm_medium</code> is missing, GA4 fails standard channel classification rules and buckets the session under <code>(Unassigned)</code>.</p>
+          <h3>How can missing utm_source or utm_medium affect reporting?</h3>
+          <p>If <code>utm_source</code> or <code>utm_medium</code> is missing, GA4 has less campaign information available for channel classification. It may use other information, such as referrer or advertising data, and can assign <code>Unassigned</code> when no applicable default channel definition matches. Check the collected source, medium, referrer, and other campaign information before diagnosing a session.</p>
         </div>
         <div class="faq-item">
           <h3>Why doesn't GA4 report utm_creative_format in standard campaign dashboards?</h3>
@@ -550,7 +503,7 @@
 
           
     <section class="article-references" id="article-sources">
-      <h3>Sources &amp; Authoritative References</h3>
+      <h3>References</h3>
       <ul class="references-list">
         
           <li>
@@ -582,8 +535,8 @@
             </div>
             <div class="author-info">
               <h4>Dinesh Jeengar</h4>
-              <div class="author-role">Attribution & Analytics Architect</div>
-              <p class="author-bio">Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.</p>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
               <nav class="author-social-links" aria-label="Author links">
     <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
@@ -605,8 +558,8 @@
       <div class="article-tool-cta-inner">
         <div class="article-tool-cta-content">
           <p class="article-tool-cta-label">Related tool</p>
-          <h3 class="article-tool-cta-title">Generate Perfect GA4 Tracking URLs</h3>
-          <p class="article-tool-cta-desc">Build complete campaign links with automated lowercase formatting, required parameter checks, and instant syntax validation.</p>
+          <h3 class="article-tool-cta-title">Build GA4 Campaign URLs</h3>
+          <p class="article-tool-cta-desc">Create campaign links and review their URL syntax and selected parameter fields before use.</p>
         </div>
         <div class="article-tool-cta-action">
           <a href="/" class="article-tool-cta-btn">
@@ -649,7 +602,7 @@
           <span class="post-card-readtime">8 min read</span>
         </div>
         <h4 class="post-card-title">What Is utm_medium? GA4 Default Channel Grouping Rules & Standards</h4>
-        <p class="post-card-excerpt">Understand utm_medium and how GA4 uses it to classify sessions into Default Channel Groups. Avoid Unassigned traffic with exact medium naming rules.</p>
+        <p class="post-card-excerpt">Understand utm_medium and how GA4 uses available traffic-source information to classify sessions into Default Channel Groups. Review values against current definitions when investigating Unassigned traffic.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published February 8, 2026</span>
@@ -716,15 +669,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -733,7 +686,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -742,7 +695,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -752,12 +705,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

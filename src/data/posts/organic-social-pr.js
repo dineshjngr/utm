@@ -2,13 +2,13 @@ export const organicSocialPrPosts = [
   {
     slug: 'non-paid-marketing-utm-tracking',
     title: 'How to Track Non-Paid Marketing With UTMs: Organic Social, PR & Partnerships',
-    seoTitle: 'Track Non-Paid Marketing With UTMs: Social, PR & PR | UTMCraft',
+    seoTitle: 'Track Non-Paid Marketing With UTMs: Social, PR & Partnerships | UTMCraft',
     description: 'Learn how to track organic social bios, YouTube descriptions, press releases, podcast sponsorships, and co-marketing partnerships in Google Analytics 4.',
     category: 'organic-social-pr',
     isPillar: true,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-16',
@@ -131,7 +131,7 @@ export const organicSocialPrPosts = [
         </div>
         <div class="faq-item">
           <h3>Do vanity URLs preserve UTM parameters when 301 redirecting?</h3>
-          <p>Only if your web server or redirect manager is configured with query string preservation (e.g. Nginx <code>$is_args$args</code> or Apache <code>[QSA]</code>). When set up properly, a memorable URL like <code>example.com/podcast</code> seamlessly redirects to your destination page with full UTM attribution intact.</p>
+          <p>The vanity URL needs to redirect to a destination that preserves the incoming query string. Redirect behavior depends on the server and rule configuration. Apache <code>[QSA]</code> is specific to Apache <code>mod_rewrite</code>; Nginx uses different configuration. Test the final destination URL and confirm its campaign parameters.</p>
         </div>
         <div class="faq-item">
           <h3>Why should I use both promo codes and UTM parameters for creator marketing?</h3>
@@ -149,13 +149,13 @@ export const organicSocialPrPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-04',
     dateModified: '2026-09-23',
     reviewedDate: 'September 23, 2026',
-    readingTime: '8 min read',
+    readingTime: '4 min read',
     primaryKeyword: 'influencer utm tracking',
     secondaryKeywords: ['creator campaign tracking', 'track influencer links ga4', 'influencer promo codes vs utm', 'influencer marketing attribution'],
     semanticKeywords: ['creator vanity url', 'influencer governance spreadsheet', 'tiktok bio link tracking', 'affiliate influencer utm'],
@@ -167,7 +167,9 @@ export const organicSocialPrPosts = [
       { id: 'the-creator-attribution-challenge', title: 'The Creator Marketing Attribution Challenge', level: 2 },
       { id: 'standardized-creator-utm-template', title: 'The Standardized Creator Tracking Formula', level: 2 },
       { id: 'instagram-stories-and-tiktok-bios', title: 'Tracking Instagram Story Stickers vs TikTok Bios', level: 2 },
-      { id: 'partner-governance-tips', title: 'Enforcing Tracking Guidelines in Creator Briefs', level: 2 }
+      { id: 'promo-code-limits', title: 'What Promo Codes Can and Cannot Show', level: 2 },
+      { id: 'partner-governance-tips', title: 'Creator Briefs and Link QA', level: 2 },
+      { id: 'creator-reporting', title: 'Compare Creator Links and Redemptions', level: 2 }
     ],
     toolCta: {
       title: 'Batch Generate Creator Links',
@@ -180,10 +182,10 @@ export const organicSocialPrPosts = [
       { title: 'GA4 URL builders: Collect campaign data with custom URLs', url: 'https://support.google.com/analytics/answer/10917952', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text">Influencer marketing without standardized link tracking produces anecdotal metrics (likes and vanity impressions) instead of measurable pipeline and revenue. Here is how to structure tracking for 10 or 1,000 creator partnerships.</p>
+      <p class="lead-text">Creator campaigns often use several placements and a separate promo code. Give each partner a documented link naming scheme, test the links they publish, and compare visits with code redemptions without treating either measure as complete attribution.</p>
 
       <h2 id="the-creator-attribution-challenge">The Creator Marketing Attribution Challenge</h2>
-      <p>Creators post across multiple formats: permanent bio links, 24-hour expiring story stickers, video descriptions, and podcast sponsor reads. If you hand creators raw tracking links with 60 characters of UTM parameters, they will either shorten them with unknown services (which may strip parameters) or fail to paste the full string. Provide creators with branded vanity links or clean UTM URLs directly.</p>
+      <p>A creator may share a bio link, story sticker, video description, and spoken promo code for one promotion. Link clicks can carry campaign parameters; a spoken code cannot. Decide whether reports need to separate creator, platform, placement, and campaign before assigning values. Give each creator the exact destination to publish, especially when a bio-link service adds a redirect.</p>
 
       <h2 id="standardized-creator-utm-template">The Standardized Creator Tracking Formula</h2>
       <div class="code-block-wrap">
@@ -197,14 +199,23 @@ https://example.com/shop?utm_source=instagram&amp;utm_medium=influencer&amp;utm_
         <button class="copy-code-btn" data-copy="https://example.com/shop?utm_source=instagram&utm_medium=influencer&utm_campaign=creator_techsarah_spring2026&utm_content=story_link_sticker" aria-label="Copy Influencer URL">Copy</button>
       </div>
 
+      <p>In this example, <code>utm_source</code> identifies Instagram, <code>utm_campaign</code> contains the documented creator handle and promotion, and <code>utm_content</code> distinguishes the placement. Keep the creator identifier stable across placements so you can filter the campaign consistently. If your team instead uses the creator as the source, document that choice and use it for every link; do not mix both schemes within the same report.</p>
+      <p><code>influencer</code> is a useful internal medium label, but it does not by itself promise a particular GA4 Default Channel Group. Compare collected values with <a href="https://support.google.com/analytics/answer/9756891">Google's current channel definitions</a>, or define a custom channel group for your own reporting needs.</p>
+
       <h2 id="instagram-stories-and-tiktok-bios">Tracking Instagram Story Stickers vs TikTok Bios</h2>
       <ul>
-        <li><strong>Instagram Stories:</strong> Use <code>utm_content=story_sticker_day1</code> and <code>utm_content=story_sticker_reminder</code> to evaluate which story frame drove conversions.</li>
-        <li><strong>TikTok Bio:</strong> TikTok limits bio link visibility on some mobile devices; use a memorable short link (e.g. <code>brand.link/sarah</code>) that 301-redirects to your UTM-tagged destination.</li>
+        <li><strong>Instagram Stories:</strong> Give the first story and reminder distinct <code>utm_content</code> values, such as <code>story_day1</code> and <code>story_reminder</code>, while keeping source and campaign values stable.</li>
+        <li><strong>Bio links:</strong> If a creator uses a link-in-bio page, tag the outgoing link to your site and test the entire click path. The bio page's own analytics and GA4 sessions may count different things.</li>
       </ul>
 
-      <h2 id="partner-governance-tips">Enforcing Tracking Guidelines in Creator Briefs</h2>
-      <p>Include the exact tracking link and promo code directly in the influencer agreement. State explicitly that payout or performance bonuses are calculated from UTM sessions and promo code redemption logs in your analytics system.</p>
+      <h2 id="promo-code-limits">What Promo Codes Can and Cannot Show</h2>
+      <p>A creator code can identify orders where a buyer enters it at checkout, including purchases after someone hears the code without clicking a link. It does not identify every visitor from that creator: buyers may forget the code, use another discount, or share it with friends. UTM sessions also do not prove that a later order was caused by the creator. Report link visits and code redemptions as separate measures, and explain any matching rules before combining them.</p>
+
+      <h2 id="partner-governance-tips">Creator Briefs and Link QA</h2>
+      <p>Include an approved URL and code for each placement in the creator brief. Record the partner identifier, platform, placement, campaign, destination, and code in a shared register. Before launch, open each link on a phone, inspect the final destination after any shortening or bio-link redirects, and confirm the expected query parameters remain. Check the values your analytics implementation collects; a URL syntax checker alone cannot verify live attribution.</p>
+
+      <h2 id="creator-reporting">Compare Creator Links and Redemptions</h2>
+      <p>In GA4 Traffic acquisition, review the campaign and source/medium values from tagged visits; keep the reporting scope and date range consistent. Compare those counts with your commerce or CRM code-redemption report, which may use different dates and identity rules. If one creator's clicks are unexpectedly low, ask for the published link and test that exact placement before changing the naming convention. For parameter definitions, see <a href="https://support.google.com/analytics/answer/10917952">Google's campaign URL guidance</a>.</p>
     `
   }
 ];

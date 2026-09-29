@@ -33,7 +33,7 @@
 
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -42,14 +42,33 @@
         "applicationCategory": "UtilityApplication",
         "url": "https://utmcraft.com/utm-builder/linkedin/",
         "description": "Build LinkedIn Ads UTM tracking URLs for B2B campaigns with manual naming conventions and Insight Tag integration guidance.",
-        "publisher": { "@type": "Organization", "name": "UTMCraft Studio", "url": "https://utmcraft.com/" }
+        "publisher": {
+          "@type": "Organization",
+          "name": "UTMCraft Studio",
+          "url": "https://utmcraft.com/"
+        }
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
-          { "@type": "ListItem", "position": 2, "name": "UTM Builders", "item": "https://utmcraft.com/" },
-          { "@type": "ListItem", "position": 3, "name": "LinkedIn Ads UTM Builder", "item": "https://utmcraft.com/utm-builder/linkedin/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://utmcraft.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "UTM Builders",
+            "item": "https://utmcraft.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "LinkedIn Ads UTM Builder",
+            "item": "https://utmcraft.com/utm-builder/linkedin/"
+          }
         ]
       },
       {
@@ -58,35 +77,6 @@
         "name": "UTMCraft",
         "url": "https://utmcraft.com/",
         "logo": "https://utmcraft.com/utmcraft-logo-light.png"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Does LinkedIn Ads support dynamic UTM parameter macros?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. LinkedIn Campaign Manager supports dynamic URL values such as {{CAMPAIGN_ID}}, {{CAMPAIGN_NAME}}, {{AD_SET_ID}}, {{AD_SET_NAME}}, {{AD_ID}}, and {{AD_NAME}}. Static source and medium values can be combined with those dynamic identifiers."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What utm_source should I use for LinkedIn Ads?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Use 'linkedin' as the utm_source value. GA4's Default Channel Grouping recognizes 'linkedin' as a social network source. Avoid 'linkedin.com', 'LinkedIn', or 'LinkedIn_Ads' - these create separate rows in GA4 reports and may not map to the correct channel group."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Why is B2B UTM tracking harder than B2C?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "B2B attribution is challenging because sales cycles are much longer (often 3-18 months), multiple stakeholders from the same account visit your site across different sessions and devices, and the first-touch campaign that created awareness is rarely the last-touch campaign that closed the deal. UTM parameters only capture last-touch attribution by default in GA4. For full-funnel B2B attribution, combine UTMs with a CRM (Salesforce, HubSpot) and account-based measurement tools."
-            }
-          }
-        ]
       }
     ]
   }
@@ -111,8 +101,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -142,7 +132,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -505,9 +495,9 @@
                         <div class="rules-control-item">
                           <label class="checkbox-label" for="rule-lowercase">
                             <input type="checkbox" id="rule-lowercase" checked>
-                            <span class="rules-label-text">Auto Lowercase (GA4 Best Practice)</span>
+                            <span class="rules-label-text">Auto Lowercase (Naming Option)</span>
                           </label>
-                          <p class="rules-hint-text">Converts UTM values to lowercase. GA4 is strictly case-sensitive and splits "Email" vs "email".</p>
+                          <p class="rules-hint-text">Converts UTM values to lowercase for consistent naming. GA4 default channel definitions are not case-sensitive.</p>
                         </div>
 
                         <div class="rules-control-item">
@@ -791,7 +781,7 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign={{CAMPAIGN_NAME}
 
       <article class="editorial-card" id="b2b-attribution">
         <h2>B2B Attribution Strategy for LinkedIn Campaigns</h2>
-        <p>LinkedIn generates the highest quality B2B leads of any social channel, but it consistently suffers from last-touch attribution bias. A VP of Engineering who sees your LinkedIn ad in January and downloads a whitepaper tracked via UTMs may not convert to a customer until October - after many other touchpoints. Your UTM data will credit only the last-touch session, dramatically undervaluing LinkedIn's contribution.</p>
+        <p>LinkedIn campaigns can involve long B2B buying journeys with several touchpoints. For example, someone may see an ad, download a whitepaper, and convert months later. Review the attribution model and reporting scope in GA4 before interpreting how campaign credit is assigned.</p>
 
         <h3>A Practical B2B Multi-Touch Attribution Stack</h3>
         <div class="editorial-table-wrap">
@@ -891,15 +881,15 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign={{CAMPAIGN_NAME}
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -908,7 +898,7 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign={{CAMPAIGN_NAME}
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -917,7 +907,7 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign={{CAMPAIGN_NAME}
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -927,12 +917,10 @@ utm_source=linkedin&amp;utm_medium=paid_social&amp;utm_campaign={{CAMPAIGN_NAME}
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

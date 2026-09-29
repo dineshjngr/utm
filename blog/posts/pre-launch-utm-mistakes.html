@@ -51,11 +51,6 @@
       "image": "https://utmcraft.com/blog/images/pre-launch-utm-mistakes.webp",
       "datePublished": "2026-09-24",
       "dateModified": "2026-09-24",
-      "reviewedBy": {
-        "@type": "Organization",
-        "name": "UTMCraft Editorial Team",
-        "url": "https://utmcraft.com/"
-      },
       "citation": [
         {
           "@type": "CreativeWork",
@@ -66,7 +61,7 @@
       "author": {
         "@type": "Person",
         "name": "Dinesh Jeengar",
-        "jobTitle": "Attribution & Analytics Architect",
+        "jobTitle": "Founder, UTMCraft",
         "url": "https://utmcraft.com/"
       },
       "publisher": {
@@ -117,27 +112,6 @@
       "url": "https://utmcraft.com/",
       "logo": "https://utmcraft.com/utmcraft-logo-light.png",
       "email": "contact@utmcraft.com"
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How fast do UTM parameters appear in GA4 DebugView?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Immediately. DebugView displays incoming hits in real-time within seconds of page load, allowing instantaneous pre-flight validation."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do I test my UTM parameters without polluting production GA4 data?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Use the Google Analytics Debugger Chrome extension, which flags hits with the debug_mode parameter. You can view them in DebugView and filter them out of production reporting."
-          }
-        }
-      ]
     }
   ]
 }
@@ -164,8 +138,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -195,7 +169,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -263,11 +237,6 @@
             <span class="article-meta-bullet">•</span>
             <span class="article-author-byline">Written by Dinesh Jeengar</span>
           </div>
-          <div class="article-editorial-credits" aria-label="Article authorship and sources">
-      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
-      <p><strong>Last reviewed</strong> <time datetime="2026-09-24">September 24, 2026</time></p>
-      <p><strong>Sources</strong> <a href="https://support.google.com/analytics/answer/7201382" target="_blank" rel="noopener">Google Support</a> <a class="article-source-details" href="#article-sources">Full references</a></p>
-    </div>
 
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
@@ -315,7 +284,7 @@
       <p class="lead-text">Authorizing thousands of dollars in daily ad spend without testing your tracking parameters is like taking off in an airplane without a pre-flight checklist. Catching tracking errors 10 minutes before launch saves weeks of broken data and wasted ad spend.</p>
 
       <h2 id="why-pre-launch-qa-matters">Why Pre-Flight QA Protects Your Ad Budget</h2>
-      <p>Once ad campaigns go live, fixing a broken parameter requires pausing ads, updating creative links, and waiting for ad network re-review. Worse, all traffic acquired during the broken period is permanently corrupted in your analytics history.</p>
+      <p>After a campaign launches, a tracking issue may require updating the link or ad setup. Data already processed in GA4 may not be retroactively changed in standard reports, so document the affected period and correct the setup for future traffic.</p>
 
       <h2 id="5-pre-launch-mistakes">The 5 Critical Pre-Launch UTM Mistakes</h2>
 
@@ -332,7 +301,7 @@
       <p>Accidentally including two question marks (<code>?page=1?utm_source=...</code>) or omitting the <code>&amp;</code> between parameters renders the entire query string unparseable.</p>
 
       <h3 id="mistake-5-ignoring-channel-grouping-rules">5. Launching Without Channel Grouping Verification</h3>
-      <p>Confirm that your <code>utm_medium</code> matches GA4 Default Channel Grouping rules to prevent your ad spend from immediately routing to Unassigned.</p>
+      <p>Compare your <code>utm_medium</code> and other available traffic-source values with Google's current Default Channel Group definitions. This can help identify values that may affect classification; it does not guarantee a particular channel assignment.</p>
 
       <h2 id="pre-launch-qa-protocol">The 5-Minute Pre-Launch QA Protocol</h2>
       <ol>
@@ -340,7 +309,7 @@
         <li>Open the link in an incognito window and check for redirect parameter loss.</li>
         <li>Inspect GA4 Realtime to verify <code>session_campaign</code> capture.</li>
         <li>Submit a test form to verify CRM hidden field storage.</li>
-        <li>Authorize ad spend with full attribution confidence.</li>
+        <li>Review the link and analytics checks before authorizing ad spend.</li>
       </ol>
 
       <h2 id="faq">Frequently Asked Questions</h2>
@@ -356,7 +325,7 @@
 
           
     <section class="article-references" id="article-sources">
-      <h3>Sources &amp; Authoritative References</h3>
+      <h3>References</h3>
       <ul class="references-list">
         
           <li>
@@ -376,8 +345,8 @@
             </div>
             <div class="author-info">
               <h4>Dinesh Jeengar</h4>
-              <div class="author-role">Attribution & Analytics Architect</div>
-              <p class="author-bio">Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.</p>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
               <nav class="author-social-links" aria-label="Author links">
     <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
@@ -400,7 +369,7 @@
         <div class="article-tool-cta-content">
           <p class="article-tool-cta-label">Related tool</p>
           <h3 class="article-tool-cta-title">Run a Pre-Launch UTM Audit</h3>
-          <p class="article-tool-cta-desc">Audit your ad URLs in the UTMCraft UTM Checker before publishing to ensure zero redirect drops and 100% GA4 channel grouping compliance.</p>
+          <p class="article-tool-cta-desc">Use the UTMCraft UTM Checker for URL syntax, selected parameter, casing, and medium-pattern checks. Test redirects and GA4 collection separately; the checker cannot guarantee live attribution.</p>
         </div>
         <div class="article-tool-cta-action">
           <a href="/utm-checker/" class="article-tool-cta-btn">
@@ -460,7 +429,7 @@
           <span class="post-card-readtime">16 min read</span>
         </div>
         <h4 class="post-card-title">15 UTM Tracking Mistakes That Ruin Your GA4 Data (and How to Fix Them)</h4>
-        <p class="post-card-excerpt">Discover the 15 most destructive UTM tracking mistakes breaking GA4 attribution, causing Unassigned traffic, and corrupting ad ROI-with actionable fixes.</p>
+        <p class="post-card-excerpt">Review common UTM tracking problems that can affect GA4 campaign reporting, with practical steps for checking links and attribution.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published September 24, 2026</span>
@@ -516,15 +485,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -533,7 +502,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -542,7 +511,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -552,12 +521,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

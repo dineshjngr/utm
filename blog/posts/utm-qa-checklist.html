@@ -51,11 +51,6 @@
       "image": "https://utmcraft.com/blog/images/utm-qa-checklist.webp",
       "datePublished": "2026-02-22",
       "dateModified": "2026-09-23",
-      "reviewedBy": {
-        "@type": "Organization",
-        "name": "UTMCraft Editorial Team",
-        "url": "https://utmcraft.com/"
-      },
       "citation": [
         {
           "@type": "CreativeWork",
@@ -66,7 +61,7 @@
       "author": {
         "@type": "Person",
         "name": "Dinesh Jeengar",
-        "jobTitle": "Attribution & Analytics Architect",
+        "jobTitle": "Founder, UTMCraft",
         "url": "https://utmcraft.com/"
       },
       "publisher": {
@@ -143,8 +138,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -174,7 +169,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -242,11 +237,6 @@
             <span class="article-meta-bullet">•</span>
             <span class="article-author-byline">Written by Dinesh Jeengar</span>
           </div>
-          <div class="article-editorial-credits" aria-label="Article authorship and sources">
-      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
-      <p><strong>Last reviewed</strong> <time datetime="2026-09-23">September 23, 2026</time></p>
-      <p><strong>Sources</strong> <a href="https://support.google.com/analytics/answer/7201382" target="_blank" rel="noopener">Google Analytics Help</a> <a class="article-source-details" href="#article-sources">Full references</a></p>
-    </div>
 
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
@@ -273,10 +263,10 @@
         <!-- Main Prose Body -->
         <div class="article-prose">
           
-      <p class="lead-text">Launching a paid campaign without pre-flight UTM verification is the marketing equivalent of shipping software without running unit tests. One typo, one accidental uppercase letter, or an unhandled 301 redirect can turn tens of thousands of dollars of ad spend into a massive spike of untracked Direct traffic.</p>
+      <p class="lead-text">Checking a paid campaign URL before launch can catch syntax issues, unexpected parameter values, or redirects that alter campaign information. The effect on GA4 reporting depends on the data received and processed, so verify the final landing URL and analytics implementation as part of pre-flight review.</p>
 
       <h2 id="why-qa-matters">Why Pre-Launch QA Saves Five-Figure Ad Budgets</h2>
-      <p>Tracking failures cannot be repaired after the campaign has launched. If you spend $20,000 on a product drop over a weekend and your landing page stripped UTM parameters, GA4 records 10,000 "Direct" sessions with 0 attributed revenue. Your client or CMO will ask why paid ads drove no sales, and you will have no data to defend your performance.</p>
+      <p>When campaign parameters are lost before the analytics tag receives them, reports may not show the intended campaign values. Processed reporting is not necessarily retroactively corrected by changing a live link, so document the issue and investigate what data was collected before deciding how to report the affected period.</p>
 
       <h2 id="the-16-point-checklist">The 16-Point Pre-Launch QA Checklist</h2>
       <div class="editorial-table-wrap">
@@ -302,7 +292,7 @@
             <tr>
               <td><strong>Syntax</strong></td>
               <td>3. Case formatting</td>
-              <td>100% lowercase across all parameter keys and values.</td>
+              <td>Use a consistent convention; lowercase is recommended for easier comparison.</td>
             </tr>
             <tr>
               <td><strong>Syntax</strong></td>
@@ -321,8 +311,8 @@
             </tr>
             <tr>
               <td><strong>Taxonomy</strong></td>
-              <td>7. utm_medium compliance</td>
-              <td>Complies with GA4 Channel Grouping (e.g. <code>paid_social</code>, <code>cpc</code>, <code>email</code>).</td>
+              <td>7. utm_medium pattern review</td>
+              <td>Compare chosen values (e.g. <code>paid_social</code>, <code>cpc</code>, <code>email</code>) with current GA4 definitions; live assignment depends on collected traffic-source data.</td>
             </tr>
             <tr>
               <td><strong>Taxonomy</strong></td>
@@ -389,7 +379,7 @@
 
           
     <section class="article-references" id="article-sources">
-      <h3>Sources &amp; Authoritative References</h3>
+      <h3>References</h3>
       <ul class="references-list">
         
           <li>
@@ -409,8 +399,8 @@
             </div>
             <div class="author-info">
               <h4>Dinesh Jeengar</h4>
-              <div class="author-role">Attribution & Analytics Architect</div>
-              <p class="author-bio">Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.</p>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
               <nav class="author-social-links" aria-label="Author links">
     <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
@@ -432,8 +422,8 @@
       <div class="article-tool-cta-inner">
         <div class="article-tool-cta-content">
           <p class="article-tool-cta-label">Related tool</p>
-          <h3 class="article-tool-cta-title">Inspect Your URLs in Seconds</h3>
-          <p class="article-tool-cta-desc">Audit any tracking URL for case sensitivity, duplicate parameters, missing tokens, and malformed query strings instantly.</p>
+          <h3 class="article-tool-cta-title">Check URL Syntax and Selected Fields</h3>
+          <p class="article-tool-cta-desc">Review URL syntax, selected parameter fields, naming consistency, and a limited set of source/medium patterns.</p>
         </div>
         <div class="article-tool-cta-action">
           <a href="/utm-checker/" class="article-tool-cta-btn">
@@ -493,7 +483,7 @@
           <span class="post-card-readtime">9 min read</span>
         </div>
         <h4 class="post-card-title">Why HTTP Redirects Strip UTM Parameters (and How to Preserve Query Strings)</h4>
-        <p class="post-card-excerpt">Learn why HTTP 301 and 302 redirects drop UTM parameters, converting paid campaigns into Direct traffic, and how to configure servers to preserve query strings.</p>
+        <p class="post-card-excerpt">Learn how HTTP 301 and 302 redirect rules can affect UTM parameters and campaign reporting, and how to inspect query-string handling on your server.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published March 15, 2026</span>
@@ -531,15 +521,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -548,7 +538,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -557,7 +547,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -567,12 +557,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

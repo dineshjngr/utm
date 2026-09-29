@@ -8,7 +8,7 @@ export const utmParametersPosts = [
     isPillar: true,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-01-20',
@@ -32,8 +32,8 @@ export const utmParametersPosts = [
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
     toolCta: {
-      title: 'Generate Perfect GA4 Tracking URLs',
-      description: 'Build complete campaign links with automated lowercase formatting, required parameter checks, and instant syntax validation.',
+      title: 'Build GA4 Campaign URLs',
+      description: 'Create campaign links and review their URL syntax and selected parameter fields before use.',
       link: '/',
       buttonText: 'Open Standard Campaign Builder'
     },
@@ -243,11 +243,11 @@ export const utmParametersPosts = [
         <h2 id="faq">Frequently Asked Questions</h2>
         <div class="faq-item">
           <h3>Are UTM parameters case-sensitive in Google Analytics 4?</h3>
-          <p>Yes. GA4 is strictly case-sensitive. If you tag campaigns with <code>utm_source=Google</code>, <code>utm_source=google</code>, and <code>utm_source=GOOGLE</code>, GA4 records three completely separate source rows in your Traffic Acquisition reports. To avoid fractured analytics, always force all parameters to lowercase.</p>
+          <p>GA4 default channel definitions are not case-sensitive. Differently capitalized manual source or campaign values can appear as separate values in reports, so using a consistent convention such as lowercase can make reporting easier to compare.</p>
         </div>
         <div class="faq-item">
-          <h3>What happens if utm_source or utm_medium is missing from a link?</h3>
-          <p>If <code>utm_source</code> is missing, GA4 cannot determine the traffic origin and will typically categorize the session as <code>(direct) / (none)</code> or use the HTTP referrer header. If <code>utm_medium</code> is missing, GA4 fails standard channel classification rules and buckets the session under <code>(Unassigned)</code>.</p>
+          <h3>How can missing utm_source or utm_medium affect reporting?</h3>
+          <p>If <code>utm_source</code> or <code>utm_medium</code> is missing, GA4 has less campaign information available for channel classification. It may use other information, such as referrer or advertising data, and can assign <code>Unassigned</code> when no applicable default channel definition matches. Check the collected source, medium, referrer, and other campaign information before diagnosing a session.</p>
         </div>
         <div class="faq-item">
           <h3>Why doesn't GA4 report utm_creative_format in standard campaign dashboards?</h3>
@@ -269,7 +269,7 @@ export const utmParametersPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-04',
@@ -290,8 +290,8 @@ export const utmParametersPosts = [
       { id: 'common-mistakes', title: 'Common utm_source Mistakes That Break GA4', level: 2 }
     ],
     toolCta: {
-      title: 'Build With Valid Source Presets',
-      description: 'Select verified, GA4-compliant sources from our pre-configured channel dropdowns.',
+      title: 'Use Common Source Presets',
+      description: 'Choose a common source preset, then compare your campaign values with current GA4 reporting guidance.',
       link: '/',
       buttonText: 'Use Campaign URL Builder'
     },
@@ -303,10 +303,10 @@ export const utmParametersPosts = [
       <p class="lead-text"><code>utm_source</code> is the foundational parameter in web attribution. It answers a single, direct question: <strong>Which specific platform, publisher, or partner sent this visitor to your website?</strong></p>
 
       <h2 id="what-is-utm-source">What Is utm_source?</h2>
-      <p>In Google Analytics 4, <code>utm_source</code> populates the <em>Session source</em> and <em>First user source</em> dimensions. It is technically mandatory for manual campaign tracking: if you omit <code>utm_source</code> from a link that includes <code>utm_medium</code> or <code>utm_campaign</code>, GA4 cannot determine the traffic origin and will frequently categorize the visit as <code>(direct)</code> or <code>(not set)</code>.</p>
+      <p>In Google Analytics 4, <code>utm_source</code> populates the <em>Session source</em> and <em>First user source</em> dimensions. Including it in manually tagged campaigns is a useful convention, but when it is missing GA4 may still have referrer, advertising-platform, or other traffic-source information. Review those values before concluding that the session will be reported as <code>(direct)</code>, <code>(not set)</code>, or another classification.</p>
 
       <h2 id="approved-values-by-channel">Approved utm_source Values by Platform</h2>
-      <p>To prevent fragmented reporting rows, enforce consistent, all-lowercase platform names:</p>
+      <p>Choose consistent platform names to make reporting rows easier to compare. The examples below use lowercase as a naming convention:</p>
       
       <div class="editorial-table-wrap">
         <table class="editorial-table">
@@ -376,12 +376,12 @@ export const utmParametersPosts = [
     slug: 'utm-medium-guide',
     title: 'What Is utm_medium? GA4 Default Channel Grouping Rules & Standards',
     seoTitle: 'What Is utm_medium? GA4 Channel Grouping Rules | UTMCraft',
-    description: 'Understand utm_medium and how GA4 uses it to classify sessions into Default Channel Groups. Avoid Unassigned traffic with exact medium naming rules.',
+    description: 'Understand utm_medium and how GA4 uses available traffic-source information to classify sessions into Default Channel Groups. Review values against current definitions when investigating Unassigned traffic.',
     category: 'utm-parameters',
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-08',
@@ -403,7 +403,7 @@ export const utmParametersPosts = [
     ],
     toolCta: {
       title: 'Inspect Mediums Against GA4 Rules',
-      description: 'Audit your links to guarantee that utm_medium maps strictly to GA4 Default Channels without landing in Unassigned.',
+      description: 'Check URL syntax, selected parameters, naming consistency, and a limited set of medium patterns before launch. This cannot guarantee live GA4 channel assignment.',
       link: '/utm-checker/',
       buttonText: 'Audit URL with UTM Checker'
     },
@@ -412,21 +412,21 @@ export const utmParametersPosts = [
       { title: 'Default Channel Grouping Definitions in GA4', url: 'https://support.google.com/analytics/answer/9756891', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text"><code>utm_medium</code> is the single most critical parameter for your executive dashboards. While <code>utm_source</code> identifies where a click came from, <code>utm_medium</code> dictates how Google Analytics 4 classifies your marketing spend into high-level <strong>Default Channel Groups</strong> (Paid Search, Paid Social, Email, Affiliates).</p>
+      <p class="lead-text"><code>utm_medium</code> is one input GA4 can use when assigning traffic to a Default Channel Group. The outcome also depends on other available traffic-source information and Google's current definitions. <code>utm_source</code> identifies the source, while medium describes the acquisition method.</p>
 
       <h2 id="what-is-utm-medium">What Is utm_medium?</h2>
-      <p>In GA4, <code>utm_medium</code> populates the <em>Session medium</em> and <em>First user medium</em> dimensions. Unlike <code>utm_campaign</code>, which can be custom-tailored to your company's product hierarchy, <strong>utm_medium must adhere strictly to Google's predefined channel grouping logic</strong>. If your medium fails Google's regex rules, GA4 will categorially label the visit as "Unassigned".</p>
+      <p>In GA4, <code>utm_medium</code> populates the <em>Session medium</em> and <em>First user medium</em> dimensions. Unlike <code>utm_campaign</code>, which can be tailored to your company's product hierarchy, <code>utm_medium</code> is one of several inputs used for default channel classification. If its value does not match a current channel definition, another definition may still apply based on the other available traffic-source information; otherwise, GA4 can report the session as <code>Unassigned</code>.</p>
 
       <h2 id="ga4-channel-rules-matrix">The GA4 Default Channel Grouping Matrix for utm_medium</h2>
-      <p>The table below summarizes the exact <code>utm_medium</code> strings required by GA4 to place sessions into their rightful channels:</p>
+      <p>The table below gives examples of medium values used by Google's current default channel definitions. Channel assignment also depends on other traffic-source information; check Google's current definitions before relying on a particular mapping.</p>
 
       <div class="editorial-table-wrap">
         <table class="editorial-table">
           <thead>
             <tr>
               <th>Target GA4 Channel Group</th>
-              <th>Required / Accepted utm_medium Values</th>
-              <th>Additional GA4 Requirement</th>
+              <th>Example utm_medium Values</th>
+              <th>Other Information That Can Affect the Match</th>
             </tr>
           </thead>
           <tbody>
@@ -481,7 +481,7 @@ export const utmParametersPosts = [
       </div>
 
       <h2 id="preventing-unassigned">How Rogue Mediums Create "Unassigned" Traffic</h2>
-      <p>If a marketer invents a creative medium such as <code>utm_medium=influencer-collab</code> or <code>utm_medium=podcast_sponsor</code>, GA4 evaluates the rules top-to-bottom, finds zero matching rules, and buckets the traffic into <strong>Unassigned</strong>. Always stick to standard mediums or create Custom Channel Groupings in GA4 Admin before launching non-standard tags.</p>
+      <p>A custom medium such as <code>utm_medium=influencer-collab</code> or <code>utm_medium=podcast_sponsor</code> may not match a default channel definition by itself. Classification depends on the other available traffic-source information and the applicable rules. Use a documented naming convention, check Google's current definitions, and consider a Custom Channel Group when you need a distinct reporting category.</p>
     `
   },
   {
@@ -493,7 +493,7 @@ export const utmParametersPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-15',
@@ -527,7 +527,7 @@ export const utmParametersPosts = [
       <p class="lead-text"><code>utm_campaign</code> is the primary grouping dimension for all your promotional initiatives. It tells your analytics suite which specific promotion, product launch, seasonal sale, or strategic initiative prompted a user's visit.</p>
 
       <h2 id="what-is-utm-campaign">What Is utm_campaign?</h2>
-      <p>In Google Analytics 4, <code>utm_campaign</code> populates the <em>Session campaign</em>, <em>First user campaign</em>, and <em>Manual campaign</em> dimensions. Unlike <code>utm_medium</code> (which must follow rigid Google definitions), <code>utm_campaign</code> provides complete creative freedom. However, unconstrained freedom without a documented taxonomy quickly leads to chaos.</p>
+      <p>In Google Analytics 4, <code>utm_campaign</code> populates the <em>Session campaign</em>, <em>First user campaign</em>, and <em>Manual campaign</em> dimensions. Campaign names can follow your own taxonomy; document the convention so values remain useful and comparable in reports.</p>
 
       <h2 id="the-anatomy-of-campaign-name">The Anatomy of an Enterprise Campaign Name</h2>
       <p>To avoid useless names like <code>summer-promo-final-v2</code>, structure your campaign parameter using a standardized token formula separated by underscores:</p>
@@ -552,7 +552,7 @@ utm_campaign=us_enterprise-suite_demo-funnel_2026-q1</code></pre>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           <strong>Automating utm_id with Dynamic Macros</strong>
         </div>
-        <p>In Google Ads, set <code>utm_id={campaignid}</code>. In Meta Ads, set <code>utm_id={{campaign.id}}</code>. In LinkedIn Ads, set <code>utm_id={{CAMPAIGN_ID}}</code>. This ensures the numerical ID generated by the ad platform matches your cost upload files exactly.</p>
+        <p>Google Ads, Meta Ads, and LinkedIn Ads offer campaign ID tokens that can populate <code>utm_id</code>. Check each platform's supported syntax and verify the expanded ID against the identifier used in your cost import files.</p>
       </div>
 
       <h2 id="multi-channel-examples">Production Campaign Examples Across Channels</h2>

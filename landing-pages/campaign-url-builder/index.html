@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Campaign URL Builder for Google Analytics 4 | UTMCraft</title>
-  <meta name="description" content="Build clean Google Analytics 4 campaign URLs, audit channel naming, shorten links, and export QR codes with a free privacy-first UTM tool.">
+  <meta name="description" content="Build campaign URLs with UTM parameters, review selected fields, create QR codes, and optionally shorten links through an external provider.">
   <meta name="keywords" content="campaign url builder, google campaign url builder, ga4 campaign url builder, google analytics url builder, custom url builder, campaign tracking url, utm generator">
   <link rel="canonical" href="https://utmcraft.com/campaign-url-builder/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://utmcraft.com/campaign-url-builder/">
   <meta property="og:title" content="Campaign URL Builder for Google Analytics 4 | UTMCraft">
-  <meta property="og:description" content="Free, privacy-first Campaign URL Builder for Google Analytics 4. Generate clean tracking links, audit GA4 channel compliance, shorten URLs, and export QR codes instantly.">
+  <meta property="og:description" content="Build campaign URLs with UTM parameters, review selected fields, create QR codes, and optionally shorten links through an external provider.">
   <meta property="og:image" content="https://utmcraft.com/og-image.png">
 
   <!-- Twitter -->
@@ -21,7 +21,7 @@
   <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
   <meta name="twitter:url" content="https://utmcraft.com/campaign-url-builder/">
   <meta name="twitter:title" content="Campaign URL Builder for Google Analytics 4 | UTMCraft">
-  <meta name="twitter:description" content="Free, privacy-first Campaign URL Builder for Google Analytics 4. Generate clean tracking links, audit GA4 channel compliance, shorten URLs, and export QR codes instantly.">
+  <meta name="twitter:description" content="Build campaign URLs with UTM parameters, review selected fields, create QR codes, and optionally shorten links through an external provider.">
 
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@
 
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -42,21 +42,35 @@
         "url": "https://utmcraft.com/campaign-url-builder/",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "All modern web browsers",
-        "description": "A privacy-first campaign URL builder designed for Google Analytics 4. Create, audit, and shorten UTM links with real-time channel validation.",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "A browser-based campaign URL builder for creating and reviewing tagged links. Optional shortening sends the destination URL to an external provider.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
         "featureList": [
-          "GA4 channel grouping compliance validation",
+          "URL syntax and selected parameter checks",
           "Optional one-click URL shortener",
           "High-contrast QR code export (PNG & SVG)",
           "Automatic lowercase and hyphen sanitization",
-          "Client-side private campaign history"
+          "Campaign history stored in browser local storage"
         ]
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Campaign URL Builder", "item": "https://utmcraft.com/campaign-url-builder/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://utmcraft.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Campaign URL Builder",
+            "item": "https://utmcraft.com/campaign-url-builder/"
+          }
         ]
       },
       {
@@ -65,43 +79,6 @@
         "name": "UTMCraft",
         "url": "https://utmcraft.com/",
         "logo": "https://utmcraft.com/utmcraft-logo-light.png"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "How is this Campaign URL Builder different from Google's official DevSite tool?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Core URL generation and auditing run in your browser. Optional shortening sends the generated URL to a public shortening provider. The tool also provides GA4 channel scoring, QR export, bulk generation, and lowercase sanitization."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Which parameters are mandatory in Google Analytics 4 Campaign URL Builder?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "For proper GA4 attribution, your Destination URL and utm_source are strictly required. While utm_medium and utm_campaign are technically optional in the HTTP query string, GA4 requires utm_medium to place traffic into Default Channel Groups like Paid Search or Email; without it, sessions fall into (Unassigned)."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does this tool support GA4's utm_id parameter?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. utm_id identifies the specific campaign ID and allows you to upload cost data, impressions, and clicks via GA4 Data Import or sync with Google Ads, Meta Ads, and CRM platforms."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Why does my campaign traffic show as (Unassigned) in GA4 reports?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "GA4 uses strict regex rules to categorize traffic. If your utm_medium uses non-standard terms (such as 'cpc-ads', 'social_post', or uppercase 'EMAIL'), GA4 cannot map it to a standard channel and labels it (Unassigned). This tool audits your parameters in real time to prevent this error."
-            }
-          }
-        ]
       }
     ]
   }
@@ -126,8 +103,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -157,7 +134,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -207,13 +184,13 @@
     <header class="workspace-header">
       <div class="workspace-title-group">
         <h1 class="workspace-title">Campaign URL Builder <span class="workspace-title-muted">for GA4</span></h1>
-        <p class="workspace-subtitle">Generate clean, audited Google Analytics 4 campaign tracking links with instant channel validation, URL shortening, and QR code export.</p>
+        <p class="workspace-subtitle">Build campaign URLs with UTM parameters, review their syntax, and optionally create a short link or QR code. URL shortening sends the destination URL to an external provider.</p>
       </div>
 
       
       <!-- Navigation tabs directly above tool -->
       <nav class="nav-tabs" aria-label="Tool Navigation">
-        <a href="/" class="nav-tab active">
+        <a href="/campaign-url-builder/" class="nav-tab active">
           <span>Single URL</span>
         </a>
 
@@ -489,9 +466,9 @@
                         <div class="rules-control-item">
                           <label class="checkbox-label" for="rule-lowercase">
                             <input type="checkbox" id="rule-lowercase" checked>
-                            <span class="rules-label-text">Auto Lowercase (GA4 Best Practice)</span>
+                            <span class="rules-label-text">Auto Lowercase (Naming Option)</span>
                           </label>
-                          <p class="rules-hint-text">Converts UTM values to lowercase. GA4 is strictly case-sensitive and splits "Email" vs "email".</p>
+                          <p class="rules-hint-text">Converts UTM values to lowercase for consistent naming. GA4 default channel definitions are not case-sensitive.</p>
                         </div>
 
                         <div class="rules-control-item">
@@ -750,14 +727,14 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>Client-Side Execution</strong></td>
-                <td>Logs input parameters on Google servers</td>
-                <td><strong>100% In-Browser &amp; Zero Tracking</strong></td>
+                <td><strong>URL handling</strong></td>
+                <td>Depends on the service</td>
+                <td><strong>URL fields are processed in your browser; optional shortening sends the destination URL to an external provider</strong></td>
               </tr>
               <tr>
-                <td><strong>GA4 Channel Validation</strong></td>
-                <td>No validation (causes Unassigned traffic)</td>
-                <td><strong>Live Real-Time GA4 Rule Auditor</strong></td>
+                <td><strong>URL checks</strong></td>
+                <td>Varies by tool</td>
+                <td><strong>Syntax, selected fields, naming consistency, and limited source/medium patterns</strong></td>
               </tr>
               <tr>
                 <td><strong>Automatic Casing Sanitizer</strong></td>
@@ -790,7 +767,7 @@
 
         <div class="editorial-callout">
           <h4>💡 Why Universal Analytics Practices Break GA4</h4>
-          <p>Universal Analytics (UA) was forgiving of mixed casing and non-standard mediums like <code>medium=social-media</code> or <code>medium=email-blast</code>. GA4 enforces rigid regular expression rules: if your medium does not strictly match its regex dictionary, your entire campaign session is assigned to <strong>(Unassigned)</strong>, permanently breaking attribution models.</p>
+          <p>GA4 applies its current Default Channel Group definitions to available traffic-source information. A custom medium may not match a default channel on its own, but classification depends on the applicable rule and other available values. If a session is Unassigned, inspect the source, medium, campaign, platform, and collected data before drawing a conclusion.</p>
         </div>
       </article>
 
@@ -900,7 +877,7 @@
 
           <details>
             <summary>Which parameters are mandatory in Google Analytics 4?</summary>
-            <p>For accurate attribution, your Destination URL and <code>utm_source</code> are strictly mandatory. However, without <code>utm_medium</code>, GA4 cannot classify your session into a Default Channel Group, causing the traffic to default to <strong>(Unassigned)</strong>.</p>
+            <p>A destination URL and campaign parameters provide information for analytics reporting. Missing <code>utm_source</code> or <code>utm_medium</code> can limit channel classification, but GA4 may use other available traffic-source information. It assigns <strong>(Unassigned)</strong> when no applicable Default Channel Group definition matches.</p>
           </details>
 
           <details>
@@ -915,7 +892,7 @@
 
           <details>
             <summary>What happens if my destination page redirects (e.g. HTTP to HTTPS or non-www to www)?</summary>
-            <p>Many web servers strip query parameters during 301 or 302 redirects unless specifically configured with a query string pass-through (<code>QSA</code>). Always ensure your destination URL matches the final canonical URL to prevent parameter loss.</p>
+            <p>A redirect may preserve or drop query parameters depending on its rule and server configuration. Inspect the redirect chain and final URL. <code>QSA</code> is an Apache <code>mod_rewrite</code> flag, not a universal query-string setting; other servers use different configuration.</p>
           </details>
         </div>
       </article>
@@ -930,15 +907,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -947,7 +924,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -956,7 +933,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -966,12 +943,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

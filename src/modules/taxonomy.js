@@ -69,7 +69,7 @@ export const GA4_CHANNEL_RULES = [
     mediumRegex: /^(.*affiliate.*|aff)$/i,
     recommendedMedium: 'affiliate',
     example: 'utm_source=techradar&utm_medium=affiliate&utm_campaign=review_guide',
-    commonMistake: 'Using "partner" or "sponsor" as medium sends traffic to Referral or Unassigned. Use "affiliate".',
+    commonMistake: 'A medium such as "partner" or "sponsor" may not match the Affiliates definition. Check the source and other available traffic-source information against Google’s current channel rules; use a consistent affiliate medium when that describes the campaign.',
     icon: 'users',
     color: '#8B5CF6'
   },
@@ -189,10 +189,10 @@ export const GA4_CHANNEL_RULES = [
 
 export const GA4_UNASSIGNED_FIXES = [
   {
-    title: '1. Uppercase or TitleCase Lettering',
+    title: '1. Inconsistent Capitalization',
     symptom: 'utm_source=Google or utm_medium=Email',
-    whyItBreaks: 'GA4 channel grouping rules evaluate source and medium with case sensitivity in standard tables. "Email" does not match the default regex rules for "email".',
-    howToFix: 'Always force lowercase on every parameter. Use "google" and "email".',
+    whyItBreaks: 'GA4 default channel definitions are not case-sensitive, but differently capitalized source and campaign values can appear as separate values in reports.',
+    howToFix: 'Choose a consistent casing convention, such as lowercase, to keep reports easier to compare.',
     severity: 'high'
   },
   {
@@ -205,14 +205,14 @@ export const GA4_UNASSIGNED_FIXES = [
   {
     title: '3. Custom or Invented Medium Values',
     symptom: 'utm_medium=social_influencer, utm_medium=promoted, utm_medium=blast',
-    whyItBreaks: 'GA4 has a strictly defined list of recognized mediums for default channel grouping. Custom words that do not match the built-in regex fall straight into (Unassigned).',
+    whyItBreaks: 'GA4 assigns a session to Unassigned when its traffic-source data does not meet any applicable default channel definition. A custom medium may not match a default channel, depending on the other available values.',
     howToFix: 'Stick to standard mediums: cpc, paid_social, social, email, affiliate, referral, display. Put your custom specifics in utm_campaign or utm_content.',
     severity: 'critical'
   },
   {
     title: '4. Missing Required Parameters',
     symptom: 'Only utm_campaign provided, with no utm_source or utm_medium',
-    whyItBreaks: 'GA4 channel grouping relies primarily on source and medium to classify visits. Without them, traffic defaults to Direct or Unassigned.',
+    whyItBreaks: 'Missing campaign fields can limit channel classification. GA4 may use other available campaign or referrer information when processing traffic-source dimensions.',
     howToFix: 'Ensure every tagged URL contains at least utm_source and utm_medium, and preferably utm_campaign for full attribution.',
     severity: 'medium'
   }
@@ -230,7 +230,7 @@ export const CAMPAIGN_TAGGING_STEPS = [
     step: '2',
     title: 'Source (utm_source)',
     subtitle: 'Who is sending the visitor',
-    description: 'Identifies the platform, publisher, or vendor (e.g. google, facebook, newsletter, techcrunch, twilio). Always use lowercase.',
+    description: 'Identifies the platform, publisher, or vendor (e.g. google, facebook, newsletter, techcrunch, twilio). Use lowercase consistently if it is part of your naming convention.',
     tip: 'Use specific platform names rather than broad terms like "social" or "ad".'
   },
   {
@@ -238,7 +238,7 @@ export const CAMPAIGN_TAGGING_STEPS = [
     title: 'Medium (utm_medium)',
     subtitle: 'The delivery vehicle',
     description: 'Tells GA4 what channel this belongs to. Must match GA4 standards: cpc, paid_social, social, email, affiliate, referral, display.',
-    tip: 'Medium is the single most important parameter for GA4 Default Channel Grouping!'
+    tip: 'Medium is one input to GA4 Default Channel Grouping; review it alongside source and other available traffic-source information.'
   },
   {
     step: '4',
@@ -260,7 +260,7 @@ export const DOS_AND_DONTS = [
   {
     type: 'do',
     title: 'Standardize on Lowercase',
-    desc: 'Always use lowercase for all UTM values. "Email" and "email" create fragmented split rows in your analytics reports.'
+    desc: 'Use a consistent casing convention, such as lowercase, so differently capitalized source and campaign values are easier to compare in reports. GA4 default channel definitions are not case-sensitive.'
   },
   {
     type: 'do',
@@ -285,12 +285,12 @@ export const DOS_AND_DONTS = [
   {
     type: 'dont',
     title: 'Never Invent Unsupported Mediums',
-    desc: 'Avoid inventing mediums like "influencer_post" or "ad_blast". GA4 will not recognize them and will lump your traffic into (Unassigned).'
+    desc: 'Use a documented medium convention. A custom medium may not match a GA4 default channel definition; review the resulting channel alongside source and other available campaign information.'
   },
   {
     type: 'dont',
     title: 'Never Put Sensitive Customer Data in UTMs',
-    desc: 'Never include personal identifiable information (PII) like customer email addresses, names, or phone numbers in UTM parameters. This violates Google Analytics Terms of Service.'
+    desc: 'Do not include personally identifiable information (PII), such as email addresses or phone numbers, in UTM parameters. Google Analytics policies prohibit sending PII; review Google’s current guidance if you are unsure whether a value identifies a person.'
   },
   {
     type: 'dont',
@@ -301,8 +301,8 @@ export const DOS_AND_DONTS = [
 
 export const GOLDEN_RULES = [
   {
-    title: '1. Strict Lowercase Only',
-    desc: 'Google Analytics is case-sensitive! `utm_source=Google` and `utm_source=google` are reported as two completely separate sources in reports. Standardize on lowercase everywhere.',
+    title: '1. Consistent UTM Casing',
+    desc: 'Use a consistent convention, such as lowercase, to make source and campaign values easier to compare. GA4 default channel definitions are not case-sensitive.',
     severity: 'critical'
   },
   {
@@ -317,7 +317,7 @@ export const GOLDEN_RULES = [
   },
   {
     title: '4. Align Medium with GA4 Channel Grouping',
-    desc: 'Always use standard mediums (`cpc`, `email`, `social`, `paid_social`, `affiliate`, `display`) so GA4 automatically categorizes your traffic into the right reports.',
+    desc: 'Use a documented medium convention and check it against Google’s current default channel definitions. Classification also depends on other available traffic-source information.',
     severity: 'high'
   },
   {
@@ -358,7 +358,7 @@ export function auditUTM(params) {
     score -= 25;
   } else {
     if (/[A-Z]/.test(source)) {
-      issues.push({ level: 'warning', field: 'utm_source', message: 'Source contains uppercase letters. Use lowercase to avoid split GA4 rows.' });
+      issues.push({ level: 'warning', field: 'utm_source', message: 'Source contains uppercase letters. Consider a consistent casing convention for easier report comparisons; GA4 default channel definitions are not case-sensitive.' });
       score -= 5;
     }
     if (/\s/.test(source)) {
@@ -372,7 +372,7 @@ export function auditUTM(params) {
     score -= 25;
   } else {
     if (/[A-Z]/.test(medium)) {
-      issues.push({ level: 'warning', field: 'utm_medium', message: 'Medium contains uppercase letters.' });
+      suggestions.push({ field: 'utm_medium', message: 'Medium contains uppercase letters. Lowercase is optional and recommended for consistent naming; GA4 default channel definitions are not case-sensitive.' });
       score -= 5;
     }
     if (/\s/.test(medium)) {

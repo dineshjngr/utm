@@ -5,7 +5,7 @@
   <script type="module" src="/src/theme.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>5 utm_medium Mistakes Breaking GA4 Channel Grouping | UTMCraft</title>
-  <meta name="description" content="Discover why non-standard utm_medium tags route your traffic to Unassigned in GA4. Learn the exact casing and syntax rules to maintain clean channel grouping.">
+  <meta name="description" content="Learn how GA4 uses source and medium information for Default Channel Grouping, and what to review when traffic appears as Unassigned.">
   <meta name="keywords" content="utm medium mistakes, ga4 utm_medium errors, utm_medium unassigned, ga4 default channel grouping rules, paid_social vs cpc">
   <link rel="canonical" href="https://utmcraft.com/utm-medium-mistakes/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://utmcraft.com/utm-medium-mistakes/">
   <meta property="og:title" content="5 utm_medium Mistakes Breaking GA4 Channel Grouping | UTMCraft">
-  <meta property="og:description" content="Discover why non-standard utm_medium tags route your traffic to Unassigned in GA4. Learn the exact casing and syntax rules to maintain clean channel grouping.">
+  <meta property="og:description" content="Learn how GA4 uses source and medium information for Default Channel Grouping, and what to review when traffic appears as Unassigned.">
   <meta property="og:image" content="https://utmcraft.com/blog/images/utm-medium-mistakes.webp">
   <meta property="article:published_time" content="2026-09-24">
   <meta property="article:modified_time" content="2026-09-24">
@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://utmcraft.com/utm-medium-mistakes/">
   <meta name="twitter:title" content="5 utm_medium Mistakes Breaking GA4 Channel Grouping | UTMCraft">
-  <meta name="twitter:description" content="Discover why non-standard utm_medium tags route your traffic to Unassigned in GA4. Learn the exact casing and syntax rules to maintain clean channel grouping.">
+  <meta name="twitter:description" content="Learn how GA4 uses source and medium information for Default Channel Grouping, and what to review when traffic appears as Unassigned.">
   <meta name="twitter:image" content="https://utmcraft.com/blog/images/utm-medium-mistakes.webp">
 
   <!-- Fonts & Styles -->
@@ -47,15 +47,10 @@
         "@id": "https://utmcraft.com/utm-medium-mistakes/"
       },
       "headline": "5 utm_medium Mistakes That Send Traffic to the Wrong GA4 Channel",
-      "description": "Discover why non-standard utm_medium tags route your traffic to Unassigned in GA4. Learn the exact casing and syntax rules to maintain clean channel grouping.",
+      "description": "Learn how GA4 uses source and medium information for Default Channel Grouping, and what to review when traffic appears as Unassigned.",
       "image": "https://utmcraft.com/blog/images/utm-medium-mistakes.webp",
       "datePublished": "2026-09-24",
       "dateModified": "2026-09-24",
-      "reviewedBy": {
-        "@type": "Organization",
-        "name": "UTMCraft Editorial Team",
-        "url": "https://utmcraft.com/"
-      },
       "citation": [
         {
           "@type": "CreativeWork",
@@ -66,7 +61,7 @@
       "author": {
         "@type": "Person",
         "name": "Dinesh Jeengar",
-        "jobTitle": "Attribution & Analytics Architect",
+        "jobTitle": "Founder, UTMCraft",
         "url": "https://utmcraft.com/"
       },
       "publisher": {
@@ -117,27 +112,6 @@
       "url": "https://utmcraft.com/",
       "logo": "https://utmcraft.com/utmcraft-logo-light.png",
       "email": "contact@utmcraft.com"
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Can I use paidsocial without an underscore?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. GA4 Default Channel Grouping specifically expects paid_social (with underscore) or matching regex variants. paidsocial falls into Unassigned."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How can I fix historical Unassigned traffic in GA4?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "You cannot rewrite collected data, but you can build a Custom Channel Group in Admin > Data display > Channel groups that maps your past non-standard mediums into proper buckets."
-          }
-        }
-      ]
     }
   ]
 }
@@ -164,8 +138,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -195,7 +169,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -255,7 +229,7 @@
           </a>
 
           <h1 class="article-title">5 utm_medium Mistakes That Send Traffic to the Wrong GA4 Channel</h1>
-          <p class="article-description">Discover why non-standard utm_medium tags route your traffic to Unassigned in GA4. Learn the exact casing and syntax rules to maintain clean channel grouping.</p>
+          <p class="article-description">Learn how GA4 uses source and medium information for Default Channel Grouping, and what to review when traffic appears as Unassigned.</p>
           <div class="article-meta-top">
             <span class="article-date">Updated September 2026</span>
             <span class="article-meta-bullet">•</span>
@@ -263,11 +237,6 @@
             <span class="article-meta-bullet">•</span>
             <span class="article-author-byline">Written by Dinesh Jeengar</span>
           </div>
-          <div class="article-editorial-credits" aria-label="Article authorship and sources">
-      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
-      <p><strong>Last reviewed</strong> <time datetime="2026-09-24">September 24, 2026</time></p>
-      <p><strong>Sources</strong> <a href="https://support.google.com/analytics/answer/9756891" target="_blank" rel="noopener">Google Support</a> <a class="article-source-details" href="#article-sources">Full references</a></p>
-    </div>
 
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
@@ -301,7 +270,7 @@
       <a href="#mistake-5-display-vs-cpc" class="toc-link">5. Blurring Display, Video, and Search Mediums</a>
     </li>
 <li>
-      <a href="#ga4-medium-cheat-sheet" class="toc-link">GA4 Default Medium Compliance Cheat Sheet</a>
+      <a href="#ga4-medium-cheat-sheet" class="toc-link">GA4 Medium Pattern Reference</a>
     </li>
 <li>
       <a href="#faq" class="toc-link">Frequently Asked Questions</a>
@@ -312,7 +281,7 @@
         <!-- Main Prose Body -->
         <div class="article-prose">
           
-      <p class="lead-text">In Google Analytics 4, <code>utm_medium</code> is the single most important parameter for report classification. If your medium does not conform to Google's strict regular expressions, your traffic is routed straight to <strong>Unassigned</strong>, blinding your attribution models.</p>
+      <p class="lead-text"><code>utm_medium</code> is one of the values GA4 can use for channel classification. If the available traffic-source information does not meet an applicable Default Channel Group definition, traffic may appear as <strong>Unassigned</strong>. This guide covers ways to review medium conventions and the current rules.</p>
 
       <h2 id="why-utm-medium-governs-channels">Why utm_medium Governs GA4 Default Channel Grouping</h2>
       <p>GA4 evaluates traffic through an ordered rule set. When evaluating whether a session belongs in "Paid Search", "Paid Social", "Organic Social", or "Email", GA4 primarily inspects the value of <code>Session medium</code>. A single typographic error breaks the regex match.</p>
@@ -322,8 +291,8 @@
       <h3 id="mistake-1-inventing-mediums">1. Inventing Custom Mediums (social-media, promoted)</h3>
       <p>Marketing teams love inventing descriptive mediums like <code>promoted-post</code>, <code>social-media</code>, or <code>influencer-blast</code>. None of these exist in GA4's default definitions. Use standard values: <code>cpc</code>, <code>paid_social</code>, <code>affiliate</code>, or <code>email</code>.</p>
 
-      <h3 id="mistake-2-uppercase-casing">2. Uppercase Letters (CPC, Email, Social)</h3>
-      <p>In GA4, regular expressions for channel groups expect lowercase values. Setting <code>utm_medium=CPC</code> or <code>utm_medium=Paid_Social</code> fails the channel rule and dumps your ad spend into <code>Unassigned</code>.</p>
+      <h3 id="mistake-2-uppercase-casing">2. Inconsistent Naming Conventions</h3>
+      <p>GA4's default channel definitions are not case-sensitive, so <code>utm_medium=CPC</code> does not automatically cause <code>Unassigned</code>. However, inconsistent casing in manual source or campaign values can make reports harder to compare. Choose a consistent convention, such as lowercase, and check medium values against Google's current channel definitions.</p>
 
       <h3 id="mistake-3-paid-social-misconfiguration">3. Tagging Paid Ads as "social" Instead of "paid_social"</h3>
       <p>If you run Facebook Ads with <code>utm_medium=social</code>, GA4 categorizes the session as <strong>Organic Social</strong>. Your paid ad return appears non-existent, while organic social appears artificially massive.</p>
@@ -334,7 +303,7 @@
       <h3 id="mistake-5-display-vs-cpc">5. Blurring Display, Video, and Search Mediums</h3>
       <p>YouTube ads should use <code>utm_medium=video</code>. Display banner ads require <code>utm_medium=display</code>, <code>banner</code>, or <code>cpm</code>. Putting <code>cpc</code> on video ads confuses cross-channel reporting.</p>
 
-      <h2 id="ga4-medium-cheat-sheet">GA4 Default Medium Compliance Cheat Sheet</h2>
+      <h2 id="ga4-medium-cheat-sheet">GA4 Medium Pattern Reference</h2>
       <div class="editorial-table-wrap">
         <table class="editorial-table">
           <thead><tr><th>Target GA4 Channel</th><th>Required utm_medium</th><th>Required utm_source</th></tr></thead>
@@ -350,7 +319,7 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-item">
         <h3>Can I use paidsocial without an underscore?</h3>
-        <p>No. GA4 Default Channel Grouping specifically expects paid_social (with underscore) or matching regex variants. paidsocial falls into Unassigned.</p>
+        <p>Google's current default channel definitions are not case-sensitive and include patterns for paid-social traffic. Check the current medium and source definitions along with the other traffic-source information; <code>paidsocial</code> alone does not determine the final channel.</p>
       </div>
       <div class="faq-item">
         <h3>How can I fix historical Unassigned traffic in GA4?</h3>
@@ -360,7 +329,7 @@
 
           
     <section class="article-references" id="article-sources">
-      <h3>Sources &amp; Authoritative References</h3>
+      <h3>References</h3>
       <ul class="references-list">
         
           <li>
@@ -380,8 +349,8 @@
             </div>
             <div class="author-info">
               <h4>Dinesh Jeengar</h4>
-              <div class="author-role">Attribution & Analytics Architect</div>
-              <p class="author-bio">Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.</p>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
               <nav class="author-social-links" aria-label="Author links">
     <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
@@ -404,7 +373,7 @@
         <div class="article-tool-cta-content">
           <p class="article-tool-cta-label">Related tool</p>
           <h3 class="article-tool-cta-title">Verify GA4 Channel Grouping Rules</h3>
-          <p class="article-tool-cta-desc">Run your campaign links through the UTMCraft UTM Checker to predict exactly which GA4 Default Channel Group will receive your traffic.</p>
+          <p class="article-tool-cta-desc">Use the UTMCraft UTM Checker to review URL syntax, selected fields, naming consistency, and a limited set of source/medium patterns. It does not predict live GA4 channel assignment.</p>
         </div>
         <div class="article-tool-cta-action">
           <a href="/utm-checker/" class="article-tool-cta-btn">
@@ -430,7 +399,7 @@
           <span class="post-card-readtime">16 min read</span>
         </div>
         <h4 class="post-card-title">15 UTM Tracking Mistakes That Ruin Your GA4 Data (and How to Fix Them)</h4>
-        <p class="post-card-excerpt">Discover the 15 most destructive UTM tracking mistakes breaking GA4 attribution, causing Unassigned traffic, and corrupting ad ROI-with actionable fixes.</p>
+        <p class="post-card-excerpt">Review common UTM tracking problems that can affect GA4 campaign reporting, with practical steps for checking links and attribution.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published September 24, 2026</span>
@@ -447,7 +416,7 @@
           <span class="post-card-readtime">8 min read</span>
         </div>
         <h4 class="post-card-title">What Is utm_medium? GA4 Default Channel Grouping Rules & Standards</h4>
-        <p class="post-card-excerpt">Understand utm_medium and how GA4 uses it to classify sessions into Default Channel Groups. Avoid Unassigned traffic with exact medium naming rules.</p>
+        <p class="post-card-excerpt">Understand utm_medium and how GA4 uses available traffic-source information to classify sessions into Default Channel Groups. Review values against current definitions when investigating Unassigned traffic.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published February 8, 2026</span>
@@ -464,7 +433,7 @@
           <span class="post-card-readtime">9 min read</span>
         </div>
         <h4 class="post-card-title">How to Fix &quot;Unassigned&quot; Traffic in GA4: Complete Diagnosis Guide</h4>
-        <p class="post-card-excerpt">Why does GA4 show Unassigned traffic? Discover the exact channel grouping regex rules, common medium mistakes, and how to fix Unassigned traffic permanently.</p>
+        <p class="post-card-excerpt">Why does GA4 show Unassigned traffic? Review common source and medium issues against current channel definitions, then investigate the traffic-source data GA4 collected.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published March 8, 2026</span>
@@ -502,7 +471,7 @@
       <a href="#mistake-5-display-vs-cpc" class="toc-link">5. Blurring Display, Video, and Search Mediums</a>
     </li>
 <li>
-      <a href="#ga4-medium-cheat-sheet" class="toc-link">GA4 Default Medium Compliance Cheat Sheet</a>
+      <a href="#ga4-medium-cheat-sheet" class="toc-link">GA4 Medium Pattern Reference</a>
     </li>
 <li>
       <a href="#faq" class="toc-link">Frequently Asked Questions</a>
@@ -520,15 +489,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -537,7 +506,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -546,7 +515,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -556,12 +525,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

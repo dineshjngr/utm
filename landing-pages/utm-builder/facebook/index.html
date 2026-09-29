@@ -33,7 +33,7 @@
 
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -42,14 +42,33 @@
         "applicationCategory": "UtilityApplication",
         "url": "https://utmcraft.com/utm-builder/facebook/",
         "description": "Build UTM tracking URLs for Meta (Facebook & Instagram) Ads with dynamic parameters for ad-level attribution across campaigns, ad sets, and creatives.",
-        "publisher": { "@type": "Organization", "name": "UTMCraft Studio", "url": "https://utmcraft.com/" }
+        "publisher": {
+          "@type": "Organization",
+          "name": "UTMCraft Studio",
+          "url": "https://utmcraft.com/"
+        }
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
-          { "@type": "ListItem", "position": 2, "name": "UTM Builders", "item": "https://utmcraft.com/" },
-          { "@type": "ListItem", "position": 3, "name": "Facebook & Meta Ads UTM Builder", "item": "https://utmcraft.com/utm-builder/facebook/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://utmcraft.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "UTM Builders",
+            "item": "https://utmcraft.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Facebook & Meta Ads UTM Builder",
+            "item": "https://utmcraft.com/utm-builder/facebook/"
+          }
         ]
       },
       {
@@ -58,27 +77,6 @@
         "name": "UTMCraft",
         "url": "https://utmcraft.com/",
         "logo": "https://utmcraft.com/utmcraft-logo-light.png"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Where do I add UTM parameters in Meta Ads Manager?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "In Meta Ads Manager, add UTM parameters in the 'URL Parameters' field at the ad level - not in the Destination URL field directly. The URL Parameters field is specifically designed for tracking parameters and dynamic tokens. It appends your parameters to the landing page URL automatically. Using the URL Parameters field (rather than manually editing the destination URL) preserves compatibility with Meta's click tracking and dynamic URLs."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What are Meta dynamic URL parameters?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Meta dynamic URL parameters are special tokens wrapped in double curly braces ({{ }}) that Meta Ads automatically replaces with real campaign data when an ad is clicked. For example, {{campaign.name}} is replaced with your actual campaign name, {{ad.id}} with the numeric ad ID, and {{site_source_name}} with 'fb', 'ig', 'msg', or 'an' depending on where the ad was shown. They enable ad-level attribution in GA4 without creating separate URLs for every variation."
-            }
-          }
-        ]
       }
     ]
   }
@@ -103,8 +101,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -134,7 +132,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -478,9 +476,9 @@
                         <div class="rules-control-item">
                           <label class="checkbox-label" for="rule-lowercase">
                             <input type="checkbox" id="rule-lowercase" checked>
-                            <span class="rules-label-text">Auto Lowercase (GA4 Best Practice)</span>
+                            <span class="rules-label-text">Auto Lowercase (Naming Option)</span>
                           </label>
-                          <p class="rules-hint-text">Converts UTM values to lowercase. GA4 is strictly case-sensitive and splits "Email" vs "email".</p>
+                          <p class="rules-hint-text">Converts UTM values to lowercase for consistent naming. GA4 default channel definitions are not case-sensitive.</p>
                         </div>
 
                         <div class="rules-control-item">
@@ -827,11 +825,11 @@
           </details>
           <details>
             <summary>Should utm_source be "facebook" or "meta"?</summary>
-            <p>Use <code>facebook</code> as the utm_source value. GA4's built-in channel grouping rules recognize <code>facebook</code> as a social network source. "meta" is not in GA4's recognized source list and would generate an "Unassigned" channel grouping. For Instagram-placed ads, many teams use <code>instagram</code> as the source, which is also recognized by GA4.</p>
+            <p>Use a consistent source value such as <code>facebook</code> for Facebook campaigns and <code>instagram</code> for Instagram campaigns. Google's current default channel definitions include source and medium criteria; an unexpected source value does not by itself determine the final channel. Check the current definitions and the other information GA4 receives.</p>
           </details>
           <details>
             <summary>What utm_medium value should I use for Meta paid social campaigns?</summary>
-            <p>Use <code>paid_social</code>. This is in GA4's Default Channel Grouping regex for the Paid Social channel. Avoid <code>cpc</code> for social ads - in GA4, <code>source=facebook&amp;medium=cpc</code> does not reliably map to Paid Social and may appear as Paid Search or Unassigned depending on the GA4 property configuration.</p>
+            <p>Use a consistent medium such as <code>paid_social</code> for paid social campaigns. Google's current definitions also use medium and source information when classifying traffic; check the latest rules and the values GA4 receives. <code>cpc</code> alone does not determine the final channel.</p>
           </details>
         </div>
       </article>
@@ -846,15 +844,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -863,7 +861,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -872,7 +870,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -882,12 +880,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

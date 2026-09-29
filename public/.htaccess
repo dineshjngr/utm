@@ -1,6 +1,15 @@
 Options -Indexes -MultiViews
 RewriteEngine On
 
+# BEGIN GENERATED MERGED ARTICLE REDIRECTS
+RewriteRule ^(?:blog/)?meta-ads-utm-tracking/?$ https://utmcraft.com/meta-ads-utm-guide/ [R=301,L]
+RewriteRule ^blog/meta-ads-utm-tracking/index\.html$ https://utmcraft.com/meta-ads-utm-guide/ [R=301,L]
+RewriteRule ^blog/posts/meta-ads-utm-tracking\.html$ https://utmcraft.com/meta-ads-utm-guide/ [R=301,L]
+RewriteRule ^(?:blog/)?linkedin-ads-utm-tracking/?$ https://utmcraft.com/linkedin-ads-utm-guide/ [R=301,L]
+RewriteRule ^blog/linkedin-ads-utm-tracking/index\.html$ https://utmcraft.com/linkedin-ads-utm-guide/ [R=301,L]
+RewriteRule ^blog/posts/linkedin-ads-utm-tracking\.html$ https://utmcraft.com/linkedin-ads-utm-guide/ [R=301,L]
+# END GENERATED MERGED ARTICLE REDIRECTS
+
 # Force the canonical HTTPS, non-www hostname.
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} ^www\.utmcraft\.com$ [NC]
@@ -248,18 +257,6 @@ RewriteRule ^blog/google-dsa-ai-max-migration-2027$ /google-dsa-ai-max-migration
 RewriteRule ^blog/google-dsa-ai-max-migration-2027/$ /google-dsa-ai-max-migration-2027/ [R=301,L]
 RewriteRule ^blog/google-dsa-ai-max-migration-2027/index\.html$ /google-dsa-ai-max-migration-2027/ [R=301,L]
 RewriteRule ^blog/posts/google-dsa-ai-max-migration-2027\.html$ /google-dsa-ai-max-migration-2027/ [R=301,L]
-RewriteRule ^meta-ads-utm-tracking$ /meta-ads-utm-guide/ [R=301,L]
-RewriteRule ^meta-ads-utm-tracking/$ /meta-ads-utm-guide/ [R=301,L]
-RewriteRule ^blog/meta-ads-utm-tracking$ /meta-ads-utm-guide/ [R=301,L]
-RewriteRule ^blog/meta-ads-utm-tracking/$ /meta-ads-utm-guide/ [R=301,L]
-RewriteRule ^blog/meta-ads-utm-tracking/index\.html$ /meta-ads-utm-guide/ [R=301,L]
-RewriteRule ^blog/posts/meta-ads-utm-tracking\.html$ /meta-ads-utm-guide/ [R=301,L]
-RewriteRule ^linkedin-ads-utm-tracking$ /linkedin-ads-utm-guide/ [R=301,L]
-RewriteRule ^linkedin-ads-utm-tracking/$ /linkedin-ads-utm-guide/ [R=301,L]
-RewriteRule ^blog/linkedin-ads-utm-tracking$ /linkedin-ads-utm-guide/ [R=301,L]
-RewriteRule ^blog/linkedin-ads-utm-tracking/$ /linkedin-ads-utm-guide/ [R=301,L]
-RewriteRule ^blog/linkedin-ads-utm-tracking/index\.html$ /linkedin-ads-utm-guide/ [R=301,L]
-RewriteRule ^blog/posts/linkedin-ads-utm-tracking\.html$ /linkedin-ads-utm-guide/ [R=301,L]
 # END GENERATED CANONICAL REDIRECTS
 
 # Consolidate index-file variants.

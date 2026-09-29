@@ -8,7 +8,7 @@ export const searchNewsPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Search & Analytics Editor',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/about/'
     },
     datePublished: '2026-09-28',
@@ -29,12 +29,6 @@ export const searchNewsPosts = [
       { id: 'what-google-has-not-said', title: 'What Google Has Not Said', level: 2 },
       { id: 'what-site-owners-should-do', title: 'What Site Owners Should Do Now', level: 2 }
     ],
-    toolCta: {
-      title: 'Keep Search and Analytics Signals Separate',
-      description: 'Compare organic search changes with GA4 session attribution carefully. Use our guide to diagnose UTM and session-source discrepancies.',
-      link: '/ga4-utm-troubleshooting-guide/',
-      buttonText: 'Read the GA4 Troubleshooting Guide'
-    },
     relatedSlugs: ['utm-tracking-audit-signs', 'ga4-utms-not-showing', 'utm-tracking-mistakes'],
     references: [
       { title: 'September 2026 spam update - Google Search Status Dashboard', url: 'https://status.search.google.com/incidents/XhUDXP7A67iHCD2kmbVu', publisher: 'Google Search Status Dashboard' },
@@ -80,9 +74,8 @@ export const searchNewsPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Digital Marketing & Technical SEO',
+      role: 'Founder, UTMCraft',
       url: 'https://dineshjeengar.com/',
-      bio: 'Digital marketing and technical SEO professional based in Dubai, focused on data-led campaigns and measurable growth.',
       socials: [
         { label: 'Website', type: 'website', url: 'https://dineshjeengar.com/' },
         { label: 'LinkedIn', type: 'linkedin', url: 'https://www.linkedin.com/in/dinesh-jeengar/' },

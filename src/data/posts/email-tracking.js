@@ -8,7 +8,7 @@ export const emailTrackingPosts = [
     isPillar: true,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-11',
@@ -42,10 +42,10 @@ export const emailTrackingPosts = [
       { title: 'Understanding UTM tracking in Klaviyo', url: 'https://help.klaviyo.com/hc/en-us/articles/115005247808', publisher: 'Klaviyo Help Center' }
     ],
     contentHtml: `
-      <p class="lead-text">Email marketing is one of the highest ROI channels in digital commerce, yet email attribution in Google Analytics 4 is routinely degraded by missing tags, automated enterprise spam scanners, and inconsistent naming between one-off broadcasts and automated lifecycle flows. This guide outlines how to build a clean, bot-resistant email tracking architecture.</p>
+      <p class="lead-text">Email campaign reporting in Google Analytics 4 can be harder to interpret when tags are missing, security scanners follow links, or broadcasts and lifecycle flows use different naming conventions. This guide explains how to tag and review email links consistently.</p>
 
       <h2 id="why-email-attribution-fails">Why Email Campaign Attribution Fails in GA4</h2>
-      <p>Without deliberate UTM tracking, clicks from email apps (Outlook, Apple Mail, Gmail app) do not pass an HTTP <code>Referer</code> header. As a result, GA4 classifies untagged email traffic as <strong>Direct</strong>. Furthermore, if your team uses non-standard mediums like <code>utm_medium=newsletter</code> or <code>utm_medium=flow</code>, GA4 categorizes the visits as <strong>Unassigned</strong>.</p>
+      <p>Email clients, mobile mail apps, and link-wrapping systems can affect referral information. If campaign parameters are missing and GA4 has no other clear referral or advertising information, the visit may be reported as <strong>Direct / (none)</strong>. A medium such as <code>newsletter</code> or <code>flow</code> may not match an email channel definition by itself; check the other traffic-source values and Google's current rules when investigating <strong>Unassigned</strong>.</p>
 
       <h2 id="standard-email-taxonomy">Standard Email Tracking Taxonomy (Flows vs Broadcasts)</h2>
       <p>To keep email reporting structured, enforce a clear distinction between broadcast campaigns and automated lifecycle flows:</p>
@@ -118,7 +118,7 @@ export const emailTrackingPosts = [
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <strong>Security Bot Click Inflation</strong>
         </div>
-        <p>Enterprise spam firewalls (such as Proofpoint, Mimecast, and Microsoft Defender) pre-click every link in incoming emails within milliseconds of delivery to scan destination pages for phishing malware. This inflates your click rates and sends hundreds of automated sessions into GA4 with near-zero engagement time.</p>
+        <p>Some email security systems follow links to inspect destinations before a recipient clicks. This can affect click reporting and, depending on the analytics implementation, may produce automated visits. Compare email-platform click logs with GA4 engagement patterns when investigating discrepancies.</p>
       </div>
       <p><strong>Defense:</strong> In GA4, analyze your email traffic using the <strong>User engagement duration</strong> metric. Exclude sessions with 0 seconds duration or use Cloudflare bot management to challenge known security scanner IP ranges before the GA4 script executes.</p>
 
@@ -137,11 +137,11 @@ Footer link:     utm_content=footer_terms_link</code></pre>
         <h2 id="faq">Frequently Asked Questions</h2>
         <div class="faq-item">
           <h3>What is the standard utm_medium for email marketing in GA4?</h3>
-          <p>Always use <code>utm_medium=email</code> (strictly lowercase). Using variations like <code>Email</code>, <code>e-mail</code>, or <code>newsletter</code> will cause GA4 to fail its channel mapping rules and classify visits under <strong>(Unassigned)</strong>.</p>
+          <p>Use a documented email medium convention, such as <code>email</code>, and apply it consistently. Google lists several email-related source and medium values in its current channel definitions; these definitions are not case-sensitive. Check the current rules and the other traffic-source values when investigating <strong>(Unassigned)</strong>.</p>
         </div>
         <div class="faq-item">
           <h3>Why does email traffic sometimes show up as Direct in GA4?</h3>
-          <p>Desktop email clients (like Outlook or Apple Mail) and mobile mail apps launch links without passing an HTTP referrer. If UTM parameters are missing, or if a server redirect drops query strings during transit, GA4 cannot determine the traffic origin and attributes the visit as <strong>Direct</strong>.</p>
+          <p>Email clients, mobile mail apps, and link-wrapping systems can affect referral information. If campaign parameters are missing and GA4 has no other clear referral or advertising information, the visit may be reported as <strong>Direct / (none)</strong>. Tag email links when you need campaign-level reporting, and test the final destination.</p>
         </div>
         <div class="faq-item">
           <h3>How do enterprise security scanners affect email campaign data in GA4?</h3>
@@ -163,7 +163,7 @@ Footer link:     utm_content=footer_terms_link</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-27',
@@ -184,8 +184,8 @@ Footer link:     utm_content=footer_terms_link</code></pre>
       { id: 'pre-send-validation', title: 'Pre-Send Link Validation Checklist', level: 2 }
     ],
     toolCta: {
-      title: 'Build Verified Email Tracking Links',
-      description: 'Generate standardized email campaign links that prevent parameter corruption across ESP link redirect wrappers.',
+      title: 'Build Email Campaign Links',
+      description: 'Create tagged destination URLs, then test your email platform’s click-tracking redirects separately to confirm the final URL retains the parameters.',
       link: '/',
       buttonText: 'Open Campaign Builder'
     },

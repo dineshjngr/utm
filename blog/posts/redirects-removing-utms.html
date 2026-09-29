@@ -5,7 +5,7 @@
   <script type="module" src="/src/theme.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Why Redirects Strip UTMs & How to Fix Query Strings | UTMCraft</title>
-  <meta name="description" content="Learn why HTTP 301 and 302 redirects drop UTM parameters, converting paid campaigns into Direct traffic, and how to configure servers to preserve query strings.">
+  <meta name="description" content="Learn how HTTP 301 and 302 redirect rules can affect UTM parameters and campaign reporting, and how to inspect query-string handling on your server.">
   <meta name="keywords" content="redirects removing utms, 301 redirect utm parameters, preserve query string redirect, nginx preserve utm, apache redirect keep query string">
   <link rel="canonical" href="https://utmcraft.com/redirects-removing-utms/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://utmcraft.com/redirects-removing-utms/">
   <meta property="og:title" content="Why Redirects Strip UTMs & How to Fix Query Strings | UTMCraft">
-  <meta property="og:description" content="Learn why HTTP 301 and 302 redirects drop UTM parameters, converting paid campaigns into Direct traffic, and how to configure servers to preserve query strings.">
+  <meta property="og:description" content="Learn how HTTP 301 and 302 redirect rules can affect UTM parameters and campaign reporting, and how to inspect query-string handling on your server.">
   <meta property="og:image" content="https://utmcraft.com/blog/images/redirects-removing-utms.webp">
   <meta property="article:published_time" content="2026-03-15">
   <meta property="article:modified_time" content="2026-09-23">
@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://utmcraft.com/redirects-removing-utms/">
   <meta name="twitter:title" content="Why Redirects Strip UTMs & How to Fix Query Strings | UTMCraft">
-  <meta name="twitter:description" content="Learn why HTTP 301 and 302 redirects drop UTM parameters, converting paid campaigns into Direct traffic, and how to configure servers to preserve query strings.">
+  <meta name="twitter:description" content="Learn how HTTP 301 and 302 redirect rules can affect UTM parameters and campaign reporting, and how to inspect query-string handling on your server.">
   <meta name="twitter:image" content="https://utmcraft.com/blog/images/redirects-removing-utms.webp">
 
   <!-- Fonts & Styles -->
@@ -47,15 +47,10 @@
         "@id": "https://utmcraft.com/redirects-removing-utms/"
       },
       "headline": "Why HTTP Redirects Strip UTM Parameters (and How to Preserve Query Strings)",
-      "description": "Learn why HTTP 301 and 302 redirects drop UTM parameters, converting paid campaigns into Direct traffic, and how to configure servers to preserve query strings.",
+      "description": "Learn how HTTP 301 and 302 redirect rules can affect UTM parameters and campaign reporting, and how to inspect query-string handling on your server.",
       "image": "https://utmcraft.com/blog/images/redirects-removing-utms.webp",
       "datePublished": "2026-03-15",
       "dateModified": "2026-09-23",
-      "reviewedBy": {
-        "@type": "Organization",
-        "name": "UTMCraft Editorial Team",
-        "url": "https://utmcraft.com/"
-      },
       "citation": [
         {
           "@type": "CreativeWork",
@@ -66,7 +61,7 @@
       "author": {
         "@type": "Person",
         "name": "Dinesh Jeengar",
-        "jobTitle": "Attribution & Analytics Architect",
+        "jobTitle": "Founder, UTMCraft",
         "url": "https://utmcraft.com/"
       },
       "publisher": {
@@ -143,8 +138,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -174,7 +169,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -234,7 +229,7 @@
           </a>
 
           <h1 class="article-title">Why HTTP Redirects Strip UTM Parameters (and How to Preserve Query Strings)</h1>
-          <p class="article-description">Learn why HTTP 301 and 302 redirects drop UTM parameters, converting paid campaigns into Direct traffic, and how to configure servers to preserve query strings.</p>
+          <p class="article-description">Learn how HTTP 301 and 302 redirect rules can affect UTM parameters and campaign reporting, and how to inspect query-string handling on your server.</p>
           <div class="article-meta-top">
             <span class="article-date">Updated September 2026</span>
             <span class="article-meta-bullet">•</span>
@@ -242,11 +237,6 @@
             <span class="article-meta-bullet">•</span>
             <span class="article-author-byline">Written by Dinesh Jeengar</span>
           </div>
-          <div class="article-editorial-credits" aria-label="Article authorship and sources">
-      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
-      <p><strong>Last reviewed</strong> <time datetime="2026-09-23">September 23, 2026</time></p>
-      <p><strong>Sources</strong> <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.4" target="_blank" rel="noopener">IETF</a> <a class="article-source-details" href="#article-sources">Full references</a></p>
-    </div>
 
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
@@ -276,7 +266,7 @@
         <!-- Main Prose Body -->
         <div class="article-prose">
           
-      <p class="lead-text">Server redirects are responsible for more lost marketing attribution than ad blockers and iOS privacy updates combined. If your marketing URL undergoes a 301 or 302 redirect that does not explicitly append the incoming query string, every single UTM parameter is discarded before the visitor hits your analytics tracking tag.</p>
+      <p class="lead-text">A redirect can affect campaign attribution if its destination URL does not preserve the incoming query string. Whether parameters survive depends on the redirect rule and any later redirects in the chain. Inspect the final landing URL and confirm what the analytics tag receives.</p>
 
       <h2 id="the-mechanics-of-parameter-loss">The Mechanics of Parameter Loss During Redirects</h2>
       <p>When a browser requests a URL like <code>https://example.com/signup?utm_source=google</code>, the server may issue an HTTP 301 redirect to normalize the URL (e.g. enforce HTTPS, www, or trailing slash). If the server rule is written as:</p>
@@ -284,7 +274,7 @@
         <pre><code class="language-nginx"># INCORRECT NGINX CONFIGURATION (Drops query string)
 return 301 https://example.com/signup/;</code></pre>
       </div>
-      <p>The browser obediently navigates to <code>https://example.com/signup/</code> with <strong>zero query parameters</strong>. GA4 loads, sees no UTMs and no referrer, and attributes the conversion to Direct traffic.</p>
+      <p>If the redirect target omits the incoming query string, the browser may reach <code>https://example.com/signup/</code> without those parameters. If no other clear referral or campaign information is available, GA4 may report the visit as <code>(direct) / (none)</code>. Check the final URL and the data received by the analytics tag.</p>
 
       <h2 id="server-config-nginx-apache">Server Configuration Fixes: Nginx, Apache & Cloudflare</h2>
 
@@ -298,20 +288,20 @@ return 301 https://example.com/signup/$is_args$args;</code></pre>
         <button class="copy-code-btn" data-copy="return 301 https://example.com/signup/$is_args$args;" aria-label="Copy Nginx snippet">Copy Nginx</button>
       </div>
 
-      <h3>2. Apache mod_rewrite with [QSA]</h3>
-      <p>In Apache <code>.htaccess</code>, you must include the <strong>[QSA]</strong> (Query String Append) flag:</p>
+      <h3>2. Apache mod_rewrite and the [QSA] flag</h3>
+      <p>In Apache <code>.htaccess</code>, <strong>[QSA]</strong> (Query String Append) is an Apache-specific flag. It is relevant when the rewrite substitution creates a query string and you also need to append the incoming one; it is not a universal requirement for redirects:</p>
       <div class="code-block-wrap">
         <pre><code class="language-apache"># CORRECT APACHE HTACCESS RULE
 RewriteEngine On
-RewriteRule ^signup$ /signup/ [R=301,L,QSA]</code></pre>
-        <button class="copy-code-btn" data-copy="RewriteRule ^signup$ /signup/ [R=301,L,QSA]" aria-label="Copy Apache snippet">Copy Apache</button>
+RewriteRule ^signup$ /signup/ [R=301,L]</code></pre>
+        <button class="copy-code-btn" data-copy="RewriteRule ^signup$ /signup/ [R=301,L]" aria-label="Copy Apache snippet">Copy Apache</button>
       </div>
 
       <h3>3. Cloudflare Redirect Rules</h3>
       <p>In Cloudflare Page Rules or Redirect Rules, select <strong>"Preserve query string"</strong> checkbox. If using Dynamic Redirect expressions, use <code>concat("https://example.com/signup/", http.request.uri.query)</code>.</p>
 
       <h2 id="trailing-slash-trap">The Trailing Slash Trap</h2>
-      <p>The most common redirect culprit is the trailing slash. If your CMS (such as WordPress) requires trailing slashes on pages, but your media buyer enters <code>https://example.com/pricing?utm_source=meta</code>, WordPress executes a 301 redirect to <code>/pricing/</code>. Always build URLs matching your canonical format exactly!</p>
+      <p>A trailing-slash redirect is one possible cause. If a site redirects <code>https://example.com/pricing?utm_source=meta</code> to <code>/pricing/</code>, inspect the response to see whether it preserves the query string. Matching your site's canonical URL format can avoid an unnecessary hop, but verify the final destination either way.</p>
 
       <h2 id="how-to-test-redirect-health">How to Test Redirect Chains via CLI and UTMCraft</h2>
       <p>Use curl in your terminal to inspect redirect hops:</p>
@@ -324,7 +314,7 @@ RewriteRule ^signup$ /signup/ [R=301,L,QSA]</code></pre>
 
           
     <section class="article-references" id="article-sources">
-      <h3>Sources &amp; Authoritative References</h3>
+      <h3>References</h3>
       <ul class="references-list">
         
           <li>
@@ -344,8 +334,8 @@ RewriteRule ^signup$ /signup/ [R=301,L,QSA]</code></pre>
             </div>
             <div class="author-info">
               <h4>Dinesh Jeengar</h4>
-              <div class="author-role">Attribution & Analytics Architect</div>
-              <p class="author-bio">Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.</p>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
               <nav class="author-social-links" aria-label="Author links">
     <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
@@ -368,7 +358,7 @@ RewriteRule ^signup$ /signup/ [R=301,L,QSA]</code></pre>
         <div class="article-tool-cta-content">
           <p class="article-tool-cta-label">Related tool</p>
           <h3 class="article-tool-cta-title">Test If Your Redirects Strip UTMs</h3>
-          <p class="article-tool-cta-desc">Run your landing page through the UTM Link Checker to verify whether redirects preserve or delete your tracking query strings.</p>
+          <p class="article-tool-cta-desc">Use the UTM Checker for URL syntax and selected parameter checks. It does not follow the live redirect chain; test each redirect and the final URL separately.</p>
         </div>
         <div class="article-tool-cta-action">
           <a href="/utm-checker/" class="article-tool-cta-btn">
@@ -411,7 +401,7 @@ RewriteRule ^signup$ /signup/ [R=301,L,QSA]</code></pre>
           <span class="post-card-readtime">8 min read</span>
         </div>
         <h4 class="post-card-title">Why Campaign Traffic Shows as Direct in GA4 (and How to Fix It)</h4>
-        <p class="post-card-excerpt">Why is your paid traffic showing as Direct in GA4? Learn the 7 primary causes of false direct traffic, redirect parameter loss, and how to recover attribution.</p>
+        <p class="post-card-excerpt">Why might paid traffic show as Direct in GA4? Review possible causes, including missing campaign information and redirects, and steps for investigating attribution.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published March 2, 2026</span>
@@ -469,15 +459,15 @@ RewriteRule ^signup$ /signup/ [R=301,L,QSA]</code></pre>
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -486,7 +476,7 @@ RewriteRule ^signup$ /signup/ [R=301,L,QSA]</code></pre>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -495,7 +485,7 @@ RewriteRule ^signup$ /signup/ [R=301,L,QSA]</code></pre>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -505,12 +495,10 @@ RewriteRule ^signup$ /signup/ [R=301,L,QSA]</code></pre>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

@@ -122,7 +122,7 @@ function getBespokeDiagram(post, theme) {
         <!-- Bottom validation audit pill -->
         <rect x="610" y="405" width="490" height="46" rx="8" fill="#121D24" stroke="#223340"/>
         <circle cx="632" cy="428" r="6" fill="${accent}"/>
-        <text x="648" y="432" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#F8FAFC">Multi-Touch GA4 &amp; CRM Consistency: 100% Verified</text>
+        <text x="648" y="432" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#F8FAFC">Example: Compare campaign values across reports</text>
       `;
 
     case 'utm-naming-conventions-guide':
@@ -154,9 +154,9 @@ function getBespokeDiagram(post, theme) {
         <!-- Rules Checklist -->
         <rect x="610" y="305" width="490" height="145" rx="8" fill="#141E26" stroke="#243442"/>
         <text x="630" y="335" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">Taxonomy Enforcement Rules:</text>
-        <circle cx="636" cy="360" r="5" fill="${accent}"/><text x="652" y="364" font-family="Inter, sans-serif" font-size="11" fill="#E2E8F0">Strict Lowercase (no "Facebook" or "CPC" fragmentation)</text>
+        <circle cx="636" cy="360" r="5" fill="${accent}"/><text x="652" y="364" font-family="Inter, sans-serif" font-size="11" fill="#E2E8F0">Consistent source naming (lowercase is optional)</text>
         <circle cx="636" cy="388" r="5" fill="${accent}"/><text x="652" y="392" font-family="Inter, sans-serif" font-size="11" fill="#E2E8F0">Underscores (_) between tokens, hyphens (-) inside slugs</text>
-        <circle cx="636" cy="416" r="5" fill="${accent}"/><text x="652" y="420" font-family="Inter, sans-serif" font-size="11" fill="#E2E8F0">Zero spaces, zero emojis, zero sensitive customer data</text>
+        <circle cx="636" cy="416" r="5" fill="${accent}"/><text x="652" y="420" font-family="Inter, sans-serif" font-size="11" fill="#E2E8F0">Review spaces, symbols, and sensitive data</text>
       `;
 
     case 'gclid-vs-utms':
@@ -207,11 +207,11 @@ function getBespokeDiagram(post, theme) {
         <rect x="610" y="290" width="490" height="160" rx="8" fill="#121D24" stroke="#059669" stroke-width="1.2"/>
         <rect x="625" y="303" width="130" height="22" rx="4" fill="#065F46"/>
         <text x="690" y="318" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#A7F3D0" text-anchor="middle">RESOLVED ROUTE</text>
-        <text x="625" y="350" font-family="'JetBrains Mono', monospace" font-size="11" fill="#F8FAFC">Server Config: RewriteRule ^(.*)$ $1 [QSA,L]</text>
+        <text x="625" y="350" font-family="'JetBrains Mono', monospace" font-size="11" fill="#F8FAFC">Apache mod_rewrite: RewriteRule ... [QSA,L]</text>
         <text x="625" y="375" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="${accent}">Destination: /signup/?utm_source=meta&amp;utm_medium=paid_social</text>
         <line x1="625" y1="395" x2="1085" y2="395" stroke="#1E2D38"/>
         <circle cx="633" cy="420" r="5" fill="${accent}"/>
-        <text x="648" y="424" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF">100% Attribution Preserved across 301/302 chains</text>
+        <text x="648" y="424" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF">Query strings may survive redirects when configured</text>
       `;
 
     case 'ga4-unassigned-traffic':
@@ -223,7 +223,7 @@ function getBespokeDiagram(post, theme) {
         <rect x="630" y="180" width="450" height="32" rx="4" fill="#0F171D"/>
         <text x="645" y="201" font-family="'JetBrains Mono', monospace" font-size="11" fill="${accent}">Medium matches regex: ^(.*cp[ac]|ppc|paid.*)$</text>
         <text x="630" y="235" font-family="Inter, sans-serif" font-size="11" fill="#94A3B8">AND Source matches regex list of social platforms</text>
-        <text x="630" y="255" font-family="Inter, sans-serif" font-size="11" fill="#94A3B8">Any mismatch falls into the "Unassigned" default channel bucket.</text>
+        <text x="630" y="255" font-family="Inter, sans-serif" font-size="11" fill="#94A3B8">Classification depends on current rules and available traffic-source information.</text>
 
         <!-- Test cases comparison -->
         <rect x="610" y="300" width="235" height="150" rx="8" fill="#1C1414" stroke="#DC2626"/>
@@ -302,7 +302,7 @@ function getBespokeDiagram(post, theme) {
         <text x="630" y="165" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#F8FAFC">Ads Manager Parameter Input:</text>
         <rect x="630" y="180" width="450" height="42" rx="4" fill="#0F171D"/>
         <text x="645" y="206" font-family="'JetBrains Mono', monospace" font-size="10" fill="${accent}">utm_campaign={{campaign.name}}&amp;utm_content={{placement}}</text>
-        <text x="630" y="248" font-family="Inter, sans-serif" font-size="11" fill="#94A3B8">Ad Serve Token Expansion Pipeline (Zero manual edits)</text>
+        <text x="630" y="248" font-family="Inter, sans-serif" font-size="11" fill="#94A3B8">Ad Serve Token Expansion Pipeline</text>
 
         <!-- Token resolution examples -->
         <g transform="translate(610, 300)">
@@ -451,7 +451,7 @@ function getBespokeDiagram(post, theme) {
         </g>
         <!-- Scope note -->
         <rect x="610" y="400" width="490" height="50" rx="8" fill="#121D24" stroke="#223340"/>
-        <text x="630" y="430" font-family="Inter, sans-serif" font-size="11" fill="#E2E8F0">Evaluated at User, Session &amp; Event scopes with zero data truncation.</text>
+        <text x="630" y="430" font-family="Inter, sans-serif" font-size="11" fill="#E2E8F0">Review dimensions at the appropriate GA4 reporting scope.</text>
       `;
 
     case 'utm-source-guide':
@@ -485,7 +485,7 @@ function getBespokeDiagram(post, theme) {
         <rect x="610" y="355" width="490" height="95" rx="8" fill="#17222C" stroke="#243442"/>
         <text x="630" y="385" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">Governance Impact:</text>
         <text x="630" y="410" font-family="Inter, sans-serif" font-size="11" fill="#CBD5E1">Prevents source fragmentation and keeps campaign drill-downs unified.</text>
-        <text x="630" y="430" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="${accent}">Strict lowercase enforcement eliminates split analytics rows.</text>
+        <text x="630" y="430" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="${accent}">Consistent naming makes report rows easier to compare.</text>
       `;
 
     case 'utm-medium-guide':
@@ -516,8 +516,8 @@ function getBespokeDiagram(post, theme) {
 
         <!-- Rule enforcement badge -->
         <rect x="610" y="390" width="490" height="60" rx="8" fill="#121D24" stroke="#059669" stroke-width="1.2"/>
-        <text x="630" y="415" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF">GA4 System Rule Match: 100% Valid</text>
-        <text x="630" y="435" font-family="Inter, sans-serif" font-size="10.5" fill="#94A3B8">Zero sessions lost into "Unassigned" default channel bucket.</text>
+        <text x="630" y="415" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF">Review example medium values against GA4 rules</text>
+        <text x="630" y="435" font-family="Inter, sans-serif" font-size="10.5" fill="#94A3B8">Channel assignment depends on available traffic-source data.</text>
       `;
 
     case 'utm-campaign-guide':
@@ -585,14 +585,14 @@ function getBespokeDiagram(post, theme) {
 
         <!-- Resolved Card -->
         <rect x="610" y="335" width="490" height="115" rx="8" fill="#121D24" stroke="#059669" stroke-width="1.2"/>
-        <text x="630" y="365" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#A7F3D0">Outcome: Verified Attribution</text>
-        <text x="630" y="390" font-family="Inter, sans-serif" font-size="11" fill="#E2E8F0">100% of campaign hits correctly attributed to Paid Social &amp; Search.</text>
-        <text x="630" y="415" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="${accent}">Session manual dimensions restored in standard reports.</text>
+        <text x="630" y="365" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#A7F3D0">Example: Check campaign data in GA4</text>
+        <text x="630" y="390" font-family="Inter, sans-serif" font-size="11" fill="#E2E8F0">Review traffic-source values in Realtime or DebugView.</text>
+        <text x="630" y="415" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="${accent}">Processed reports may differ from this example.</text>
       `;
 
     case 'ga4-utms-not-showing':
       return `
-        <text x="610" y="115" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="${accent}" letter-spacing="1">GA4 REALTIME PAYLOAD INSPECTOR</text>
+        <text x="610" y="115" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="${accent}" letter-spacing="1">EXAMPLE GA4 REALTIME DATA</text>
         <!-- Browser URL Input -->
         <rect x="610" y="135" width="490" height="48" rx="8" fill="#17222C" stroke="#243442"/>
         <text x="630" y="164" font-family="'JetBrains Mono', monospace" font-size="11" fill="${accent}">https://example.com/?utm_source=meta&amp;utm_medium=cpc</text>
@@ -631,11 +631,11 @@ function getBespokeDiagram(post, theme) {
         <rect x="610" y="290" width="490" height="160" rx="8" fill="#121D24" stroke="#059669" stroke-width="1.2"/>
         <rect x="625" y="303" width="130" height="22" rx="4" fill="#065F46"/>
         <text x="690" y="318" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#A7F3D0" text-anchor="middle">RESOLVED ROUTE</text>
-        <text x="625" y="350" font-family="'JetBrains Mono', monospace" font-size="11" fill="#F8FAFC">Server Config: RewriteRule ^(.*)$ $1 [QSA,L]</text>
+        <text x="625" y="350" font-family="'JetBrains Mono', monospace" font-size="11" fill="#F8FAFC">Apache mod_rewrite: RewriteRule ... [QSA,L]</text>
         <text x="625" y="375" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="${accent}">Destination: /signup/?utm_source=meta&amp;utm_medium=paid_social</text>
         <line x1="625" y1="395" x2="1085" y2="395" stroke="#1E2D38"/>
         <circle cx="633" cy="420" r="5" fill="${accent}"/>
-        <text x="648" y="424" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF">100% Attribution Preserved across 301/302 chains</text>
+        <text x="648" y="424" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF">Query strings may survive redirects when configured</text>
       `;
 
     case 'ga4-not-set':
@@ -926,8 +926,8 @@ function getBespokeDiagram(post, theme) {
 
         <!-- Compile Outcome -->
         <rect x="610" y="325" width="490" height="125" rx="8" fill="#121D24" stroke="${accent}" stroke-width="1.2"/>
-        <text x="630" y="355" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">Batch Export Status: 100% Validated</text>
-        <text x="630" y="380" font-family="Inter, sans-serif" font-size="11" fill="#CBD5E1">Generates 50+ URLs with verified GA4 taxonomy in 1 click.</text>
+        <text x="630" y="355" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">Example bulk URL export</text>
+        <text x="630" y="380" font-family="Inter, sans-serif" font-size="11" fill="#CBD5E1">Review generated values against your campaign conventions.</text>
         <text x="630" y="405" font-family="'JetBrains Mono', monospace" font-size="10.5" fill="${accent}">CSV Export compatible with Google Ads Editor &amp; Meta Ads Manager.</text>
       `;
 
@@ -965,10 +965,10 @@ function getBespokeDiagram(post, theme) {
           <text x="349" y="120" font-family="Inter, sans-serif" font-size="9" fill="#A7F3D0">✓ Schema Locked</text>
         </g>
 
-        <!-- Isolation guarantee -->
+        <!-- Client naming workflow -->
         <rect x="610" y="355" width="490" height="95" rx="8" fill="#121D24" stroke="#223340"/>
-        <text x="630" y="385" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">Cross-Client Isolation Guarantee:</text>
-        <text x="630" y="410" font-family="Inter, sans-serif" font-size="11" fill="#CBD5E1">Zero parameter bleed between client accounts. Automated QA pre-check.</text>
+        <text x="630" y="385" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">Client Naming Workflow:</text>
+        <text x="630" y="410" font-family="Inter, sans-serif" font-size="11" fill="#CBD5E1">Review each client's naming rules and generated URLs.</text>
       `;
 
     case 'utm-qa-checklist':
@@ -986,7 +986,7 @@ function getBespokeDiagram(post, theme) {
 
           <rect x="0" y="120" width="490" height="52" rx="6" fill="#121D24" stroke="#059669" stroke-width="1.2"/>
           <circle cx="24" cy="26" r="8" fill="${accent}"/><text x="24" y="30" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#0F172A" text-anchor="middle">✓</text>
-          <text x="44" y="30" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF">3. Character Encoding / Zero Double-? Errors (Passed)</text>
+          <text x="44" y="30" font-family="Inter, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF">3. Character Encoding / Duplicate Delimiter Review</text>
 
           <rect x="0" y="180" width="490" height="52" rx="6" fill="#121D24" stroke="#059669" stroke-width="1.2"/>
           <circle cx="24" cy="26" r="8" fill="${accent}"/><text x="24" y="30" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#0F172A" text-anchor="middle">✓</text>

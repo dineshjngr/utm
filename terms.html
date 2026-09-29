@@ -85,8 +85,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -116,7 +116,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -158,7 +158,7 @@
       <div class="legal-header">
         <span class="card-category">LEGAL AGREEMENT</span>
         <h1 class="legal-title">Terms and Conditions</h1>
-        <p class="legal-subtitle">Effective Date: September 22, 2026 • Last Updated: September 22, 2026</p>
+        <p class="legal-subtitle">Effective Date: September 22, 2026 • Last Updated: September 29, 2026</p>
       </div>
 
       <div class="legal-section">
@@ -168,16 +168,16 @@
 
       <div class="legal-section">
         <h2>2. Description of Service</h2>
-        <p>UTMCraft is a free, privacy-focused, browser-based web application providing digital marketers and growth teams with tools to:</p>
+        <p>UTMCraft is a free, browser-based web application with tools to:</p>
         <ul class="legal-list">
           <li>Construct valid, standard-compliant Urchin Tracking Module (UTM) campaign parameters.</li>
           <li>Build multi-channel UTM matrix links in bulk for Google Ads, Meta Ads, LinkedIn, Email, and affiliate campaigns.</li>
-          <li>Inspect, decode, and audit existing campaign URLs for GA4 channel grouping compliance.</li>
+          <li>Inspect URL syntax, selected parameters, naming consistency, spaces, and limited source/medium patterns. The checker does not reproduce every current GA4 channel rule or verify live attribution.</li>
           <li>Generate vector and PNG QR codes for print and offline marketing collateral.</li>
           <li>Generate shortened redirect links using integrated fallback services.</li>
           <li>Store and export local campaign history exclusively on your device.</li>
         </ul>
-        <p>The core URL generation, inspection, validation, and QR rendering features run 100% in your local web browser using client-side JavaScript. No campaign URLs or parameters are uploaded to or stored on our servers.</p>
+        <p>URL generation, inspection, validation, and QR rendering run in your browser. The site separately loads Google Analytics 4, and the optional URL shortener sends the destination URL to one or more external providers. Campaign history and selected settings are stored in your browser's local storage. See the <a href="/privacy.html">Privacy Policy</a> for details.</p>
       </div>
 
       <div class="legal-section">
@@ -186,14 +186,14 @@
         <ul class="legal-list">
           <li>Generate URLs or shortened links that lead to phishing, deceptive malware, scams, or fraudulent websites.</li>
           <li>Use the service to distribute spam, unsolicited promotional messages, or harass recipients.</li>
-          <li>Include personal identifiable information (PII) - such as customer email addresses, Social Security numbers, payment details, or passwords - in UTM parameter strings, which also violates Google Analytics Terms of Service.</li>
+          <li>Include personally identifiable information (PII), such as email addresses or phone numbers, in UTM parameter strings. Google Analytics policies prohibit sending PII to Analytics.</li>
           <li>Attempt to reverse-engineer, disrupt, or flood external URL shortener APIs connected to the tool.</li>
         </ul>
       </div>
 
       <div class="legal-section">
         <h2>4. URL Shortening &amp; Third-Party Services</h2>
-        <p>UTMCraft includes an optional URL shortening feature that connects to public redirect providers (including spoo.me, da.gd, and clck.ru). When you explicitly click "Shorten", your destination URL is transmitted to the respective service solely to obtain an HTTP 301/302 redirect link. We do not own, control, or monitor third-party redirection uptime, and we disclaim any responsibility for changes in their availability or routing policies.</p>
+        <p>UTMCraft's optional URL shortener tries da.gd and may fall back to spoo.me and clck.ru. When you click "Shorten", the complete destination URL is sent to a provider as part of a request. These services are operated by third parties; UTMCraft does not control their availability, handling, or retention of request data.</p>
       </div>
 
       <div class="legal-section">
@@ -227,15 +227,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -244,7 +244,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -253,7 +253,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -263,12 +263,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

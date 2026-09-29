@@ -3,12 +3,12 @@ export const utmMistakesPosts = [
     slug: 'utm-tracking-mistakes',
     title: '15 UTM Tracking Mistakes That Ruin Your GA4 Data (and How to Fix Them)',
     seoTitle: '15 UTM Tracking Mistakes Ruining GA4 Data | UTMCraft',
-    description: 'Discover the 15 most destructive UTM tracking mistakes breaking GA4 attribution, causing Unassigned traffic, and corrupting ad ROI-with actionable fixes.',
+      description: 'Review common UTM tracking problems that can affect GA4 campaign reporting, with practical steps for checking links and attribution.',
     category: 'utm-mistakes',
     isPillar: true,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -44,8 +44,8 @@ export const utmMistakesPosts = [
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
     toolCta: {
-      title: 'Audit Your Tracking URLs Instantly',
-      description: 'Paste any campaign URL into our automated UTM Checker to detect casing errors, non-standard mediums, and redirect vulnerabilities in seconds.',
+      title: 'Review Your Tracking URL',
+      description: 'Use the UTM Checker to review URL syntax, selected parameters, naming consistency, and a limited set of source/medium patterns. Test redirects and GA4 collection separately.',
       link: '/utm-checker/',
       buttonText: 'Check Your URLs Now'
     },
@@ -62,7 +62,7 @@ export const utmMistakesPosts = [
       { title: 'RFC 3986: Uniform Resource Identifier (URI) Generic Syntax', url: 'https://datatracker.ietf.org/doc/html/rfc3986', publisher: 'IETF' }
     ],
     contentHtml: `
-      <p class="lead-text">Marketers spend billions on paid search, social campaigns, and email sequences, yet up to 40% of campaign traffic lands in Google Analytics 4 as <strong>Direct</strong> or <strong>Unassigned</strong>. The problem is almost never the ad platform or GA4 itself-it is subtle, systemic UTM tracking mistakes that silently corrupt attribution pipelines.</p>
+      <p class="lead-text">Missing or inconsistent campaign information can make it harder to understand how paid search, social campaigns, and email contribute to results in Google Analytics 4. Depending on the available campaign and referrer information, sessions may be classified as <strong>Direct</strong>, <strong>Unassigned</strong>, or another channel. This guide covers common tracking problems and ways to investigate them.</p>
 
       <h2 id="why-utm-mistakes-are-expensive">Why UTM Mistakes Silently Destroy Marketing ROI</h2>
       <p>When UTM parameters fail, three expensive consequences follow:</p>
@@ -88,7 +88,7 @@ export const utmMistakesPosts = [
       </div>
 
       <h3 id="mistake-2-inconsistent-casing">2. Inconsistent Letter Casing (CPC vs cpc)</h3>
-      <p>Google Analytics 4 is strictly case-sensitive. While humans read <code>Facebook</code>, <code>facebook</code>, and <code>FACEBOOK</code> as the same platform, GA4 treats them as three independent traffic sources. Worse, GA4 Default Channel Grouping regular expressions specifically require lowercase values for default channel matches.</p>
+      <p>GA4 default channel definitions are not case-sensitive. However, differently capitalized manual source values such as <code>Facebook</code> and <code>facebook</code> can appear as separate values in reports. Choose a consistent convention, such as lowercase, to make those reports easier to compare.</p>
       <div class="editorial-table-wrap">
         <table class="editorial-table">
           <thead>
@@ -96,19 +96,19 @@ export const utmMistakesPosts = [
           </thead>
           <tbody>
             <tr><td><code>utm_medium=cpc</code></td><td><strong>Paid Search</strong></td><td>Correct attribution</td></tr>
-            <tr><td><code>utm_medium=CPC</code></td><td><strong>Unassigned</strong></td><td>Broken channel grouping</td></tr>
+            <tr><td><code>utm_medium=CPC</code></td><td>Channel definitions are not case-sensitive</td><td>Use consistent casing to keep naming orderly</td></tr>
             <tr><td><code>utm_source=Google</code></td><td>Splits from <code>google</code></td><td>Fragmented reporting rows</td></tr>
           </tbody>
         </table>
       </div>
 
       <h3 id="mistake-3-non-standard-mediums">3. Inventing Non-Standard utm_medium Values</h3>
-      <p>GA4 relies on rigid definitions for its Default Channel Groups. When media teams invent subjective mediums like <code>utm_medium=paid</code>, <code>utm_medium=promoted-post</code>, or <code>utm_medium=influencers</code>, GA4 cannot classify the traffic and dumps it into <strong>Unassigned</strong>.</p>
+      <p>GA4 applies its current Default Channel Group definitions to available traffic-source information. A custom medium such as <code>promoted-post</code> or <code>influencers</code> may not match a default channel by itself; the result depends on the other available values and the applicable rule. If you need a custom classification, create a Custom Channel Group in GA4 Admin.</p>
       <p>Always verify your medium against our <a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping guide</a>. If you need custom classifications, either conform to standard mediums (e.g., <code>cpc</code>, <code>paid_social</code>, <code>email</code>, <code>affiliate</code>) or build Custom Channel Groups in GA4 Admin.</p>
 
       <h3 id="mistake-4-redirect-stripping">4. Allowing 301/302 Redirects to Strip Query Strings</h3>
-      <p>A marketer promotes <code>https://example.com/summer-sale?utm_source=meta...</code>, but the web server forces a redirect to <code>https://example.com/summer-sale/</code> (trailing slash) or converts HTTP to HTTPS. If the redirect server is not configured with Query String Append (QSA), the entire UTM payload drops silently on the floor. In GA4, 100% of this traffic becomes <strong>Direct</strong>.</p>
-      <p>Always run destination URLs through our <a href="/utm-checker/">UTM Checker</a> and inspect server response headers to confirm that redirects preserve <code>window.location.search</code>.</p>
+      <p>A marketer promotes <code>https://example.com/summer-sale?utm_source=meta...</code>, but the web server redirects to <code>https://example.com/summer-sale/</code> or changes HTTP to HTTPS. Depending on the redirect rule, the query string may or may not be preserved. If campaign parameters are lost and no usable referrer or other campaign information remains, GA4 may classify the session as <strong>Direct</strong> or otherwise lack the expected campaign attribution. Test the complete redirect chain to confirm what reaches the landing page.</p>
+      <p>Use the <a href="/utm-checker/">UTM Checker</a> for URL syntax and parameter checks, then test redirects separately in a browser or network inspector. Confirm that the final destination and analytics tag receive the expected query parameters.</p>
 
       <h3 id="mistake-5-spaces-special-chars">5. Using Spaces and Raw Special Characters</h3>
       <p>Raw spaces in URLs produce messy encodings like <code>%20</code> or <code>+</code>. In GA4 reports, this creates duplicate split entries (e.g., <code>summer sale</code>, <code>summer%20sale</code>, and <code>summer+sale</code>). Use lowercase alphanumeric characters separated strictly by hyphens or underscores.</p>
@@ -139,29 +139,29 @@ export const utmMistakesPosts = [
       <p>When team member A uses hyphens (<code>q1-promo</code>) and team member B uses underscores (<code>q1_promo</code>), GA4 isolates them into distinct reporting rows, doubling your manual aggregation workload in Looker Studio.</p>
 
       <h3 id="mistake-13-pii-violations">13. Passing PII in UTM Parameter Strings</h3>
-      <p>Passing personally identifiable information like <code>utm_term=user@example.com</code> or phone numbers directly violates Google Analytics Terms of Service. Google’s automated compliance scrapers can terminate your entire GA4 property and wipe historical data without warning.</p>
+      <p>Do not pass personally identifiable information (PII), such as an email address or phone number, in UTM values. Google’s Analytics policies prohibit sending PII to Analytics. Keep campaign parameters limited to non-identifying campaign information.</p>
 
       <h3 id="mistake-14-scope-confusion">14. Confusing First User vs Session Scopes in GA4</h3>
       <p>Marketers frequently pull reports comparing <strong>First user source / medium</strong> against <strong>Session source / medium</strong> and wonder why the numbers do not match. First User is sticky across all time; Session changes on every visit. Mixing scopes produces flawed campaign decisions.</p>
 
       <h3 id="mistake-15-no-qa-protocol">15. Launching Paid Campaigns Without Pre-Flight QA</h3>
-      <p>Never authorize daily ad spend without testing your URLs in GA4 DebugView or Realtime first. Our <a href="/utm-qa-checklist/">Pre-Launch UTM QA Checklist</a> prevents 99% of tracking failures before a single ad dollar is spent.</p>
+      <p>Before launch, test that campaign parameters reach the landing page and that your analytics implementation receives the expected data. Our <a href="/utm-qa-checklist/">Pre-Launch UTM QA Checklist</a> provides steps for reviewing a campaign link before it is used.</p>
 
       <h2 id="how-to-audit-your-links">Automated Link Auditing with the UTMCraft Checker</h2>
-      <p>Instead of manually inspecting long URL query strings, run your links through the <a href="/utm-checker/">UTMCraft UTM Checker</a>. The tool validates parameter completeness, checks lowercase compliance, flags forbidden delimiters, tests GA4 channel matching, and generates 1-click repairs.</p>
+      <p>Instead of manually inspecting long URL query strings, run your links through the <a href="/utm-checker/">UTMCraft UTM Checker</a>. It checks URL syntax, selected parameter presence, casing consistency, spaces, and a limited set of medium patterns. It does not inspect your live redirects, analytics implementation, or guarantee GA4 channel assignment.</p>
 
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is the single most damaging UTM mistake in Google Analytics 4?</h3>
-        <p>Tagging internal website links with UTMs. It overwrites original session traffic sources, breaks attribution chains, and turns paid conversions into internal referrals.</p>
+        <h3>Which UTM problems should I investigate first?</h3>
+        <p>Start by checking whether internal links carry UTMs, whether campaign parameters survive redirects, and whether source/medium values match your intended conventions. Internal UTM tagging can change the campaign context reported for subsequent activity, so use event parameters for on-site navigation instead.</p>
       </div>
       <div class="faq-item">
         <h3>Why does my campaign traffic show up as (Unassigned) in GA4?</h3>
-        <p>Traffic is categorized as Unassigned when your utm_medium or utm_source does not match any rule in GA4’s Default Channel Grouping table. This is usually caused by uppercase letters or custom invented mediums.</p>
+        <p>GA4 uses Unassigned when the available traffic-source information does not meet an applicable Default Channel Group definition. Missing or unexpected source, medium, campaign, or platform values can contribute. Channel definitions are not case-sensitive; check the current rule and the data collected for the session.</p>
       </div>
       <div class="faq-item">
         <h3>Are UTM parameters case-sensitive in GA4?</h3>
-        <p>Yes. GA4 treats cpc, CPC, and Cpc as three distinct values. Furthermore, GA4 default channel grouping requires strict lowercase values to match standard rules.</p>
+        <p>GA4 default channel definitions are not case-sensitive. Differently capitalized manual values can still appear as distinct values in reports, so using a consistent convention such as lowercase can make reporting easier to read.</p>
       </div>
     `
   },
@@ -169,12 +169,12 @@ export const utmMistakesPosts = [
     slug: 'utm-naming-mistakes',
     title: '7 UTM Naming Mistakes Marketing Teams Keep Making',
     seoTitle: '7 UTM Naming Mistakes Marketing Teams Keep Making | UTMCraft',
-    description: 'Avoid the 7 most common UTM naming mistakes that fragment campaign reports, create duplicate rows in GA4, and derail marketing attribution.',
+    description: 'Review 7 UTM naming mistakes that can fragment campaign reports and make GA4 campaign analysis harder, with ways to improve consistency.',
     category: 'utm-mistakes',
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -203,7 +203,7 @@ export const utmMistakesPosts = [
     ],
     toolCta: {
       title: 'Standardize Your UTM Taxonomy',
-      description: 'Use the UTMCraft Campaign URL Builder to enforce strict lowercase values, automatic hyphenation, and standardized parameter generation across your team.',
+      description: 'Use the UTMCraft Campaign URL Builder to apply your chosen casing convention, format spaces, and generate consistent parameters across your team.',
       link: '/campaign-url-builder/',
       buttonText: 'Open Campaign Builder'
     },
@@ -226,7 +226,7 @@ export const utmMistakesPosts = [
       <h2 id="7-naming-mistakes">The 7 Critical UTM Naming Mistakes</h2>
 
       <h3 id="mistake-1-casing">1. Inconsistent Letter Casing Across Teammates</h3>
-      <p>One media buyer uses <code>Facebook</code>, another writes <code>facebook</code>, and an agency writes <code>FB</code>. In GA4, these generate three separate lines in every dimension report. <strong>Standard: Force all lowercase, always.</strong></p>
+        <p>One media buyer uses <code>Facebook</code>, another writes <code>facebook</code>, and an agency writes <code>FB</code>. Differently capitalized manual values can appear separately in reports, while abbreviations such as <code>FB</code> are distinct values. <strong>Standard: choose and document consistent lowercase naming.</strong></p>
 
       <h3 id="mistake-2-delimiters">2. Mixing Delimiters (Hyphens vs Underscores vs Spaces)</h3>
       <p>Hyphens (<code>kebab-case</code>) and underscores (<code>snake_case</code>) should never be interchanged casually. Choose one standard for word separation and enforce it universally. We recommend hyphens for campaign names and underscores for source and medium.</p>
@@ -241,7 +241,7 @@ export const utmMistakesPosts = [
       <p>Setting <code>utm_source=facebook_retargeting_lookalike1</code> violates parameter scoping. The source is <code>facebook</code>; your audience targeting belongs in <code>utm_content</code> or <code>utm_term</code>.</p>
 
       <h3 id="mistake-6-no-documentation">6. Lack of a Centralized Taxonomy Source of Truth</h3>
-      <p>If your team does not share a locked UTM dictionary or an automated tool like UTMCraft, naming divergence is guaranteed. Implement an approved list of sources and mediums.</p>
+      <p>Without a shared UTM dictionary, teams may use different names for the same source or medium. Document approved values and review them across campaigns.</p>
 
       <h3 id="mistake-7-mid-campaign-changes">7. Renaming Campaigns Mid-Flight</h3>
       <p>Changing your UTM campaign value halfway through a seasonal push splits performance data across two disconnected reporting entities in GA4. If you must adjust nomenclature, do so between campaigns, never mid-flight.</p>
@@ -258,7 +258,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       </div>
       <div class="faq-item">
         <h3>How do I fix historical naming errors in GA4?</h3>
-        <p>GA4 historical data cannot be rewritten. However, you can create Custom Channel Groups or custom calculated fields in Looker Studio with regular expressions to combine fragmented legacy names.</p>
+        <p>Changing a live tag does not automatically rewrite campaign values already processed by GA4. Custom Channel Groups or reporting transformations may help you analyze historical values together, depending on the data and reporting setup.</p>
       </div>
     `
   },
@@ -271,7 +271,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -362,12 +362,12 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     slug: 'utm-medium-mistakes',
     title: '5 utm_medium Mistakes That Send Traffic to the Wrong GA4 Channel',
     seoTitle: '5 utm_medium Mistakes Breaking GA4 Channel Grouping | UTMCraft',
-    description: 'Discover why non-standard utm_medium tags route your traffic to Unassigned in GA4. Learn the exact casing and syntax rules to maintain clean channel grouping.',
+    description: 'Learn how GA4 uses source and medium information for Default Channel Grouping, and what to review when traffic appears as Unassigned.',
     category: 'utm-mistakes',
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -389,12 +389,12 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       { id: 'mistake-3-paid-social-misconfiguration', title: '3. Tagging Paid Ads as "social" Instead of "paid_social"', level: 3 },
       { id: 'mistake-4-referral-for-paid', title: '4. Using utm_medium=referral for Paid Partnerships', level: 3 },
       { id: 'mistake-5-display-vs-cpc', title: '5. Blurring Display, Video, and Search Mediums', level: 3 },
-      { id: 'ga4-medium-cheat-sheet', title: 'GA4 Default Medium Compliance Cheat Sheet', level: 2 },
+      { id: 'ga4-medium-cheat-sheet', title: 'GA4 Medium Pattern Reference', level: 2 },
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
     toolCta: {
       title: 'Verify GA4 Channel Grouping Rules',
-      description: 'Run your campaign links through the UTMCraft UTM Checker to predict exactly which GA4 Default Channel Group will receive your traffic.',
+      description: 'Use the UTMCraft UTM Checker to review URL syntax, selected fields, naming consistency, and a limited set of source/medium patterns. It does not predict live GA4 channel assignment.',
       link: '/utm-checker/',
       buttonText: 'Check Channel Routing'
     },
@@ -408,7 +408,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       { title: 'Google Analytics 4 Default Channel Grouping Rule Definitions', url: 'https://support.google.com/analytics/answer/9756891', publisher: 'Google Support' }
     ],
     contentHtml: `
-      <p class="lead-text">In Google Analytics 4, <code>utm_medium</code> is the single most important parameter for report classification. If your medium does not conform to Google's strict regular expressions, your traffic is routed straight to <strong>Unassigned</strong>, blinding your attribution models.</p>
+      <p class="lead-text"><code>utm_medium</code> is one of the values GA4 can use for channel classification. If the available traffic-source information does not meet an applicable Default Channel Group definition, traffic may appear as <strong>Unassigned</strong>. This guide covers ways to review medium conventions and the current rules.</p>
 
       <h2 id="why-utm-medium-governs-channels">Why utm_medium Governs GA4 Default Channel Grouping</h2>
       <p>GA4 evaluates traffic through an ordered rule set. When evaluating whether a session belongs in "Paid Search", "Paid Social", "Organic Social", or "Email", GA4 primarily inspects the value of <code>Session medium</code>. A single typographic error breaks the regex match.</p>
@@ -418,8 +418,8 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       <h3 id="mistake-1-inventing-mediums">1. Inventing Custom Mediums (social-media, promoted)</h3>
       <p>Marketing teams love inventing descriptive mediums like <code>promoted-post</code>, <code>social-media</code>, or <code>influencer-blast</code>. None of these exist in GA4's default definitions. Use standard values: <code>cpc</code>, <code>paid_social</code>, <code>affiliate</code>, or <code>email</code>.</p>
 
-      <h3 id="mistake-2-uppercase-casing">2. Uppercase Letters (CPC, Email, Social)</h3>
-      <p>In GA4, regular expressions for channel groups expect lowercase values. Setting <code>utm_medium=CPC</code> or <code>utm_medium=Paid_Social</code> fails the channel rule and dumps your ad spend into <code>Unassigned</code>.</p>
+      <h3 id="mistake-2-uppercase-casing">2. Inconsistent Naming Conventions</h3>
+      <p>GA4's default channel definitions are not case-sensitive, so <code>utm_medium=CPC</code> does not automatically cause <code>Unassigned</code>. However, inconsistent casing in manual source or campaign values can make reports harder to compare. Choose a consistent convention, such as lowercase, and check medium values against Google's current channel definitions.</p>
 
       <h3 id="mistake-3-paid-social-misconfiguration">3. Tagging Paid Ads as "social" Instead of "paid_social"</h3>
       <p>If you run Facebook Ads with <code>utm_medium=social</code>, GA4 categorizes the session as <strong>Organic Social</strong>. Your paid ad return appears non-existent, while organic social appears artificially massive.</p>
@@ -430,7 +430,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       <h3 id="mistake-5-display-vs-cpc">5. Blurring Display, Video, and Search Mediums</h3>
       <p>YouTube ads should use <code>utm_medium=video</code>. Display banner ads require <code>utm_medium=display</code>, <code>banner</code>, or <code>cpm</code>. Putting <code>cpc</code> on video ads confuses cross-channel reporting.</p>
 
-      <h2 id="ga4-medium-cheat-sheet">GA4 Default Medium Compliance Cheat Sheet</h2>
+      <h2 id="ga4-medium-cheat-sheet">GA4 Medium Pattern Reference</h2>
       <div class="editorial-table-wrap">
         <table class="editorial-table">
           <thead><tr><th>Target GA4 Channel</th><th>Required utm_medium</th><th>Required utm_source</th></tr></thead>
@@ -446,7 +446,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-item">
         <h3>Can I use paidsocial without an underscore?</h3>
-        <p>No. GA4 Default Channel Grouping specifically expects paid_social (with underscore) or matching regex variants. paidsocial falls into Unassigned.</p>
+        <p>Google's current default channel definitions are not case-sensitive and include patterns for paid-social traffic. Check the current medium and source definitions along with the other traffic-source information; <code>paidsocial</code> alone does not determine the final channel.</p>
       </div>
       <div class="faq-item">
         <h3>How can I fix historical Unassigned traffic in GA4?</h3>
@@ -458,12 +458,12 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     slug: 'facebook-ads-utm-mistakes',
     title: '10 Facebook Ads UTM Mistakes to Avoid in Meta Campaigns',
     seoTitle: '10 Facebook Ads UTM Mistakes to Avoid | UTMCraft',
-    description: 'Avoid the 10 most common Facebook and Meta Ads UTM mistakes that turn paid social traffic into Direct or Referral in GA4 and break ad attribution.',
+    description: 'Review 10 Facebook and Meta Ads UTM mistakes that can affect paid social reporting in GA4, with steps for checking campaign tags and attribution.',
     category: 'utm-mistakes',
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -479,7 +479,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     featuredImageAlt: 'Meta Ads Manager interface highlighting the URL Parameters box and common dynamic macro errors',
     tableOfContents: [
       { id: 'why-meta-tracking-breaks', title: 'Why Meta Ads Attribution Diverges from GA4', level: 2 },
-      { id: '10-facebook-utm-mistakes', title: 'The 10 Most Common Meta Ads UTM Mistakes', level: 2 },
+      { id: '10-facebook-utm-mistakes', title: '10 Meta Ads UTM Mistakes to Review', level: 2 },
       { id: 'mistake-1-website-url-field', title: '1. Pasting UTMs in the Website URL Field', level: 3 },
       { id: 'mistake-2-unexpanded-tokens', title: '2. Unexpanded Dynamic Macro Tokens', level: 3 },
       { id: 'mistake-3-token-casing', title: '3. Token Case Sensitivity Errors', level: 3 },
@@ -494,8 +494,8 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
     toolCta: {
-      title: 'Generate Meta Tracking Parameters',
-      description: 'Use our dedicated Facebook & Meta Ads UTM Builder to generate bulletproof dynamic tracking strings that prevent macro syntax errors.',
+      title: 'Build Meta Campaign URLs',
+      description: 'Create tagged links for Meta campaigns, then confirm macro syntax and availability in Meta’s current documentation.',
       link: '/utm-builder/facebook/',
       buttonText: 'Build Meta UTMs'
     },
@@ -515,7 +515,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       <h2 id="why-meta-tracking-breaks">Why Meta Ads Attribution Diverges from GA4</h2>
       <p>Meta uses view-through and click-through modeling tied to user accounts, whereas GA4 relies on session-based landing page parameters. When your Meta UTM parameters break, paid clicks land in GA4 as generic <code>Referral (l.facebook.com)</code> or <code>Direct</code>, completely hiding paid performance.</p>
 
-      <h2 id="10-facebook-utm-mistakes">The 10 Most Common Meta Ads UTM Mistakes</h2>
+      <h2 id="10-facebook-utm-mistakes">10 Meta Ads UTM Mistakes to Review</h2>
 
       <h3 id="mistake-1-website-url-field">1. Pasting UTMs in the Website URL Field</h3>
       <p>Pasting a query string into the "Website URL" box instead of the dedicated "URL Parameters" box in Meta Ads Manager prevents Meta's dynamic parameter engine from functioning cleanly and creates preview bugs.</p>
@@ -566,12 +566,12 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     slug: 'google-ads-tracking-mistakes',
     title: '7 Google Ads Tracking Mistakes That Cause Bad Attribution',
     seoTitle: '7 Google Ads Tracking Mistakes That Cause Bad Attribution | UTMCraft',
-    description: 'Diagnose and resolve the 7 most common Google Ads tracking errors, ValueTrack syntax mistakes, and auto-tagging conflicts breaking your GA4 data.',
+    description: 'Review 7 Google Ads tracking errors, ValueTrack syntax mistakes, and auto-tagging conflicts that can affect GA4 reporting.',
     category: 'utm-mistakes',
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -615,7 +615,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       { title: 'Google Analytics 4 Help: Link Google Ads and Analytics', url: 'https://support.google.com/analytics/answer/9379420', publisher: 'Google Support' }
     ],
     contentHtml: `
-      <p class="lead-text">Even with direct Google Ads and GA4 linking, millions of dollars in paid search spend land in Google Analytics 4 with missing search queries, blank ad group dimensions, or categorized as unassigned traffic due to subtle tracking template errors.</p>
+      <p class="lead-text">Even with Google Ads and GA4 linked, paid search reports can have missing search queries, blank ad group dimensions, or unexpected channel classifications. Check the tracking template, auto-tagging settings, and the data available to GA4 when investigating a discrepancy.</p>
 
       <h2 id="the-google-ads-ga4-handshake">How Google Ads Connects to GA4</h2>
       <p>Google Ads communicates with GA4 through two mechanisms: auto-tagging (via the <code>gclid</code> parameter) and manual UTM parameters. When these two systems conflict, or when ValueTrack macros fail, attribution breaks.</p>
@@ -635,10 +635,10 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       <p>Using outdated click-redirect tracking templates that are incompatible with Google's mandatory Parallel Tracking can delay page loads or strip click IDs.</p>
 
       <h3 id="mistake-5-gclid-stripped-on-redirect">5. Redirects Stripping GCLID Query Strings</h3>
-      <p>If an ad points to <code>https://brand.com/landing</code> and redirects to <code>https://brand.com/landing/</code>, dropping the <code>?gclid=...</code> payload, GA4 records that paid click as <strong>Direct / (none)</strong>.</p>
+      <p>If an ad URL redirects and the redirect removes the <code>gclid</code> parameter, GA4 may lose some Google Ads campaign information. The session's final classification depends on other campaign, referrer, and advertising information available to Analytics. Check the redirect response and the destination page's analytics data.</p>
 
       <h3 id="mistake-6-wrong-medium-for-search">6. Using utm_medium=google or search Instead of cpc</h3>
-      <p>GA4's Paid Search channel group requires <code>utm_medium=cpc</code> or <code>ppc</code>. Setting <code>utm_medium=search</code> sends your paid search traffic into Unassigned.</p>
+      <p>For manually tagged traffic, use a medium that matches the current Paid Search definition and check the source and other available traffic-source information. A value such as <code>search</code> may not match that definition by itself, but the final classification depends on the information GA4 receives.</p>
 
       <h3 id="mistake-7-pmax-tracking-confusion">7. Blind Spots in Performance Max Tracking</h3>
       <p>Performance Max runs across Search, YouTube, Display, and Discover simultaneously. Without dynamic placement parameters, you cannot audit where your spend converted.</p>
@@ -667,7 +667,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -709,7 +709,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       { title: 'URL tracking parameters in Campaign Manager', url: 'https://www.linkedin.com/help/lms/answer/a5968064', publisher: 'LinkedIn Help' }
     ],
     contentHtml: `
-      <p class="lead-text">LinkedIn Ads carry some of the highest CPCs in digital marketing, often exceeding $10 to $25 per click. Yet all too often, LinkedIn campaign traffic lands in Google Analytics 4 under <code>lnkd.in / referral</code> or <code>Organic Social</code> due to syntax errors in dynamic URL parameters.</p>
+      <p class="lead-text">LinkedIn campaign tags help teams compare paid campaign performance in GA4. Missing or malformed parameters can make traffic-source reporting harder to interpret; inspect the landing URL and the values collected in GA4 before diagnosing a referral or Organic Social result.</p>
 
       <h2 id="the-linkedin-attribution-challenge">Why LinkedIn Ads Often Report as Referral in GA4</h2>
       <p>LinkedIn routes ad clicks through its link wrapper (<code>lnkd.in</code>). If your destination URL lacks explicit UTM parameters, GA4 reads the HTTP referrer header and classifies the visit as generic organic referral traffic.</p>
@@ -720,7 +720,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       <p>Unlike Meta, LinkedIn's dynamic URL macro parameters require <strong>strict uppercase</strong> inside double curly braces. Writing <code>{{campaign_name}}</code> fails; you must write <code>{{CAMPAIGN_NAME}}</code>.</p>
 
       <h3 id="mistake-2-medium-social">2. Using utm_medium=social Instead of paid_social</h3>
-      <p>Setting <code>utm_medium=social</code> causes GA4 to group your expensive Sponsored Content into Organic Social. Always use <code>utm_medium=paid_social</code> or <code>utm_medium=cpc</code>.</p>
+      <p>For LinkedIn Sponsored Content, a documented paid medium such as <code>paid_social</code> or <code>cpc</code> can help distinguish ads from organic posts. GA4 may classify <code>social</code> as Organic Social, depending on the available traffic-source information and current channel rules.</p>
 
       <h3 id="mistake-3-text-links-only">3. Putting UTMs Only in Intro Text Links</h3>
       <p>In Single Image Ads, users click both the introductory text and the large image card. If you only tag the URL inside the body text, card clicks land without tracking.</p>
@@ -757,7 +757,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -774,7 +774,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
     tableOfContents: [
       { id: 'the-email-referrer-dilemma', title: 'Why Email Attribution Fails by Default', level: 2 },
       { id: '8-email-utm-mistakes', title: 'The 8 Critical Email UTM Mistakes', level: 2 },
-      { id: 'mistake-1-no-utms-at-all', title: '1. Sending Untagged Links (Zero Referrer Header)', level: 3 },
+      { id: 'mistake-1-no-utms-at-all', title: '1. Sending Untagged Links Without Campaign Values', level: 3 },
       { id: 'mistake-2-non-standard-mediums', title: '2. Using utm_medium=newsletter or e-mail', level: 3 },
       { id: 'mistake-3-esp-redirect-wrappers', title: '3. ESP Click-Tracking Wrappers Stripping Query Strings', level: 3 },
       { id: 'mistake-4-security-bots', title: '4. Anti-Spam Security Scanners Inflating Fake Sessions', level: 3 },
@@ -786,8 +786,8 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
     toolCta: {
-      title: 'Audit Email Campaign Links',
-      description: 'Test your email broadcast links in the UTMCraft UTM Checker to confirm GA4 Email channel compliance before sending to your subscriber list.',
+      title: 'Review Email Campaign URLs',
+      description: 'Check URL syntax and selected parameters. Test email tracking redirects separately and compare the final URL with GA4 channel definitions.',
       link: '/utm-checker/',
       buttonText: 'Check Email Links'
     },
@@ -801,18 +801,18 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       { title: 'Google Analytics 4 Default Channel Grouping: Email Definition', url: 'https://support.google.com/analytics/answer/9756891', publisher: 'Google Support' }
     ],
     contentHtml: `
-      <p class="lead-text">Desktop email clients like Microsoft Outlook and Apple Mail, as well as native mobile mail apps, do not pass an HTTP referrer header when a subscriber clicks a link. Without explicit UTM parameters, 100% of your email marketing traffic lands in GA4 as <strong>Direct</strong>.</p>
+      <p class="lead-text">Email clicks may arrive without useful referrer information, depending on the mail app and browser. If campaign parameters are also absent, GA4 may classify the session as <strong>Direct</strong>. Tag links consistently and test the actual click path.</p>
 
       <h2 id="the-email-referrer-dilemma">Why Email Attribution Fails by Default</h2>
       <p>Unlike a website link, an email client is an independent desktop or mobile application. When a user clicks, the browser opens without any referrer information. Email UTM tags are not optional-they are the only attribution link between your ESP and GA4.</p>
 
       <h2 id="8-email-utm-mistakes">The 8 Critical Email UTM Mistakes</h2>
 
-      <h3 id="mistake-1-no-utms-at-all">1. Sending Untagged Links (Zero Referrer Header)</h3>
+      <h3 id="mistake-1-no-utms-at-all">1. Sending Untagged Links Without Campaign Values</h3>
       <p>Assuming that your ESP (Klaviyo, Mailchimp, HubSpot) automatically tags every link is dangerous. Custom HTML templates and text links often bypass default ESP taggers.</p>
 
       <h3 id="mistake-2-non-standard-mediums">2. Using utm_medium=newsletter or e-mail</h3>
-      <p>GA4 Default Channel Grouping specifically checks for <code>utm_medium=email</code>. Setting <code>e-mail</code>, <code>newsletter</code>, or <code>broadcast</code> routes the traffic into Unassigned.</p>
+      <p>Google's current default channel definitions include several email-related source and medium patterns. Use a consistent medium such as <code>email</code>, and check the current source and medium values together; a particular value does not by itself determine the final channel.</p>
 
       <h3 id="mistake-3-esp-redirect-wrappers">3. ESP Click-Tracking Wrappers Stripping Query Strings</h3>
       <p>When custom tracking domains are improperly configured with CNAME records, the ESP's redirect link may drop URL query parameters before forwarding to the final destination.</p>
@@ -827,7 +827,7 @@ Example: us-leadgen-whitepaper-2026</code></pre>
       <p>Tagging legal footer links clutters reporting. Only tag marketing content links.</p>
 
       <h3 id="mistake-7-passing-subscriber-pii">7. Passing Subscriber Email Addresses in Query Strings</h3>
-      <p>Never pass <code>utm_term={{email}}</code>. Transmitting plain-text email addresses violates Google Analytics Terms of Service and data privacy laws.</p>
+      <p>Do not pass <code>utm_term={{email}}</code>. Google Analytics policies prohibit sending personally identifiable information, including email addresses, to Analytics. Avoid putting personal information in campaign URLs and review applicable privacy requirements for your use case.</p>
 
       <h3 id="mistake-8-internal-cross-linking">8. Overwriting Campaign Sessions with Internal Nav</h3>
       <p>If your landing page has internal UTM links, the subscriber's email attribution is wiped as soon as they browse.</p>
@@ -841,11 +841,11 @@ utm_content=hero_cta_button</code></pre>
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-item">
         <h3>Why does my email traffic appear as Direct in GA4?</h3>
-        <p>Email apps do not send HTTP referrer headers. If your links lack utm_medium=email, GA4 cannot determine the traffic source and classifies it as Direct.</p>
+        <p>Email apps and link-wrapping systems can affect referral information. If campaign parameters are missing and GA4 has no other clear referral or advertising information, the visit may be reported as Direct / (none). Use consistent email campaign tags and test the final destination.</p>
       </div>
       <div class="faq-item">
-        <h3>Should I use utm_source=email or utm_medium=email?</h3>
-        <p>utm_medium=email is mandatory. utm_source should describe the specific email type or platform, such as newsletter, onboarding, or klaviyo.</p>
+        <h3>How should I tag email links?</h3>
+        <p>For manually tagged email links, <code>utm_medium=email</code> is a common convention. Use <code>utm_source</code> to identify the email platform or campaign source, such as a newsletter or onboarding program, and check Google's current channel definitions when interpreting reports.</p>
       </div>
     `
   },
@@ -853,12 +853,12 @@ utm_content=hero_cta_button</code></pre>
     slug: 'qr-code-tracking-mistakes',
     title: '5 QR Code Tracking Mistakes to Avoid in Print & Offline Campaigns',
     seoTitle: '5 QR Code Tracking Mistakes to Avoid in Offline Campaigns | UTMCraft',
-    description: 'Don\'t let offline campaigns get lost as Direct traffic. Avoid these 5 QR code tracking mistakes that break scanning, strip UTMs, or corrupt GA4 attribution.',
+    description: 'Review 5 QR code tracking mistakes that can affect campaign reporting, including scanning issues and redirect behavior, with steps for checking attribution.',
     category: 'utm-mistakes',
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -875,19 +875,19 @@ utm_content=hero_cta_button</code></pre>
     tableOfContents: [
       { id: 'why-qr-tracking-fails', title: 'Why Printed QR Codes Are Irreversible', level: 2 },
       { id: '5-qr-code-mistakes', title: 'The 5 Most Damaging QR Code Tracking Mistakes', level: 2 },
-      { id: 'mistake-1-plain-urls', title: '1. Encoding Plain URLs Without UTMs (Permanent Direct Traffic)', level: 3 },
+      { id: 'mistake-1-plain-urls', title: '1. Encoding Plain URLs Without Campaign Parameters', level: 3 },
       { id: 'mistake-2-dense-static-urls', title: '2. Printing 200-Character Static URLs (Unscannable Modules)', level: 3 },
       { id: 'mistake-3-static-vs-dynamic', title: '3. Using Static QR Codes for Expensive Print Runs', level: 3 },
       { id: 'mistake-4-contrast-quiet-zone', title: '4. Violating Contrast and Quiet Zone Requirements', level: 3 },
-      { id: 'mistake-5-medium-qr', title: '5. Using utm_medium=qr (Sending Data to Unassigned)', level: 3 },
+      { id: 'mistake-5-medium-qr', title: '5. Using a QR Medium Without Checking Channel Reporting', level: 3 },
       { id: 'qr-qa-checklist', title: 'Pre-Print QR Verification Checklist', level: 2 },
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
     toolCta: {
-      title: 'Generate Print-Ready QR Codes',
-      description: 'Build scannable vector QR codes with integrated UTM parameters using the UTMCraft Campaign Builder.',
-      link: '/',
-      buttonText: 'Create QR Tracking Link'
+      title: 'Inspect the Encoded Campaign URL',
+      description: 'Check the URL syntax and selected campaign parameters. Scan the printed code and test live redirects separately.',
+      link: '/utm-checker/',
+      buttonText: 'Open UTM Checker'
     },
     relatedSlugs: [
       'qr-code-utm-tracking',
@@ -899,27 +899,27 @@ utm_content=hero_cta_button</code></pre>
       { title: 'ISO/IEC 18004:2024 QR Code Standard', url: 'https://www.iso.org/standard/83389.html', publisher: 'ISO' }
     ],
     contentHtml: `
-      <p class="lead-text">Printing a QR code without proper tracking is an irreversible mistake. Once thousands of product packages, trade show banners, or direct mail postcards are printed and distributed, you cannot edit the URL or fix broken attribution.</p>
+      <p class="lead-text">Already have a QR campaign link or print proof? Use this diagnostic checklist to find scanning, redirect, and tagging problems before distribution. For the initial setup, follow the <a href="/qr-code-utm-tracking/">QR code UTM tracking tutorial</a>.</p>
 
       <h2 id="why-qr-tracking-fails">Why Printed QR Codes Are Irreversible</h2>
-      <p>When a customer scans a printed QR code with their mobile device, the phone camera parses the raw text string. If that string lacks UTM parameters, the scan opens in Safari or Chrome with no referrer, permanently recording the interaction as Direct.</p>
+      <p>A printed QR code encodes a fixed URL. If that URL points to a redirect you control, you may be able to update its destination. When diagnosing poor reporting, scan the printed proof, inspect every redirect hop, and check which campaign values reach the landing page.</p>
 
       <h2 id="5-qr-code-mistakes">The 5 Most Damaging QR Code Tracking Mistakes</h2>
 
-      <h3 id="mistake-1-plain-urls">1. Encoding Plain URLs Without UTMs (Permanent Direct Traffic)</h3>
-      <p>Printing <code>https://brand.com/booth</code> without parameters guarantees that every scan will be masked as Direct traffic in GA4.</p>
+      <h3 id="mistake-1-plain-urls">1. Encoding Plain URLs Without Campaign Parameters</h3>
+      <p>Printing <code>https://brand.com/booth</code> without campaign parameters can make it harder to identify QR-driven visits in GA4, particularly when no usable referrer information is available.</p>
 
       <h3 id="mistake-2-dense-static-urls">2. Printing 200-Character Static URLs (Unscannable Modules)</h3>
-      <p>Encoding long, unshortened URLs directly into a QR matrix forces the code to generate dense, tiny modules. In dimly lit environments or on textured paper, camera sensors fail to decode the matrix.</p>
+      <p>Long URLs produce denser QR matrices that may be harder to scan at a given print size. If scans fail, try the actual print size on the intended material and lighting; compare with a shorter destination URL that you control.</p>
 
       <h3 id="mistake-3-static-vs-dynamic">3. Using Static QR Codes for Expensive Print Runs</h3>
-      <p>If your landing page URL changes or an error is discovered post-printing, a static QR code is dead on arrival. Use a short redirecting URL that can be updated server-side.</p>
+      <p>If the printed code embeds the final landing URL directly, that encoded URL cannot be changed after printing. A redirect on a domain you control can provide a changeable destination, but test that it preserves the query string.</p>
 
       <h3 id="mistake-4-contrast-quiet-zone">4. Violating Contrast and Quiet Zone Requirements</h3>
-      <p>Inverting QR colors (light pixels on a dark background) or cutting off the 4-module white quiet zone border causes camera scanners to fail.</p>
+      <p>If scanning is unreliable, check contrast, damage near the code edges, and whether the quiet zone is clear. Test with the printed proof on more than one device.</p>
 
-      <h3 id="mistake-5-medium-qr">5. Using utm_medium=qr (Sending Data to Unassigned)</h3>
-      <p><code>qr</code> is not a recognized GA4 default medium. Tag your QR codes with <code>utm_medium=print</code>, <code>event</code>, or <code>packaging</code>.</p>
+      <h3 id="mistake-5-medium-qr">5. Using a QR Medium Without Checking Channel Reporting</h3>
+      <p>Values such as <code>qr</code>, <code>print</code>, or <code>event</code> describe your campaign convention, but a medium alone does not determine the GA4 default channel. If a channel looks unexpected, inspect the collected source and medium against Google's current channel definitions; use a custom channel group if your team needs a separate offline category.</p>
 
       <h2 id="qr-qa-checklist">Pre-Print QR Verification Checklist</h2>
       <ul>
@@ -930,12 +930,12 @@ utm_content=hero_cta_button</code></pre>
 
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-item">
-        <h3>What is the minimum physical print size for a QR code?</h3>
-        <p>Never print a QR code smaller than 0.8 x 0.8 inches (2 x 2 cm) for close-range handheld scanning. For billboards or posters, increase size proportionally to scanning distance.</p>
+        <h3>What if the code scans but GA4 does not show the campaign?</h3>
+        <p>Compare the scanned URL, each redirect destination, and the final page URL. If parameters survive, test whether the analytics tag receives them and inspect the collected source/medium values in GA4.</p>
       </div>
       <div class="faq-item">
         <h3>What utm_medium should I use for QR codes?</h3>
-        <p>Use print, event, or packaging. In GA4 Admin, create a Custom Channel Group for Offline traffic to cleanly capture these mediums.</p>
+        <p>Choose and document a medium such as <code>print</code> or <code>event</code> that identifies the placement for your team. Review the resulting GA4 source/medium values and, if needed, define an offline category in a custom channel group.</p>
       </div>
     `
   },
@@ -948,7 +948,7 @@ utm_content=hero_cta_button</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -976,8 +976,8 @@ utm_content=hero_cta_button</code></pre>
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
     toolCta: {
-      title: 'Bulk URL Generation for Agencies',
-      description: 'Generate standardized, client-compliant campaign URLs across all channels in bulk using the UTMCraft Bulk UTM Matrix Generator.',
+      title: 'Generate Campaign URLs in Bulk',
+      description: 'Use the bulk builder to create URLs, then review the results against each client’s documented conventions.',
       link: '/bulk-utm-builder/',
       buttonText: 'Open Bulk Builder'
     },
@@ -1014,13 +1014,13 @@ utm_content=hero_cta_button</code></pre>
       <p>Configuring manual UTM templates that clash with Google Ads auto-tagging without proper account linking damages conversion imports.</p>
 
       <h3 id="mistake-6-no-qa-staging">6. Skipping Pre-Launch QA on Staging Sites</h3>
-      <p>Launching ads directly into production without verifying link redirects or query parameter preservation causes instant attribution loss.</p>
+      <p>Launching ads without checking redirect behavior and query parameter preservation can make campaign information unavailable to analytics. Test the final destination and confirm what the analytics tag receives.</p>
 
       <h3 id="mistake-7-siloed-spreadsheets">7. Managing Campaign Links in Decentralized Spreadsheets</h3>
       <p>Shared Google Sheets inevitably suffer from copy-paste typos, broken formulas, and version conflicts. Switch to automated URL generators.</p>
 
       <h2 id="agency-governance-framework">How to Standardize Agency Tracking Governance</h2>
-      <p>Establish a client-approved Taxonomy Agreement before launching campaigns, mandate automated URL builders, and audit 100% of live links using the <a href="/utm-checker/">UTMCraft UTM Checker</a>.</p>
+      <p>Establish a client-approved naming agreement before launching campaigns, review proposed URLs with the <a href="/utm-checker/">UTMCraft UTM Checker</a>, and test live redirects and GA4 collection separately.</p>
 
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-item">
@@ -1029,7 +1029,7 @@ utm_content=hero_cta_button</code></pre>
       </div>
       <div class="faq-item">
         <h3>What is the easiest way to prevent agency tracking errors?</h3>
-        <p>Lock down an organizational UTM builder that automatically sanitizes casing, replaces spaces with hyphens, and validates channel grouping compliance.</p>
+        <p>Use a shared naming convention and a builder that can apply optional casing and space-formatting rules. Review selected source/medium patterns with the checker; it does not verify live GA4 channel assignment.</p>
       </div>
     `
   },
@@ -1042,7 +1042,7 @@ utm_content=hero_cta_button</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -1128,7 +1128,7 @@ utm_content=hero_cta_button</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -1179,10 +1179,10 @@ utm_content=hero_cta_button</code></pre>
       <h2 id="6-ecommerce-utm-mistakes">The 6 Critical Ecommerce UTM Mistakes</h2>
 
       <h3 id="mistake-1-payment-gateways">1. Payment Gateway Referrals Overwriting Traffic Sources</h3>
-      <p>When a shopper pays with PayPal, Klarna, or Afterpay, they are redirected to the gateway and returned to your confirmation page. If you do not add these domains to your GA4 <strong>List unwanted referrals</strong>, the gateway is credited with 100% of the purchase revenue.</p>
+      <p>When a shopper leaves for an external payment gateway and returns to the confirmation page, the gateway can appear as a referral in some setups. Review cross-domain measurement and unwanted-referral settings, then verify how the return visit is attributed in your property.</p>
 
       <h3 id="mistake-2-internal-promo-banners">2. Tagging Homepage Promo Banners with UTM Parameters</h3>
-      <p>A customer clicks a $20 Facebook Ad, lands on your homepage, and clicks a "20% Off" hero slider tagged with <code>?utm_source=hero_banner</code>. That internal click destroys the Facebook ad attribution immediately before checkout.</p>
+      <p>A customer clicks a Facebook ad, lands on your homepage, and then clicks a hero promotion tagged with <code>?utm_source=hero_banner</code>. Internal campaign parameters can affect campaign data collected on subsequent events, so use event parameters for on-site promotions and verify the attribution behavior for your implementation.</p>
 
       <h3 id="mistake-3-missing-utm-id">3. Omitting utm_id for Automated Cost Data Imports</h3>
       <p>If you upload non-Google ad costs (Meta, TikTok, Pinterest) into GA4 via Data Import, GA4 requires <code>utm_id</code> to join spend data to session conversions. Without it, ROAS calculations remain blank.</p>
@@ -1214,12 +1214,12 @@ utm_content=hero_cta_button</code></pre>
     slug: 'redirect-utm-mistakes',
     title: '5 Redirect Mistakes That Strip UTM Parameters and GCLIDs',
     seoTitle: '5 Redirect Mistakes That Strip UTM Parameters & GCLIDs | UTMCraft',
-    description: 'Discover how 301 server redirects, HTTP-to-HTTPS hops, and trailing-slash mismatches silently erase campaign parameters and turn paid ads into Direct.',
+    description: 'Learn how 301 redirects, HTTP-to-HTTPS hops, and trailing-slash rules can affect campaign parameters and how to test whether links reach their destination intact.',
     category: 'utm-mistakes',
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -1236,7 +1236,7 @@ utm_content=hero_cta_button</code></pre>
     tableOfContents: [
       { id: 'the-silent-redirect-killer', title: 'Why Redirects Silently Destroy Campaign Attribution', level: 2 },
       { id: '5-redirect-mistakes', title: 'The 5 Critical Redirect Tracking Mistakes', level: 2 },
-      { id: 'mistake-1-missing-qsa', title: '1. Server 301 Redirects Without Query String Append (QSA)', level: 3 },
+      { id: 'mistake-1-missing-qsa', title: '1. Redirect Rules That Do Not Preserve Query Parameters', level: 3 },
       { id: 'mistake-2-protocol-hops', title: '2. HTTP to HTTPS Protocol Upgrades Dropping Parameters', level: 3 },
       { id: 'mistake-3-trailing-slash-mismatch', title: '3. Trailing Slash Mismatches (/landing vs /landing/)', level: 3 },
       { id: 'mistake-4-cdn-edge-caching', title: '4. CDN Edge Rules Stripping Unrecognized Query Strings', level: 3 },
@@ -1245,8 +1245,8 @@ utm_content=hero_cta_button</code></pre>
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
     toolCta: {
-      title: 'Diagnose Redirect Vulnerabilities',
-      description: 'Audit your campaign links before publishing to detect potential trailing slash and protocol redirect drops with the UTMCraft UTM Checker.',
+      title: 'Check Tagged URL Parameters',
+      description: 'Review URL syntax and selected parameters with the checker. Test each redirect and the final landing URL separately because the checker does not follow redirect chains.',
       link: '/utm-checker/',
       buttonText: 'Test Your URLs'
     },
@@ -1261,15 +1261,15 @@ utm_content=hero_cta_button</code></pre>
       { title: 'Apache Module mod_rewrite Documentation: Flag QSA', url: 'https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html#rewriteflags', publisher: 'Apache Software Foundation' }
     ],
     contentHtml: `
-      <p class="lead-text">You spend thousands on advertising, verify that your campaign URLs are tagged flawlessly, and launch. Yet when you check GA4, 100% of your visitors appear under <strong>Direct / (none)</strong>. The culprit is almost always an intermediate server redirect that silently strips the query string.</p>
+      <p class="lead-text">A campaign may appear as <strong>Direct / (none)</strong> when GA4 has no clear referral source or campaign information. A redirect that drops query parameters is one possible cause; check the full redirect chain and the data received on the final landing page before concluding.</p>
 
       <h2 id="the-silent-redirect-killer">Why Redirects Silently Destroy Campaign Attribution</h2>
-      <p>When a web server returns an HTTP 301 (Moved Permanently) or 302 (Found) status code, it sends a <code>Location</code> header instructing the browser where to go next. If the server does not explicitly re-append the incoming query string to the new location, the browser requests the target page completely stripped of UTMs.</p>
+      <p>When a web server returns an HTTP 301 (Moved Permanently) or 302 (Found) status code, it sends a <code>Location</code> header instructing the browser where to go next. Whether the next URL includes the incoming query string depends on the redirect rule and server configuration. Inspect the response's <code>Location</code> header and the final URL to see whether the campaign parameters were preserved.</p>
 
       <h2 id="5-redirect-mistakes">The 5 Critical Redirect Tracking Mistakes</h2>
 
-      <h3 id="mistake-1-missing-qsa">1. Server 301 Redirects Without Query String Append (QSA)</h3>
-      <p>In Apache web servers, rewrite rules without the <code>[QSA]</code> flag discard incoming query parameters upon redirection.</p>
+      <h3 id="mistake-1-missing-qsa">1. Redirect Rules That Do Not Preserve Query Parameters</h3>
+      <p><code>[QSA]</code> is an Apache <code>mod_rewrite</code> flag. It appends an incoming query string when the rewrite substitution already contains a query string; it is not a universal redirect setting. For a path-only redirect, inspect Apache's resulting <code>Location</code> header rather than assuming the flag is required.</p>
 
       <h3 id="mistake-2-protocol-hops">2. HTTP to HTTPS Protocol Upgrades Dropping Parameters</h3>
       <p>Ad links pointing to <code>http://example.com</code> that redirect to <code>https://example.com</code> can drop parameters if the SSL redirection rule is misconfigured.</p>
@@ -1284,8 +1284,8 @@ utm_content=hero_cta_button</code></pre>
       <p>Single Page Apps executing <code>window.location.href = '/new-page'</code> without appending <code>window.location.search</code> erase campaign attribution instantly.</p>
 
       <h2 id="server-configuration-fixes">Server Configuration Fixes for Apache and Nginx</h2>
-      <p>In <strong>Apache</strong>, ensure rewrite rules append query strings:</p>
-      <pre><code>RewriteRule ^old-page$ /new-page [R=301,L,QSA]</code></pre>
+      <p>Redirect query-string behavior depends on the server and rule. In Apache <code>mod_rewrite</code>, <code>[QSA]</code> is relevant when the substitution already creates a query string and the incoming query also needs to be appended. For a path-only substitution, inspect the resulting <code>Location</code> header:</p>
+      <pre><code>RewriteRule ^old-page$ /new-page [R=301,L]</code></pre>
       <p>In <strong>Nginx</strong>, always include <code>$is_args$args</code>:</p>
       <pre><code>return 301 https://example.com/new-page$is_args$args;</code></pre>
 
@@ -1296,7 +1296,7 @@ utm_content=hero_cta_button</code></pre>
       </div>
       <div class="faq-item">
         <h3>Does a 301 redirect pass Google Ads GCLID?</h3>
-        <p>Only if your server redirect configuration preserves query strings. Otherwise, the GCLID is stripped and your paid search click becomes Direct.</p>
+        <p>A redirect may preserve or remove the incoming query string depending on its configuration. If the <code>gclid</code> is removed, GA4 may lose Google Ads information; the final classification depends on other traffic-source data it receives. Check the redirect response and final URL.</p>
       </div>
     `
   },
@@ -1309,7 +1309,7 @@ utm_content=hero_cta_button</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -1404,7 +1404,7 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -1431,7 +1431,7 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
     ],
     toolCta: {
       title: 'Run a Pre-Launch UTM Audit',
-      description: 'Audit your ad URLs in the UTMCraft UTM Checker before publishing to ensure zero redirect drops and 100% GA4 channel grouping compliance.',
+      description: 'Use the UTMCraft UTM Checker for URL syntax, selected parameter, casing, and medium-pattern checks. Test redirects and GA4 collection separately; the checker cannot guarantee live attribution.',
       link: '/utm-checker/',
       buttonText: 'Audit URL Before Launch'
     },
@@ -1448,7 +1448,7 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
       <p class="lead-text">Authorizing thousands of dollars in daily ad spend without testing your tracking parameters is like taking off in an airplane without a pre-flight checklist. Catching tracking errors 10 minutes before launch saves weeks of broken data and wasted ad spend.</p>
 
       <h2 id="why-pre-launch-qa-matters">Why Pre-Flight QA Protects Your Ad Budget</h2>
-      <p>Once ad campaigns go live, fixing a broken parameter requires pausing ads, updating creative links, and waiting for ad network re-review. Worse, all traffic acquired during the broken period is permanently corrupted in your analytics history.</p>
+      <p>After a campaign launches, a tracking issue may require updating the link or ad setup. Data already processed in GA4 may not be retroactively changed in standard reports, so document the affected period and correct the setup for future traffic.</p>
 
       <h2 id="5-pre-launch-mistakes">The 5 Critical Pre-Launch UTM Mistakes</h2>
 
@@ -1465,7 +1465,7 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
       <p>Accidentally including two question marks (<code>?page=1?utm_source=...</code>) or omitting the <code>&amp;</code> between parameters renders the entire query string unparseable.</p>
 
       <h3 id="mistake-5-ignoring-channel-grouping-rules">5. Launching Without Channel Grouping Verification</h3>
-      <p>Confirm that your <code>utm_medium</code> matches GA4 Default Channel Grouping rules to prevent your ad spend from immediately routing to Unassigned.</p>
+      <p>Compare your <code>utm_medium</code> and other available traffic-source values with Google's current Default Channel Group definitions. This can help identify values that may affect classification; it does not guarantee a particular channel assignment.</p>
 
       <h2 id="pre-launch-qa-protocol">The 5-Minute Pre-Launch QA Protocol</h2>
       <ol>
@@ -1473,7 +1473,7 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
         <li>Open the link in an incognito window and check for redirect parameter loss.</li>
         <li>Inspect GA4 Realtime to verify <code>session_campaign</code> capture.</li>
         <li>Submit a test form to verify CRM hidden field storage.</li>
-        <li>Authorize ad spend with full attribution confidence.</li>
+        <li>Review the link and analytics checks before authorizing ad spend.</li>
       </ol>
 
       <h2 id="faq">Frequently Asked Questions</h2>
@@ -1496,7 +1496,7 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-09-24',
@@ -1513,7 +1513,7 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
     tableOfContents: [
       { id: 'when-to-audit-your-tracking', title: 'Why Tracking Audits Are Non-Negotiable', level: 2 },
       { id: '10-warning-signs', title: '10 Signs Your UTM System Is Failing', level: 2 },
-      { id: 'sign-1-unassigned-traffic-spike', title: '1. Over 10% of Traffic Is Categorized as Unassigned', level: 3 },
+      { id: 'sign-1-unassigned-traffic-spike', title: '1. An Unexpected Change in Unassigned Traffic', level: 3 },
       { id: 'sign-2-direct-traffic-spikes', title: '2. Sudden Direct Traffic Spikes During Paid Campaigns', level: 3 },
       { id: 'sign-3-duplicate-campaign-rows', title: '3. Dozens of Duplicate Rows for Single Campaigns', level: 3 },
       { id: 'sign-4-not-set-in-reports', title: '4. "(not set)" Appears in Your Top Campaign Dimensions', level: 3 },
@@ -1527,8 +1527,8 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
     toolCta: {
-      title: 'Audit Your Links in Real-Time',
-      description: 'Audit individual campaign links or batch test URL lists with the UTMCraft UTM Checker to identify and repair broken parameters.',
+      title: 'Review Campaign URL Structure',
+      description: 'Use the checker to review URL syntax, selected fields, naming consistency, and a limited set of source/medium patterns. Test redirects and GA4 collection separately.',
       link: '/utm-checker/',
       buttonText: 'Run Link Audit'
     },
@@ -1549,8 +1549,8 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
 
       <h2 id="10-warning-signs">10 Signs Your UTM System Is Failing</h2>
 
-      <h3 id="sign-1-unassigned-traffic-spike">1. Over 10% of Traffic Is Categorized as Unassigned</h3>
-      <p>In a healthy GA4 property, <strong>Unassigned</strong> should account for less than 2% of total sessions. If Unassigned exceeds 10%, your team is using non-standard mediums or broken casing.</p>
+      <h3 id="sign-1-unassigned-traffic-spike">1. An Unexpected Change in Unassigned Traffic</h3>
+      <p>There is no universal percentage that defines a healthy Unassigned share. If the share changes or seems unexpected, review the affected source and medium values, implementation changes, and current channel definitions. Casing alone does not cause a default channel definition to fail.</p>
 
       <h3 id="sign-2-direct-traffic-spikes">2. Sudden Direct Traffic Spikes During Paid Campaigns</h3>
       <p>If direct traffic surges whenever you scale paid ad budgets, your landing pages or email redirects are stripping UTM parameters.</p>
@@ -1565,7 +1565,7 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
       <p>If <code>l.facebook.com</code> or <code>lnkd.in</code> appear in your Referral report with significant traffic, your paid social links lack required UTM parameters.</p>
 
       <h3 id="sign-6-spreadsheets-everywhere">6. Multiple Teams Use Competing Tagging Spreadsheets</h3>
-      <p>Spreadsheet proliferation guarantees naming divergence. Centralize URL generation in a single shared tool.</p>
+      <p>Competing tagging spreadsheets can lead to inconsistent names. Share a documented convention and review generated URLs across teams.</p>
 
       <h3 id="sign-7-ga4-ad-platform-discrepancy">7. Extreme Discrepancies Between Ad Platforms and GA4</h3>
       <p>When Meta reports 1,000 conversions and GA4 reports 50, tracking syntax errors or redirect drops are hiding your paid performance.</p>
@@ -1588,8 +1588,8 @@ Example: eu-acquisition-saas-launch-2026</code></pre>
         <p>Conduct a quarterly data hygiene review in GA4, and run pre-flight QA audits before every major campaign launch or website redesign.</p>
       </div>
       <div class="faq-item">
-        <h3>What is the fastest way to fix high Unassigned traffic?</h3>
-        <p>Export your Unassigned source/medium pairs from GA4. Identify the non-standard values (e.g., uppercase letters or custom mediums), update live ad tracking templates, and create a Custom Channel Group to rescue historical data.</p>
+        <h3>How should I investigate high Unassigned traffic?</h3>
+        <p>Export the source/medium pairs associated with Unassigned sessions from GA4. Compare missing or unexpected values with Google's current definitions, then correct future tags as needed. A Custom Channel Group may help analyze historical data, depending on the values and reporting setup; uppercase alone is not a reason for Unassigned.</p>
       </div>
     `
   }

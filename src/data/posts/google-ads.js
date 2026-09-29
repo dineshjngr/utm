@@ -8,7 +8,7 @@ export const googleAdsPosts = [
     isPillar: true,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-01',
@@ -33,7 +33,7 @@ export const googleAdsPosts = [
     ],
     toolCta: {
       title: 'Generate Google Ads Tracking Templates',
-      description: 'Create error-free Final URL Suffixes and ValueTrack templates pre-configured for Search, PMax, and Display campaigns.',
+      description: 'Create Google Ads URL suffixes with common ValueTrack fields, then review the syntax and account setup before publishing.',
       link: '/utm-builder/google-ads/',
       buttonText: 'Open Google Ads UTM Builder'
     },
@@ -50,7 +50,7 @@ export const googleAdsPosts = [
       <p>Google Ads auto-tagging attaches an encrypted hash parameter (<code>gclid=...</code>) to the landing page. While GA4 decrypts this hash natively to extract impressions, keyword bids, and ad group names, third-party software cannot read GCLID data. UTM parameters bridge this gap by providing universal, plain-text attribution across your entire marketing tech stack.</p>
 
       <h2 id="the-ideal-account-level-suffix">The Standard Account-Level Final URL Suffix</h2>
-      <p>The cleanest way to implement Google Ads tracking is by defining an account-level <strong>Final URL Suffix</strong>. This ensures that every existing and future campaign automatically inherits tracking without requiring manual parameter appending on individual ad links.</p>
+      <p>An account-level <strong>Final URL Suffix</strong> can apply tracking parameters broadly across Google Ads campaigns. Review campaign and ad-level settings for overrides, then test the expanded landing URLs.</p>
 
       <div class="callout callout-recommended">
         <div class="callout-header">
@@ -174,7 +174,7 @@ export const googleAdsPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-14',
@@ -281,7 +281,7 @@ export const googleAdsPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-25',
@@ -301,8 +301,8 @@ export const googleAdsPosts = [
       { id: 'data-durability-comparison', title: 'Data Durability & Offline Conversion Imports', level: 2 }
     ],
     toolCta: {
-      title: 'Inspect GCLID and UTM Parameters',
-      description: 'Test whether your destination URLs correctly parse both GCLID and UTM query strings without dropping either parameter.',
+      title: 'Review GCLID and UTM URL Structure',
+      description: 'Inspect query-string syntax with the checker. It does not test destination behavior, redirects, or Google Ads and GA4 collection.',
       link: '/utm-checker/',
       buttonText: 'Audit URL in UTM Checker'
     },
@@ -345,7 +345,7 @@ export const googleAdsPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-05',
@@ -376,12 +376,12 @@ export const googleAdsPosts = [
       { title: 'Use ValueTrack parameters in tracking templates', url: 'https://support.google.com/google-ads/answer/6305348', publisher: 'Google Ads Help' }
     ],
     contentHtml: `
-      <p class="lead-text">Setting tracking parameters individually on every Google ad is an operational nightmare. By configuring tracking at the account level using Google Ads <strong>URL Options</strong> and <strong>ValueTrack parameters</strong>, you ensure 100% of current and future ads are tagged consistently without touching individual ad creatives.</p>
+      <p class="lead-text">Setting tracking parameters individually on every Google ad can be difficult to maintain. Google Ads <strong>URL Options</strong> and <strong>ValueTrack parameters</strong> let you define tracking templates or suffixes at supported account, campaign, ad group, or ad levels. Review the inheritance and overrides in your account to confirm which ads receive the intended parameters.</p>
 
       <h2 id="tracking-hierarchy">The Google Ads Tracking Hierarchy</h2>
       <p>Google Ads evaluates tracking templates using a top-down inheritance model:</p>
       <ol>
-        <li><strong>Account Level:</strong> Applies to all campaigns in the account (Highest efficiency, easiest governance).</li>
+        <li><strong>Account Level:</strong> Applies broadly across the account, subject to more specific settings; useful for centralized oversight.</li>
         <li><strong>Campaign Level:</strong> Overrides account-level settings for specific campaigns.</li>
         <li><strong>Ad Group Level:</strong> Overrides campaign-level settings.</li>
         <li><strong>Ad / Keyword / Sitelink Level:</strong> Overrides all parent templates.</li>

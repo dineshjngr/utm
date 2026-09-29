@@ -102,7 +102,7 @@ export const blogCategories = [
     id: 'search-news',
     name: 'Search News & Updates',
     slug: 'search-news',
-    pillarSlug: 'google-september-2026-spam-update',
+    featuredSlug: 'google-september-2026-spam-update',
     description: 'Verified updates and reporting on Google Search, ranking changes, and developments that affect organic visibility.',
     badge: 'Search News',
     icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/><path d="M2 7v13a2 2 0 0 0 2 2"/></svg>`

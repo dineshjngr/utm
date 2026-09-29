@@ -33,7 +33,7 @@
 
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -43,7 +43,11 @@
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "All modern browsers",
         "description": "An interactive GA4 source and medium channel classification tool that evaluates UTM parameters against Google Analytics 4 default channel grouping rules and flags (Unassigned) traffic risks in real time.",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
         "featureList": [
           "Live GA4 source/medium channel grouping predictor",
           "Interactive validation table with 30+ real-world channel patterns",
@@ -65,8 +69,18 @@
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://utmcraft.com/" },
-          { "@type": "ListItem", "position": 2, "name": "GA4 Default Channel Grouping", "item": "https://utmcraft.com/ga4-default-channel-grouping/" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://utmcraft.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "GA4 Default Channel Grouping",
+            "item": "https://utmcraft.com/ga4-default-channel-grouping/"
+          }
         ]
       },
       {
@@ -75,43 +89,6 @@
         "name": "UTMCraft",
         "url": "https://utmcraft.com/",
         "logo": "https://utmcraft.com/utmcraft-logo-light.png"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is GA4 Default Channel Grouping?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "GA4 Default Channel Grouping is a rule-based dimension in Google Analytics 4 that automatically classifies website sessions and users into high-level marketing categories (such as Paid Search, Paid Social, Organic Social, Email, Referral, and Direct) based on their source and medium parameter values."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Why does traffic appear as (Unassigned) in GA4 reports?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Traffic appears as (Unassigned) when the incoming session's source and medium values do not match any of Google's predefined Default Channel Grouping rules. Common culprits include using uppercase letters (e.g., utm_medium=Email instead of email), inventing custom mediums (e.g., utm_medium=social_ad or promoted), inverting source and medium, or omitting parameters entirely."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can you edit the Default Channel Grouping in GA4?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. The system-defined Default Channel Grouping rules are locked and immutable. However, GA4 allows Admin users to create Primary Channel Groups or Custom Channel Groups where rules, regex conditions, and channel names can be fully tailored."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How does GA4 differentiate Paid Social from Organic Social?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Both channels require a social platform source (such as facebook, instagram, linkedin, tiktok, or twitter). GA4 classifies the session as Paid Social if the medium matches ^(.*cp.*|ppc|paid.*|paid_social)$ and as Organic Social if the medium matches ^(social|social-network|social-media|sm|social_post)$."
-            }
-          }
-        ]
       }
     ]
   }
@@ -346,8 +323,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -377,7 +354,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -473,7 +450,7 @@
       <!-- Section 1: Interactive Live Validator Sandbox -->
       <article class="editorial-card" id="interactive-validator">
         <h2>Live GA4 Channel Grouping Tester</h2>
-        <p>Type any candidate <code>utm_source</code> and <code>utm_medium</code> into the sandbox below. The rule engine will immediately evaluate them against GA4's official waterfall regular expressions, display the expected Default Channel Group, and identify syntax or casing issues that cause traffic to leak into <strong>(Unassigned)</strong>.</p>
+        <p>Enter candidate <code>utm_source</code> and <code>utm_medium</code> values to see how this page's simplified pattern checker categorizes them. It is an educational estimate, not Google's complete or live GA4 classifier; actual channel assignment depends on current definitions and all traffic-source information GA4 receives. Default channel definitions are not case-sensitive.</p>
 
         <div class="validator-sandbox">
           <div class="sandbox-inputs-grid">
@@ -714,13 +691,13 @@
       <!-- Section 4: Diagnosing & Eliminating (Unassigned) Traffic -->
       <article class="editorial-card" id="fixing-unassigned">
         <h2>Why Does My Traffic Show Up as (Unassigned) in GA4?</h2>
-        <p><strong>(Unassigned)</strong> is not a valid marketing channel; it is an alert indicating that your tracking data broke Google's classification engine. The four most frequent root causes include:</p>
+        <p><strong>(Unassigned)</strong> is the value GA4 uses when no applicable Default Channel Group rule matches the available event data. Review these possible causes and compare the values with Google's current definitions:</p>
 
         <div class="tagging-steps-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
           <div class="card" style="border-left: 4px solid var(--accent-rose);">
             <h4 style="margin: 0 0 0.5rem; color: var(--accent-rose);">1. Uppercase or Mixed Casing</h4>
             <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;"><code>utm_medium=CPC</code> or <code>utm_source=Google</code></p>
-            <p style="font-size: 0.825rem; color: var(--text-muted);">GA4 processes channel regexes with case-sensitivity in multiple underlying database layers. <code>Email</code> and <code>CPC</code> frequently fail to map to standard definitions. Always enforce strictly lowercase values.</p>
+            <p style="font-size: 0.825rem; color: var(--text-muted);">GA4 default channel definitions are not case-sensitive. A consistent lowercase convention can still make manual source and campaign values easier to compare in reports.</p>
           </div>
 
           <div class="card" style="border-left: 4px solid #f59e0b;">
@@ -738,7 +715,7 @@
           <div class="card" style="border-left: 4px solid #06b6d4;">
             <h4 style="margin: 0 0 0.5rem; color: #06b6d4);">4. Redirects Stripping Query Strings</h4>
             <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">HTTP 301 from <code>http://</code> to <code>https://</code> or non-www</p>
-            <p style="font-size: 0.825rem; color: var(--text-muted);">Misconfigured web servers drop query strings during canonical redirects. Always tag the final destination URL directly, or configure QSA (Query String Append) on your Apache/Nginx server.</p>
+            <p style="font-size: 0.825rem; color: var(--text-muted);">A redirect may preserve or drop query strings depending on its rule and server configuration. Test the final URL. QSA is an Apache mod_rewrite flag, not an Nginx setting or universal redirect option.</p>
           </div>
         </div>
 
@@ -756,7 +733,7 @@
       <!-- Section 5: Source & Medium Governance SOP -->
       <article class="editorial-card" id="naming-sop">
         <h2>Source &amp; Medium Governance SOP</h2>
-        <p>To guarantee 100% clean GA4 Default Channel Grouping across your organization, mandate these rules in your campaign workflow:</p>
+        <p>To improve consistency in GA4 Default Channel Group reporting, document these practices in your campaign workflow:</p>
 
         <div class="editorial-table-wrap">
           <table class="editorial-table">
@@ -863,7 +840,7 @@
 
           <details>
             <summary>Why does my campaign show up as (Unassigned) in GA4?</summary>
-            <p>Traffic is placed in (Unassigned) when the combination of source and medium does not meet any of Google's predefined channel regex criteria. Common causes include uppercase characters, inverted source and medium parameters, or unsupported custom mediums.</p>
+            <p>GA4 uses (Unassigned) when available traffic-source information does not meet an applicable Default Channel Group definition. Review missing or unexpected values against Google's current rules. Default channel definitions are not case-sensitive.</p>
           </details>
 
           <details>
@@ -873,7 +850,7 @@
 
           <details>
             <summary>Does GA4 require utm_source and utm_medium to classify traffic?</summary>
-            <p>Yes. Without <code>utm_source</code> and <code>utm_medium</code>, GA4 has no marketing context to evaluate and will classify the traffic as Direct or (Unassigned). While <code>utm_campaign</code> is not strictly required for channel grouping, it is essential for campaign-level attribution.</p>
+            <p>Missing <code>utm_source</code> or <code>utm_medium</code> can limit the campaign information available for channel classification. GA4 may use other information, including referrer or advertising data; <code>Unassigned</code> is used when available traffic-source information does not meet an applicable default channel definition. <code>utm_campaign</code> adds campaign-level context but is not itself a default channel requirement.</p>
           </details>
 
           <details>
@@ -894,15 +871,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -911,7 +888,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -920,7 +897,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -930,12 +907,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
@@ -1160,11 +1135,11 @@
       {
         source: 'Google',
         medium: 'CPC',
-        channel: '(Unassigned)',
-        category: 'broken',
-        valid: 'broken',
-        statusText: '❌ Broken / Casing Risk',
-        recommendation: 'Fix: Force lowercase. Use utm_source=google and utm_medium=cpc.'
+        channel: 'Paid Search',
+        category: 'paid',
+        valid: 'valid',
+        statusText: 'Valid GA4 Match',
+        recommendation: 'GA4 default channel definitions are not case-sensitive. Lowercase is an optional naming convention for consistent reporting.'
       },
       {
         source: 'email',
@@ -1253,7 +1228,6 @@
       const mLower = m.toLowerCase();
 
       // Check for casing issues
-      const hasCasingIssue = (s !== sLower) || (m !== mLower);
       const hasSpaceIssue = /\s/.test(s) || /\s/.test(m);
 
       if (!s || sLower === '(not set)') {
@@ -1272,7 +1246,7 @@
           status: 'broken',
           statusText: '❌ Missing utm_medium',
           color: '#EF4444',
-          advice: 'utm_medium is required for GA4 Default Channel Grouping. Sessions without a recognized medium fall into (Unassigned).'
+          advice: 'utm_medium is one input to channel classification. Missing or unexpected values can limit classification; GA4 uses available traffic-source information and assigns Unassigned when no applicable default channel definition matches.'
         };
       }
 
@@ -1283,16 +1257,6 @@
           statusText: '❌ Space in Parameter',
           color: '#EF4444',
           advice: `Spaces encode to %20 in web browsers, causing regex failure against GA4 definitions. Replace spaces with underscores or hyphens.`
-        };
-      }
-
-      if (hasCasingIssue) {
-        return {
-          channel: '(Unassigned)',
-          status: 'warning',
-          statusText: '⚠️ Casing Risk',
-          color: '#F59E0B',
-          advice: `GA4 rule matching is case-sensitive in multiple views. Standardize on lowercase everywhere to prevent split rows and (Unassigned) errors.`
         };
       }
 
@@ -1468,7 +1432,7 @@
           status: 'warning',
           statusText: '⚠️ Non-Standard Medium',
           color: '#6366F1',
-          advice: `GA4 has no native Default Channel Group for QR codes or print. Unless mapped via Custom Channel Groups, "qr_code" falls into Referral or (Unassigned).`
+          advice: `GA4 has no dedicated Default Channel Group for QR codes or print. A medium such as "qr_code" may not match a default channel by itself; classification depends on the other available traffic-source information and applicable definitions.`
         };
       }
 

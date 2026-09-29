@@ -38,18 +38,31 @@ for (const { slug } of blogPosts) {
   redirects.push([`/blog/posts/${slug}.html`, `/${slug}/`]);
 }
 
-for (const [oldSlug, destinationSlug] of Object.entries(mergedBlogPostRedirects)) {
-  redirects.push([`/${oldSlug}`, `/${destinationSlug}/`]);
-  redirects.push([`/${oldSlug}/`, `/${destinationSlug}/`]);
-  redirects.push([`/blog/${oldSlug}`, `/${destinationSlug}/`]);
-  redirects.push([`/blog/${oldSlug}/`, `/${destinationSlug}/`]);
-  redirects.push([`/blog/${oldSlug}/index.html`, `/${destinationSlug}/`]);
-  redirects.push([`/blog/posts/${oldSlug}.html`, `/${destinationSlug}/`]);
-}
-
 // Hostinger serves the production domain with Apache.
 const apachePath = join(root, 'public', '.htaccess');
-const apache = readFileSync(apachePath, 'utf8');
+let apache = readFileSync(apachePath, 'utf8');
+const mergedStartMarker = '# BEGIN GENERATED MERGED ARTICLE REDIRECTS';
+const mergedEndMarker = '# END GENERATED MERGED ARTICLE REDIRECTS';
+const mergedRedirectRules = Object.entries(mergedBlogPostRedirects).flatMap(([oldSlug, destinationSlug]) => {
+  const destination = `https://utmcraft.com/${destinationSlug}/`;
+  return [
+    `RewriteRule ^(?:blog/)?${oldSlug}/?$ ${destination} [R=301,L]`,
+    `RewriteRule ^blog/${oldSlug}/index\\.html$ ${destination} [R=301,L]`,
+    `RewriteRule ^blog/posts/${oldSlug}\\.html$ ${destination} [R=301,L]`
+  ];
+});
+const mergedBlock = `${mergedStartMarker}\n${mergedRedirectRules.join('\n')}\n${mergedEndMarker}`;
+const mergedStart = apache.indexOf(mergedStartMarker);
+const mergedEnd = apache.indexOf(mergedEndMarker);
+if (mergedStart >= 0 && mergedEnd >= mergedStart) {
+  apache = apache.slice(0, mergedStart) + mergedBlock + apache.slice(mergedEnd + mergedEndMarker.length);
+} else {
+  const engineLine = 'RewriteEngine On\n';
+  const engineIndex = apache.indexOf(engineLine);
+  if (engineIndex < 0) throw new Error('Missing RewriteEngine directive in public/.htaccess');
+  const insertAt = engineIndex + engineLine.length;
+  apache = apache.slice(0, insertAt) + `\n${mergedBlock}\n` + apache.slice(insertAt);
+}
 const startMarker = '# BEGIN GENERATED CANONICAL REDIRECTS';
 const endMarker = '# END GENERATED CANONICAL REDIRECTS';
 const start = apache.indexOf(startMarker);

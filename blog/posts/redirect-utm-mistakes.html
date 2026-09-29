@@ -5,7 +5,7 @@
   <script type="module" src="/src/theme.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>5 Redirect Mistakes That Strip UTM Parameters & GCLIDs | UTMCraft</title>
-  <meta name="description" content="Discover how 301 server redirects, HTTP-to-HTTPS hops, and trailing-slash mismatches silently erase campaign parameters and turn paid ads into Direct.">
+  <meta name="description" content="Learn how 301 redirects, HTTP-to-HTTPS hops, and trailing-slash rules can affect campaign parameters and how to test whether links reach their destination intact.">
   <meta name="keywords" content="redirect utm mistakes, 301 redirect strips utms, query string append qsa, http to https utm drop, trailing slash utm loss">
   <link rel="canonical" href="https://utmcraft.com/redirect-utm-mistakes/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://utmcraft.com/redirect-utm-mistakes/">
   <meta property="og:title" content="5 Redirect Mistakes That Strip UTM Parameters & GCLIDs | UTMCraft">
-  <meta property="og:description" content="Discover how 301 server redirects, HTTP-to-HTTPS hops, and trailing-slash mismatches silently erase campaign parameters and turn paid ads into Direct.">
+  <meta property="og:description" content="Learn how 301 redirects, HTTP-to-HTTPS hops, and trailing-slash rules can affect campaign parameters and how to test whether links reach their destination intact.">
   <meta property="og:image" content="https://utmcraft.com/blog/images/redirect-utm-mistakes.webp">
   <meta property="article:published_time" content="2026-09-24">
   <meta property="article:modified_time" content="2026-09-24">
@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://utmcraft.com/redirect-utm-mistakes/">
   <meta name="twitter:title" content="5 Redirect Mistakes That Strip UTM Parameters & GCLIDs | UTMCraft">
-  <meta name="twitter:description" content="Discover how 301 server redirects, HTTP-to-HTTPS hops, and trailing-slash mismatches silently erase campaign parameters and turn paid ads into Direct.">
+  <meta name="twitter:description" content="Learn how 301 redirects, HTTP-to-HTTPS hops, and trailing-slash rules can affect campaign parameters and how to test whether links reach their destination intact.">
   <meta name="twitter:image" content="https://utmcraft.com/blog/images/redirect-utm-mistakes.webp">
 
   <!-- Fonts & Styles -->
@@ -47,15 +47,10 @@
         "@id": "https://utmcraft.com/redirect-utm-mistakes/"
       },
       "headline": "5 Redirect Mistakes That Strip UTM Parameters and GCLIDs",
-      "description": "Discover how 301 server redirects, HTTP-to-HTTPS hops, and trailing-slash mismatches silently erase campaign parameters and turn paid ads into Direct.",
+      "description": "Learn how 301 redirects, HTTP-to-HTTPS hops, and trailing-slash rules can affect campaign parameters and how to test whether links reach their destination intact.",
       "image": "https://utmcraft.com/blog/images/redirect-utm-mistakes.webp",
       "datePublished": "2026-09-24",
       "dateModified": "2026-09-24",
-      "reviewedBy": {
-        "@type": "Organization",
-        "name": "UTMCraft Editorial Team",
-        "url": "https://utmcraft.com/"
-      },
       "citation": [
         {
           "@type": "CreativeWork",
@@ -71,7 +66,7 @@
       "author": {
         "@type": "Person",
         "name": "Dinesh Jeengar",
-        "jobTitle": "Attribution & Analytics Architect",
+        "jobTitle": "Founder, UTMCraft",
         "url": "https://utmcraft.com/"
       },
       "publisher": {
@@ -122,27 +117,6 @@
       "url": "https://utmcraft.com/",
       "logo": "https://utmcraft.com/utmcraft-logo-light.png",
       "email": "contact@utmcraft.com"
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How can I tell if a redirect is stripping my UTM parameters?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Open an incognito browser window, open DevTools Network tab, paste your tagged URL, and check the 301/302 response Location header. If the query string is absent in the Location URL, your parameters are being stripped."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does a 301 redirect pass Google Ads GCLID?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Only if your server redirect configuration preserves query strings. Otherwise, the GCLID is stripped and your paid search click becomes Direct."
-          }
-        }
-      ]
     }
   ]
 }
@@ -169,8 +143,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -200,7 +174,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -260,7 +234,7 @@
           </a>
 
           <h1 class="article-title">5 Redirect Mistakes That Strip UTM Parameters and GCLIDs</h1>
-          <p class="article-description">Discover how 301 server redirects, HTTP-to-HTTPS hops, and trailing-slash mismatches silently erase campaign parameters and turn paid ads into Direct.</p>
+          <p class="article-description">Learn how 301 redirects, HTTP-to-HTTPS hops, and trailing-slash rules can affect campaign parameters and how to test whether links reach their destination intact.</p>
           <div class="article-meta-top">
             <span class="article-date">Updated September 2026</span>
             <span class="article-meta-bullet">•</span>
@@ -268,11 +242,6 @@
             <span class="article-meta-bullet">•</span>
             <span class="article-author-byline">Written by Dinesh Jeengar</span>
           </div>
-          <div class="article-editorial-credits" aria-label="Article authorship and sources">
-      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
-      <p><strong>Last reviewed</strong> <time datetime="2026-09-24">September 24, 2026</time></p>
-      <p><strong>Sources</strong> <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.4" target="_blank" rel="noopener">IETF</a>, <a href="https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html#rewriteflags" target="_blank" rel="noopener">Apache Software Foundation</a> <a class="article-source-details" href="#article-sources">Full references</a></p>
-    </div>
 
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
@@ -291,7 +260,7 @@
       <a href="#5-redirect-mistakes" class="toc-link">The 5 Critical Redirect Tracking Mistakes</a>
     </li>
 <li>
-      <a href="#mistake-1-missing-qsa" class="toc-link">1. Server 301 Redirects Without Query String Append (QSA)</a>
+      <a href="#mistake-1-missing-qsa" class="toc-link">1. Redirect Rules That Do Not Preserve Query Parameters</a>
     </li>
 <li>
       <a href="#mistake-2-protocol-hops" class="toc-link">2. HTTP to HTTPS Protocol Upgrades Dropping Parameters</a>
@@ -317,15 +286,15 @@
         <!-- Main Prose Body -->
         <div class="article-prose">
           
-      <p class="lead-text">You spend thousands on advertising, verify that your campaign URLs are tagged flawlessly, and launch. Yet when you check GA4, 100% of your visitors appear under <strong>Direct / (none)</strong>. The culprit is almost always an intermediate server redirect that silently strips the query string.</p>
+      <p class="lead-text">A campaign may appear as <strong>Direct / (none)</strong> when GA4 has no clear referral source or campaign information. A redirect that drops query parameters is one possible cause; check the full redirect chain and the data received on the final landing page before concluding.</p>
 
       <h2 id="the-silent-redirect-killer">Why Redirects Silently Destroy Campaign Attribution</h2>
-      <p>When a web server returns an HTTP 301 (Moved Permanently) or 302 (Found) status code, it sends a <code>Location</code> header instructing the browser where to go next. If the server does not explicitly re-append the incoming query string to the new location, the browser requests the target page completely stripped of UTMs.</p>
+      <p>When a web server returns an HTTP 301 (Moved Permanently) or 302 (Found) status code, it sends a <code>Location</code> header instructing the browser where to go next. Whether the next URL includes the incoming query string depends on the redirect rule and server configuration. Inspect the response's <code>Location</code> header and the final URL to see whether the campaign parameters were preserved.</p>
 
       <h2 id="5-redirect-mistakes">The 5 Critical Redirect Tracking Mistakes</h2>
 
-      <h3 id="mistake-1-missing-qsa">1. Server 301 Redirects Without Query String Append (QSA)</h3>
-      <p>In Apache web servers, rewrite rules without the <code>[QSA]</code> flag discard incoming query parameters upon redirection.</p>
+      <h3 id="mistake-1-missing-qsa">1. Redirect Rules That Do Not Preserve Query Parameters</h3>
+      <p><code>[QSA]</code> is an Apache <code>mod_rewrite</code> flag. It appends an incoming query string when the rewrite substitution already contains a query string; it is not a universal redirect setting. For a path-only redirect, inspect Apache's resulting <code>Location</code> header rather than assuming the flag is required.</p>
 
       <h3 id="mistake-2-protocol-hops">2. HTTP to HTTPS Protocol Upgrades Dropping Parameters</h3>
       <p>Ad links pointing to <code>http://example.com</code> that redirect to <code>https://example.com</code> can drop parameters if the SSL redirection rule is misconfigured.</p>
@@ -340,8 +309,8 @@
       <p>Single Page Apps executing <code>window.location.href = '/new-page'</code> without appending <code>window.location.search</code> erase campaign attribution instantly.</p>
 
       <h2 id="server-configuration-fixes">Server Configuration Fixes for Apache and Nginx</h2>
-      <p>In <strong>Apache</strong>, ensure rewrite rules append query strings:</p>
-      <pre><code>RewriteRule ^old-page$ /new-page [R=301,L,QSA]</code></pre>
+      <p>Redirect query-string behavior depends on the server and rule. In Apache <code>mod_rewrite</code>, <code>[QSA]</code> is relevant when the substitution already creates a query string and the incoming query also needs to be appended. For a path-only substitution, inspect the resulting <code>Location</code> header:</p>
+      <pre><code>RewriteRule ^old-page$ /new-page [R=301,L]</code></pre>
       <p>In <strong>Nginx</strong>, always include <code>$is_args$args</code>:</p>
       <pre><code>return 301 https://example.com/new-page$is_args$args;</code></pre>
 
@@ -352,13 +321,13 @@
       </div>
       <div class="faq-item">
         <h3>Does a 301 redirect pass Google Ads GCLID?</h3>
-        <p>Only if your server redirect configuration preserves query strings. Otherwise, the GCLID is stripped and your paid search click becomes Direct.</p>
+        <p>A redirect may preserve or remove the incoming query string depending on its configuration. If the <code>gclid</code> is removed, GA4 may lose Google Ads information; the final classification depends on other traffic-source data it receives. Check the redirect response and final URL.</p>
       </div>
     
 
           
     <section class="article-references" id="article-sources">
-      <h3>Sources &amp; Authoritative References</h3>
+      <h3>References</h3>
       <ul class="references-list">
         
           <li>
@@ -384,8 +353,8 @@
             </div>
             <div class="author-info">
               <h4>Dinesh Jeengar</h4>
-              <div class="author-role">Attribution & Analytics Architect</div>
-              <p class="author-bio">Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.</p>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
               <nav class="author-social-links" aria-label="Author links">
     <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
@@ -407,8 +376,8 @@
       <div class="article-tool-cta-inner">
         <div class="article-tool-cta-content">
           <p class="article-tool-cta-label">Related tool</p>
-          <h3 class="article-tool-cta-title">Diagnose Redirect Vulnerabilities</h3>
-          <p class="article-tool-cta-desc">Audit your campaign links before publishing to detect potential trailing slash and protocol redirect drops with the UTMCraft UTM Checker.</p>
+          <h3 class="article-tool-cta-title">Check Tagged URL Parameters</h3>
+          <p class="article-tool-cta-desc">Review URL syntax and selected parameters with the checker. Test each redirect and the final landing URL separately because the checker does not follow redirect chains.</p>
         </div>
         <div class="article-tool-cta-action">
           <a href="/utm-checker/" class="article-tool-cta-btn">
@@ -434,7 +403,7 @@
           <span class="post-card-readtime">9 min read</span>
         </div>
         <h4 class="post-card-title">Why HTTP Redirects Strip UTM Parameters (and How to Preserve Query Strings)</h4>
-        <p class="post-card-excerpt">Learn why HTTP 301 and 302 redirects drop UTM parameters, converting paid campaigns into Direct traffic, and how to configure servers to preserve query strings.</p>
+        <p class="post-card-excerpt">Learn how HTTP 301 and 302 redirect rules can affect UTM parameters and campaign reporting, and how to inspect query-string handling on your server.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published March 15, 2026</span>
@@ -451,7 +420,7 @@
           <span class="post-card-readtime">8 min read</span>
         </div>
         <h4 class="post-card-title">Why Campaign Traffic Shows as Direct in GA4 (and How to Fix It)</h4>
-        <p class="post-card-excerpt">Why is your paid traffic showing as Direct in GA4? Learn the 7 primary causes of false direct traffic, redirect parameter loss, and how to recover attribution.</p>
+        <p class="post-card-excerpt">Why might paid traffic show as Direct in GA4? Review possible causes, including missing campaign information and redirects, and steps for investigating attribution.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published March 2, 2026</span>
@@ -468,7 +437,7 @@
           <span class="post-card-readtime">16 min read</span>
         </div>
         <h4 class="post-card-title">15 UTM Tracking Mistakes That Ruin Your GA4 Data (and How to Fix Them)</h4>
-        <p class="post-card-excerpt">Discover the 15 most destructive UTM tracking mistakes breaking GA4 attribution, causing Unassigned traffic, and corrupting ad ROI-with actionable fixes.</p>
+        <p class="post-card-excerpt">Review common UTM tracking problems that can affect GA4 campaign reporting, with practical steps for checking links and attribution.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published September 24, 2026</span>
@@ -491,7 +460,7 @@
       <a href="#5-redirect-mistakes" class="toc-link">The 5 Critical Redirect Tracking Mistakes</a>
     </li>
 <li>
-      <a href="#mistake-1-missing-qsa" class="toc-link">1. Server 301 Redirects Without Query String Append (QSA)</a>
+      <a href="#mistake-1-missing-qsa" class="toc-link">1. Redirect Rules That Do Not Preserve Query Parameters</a>
     </li>
 <li>
       <a href="#mistake-2-protocol-hops" class="toc-link">2. HTTP to HTTPS Protocol Upgrades Dropping Parameters</a>
@@ -524,15 +493,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -541,7 +510,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -550,7 +519,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -560,12 +529,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

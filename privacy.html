@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="module" src="/src/theme.js"></script>
-  <title>Privacy Policy | UTMCraft - Private Client-Side UTM Generator</title>
-  <meta name="description" content="Read how UTMCraft keeps campaign inputs in your browser, uses local storage, and handles optional third-party URL shortening.">
+  <title>Privacy Policy | UTMCraft</title>
+  <meta name="description" content="Learn what UTMCraft processes in your browser, what Google Analytics collects, how local storage works, and what happens when you shorten a URL or contact us.">
   <meta name="keywords" content="UTMCraft privacy policy, client-side UTM generator, campaign data privacy, website analytics">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#FCFCFB">
@@ -35,7 +35,7 @@
         "@id": "https://utmcraft.com/privacy.html#webpage",
         "url": "https://utmcraft.com/privacy.html",
         "name": "Privacy Policy | UTMCraft",
-        "description": "Privacy policy for UTMCraft's client-side UTM campaign generator.",
+        "description": "Privacy information covering browser-based URL processing, Google Analytics, local storage, optional URL shortening, and contact email handling.",
         "isPartOf": {
           "@type": "WebSite",
           "@id": "https://utmcraft.com/#website",
@@ -85,8 +85,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -116,7 +116,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -158,56 +158,56 @@
       <div class="legal-header">
         <span class="card-category">DATA PRIVACY</span>
         <h1 class="legal-title">Privacy Policy</h1>
-        <p class="legal-subtitle">Effective Date: September 22, 2026 • Last Updated: September 23, 2026</p>
+        <p class="legal-subtitle">Effective Date: September 29, 2026 • Last Updated: September 29, 2026</p>
       </div>
 
       <div class="legal-section">
-        <h2>1. Privacy by Architecture</h2>
-        <p>UTMCraft builds and checks campaign URLs in your browser. We do not require an account or upload the campaign fields you enter to an application database. We use Google Analytics 4 to measure visits to this website, as described below.</p>
-        <p>All URL parsing, parameter concatenation, GA4 taxonomy checks, CSV exports, and QR code rendering execute exclusively on your computer or mobile device using modern Web Standards and Web APIs.</p>
+        <h2>1. Browser Processing and Website Services</h2>
+        <p>URL construction, inspection, validation, bulk generation, and QR rendering run in your browser. UTMCraft has no user accounts or application database for campaign fields. That does not mean all website activity stays on your device: the site loads Google Analytics 4, requests fonts from Google Fonts, and can send a URL to a shortening provider when you choose that feature.</p>
       </div>
 
       <div class="legal-section">
         <h2>2. Campaign Data and Website Analytics</h2>
         <p>When using UTMCraft:</p>
         <ul class="legal-list">
-          <li><strong>No Campaign Database:</strong> Campaign inputs are processed locally and are not stored in a UTMCraft account or application database.</li>
-          <li><strong>Website Analytics:</strong> Google Analytics 4 measures page views and traffic sources across the website. Google may receive the page URL, referral, device and browser information, approximate location, and cookie or similar identifiers. Campaign parameters in the page URL may be included in this measurement.</li>
-          <li><strong>No User Profiles:</strong> There are no user accounts, passwords, or cloud databases tracking your workflow.</li>
-          <li><strong>No Retargeting Pixels:</strong> We do not embed Meta Pixel, TikTok Pixel, or other separate advertising retargeting pixels.</li>
+          <li><strong>Google Analytics:</strong> The shared site module loads Google Analytics 4 to measure visits. The analytics request may include the current page URL (including its query string), referrer, device and browser details, and analytics identifiers or storage values. Do not put personal or confidential information in a page URL.</li>
+          <li><strong>Google Fonts:</strong> Pages request font files from Google Fonts. Those requests go to Google and include ordinary connection information needed to serve the files.</li>
+          <li><strong>No application account:</strong> The site does not provide accounts or a cloud campaign-history feature. The browser stores selected settings and generated history locally as described below.</li>
+          <li><strong>Consent interface:</strong> The current implementation does not include a cookie-consent banner or consent-management interface. This notice does not determine whether the analytics setup meets requirements in any particular jurisdiction.</li>
         </ul>
       </div>
 
       <div class="legal-section">
         <h2>3. Local Storage Transparency</h2>
-        <p>UTMCraft uses the standard HTML5 <code>localStorage</code> API built into your browser to provide a seamless user experience. This data never leaves your device:</p>
+        <p>UTMCraft uses browser <code>localStorage</code> for settings, custom presets, and campaign history. These entries remain in the browser profile unless cleared; they are not synced to a UTMCraft account.</p>
         <ul class="legal-list">
           <li><code>utmc_theme</code>: Remembers your UI theme preference (<code>"light"</code> or <code>"dark"</code>).</li>
-          <li><code>utmc_custom_presets</code>: Stores any custom channel presets you create so you can reuse them across visits.</li>
-          <li><code>utmc_history_v2</code>: Keeps a local record of URLs you generated or bookmarked, allowing you to search and export them to CSV.</li>
-          <li><code>utmc_destination_url</code>: Remembers the most recently entered destination URL across pages and future visits on this browser.</li>
+          <li><code>utm_custom_presets_v1</code>: Stores custom channel presets.</li>
+          <li><code>utm_campaign_history_v1</code>: Stores generated URLs, optional short URLs, parameter values, and timestamps for local history and CSV export.</li>
+          <li><code>utmc_destination_url</code>: Remembers the most recently entered destination URL.</li>
+          <li><code>utmc_rule_auto_apply</code>: Remembers the auto-apply setting for URL rules.</li>
         </ul>
-        <p>These application settings stay in this browser. Google Analytics may separately use cookies or similar browser storage for traffic measurement. Clear the destination field to remove its saved URL, or clear your browser storage to remove saved settings and history.</p>
+        <p><code>utmc_theme</code> stores the selected light or dark theme. UTMCraft does not set its own cookies in the application code. Google Analytics may use cookies or similar browser storage separately. Use the app's history and preset controls or your browser's site-data settings to clear locally stored items.</p>
       </div>
 
       <div class="legal-section">
         <h2>4. URL Shortener Service Privacy</h2>
-        <p>UTMCraft includes an optional URL shortening feature. When you explicitly click the <strong>"Shorten"</strong> button:</p>
+        <p>URL shortening is optional. When you click <strong>Shorten</strong>, the app tries da.gd and, if needed, fallback providers spoo.me and clck.ru. Depending on success or failure, one or more providers may receive a request containing the complete destination URL.</p>
         <ul class="legal-list">
-          <li>The final concatenated UTM URL is sent to a public URL redirection service (e.g. spoo.me, da.gd, or clck.ru) to retrieve an HTTP 301/302 short link.</li>
-          <li>The shortening provider receives the complete destination URL and ordinary network metadata such as your IP address. Do not place personal or confidential data in a URL.</li>
-          <li>To keep the destination URL out of shortening services, use the standard <strong>"Copy Campaign URL"</strong> button. The app’s normal page assets may still be requested from their configured hosts.</li>
+          <li>A provider receiving the request also receives network information such as your IP address. UTMCraft does not control provider logging or retention.</li>
+          <li>Use a copy action instead of Shorten if you do not want to send the destination URL to a shortening provider. Google Analytics and page resources are still separate third-party requests.</li>
+          <li>Do not include personal or confidential information in a URL you shorten.</li>
         </ul>
       </div>
 
       <div class="legal-section">
-        <h2>5. Compliance with Global Privacy Frameworks (GDPR, CCPA, CPRA)</h2>
-        <p>UTMCraft minimizes application-level data collection, but legal compliance depends on your jurisdiction and how you use generated URLs:</p>
+        <h2>5. Hosting, Contact, and Privacy Scope</h2>
         <ul class="legal-list">
-          <li><strong>Hosting:</strong> Our hosting provider may process standard request metadata, such as IP addresses and access logs, to deliver and secure the website.</li>
-          <li><strong>Third Parties:</strong> Google Analytics processes website traffic data, Google Fonts is requested for typography, and optional shortening providers process URLs only when you choose the Shorten action.</li>
-          <li><strong>Local Data:</strong> Clearing your browser storage removes locally saved settings and history. It does not erase analytics data already received by Google.</li>
+          <li><strong>Hosting:</strong> The hosting provider may process standard request information, such as IP addresses and server logs. The provider and its retention period are not identified in this notice.</li>
+          <li><strong>Contact email:</strong> The contact form opens a prefilled email draft in your email application; it does not submit the form to a UTMCraft server. If you choose to send the email, your email provider transmits it to contact@utmcraft.com.</li>
+          <li><strong>Local data:</strong> Clearing browser site data removes local settings and history. It does not delete information already sent to Google, a shortening provider, your hosting provider, or an email provider.</li>
         </ul>
+        <p>Privacy and cookie rules vary by jurisdiction. This page describes the current implementation; it is not a legal assessment or a claim of compliance with any privacy framework. Have qualified privacy counsel review the analytics, consent, hosting, and contact practices for the places where the site is used.</p>
       </div>
 
       <div class="legal-section">
@@ -231,15 +231,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -248,7 +248,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -257,7 +257,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -267,12 +267,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>

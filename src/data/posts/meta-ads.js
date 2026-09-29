@@ -8,12 +8,12 @@ export const metaAdsPosts = [
     isPillar: true,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-05',
-    dateModified: '2026-09-23',
-    reviewedDate: 'September 23, 2026',
+    dateModified: '2026-09-29',
+    reviewedDate: 'September 29, 2026',
     readingTime: '12 min read',
     primaryKeyword: 'meta ads utm tracking',
     secondaryKeywords: ['facebook utm tracking', 'instagram ad utm parameters', 'meta dynamic url parameters', 'meta ads ga4 attribution'],
@@ -24,10 +24,12 @@ export const metaAdsPosts = [
     featuredImageAlt: 'Architectural schematic of Meta Ads Manager dynamic parameters mapping into GA4 Paid Social reporting',
     tableOfContents: [
       { id: 'why-meta-tracking-breaks', title: 'Why Meta Ad Tracking Breaks in GA4', level: 2 },
+      { id: 'source-and-medium-conventions', title: 'Choose Source and Medium Values', level: 2 },
       { id: 'the-standard-meta-url-parameter-template', title: 'The Standard Meta URL Parameter Template', level: 2 },
       { id: 'dynamic-parameters-reference', title: 'Meta Dynamic Parameters: Complete Reference Table', level: 2 },
       { id: 'names-vs-ids-controversy', title: 'Campaign Names vs IDs: Which Should You Use?', level: 2 },
-      { id: 'meta-vs-ga4-attribution', title: 'Why Meta Ads Manager ROAS Never Matches GA4', level: 2 },
+      { id: 'placement-level-tracking', title: 'Tracking Meta Placements', level: 2 },
+      { id: 'meta-vs-ga4-attribution', title: 'Why Meta Ads Manager and GA4 Can Differ', level: 2 },
       { id: 'how-to-implement-in-ads-manager', title: 'Step-by-Step Implementation in Meta Ads Manager', level: 2 },
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
@@ -37,7 +39,7 @@ export const metaAdsPosts = [
       link: '/utm-builder/facebook/',
       buttonText: 'Open Meta UTM Builder'
     },
-    relatedSlugs: ['meta-ads-utm-tracking', 'meta-dynamic-url-parameters', 'ga4-unassigned-traffic', 'utm-medium-guide'],
+    relatedSlugs: ['meta-dynamic-url-parameters', 'ga4-unassigned-traffic', 'utm-medium-guide'],
     references: [
       { title: 'About URL parameters in Meta Ads Manager', url: 'https://www.facebook.com/business/help/1016122818407273', publisher: 'Meta Business Help Center' },
       { title: 'Specifications for dynamic URL parameters', url: 'https://www.facebook.com/business/help/2360940870872492', publisher: 'Meta Business Help Center' }
@@ -48,10 +50,13 @@ export const metaAdsPosts = [
       <h2 id="why-meta-tracking-breaks">Why Meta Ad Tracking Breaks in GA4</h2>
       <p>Tracking failures with Meta ads stem from three specific platform behaviors:</p>
       <ol>
-        <li><strong>In-App Browser Webviews:</strong> When a user taps an ad on Instagram or Facebook, the page loads in Meta's proprietary in-app webview. This webview frequently strips the HTTP <code>Referer</code> header, turning untagged traffic directly into Direct traffic.</li>
+        <li><strong>In-App Browser Webviews:</strong> When a user taps an ad on Instagram or Facebook, the destination may open in an in-app browser. If campaign parameters and other referral information are unavailable, GA4 may have less information for classifying the visit. Check the final URL and collected traffic-source values.</li>
         <li><strong>fbclid Parameter Truncation:</strong> Meta automatically attaches <code>fbclid</code> for conversion tracking. However, privacy protections and link wrapping often strip this token, breaking automatic platform recognition.</li>
-        <li><strong>Renaming Campaigns in Flight:</strong> If you use static campaign names in your links and later rename the campaign in Ads Manager, GA4 splits reporting across old and new names permanently.</li>
+        <li><strong>Renaming Campaigns in Flight:</strong> If links use static campaign names and the Ads Manager name later changes, GA4 may continue to show the names received in the tagged links. Use a documented naming convention and distinguish platform names from URL campaign values.</li>
       </ol>
+
+      <h2 id="source-and-medium-conventions">Choose Source and Medium Values</h2>
+      <p>Decide whether reports should distinguish Facebook and Instagram as separate sources or group them under a shared value such as <code>meta</code>. Apply the same convention across campaigns and document it for the team. Use a medium that reflects the traffic type, such as <code>paid_social</code>, then check the source, medium, and applicable GA4 channel definition together rather than assuming one value alone determines classification.</p>
 
       <h2 id="the-standard-meta-url-parameter-template">The Standard Meta URL Parameter Template</h2>
       <p>In Meta Ads Manager, navigate to the Ad level, scroll to the <strong>Tracking</strong> section at the very bottom, and paste this verified parameter string into the <strong>URL Parameters</strong> box:</p>
@@ -125,18 +130,18 @@ export const metaAdsPosts = [
       </div>
 
       <h2 id="names-vs-ids-controversy">Campaign Names vs IDs: Which Should You Use?</h2>
-      <p>Using <code>{{campaign.name}}</code> provides immediately readable reporting in standard GA4 exploration reports. However, if your media buyers frequently rename campaigns (e.g. updating budget notations or dates), each rename creates a new row in GA4. If you have an established BI data warehouse, using <code>utm_campaign={{campaign.id}}</code> or combining both (<code>{{campaign.name}}-{{campaign.id}}</code>) eliminates naming fragmentation permanently.</p>
+      <p>Using <code>{{campaign.name}}</code> can make campaign values readable in reports. If media buyers rename campaigns, links using dynamic names may produce different values over time. A stable campaign ID, alone or alongside the name (for example, <code>{{campaign.name}}-{{campaign.id}}</code>), can help connect those values in downstream analysis.</p>
 
       <h2 id="placement-level-tracking">Tracking Facebook vs Instagram vs Audience Network Placements</h2>
       <p>If you run Advantage+ placements, Meta automatically distributes your budget across Facebook Feed, Instagram Reels, Messenger, and third-party apps. Adding <code>placement={{placement}}&amp;site_source_name={{site_source_name}}</code> allows you to create custom dimensions in GA4 to analyze conversion rates between Instagram Stories and Facebook Feeds without creating separate campaigns.</p>
 
-      <h2 id="meta-vs-ga4-attribution">Why Meta Ads Manager ROAS Never Matches GA4</h2>
+      <h2 id="meta-vs-ga4-attribution">Why Meta Ads Manager and GA4 Can Differ</h2>
       <div class="callout callout-warning">
         <div class="callout-header">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 16.14 16.14 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <strong>The Attribution Window Discrepancy</strong>
         </div>
-        <p>Meta Ads Manager defaults to a <strong>7-day click and 1-day view</strong> attribution window. If a user views an ad on Instagram, doesn't click, but Googles your brand 6 hours later and buys, Meta claims 100% credit for the sale. GA4, however, uses last-click cross-channel data-driven attribution and attributes that sale to Organic Search. Both numbers are technically "accurate" within their respective models, but UTM parameters reflect the exact click-through visit.</p>
+        <p>Ad platforms and GA4 can report different conversion credit because their attribution settings, eligible interactions, and reporting windows may differ. For example, a view-through conversion may be counted by an ad platform while GA4's reporting attributes credit according to the property's selected attribution model and available data. UTM parameters describe a tagged click-through visit; they do not by themselves reconcile the platforms' attribution models.</p>
       </div>
 
       <h2 id="how-to-implement-in-ads-manager">Step-by-Step Implementation in Meta Ads Manager</h2>
@@ -147,6 +152,8 @@ export const metaAdsPosts = [
         <li>In the <strong>URL Parameters</strong> field, paste your parameter string without the leading question mark (<code>?</code>). Meta automatically appends the <code>?</code> when serving the ad.</li>
         <li>Publish the ad. Meta will dynamically replace all <code>{{...}}</code> tokens at click time.</li>
       </ol>
+
+      <p>To inspect results, open <strong>Reports &gt; Acquisition &gt; Traffic acquisition</strong> and use session source/medium and session campaign dimensions. If values or channel assignment differ from expectations, compare the tagged URL with the values GA4 received and review the property's channel definitions.</p>
 
       <section class="article-faq-section">
         <h2 id="faq">Frequently Asked Questions</h2>
@@ -170,73 +177,6 @@ export const metaAdsPosts = [
     `
   },
   {
-    slug: 'meta-ads-utm-tracking',
-    title: 'Meta Ads UTM Tracking: Setup, Placement Tracking & Reporting Best Practices',
-    seoTitle: 'Meta Ads UTM Tracking: Setup & Placement Tracking | UTMCraft',
-    description: 'Learn how to set up Meta Ads UTM parameters properly. Best practices for source/medium conventions, placement tracking, and diagnosing Meta traffic in GA4.',
-    category: 'meta-ads',
-    isPillar: false,
-    author: {
-      name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
-      url: 'https://utmcraft.com/'
-    },
-    datePublished: '2026-02-20',
-    dateModified: '2026-09-23',
-    reviewedDate: 'September 23, 2026',
-    readingTime: '8 min read',
-    primaryKeyword: 'meta ads utm tracking',
-    secondaryKeywords: ['facebook ad tracking best practices', 'instagram ads utm setup', 'meta source medium', 'meta placement utm'],
-    semanticKeywords: ['paid_social medium', 'meta url parameters box', 'advantage plus tracking', 'meta traffic in ga4'],
-    relatedEntities: ['Meta Ads', 'Facebook Ads Manager', 'Google Analytics 4', 'Ad Tracking'],
-    searchIntent: 'Practical Setup & Best Practices Guide',
-    featuredImage: '/blog/images/meta-ads-utm-tracking.webp',
-    featuredImageAlt: 'Graphic showing how to paste UTM parameters into Meta Ads Manager tracking field',
-    tableOfContents: [
-      { id: 'meta-source-medium-standards', title: 'Source & Medium Standards: facebook vs meta', level: 2 },
-      { id: 'where-to-paste-in-ads-manager', title: 'Where to Paste Parameters in Ads Manager', level: 2 },
-      { id: 'advantage-plus-placement-tracking', title: 'Tracking Advantage+ Placements (Feed vs Reels)', level: 2 },
-      { id: 'diagnosing-meta-in-ga4', title: 'How to Diagnose Meta Traffic in GA4 Reports', level: 2 }
-    ],
-    toolCta: {
-      title: 'Build Meta Campaign Links',
-      description: 'Configure standard Meta tracking parameters with instant dynamic tokens for Facebook and Instagram campaigns.',
-      link: '/utm-builder/facebook/',
-      buttonText: 'Open Meta Builder'
-    },
-    relatedSlugs: ['meta-ads-utm-guide', 'meta-dynamic-url-parameters', 'ga4-unassigned-traffic'],
-    references: [
-      { title: 'Best practices for Meta URL parameters', url: 'https://www.facebook.com/business/help/1016122818407273', publisher: 'Meta Business Help Center' }
-    ],
-    contentHtml: `
-      <p class="lead-text">Setting up UTM tracking for Meta ads requires knowing where in Ads Manager to apply your parameters, which source/medium conventions guarantee proper GA4 channel categorization, and how to track multi-placement campaigns without creating separate ad variations.</p>
-
-      <h2 id="meta-source-medium-standards">Source & Medium Standards: facebook vs meta</h2>
-      <p>A frequent debate among growth marketers is whether to use <code>utm_source=facebook</code> or <code>utm_source=meta</code>. Here is the technical breakdown:</p>
-      <ul>
-        <li><strong>utm_source=facebook:</strong> Recognized natively by Google's social platforms list. When paired with <code>utm_medium=paid_social</code> or <code>cpc</code>, GA4 automatically buckets it into <strong>Paid Social</strong>.</li>
-        <li><strong>utm_source=meta:</strong> More accurate for multi-platform campaigns (Instagram + Facebook + Messenger). However, in older GA4 regex iterations, <code>meta</code> required custom channel configuration. Today, <code>facebook</code> or dynamic <code>site_source_name</code> remains the safest choice.</li>
-        <li><strong>utm_medium=paid_social:</strong> Non-negotiable. Never use <code>social-paid</code> or <code>boosted</code>.</li>
-      </ul>
-
-      <h2 id="where-to-paste-in-ads-manager">Where to Paste Parameters in Ads Manager</h2>
-      <p>Do not paste UTM parameters directly into the <strong>Website URL</strong> field at the top of the ad creation screen. If you paste parameters there, you cannot update them in bulk across multiple ads.</p>
-      <div class="callout callout-recommended">
-        <div class="callout-header">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          <strong>Always Use the Dedicated URL Parameters Field</strong>
-        </div>
-        <p>Scroll down to the <strong>Tracking</strong> section of the ad and enter your parameters into the <strong>URL Parameters</strong> field. Do not include a starting question mark (<code>?</code>). Meta will automatically merge these parameters with your website URL at runtime.</p>
-      </div>
-
-      <h2 id="advantage-plus-placement-tracking">Tracking Advantage+ Placements (Feed vs Reels)</h2>
-      <p>When running Advantage+ placements, add <code>placement={{placement}}</code> to your URL parameters. In GA4, register <code>placement</code> as a custom event-scoped dimension to evaluate whether Instagram Reels or Facebook Feeds drive higher engagement and conversion rates.</p>
-
-      <h2 id="diagnosing-meta-in-ga4">How to Diagnose Meta Traffic in GA4 Reports</h2>
-      <p>Go to <strong>Reports &gt; Acquisition &gt; Traffic acquisition</strong>. Look at <strong>Paid Social</strong>. Add a secondary dimension for <strong>Session campaign</strong>. If your sessions display <code>{{campaign.name}}</code> as raw unpopulated text, your ad manager preview or third-party tool failed to expand Meta's dynamic macros!</p>
-    `
-  },
-  {
     slug: 'meta-dynamic-url-parameters',
     title: 'Meta Dynamic Parameters Not Working? Fix Raw Tokens & Syntax',
     seoTitle: 'Meta Dynamic URL Parameters Not Replacing? Fix Raw Tokens | UTMCraft',
@@ -245,7 +185,7 @@ export const metaAdsPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-01',
@@ -271,7 +211,7 @@ export const metaAdsPosts = [
       link: '/utm-builder/facebook/',
       buttonText: 'Open Meta Parameter Builder'
     },
-    relatedSlugs: ['meta-ads-utm-guide', 'meta-ads-utm-tracking', 'linkedin-dynamic-parameters'],
+    relatedSlugs: ['meta-ads-utm-guide', 'linkedin-dynamic-parameters'],
     references: [
       { title: 'Meta Dynamic URL Parameters Reference', url: 'https://www.facebook.com/business/help/2360940870872492', publisher: 'Meta Business Help Center' }
     ],

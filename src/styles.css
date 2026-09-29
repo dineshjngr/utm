@@ -3588,6 +3588,7 @@ summary:focus-visible {
 }
 
 .footer-heading {
+  display: block;
   font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.08em;

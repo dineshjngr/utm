@@ -8,7 +8,7 @@ export const offlineQrPosts = [
     isPillar: true,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-13',
@@ -42,10 +42,10 @@ export const offlineQrPosts = [
       { title: 'Google Analytics 4 Measurement Protocol Overview', url: 'https://developers.google.com/analytics/devguides/collection/protocol/ga4', publisher: 'Google Developers' }
     ],
     contentHtml: `
-      <p class="lead-text">Marketers invest millions in print collateral, direct mail postcards, trade show booths, and product packaging, yet treat them as unmeasurable black boxes. When recipients visit your website manually or scan a plain URL, GA4 attributes 100% of those high-intent sessions to <strong>Direct</strong>. Connecting physical touchpoints to digital attribution requires two simple mechanisms: structured QR codes and redirecting vanity URLs.</p>
+      <p class="lead-text">Print collateral, direct mail, trade show booths, and product packaging can be difficult to measure when visits arrive without useful campaign or referrer information. GA4 may classify those visits as <strong>Direct</strong> in that situation. QR codes and vanity URLs with campaign parameters can help identify offline visits.</p>
 
       <h2 id="the-offline-attribution-problem">The Problem: Physical Touchpoints Masked as "Direct"</h2>
-      <p>A customer receives a luxury direct mail catalog, opens their mobile browser, types <code>brand.com</code>, and purchases. GA4 records this as <code>Direct / (none)</code>. The CMO concludes that direct mail doesn't work and cuts the budget. By providing a dedicated QR code or vanity URL, you capture the true return on marketing investment.</p>
+      <p>A customer may type a web address from a direct mail catalog and arrive without clear campaign or referral information. GA4 may then report the visit as <code>(direct) / (none)</code>. A tagged QR code or vanity URL can provide campaign values for analytics to process, though the resulting attribution depends on the redirect and analytics implementation.</p>
 
       <h2 id="two-pathways-qr-vs-vanity">The Two Offline Pathways: Dynamic QR Codes vs Vanity URLs</h2>
       <p>Offline audience behavior splits into two distinct user habits:</p>
@@ -107,7 +107,7 @@ export const offlineQrPosts = [
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           <strong>Configuring GA4 Custom Channel Groups for Offline</strong>
         </div>
-        <p>Because Google's Default Channel Grouping does not contain native "Print" or "Event" channels, visits tagged with <code>utm_medium=print</code> will fall into <strong>Unassigned</strong> unless configured. In GA4 Admin, create a Custom Channel Group that creates an "Offline / Print" channel matching <code>medium matches regex ^(print|event|outdoor|packaging|direct_mail)$</code>.</p>
+        <p>Google's default channel definitions do not include a dedicated "Print" or "Event" channel. A value such as <code>utm_medium=print</code> may not match a default channel definition by itself, so review the available source and other campaign information when interpreting its classification. If you need a distinct reporting category, create a Custom Channel Group in GA4 Admin with rules suited to your tagging scheme.</p>
       </div>
 
       <h2 id="use-cases-print-events-packaging">Implementation by Format: Direct Mail, Event Booths & Retail</h2>
@@ -137,7 +137,7 @@ export const offlineQrPosts = [
         </div>
         <div class="faq-item">
           <h3>How do vanity URLs work with UTM parameters for print collateral?</h3>
-          <p>For billboards, radio, or print flyers where users must type the link manually, use a short vanity URL on your domain (e.g. <code>brand.com/spring</code>). Configure your server to 301-redirect that vanity URL to the full landing page with UTM parameters automatically appended.</p>
+          <p>For billboards, radio, or print flyers where users type the link manually, use a short vanity URL on your domain (e.g. <code>brand.com/spring</code>). Configure and test the redirect so it sends visitors to the intended landing page and preserves or adds the campaign parameters you need.</p>
         </div>
         <div class="faq-item">
           <h3>What is the recommended GA4 utm_medium for print brochures and packaging?</h3>
@@ -145,7 +145,7 @@ export const offlineQrPosts = [
         </div>
         <div class="faq-item">
           <h3>Why should I avoid using free third-party QR code generators?</h3>
-          <p>Many free online QR tools route traffic through their own intermediary redirect domains, which can inject ads, expire after 30 days, or sell your scan data. Always generate client-side QR codes directly via UTMCraft or host redirect URLs on your own company domain.</p>
+          <p>Some QR services use provider-controlled redirect URLs. Before choosing one, check whether the destination can change or expire and what scan information the provider collects. A locally generated QR code can encode your chosen URL directly; test the scanned destination before printing.</p>
         </div>
       </section>
     `
@@ -159,7 +159,7 @@ export const offlineQrPosts = [
     isPillar: false,
     author: {
       name: 'Dinesh Jeengar',
-      role: 'Attribution & Analytics Architect',
+      role: 'Founder, UTMCraft',
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-07',
@@ -185,7 +185,7 @@ export const offlineQrPosts = [
       link: '/',
       buttonText: 'Create QR Tracking Code'
     },
-    relatedSlugs: ['offline-qr-utm-tracking', 'redirects-removing-utms', 'utm-qa-checklist'],
+    relatedSlugs: ['offline-qr-utm-tracking', 'qr-code-tracking-mistakes', 'redirects-removing-utms', 'utm-qa-checklist'],
     references: [
       { title: 'ISO/IEC 18004:2024 QR Code Standard', url: 'https://www.iso.org/standard/83389.html', publisher: 'ISO' }
     ],
@@ -193,7 +193,7 @@ export const offlineQrPosts = [
       <p class="lead-text">Printing a QR code without UTM parameters is an irreversible tracking error. Once ink hits paper on thousands of flyers or product boxes, you cannot retrofit analytics. Here is how to create, test, and deploy tracking QR codes properly.</p>
 
       <h2 id="why-qr-codes-need-utms">Why Every QR Code Must Carry UTM Parameters</h2>
-      <p>When a customer scans a QR code, their phone camera decodes the text string and opens the default browser (Safari on iPhone, Chrome on Android). If the QR code contains only <code>https://example.com/product</code>, the browser sends an empty referrer header. In GA4, that scan is recorded as <strong>Direct</strong>. Adding <code>?utm_source=flyer&amp;utm_medium=print&amp;utm_campaign=spring2026</code> guarantees complete campaign attribution.</p>
+      <p>When a customer scans a QR code containing only <code>https://example.com/product</code>, the visit may arrive without useful referrer information. GA4 may then classify it as <strong>Direct</strong>. Adding <code>?utm_source=flyer&amp;utm_medium=print&amp;utm_campaign=spring2026</code> provides campaign values for analytics to process, but does not guarantee complete attribution.</p>
 
       <h2 id="how-to-generate-tracking-qr-codes">Step-by-Step: How to Generate a Tracking QR Code</h2>
       <ol>
@@ -226,6 +226,7 @@ export const offlineQrPosts = [
         <li>Test scanning with both an iPhone (Apple Camera app) and an Android device.</li>
         <li>Verify the browser lands on the target page and the UTM parameters remain intact in the address bar.</li>
       </ul>
+      <p>If a printed code does not scan or the campaign values disappear, use the <a href="/qr-code-tracking-mistakes/">QR tracking troubleshooting checklist</a> to isolate the print, redirect, or tagging issue.</p>
     `
   }
 ];

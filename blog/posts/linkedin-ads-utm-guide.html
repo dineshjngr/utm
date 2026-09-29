@@ -17,7 +17,7 @@
   <meta property="og:description" content="Complete guide to LinkedIn Ads UTM tracking. Configure dynamic URL parameters (CAMPAIGN_ID, AD_SET_ID, AD_ID), B2B hierarchy, and GA4 Paid Social reporting.">
   <meta property="og:image" content="https://utmcraft.com/blog/images/linkedin-ads-utm-guide.webp">
   <meta property="article:published_time" content="2026-02-09">
-  <meta property="article:modified_time" content="2026-09-23">
+  <meta property="article:modified_time" content="2026-09-29">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -50,12 +50,7 @@
       "description": "Complete guide to LinkedIn Ads UTM tracking. Configure dynamic URL parameters (CAMPAIGN_ID, AD_SET_ID, AD_ID), B2B hierarchy, and GA4 Paid Social reporting.",
       "image": "https://utmcraft.com/blog/images/linkedin-ads-utm-guide.webp",
       "datePublished": "2026-02-09",
-      "dateModified": "2026-09-23",
-      "reviewedBy": {
-        "@type": "Organization",
-        "name": "UTMCraft Editorial Team",
-        "url": "https://utmcraft.com/"
-      },
+      "dateModified": "2026-09-29",
       "citation": [
         {
           "@type": "CreativeWork",
@@ -71,7 +66,7 @@
       "author": {
         "@type": "Person",
         "name": "Dinesh Jeengar",
-        "jobTitle": "Attribution & Analytics Architect",
+        "jobTitle": "Founder, UTMCraft",
         "url": "https://utmcraft.com/"
       },
       "publisher": {
@@ -122,43 +117,6 @@
       "url": "https://utmcraft.com/",
       "logo": "https://utmcraft.com/utmcraft-logo-light.png",
       "email": "contact@utmcraft.com"
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Does LinkedIn Campaign Manager support dynamic URL parameters?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. LinkedIn natively supports dynamic tracking macros across its hierarchy, including {{CAMPAIGN_NAME}}, {{CAMPAIGN_ID}}, {{AD_SET_NAME}}, {{AD_SET_ID}}, {{AD_NAME}}, and {{AD_ID}}. Note that LinkedIn strictly requires these tokens to be enclosed in double curly braces and written in uppercase."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What source and medium should I use for LinkedIn Sponsored Content?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Always use utm_source=linkedin and utm_medium=paid_social (or cpc). This ensures Google Analytics 4 automatically buckets your visits under the Paid Social default channel group."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Why does LinkedIn traffic sometimes appear as referral in GA4?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "If you launch ads without appending UTM parameters to the destination URL, GA4 reads the incoming HTTP referrer header (e.g. linkedin.com) and categorizes the visits under Organic Social or generic Referral, completely obscuring paid ad performance."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do I track LinkedIn Lead Gen Form submissions with UTMs?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Because Lead Gen Forms are hosted inside LinkedIn's mobile app, users never navigate to your website. To capture campaign attribution, connect LinkedIn Lead Gen Forms to HubSpot, Salesforce, or Marketo using LinkedIn's native CRM partner integration or webhooks, mapping campaign tokens directly to CRM lead properties."
-          }
-        }
-      ]
     }
   ]
 }
@@ -185,8 +143,8 @@
           </button>
           <div id="builder-nav-options" class="nav-dropdown-menu">
             <a href="/" class="nav-dropdown-item">
-              <span class="dropdown-item-title">Standard Campaign Builder</span>
-              <span class="dropdown-item-desc">Single URL builder for all marketing channels</span>
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
             </a>
             <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
               <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
@@ -216,7 +174,7 @@
           <div id="guide-nav-options" class="nav-dropdown-menu">
             <a href="/blog/" class="nav-dropdown-item">
               <span class="dropdown-item-title">All Measurement Guides</span>
-              <span class="dropdown-item-desc">Complete library of 35+ tracking &amp; attribution guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
             </a>
             <a href="/utm-parameters/" class="nav-dropdown-item">
               <span class="dropdown-item-title">UTM Parameters Guide</span>
@@ -284,11 +242,6 @@
             <span class="article-meta-bullet">•</span>
             <span class="article-author-byline">Written by Dinesh Jeengar</span>
           </div>
-          <div class="article-editorial-credits" aria-label="Article authorship and sources">
-      <p><strong>Reviewed by</strong> UTMCraft Editorial Team</p>
-      <p><strong>Last reviewed</strong> <time datetime="2026-09-23">September 23, 2026</time></p>
-      <p><strong>Sources</strong> <a href="https://www.linkedin.com/help/lms/answer/a5968064" target="_blank" rel="noopener">LinkedIn Help Center</a> <a class="article-source-details" href="#article-sources">Full references</a></p>
-    </div>
 
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
@@ -301,6 +254,9 @@
           <summary>Table of Contents</summary>
           <ol>
             <li>
+      <a href="#campaign-hierarchy-reporting" class="toc-link">Map the Campaign Hierarchy to UTM Values</a>
+    </li>
+<li>
       <a href="#linkedin-dynamic-revolution" class="toc-link">LinkedIn Dynamic Tracking: Moving Beyond Manual Links</a>
     </li>
 <li>
@@ -329,8 +285,11 @@
           
       <p class="lead-text">Historically, LinkedIn Campaign Manager lacked native dynamic tracking macros, forcing B2B marketers to manually append parameters to every ad link. Today, LinkedIn natively supports dynamic URL tracking parameters across its campaign hierarchy. This guide covers how to implement dynamic LinkedIn tracking to fuel clean GA4 reporting and pipeline attribution in your CRM.</p>
 
+      <h2 id="campaign-hierarchy-reporting">Map the Campaign Hierarchy to UTM Values</h2>
+      <p>LinkedIn organizes advertising into campaign groups, campaigns, and ads. Decide which level each UTM value should represent: for example, <code>utm_campaign</code> can identify the campaign, <code>utm_content</code> can distinguish the ad creative, and <code>utm_term</code> can hold an audience label if that is part of your team's taxonomy. Keep the mapping consistent so GA4 and CRM reports use comparable values.</p>
+
       <h2 id="linkedin-dynamic-revolution">LinkedIn Dynamic Tracking: Moving Beyond Manual Links</h2>
-      <p>LinkedIn's dynamic parameter feature enables Campaign Manager to automatically populate campaign names, campaign IDs, ad set details, and ad creative identifiers at the exact moment a prospect clicks an ad. This eliminates the risk of human copy-paste errors and ensures your B2B attribution remains structured across quarters.</p>
+      <p>LinkedIn's dynamic parameters can populate campaign and creative identifiers when an ad is clicked. Using supported tokens can reduce manual copying and help keep link values consistent; verify how the resulting visits appear in GA4.</p>
 
       <h2 id="linkedin-dynamic-tokens-table">Supported Dynamic Parameters Reference Table</h2>
       <p>LinkedIn supports dynamic macros that resolve at click time. Note that unlike Meta's lowercase syntax, <strong>LinkedIn requires uppercase tokens inside double curly braces</strong>:</p>
@@ -420,7 +379,7 @@
       </div>
 
       <h2 id="b2b-crm-attribution-pipeline">Passing LinkedIn Attribution into HubSpot and Salesforce</h2>
-      <p>Because LinkedIn traffic carries high B2B intent with expensive cost-per-click ($8 to $25+ CPC), capturing attribution at the deal level is vital. Configure hidden form fields on your website to capture <code>utm_source</code>, <code>utm_campaign</code>, and <code>utm_id</code>. When a prospect requests a demo, these parameters flow into HubSpot/Salesforce, allowing RevOps to calculate pipeline and closed-won revenue generated by specific LinkedIn campaigns.</p>
+      <p>To analyze LinkedIn campaigns alongside CRM outcomes, configure hidden form fields to capture <code>utm_source</code>, <code>utm_campaign</code>, and <code>utm_id</code> where appropriate. Verify that your form and CRM integration preserve those values before using them in pipeline reporting.</p>
 
       <section class="article-faq-section">
         <h2 id="faq">Frequently Asked Questions</h2>
@@ -430,7 +389,7 @@
         </div>
         <div class="faq-item">
           <h3>What source and medium should I use for LinkedIn Sponsored Content?</h3>
-          <p>Always use <code>utm_source=linkedin</code> and <code>utm_medium=paid_social</code> (or <code>cpc</code>). This ensures Google Analytics 4 automatically buckets your visits under the <strong>Paid Social</strong> default channel group.</p>
+          <p>A consistent option is <code>utm_source=linkedin</code> with <code>utm_medium=paid_social</code> or <code>cpc</code>. These values may match GA4's Paid Social definition for manual traffic, but actual assignment depends on the available traffic-source data and Google's current rules.</p>
         </div>
         <div class="faq-item">
           <h3>Why does LinkedIn traffic sometimes appear as referral in GA4?</h3>
@@ -445,7 +404,7 @@
 
           
     <section class="article-references" id="article-sources">
-      <h3>Sources &amp; Authoritative References</h3>
+      <h3>References</h3>
       <ul class="references-list">
         
           <li>
@@ -471,8 +430,8 @@
             </div>
             <div class="author-info">
               <h4>Dinesh Jeengar</h4>
-              <div class="author-role">Attribution & Analytics Architect</div>
-              <p class="author-bio">Specializing in digital marketing measurement, multi-touch attribution architecture, and enterprise tracking governance across GA4, Google Ads, Meta, and modern CRM stacks.</p>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
               <nav class="author-social-links" aria-label="Author links">
     <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
@@ -555,7 +514,7 @@
           <span class="post-card-readtime">9 min read</span>
         </div>
         <h4 class="post-card-title">How to Fix &quot;Unassigned&quot; Traffic in GA4: Complete Diagnosis Guide</h4>
-        <p class="post-card-excerpt">Why does GA4 show Unassigned traffic? Discover the exact channel grouping regex rules, common medium mistakes, and how to fix Unassigned traffic permanently.</p>
+        <p class="post-card-excerpt">Why does GA4 show Unassigned traffic? Review common source and medium issues against current channel definitions, then investigate the traffic-source data GA4 collected.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published March 8, 2026</span>
@@ -572,6 +531,9 @@
           <div class="toc-heading">Table of Contents</div>
           <ul class="toc-list">
             <li>
+      <a href="#campaign-hierarchy-reporting" class="toc-link">Map the Campaign Hierarchy to UTM Values</a>
+    </li>
+<li>
       <a href="#linkedin-dynamic-revolution" class="toc-link">LinkedIn Dynamic Tracking: Moving Beyond Manual Links</a>
     </li>
 <li>
@@ -605,15 +567,15 @@
               <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
               <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
             </a>
-            <p class="footer-desc">Client-side private campaign URL builder and GA4 taxonomy toolkit. Build, audit, shorten, and export tracking links without storing campaign data on our servers.</p>
-            <div class="footer-badge">Campaign Data Stays in Your Browser</div>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-badge">Optional shortening uses an external provider</div>
             <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Core Builders</h4>
+            <span class="footer-heading">Core Builders</span>
             <ul class="footer-links">
-              <li><a href="/">Single URL Builder</a></li>
+              <li><a href="/">UTM Tracking Toolkit</a></li>
               <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
               <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
               <li><a href="/utm-checker/">UTM Link Checker</a></li>
@@ -622,7 +584,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Platform Builders</h4>
+            <span class="footer-heading">Platform Builders</span>
             <ul class="footer-links">
               <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
               <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
@@ -631,7 +593,7 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Guides &amp; Taxonomy</h4>
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
             <ul class="footer-links">
               <li><a href="/blog/">All Knowledge Guides</a></li>
               <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
@@ -641,12 +603,10 @@
           </div>
 
           <div class="footer-col">
-            <h4 class="footer-heading">Company &amp; Trust</h4>
+            <span class="footer-heading">Company &amp; Trust</span>
             <ul class="footer-links">
               <li><a href="/about/">About Us</a></li>
               <li><a href="/contact/">Contact Us</a></li>
-              <li><a href="/terms.html">Terms and Conditions</a></li>
-              <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/version-history.html">Version History</a></li>
               <li><a href="/sitemap.xml">XML Sitemap</a></li>
               <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
