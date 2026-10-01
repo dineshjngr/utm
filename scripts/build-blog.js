@@ -24,6 +24,13 @@ function formatUpdatedDate(date) {
   });
 }
 
+function renderCategoryNavigation() {
+  return `<ul class="category-pills-list">
+    <li><a href="/blog/" class="category-pill-btn active" aria-current="page">All Topics</a></li>
+    ${blogCategories.map(cat => `<li><a href="/blog/${cat.slug}/" class="category-pill-btn">${escapeAttr(cat.name)}</a></li>`).join('\n    ')}
+  </ul>`;
+}
+
 // Generate Individual Article Page HTML
 export function renderArticlePage(post) {
   const category = getCategoryById(post.category);
@@ -188,7 +195,11 @@ export function renderArticlePage(post) {
   <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:title" content="${escapeAttr(post.seoTitle)}">
   <meta property="og:description" content="${escapeAttr(post.description)}">
-  <meta property="og:image" content="${imageUrl}">
+  <meta property="og:image" content="${imageUrl}">${post.featuredImageMetadata ? `
+  <meta property="og:image:alt" content="${escapeAttr(post.featuredImageAlt)}">
+  <meta property="og:image:width" content="${post.featuredImageMetadata.width}">
+  <meta property="og:image:height" content="${post.featuredImageMetadata.height}">
+  <meta property="og:image:type" content="${escapeAttr(post.featuredImageMetadata.type)}">` : ''}
   <meta property="article:published_time" content="${post.datePublished}">
   <meta property="article:modified_time" content="${post.dateModified}">
 
@@ -197,7 +208,8 @@ export function renderArticlePage(post) {
   <meta name="twitter:url" content="${canonicalUrl}">
   <meta name="twitter:title" content="${escapeAttr(post.seoTitle)}">
   <meta name="twitter:description" content="${escapeAttr(post.description)}">
-  <meta name="twitter:image" content="${imageUrl}">
+  <meta name="twitter:image" content="${imageUrl}">${post.featuredImageMetadata ? `
+  <meta name="twitter:image:alt" content="${escapeAttr(post.featuredImageAlt)}">` : ''}
 
   <!-- Fonts & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -314,7 +326,7 @@ ${toolCtaHtml}
 
   <script type="module" src="/src/blog.js"></script>
 </body>
-</html>`;
+</html>`.replace(/^[ \t]+$/gm, '');
 }
 
 // Generate Category Archive Page HTML
@@ -377,7 +389,7 @@ export function renderCategoryPage(category) {
         </div>
       </div>
     </a>
-  `).join('');
+  `).join('').trimEnd();
 
   return `<!DOCTYPE html>
 <html lang="en" data-theme="light">
@@ -432,9 +444,6 @@ export function renderCategoryPage(category) {
     </nav>
 
     <header class="blog-hero">
-      <div style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-        <span class="article-category-badge">${category.badge}</span>
-      </div>
       <h1 class="blog-hero-title">${category.name}</h1>
       <p class="blog-hero-subtitle">${escapeAttr(category.description)}</p>
     </header>
@@ -486,6 +495,29 @@ export function renderBlogIndexPage() {
     a.title.localeCompare(b.title)
   );
 
+  const featuredPost = sortedPosts.find(post => post.slug === 'google-september-2026-spam-update') || sortedPosts[0];
+  function renderFeaturedCard(post) {
+    return `<a href="/${post.slug}/" class="featured-pillar-card">
+      <div class="featured-pillar-image">
+        <img src="${post.featuredImage}" alt="${escapeAttr(post.featuredImageAlt)}" width="1200" height="630" loading="eager" fetchpriority="high">
+      </div>
+      <div class="featured-pillar-content">
+        <span class="featured-pillar-badge">Featured Article</span>
+        <h3 class="featured-pillar-title">${escapeAttr(post.title)}</h3>
+        <p class="featured-pillar-desc">${escapeAttr(post.description)}</p>
+        <div class="featured-pillar-footer">
+          <span>${post.readingTime}</span>
+          <span>•</span>
+          <span>Published <time datetime="${post.datePublished}">${formatPublishedDate(post.datePublished)}</time></span>
+        </div>
+      </div>
+    </a>`;
+  }
+  const featuredBlock = `<section class="blog-featured" id="blog-featured" aria-labelledby="blog-featured-title">
+    <h2 id="blog-featured-title">Featured article</h2>
+    ${featuredPost ? renderFeaturedCard(featuredPost) : ''}
+  </section>`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -520,18 +552,12 @@ export function renderBlogIndexPage() {
     ]
   };
 
-  const categoryPills = blogCategories.map(cat => `
-    <li>
-      <a href="/blog/${cat.slug}/" class="category-pill-btn">${cat.name}</a>
-    </li>
-  `.trim()).join('\n');
-
-  const postCards = sortedPosts.map((post, index) => {
+  const postCards = sortedPosts.map(post => {
     const cat = getCategoryById(post.category);
     return `
     <a href="/${post.slug}/" class="post-card" data-published="${post.datePublished}" data-updated="${post.dateModified}">
       <div class="post-card-thumb-wrap">
-        <img src="${post.featuredImage}" alt="${escapeAttr(post.featuredImageAlt)}" class="post-card-thumb" width="1200" height="630" loading="${index === 0 ? 'eager' : 'lazy'}"${index === 0 ? ' fetchpriority="high"' : ''}>
+        <img src="${post.featuredImage}" alt="${escapeAttr(post.featuredImageAlt)}" class="post-card-thumb" width="1200" height="630" loading="lazy">
       </div>
       <div class="post-card-content">
         <div class="post-card-header">
@@ -606,10 +632,7 @@ export function renderBlogIndexPage() {
 
     <!-- Filter & Search Toolbar -->
     <div class="blog-filter-bar">
-      <ul class="category-pills-list">
-        <li><a href="/blog/" class="category-pill-btn active">All Topics</a></li>
-        ${categoryPills}
-      </ul>
+      ${renderCategoryNavigation()}
 
       <div class="blog-search-wrap">
         <svg class="blog-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -618,6 +641,7 @@ export function renderBlogIndexPage() {
     </div>
 
     <main id="main-content">
+      ${featuredBlock}
       <div class="blog-results-toolbar">
         <h2>All Practical Tracking Guides (${blogPosts.length})</h2>
         <div class="blog-sort-wrap">
@@ -669,12 +693,13 @@ function updateSitemap() {
     { loc: 'https://utmcraft.com/privacy.html', priority: '0.5', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/about/', lastmod: '2026-09-28', priority: '0.6', changefreq: 'monthly' },
     { loc: 'https://utmcraft.com/contact/', priority: '0.6', changefreq: 'monthly' },
-    { loc: 'https://utmcraft.com/version-history.html', lastmod: '2026-09-28', priority: '0.5', changefreq: 'monthly' },
-    { loc: 'https://utmcraft.com/blog/', lastmod: '2026-09-28', priority: '0.9', changefreq: 'weekly' }
+    { loc: 'https://utmcraft.com/version-history.html', lastmod: '2026-10-01', priority: '0.5', changefreq: 'monthly' },
+    { loc: 'https://utmcraft.com/blog/', lastmod: '2026-10-01', priority: '0.9', changefreq: 'weekly' }
   ];
 
   const categoryUrls = blogCategories.map(cat => ({
     loc: `https://utmcraft.com/blog/${cat.slug}/`,
+    lastmod: '2026-10-01',
     priority: '0.8',
     changefreq: 'weekly'
   }));

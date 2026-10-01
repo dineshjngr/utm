@@ -66,7 +66,7 @@
 .blog-breadcrumbs .current {
   color: var(--text-main);
   font-weight: 500;
-  max-width: 320px;
+  max-width: min(320px, 100%);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1188,7 +1188,7 @@ details.article-faq-item > p {
 
 .related-articles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
   gap: 1.75rem;
 }
 
@@ -1199,6 +1199,9 @@ details.article-faq-item > p {
 }
 
 .toc-card {
+  max-height: calc(100dvh - 120px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 1.5rem;
   background: var(--bg-card);
   border: 1px solid var(--border-card);
@@ -1256,7 +1259,23 @@ details.article-faq-item > p {
   margin-bottom: 2rem;
 }
 
+body[data-page="blog-category"] .blog-breadcrumbs,
+body[data-page="blog-index"] .blog-breadcrumbs {
+  margin-bottom: 0;
+}
+
+body[data-page="blog-category"] .blog-hero,
+body[data-page="blog-index"] .blog-hero {
+  padding-top: 1.25rem;
+}
+
+body[data-page="blog-category"] .blog-hero-title,
+body[data-page="blog-index"] .blog-hero-title {
+  margin-top: 0;
+}
+
 .blog-hero-title {
+  line-height: 1.2;
   font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -1269,6 +1288,34 @@ details.article-faq-item > p {
   color: var(--text-secondary);
   max-width: 680px;
   line-height: 1.55;
+}
+
+/* Featured stories on the blog index */
+.blog-featured {
+  margin-bottom: 3rem;
+}
+
+.blog-featured .featured-pillar-card {
+  margin-bottom: 0;
+}
+
+.blog-featured[hidden] {
+  display: none;
+}
+
+.blog-featured > h2 {
+  margin: 0 0 1.1rem;
+  color: var(--text-main);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 600px) {
+  .blog-filter-bar .blog-search-wrap {
+    width: 100%;
+    min-width: 0;
+  }
 }
 
 /* Category Filter Navigation */
@@ -1322,6 +1369,7 @@ details.article-faq-item > p {
 }
 
 /* Instant Client-Side Search Input */
+
 .blog-search-wrap {
   position: relative;
   min-width: 260px;
@@ -1396,6 +1444,7 @@ details.article-faq-item > p {
 
 /* Featured Pillar Guide Card */
 .featured-pillar-card {
+  min-width: 0;
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 2rem;
@@ -1473,6 +1522,7 @@ details.article-faq-item > p {
 
 .featured-pillar-footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
   font-size: 0.8125rem;
@@ -1482,10 +1532,16 @@ details.article-faq-item > p {
 /* Post Cards Grid - Generous Banner Showcase */
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: stretch;
   gap: 2rem;
   margin-bottom: 4rem;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .posts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
@@ -1707,4 +1763,50 @@ details.article-faq-item > p {
 
 .posts-grid[data-sort="updated"] .post-card-updated {
   display: inline;
+}
+
+/* Keep blog layouts readable on narrow screens. */
+.article-main-column,
+.featured-pillar-content,
+.author-info {
+  min-width: 0;
+}
+
+.article-prose a,
+.article-prose :not(pre) > code {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .blog-hero-title {
+    font-size: 1.875rem;
+  }
+
+  .blog-hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .featured-pillar-card {
+    padding: 1rem;
+  }
+
+  .article-author-card {
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-card,
+  .post-card-thumb,
+  .featured-pillar-card {
+    transition: none;
+  }
+
+  .post-card:hover,
+  .post-card:hover .post-card-thumb,
+  .featured-pillar-card:hover {
+    transform: none;
+  }
 }

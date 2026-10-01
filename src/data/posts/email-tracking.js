@@ -3,7 +3,7 @@ export const emailTrackingPosts = [
     slug: 'email-utm-guide',
     title: 'Email UTM Tracking Guide: Automated Flows, ESP Integration & Bot Filtering',
     seoTitle: 'Email UTM Tracking Guide: ESP Setup & Bot Defense | UTMCraft',
-    description: 'The definitive guide to email marketing UTM tracking. Standardize automated flow and newsletter parameters across Klaviyo, HubSpot, Braze, and Mailchimp.',
+    description: 'Tag newsletters and automated emails for GA4. Set consistent names, test ESP redirects and review security-scanner clicks in your reports.',
     category: 'email-tracking',
     isPillar: true,
     author: {
@@ -12,7 +12,7 @@ export const emailTrackingPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-11',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '12 min read',
     primaryKeyword: 'email utm tracking',
@@ -42,13 +42,13 @@ export const emailTrackingPosts = [
       { title: 'Understanding UTM tracking in Klaviyo', url: 'https://help.klaviyo.com/hc/en-us/articles/115005247808', publisher: 'Klaviyo Help Center' }
     ],
     contentHtml: `
-      <p class="lead-text">Email campaign reporting in Google Analytics 4 can be harder to interpret when tags are missing, security scanners follow links, or broadcasts and lifecycle flows use different naming conventions. This guide explains how to tag and review email links consistently.</p>
+      <p class="lead-text">Tag email links so you can compare newsletters and automated messages in GA4. Use consistent names, test your email platform’s redirects and account for security scanners when reviewing clicks. This guide covers each step.</p>
 
       <h2 id="why-email-attribution-fails">Why Email Campaign Attribution Fails in GA4</h2>
       <p>Email clients, mobile mail apps, and link-wrapping systems can affect referral information. If campaign parameters are missing and GA4 has no other clear referral or advertising information, the visit may be reported as <strong>Direct / (none)</strong>. A medium such as <code>newsletter</code> or <code>flow</code> may not match an email channel definition by itself; check the other traffic-source values and Google's current rules when investigating <strong>Unassigned</strong>.</p>
 
       <h2 id="standard-email-taxonomy">Standard Email Tracking Taxonomy (Flows vs Broadcasts)</h2>
-      <p>To keep email reporting structured, enforce a clear distinction between broadcast campaigns and automated lifecycle flows:</p>
+      <p>Give newsletters and automated flows distinct names so you can compare them in reports:</p>
 
       <div class="editorial-table-wrap">
         <table class="editorial-table">
@@ -101,7 +101,7 @@ export const emailTrackingPosts = [
       <p>In Klaviyo, navigate to <strong>Settings &gt; UTM Tracking</strong>:</p>
       <ul>
         <li><code>utm_source</code> = <code>klaviyo</code> (or <code>newsletter</code>)</li>
-        <li><code>utm_medium</code> = <code>email</code> (mandatory for GA4)</li>
+        <li><code>utm_medium</code> = <code>email</code> (the standard medium for email tagging)</li>
         <li><code>utm_campaign</code> = <code>$campaign_name</code> (for campaigns) or <code>$flow_name</code> (for flows)</li>
         <li><code>utm_id</code> = <code>$message_id</code></li>
       </ul>
@@ -167,7 +167,7 @@ Footer link:     utm_content=footer_terms_link</code></pre>
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-27',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '8 min read',
     primaryKeyword: 'email utm link wrappers',
@@ -194,7 +194,7 @@ Footer link:     utm_content=footer_terms_link</code></pre>
       { title: 'Google Analytics 4 Default Channel Definitions', url: 'https://support.google.com/analytics/answer/9756891', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text">Email service providers often rewrite destination links so they can measure clicks. The rewritten URL should still deliver the subscriber to your landing page with every UTM parameter intact. This guide focuses on finding and fixing query-string loss across the ESP redirect.</p>
+      <p class="lead-text">Your email platform may replace a destination link with a tracking URL before sending. After the click, that URL should redirect to your page with the UTM values intact. Check the final URL in a test email before sending the campaign.</p>
 
       <h2 id="esp-link-wrapping-mechanics">How ESP Link Wrapping Interacts with UTMs</h2>
       <p>Click tracking can replace a direct destination such as <code>https://example.com/pricing?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=fall-launch</code> with an ESP-owned tracking URL. After recording the click, the ESP redirects the browser to the destination. The key check is the final URL: the landing page should receive the complete query string, including all UTM values.</p>

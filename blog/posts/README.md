@@ -1,6 +1,6 @@
 # UTMCraft Blog Articles Directory
 
-All 51 active production guides are organized in this directory as individual HTML files.
+All 52 active production guides are organized in this directory as individual HTML files.
 
 ## URL Architecture & Routing Governance
 
@@ -30,6 +30,7 @@ Both the Vite development server and the production build automatically route re
 | GA4 Attribution & Troubleshooting | Supporting | How to Fix (not set) Campaign and Source Data in GA4 Reports | `ga4-not-set.html` | [/ga4-not-set/](https://utmcraft.com/ga4-not-set/) |
 | GA4 Attribution & Troubleshooting | Supporting | Why HTTP Redirects Strip UTM Parameters (and How to Preserve Query Strings) | `redirects-removing-utms.html` | [/redirects-removing-utms/](https://utmcraft.com/redirects-removing-utms/) |
 | GA4 Attribution & Troubleshooting | Supporting | How to Test and QA UTM Parameters in GA4 DebugView and Realtime | `how-to-test-utms.html` | [/how-to-test-utms/](https://utmcraft.com/how-to-test-utms/) |
+| GA4 Attribution & Troubleshooting | Supporting | How to Track AI Assistant Traffic in GA4: ChatGPT, Gemini and Claude | `track-ai-assistant-traffic-ga4.html` | [/track-ai-assistant-traffic-ga4/](https://utmcraft.com/track-ai-assistant-traffic-ga4/) |
 | Google Ads Tracking | **Pillar** | Google Ads UTM Tracking Guide: ValueTrack, Tracking Templates & GA4 Attribution | `google-ads-utm-guide.html` | [/google-ads-utm-guide/](https://utmcraft.com/google-ads-utm-guide/) |
 | Google Ads Tracking | Supporting | Google Ads Auto-Tagging vs UTMs: When to Use GCLID, UTMs, or Both | `google-ads-auto-tagging-vs-utms.html` | [/google-ads-auto-tagging-vs-utms/](https://utmcraft.com/google-ads-auto-tagging-vs-utms/) |
 | Google Ads Tracking | Supporting | GCLID vs UTM Parameters: Safari Privacy & Offline Conversion Tracking | `gclid-vs-utms.html` | [/gclid-vs-utms/](https://utmcraft.com/gclid-vs-utms/) |

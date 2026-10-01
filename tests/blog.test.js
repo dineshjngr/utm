@@ -139,14 +139,14 @@ test('Generated Category Pages: All category pages exist with BreadcrumbList sch
   }
 });
 
-test('Blog Homepage: /blog/ exists with search, filter pills, and valid structure', () => {
+test('Blog Homepage: /blog/ exists with search, category pills, and valid structure', () => {
   const blogFilePath = path.join(rootDir, 'blog', 'index.html');
   assert.ok(fs.existsSync(blogFilePath), 'Main blog index.html must exist');
 
   const html = fs.readFileSync(blogFilePath, 'utf8');
   assert.ok(html.includes('<link rel="canonical" href="https://utmcraft.com/blog/">'), 'Blog index missing canonical');
   assert.ok(html.includes('id="blog-search-input"'), 'Blog index missing search field');
-  assert.ok(html.includes('class="category-pills-list"'), 'Blog index missing category filter pills');
+  assert.ok(html.includes('class="category-pills-list"'), 'Blog index missing category pills');
 
   const h1Matches = html.match(/<h1[^>]*>.*?<\/h1>/gi) || [];
   assert.equal(h1Matches.length, 1, 'Blog index must have exactly one <h1>');

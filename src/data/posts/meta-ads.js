@@ -3,7 +3,7 @@ export const metaAdsPosts = [
     slug: 'meta-ads-utm-guide',
     title: 'Meta Ads UTM Tracking Guide: Dynamic Parameters, Attribution Discrepancies & Setup',
     seoTitle: 'Meta Ads UTM Tracking Guide: Dynamic Parameters & GA4 | UTMCraft',
-    description: 'The definitive guide to Facebook and Instagram UTM tracking. Configure Meta dynamic URL parameters, reconcile Ads Manager vs GA4 attribution, and track placements.',
+    description: 'Set up Facebook and Instagram UTM tracking with Meta dynamic parameters. Check campaign links and understand why Ads Manager and GA4 results differ.',
     category: 'meta-ads',
     isPillar: true,
     author: {
@@ -12,7 +12,7 @@ export const metaAdsPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-05',
-    dateModified: '2026-09-29',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 29, 2026',
     readingTime: '12 min read',
     primaryKeyword: 'meta ads utm tracking',
@@ -45,7 +45,7 @@ export const metaAdsPosts = [
       { title: 'Specifications for dynamic URL parameters', url: 'https://www.facebook.com/business/help/2360940870872492', publisher: 'Meta Business Help Center' }
     ],
     contentHtml: `
-      <p class="lead-text">Meta generates billions in ad spend, yet tracking Facebook and Instagram campaigns in Google Analytics 4 remains one of the greatest pain points for performance marketers. Clicks categorized as generic "Referral," fragmented campaign rows, and massive attribution discrepancies between Ads Manager and GA4 are standard symptoms of poor UTM implementation.</p>
+      <p class="lead-text">Facebook and Instagram campaign links need clear tags if you want to compare their performance in GA4 and your CRM. Dynamic parameters can fill in campaign details for you. This guide covers their setup and the reporting differences that remain even when the links are correct.</p>
 
       <h2 id="why-meta-tracking-breaks">Why Meta Ad Tracking Breaks in GA4</h2>
       <p>Tracking failures with Meta ads stem from three specific platform behaviors:</p>
@@ -180,7 +180,7 @@ export const metaAdsPosts = [
     slug: 'meta-dynamic-url-parameters',
     title: 'Meta Dynamic Parameters Not Working? Fix Raw Tokens & Syntax',
     seoTitle: 'Meta Dynamic URL Parameters Not Replacing? Fix Raw Tokens | UTMCraft',
-    description: 'Master Meta dynamic URL parameters. Learn syntax rules, how tokens expand at click time, and how to prevent raw token strings from appearing in GA4.',
+    description: 'Use Meta dynamic URL parameters to tag campaign links. Check token syntax, test expanded values and troubleshoot raw tokens in GA4.',
     category: 'meta-ads',
     isPillar: false,
     author: {
@@ -189,7 +189,7 @@ export const metaAdsPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-01',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '8 min read',
     primaryKeyword: 'meta dynamic parameters not working',
@@ -216,13 +216,13 @@ export const metaAdsPosts = [
       { title: 'Meta Dynamic URL Parameters Reference', url: 'https://www.facebook.com/business/help/2360940870872492', publisher: 'Meta Business Help Center' }
     ],
     contentHtml: `
-      <p class="lead-text">Meta dynamic URL parameters allow you to automatically inject campaign, ad set, and ad names into tracking links without manually editing every single creative. Understanding how these macros evaluate and avoiding syntax typos is critical for clean attribution.</p>
+      <p class="lead-text">Meta dynamic parameters fill campaign, ad set and ad details into tracking links. Use the supported tokens and test the published link to check that the values expand. A typo can leave the token itself in your reports.</p>
 
       <h2 id="how-dynamic-tokens-work">How Meta Dynamic Parameters Work Under the Hood</h2>
       <p>When you insert a dynamic token such as <code>{{campaign.name}}</code> into the URL Parameters field, Meta stores the token template. When an ad impression is delivered and clicked, Meta's edge servers replace the placeholder with the actual string from Ads Manager before redirecting the browser to your landing page.</p>
 
       <h2 id="syntax-rules-and-case">Syntax Rules: Double Braces and Lowercase Dots</h2>
-      <p>Meta enforces strict syntax rules for dynamic parameters:</p>
+      <p>Use the supported syntax for Meta dynamic parameters:</p>
       <ul>
         <li>Must use <strong>double curly braces</strong>: <code>{{...}}</code>. Single braces (like Google ValueTrack) will fail and be passed as literal text.</li>
         <li>Must use <strong>lowercase dot notation</strong>: <code>{{campaign.name}}</code>, NOT <code>{{campaign_name}}</code> or <code>{{CAMPAIGN.NAME}}</code>.</li>

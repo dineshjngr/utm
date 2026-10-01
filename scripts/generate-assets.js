@@ -82,6 +82,20 @@ function getBespokeDiagram(post, theme) {
   const slug = post.slug;
 
   switch (slug) {
+    case 'track-ai-assistant-traffic-ga4':
+      return `
+        <text x="610" y="140" font-family="Inter, sans-serif" font-size="19" font-weight="700" fill="#FFFFFF">Follow the source signal</text>
+        <text x="610" y="166" font-family="Inter, sans-serif" font-size="12" fill="#94A3B8">Three journeys. Three measurement questions.</text>
+        <rect x="610" y="195" width="490" height="88" rx="10" fill="#17222C" stroke="${accent}"/>
+        <text x="632" y="226" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">ChatGPT · Gemini · Claude</text>
+        <text x="632" y="254" font-family="Inter, sans-serif" font-size="13" fill="${accent}">Recognized source → AI Assistant</text>
+        <rect x="610" y="303" width="490" height="88" rx="10" fill="#17222C" stroke="#38BDF8"/>
+        <text x="632" y="334" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Google AI Overviews · AI Mode</text>
+        <text x="632" y="362" font-family="Inter, sans-serif" font-size="13" fill="#38BDF8">Organic search visits → Organic Search</text>
+        <rect x="610" y="411" width="490" height="88" rx="10" fill="#17222C" stroke="#64748B"/>
+        <text x="632" y="442" font-family="Inter, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">No usable attribution signal</text>
+        <text x="632" y="470" font-family="Inter, sans-serif" font-size="13" fill="#CBD5E1">Investigate; do not guess the source</text>
+        <text x="610" y="538" font-family="Inter, sans-serif" font-size="12" fill="#94A3B8">Measure entry pages, key events and qualified outcomes.</text>`;
     case 'utm-strategy-guide':
       return `
         <text x="610" y="115" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="${accent}" letter-spacing="1">ENTERPRISE TAXONOMY GOVERNANCE</text>
@@ -1063,7 +1077,7 @@ function createSvgForPost(post) {
       <g transform="translate(72, 555)">
         <line x1="0" y1="0" x2="450" y2="0" stroke="#1E2D38" stroke-width="1"/>
         <circle cx="6" cy="22" r="4" fill="${theme.accent}"/>
-        <text x="20" y="26" font-family="Inter, sans-serif" font-size="11.5" font-weight="500" fill="#64748B">GA4 &amp; Ad Platform Rules Verified • September 2026</text>
+        <text x="20" y="26" font-family="Inter, sans-serif" font-size="11.5" font-weight="500" fill="#64748B">${post.slug === 'track-ai-assistant-traffic-ga4' ? 'Documentation checked • October 1, 2026' : 'GA4 &amp; Ad Platform Rules Verified • September 2026'}</text>
       </g>
     </g>
 
@@ -1089,7 +1103,7 @@ export async function generateAllBannerImages() {
   console.log(`Generating ${blogPosts.length} WebP banner images (1200x630)...`);
   for (const post of blogPosts) {
     const destPath = path.join(outDir, `${post.slug}.webp`);
-    if (post.preserveFeaturedImage && fs.existsSync(destPath)) {
+    if (post.preserveFeaturedImage && fs.existsSync(path.resolve(import.meta.dirname, '../public', post.featuredImage.replace(/^\//, '')))) {
       console.log(`Keeping supplied banner for ${post.slug}`);
       continue;
     }

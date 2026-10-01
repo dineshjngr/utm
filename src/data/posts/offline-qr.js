@@ -3,7 +3,7 @@ export const offlineQrPosts = [
     slug: 'offline-qr-utm-tracking',
     title: 'Offline Campaign Tracking With UTMs and QR Codes: Print, Events & Packaging',
     seoTitle: 'Offline Tracking With UTMs & QR Codes: Print & Events | UTMCraft',
-    description: 'Learn how to connect offline marketing to Google Analytics 4. Track direct mail, billboards, conference booths, retail packaging, and QR codes with precision.',
+    description: 'Track visits from print, events and packaging with tagged QR codes and short URLs. Test your links and review offline campaign traffic in GA4.',
     category: 'offline-qr',
     isPillar: true,
     author: {
@@ -12,7 +12,7 @@ export const offlineQrPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-13',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '11 min read',
     primaryKeyword: 'offline campaign tracking with utms',
@@ -27,7 +27,7 @@ export const offlineQrPosts = [
       { id: 'two-pathways-qr-vs-vanity', title: 'The Two Offline Pathways: Dynamic QR Codes vs Vanity URLs', level: 2 },
       { id: 'offline-source-medium-standards', title: 'Offline UTM Taxonomy & Channel Grouping Standards', level: 2 },
       { id: 'use-cases-print-events-packaging', title: 'Implementation by Format: Direct Mail, Event Booths & Retail', level: 2 },
-      { id: 'dynamic-vs-static-qr-codes', title: 'Dynamic QR Codes vs Static QR Codes: Critical Warnings', level: 2 },
+      { id: 'dynamic-vs-static-qr-codes', title: 'Static QR Codes and Editable Redirect Destinations', level: 2 },
       { id: 'measuring-offline-in-ga4', title: 'Analyzing Offline Performance in GA4 Custom Reports', level: 2 },
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
@@ -42,7 +42,7 @@ export const offlineQrPosts = [
       { title: 'Google Analytics 4 Measurement Protocol Overview', url: 'https://developers.google.com/analytics/devguides/collection/protocol/ga4', publisher: 'Google Developers' }
     ],
     contentHtml: `
-      <p class="lead-text">Print collateral, direct mail, trade show booths, and product packaging can be difficult to measure when visits arrive without useful campaign or referrer information. GA4 may classify those visits as <strong>Direct</strong> in that situation. QR codes and vanity URLs with campaign parameters can help identify offline visits.</p>
+      <p class="lead-text">QR codes and short URLs can help you identify visits from flyers, events and packaging. Add campaign tags to the destination and test the printed link before distribution. You can then review those visits in GA4 alongside your online campaigns.</p>
 
       <h2 id="the-offline-attribution-problem">The Problem: Physical Touchpoints Masked as "Direct"</h2>
       <p>A customer may type a web address from a direct mail catalog and arrive without clear campaign or referral information. GA4 may then report the visit as <code>(direct) / (none)</code>. A tagged QR code or vanity URL can provide campaign values for analytics to process, though the resulting attribution depends on the redirect and analytics implementation.</p>
@@ -117,7 +117,7 @@ export const offlineQrPosts = [
         <li><strong>Retail Product Packaging:</strong> Insert warranty cards inside packaging with QR codes tagged <code>utm_medium=packaging&amp;utm_campaign=product-registration</code>.</li>
       </ul>
 
-      <h2 id="dynamic-vs-static-qr-codes">Dynamic QR Codes vs Static QR Codes: Critical Warnings</h2>
+      <h2 id="dynamic-vs-static-qr-codes">Static QR Codes and Editable Redirect Destinations</h2>
       <div class="callout callout-warning">
         <div class="callout-header">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -163,7 +163,7 @@ export const offlineQrPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-07',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '8 min read',
     primaryKeyword: 'qr code utm tracking',
@@ -174,7 +174,7 @@ export const offlineQrPosts = [
     featuredImage: '/blog/images/qr-code-utm-tracking.webp',
     featuredImageAlt: 'Infographic illustrating QR code generation with UTM parameters and scanning verification on mobile devices',
     tableOfContents: [
-      { id: 'why-qr-codes-need-utms', title: 'Why Every QR Code Must Carry UTM Parameters', level: 2 },
+      { id: 'why-qr-codes-need-utms', title: 'Why Add Campaign Tags to a QR Destination?', level: 2 },
       { id: 'how-to-generate-tracking-qr-codes', title: 'Step-by-Step: How to Generate a Tracking QR Code', level: 2 },
       { id: 'print-specifications-and-sizing', title: 'Print Design Rules: Size, Quiet Zone, and Contrast', level: 2 },
       { id: 'qa-testing-before-printing', title: 'Pre-Print Testing Protocol for Mobile Scanners', level: 2 }
@@ -190,9 +190,9 @@ export const offlineQrPosts = [
       { title: 'ISO/IEC 18004:2024 QR Code Standard', url: 'https://www.iso.org/standard/83389.html', publisher: 'ISO' }
     ],
     contentHtml: `
-      <p class="lead-text">Printing a QR code without UTM parameters is an irreversible tracking error. Once ink hits paper on thousands of flyers or product boxes, you cannot retrofit analytics. Here is how to create, test, and deploy tracking QR codes properly.</p>
+      <p class="lead-text">Before printing a QR code, scan a proof and check the landing URL and its campaign tags. If you use a redirect you control, you can update the destination later. This tutorial covers link setup, print checks and GA4 testing.</p>
 
-      <h2 id="why-qr-codes-need-utms">Why Every QR Code Must Carry UTM Parameters</h2>
+      <h2 id="why-qr-codes-need-utms">Why Add Campaign Tags to a QR Destination?</h2>
       <p>When a customer scans a QR code containing only <code>https://example.com/product</code>, the visit may arrive without useful referrer information. GA4 may then classify it as <strong>Direct</strong>. Adding <code>?utm_source=flyer&amp;utm_medium=print&amp;utm_campaign=spring2026</code> provides campaign values for analytics to process, but does not guarantee complete attribution.</p>
 
       <h2 id="how-to-generate-tracking-qr-codes">Step-by-Step: How to Generate a Tracking QR Code</h2>

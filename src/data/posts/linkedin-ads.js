@@ -12,7 +12,7 @@ export const linkedinAdsPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-09',
-    dateModified: '2026-09-29',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 29, 2026',
     readingTime: '12 min read',
     primaryKeyword: 'linkedin ads utm tracking',
@@ -44,7 +44,7 @@ export const linkedinAdsPosts = [
       { title: 'URL tracking parameters in Campaign Manager', url: 'https://www.linkedin.com/help/lms/answer/a5968064', publisher: 'LinkedIn Help Center' }
     ],
     contentHtml: `
-      <p class="lead-text">Historically, LinkedIn Campaign Manager lacked native dynamic tracking macros, forcing B2B marketers to manually append parameters to every ad link. Today, LinkedIn natively supports dynamic URL tracking parameters across its campaign hierarchy. This guide covers how to implement dynamic LinkedIn tracking to fuel clean GA4 reporting and pipeline attribution in your CRM.</p>
+      <p class="lead-text">LinkedIn supports dynamic URL parameters that help you tag ads without editing each link by hand. Map the supported tokens to your UTM fields, check their case and braces, and test the result before using it in GA4 or CRM reports.</p>
 
       <h2 id="campaign-hierarchy-reporting">Map the Campaign Hierarchy to UTM Values</h2>
       <p>LinkedIn organizes advertising into campaign groups, campaigns, and ads. Decide which level each UTM value should represent: for example, <code>utm_campaign</code> can identify the campaign, <code>utm_content</code> can distinguish the ad creative, and <code>utm_term</code> can hold an audience label if that is part of your team's taxonomy. Keep the mapping consistent so GA4 and CRM reports use comparable values.</p>
@@ -176,7 +176,7 @@ export const linkedinAdsPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-03',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '8 min read',
     primaryKeyword: 'linkedin dynamic url parameters syntax',
@@ -188,7 +188,7 @@ export const linkedinAdsPosts = [
     featuredImageAlt: 'Technical diagram showing LinkedIn dynamic tokens expanding upon ad click into CRM lead records',
     tableOfContents: [
       { id: 'complete-token-list', title: 'Complete List of LinkedIn Dynamic Tracking Tokens', level: 2 },
-      { id: 'syntax-rules', title: 'Critical Syntax Rules: Case and Braces', level: 2 },
+      { id: 'syntax-rules', title: 'Token Syntax: Case and Braces', level: 2 },
       { id: 'mapping-to-crm-fields', title: 'Mapping Dynamic Parameters to CRM Lead Properties', level: 2 },
       { id: 'qa-and-verification', title: 'How to QA LinkedIn Dynamic Links Before Publishing', level: 2 }
     ],
@@ -203,7 +203,7 @@ export const linkedinAdsPosts = [
       { title: 'URL tracking parameters in Campaign Manager', url: 'https://www.linkedin.com/help/lms/answer/a5968064', publisher: 'LinkedIn Help Center' }
     ],
     contentHtml: `
-      <p class="lead-text">LinkedIn's dynamic URL parameters can reduce manual tagging across ads. Use supported token syntax and test the expanded URL before launch.</p>
+      <p class="lead-text">LinkedIn URL tokens can save time when tagging several ads. The syntax matters: use the supported uppercase names and double braces. The examples below show how to map the tokens and check the expanded link.</p>
 
       <h2 id="complete-token-list">Complete List of LinkedIn Dynamic Tracking Tokens</h2>
       <p>LinkedIn Campaign Manager supports the following dynamic tokens:</p>
@@ -218,7 +218,7 @@ export const linkedinAdsPosts = [
         <li><code>{{ACCOUNT_NAME}}</code> - The name of the ad account.</li>
       </ul>
 
-      <h2 id="syntax-rules">Critical Syntax Rules: Case and Braces</h2>
+      <h2 id="syntax-rules">Token Syntax: Case and Braces</h2>
       <div class="callout callout-warning">
         <div class="callout-header">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>

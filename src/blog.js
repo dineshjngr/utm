@@ -90,6 +90,7 @@ function initBlogSearch() {
   const sortSelect = document.getElementById('blog-sort-select');
   const cards = Array.from(document.querySelectorAll('body[data-page="blog-index"] .post-card'));
   const emptyState = document.getElementById('blog-empty-state');
+  const featuredBlock = document.getElementById('blog-featured');
   if (cards.length === 0) return;
 
   const pageSize = 12;
@@ -142,6 +143,9 @@ function initBlogSearch() {
     const matchingCards = getMatchingCards();
     const pageCount = Math.max(1, Math.ceil(matchingCards.length / pageSize));
     currentPage = Math.min(currentPage, pageCount);
+    if (featuredBlock) {
+      featuredBlock.hidden = currentPage !== 1 || Boolean(searchInput?.value.trim()) || sortSelect?.value !== 'newest';
+    }
     const start = (currentPage - 1) * pageSize;
     const pageCards = new Set(matchingCards.slice(start, start + pageSize));
 

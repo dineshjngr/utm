@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script type="module" src="/src/theme.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track AI Assistant Traffic in GA4: Setup & Reporting</title>
+  <meta name="description" content="Track ChatGPT, Gemini and Claude traffic in GA4. Find the AI Assistant channel, audit missing referrals, test UTMs and measure leads without overstating results.">
+  <meta name="keywords" content="track AI assistant traffic in GA4, GA4 AI Assistant channel, ChatGPT referral traffic, Gemini traffic GA4, Claude traffic GA4">
+  <link rel="canonical" href="https://utmcraft.com/track-ai-assistant-traffic-ga4/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utmcraft.com/track-ai-assistant-traffic-ga4/">
+  <meta property="og:title" content="Track AI Assistant Traffic in GA4: Setup & Reporting">
+  <meta property="og:description" content="Track ChatGPT, Gemini and Claude traffic in GA4. Find the AI Assistant channel, audit missing referrals, test UTMs and measure leads without overstating results.">
+  <meta property="og:image" content="https://utmcraft.com/blog/images/ai-assistant-traffic-ga4-chatgpt-gemini-claude.webp">
+  <meta property="og:image:alt" content="Illustration of ChatGPT, Gemini and Claude traffic flowing into a GA4 dashboard with example metrics">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="article:published_time" content="2026-10-01">
+  <meta property="article:modified_time" content="2026-10-01">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utmcraft.com/track-ai-assistant-traffic-ga4/">
+  <meta name="twitter:title" content="Track AI Assistant Traffic in GA4: Setup & Reporting">
+  <meta name="twitter:description" content="Track ChatGPT, Gemini and Claude traffic in GA4. Find the AI Assistant channel, audit missing referrals, test UTMs and measure leads without overstating results.">
+  <meta name="twitter:image" content="https://utmcraft.com/blog/images/ai-assistant-traffic-ga4-chatgpt-gemini-claude.webp">
+  <meta name="twitter:image:alt" content="Illustration of ChatGPT, Gemini and Claude traffic flowing into a GA4 dashboard with example metrics">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="stylesheet" href="/src/blog.css">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://utmcraft.com/track-ai-assistant-traffic-ga4/#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://utmcraft.com/track-ai-assistant-traffic-ga4/"
+      },
+      "headline": "How to Track AI Assistant Traffic in GA4: ChatGPT, Gemini and Claude",
+      "description": "Track ChatGPT, Gemini and Claude traffic in GA4. Find the AI Assistant channel, audit missing referrals, test UTMs and measure leads without overstating results.",
+      "image": "https://utmcraft.com/blog/images/ai-assistant-traffic-ga4-chatgpt-gemini-claude.webp",
+      "datePublished": "2026-10-01",
+      "dateModified": "2026-10-01",
+      "citation": [
+        {
+          "@type": "CreativeWork",
+          "name": "What’s new in Google Analytics: May 13, 2026",
+          "url": "https://support.google.com/analytics/answer/9164320?hl=en#05132026"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Default channel group: AI Assistant definitions and rules",
+          "url": "https://support.google.com/analytics/answer/9756891?hl=en"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Traffic acquisition report",
+          "url": "https://support.google.com/analytics/answer/12923437?hl=en"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "User acquisition vs Traffic acquisition",
+          "url": "https://support.google.com/analytics/answer/14731736?hl=en"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Custom channel groups",
+          "url": "https://support.google.com/analytics/answer/13051316?hl=en"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Collect campaign data with custom URLs",
+          "url": "https://support.google.com/analytics/answer/10917952?hl=en"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Analytics event parameters: page_location and page_referrer",
+          "url": "https://support.google.com/analytics/table/13594742?hl=en"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Monitor events in DebugView",
+          "url": "https://support.google.com/analytics/answer/7201382?hl=en"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Data freshness",
+          "url": "https://support.google.com/analytics/answer/11198161?hl=en"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Search Generative AI performance reports: worldwide rollout update",
+          "url": "https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports"
+        }
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "Dinesh Jeengar",
+        "jobTitle": "Founder, UTMCraft",
+        "url": "https://utmcraft.com/about/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://utmcraft.com/utmcraft-logo-light.png"
+        }
+      },
+      "mainEntityOfPage": "https://utmcraft.com/track-ai-assistant-traffic-ga4/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://utmcraft.com/track-ai-assistant-traffic-ga4/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://utmcraft.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://utmcraft.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "GA4 Attribution & Troubleshooting",
+          "item": "https://utmcraft.com/blog/ga4-attribution/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "How to Track AI Assistant Traffic in GA4: ChatGPT, Gemini and Claude",
+          "item": "https://utmcraft.com/track-ai-assistant-traffic-ga4/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://utmcraft.com/#organization",
+      "name": "UTMCraft",
+      "url": "https://utmcraft.com/",
+      "logo": "https://utmcraft.com/utmcraft-logo-light.png",
+      "email": "contact@utmcraft.com"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="blog-post">
+  <!-- Reading Progress Indicator -->
+  <div id="reading-progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+
+      <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-controls="builder-nav-options">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="builder-nav-options" class="nav-dropdown-menu">
+            <a href="/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-controls="guide-nav-options">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="guide-nav-options" class="nav-dropdown-menu">
+            <a href="/blog/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
+            </a>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>New Link</span>
+        </a>
+      </div>
+      <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+    <script type="module" src="/src/site.js"></script>
+  </header>
+
+  <div class="app-container">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/">Guides</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/ga4-attribution/">GA4 Attribution & Troubleshooting</a></li>
+        <li class="separator">/</li>
+        <li class="current" aria-current="page">How to Track AI Assistant Traffic in GA4: ChatGPT, Gemini and Claude</li>
+      </ol>
+    </nav>
+
+    <!-- Main Article Layout -->
+    <main id="main-content" class="blog-article-layout">
+      <!-- Article Content Column -->
+      <article class="article-main-column">
+        <header class="article-header">
+          <a href="/blog/ga4-attribution/" class="article-category-badge">
+            Diagnostics
+          </a>
+
+          <h1 class="article-title">How to Track AI Assistant Traffic in GA4: ChatGPT, Gemini and Claude</h1>
+          <p class="article-description">Track ChatGPT, Gemini and Claude traffic in GA4. Find the AI Assistant channel, audit missing referrals, test UTMs and measure leads without overstating results.</p>
+          <div class="article-meta-top">
+            <span class="article-date">Updated October 2026</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-reading-time">12 min read</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-author-byline">Written by Dinesh Jeengar</span>
+          </div>
+
+          <!-- Featured Hero Image -->
+          <div class="article-featured-image">
+            <img src="/blog/images/ai-assistant-traffic-ga4-chatgpt-gemini-claude.webp" alt="Illustration of ChatGPT, Gemini and Claude traffic flowing into a GA4 dashboard with example metrics" width="1200" height="630" fetchpriority="high">
+          </div>
+        </header>
+
+        <!-- Mobile Table of Contents Accordion -->
+        <details class="mobile-toc">
+          <summary>Table of Contents</summary>
+          <ol>
+            <li>
+      <a href="#quick-start" class="toc-link">Quick start: find AI traffic</a>
+    </li>
+<li>
+      <a href="#what-ga4-measures" class="toc-link">What the AI Assistant channel measures</a>
+    </li>
+<li>
+      <a href="#ai-assistants-vs-google-search" class="toc-link">AI assistants vs Google AI search</a>
+    </li>
+<li>
+      <a href="#build-a-report" class="toc-link">Build a useful AI traffic report</a>
+    </li>
+<li>
+      <a href="#custom-channel-group" class="toc-link">When a custom channel group helps</a>
+    </li>
+<li>
+      <a href="#utm-tagging" class="toc-link">Use UTMs only where you control links</a>
+    </li>
+<li>
+      <a href="#test-attribution" class="toc-link">Test the click and attribution</a>
+    </li>
+<li>
+      <a href="#troubleshooting" class="toc-link">Troubleshoot missing AI traffic</a>
+    </li>
+<li>
+      <a href="#measure-business-value" class="toc-link">Measure leads and revenue responsibly</a>
+    </li>
+<li>
+      <a href="#faq" class="toc-link">Frequently asked questions</a>
+    </li>
+          </ol>
+        </details>
+
+        <!-- Main Prose Body -->
+        <div class="article-prose">
+
+      <p class="lead-text">To track AI assistant traffic in GA4, start with the <strong>AI Assistant</strong> row in your Traffic acquisition report, then break it down by session source and landing page. This gives you a practical view of visits attributed to assistants such as ChatGPT, Gemini and Claude. Then check whether those visitors sign up, submit a lead or buy. An AI mention does not necessarily lead to a visit.</p>
+      <p><strong>Documentation checked: October 1, 2026.</strong> This guide separates Google’s documented reporting behavior from our suggested audit workflow. Regex patterns, tagging examples and sample results below are illustrative; they are not measurements from a live GA4 property.</p>
+
+      <h2 id="quick-start">Quick start: find AI assistant traffic in GA4</h2>
+      <ol>
+        <li>Open the correct GA4 property and go to <strong>Reports → Acquisition → Traffic acquisition</strong>. If the report is missing from your navigation, an Editor can add it back.</li>
+        <li>Choose <strong>Session default channel group</strong> as the table’s primary dimension.</li>
+        <li>Search the table for <strong>AI Assistant</strong>, or apply an Include filter where Session default channel group exactly matches that value.</li>
+        <li>Add <strong>Session source / medium</strong> as a secondary dimension to see the sources behind the channel.</li>
+        <li>Use a completed reporting period, such as the last full month. Compare sessions, engagement and the key event that represents your business goal.</li>
+      </ol>
+      <p>Google’s <a href="https://support.google.com/analytics/answer/12923437?hl=en" target="_blank" rel="noopener">Traffic acquisition documentation</a> explains the report and filters. A missing row is a reason to investigate source data; it does not prove that nobody discovered you through AI.</p>
+
+      <h2 id="what-ga4-measures">What the AI Assistant channel actually measures</h2>
+      <p>Google announced native AI assistant measurement on <a href="https://support.google.com/analytics/answer/9164320?hl=en#05132026" target="_blank" rel="noopener">May 13, 2026</a>. When a referrer matches a recognized assistant, Google documents an automatically assigned medium of <code>ai-assistant</code>, an AI Assistant channel, and a campaign name of <code>(ai-assistant)</code>.</p>
+      <p>The current <a href="https://support.google.com/analytics/answer/9756891?hl=en" target="_blank" rel="noopener">default channel rules</a> specify an exact medium match of <code>ai-assistant</code>. Native recognition means a custom regex is not the starting requirement for supported traffic.</p>
+      <div class="callout callout-recommended">
+        <div class="callout-header"><strong>What you can measure</strong></div>
+        <ul>
+          <li><strong>Visibility:</strong> did an assistant show or mention your page?</li>
+          <li><strong>Acquisition:</strong> did someone arrive with a source signal GA4 could use?</li>
+          <li><strong>Outcome:</strong> did the visit lead to a signup, qualified lead or purchase?</li>
+        </ul>
+        <p>A traffic report answers the second question and helps analyze the third. It is not a complete inventory of AI citations, prompts or brand mentions.</p>
+      </div>
+      <p>Use <strong>session</strong> dimensions for a visit-based baseline. <a href="https://support.google.com/analytics/answer/14731736?hl=en" target="_blank" rel="noopener">User acquisition and Traffic acquisition have different scopes</a>: a customer originally acquired through email can later arrive from an AI assistant without changing the source that first acquired them.</p>
+
+      <h2 id="ai-assistants-vs-google-search">ChatGPT, Gemini and Claude vs Google AI Overviews and AI Mode</h2>
+      <p>Google explicitly excludes <strong>AI Overviews and AI Mode</strong> from the AI Assistant channel. Their non-ad search visits belong to <strong>Organic Search</strong>. A visit from the standalone Gemini assistant should therefore be evaluated separately from a Google Search visit involving an AI feature.</p>
+      <div class="editorial-table-wrap">
+        <table class="editorial-table">
+          <caption>Use the reporting tool that matches the measurement question</caption>
+          <thead><tr><th scope="col">Journey or question</th><th scope="col">Where to look</th><th scope="col">What to avoid concluding</th></tr></thead>
+          <tbody>
+            <tr><td>Visit attributed to ChatGPT, Gemini or Claude</td><td>GA4 AI Assistant channel, then Session source / medium</td><td>The channel captures every visit influenced by that assistant.</td></tr>
+            <tr><td>Organic visit from Google AI Overviews or AI Mode</td><td>GA4 Organic Search for on-site behavior</td><td>Every google / organic session came from an AI feature.</td></tr>
+            <tr><td>Your pages’ visibility within Google’s generative AI features</td><td>Search Console Generative AI performance reports</td><td>Impressions equal visits, or include ChatGPT and Claude visibility.</td></tr>
+            <tr><td>A visitor copies a URL or returns later without a source signal</td><td>Check collected data and supplementary attribution evidence</td><td>A Direct session proves an AI origin.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>For Google AI visibility, use the dedicated <a href="https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports" target="_blank" rel="noopener">Search Console Generative AI performance reports</a>. Google’s June announcement, updated August 31, says the insights rolled out worldwide and describes impressions, pages, countries, devices and dates. That is different from identifying a GA4 session’s source. Avoid promising a session-level connection between an impression in Search Console and a conversion in Analytics.</p>
+
+      <h2 id="build-a-report">Build a report by source and landing page</h2>
+      <p>Start with two views: <strong>which assistants send attributable visits</strong> and <strong>which entry pages help those visitors complete a goal</strong>. Keep the same date range and key event selection in both.</p>
+      <h3>View 1: source and outcomes</h3>
+      <p>In Traffic acquisition, keep the AI Assistant filter and use Session source / medium. Include Sessions, Engaged sessions, Engagement rate, Key events, and Session key event rate where available. Select the relevant key event, such as <code>generate_lead</code> or <code>purchase</code>, rather than pooling every action into one success measure.</p>
+      <h3>View 2: entry pages</h3>
+      <p>For a flexible breakdown, create a <strong>Free-form exploration</strong>. Import Session default channel group, Session source / medium, and Landing page + query string. Import your session and outcome metrics, add the AI Assistant filter, and place source and landing page in the rows. Keep the channel filter while changing the row dimensions.</p>
+      <p>If query strings create many versions of the same entry page, summarize them by the base page when reviewing content performance. Keep the query-string version for debugging. Landing pages answer where sessions began; a general page-view report also includes pages visited later.</p>
+      <ul>
+        <li><strong>Many visits, few qualified leads:</strong> review the page’s promise, next step and visitor intent.</li>
+        <li><strong>Few visits, useful leads:</strong> inspect the content and lead quality before deciding whether to expand the topic.</li>
+        <li><strong>An abrupt change:</strong> check measurement and channel rules before crediting a content edit.</li>
+      </ul>
+
+      <h2 id="custom-channel-group">When to use a custom AI channel group</h2>
+      <p>Use the native channel as your baseline. Add a custom audit group if you want to compare older source records, inspect known assistant domains outside the native channel, or apply an explicitly documented source list. <a href="https://support.google.com/analytics/answer/13051316?hl=en" target="_blank" rel="noopener">Google supports custom groups retroactively</a> and requires Editor access or higher to create them.</p>
+      <p>This rule matches specific hostnames. Broad expressions containing just <code>ai</code>, <code>google</code> or <code>openai</code> can include unrelated referrals. Even a matching hostname is evidence of a source, not proof that a particular answer cited you.</p>
+      <div class="code-block-wrap"><pre><code>^(chatgpt\.com|chat\.openai\.com|gemini\.google\.com|claude\.ai|perplexity\.ai|copilot\.microsoft\.com)$</code></pre></div>
+      <p><strong>Apply this pattern to Source, or Session source in an exploration.</strong> The combined source / medium field needs a different pattern. It is a conservative starter list, not Google’s complete recognized-assistant list. Review source values in your own data and add verified hosts or subdomains as needed.</p>
+      <ol>
+        <li>Go to <strong>Admin → Data display → Channel groups</strong> and create a group by copying an existing one.</li>
+        <li>Name the audit channel <strong>AI assistants: audit</strong>.</li>
+        <li>Add one condition group where <strong>Default channel group exactly matches AI Assistant</strong>.</li>
+        <li>Add an <strong>OR</strong> condition group where <strong>Source matches regex</strong> using the pattern above and <strong>Medium exactly matches referral</strong>. The medium restriction keeps this fallback focused on referrals.</li>
+        <li>Move the audit channel above Referral and the copied AI Assistant channel. Save and use the <strong>session version of your custom group</strong> in reporting.</li>
+      </ol>
+      <p>You can use this setup to audit your source data. Test both branches before adopting it. Keep the native report alongside it; avoid changing your property’s primary channel group merely to investigate AI sources.</p>
+      <p>A custom group can reclassify available records. It cannot recreate a referrer that was never collected, identify an unknown Direct visit, or make historical native-channel totals comparable automatically. Document the rule and the date you changed it.</p>
+
+      <h2 id="utm-tagging">Use UTMs only where you control the distributed link</h2>
+      <p>You do not control the URL every public assistant chooses to cite. Leave your normal website links clean. For links you distribute through your own assistant experience or a controlled placement, <a href="https://support.google.com/analytics/answer/10917952?hl=en" target="_blank" rel="noopener">manual campaign tagging</a> can identify a specific initiative.</p>
+      <p>For example, suppose you manage a branded assistant and can configure its outbound website link. An illustrative URL is:</p>
+      <div class="code-block-wrap"><pre><code>https://example.com/demo/?utm_source=brand_assistant&amp;utm_medium=ai-assistant&amp;utm_campaign=product_help&amp;utm_content=demo_link</code></pre></div>
+      <ul>
+        <li><code>utm_source=brand_assistant</code> identifies the experience you actually control.</li>
+        <li><code>utm_medium=ai-assistant</code> uses the documented AI Assistant medium.</li>
+        <li><code>utm_campaign=product_help</code> distinguishes the initiative.</li>
+        <li><code>utm_content=demo_link</code> distinguishes the placement within that initiative.</li>
+      </ul>
+      <p>Build controlled URLs with the <a href="/campaign-url-builder/">campaign URL builder</a> and follow a stable <a href="/utm-naming-conventions-guide/">UTM naming convention</a>. Validate the processed result: manually tagged campaigns and other classification rules can affect what appears in reports.</p>
+      <p><strong>Tag the actual distribution channel.</strong> A newsletter about ChatGPT still uses your email source and medium. Do not label it AI traffic just because the topic is AI. Likewise, putting an AI UTM on every internal link would manufacture source labels rather than measure discovery. Do not assume every assistant adds UTMs, and do not put personal data or private conversation text into a tracking URL.</p>
+
+      <h2 id="test-attribution">Test the real click path before trusting the report</h2>
+      <p>Use this repeatable QA procedure for each assistant and device experience that matters to you. A tagged test validates your controlled URL; an untagged click from a real assistant tests whether a referrer survives that particular journey. These are different tests.</p>
+      <ol>
+        <li><strong>Prepare a clean visit.</strong> Use a fresh browser profile with tracking allowed under your normal consent settings. Record the assistant, browser, device, test time and destination. An existing session can complicate interpretation.</li>
+        <li><strong>Click the actual link.</strong> For a referral test, follow a real link from the assistant. Pasting a destination into the address bar does not reproduce the referral journey.</li>
+        <li><strong>Check the final URL.</strong> Record any parameters before and after redirects. A shortcut, consent flow or redirect may change the destination. Use our <a href="/redirects-removing-utms/">redirect troubleshooting guide</a> if tags disappear.</li>
+        <li><strong>Check collection.</strong> In browser developer tools or your tag-debugging workflow, inspect the initial analytics event. Check <code>page_location</code> for the landing URL and <code>page_referrer</code> for the referring URL, where present. Google documents these in its <a href="https://support.google.com/analytics/table/13594742?hl=en" target="_blank" rel="noopener">event parameter reference</a>.</li>
+        <li><strong>Confirm the intended action.</strong> Enable debug mode for a controlled test and use <a href="https://support.google.com/analytics/answer/7201382?hl=en" target="_blank" rel="noopener">DebugView</a> to check page and goal events. A missing debug event can reflect debug-mode or consent configuration, so check collection as well.</li>
+        <li><strong>Recheck processed attribution.</strong> Compare the recorded visit with session reporting once processing has completed. Google says <a href="https://support.google.com/analytics/answer/11198161?hl=en" target="_blank" rel="noopener">processing can take 24–48 hours</a> and report values can change during that period.</li>
+      </ol>
+      <p>Use DebugView to inspect events, then check channel attribution in processed reports. Our <a href="/how-to-test-utms/">UTM testing guide</a> covers the broader QA workflow. Avoid logging sensitive referring URLs into a shared test sheet.</p>
+
+      <h2 id="troubleshooting">Why AI traffic is missing, Direct or Referral</h2>
+      <div class="editorial-table-wrap">
+        <table class="editorial-table">
+          <caption>Check the source signal before changing classification rules</caption>
+          <thead><tr><th scope="col">Symptom</th><th scope="col">What to check</th><th scope="col">Useful response</th></tr></thead>
+          <tbody>
+            <tr><td>No AI Assistant row</td><td>Date range, session dimension, assistant source rows and recent processing</td><td>Audit Session source / medium before assuming zero AI discovery.</td></tr>
+            <tr><td>A known assistant source appears under Referral</td><td>The exact source, medium, custom-group rules and collected referrer</td><td>Preserve the native view; compare a narrowly defined audit group.</td></tr>
+            <tr><td>A test appears as Direct</td><td>Missing referrer, lost UTMs, existing session and the real click path</td><td>Repeat a clean test. A regex cannot identify an empty source signal.</td></tr>
+            <tr><td>Tagged traffic appears as Unassigned</td><td>Exact medium value, spelling, casing and competing rules</td><td>Compare against documented definitions; inspect the final URL.</td></tr>
+            <tr><td>No events from the test</td><td>Correct property and stream, tag loading, consent, blocking and active filters</td><td>Resolve collection before diagnosing the channel.</td></tr>
+            <tr><td>A custom report finds more AI sessions</td><td>Added hosts, overlapping rules, historical range and non-referral matches</td><td>Investigate the difference; do not treat the larger number as inherently more accurate.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Use the table to decide what to test next. Test desktop and mobile separately rather than assuming identical behavior. For wider issues, use the <a href="/ga4-direct-traffic-troubleshooting/">Direct traffic diagnosis guide</a> or the <a href="/ga4-unassigned-traffic/">Unassigned traffic checklist</a>.</p>
+      <p>A rise in Direct traffic after an AI mention can support a hypothesis, but it cannot identify individual sessions as AI-sourced. Keep self-reported discovery, such as an optional “How did you hear about us?” answer, alongside analytics attribution rather than overwriting it.</p>
+
+      <h2 id="measure-business-value">Measure leads and revenue without overstating AI’s impact</h2>
+      <p>Use <strong>Session key event rate</strong> for the percentage of sessions that contained the selected key event. Google defines the metric in the <a href="https://support.google.com/analytics/answer/12923437?hl=en" target="_blank" rel="noopener">Traffic acquisition report reference</a>. Repeated events matter: dividing the number of event occurrences by sessions is not always the same calculation.</p>
+      <p><strong>Illustrative example:</strong> 200 AI-attributed sessions produce 12 lead-event occurrences, but only 8 distinct sessions contain that event. The session key event rate is <strong>8 ÷ 200 = 4%</strong>, not 6%. If only 3 leads qualify in your CRM, report those 3 qualified leads separately. Eight sessions with a lead event do not necessarily represent eight unique qualified people.</p>
+      <p>Review source and landing page alongside the following measures:</p>
+      <ul>
+        <li><strong>Sessions and engaged sessions:</strong> acquisition volume and on-site engagement.</li>
+        <li><strong>Selected key event rate:</strong> how often a visit includes the intended action.</li>
+        <li><strong>Qualified leads or completed sales:</strong> whether the outcome has business value.</li>
+        <li><strong>Revenue:</strong> where ecommerce measurement is valid, with the attribution scope stated.</li>
+        <li><strong>Sample size:</strong> show the counts behind percentages before drawing comparisons.</li>
+      </ul>
+      <p>For lead generation, preserve first-touch and latest-touch campaign evidence where appropriate and use our <a href="/storing-utm-parameters-in-crm/">CRM UTM capture guide</a>. Keep self-reported AI discovery in a separate field. Someone can first hear about you in Claude, search Google later, and submit a form during an organic-search visit; those records describe different parts of the journey.</p>
+      <p>For a monthly review, record the date range, native channel totals, custom-rule version, top sources, entry pages, selected goal and qualified outcomes. Compare like periods and note measurement changes. Treat a shift around the May rollout or a custom-rule change as a possible reporting discontinuity before declaring traffic growth.</p>
+
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="faq-item"><h3>Do I need a custom regex to track ChatGPT traffic?</h3><p>Start with the native AI Assistant channel. Use a custom audit rule only to investigate additional recorded sources or historical data. Neither method recovers a source signal that was never collected.</p></div>
+      <div class="faq-item"><h3>Can GA4 show the exact prompt that sent a visitor?</h3><p>The AI Assistant channel does not provide a prompt report. A source or referring URL should not be interpreted as a transcript of someone’s conversation.</p></div>
+      <div class="faq-item"><h3>Should I tag every website link with utm_source=chatgpt?</h3><p>No. Tag only controlled distributed links whose source you can truthfully identify. Adding an AI label to normal website or newsletter links would make the report misleading.</p></div>
+      <div class="faq-item"><h3>Does the channel measure AI crawler activity?</h3><p>Do not use the channel as an AI crawler inventory. It classifies analytics traffic using source signals. Inspect server or CDN logs for requests from crawlers, and keep that analysis separate from visitor acquisition.</p></div>
+      <div class="faq-item"><h3>Can I count Direct sessions as hidden AI traffic?</h3><p>Not reliably from the Direct label alone. Use click-path tests and supplementary discovery evidence to investigate. Avoid applying a guessed percentage to Direct traffic and presenting it as measured AI sessions.</p></div>
+      <div class="faq-item"><h3>Can I compare the native channel with last year?</h3><p>First inspect the available history and definitions. Do not assume native recognition is backfilled consistently. A documented custom group can help review historical source records, but it cannot recover missing attribution evidence.</p></div>
+
+
+
+    <section class="article-references" id="article-sources">
+      <h3>References</h3>
+      <ul class="references-list">
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/9164320?hl=en#05132026" target="_blank" rel="noopener">What’s new in Google Analytics: May 13, 2026</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/9756891?hl=en" target="_blank" rel="noopener">Default channel group: AI Assistant definitions and rules</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/12923437?hl=en" target="_blank" rel="noopener">Traffic acquisition report</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/14731736?hl=en" target="_blank" rel="noopener">User acquisition vs Traffic acquisition</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/13051316?hl=en" target="_blank" rel="noopener">Custom channel groups</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/10917952?hl=en" target="_blank" rel="noopener">Collect campaign data with custom URLs</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/table/13594742?hl=en" target="_blank" rel="noopener">Analytics event parameters: page_location and page_referrer</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/7201382?hl=en" target="_blank" rel="noopener">Monitor events in DebugView</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/11198161?hl=en" target="_blank" rel="noopener">Data freshness</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports" target="_blank" rel="noopener">Search Generative AI performance reports: worldwide rollout update</a>
+            <span class="ref-publisher">(Google Search Central)</span>
+          </li>
+
+      </ul>
+    </section>
+
+
+          <!-- Author Box -->
+          <div class="article-author-card">
+            <div class="author-avatar" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="author-info">
+              <h4>Dinesh Jeengar</h4>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
+              <nav class="author-social-links" aria-label="Author links">
+    <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
+    </a>
+
+    <a class="author-social-link" href="https://www.linkedin.com/in/dinesh-jeengar/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg><span>LinkedIn</span>
+    </a>
+
+    <a class="author-social-link" href="https://www.instagram.com/dinesshjngr/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span>
+    </a>
+  </nav>
+            </div>
+          </div>
+        </div>
+
+<aside class="article-tool-cta" aria-label="Related tool">
+      <div class="article-tool-cta-inner">
+        <div class="article-tool-cta-content">
+          <p class="article-tool-cta-label">Related tool</p>
+          <h3 class="article-tool-cta-title">Check the Campaign Links You Control</h3>
+          <p class="article-tool-cta-desc">Inspect UTM values and URL syntax before distributing a tagged link. Verify the real click path and GA4 attribution separately.</p>
+        </div>
+        <div class="article-tool-cta-action">
+          <a href="/utm-checker/" class="article-tool-cta-btn">
+            <span>Open the UTM Checker</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+        <!-- Related Guides Grid -->
+        <section class="related-articles-section">
+          <h3>Related Articles &amp; Guides</h3>
+          <div class="related-articles-grid">
+
+    <a href="/ga4-direct-traffic-troubleshooting/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/ga4-direct-traffic-troubleshooting.webp" alt="Flowchart showing how paid campaign traffic degrades into Direct traffic through redirects and missing UTMs" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Diagnostics</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h4 class="post-card-title">Why Campaign Traffic Shows as Direct in GA4 (and How to Fix It)</h4>
+        <p class="post-card-excerpt">Why might paid traffic show as Direct in GA4? Review possible causes, including missing campaign information and redirects, and steps for investigating attribution.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published March 2, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/how-to-test-utms/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/how-to-test-utms.webp" alt="Walkthrough illustration of testing a campaign link in GA4 DebugView and inspecting incoming event parameters" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Diagnostics</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h4 class="post-card-title">How to Test and QA UTM Parameters in GA4 DebugView and Realtime</h4>
+        <p class="post-card-excerpt">Learn how to test and verify UTM tracking in Google Analytics 4 before spending ad budget. Step-by-step guide using DebugView, Realtime, and DevTools.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published March 18, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/storing-utm-parameters-in-crm/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/storing-utm-parameters-in-crm.webp" alt="Technical diagram showing incoming UTM query parameters persisting in browser cookies and auto-populating CRM form fields" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Operations</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h4 class="post-card-title">How to Store UTM Parameters in CRM Hidden Fields (Salesforce, HubSpot & Forms)</h4>
+        <p class="post-card-excerpt">Complete guide on capturing UTM parameters in hidden form fields and syncing attribution into Salesforce, HubSpot, and Zoho CRM without losing data.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published March 11, 2026</span>
+        </div>
+      </div>
+    </a>
+          </div>
+        </section>
+      </article>
+
+      <!-- Desktop Sticky Table of Contents Sidebar -->
+      <aside class="blog-sidebar">
+        <div class="toc-card">
+          <div class="toc-heading">Table of Contents</div>
+          <ul class="toc-list">
+            <li>
+      <a href="#quick-start" class="toc-link">Quick start: find AI traffic</a>
+    </li>
+<li>
+      <a href="#what-ga4-measures" class="toc-link">What the AI Assistant channel measures</a>
+    </li>
+<li>
+      <a href="#ai-assistants-vs-google-search" class="toc-link">AI assistants vs Google AI search</a>
+    </li>
+<li>
+      <a href="#build-a-report" class="toc-link">Build a useful AI traffic report</a>
+    </li>
+<li>
+      <a href="#custom-channel-group" class="toc-link">When a custom channel group helps</a>
+    </li>
+<li>
+      <a href="#utm-tagging" class="toc-link">Use UTMs only where you control links</a>
+    </li>
+<li>
+      <a href="#test-attribution" class="toc-link">Test the click and attribution</a>
+    </li>
+<li>
+      <a href="#troubleshooting" class="toc-link">Troubleshoot missing AI traffic</a>
+    </li>
+<li>
+      <a href="#measure-business-value" class="toc-link">Measure leads and revenue responsibly</a>
+    </li>
+<li>
+      <a href="#faq" class="toc-link">Frequently asked questions</a>
+    </li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+              <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+              <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+            </a>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Core Builders</span>
+            <ul class="footer-links">
+              <li><a href="/">UTM Tracking Toolkit</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+              <li><a href="/#campaign-history" data-switch-tab="tab-history">Campaign History</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Platform Builders</span>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
+            <ul class="footer-links">
+              <li><a href="/blog/">All Knowledge Guides</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Company &amp; Trust</span>
+            <ul class="footer-links">
+              <li><a href="/about/">About Us</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/version-history.html">Version History</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by Dinesh Jeengar</div>
+          <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    <button class="back-to-top" type="button" aria-label="Back to top" aria-hidden="true" tabindex="-1">
+      <span class="back-to-top__arrow" aria-hidden="true">↑</span>
+      <span class="back-to-top__text" aria-hidden="true">Back to Top</span>
+    </button>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/blog.js"></script>
+</body>
+</html>

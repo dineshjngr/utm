@@ -5,7 +5,7 @@
   <script type="module" src="/src/theme.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>6 LinkedIn UTM Mistakes Breaking Campaign Reports | UTMCraft</title>
-  <meta name="description" content="Stop LinkedIn traffic from landing in Referral or Organic Social. Fix the 6 critical UTM errors in Sponsored Content, Message Ads, and dynamic macros.">
+  <meta name="description" content="Check six LinkedIn UTM mistakes involving dynamic tokens, Sponsored Content and Message Ads. Review the final URL and the data GA4 receives.">
   <meta name="keywords" content="linkedin utm mistakes, linkedin ads utm tracking, linkedin dynamic parameters, lnkd.in referral in ga4, b2b attribution utm">
   <link rel="canonical" href="https://utmcraft.com/linkedin-utm-mistakes/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -14,16 +14,16 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://utmcraft.com/linkedin-utm-mistakes/">
   <meta property="og:title" content="6 LinkedIn UTM Mistakes Breaking Campaign Reports | UTMCraft">
-  <meta property="og:description" content="Stop LinkedIn traffic from landing in Referral or Organic Social. Fix the 6 critical UTM errors in Sponsored Content, Message Ads, and dynamic macros.">
+  <meta property="og:description" content="Check six LinkedIn UTM mistakes involving dynamic tokens, Sponsored Content and Message Ads. Review the final URL and the data GA4 receives.">
   <meta property="og:image" content="https://utmcraft.com/blog/images/linkedin-utm-mistakes.webp">
   <meta property="article:published_time" content="2026-09-24">
-  <meta property="article:modified_time" content="2026-09-24">
+  <meta property="article:modified_time" content="2026-10-01">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://utmcraft.com/linkedin-utm-mistakes/">
   <meta name="twitter:title" content="6 LinkedIn UTM Mistakes Breaking Campaign Reports | UTMCraft">
-  <meta name="twitter:description" content="Stop LinkedIn traffic from landing in Referral or Organic Social. Fix the 6 critical UTM errors in Sponsored Content, Message Ads, and dynamic macros.">
+  <meta name="twitter:description" content="Check six LinkedIn UTM mistakes involving dynamic tokens, Sponsored Content and Message Ads. Review the final URL and the data GA4 receives.">
   <meta name="twitter:image" content="https://utmcraft.com/blog/images/linkedin-utm-mistakes.webp">
 
   <!-- Fonts & Styles -->
@@ -47,10 +47,10 @@
         "@id": "https://utmcraft.com/linkedin-utm-mistakes/"
       },
       "headline": "6 LinkedIn UTM Mistakes That Make Campaign Reporting Messy",
-      "description": "Stop LinkedIn traffic from landing in Referral or Organic Social. Fix the 6 critical UTM errors in Sponsored Content, Message Ads, and dynamic macros.",
+      "description": "Check six LinkedIn UTM mistakes involving dynamic tokens, Sponsored Content and Message Ads. Review the final URL and the data GA4 receives.",
       "image": "https://utmcraft.com/blog/images/linkedin-utm-mistakes.webp",
       "datePublished": "2026-09-24",
-      "dateModified": "2026-09-24",
+      "dateModified": "2026-10-01",
       "citation": [
         {
           "@type": "CreativeWork",
@@ -229,9 +229,9 @@
           </a>
 
           <h1 class="article-title">6 LinkedIn UTM Mistakes That Make Campaign Reporting Messy</h1>
-          <p class="article-description">Stop LinkedIn traffic from landing in Referral or Organic Social. Fix the 6 critical UTM errors in Sponsored Content, Message Ads, and dynamic macros.</p>
+          <p class="article-description">Check six LinkedIn UTM mistakes involving dynamic tokens, Sponsored Content and Message Ads. Review the final URL and the data GA4 receives.</p>
           <div class="article-meta-top">
-            <span class="article-date">Updated September 2026</span>
+            <span class="article-date">Updated October 2026</span>
             <span class="article-meta-bullet">•</span>
             <span class="article-reading-time">9 min read</span>
             <span class="article-meta-bullet">•</span>
@@ -252,7 +252,7 @@
       <a href="#the-linkedin-attribution-challenge" class="toc-link">Why LinkedIn Ads Often Report as Referral in GA4</a>
     </li>
 <li>
-      <a href="#6-linkedin-utm-mistakes" class="toc-link">The 6 Critical LinkedIn UTM Mistakes</a>
+      <a href="#6-linkedin-utm-mistakes" class="toc-link">Six LinkedIn UTM Mistakes</a>
     </li>
 <li>
       <a href="#mistake-1-macro-casing" class="toc-link">1. Lowercase Dynamic Macro Tokens (Must Be Uppercase)</a>
@@ -283,13 +283,13 @@
 
         <!-- Main Prose Body -->
         <div class="article-prose">
-          
-      <p class="lead-text">LinkedIn campaign tags help teams compare paid campaign performance in GA4. Missing or malformed parameters can make traffic-source reporting harder to interpret; inspect the landing URL and the values collected in GA4 before diagnosing a referral or Organic Social result.</p>
+
+      <p class="lead-text">A missing tag or misspelled LinkedIn token can leave campaign reports without the detail you expected. Check the final landing URL and the source values GA4 collected. These six mistakes cover common tagging and reporting problems.</p>
 
       <h2 id="the-linkedin-attribution-challenge">Why LinkedIn Ads Often Report as Referral in GA4</h2>
       <p>LinkedIn routes ad clicks through its link wrapper (<code>lnkd.in</code>). If your destination URL lacks explicit UTM parameters, GA4 reads the HTTP referrer header and classifies the visit as generic organic referral traffic.</p>
 
-      <h2 id="6-linkedin-utm-mistakes">The 6 Critical LinkedIn UTM Mistakes</h2>
+      <h2 id="6-linkedin-utm-mistakes">Six LinkedIn UTM Mistakes</h2>
 
       <h3 id="mistake-1-macro-casing">1. Lowercase Dynamic Macro Tokens (Must Be Uppercase)</h3>
       <p>Unlike Meta, LinkedIn's dynamic URL macro parameters require <strong>strict uppercase</strong> inside double curly braces. Writing <code>{{campaign_name}}</code> fails; you must write <code>{{CAMPAIGN_NAME}}</code>.</p>
@@ -321,22 +321,22 @@
         <h3>What is the correct medium for LinkedIn Ads in GA4?</h3>
         <p>Use paid_social or cpc. Both match GA4 Default Channel Grouping rules for Paid Social.</p>
       </div>
-    
 
-          
+
+
     <section class="article-references" id="article-sources">
       <h3>References</h3>
       <ul class="references-list">
-        
+
           <li>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             <a href="https://www.linkedin.com/help/lms/answer/a5968064" target="_blank" rel="noopener">URL tracking parameters in Campaign Manager</a>
             <span class="ref-publisher">(LinkedIn Help)</span>
           </li>
-        
+
       </ul>
     </section>
-  
+
 
           <!-- Author Box -->
           <div class="article-author-card">
@@ -351,11 +351,11 @@
     <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
     </a>
-  
+
     <a class="author-social-link" href="https://www.linkedin.com/in/dinesh-jeengar/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on LinkedIn">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg><span>LinkedIn</span>
     </a>
-  
+
     <a class="author-social-link" href="https://www.instagram.com/dinesshjngr/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Instagram">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span>
     </a>
@@ -384,7 +384,7 @@
         <section class="related-articles-section">
           <h3>Related Articles &amp; Guides</h3>
           <div class="related-articles-grid">
-            
+
     <a href="/linkedin-ads-utm-guide/" class="post-card related-post-card">
       <div class="post-card-thumb-wrap">
         <img src="/blog/images/linkedin-ads-utm-guide.webp" alt="Architectural breakdown of LinkedIn Campaign Manager dynamic hierarchy mapping into GA4 and B2B CRMs" class="post-card-thumb" width="1200" height="630" loading="lazy">
@@ -449,7 +449,7 @@
       <a href="#the-linkedin-attribution-challenge" class="toc-link">Why LinkedIn Ads Often Report as Referral in GA4</a>
     </li>
 <li>
-      <a href="#6-linkedin-utm-mistakes" class="toc-link">The 6 Critical LinkedIn UTM Mistakes</a>
+      <a href="#6-linkedin-utm-mistakes" class="toc-link">Six LinkedIn UTM Mistakes</a>
     </li>
 <li>
       <a href="#mistake-1-macro-casing" class="toc-link">1. Lowercase Dynamic Macro Tokens (Must Be Uppercase)</a>

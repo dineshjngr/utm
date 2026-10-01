@@ -12,7 +12,7 @@ export const searchNewsPosts = [
       url: 'https://utmcraft.com/about/'
     },
     datePublished: '2026-09-28',
-    dateModified: '2026-09-28',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 28, 2026',
     readingTime: '4 min read',
     primaryKeyword: 'September 2026 Google spam update',
@@ -36,7 +36,7 @@ export const searchNewsPosts = [
       { title: 'Google Search spam updates and your site', url: 'https://developers.google.com/search/docs/appearance/spam-updates', publisher: 'Google Search Central' }
     ],
     contentHtml: `
-      <p class="lead-text">Google began rolling out its September 2026 spam update on September 24. The company says the update applies globally and to all languages, and that rollout may take up to two weeks. Google has not announced a specific target or described the system changes behind this update.</p>
+      <p class="lead-text">Google began its September 2026 spam update on September 24. It applies globally and across all languages, and Google says the rollout may take up to two weeks. The announcement does not name a specific target or explain the system changes.</p>
 
       <h2 id="what-google-confirmed">What Google Confirmed</h2>
       <p>The <a href="https://status.search.google.com/incidents/XhUDXP7A67iHCD2kmbVu" target="_blank" rel="noopener">Google Search Status Dashboard</a> records the rollout start as September 24, 2026 at 09:15 PDT. It classifies the incident as affecting ranking and says the update applies globally, across all languages. Google’s stated completion window is up to two weeks.</p>
@@ -83,7 +83,7 @@ export const searchNewsPosts = [
       ]
     },
     datePublished: '2026-09-28',
-    dateModified: '2026-09-28',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 28, 2026',
     readingTime: '7 min read',
     primaryKeyword: 'Google DSA to AI Max migration',
@@ -116,7 +116,7 @@ export const searchNewsPosts = [
       { title: 'About Dynamic Search Ads', url: 'https://support.google.com/google-ads/answer/2471185', publisher: 'Google Ads Help' }
     ],
     contentHtml: `
-      <p class="lead-text">Google has moved the automatic migration of Dynamic Search Ads (DSA) to AI Max for Search campaigns to <strong>February 2027</strong>, giving advertisers more time to review and test their setup. The change matters if your business relies on DSA page targeting, generated headlines, or URL-level controls: the transition changes campaign structure, so you should confirm that the pages, ads, conversion signals, and tracking you depend on still behave as expected.</p>
+      <p class="lead-text">Google has moved the automatic upgrade of Dynamic Search Ads (DSA) to AI Max to <strong>February 2027</strong>. Use the extra time to review page targeting, ads and tracking, then test a campaign before a wider change. Here is the revised timeline and what to check.</p>
 
       <div class="callout callout-recommended">
         <div class="callout-header"><strong>Quick timeline</strong></div>

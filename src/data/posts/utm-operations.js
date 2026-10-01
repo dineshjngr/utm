@@ -12,7 +12,7 @@ export const utmOperationsPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-17',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '13 min read',
     primaryKeyword: 'utm operations workflow',
@@ -43,12 +43,12 @@ export const utmOperationsPosts = [
       { title: 'Web Storage API Specification', url: 'https://html.spec.whatwg.org/multipage/webstorage.html', publisher: 'WHATWG' }
     ],
     contentHtml: `
-      <p class="lead-text">True marketing operations excellence is not measured by how well a marketer copies a UTM link. It is measured by how seamlessly attribution data flows from the initial ad click, through client-side browser storage, into hidden lead form fields, and ultimately into CRM opportunities and closed-won pipeline. This guide details the complete operational tracking stack.</p>
+      <p class="lead-text">A tracking workflow needs to cover more than link creation. Decide how your team names campaigns, checks URLs, stores campaign data and passes it into forms and the CRM. This guide shows how those steps fit together.</p>
 
       <h2 id="the-lifecycle-of-attribution-data">The End-to-End Lifecycle of Attribution Data</h2>
       <p>A resilient tracking pipeline moves through four sequential stages:</p>
       <ol>
-        <li><strong>Link Generation:</strong> Deterministic creation of tagged URLs using pre-set taxonomy rules.</li>
+        <li><strong>Link Creation:</strong> Build tagged URLs from the agreed naming rules.</li>
         <li><strong>Client-Side Persistence:</strong> Capturing incoming query parameters on the landing page and storing them in client cookies or <code>localStorage</code>.</li>
         <li><strong>Form Injection:</strong> Dynamically populating hidden form inputs when the visitor converts on a demo or signup form.</li>
         <li><strong>CRM Ingestion &amp; Revenue Attribution:</strong> Storing first-touch and last-touch parameters on Contact, Lead, and Deal records in Salesforce, HubSpot, or custom databases.</li>
@@ -102,7 +102,7 @@ export const utmOperationsPosts = [
       </ul>
 
       <h2 id="hidden-form-fields-implementation">Hidden Form Fields Implementation (Pure JavaScript)</h2>
-      <p>Here is an enterprise-grade, lightweight vanilla JavaScript snippet that reads incoming UTM parameters from the URL, persists them in cookies, and auto-populates hidden form inputs across your website:</p>
+      <p>This JavaScript example reads UTM values from the URL, saves them in cookies and fills hidden form fields. Adapt the field names and storage settings to your forms, and test it before using it on a live site:</p>
 
       <div class="code-block-wrap">
         <pre><code class="language-javascript">// Capture and persist UTM parameters across session
@@ -161,7 +161,7 @@ export const utmOperationsPosts = [
         </div>
         <div class="faq-item">
           <h3>Should a CRM store first-touch or last-touch UTM parameters?</h3>
-          <p>Enterprise RevOps best practice is to capture <strong>both</strong>. Store First-Touch UTMs in immutable fields (which never overwrite after initial lead creation) to measure top-of-funnel acquisition channels. Simultaneously, update Last-Touch UTM fields on every form submission to measure the asset or promotion that prompted the conversion.</p>
+          <p>Capture <strong>both</strong> if your reporting needs them. Keep the first-touch fields unchanged after capture, and define when to update last-touch fields. Test how the forms handle a later visit without campaign tags.</p>
         </div>
         <div class="faq-item">
           <h3>Why use first-party cookies or localStorage instead of sessionStorage for UTMs?</h3>
@@ -178,7 +178,7 @@ export const utmOperationsPosts = [
     slug: 'bulk-utm-workflow',
     title: 'Bulk UTM Creation Workflow: Generating Hundreds of Tagged Links Without Errors',
     seoTitle: 'Bulk UTM Creation Workflow: High-Volume Link Building | UTMCraft',
-    description: 'Learn how to generate hundreds of UTM tracking links in minutes without errors. Standardize bulk campaign matrix creation across multiple channels.',
+    description: 'Create UTM links for several channels in one batch. Use shared campaign names, review the generated URLs and export them for your team.',
     category: 'utm-operations',
     isPillar: false,
     author: {
@@ -187,7 +187,7 @@ export const utmOperationsPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-06',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '8 min read',
     primaryKeyword: 'bulk utm creation workflow',
@@ -214,13 +214,13 @@ export const utmOperationsPosts = [
       { title: 'GA4 URL builders: Collect campaign data with custom URLs', url: 'https://support.google.com/analytics/answer/10917952', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text">Launching a major quarterly promotion or seasonal sale across Google, Meta, LinkedIn, Email, and Influencer partners requires generating dozens-sometimes hundreds-of tagged URLs. Generating these links manually one-by-one invites typos and inconsistent casing. Here is how to execute a professional bulk UTM workflow.</p>
+      <p class="lead-text">A campaign running across several channels can need dozens of tracking links. Build them in a batch using shared source, medium and campaign values, then check the output before handing it to media buyers. This guide covers that workflow.</p>
 
       <h2 id="the-problem-with-spreadsheets">Why Campaign Spreadsheets Create Tracking Debt</h2>
-      <p>Most marketing organizations rely on a shared Google Sheet. Over time, team members accidentally overwrite formulas, introduce trailing spaces, paste uppercase characters, or create duplicate parameters. These spreadsheet errors slip silently into live ad campaigns, breaking GA4 attribution.</p>
+      <p>A shared spreadsheet can work well, but overwritten formulas, trailing spaces and duplicate parameters are easy to miss. Review the generated links before they go into ads, especially when several people edit the sheet.</p>
 
       <h2 id="the-matrix-approach">The Matrix Approach: Landing Pages x Channels x Offers</h2>
-      <p>Instead of manual one-by-one creation, adopt a multi-dimensional matrix approach: define your <strong>Destination URLs</strong> (e.g. 5 product pages) and your <strong>Target Channels</strong> (Google CPC, Meta Ads, LinkedIn Ads, Email Newsletter). Multiplying 5 URLs across 4 channels instantly yields 20 deterministic tracking links sharing identical campaign naming conventions.</p>
+      <p>List your <strong>destination URLs</strong> and <strong>channels</strong> first. Five product pages across four channels produce 20 links. Generate the combinations with shared campaign values, then check the source and medium in each row.</p>
 
       <h2 id="step-by-step-bulk-generation">Step-by-Step Bulk Link Generation in UTMCraft</h2>
       <ol>
@@ -239,7 +239,7 @@ export const utmOperationsPosts = [
     slug: 'first-touch-vs-last-touch-utm',
     title: 'First-Touch vs Last-Touch UTM Attribution: Capture Models, Cookies & CRM Sync',
     seoTitle: 'First-Touch vs Last-Touch UTM Attribution | UTMCraft',
-    description: 'Learn the architectural differences between first-touch and last-touch UTM attribution. How to capture both models in cookies, localStorage, and your CRM.',
+    description: 'Compare first-touch and last-touch UTM tracking. Define when to save and update campaign values in browser storage, forms and your CRM.',
     category: 'utm-operations',
     isPillar: false,
     author: {
@@ -248,7 +248,7 @@ export const utmOperationsPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-09',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '9 min read',
     primaryKeyword: 'first-touch vs last-touch utm',
@@ -276,7 +276,7 @@ export const utmOperationsPosts = [
       { title: 'Attribution Models in GA4', url: 'https://support.google.com/analytics/answer/10596866', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text">Marketing teams frequently argue over whether first-touch or last-touch attribution is "correct." In real-world customer journeys with sales cycles lasting days or months, both models are essential. First-touch illuminates which top-of-funnel campaigns fill the pipeline; last-touch illuminates which offers trigger final conversion.</p>
+      <p class="lead-text">First-touch tracking records how you first acquired a prospect. Last-touch tracking records a later interaction before a conversion. Keeping both can help you understand a longer sales journey, provided you define when each field is saved and updated.</p>
 
       <h2 id="the-attribution-model-divide">The Multi-Touch Attribution Divide</h2>
       <p>Consider a typical B2B buyer journey:</p>
@@ -335,7 +335,7 @@ function storeTouchpoints(utmParams) {
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-03-11',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '9 min read',
     primaryKeyword: 'storing utm parameters in crm',
@@ -363,7 +363,7 @@ function storeTouchpoints(utmParams) {
       { title: 'Set property values with hidden form fields', url: 'https://knowledge.hubspot.com/forms/pass-contact-property-values-with-hidden-form-fields', publisher: 'HubSpot Knowledge Base' }
     ],
     contentHtml: `
-      <p class="lead-text">If your web forms only collect Name, Email, and Company, your sales team is operating in the dark. By adding hidden input fields and a simple cookie persistence script, you can automatically capture <code>utm_source</code>, <code>utm_campaign</code>, and <code>gclid</code> on every lead submission without adding friction to the user experience.</p>
+      <p class="lead-text">Add hidden fields to your lead forms if you need campaign information alongside contact details in your CRM. You will also need a way to keep those values as visitors move between pages. The examples below show how to capture, store and submit them.</p>
 
       <h2 id="why-web-forms-need-hidden-fields">Why Web Forms Need Hidden Attribution Fields</h2>
       <p>Google Analytics 4 tracks aggregate session counts, but it cannot legally tell your sales reps which specific marketing touchpoint convinced a specific company to request a demo. Capturing UTM parameters directly into your CRM Contact record connects individual ad clicks to pipeline value, deal size, and closed-won revenue.</p>

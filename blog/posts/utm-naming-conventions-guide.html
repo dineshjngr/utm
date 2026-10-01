@@ -5,7 +5,7 @@
   <script type="module" src="/src/theme.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UTM Naming Conventions: Frameworks, Formats & Rules | UTMCraft</title>
-  <meta name="description" content="Master UTM naming conventions. Discover field-tested campaign naming formulas, delimiter rules, case-sensitivity guidelines, and downloadable taxonomy SOPs.">
+  <meta name="description" content="Set consistent UTM names for sources, mediums and campaigns. Use practical naming formulas, casing rules and separators to keep GA4 reports readable.">
   <meta name="keywords" content="utm naming conventions, utm naming standards, utm parameters formula, campaign naming framework, utm naming best practices">
   <link rel="canonical" href="https://utmcraft.com/utm-naming-conventions-guide/">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -14,16 +14,16 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://utmcraft.com/utm-naming-conventions-guide/">
   <meta property="og:title" content="UTM Naming Conventions: Frameworks, Formats & Rules | UTMCraft">
-  <meta property="og:description" content="Master UTM naming conventions. Discover field-tested campaign naming formulas, delimiter rules, case-sensitivity guidelines, and downloadable taxonomy SOPs.">
+  <meta property="og:description" content="Set consistent UTM names for sources, mediums and campaigns. Use practical naming formulas, casing rules and separators to keep GA4 reports readable.">
   <meta property="og:image" content="https://utmcraft.com/blog/images/utm-naming-conventions-guide.webp">
   <meta property="article:published_time" content="2026-01-28">
-  <meta property="article:modified_time" content="2026-09-23">
+  <meta property="article:modified_time" content="2026-10-01">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://utmcraft.com/utm-naming-conventions-guide/">
   <meta name="twitter:title" content="UTM Naming Conventions: Frameworks, Formats & Rules | UTMCraft">
-  <meta name="twitter:description" content="Master UTM naming conventions. Discover field-tested campaign naming formulas, delimiter rules, case-sensitivity guidelines, and downloadable taxonomy SOPs.">
+  <meta name="twitter:description" content="Set consistent UTM names for sources, mediums and campaigns. Use practical naming formulas, casing rules and separators to keep GA4 reports readable.">
   <meta name="twitter:image" content="https://utmcraft.com/blog/images/utm-naming-conventions-guide.webp">
 
   <!-- Fonts & Styles -->
@@ -47,10 +47,10 @@
         "@id": "https://utmcraft.com/utm-naming-conventions-guide/"
       },
       "headline": "UTM Naming Conventions: Frameworks, Formats, and Governance Rules",
-      "description": "Master UTM naming conventions. Discover field-tested campaign naming formulas, delimiter rules, case-sensitivity guidelines, and downloadable taxonomy SOPs.",
+      "description": "Set consistent UTM names for sources, mediums and campaigns. Use practical naming formulas, casing rules and separators to keep GA4 reports readable.",
       "image": "https://utmcraft.com/blog/images/utm-naming-conventions-guide.webp",
       "datePublished": "2026-01-28",
-      "dateModified": "2026-09-23",
+      "dateModified": "2026-10-01",
       "citation": [
         {
           "@type": "CreativeWork",
@@ -234,9 +234,9 @@
           </a>
 
           <h1 class="article-title">UTM Naming Conventions: Frameworks, Formats, and Governance Rules</h1>
-          <p class="article-description">Master UTM naming conventions. Discover field-tested campaign naming formulas, delimiter rules, case-sensitivity guidelines, and downloadable taxonomy SOPs.</p>
+          <p class="article-description">Set consistent UTM names for sources, mediums and campaigns. Use practical naming formulas, casing rules and separators to keep GA4 reports readable.</p>
           <div class="article-meta-top">
-            <span class="article-date">Updated September 2026</span>
+            <span class="article-date">Updated October 2026</span>
             <span class="article-meta-bullet">•</span>
             <span class="article-reading-time">9 min read</span>
             <span class="article-meta-bullet">•</span>
@@ -273,11 +273,11 @@
 
         <!-- Main Prose Body -->
         <div class="article-prose">
-          
-      <p class="lead-text">Inconsistent UTM naming conventions can make campaign reports harder to compare. For example, a team may use <code>Facebook</code>, <code>facebook</code>, and <code>FB</code> for the same source; differing manual values can appear separately in reports.</p>
+
+      <p class="lead-text">If one person tags a source as Facebook and another uses FB, your reports can show separate rows for the same platform. Agree on the names before creating links. Here are naming rules and campaign formulas you can adapt for your team.</p>
 
       <h2 id="the-five-golden-rules">The 5 Golden Rules of UTM Naming</h2>
-      <p>Before designing a naming formula, your organization must adopt these five structural rules as law:</p>
+      <p>Agree on these five rules before choosing a campaign naming formula:</p>
 
       <div class="callout callout-recommended">
         <div class="callout-header">
@@ -292,7 +292,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <strong>Rule 2: Never Use Spaces in Parameters</strong>
         </div>
-        <p>Spaces in URLs are converted to ugly, hard-to-read encoded sequences like <code>%20</code> or <code>+</code> (e.g. <code>utm_campaign=summer%20sale%202026</code>). Always replace spaces with hyphens or underscores.</p>
+        <p>Spaces need encoding in URLs, for example <code>summer%20sale%202026</code>. Hyphens or underscores often make campaign names easier to read and copy. Choose one approach and use it consistently.</p>
       </div>
 
       <p><strong>Rule 3: Match <code>utm_medium</code> to GA4 Default Channel Groupings.</strong> GA4 uses available traffic-source information, including medium and source, when applying its current channel definitions. A non-standard medium such as <code>promoted-post</code> may not match a default channel on its own, but the resulting classification depends on the other available values and applicable rules.</p>
@@ -303,7 +303,7 @@
 
       <h2 id="universal-campaign-formula">The Universal Campaign Naming Formula</h2>
       <p>A battle-tested campaign name formula answers four strategic questions when viewed in an analytics report:</p>
-      
+
       <div class="code-block-wrap">
         <pre><code>[geo]_[product-line]_[objective]_[flight-time]
 
@@ -357,7 +357,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
       </ul>
 
       <h2 id="real-world-examples">Real-World Examples by Channel</h2>
-      
+
       <h3>Paid Social (Meta Ads)</h3>
       <div class="code-block-wrap">
         <pre><code>https://example.com/pricing?utm_source=facebook&amp;utm_medium=paid_social&amp;utm_campaign=us_b2b-suite_trial_2026q2&amp;utm_content=ugc-video-founder&amp;utm_id=12020495830201</code></pre>
@@ -376,28 +376,28 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
         <li>Audit every link using <a href="/utm-checker/">UTMCraft UTM Checker</a> before sending budget live.</li>
         <li>Review GA4 Acquisition reports bi-weekly for any rogue sources or Unassigned channel spikes.</li>
       </ol>
-    
 
-          
+
+
     <section class="article-references" id="article-sources">
       <h3>References</h3>
       <ul class="references-list">
-        
+
           <li>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             <a href="https://support.google.com/analytics/answer/15567068" target="_blank" rel="noopener">Traffic-source dimensions in GA4</a>
             <span class="ref-publisher">(Google Analytics Help)</span>
           </li>
-        
+
           <li>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             <a href="https://www.ietf.org/rfc/rfc3986.txt" target="_blank" rel="noopener">URI Syntax Specification (RFC 3986)</a>
             <span class="ref-publisher">(IETF)</span>
           </li>
-        
+
       </ul>
     </section>
-  
+
 
           <!-- Author Box -->
           <div class="article-author-card">
@@ -412,11 +412,11 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
     <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
     </a>
-  
+
     <a class="author-social-link" href="https://www.linkedin.com/in/dinesh-jeengar/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on LinkedIn">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg><span>LinkedIn</span>
     </a>
-  
+
     <a class="author-social-link" href="https://www.instagram.com/dinesshjngr/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Instagram">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span>
     </a>
@@ -445,7 +445,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
         <section class="related-articles-section">
           <h3>Related Articles &amp; Guides</h3>
           <div class="related-articles-grid">
-            
+
     <a href="/utm-strategy-guide/" class="post-card related-post-card">
       <div class="post-card-thumb-wrap">
         <img src="/blog/images/utm-strategy-guide.webp" alt="Architectural schematic of a clean enterprise UTM campaign attribution hierarchy flowing into GA4" class="post-card-thumb" width="1200" height="630" loading="lazy">
@@ -456,7 +456,7 @@ utm_campaign=eu_cloud-storage_leadgen-trial_2026q2</code></pre>
           <span class="post-card-readtime">12 min read</span>
         </div>
         <h4 class="post-card-title">UTM Strategy Guide: How to Build a Tracking System That Stays Clean at Scale</h4>
-        <p class="post-card-excerpt">Learn how to build an enterprise-grade UTM tracking strategy. Prevent fragmented GA4 reports, establish naming standards, and enforce governance at scale.</p>
+        <p class="post-card-excerpt">Build a UTM tracking process your team can follow. Set shared naming rules, save approved values and review campaign links before launch.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published January 15, 2026</span>

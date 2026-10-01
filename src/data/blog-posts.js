@@ -11,6 +11,7 @@ import { offlineQrPosts } from './posts/offline-qr.js';
 import { utmOperationsPosts } from './posts/utm-operations.js';
 import { utmMistakesPosts } from './posts/utm-mistakes.js';
 import { searchNewsPosts } from './posts/search-news.js';
+import { aiTrafficPosts } from './posts/ai-traffic.js';
 
 // These guides were consolidated into their stronger parent pages. Keep their
 // slugs here so the redirect generator can preserve inbound links.
@@ -25,6 +26,7 @@ export const blogPosts = [
   ...utmStrategyPosts,
   ...utmParametersPosts,
   ...ga4AttributionPosts,
+  ...aiTrafficPosts,
   ...googleAdsPosts,
   ...metaAdsPosts,
   ...linkedinAdsPosts,

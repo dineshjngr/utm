@@ -17,7 +17,7 @@
   <meta property="og:description" content="Use LinkedIn Campaign Manager URL tokens correctly. Check uppercase syntax, map dynamic values to UTM fields, and verify expansion before launch.">
   <meta property="og:image" content="https://utmcraft.com/blog/images/linkedin-dynamic-parameters.webp">
   <meta property="article:published_time" content="2026-03-03">
-  <meta property="article:modified_time" content="2026-09-23">
+  <meta property="article:modified_time" content="2026-10-01">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -50,7 +50,7 @@
       "description": "Use LinkedIn Campaign Manager URL tokens correctly. Check uppercase syntax, map dynamic values to UTM fields, and verify expansion before launch.",
       "image": "https://utmcraft.com/blog/images/linkedin-dynamic-parameters.webp",
       "datePublished": "2026-03-03",
-      "dateModified": "2026-09-23",
+      "dateModified": "2026-10-01",
       "citation": [
         {
           "@type": "CreativeWork",
@@ -231,7 +231,7 @@
           <h1 class="article-title">LinkedIn Dynamic URL Parameters: Token Syntax & QA Guide</h1>
           <p class="article-description">Use LinkedIn Campaign Manager URL tokens correctly. Check uppercase syntax, map dynamic values to UTM fields, and verify expansion before launch.</p>
           <div class="article-meta-top">
-            <span class="article-date">Updated September 2026</span>
+            <span class="article-date">Updated October 2026</span>
             <span class="article-meta-bullet">•</span>
             <span class="article-reading-time">8 min read</span>
             <span class="article-meta-bullet">•</span>
@@ -252,7 +252,7 @@
       <a href="#complete-token-list" class="toc-link">Complete List of LinkedIn Dynamic Tracking Tokens</a>
     </li>
 <li>
-      <a href="#syntax-rules" class="toc-link">Critical Syntax Rules: Case and Braces</a>
+      <a href="#syntax-rules" class="toc-link">Token Syntax: Case and Braces</a>
     </li>
 <li>
       <a href="#mapping-to-crm-fields" class="toc-link">Mapping Dynamic Parameters to CRM Lead Properties</a>
@@ -265,8 +265,8 @@
 
         <!-- Main Prose Body -->
         <div class="article-prose">
-          
-      <p class="lead-text">LinkedIn's dynamic URL parameters can reduce manual tagging across ads. Use supported token syntax and test the expanded URL before launch.</p>
+
+      <p class="lead-text">LinkedIn URL tokens can save time when tagging several ads. The syntax matters: use the supported uppercase names and double braces. The examples below show how to map the tokens and check the expanded link.</p>
 
       <h2 id="complete-token-list">Complete List of LinkedIn Dynamic Tracking Tokens</h2>
       <p>LinkedIn Campaign Manager supports the following dynamic tokens:</p>
@@ -281,7 +281,7 @@
         <li><code>{{ACCOUNT_NAME}}</code> - The name of the ad account.</li>
       </ul>
 
-      <h2 id="syntax-rules">Critical Syntax Rules: Case and Braces</h2>
+      <h2 id="syntax-rules">Token Syntax: Case and Braces</h2>
       <div class="callout callout-warning">
         <div class="callout-header">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -302,22 +302,22 @@
 
       <h2 id="qa-and-verification">How to QA LinkedIn Dynamic Links Before Publishing</h2>
       <p>Click "Preview" on your LinkedIn ad in Campaign Manager. Note: in preview mode, LinkedIn does not expand dynamic parameters. To verify live expansion, launch the ad with a minimal test budget ($5), click the live ad in your LinkedIn feed from a personal account, and verify that the destination URL in your browser address bar contains the actual campaign and ad names.</p>
-    
 
-          
+
+
     <section class="article-references" id="article-sources">
       <h3>References</h3>
       <ul class="references-list">
-        
+
           <li>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             <a href="https://www.linkedin.com/help/lms/answer/a5968064" target="_blank" rel="noopener">URL tracking parameters in Campaign Manager</a>
             <span class="ref-publisher">(LinkedIn Help Center)</span>
           </li>
-        
+
       </ul>
     </section>
-  
+
 
           <!-- Author Box -->
           <div class="article-author-card">
@@ -332,11 +332,11 @@
     <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
     </a>
-  
+
     <a class="author-social-link" href="https://www.linkedin.com/in/dinesh-jeengar/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on LinkedIn">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg><span>LinkedIn</span>
     </a>
-  
+
     <a class="author-social-link" href="https://www.instagram.com/dinesshjngr/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Instagram">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span>
     </a>
@@ -365,7 +365,7 @@
         <section class="related-articles-section">
           <h3>Related Articles &amp; Guides</h3>
           <div class="related-articles-grid">
-            
+
     <a href="/linkedin-ads-utm-guide/" class="post-card related-post-card">
       <div class="post-card-thumb-wrap">
         <img src="/blog/images/linkedin-ads-utm-guide.webp" alt="Architectural breakdown of LinkedIn Campaign Manager dynamic hierarchy mapping into GA4 and B2B CRMs" class="post-card-thumb" width="1200" height="630" loading="lazy">
@@ -393,7 +393,7 @@
           <span class="post-card-readtime">12 min read</span>
         </div>
         <h4 class="post-card-title">UTM Strategy Guide: How to Build a Tracking System That Stays Clean at Scale</h4>
-        <p class="post-card-excerpt">Learn how to build an enterprise-grade UTM tracking strategy. Prevent fragmented GA4 reports, establish naming standards, and enforce governance at scale.</p>
+        <p class="post-card-excerpt">Build a UTM tracking process your team can follow. Set shared naming rules, save approved values and review campaign links before launch.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published January 15, 2026</span>
@@ -410,7 +410,7 @@
           <span class="post-card-readtime">9 min read</span>
         </div>
         <h4 class="post-card-title">UTM Naming Conventions: Frameworks, Formats, and Governance Rules</h4>
-        <p class="post-card-excerpt">Master UTM naming conventions. Discover field-tested campaign naming formulas, delimiter rules, case-sensitivity guidelines, and downloadable taxonomy SOPs.</p>
+        <p class="post-card-excerpt">Set consistent UTM names for sources, mediums and campaigns. Use practical naming formulas, casing rules and separators to keep GA4 reports readable.</p>
         <div class="post-card-footer">
           <span>Read Guide →</span>
             <span>Published January 28, 2026</span>
@@ -430,7 +430,7 @@
       <a href="#complete-token-list" class="toc-link">Complete List of LinkedIn Dynamic Tracking Tokens</a>
     </li>
 <li>
-      <a href="#syntax-rules" class="toc-link">Critical Syntax Rules: Case and Braces</a>
+      <a href="#syntax-rules" class="toc-link">Token Syntax: Case and Braces</a>
     </li>
 <li>
       <a href="#mapping-to-crm-fields" class="toc-link">Mapping Dynamic Parameters to CRM Lead Properties</a>

@@ -17,7 +17,7 @@
   <meta property="og:description" content="Learn how GA4 uses source and medium information for Default Channel Grouping, and what to review when traffic appears as Unassigned.">
   <meta property="og:image" content="https://utmcraft.com/blog/images/utm-medium-mistakes.webp">
   <meta property="article:published_time" content="2026-09-24">
-  <meta property="article:modified_time" content="2026-09-24">
+  <meta property="article:modified_time" content="2026-10-01">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
@@ -50,7 +50,7 @@
       "description": "Learn how GA4 uses source and medium information for Default Channel Grouping, and what to review when traffic appears as Unassigned.",
       "image": "https://utmcraft.com/blog/images/utm-medium-mistakes.webp",
       "datePublished": "2026-09-24",
-      "dateModified": "2026-09-24",
+      "dateModified": "2026-10-01",
       "citation": [
         {
           "@type": "CreativeWork",
@@ -231,7 +231,7 @@
           <h1 class="article-title">5 utm_medium Mistakes That Send Traffic to the Wrong GA4 Channel</h1>
           <p class="article-description">Learn how GA4 uses source and medium information for Default Channel Grouping, and what to review when traffic appears as Unassigned.</p>
           <div class="article-meta-top">
-            <span class="article-date">Updated September 2026</span>
+            <span class="article-date">Updated October 2026</span>
             <span class="article-meta-bullet">•</span>
             <span class="article-reading-time">9 min read</span>
             <span class="article-meta-bullet">•</span>
@@ -252,7 +252,7 @@
       <a href="#why-utm-medium-governs-channels" class="toc-link">Why utm_medium Governs GA4 Default Channel Grouping</a>
     </li>
 <li>
-      <a href="#5-medium-mistakes" class="toc-link">The 5 Critical utm_medium Mistakes</a>
+      <a href="#5-medium-mistakes" class="toc-link">Five utm_medium Mistakes</a>
     </li>
 <li>
       <a href="#mistake-1-inventing-mediums" class="toc-link">1. Inventing Custom Mediums (social-media, promoted)</a>
@@ -280,13 +280,13 @@
 
         <!-- Main Prose Body -->
         <div class="article-prose">
-          
-      <p class="lead-text"><code>utm_medium</code> is one of the values GA4 can use for channel classification. If the available traffic-source information does not meet an applicable Default Channel Group definition, traffic may appear as <strong>Unassigned</strong>. This guide covers ways to review medium conventions and the current rules.</p>
+
+      <p class="lead-text">An unexpected channel in GA4 can start with the value in <code>utm_medium</code>. Check it alongside the source and other collected information, since medium alone does not determine every channel. These five mistakes help narrow down the problem.</p>
 
       <h2 id="why-utm-medium-governs-channels">Why utm_medium Governs GA4 Default Channel Grouping</h2>
       <p>GA4 evaluates traffic through an ordered rule set. When evaluating whether a session belongs in "Paid Search", "Paid Social", "Organic Social", or "Email", GA4 primarily inspects the value of <code>Session medium</code>. A single typographic error breaks the regex match.</p>
 
-      <h2 id="5-medium-mistakes">The 5 Critical utm_medium Mistakes</h2>
+      <h2 id="5-medium-mistakes">Five utm_medium Mistakes</h2>
 
       <h3 id="mistake-1-inventing-mediums">1. Inventing Custom Mediums (social-media, promoted)</h3>
       <p>Marketing teams love inventing descriptive mediums like <code>promoted-post</code>, <code>social-media</code>, or <code>influencer-blast</code>. None of these exist in GA4's default definitions. Use standard values: <code>cpc</code>, <code>paid_social</code>, <code>affiliate</code>, or <code>email</code>.</p>
@@ -325,22 +325,22 @@
         <h3>How can I fix historical Unassigned traffic in GA4?</h3>
         <p>You cannot rewrite collected data, but you can build a Custom Channel Group in Admin > Data display > Channel groups that maps your past non-standard mediums into proper buckets.</p>
       </div>
-    
 
-          
+
+
     <section class="article-references" id="article-sources">
       <h3>References</h3>
       <ul class="references-list">
-        
+
           <li>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             <a href="https://support.google.com/analytics/answer/9756891" target="_blank" rel="noopener">Google Analytics 4 Default Channel Grouping Rule Definitions</a>
             <span class="ref-publisher">(Google Support)</span>
           </li>
-        
+
       </ul>
     </section>
-  
+
 
           <!-- Author Box -->
           <div class="article-author-card">
@@ -355,11 +355,11 @@
     <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
     </a>
-  
+
     <a class="author-social-link" href="https://www.linkedin.com/in/dinesh-jeengar/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on LinkedIn">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg><span>LinkedIn</span>
     </a>
-  
+
     <a class="author-social-link" href="https://www.instagram.com/dinesshjngr/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Instagram">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span>
     </a>
@@ -388,7 +388,7 @@
         <section class="related-articles-section">
           <h3>Related Articles &amp; Guides</h3>
           <div class="related-articles-grid">
-            
+
     <a href="/utm-tracking-mistakes/" class="post-card related-post-card">
       <div class="post-card-thumb-wrap">
         <img src="/blog/images/utm-tracking-mistakes.webp" alt="Diagnostic flowchart showing common UTM tracking errors leading to Unassigned and Direct traffic in GA4" class="post-card-thumb" width="1200" height="630" loading="lazy">
@@ -453,7 +453,7 @@
       <a href="#why-utm-medium-governs-channels" class="toc-link">Why utm_medium Governs GA4 Default Channel Grouping</a>
     </li>
 <li>
-      <a href="#5-medium-mistakes" class="toc-link">The 5 Critical utm_medium Mistakes</a>
+      <a href="#5-medium-mistakes" class="toc-link">Five utm_medium Mistakes</a>
     </li>
 <li>
       <a href="#mistake-1-inventing-mediums" class="toc-link">1. Inventing Custom Mediums (social-media, promoted)</a>

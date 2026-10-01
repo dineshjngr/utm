@@ -3,7 +3,7 @@ export const utmParametersPosts = [
     slug: 'ga4-utm-parameters-guide',
     title: 'Complete UTM Parameters Guide for GA4: Manual Campaign Dimensions & Best Practices',
     seoTitle: 'Complete UTM Parameters Guide for GA4 | UTMCraft',
-    description: 'The definitive technical reference to all 9 UTM parameters in Google Analytics 4, dimension mappings, character limits, encoding rules, and reporting caveats.',
+    description: 'Find out what the nine GA4 UTM parameters do, how to format their values and which reporting limitations to check before using them.',
     category: 'utm-parameters',
     isPillar: true,
     author: {
@@ -12,7 +12,7 @@ export const utmParametersPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-01-20',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '13 min read',
     primaryKeyword: 'ga4 utm parameters',
@@ -23,12 +23,12 @@ export const utmParametersPosts = [
     featuredImage: '/blog/images/ga4-utm-parameters-guide.webp',
     featuredImageAlt: 'Technical schematic detailing the 9 UTM parameters mapping to GA4 session and event dimensions',
     tableOfContents: [
-      { id: 'all-9-utm-parameters', title: 'The Complete Matrix: All 9 UTM Parameters in GA4', level: 2 },
+      { id: 'all-9-utm-parameters', title: 'The Nine UTM Parameters in GA4', level: 2 },
       { id: 'ga4-manual-dimensions-mapping', title: 'How GA4 Maps Parameters to Manual Dimensions', level: 2 },
       { id: 'creative-format-marketing-tactic', title: 'utm_creative_format & utm_marketing_tactic: Current Realities', level: 2 },
       { id: 'syntax-and-encoding-rules', title: 'Syntax, Parameter Order & URL Encoding Rules', level: 2 },
       { id: 'utms-vs-click-ids', title: 'UTM Parameters vs Click IDs (GCLID, FBCLID)', level: 2 },
-      { id: 'common-parameter-mistakes', title: 'Critical Parameter Mistakes to Avoid', level: 2 },
+      { id: 'common-parameter-mistakes', title: 'Parameter Mistakes to Check', level: 2 },
       { id: 'faq', title: 'Frequently Asked Questions', level: 2 }
     ],
     toolCta: {
@@ -44,14 +44,14 @@ export const utmParametersPosts = [
       { title: 'Uniform Resource Identifier (URI): Generic Syntax', url: 'https://datatracker.ietf.org/doc/html/rfc3986', publisher: 'IETF' }
     ],
     contentHtml: `
-      <p class="lead-text">GA4 supports 9 manual campaign parameters: six commonly used/core parameters plus three additional GA4 parameters. Some newer parameters currently have reporting limitations.</p>
+      <p class="lead-text">GA4 recognizes nine manual campaign parameters, though not all have the same reporting support. This guide explains what each parameter is for, how to format its value and where to check the resulting data.</p>
 
       <p>Google documents the traditional manual parameters plus <code>utm_source_platform</code>, <code>utm_creative_format</code>, and <code>utm_marketing_tactic</code>; Google also separately documents and recommends <code>utm_id</code>. Google notes that <code>utm_creative_format</code> and <code>utm_marketing_tactic</code> are not currently reported in GA4 properties.</p>
 
       <p>The six commonly used/core parameters are <code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_id</code>, <code>utm_term</code>, and <code>utm_content</code>. The three additional GA4 parameters are <code>utm_source_platform</code>, <code>utm_creative_format</code>, and <code>utm_marketing_tactic</code>.</p>
 
-      <h2 id="all-9-utm-parameters">The Complete Matrix: All 9 UTM Parameters in GA4</h2>
-      <p>Here is the definitive reference table showing all 9 UTM parameters supported in GA4, organized by core parameters and additional GA4 parameters, with requirement levels and reporting status:</p>
+      <h2 id="all-9-utm-parameters">The Nine UTM Parameters in GA4</h2>
+      <p>The table below lists the nine UTM parameters, their uses and reporting limitations:</p>
 
       <div class="editorial-table-wrap">
         <table class="editorial-table">
@@ -227,7 +227,7 @@ export const utmParametersPosts = [
       </ul>
       <p>UTM parameters override referrer data in GA4, ensuring attribution even when referrer headers are completely absent.</p>
 
-      <h2 id="common-parameter-mistakes">Critical Parameter Mistakes to Avoid</h2>
+      <h2 id="common-parameter-mistakes">Parameter Mistakes to Check</h2>
       <div class="callout callout-mistake">
         <div class="callout-header">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
@@ -273,7 +273,7 @@ export const utmParametersPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-04',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '7 min read',
     primaryKeyword: 'utm_source',
@@ -300,7 +300,7 @@ export const utmParametersPosts = [
       { title: 'Traffic-source dimensions in GA4', url: 'https://support.google.com/analytics/answer/15567068', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text"><code>utm_source</code> is the foundational parameter in web attribution. It answers a single, direct question: <strong>Which specific platform, publisher, or partner sent this visitor to your website?</strong></p>
+      <p class="lead-text"><code>utm_source</code> identifies the platform, publisher or partner behind a tagged link. For example, you might use <code>google</code>, <code>newsletter</code> or a partner name. Choose values your team can recognize and use them consistently.</p>
 
       <h2 id="what-is-utm-source">What Is utm_source?</h2>
       <p>In Google Analytics 4, <code>utm_source</code> populates the <em>Session source</em> and <em>First user source</em> dimensions. Including it in manually tagged campaigns is a useful convention, but when it is missing GA4 may still have referrer, advertising-platform, or other traffic-source information. Review those values before concluding that the session will be reported as <code>(direct)</code>, <code>(not set)</code>, or another classification.</p>
@@ -385,7 +385,7 @@ export const utmParametersPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-08',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '8 min read',
     primaryKeyword: 'utm_medium',
@@ -412,7 +412,7 @@ export const utmParametersPosts = [
       { title: 'Default Channel Grouping Definitions in GA4', url: 'https://support.google.com/analytics/answer/9756891', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text"><code>utm_medium</code> is one input GA4 can use when assigning traffic to a Default Channel Group. The outcome also depends on other available traffic-source information and Google's current definitions. <code>utm_source</code> identifies the source, while medium describes the acquisition method.</p>
+      <p class="lead-text"><code>utm_medium</code> describes how a visitor arrived, such as through email or a paid campaign. GA4 uses it alongside other traffic-source information to assign channels. This guide explains common values and what to check when the channel differs from your expectations.</p>
 
       <h2 id="what-is-utm-medium">What Is utm_medium?</h2>
       <p>In GA4, <code>utm_medium</code> populates the <em>Session medium</em> and <em>First user medium</em> dimensions. Unlike <code>utm_campaign</code>, which can be tailored to your company's product hierarchy, <code>utm_medium</code> is one of several inputs used for default channel classification. If its value does not match a current channel definition, another definition may still apply based on the other available traffic-source information; otherwise, GA4 can report the session as <code>Unassigned</code>.</p>
@@ -477,7 +477,7 @@ export const utmParametersPosts = [
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           <strong>Best Practice: Reserve cpc for Paid Search Only</strong>
         </div>
-        <p>Set <code>utm_medium=cpc</code> exclusively for Search Engine Marketing (Google Ads, Microsoft Ads). For Facebook, Instagram, LinkedIn, TikTok, and Pinterest paid ads, always enforce <code>utm_medium=paid_social</code>. This keeps your SQL queries and BI dashboards clean and unambiguous.</p>
+        <p>One naming approach is to use <code>cpc</code> for paid search and <code>paid_social</code> for paid social. Treat this as a team convention, then check the source and medium against GA4 channel rules. Medium alone does not determine every channel.</p>
       </div>
 
       <h2 id="preventing-unassigned">How Rogue Mediums Create "Unassigned" Traffic</h2>
@@ -497,7 +497,7 @@ export const utmParametersPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-15',
-    dateModified: '2026-09-23',
+    dateModified: '2026-10-01',
     reviewedDate: 'September 23, 2026',
     readingTime: '8 min read',
     primaryKeyword: 'utm_campaign',
@@ -524,7 +524,7 @@ export const utmParametersPosts = [
       { title: 'Campaigns and traffic sources in GA4', url: 'https://support.google.com/analytics/answer/11242841', publisher: 'Google Analytics Help' }
     ],
     contentHtml: `
-      <p class="lead-text"><code>utm_campaign</code> is the primary grouping dimension for all your promotional initiatives. It tells your analytics suite which specific promotion, product launch, seasonal sale, or strategic initiative prompted a user's visit.</p>
+      <p class="lead-text"><code>utm_campaign</code> identifies the promotion behind a tagged link, such as a product launch or seasonal sale. Use the same campaign value across related channels so you can compare their results, and keep separate promotions easy to distinguish.</p>
 
       <h2 id="what-is-utm-campaign">What Is utm_campaign?</h2>
       <p>In Google Analytics 4, <code>utm_campaign</code> populates the <em>Session campaign</em>, <em>First user campaign</em>, and <em>Manual campaign</em> dimensions. Campaign names can follow your own taxonomy; document the convention so values remain useful and comparable in reports.</p>
