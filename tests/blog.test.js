@@ -220,7 +220,8 @@ test('Internal Link Integrity: all internal links across active articles point t
       const directFile = path.join(rootDir, localRel);
       const postHtmlFile = path.join(rootDir, 'blog', 'posts', `${localRel}.html`);
       const publicFile = path.join(rootDir, 'public', localRel);
-      if (fs.existsSync(directFile) || fs.existsSync(postHtmlFile) || fs.existsSync(publicFile)) continue;
+      const landingFile = path.join(rootDir, 'landing-pages', localRel, 'index.html');
+      if (fs.existsSync(directFile) || fs.existsSync(postHtmlFile) || fs.existsSync(publicFile) || fs.existsSync(landingFile)) continue;
 
       brokenLinks.push({ post: post.slug, target });
     }

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script type="module" src="/src/theme.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Track WhatsApp Campaign Links in GA4 | UTMCraft</title>
+  <meta name="description" content="Track WhatsApp broadcasts, sales follow-ups and website chat-button clicks in GA4. Get UTM examples, a GTM setup, reporting steps and a launch checklist.">
+  <meta name="keywords" content="how to track WhatsApp campaign links in GA4, WhatsApp UTM tracking, track WhatsApp clicks in GA4, WhatsApp broadcast tracking, WhatsApp button tracking GTM">
+  <link rel="canonical" href="https://utmcraft.com/how-to-track-whatsapp-campaign-links-in-ga4/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utmcraft.com/how-to-track-whatsapp-campaign-links-in-ga4/">
+  <meta property="og:title" content="How to Track WhatsApp Campaign Links in GA4 | UTMCraft">
+  <meta property="og:description" content="Track WhatsApp broadcasts, sales follow-ups and website chat-button clicks in GA4. Get UTM examples, a GTM setup, reporting steps and a launch checklist.">
+  <meta property="og:image" content="https://utmcraft.com/blog/images/how-to-track-whatsapp-campaign-links-in-ga4.webp">
+  <meta property="og:image:alt" content="Illustrative banner showing a WhatsApp campaign link beside an example GA4 dashboard">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="article:published_time" content="2026-10-03">
+  <meta property="article:modified_time" content="2026-10-03">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utmcraft.com/how-to-track-whatsapp-campaign-links-in-ga4/">
+  <meta name="twitter:title" content="How to Track WhatsApp Campaign Links in GA4 | UTMCraft">
+  <meta name="twitter:description" content="Track WhatsApp broadcasts, sales follow-ups and website chat-button clicks in GA4. Get UTM examples, a GTM setup, reporting steps and a launch checklist.">
+  <meta name="twitter:image" content="https://utmcraft.com/blog/images/how-to-track-whatsapp-campaign-links-in-ga4.webp">
+  <meta name="twitter:image:alt" content="Illustrative banner showing a WhatsApp campaign link beside an example GA4 dashboard">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="stylesheet" href="/src/blog.css">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://utmcraft.com/how-to-track-whatsapp-campaign-links-in-ga4/#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://utmcraft.com/how-to-track-whatsapp-campaign-links-in-ga4/"
+      },
+      "headline": "How to Track WhatsApp Campaign Links in GA4",
+      "description": "Track WhatsApp broadcasts, sales follow-ups and website chat-button clicks in GA4. Get UTM examples, a GTM setup, reporting steps and a launch checklist.",
+      "image": "https://utmcraft.com/blog/images/how-to-track-whatsapp-campaign-links-in-ga4.webp",
+      "datePublished": "2026-10-03",
+      "dateModified": "2026-10-03",
+      "citation": [
+        {
+          "@type": "CreativeWork",
+          "name": "Collect campaign data with custom URLs",
+          "url": "https://support.google.com/analytics/answer/10917952"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Traffic-source dimensions, manual tagging and auto-tagging",
+          "url": "https://support.google.com/analytics/answer/11242870"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Traffic acquisition report",
+          "url": "https://support.google.com/analytics/answer/12923437"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "About Analytics sessions",
+          "url": "https://support.google.com/analytics/answer/9191807"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Scopes of traffic-source dimensions",
+          "url": "https://support.google.com/analytics/answer/11080067"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Default channel group",
+          "url": "https://support.google.com/analytics/answer/9756891"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Custom channel groups",
+          "url": "https://support.google.com/analytics/answer/13051316"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Enhanced measurement events",
+          "url": "https://support.google.com/analytics/answer/9216061"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Click trigger",
+          "url": "https://support.google.com/tagmanager/answer/7679320"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Set up Google Analytics events in Tag Manager",
+          "url": "https://support.google.com/tagmanager/answer/13034206"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "About custom dimensions and metrics",
+          "url": "https://support.google.com/analytics/answer/14240153"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Confirm that you are collecting data",
+          "url": "https://support.google.com/analytics/answer/9333790"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Avoid sending personally identifiable information",
+          "url": "https://support.google.com/analytics/answer/6366371"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "How to use click to chat",
+          "url": "https://faq.whatsapp.com/5913398998672934"
+        }
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "Dinesh Jeengar",
+        "jobTitle": "Founder, UTMCraft",
+        "url": "https://utmcraft.com/about/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://utmcraft.com/utmcraft-logo-light.png"
+        }
+      },
+      "mainEntityOfPage": "https://utmcraft.com/how-to-track-whatsapp-campaign-links-in-ga4/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://utmcraft.com/how-to-track-whatsapp-campaign-links-in-ga4/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://utmcraft.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://utmcraft.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Organic Social, Influencer, PR & Partnerships",
+          "item": "https://utmcraft.com/blog/organic-social-pr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "How to Track WhatsApp Campaign Links in GA4",
+          "item": "https://utmcraft.com/how-to-track-whatsapp-campaign-links-in-ga4/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://utmcraft.com/#organization",
+      "name": "UTMCraft",
+      "url": "https://utmcraft.com/",
+      "logo": "https://utmcraft.com/utmcraft-logo-light.png",
+      "email": "contact@utmcraft.com"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="blog-post">
+  <!-- Reading Progress Indicator -->
+  <div id="reading-progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+
+      <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-controls="builder-nav-options">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="builder-nav-options" class="nav-dropdown-menu">
+            <a href="/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-controls="guide-nav-options">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="guide-nav-options" class="nav-dropdown-menu">
+            <a href="/blog/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
+            </a>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>New Link</span>
+        </a>
+      </div>
+      <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+    <script type="module" src="/src/site.js"></script>
+  </header>
+
+  <div class="app-container">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/">Guides</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/organic-social-pr/">Organic Social, Influencer, PR & Partnerships</a></li>
+        <li class="separator">/</li>
+        <li class="current" aria-current="page">How to Track WhatsApp Campaign Links in GA4</li>
+      </ol>
+    </nav>
+
+    <!-- Main Article Layout -->
+    <main id="main-content" class="blog-article-layout">
+      <!-- Article Content Column -->
+      <article class="article-main-column">
+        <header class="article-header">
+          <a href="/blog/organic-social-pr/" class="article-category-badge">
+            Non-Paid
+          </a>
+
+          <h1 class="article-title">How to Track WhatsApp Campaign Links in GA4</h1>
+          <p class="article-description">Track WhatsApp broadcasts, sales follow-ups and website chat-button clicks in GA4. Get UTM examples, a GTM setup, reporting steps and a launch checklist.</p>
+          <div class="article-meta-top">
+            <span class="article-date">Updated October 2026</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-reading-time">14 min read</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-author-byline">Written by Dinesh Jeengar</span>
+          </div>
+
+          <!-- Featured Hero Image -->
+          <div class="article-featured-image">
+            <img src="/blog/images/how-to-track-whatsapp-campaign-links-in-ga4.webp" alt="Illustrative banner showing a WhatsApp campaign link beside an example GA4 dashboard" width="1200" height="630" fetchpriority="high">
+          </div>
+          <p class="article-banner-caption">Illustrative banner: dashboard figures are examples. The copyable links below use the messaging medium, rather than the campaign value shown in the artwork.</p>
+        </header>
+
+        <!-- Mobile Table of Contents Accordion -->
+        <details class="mobile-toc">
+          <summary>Table of Contents</summary>
+          <ol>
+            <li>
+      <a href="#quick-start" class="toc-link">Quick start: choose the right setup</a>
+    </li>
+<li>
+      <a href="#what-you-can-measure" class="toc-link">What GA4 can and cannot measure</a>
+    </li>
+<li>
+      <a href="#utm-naming" class="toc-link">Choose your WhatsApp UTM convention</a>
+    </li>
+<li>
+      <a href="#broadcast-and-outreach" class="toc-link">Build broadcast and sales-outreach links</a>
+    </li>
+<li>
+      <a href="#ga4-reporting" class="toc-link">Find WhatsApp campaign results in GA4</a>
+    </li>
+<li>
+      <a href="#custom-channel" class="toc-link">Create a WhatsApp channel group</a>
+    </li>
+<li>
+      <a href="#track-chat-button" class="toc-link">Track website WhatsApp buttons with GTM</a>
+    </li>
+<li>
+      <a href="#leads-and-sales" class="toc-link">Connect clicks to qualified leads</a>
+    </li>
+<li>
+      <a href="#troubleshooting" class="toc-link">Troubleshoot missing or conflicting data</a>
+    </li>
+<li>
+      <a href="#launch-checklist" class="toc-link">Download the launch checklist</a>
+    </li>
+<li>
+      <a href="#faq" class="toc-link">Frequently asked questions</a>
+    </li>
+          </ol>
+        </details>
+
+        <!-- Main Prose Body -->
+        <div class="article-prose">
+
+    <p class="lead-text">To track a website link shared through WhatsApp, add UTM parameters to the destination URL and measure the visit in GA4. To track a WhatsApp button on your website, record a click event before the visitor leaves. Neither method, by itself, confirms that someone sent a message or became a customer.</p>
+    <p>This guide covers broadcasts, one-to-one sales follow-ups and website chat buttons. You will get a naming convention, copyable examples, reporting instructions and a checklist to test your setup before sending a campaign.</p>
+
+    <h2 id="quick-start">Quick start: choose the right setup</h2>
+    <div class="editorial-table-wrap"><table class="editorial-table">
+      <thead><tr><th>Your journey</th><th>What to set up</th><th>What it measures</th></tr></thead>
+      <tbody>
+        <tr><td>A WhatsApp message links to your website</td><td>UTMs on the website URL, plus a working GA4 web tag</td><td>Collected website activity associated with the tagged campaign</td></tr>
+        <tr><td>A website button opens a WhatsApp chat</td><td>A website event such as <code>whatsapp_click</code></td><td>The button interaction on your site</td></tr>
+        <tr><td>An Instagram or Facebook ad opens WhatsApp directly</td><td>Ad-platform reporting and, where available, a messaging/CRM integration</td><td>Ad and conversation outcomes supported by that setup; no website visit is required</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>For broadcasts and outreach:</strong> create a link to your own landing page with <code>utm_source=whatsapp</code>, a documented medium, a campaign name and a content value for the placement. Send a test message, open its link, and confirm that the parameters reach your page before checking Analytics.</p>
+    <p><strong>For chat buttons:</strong> keep the website visitor’s existing acquisition source. Record the WhatsApp interaction as an event. A visitor who arrived from a Google ad does not become a WhatsApp-acquired visitor simply because they click your chat button.</p>
+
+    <h2 id="what-you-can-measure">What GA4 can and cannot measure</h2>
+    <figure class="article-source-media">
+      <img src="/blog/images/whatsapp-tracking-journeys.svg" alt="Two journeys: a tagged link in WhatsApp leads to a website measured by GA4; a website chat-button click leads to WhatsApp, where messages and sales need separate measurement" width="1200" height="580" loading="lazy">
+      <figcaption>Measure the website visit and the chat-button interaction separately. Confirm conversations and sales through the systems that record those outcomes.</figcaption>
+    </figure>
+    <p>GA4 reads campaign parameters on your instrumented website. It does not run your website’s tag inside a WhatsApp conversation. A <code>wa.me</code> link opens a chat, as explained in <a href="https://faq.whatsapp.com/5913398998672934" target="_blank" rel="noopener">WhatsApp’s click-to-chat documentation</a>; adding UTMs to that link does not automatically produce a GA4 visit or confirm a message.</p>
+    <p>Keep these measurements distinct:</p>
+    <ul>
+      <li><strong>Link clicks:</strong> interactions recorded by a short-link service or another click counter, using that service’s definitions.</li>
+      <li><strong>Website sessions:</strong> sessions collected by GA4 after visitors reach your site.</li>
+      <li><strong>Chat-button clicks:</strong> website events showing an attempt to open WhatsApp.</li>
+      <li><strong>Conversations, qualified leads and sales:</strong> outcomes recorded in your messaging platform, CRM or order system.</li>
+    </ul>
+    <p>These counts should not be expected to match. A person can click twice, abandon a page before the tag loads, or open WhatsApp without sending a message. Forwarding also matters: a tagged link forwarded to another group keeps its original labels. UTMs identify the distributed link, not a verified sender, recipient or complete sharing history.</p>
+
+    <h2 id="utm-naming">Choose your WhatsApp UTM convention</h2>
+    <p>Our examples use <code>whatsapp / messaging</code> for non-paid website links shared in WhatsApp. This is an editorial convention, not an official WhatsApp or Google requirement. It keeps the platform stable while allowing campaign and content values to describe the promotion and placement.</p>
+    <div class="editorial-table-wrap"><table class="editorial-table">
+      <thead><tr><th>Parameter</th><th>Example</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>utm_source</code></td><td><code>whatsapp</code></td><td>The platform where you distributed the link</td></tr>
+        <tr><td><code>utm_medium</code></td><td><code>messaging</code></td><td>Your documented channel convention</td></tr>
+        <tr><td><code>utm_campaign</code></td><td><code>demo-outreach-2026-10</code></td><td>The offer or campaign you want to compare</td></tr>
+        <tr><td><code>utm_content</code></td><td><code>broadcast-existing-customers</code></td><td>The audience, placement or message variant</td></tr>
+      </tbody>
+    </table></div>
+    <p>Use lowercase, consistent separators and a written naming rule. These choices reduce accidental duplicates; they are not syntax requirements that make every alternative invalid. Google documents the parameters in its <a href="https://support.google.com/analytics/answer/10917952" target="_blank" rel="noopener">campaign URL guide</a>.</p>
+    <div class="callout callout-recommended"><div class="callout-header"><strong>Decide how the medium should appear in channel reports</strong></div>
+      <p><code>messaging</code> and <code>broadcast</code> are not named default channels. Depending on the source and other matching rules, your traffic may appear in an existing channel or as Unassigned. Use source/medium to inspect it, and create the custom WhatsApp channel below if you want a dedicated category.</p>
+    </div>
+    <p>If your reporting policy deliberately groups non-paid messaging with Organic Social, <code>social</code> is another option: Google lists it in the Organic Social medium rule. Using <code>sms</code> would label the traffic as SMS. Choose the meaning you want, document it, and check actual classification rather than changing values solely to avoid Unassigned. See <a href="https://support.google.com/analytics/answer/9756891" target="_blank" rel="noopener">Google’s current channel definitions</a>.</p>
+
+    <h2 id="broadcast-and-outreach">Build broadcast and sales-outreach links</h2>
+    <p>Start with a page that helps the reader take the next step: a product page, booking form or useful offer page. Replace <code>example.com/book-a-demo</code> in these examples with your destination. All examples below are illustrative.</p>
+    <h3>1. A broadcast to existing customers</h3>
+    <div class="code-block-wrap"><pre><code>https://example.com/book-a-demo?utm_source=whatsapp&amp;utm_medium=messaging&amp;utm_campaign=demo-outreach-2026-10&amp;utm_content=broadcast-existing-customers</code></pre><button class="copy-code-btn" data-copy="https://example.com/book-a-demo?utm_source=whatsapp&amp;utm_medium=messaging&amp;utm_campaign=demo-outreach-2026-10&amp;utm_content=broadcast-existing-customers" aria-label="Copy broadcast website URL">Copy</button></div>
+    <p>The content value distinguishes this broadcast from other placements in the same campaign. If the message contains two website links, give each its own content label, such as <code>broadcast-primary-cta</code> and <code>broadcast-pricing-link</code>.</p>
+    <h3>2. A one-to-one sales follow-up</h3>
+    <div class="code-block-wrap"><pre><code>https://example.com/book-a-demo?utm_source=whatsapp&amp;utm_medium=messaging&amp;utm_campaign=demo-outreach-2026-10&amp;utm_content=sales-followup-team-a</code></pre><button class="copy-code-btn" data-copy="https://example.com/book-a-demo?utm_source=whatsapp&amp;utm_medium=messaging&amp;utm_campaign=demo-outreach-2026-10&amp;utm_content=sales-followup-team-a" aria-label="Copy sales follow-up website URL">Copy</button></div>
+    <p>A team or sequence label lets you compare outreach without putting a customer’s name or phone number in the URL. Keep the same campaign when these links promote the same offer. Use a new campaign when the offer or reporting initiative changes.</p>
+    <h3>3. A reminder for a different campaign</h3>
+    <div class="code-block-wrap"><pre><code>https://example.com/webinar?utm_source=whatsapp&amp;utm_medium=messaging&amp;utm_campaign=webinar-2026-10&amp;utm_content=reminder-24h</code></pre><button class="copy-code-btn" data-copy="https://example.com/webinar?utm_source=whatsapp&amp;utm_medium=messaging&amp;utm_campaign=webinar-2026-10&amp;utm_content=reminder-24h" aria-label="Copy webinar reminder website URL">Copy</button></div>
+    <p>In the <a href="/">UTMCraft Campaign URL Builder</a>, choose <strong>WhatsApp Website Link</strong>, enter your destination and replace the example campaign and content. For several audiences or placements, use the <a href="/bulk-utm-builder/">bulk builder</a> and keep a record of where each link will be sent.</p>
+    <p>A short link is optional. If you use one, open the final published short URL and confirm that it resolves to the intended page with the parameters intact. A neat-looking link is not evidence that a redirect preserves tracking. Our <a href="/redirects-removing-utms/">redirect troubleshooting guide</a> explains what to check.</p>
+    <p>For an existing query string, append additional parameters with <code>&amp;</code>. Put campaign parameters before a <code>#fragment</code>, not after it. Do not add a second set of conflicting UTMs to a URL that is already tagged.</p>
+    <p>Website links in a WhatsApp Business message use the same destination-tagging principle. Template-button configuration and provider link rewriting can differ, so test the message actually delivered to a phone rather than only the URL in your campaign editor.</p>
+
+    <h2 id="ga4-reporting">Find WhatsApp campaign results in GA4</h2>
+    <p>First confirm that your GA4 tag collects activity on the destination. Tags must be allowed to run under your consent setup; UTMs cannot bypass a blocked tag. A UTM builder also cannot install Analytics on your website.</p>
+    <h3>Check collection before interpreting attribution</h3>
+    <ol>
+      <li>Send the tagged link to a test WhatsApp chat and open it on your phone.</li>
+      <li>Check the resolved URL and confirm the source, medium, campaign and content values.</li>
+      <li>Use Realtime to check recent website activity. For parameter-level debugging, use Tag Assistant and GA4 DebugView with a device configured for debug mode.</li>
+      <li>Check processed acquisition reports after data is available. Record the exact link and time of your test so you can distinguish it from other visits.</li>
+    </ol>
+    <p>Realtime confirms collection, but its views are not a substitute for a processed session-acquisition report. Google says many reports and explorations take <strong>24–48 hours</strong> to process. See its <a href="https://support.google.com/analytics/answer/9333790" target="_blank" rel="noopener">collection-verification guidance</a>.</p>
+    <h3>Compare campaign performance</h3>
+    <ol>
+      <li>Open <strong>Reports → Acquisition → Traffic acquisition</strong>. Navigation can differ by report collection; an editor may need to add the report if it is missing.</li>
+      <li>Select <strong>Session source / medium</strong> as the primary dimension and filter for source <code>whatsapp</code>.</li>
+      <li>Add <strong>Session campaign</strong> as a secondary dimension where available, or build an Exploration with the campaign dimension you need.</li>
+      <li>For message variants, use <strong>Session manual ad content</strong> in an Exploration. That is the dimension populated by <code>utm_content</code>; do not create a custom dimension simply named “utm_content” for standard campaign tagging.</li>
+    </ol>
+    <p>The <a href="https://support.google.com/analytics/answer/12923437" target="_blank" rel="noopener">Traffic acquisition report</a> answers questions about sessions. Google’s <a href="https://support.google.com/analytics/answer/11242870" target="_blank" rel="noopener">manual-tagging documentation</a> maps campaign parameters to reporting dimensions.</p>
+    <p>For each campaign, compare sessions, engaged sessions and a specific business outcome, such as a correctly implemented booking or purchase event. Total revenue is useful only when the relevant revenue events are implemented. A WhatsApp click count alone is not campaign revenue.</p>
+    <p>Choose the reporting scope deliberately. First user source describes initial acquisition; session dimensions describe session acquisition; event-scoped attribution concerns key-event credit. They can differ without a tracking bug. A later campaign click during an existing session also does not guarantee that session-source values will change. See <a href="https://support.google.com/analytics/answer/9191807" target="_blank" rel="noopener">Google’s session guidance</a>, <a href="https://support.google.com/analytics/answer/11080067" target="_blank" rel="noopener">Google’s scope explanations</a> and <a href="/ga4-utm-troubleshooting-guide/">our GA4 troubleshooting guide</a>.</p>
+
+    <h2 id="custom-channel">Create a WhatsApp channel group</h2>
+    <p>If you want a separate WhatsApp category while keeping the <code>messaging</code> medium, create a custom channel group. This changes how matching data is categorised in that group; it does not recover visits that GA4 never collected.</p>
+    <ol>
+      <li>With Editor access or above, open <strong>Admin → Data display → Channel groups</strong>.</li>
+      <li>Copy an existing group and name it, for example, <strong>Marketing channels with WhatsApp</strong>.</li>
+      <li>Add a channel called <strong>WhatsApp Messaging</strong>.</li>
+      <li>Set the conditions to <strong>Source exactly matches whatsapp</strong> AND <strong>Medium exactly matches messaging</strong>.</li>
+      <li>Place it before broader channels that could match the same traffic. Save the group and select its session-scoped dimension in your acquisition report.</li>
+    </ol>
+    <p>The AND condition keeps this convention separate from other WhatsApp-tagged activity you might use later. If you already have a documented <code>broadcast</code> medium, either define an additional condition for it or keep a separate channel. The first matching channel wins, so rule order matters. Google documents <a href="https://support.google.com/analytics/answer/13051316" target="_blank" rel="noopener">custom-group setup and ordering</a>; its maintained Default Channel Group remains separate.</p>
+
+    <h2 id="track-chat-button">Track website WhatsApp buttons with GTM</h2>
+    <p>This setup applies to ordinary website links that open <code>wa.me</code>, <code>api.whatsapp.com</code> or <code>web.whatsapp.com</code>. It records the click on your website. JavaScript widgets, embedded frames and <code>whatsapp://</code> app links need their own tested implementation.</p>
+    <h3>First check automatic outbound-click measurement</h3>
+    <p>GA4 enhanced measurement can collect an outbound <code>click</code> event for external links, including parameters such as <code>link_domain</code> and <code>link_url</code>. Check whether your actual button is captured before adding another tag. This is documented in <a href="https://support.google.com/analytics/answer/9216061" target="_blank" rel="noopener">Google’s enhanced-measurement reference</a>.</p>
+    <p><strong>Review the link data:</strong> a WhatsApp URL can contain a phone number and pre-filled message text. If it contains personal information, do not let automatic outbound tracking send the full URL to Analytics. Review or disable that measurement option and use a controlled event that sends only safe labels. Omitting <code>link_url</code> from a custom event does not stop another automatic event from collecting it.</p>
+    <h3>Create a dedicated whatsapp_click event</h3>
+    <p>For a standard contact-page link, use this configuration:</p>
+    <ol>
+      <li>In GTM, ensure the destination has a working Google tag connected to your GA4 web stream and the intended consent behaviour.</li>
+      <li>Under <strong>Variables → Configure</strong>, enable the built-in <strong>Click URL</strong> variable.</li>
+      <li>Create a <strong>Click – Just Links</strong> trigger, choose <strong>Some Link Clicks</strong>, and set <strong>Click URL matches RegEx</strong> to the expression below. Use the case-insensitive option if your URLs use mixed case.</li>
+      <li>For this example’s <code>button_location=contact_page</code> label, add an AND condition that limits the trigger to your contact page, such as <strong>Page Path equals /contact/</strong>. Replace that path with the real one.</li>
+      <li>Create a <strong>Google Analytics: GA4 Event</strong> tag using your stream’s measurement ID. Set the event name to <code>whatsapp_click</code> and attach the trigger.</li>
+    </ol>
+    <div class="code-block-wrap"><pre><code>^https?://(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com)([/?#]|$)</code></pre><button class="copy-code-btn" data-copy="^https?://(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com)([/?#]|$)" aria-label="Copy WhatsApp link trigger regex">Copy</button></div>
+    <p>The expression matches the listed hosts rather than any URL containing the word “whatsapp”. For a branded redirect link, test and match your own known redirect path instead.</p>
+    <div class="editorial-table-wrap"><table class="editorial-table">
+      <thead><tr><th>Event parameter</th><th>Value for this example</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td><code>contact_method</code></td><td><code>whatsapp</code></td><td>A fixed label for the contact channel</td></tr>
+        <tr><td><code>button_location</code></td><td><code>contact_page</code></td><td>A fixed placement label restricted by the trigger</td></tr>
+      </tbody>
+    </table></div>
+    <p>Do not send the phone number, message text or full Click URL as custom parameters. For a header and a product-page button, configure distinct placement labels and matching triggers, or ask your developer to supply a safe placement value. Avoid overlapping tags that send <code>whatsapp_click</code> twice.</p>
+    <p>Google explains <a href="https://support.google.com/tagmanager/answer/7679320" target="_blank" rel="noopener">Just Links triggers</a> and <a href="https://support.google.com/tagmanager/answer/13034206" target="_blank" rel="noopener">GA4 Event tags</a>. Optional “Wait for Tags” behaviour must be tested with your navigation and app handoff; it is not a guarantee that every click is collected.</p>
+    <h3>Verify the event and make it reportable</h3>
+    <p>In GTM Preview, click the real button, including its icon or nested text. Confirm that the intended tag fires once and unrelated links do not fire it. Check <code>whatsapp_click</code> and the safe parameter values in GA4 DebugView. Test mobile and desktop handoff, review the outgoing Analytics requests for unintended personal data, then publish the tested container version.</p>
+    <p>To use your added parameters in standard reporting, register event-scoped custom dimensions for <code>button_location</code> and <code>contact_method</code> under Custom definitions. Use them for future collected data and allow processing time. These are custom event parameters; standard UTM dimensions are different. See <a href="https://support.google.com/analytics/answer/14240153" target="_blank" rel="noopener">Google’s custom-dimension guidance</a>.</p>
+    <p>An automatic <code>click</code> and your dedicated <code>whatsapp_click</code> may describe the same action. Do not add their counts together. If you mark the dedicated event as a key event, label the outcome as a <strong>chat-button click</strong> in your reports. Reserve qualified-lead or sales labels for confirmed outcomes.</p>
+
+    <h2 id="leads-and-sales">Connect clicks to qualified leads and sales</h2>
+    <p>For WhatsApp-to-website journeys, a form or checkout can provide a stronger outcome than a visit. Implement successful submissions or purchases, and keep the relevant campaign fields with the CRM record where your consent and data-handling setup permits. Decide whether your CRM stores first touch, latest tagged touch or both. Our <a href="/storing-utm-parameters-in-crm/">hidden-field and CRM guide</a> covers the capture workflow.</p>
+    <p>For website-to-WhatsApp journeys, a pre-filled message can include a non-personal campaign reference, such as <code>DEMO-OCT</code>. Staff can record that reference with the enquiry. Treat it as supporting evidence: the user can edit or delete it, and it identifies a campaign rather than proving an individual website session.</p>
+    <p>A stronger session-to-conversation match requires a deliberate integration, a suitable non-personal reference and a verified joining process. WhatsApp Business Platform providers differ in the metadata and CRM integrations they expose. Confirm their capabilities before relying on them; do not assume a direct <code>wa.me</code> link supplies them.</p>
+    <p>For ads that open WhatsApp without visiting your website, use the ad platform’s supported messaging reports and your conversation/CRM records. A separately tagged website link sent later in the conversation measures that later visit. It does not recreate the original ad click’s entire attribution path.</p>
+    <p>Keep a small campaign record: campaign name, audience label, destination, tagged URL, placement, send date, owner and QA status. Keep recipient-level contact details in the appropriate business system, not in UTM values. Compare collected website outcomes and confirmed CRM outcomes with their definitions visible.</p>
+
+    <h2 id="troubleshooting">Troubleshoot missing or conflicting data</h2>
+    <div class="editorial-table-wrap"><table class="editorial-table">
+      <thead><tr><th>Symptom</th><th>Check first</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Your test visit has no expected WhatsApp labels</td><td>Final URL, tag collection, consent and report scope</td><td>Inspect the delivered link and processed session data. Do not assume every untagged app click must appear as Direct.</td></tr>
+        <tr><td>Source/medium is present but the channel is Unassigned</td><td>Whether any current channel rule matches</td><td>Use source/medium to inspect the data; add the documented custom channel if needed.</td></tr>
+        <tr><td>Short-link clicks exceed GA4 sessions</td><td>Repeat clicks, non-human requests, collection failures and metric definitions</td><td>Compare definitions and dates. A click counter and Analytics sessions measure different activity.</td></tr>
+        <tr><td>The campaign differs from your latest link</td><td>Session versus first-user scope; an already-active session</td><td>Use the dimension that answers your question. Test fresh acquisition in a clean browser context and check processing.</td></tr>
+        <tr><td>A WhatsApp button produces no event</td><td>Actual href, link versus widget, trigger scope and tag consent</td><td>Inspect the element in Preview. Adjust the implementation for the real button type.</td></tr>
+        <tr><td>One click produces two whatsapp_click events</td><td>Overlapping GTM tags, listeners or event-creation rules</td><td>Choose one implementation and repeat the test.</td></tr>
+        <tr><td>Replies or sales are missing from GA4</td><td>Whether any outcome integration exists</td><td>Use verified conversation/CRM records. Website click tracking alone cannot confirm them.</td></tr>
+        <tr><td>A forwarded link is credited to the original placement</td><td>Whether the URL retained its original UTMs</td><td>Document the limitation. UTMs cannot identify every forwarding step.</td></tr>
+      </tbody>
+    </table></div>
+    <p>A missing thumbnail in a WhatsApp message is not, by itself, proof of missing campaign parameters. Test the actual destination. Conversely, a correct preview does not prove that the tag ran or that a redirect preserved the query string.</p>
+
+    <h2 id="launch-checklist">Download the WhatsApp tracking launch checklist</h2>
+    <p><a href="/blog/downloads/whatsapp-ga4-launch-checklist.txt" download>Download the plain-text launch checklist</a> and use it alongside your campaign record. It includes separate checks for inbound campaign links and outbound chat buttons.</p>
+    <ul>
+      <li>Choose the journey and the business outcome you want to measure.</li>
+      <li>Document the source, medium, campaign and placement naming rules.</li>
+      <li>Test the message or button actually delivered to users, including redirects.</li>
+      <li>Check collection, parameter values, consent behaviour and reporting scope.</li>
+      <li>For chat buttons, check one event per click and safe event data.</li>
+      <li>Keep clicks, sessions, conversations and confirmed sales separate.</li>
+    </ul>
+    <p>Google prohibits sending personally identifiable information in campaign parameters and other Analytics data. Keep customer names, emails, personal phone numbers and private conversation text out of UTMs and event payloads. See <a href="https://support.google.com/analytics/answer/6366371" target="_blank" rel="noopener">Google’s PII guidance</a>.</p>
+
+    <section class="article-faq-section">
+      <h2 id="faq">Frequently asked questions</h2>
+      <div class="faq-item"><h3>Can I track WhatsApp broadcasts without the Business Platform API?</h3><p>You can measure collected visits to your GA4-enabled website by sharing tagged website URLs. That does not give you automatic message-delivery, read, reply or conversation data inside GA4.</p></div>
+      <div class="faq-item"><h3>Does adding UTMs to a wa.me link track a WhatsApp lead?</h3><p>No. The chat link itself does not run your website’s GA4 tag. Track the website button interaction separately, then use a confirmed conversation or CRM outcome to count a lead.</p></div>
+      <div class="faq-item"><h3>What utm_medium should I use for WhatsApp?</h3><p>Choose a documented convention that fits your reporting. This guide uses messaging with a custom WhatsApp channel. Social is an option if you deliberately group non-paid messaging under Organic Social. Broadcast is a custom value, not a guarantee of default-channel classification.</p></div>
+      <div class="faq-item"><h3>Will UTMs identify the person who clicked or forwarded my link?</h3><p>No. The examples identify a campaign and placement. Forwarded URLs can keep the original tags, and you should not insert personal identifiers into the campaign parameters.</p></div>
+      <div class="faq-item"><h3>Should I shorten WhatsApp campaign URLs?</h3><p>It is optional. Use a service you trust and test the redirect. A shorter link does not guarantee a higher click rate or accurate collection.</p></div>
+      <div class="faq-item"><h3>Can GA4 measure WhatsApp sales automatically?</h3><p>It can report appropriately implemented website purchase events. Sales completed in a conversation need a separate verified measurement integration or reconciliation with your business records.</p></div>
+    </section>
+
+
+
+    <section class="article-references" id="article-sources">
+      <h3>References</h3>
+      <ul class="references-list">
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/10917952" target="_blank" rel="noopener">Collect campaign data with custom URLs</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/11242870" target="_blank" rel="noopener">Traffic-source dimensions, manual tagging and auto-tagging</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/12923437" target="_blank" rel="noopener">Traffic acquisition report</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/9191807" target="_blank" rel="noopener">About Analytics sessions</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/11080067" target="_blank" rel="noopener">Scopes of traffic-source dimensions</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/9756891" target="_blank" rel="noopener">Default channel group</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/13051316" target="_blank" rel="noopener">Custom channel groups</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/9216061" target="_blank" rel="noopener">Enhanced measurement events</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/tagmanager/answer/7679320" target="_blank" rel="noopener">Click trigger</a>
+            <span class="ref-publisher">(Google Tag Manager Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/tagmanager/answer/13034206" target="_blank" rel="noopener">Set up Google Analytics events in Tag Manager</a>
+            <span class="ref-publisher">(Google Tag Manager Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/14240153" target="_blank" rel="noopener">About custom dimensions and metrics</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/9333790" target="_blank" rel="noopener">Confirm that you are collecting data</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/6366371" target="_blank" rel="noopener">Avoid sending personally identifiable information</a>
+            <span class="ref-publisher">(Google Analytics Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://faq.whatsapp.com/5913398998672934" target="_blank" rel="noopener">How to use click to chat</a>
+            <span class="ref-publisher">(WhatsApp Help Center)</span>
+          </li>
+
+      </ul>
+    </section>
+
+
+          <!-- Author Box -->
+          <div class="article-author-card">
+            <div class="author-avatar" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="author-info">
+              <h4>Dinesh Jeengar</h4>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
+              <nav class="author-social-links" aria-label="Author links">
+    <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
+    </a>
+
+    <a class="author-social-link" href="https://www.linkedin.com/in/dinesh-jeengar/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg><span>LinkedIn</span>
+    </a>
+
+    <a class="author-social-link" href="https://www.instagram.com/dinesshjngr/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span>
+    </a>
+  </nav>
+            </div>
+          </div>
+        </div>
+
+<aside class="article-tool-cta" aria-label="Related tool">
+      <div class="article-tool-cta-inner">
+        <div class="article-tool-cta-content">
+          <p class="article-tool-cta-label">Related tool</p>
+          <h3 class="article-tool-cta-title">Build your WhatsApp campaign links</h3>
+          <p class="article-tool-cta-desc">Choose the WhatsApp Website Link preset, replace the example campaign and destination, then check each link before sharing it.</p>
+        </div>
+        <div class="article-tool-cta-action">
+          <a href="/" class="article-tool-cta-btn">
+            <span>Open the Campaign URL Builder</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+        <!-- Related Guides Grid -->
+        <section class="related-articles-section">
+          <h3>Related Articles &amp; Guides</h3>
+          <div class="related-articles-grid">
+
+    <a href="/ga4-utm-troubleshooting-guide/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/ga4-utm-troubleshooting-guide.webp" alt="Diagnostic schematic showing GA4 tracking issues branching into root causes and resolution workflows" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Diagnostics</span>
+          <span class="post-card-readtime">14 min read</span>
+        </div>
+        <h4 class="post-card-title">GA4 UTM Tracking Troubleshooting Guide: Root Causes, Debugging & Solutions</h4>
+        <p class="post-card-excerpt">Find out why campaign data is missing or misclassified in GA4. Check UTM values, redirects, collection and reports using a step-by-step workflow.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published January 25, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/storing-utm-parameters-in-crm/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/storing-utm-parameters-in-crm.webp" alt="Technical diagram showing incoming UTM query parameters persisting in browser cookies and auto-populating CRM form fields" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Operations</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h4 class="post-card-title">How to Store UTM Parameters in CRM Hidden Fields (Salesforce, HubSpot & Forms)</h4>
+        <p class="post-card-excerpt">Complete guide on capturing UTM parameters in hidden form fields and syncing attribution into Salesforce, HubSpot, and Zoho CRM without losing data.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published March 11, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/non-paid-marketing-utm-tracking/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/non-paid-marketing-utm-tracking.webp" alt="Omnichannel schematic showing non-paid marketing touchpoints (bios, PR, podcasts, webinars) feeding into GA4" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Non-Paid</span>
+          <span class="post-card-readtime">11 min read</span>
+        </div>
+        <h4 class="post-card-title">How to Track Non-Paid Marketing With UTMs: Organic Social, PR & Partnerships</h4>
+        <p class="post-card-excerpt">Learn how to track organic social bios, YouTube descriptions, press releases, podcast sponsorships, and co-marketing partnerships in Google Analytics 4.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published February 16, 2026</span>
+        </div>
+      </div>
+    </a>
+          </div>
+        </section>
+      </article>
+
+      <!-- Desktop Sticky Table of Contents Sidebar -->
+      <aside class="blog-sidebar">
+        <div class="toc-card">
+          <div class="toc-heading">Table of Contents</div>
+          <ul class="toc-list">
+            <li>
+      <a href="#quick-start" class="toc-link">Quick start: choose the right setup</a>
+    </li>
+<li>
+      <a href="#what-you-can-measure" class="toc-link">What GA4 can and cannot measure</a>
+    </li>
+<li>
+      <a href="#utm-naming" class="toc-link">Choose your WhatsApp UTM convention</a>
+    </li>
+<li>
+      <a href="#broadcast-and-outreach" class="toc-link">Build broadcast and sales-outreach links</a>
+    </li>
+<li>
+      <a href="#ga4-reporting" class="toc-link">Find WhatsApp campaign results in GA4</a>
+    </li>
+<li>
+      <a href="#custom-channel" class="toc-link">Create a WhatsApp channel group</a>
+    </li>
+<li>
+      <a href="#track-chat-button" class="toc-link">Track website WhatsApp buttons with GTM</a>
+    </li>
+<li>
+      <a href="#leads-and-sales" class="toc-link">Connect clicks to qualified leads</a>
+    </li>
+<li>
+      <a href="#troubleshooting" class="toc-link">Troubleshoot missing or conflicting data</a>
+    </li>
+<li>
+      <a href="#launch-checklist" class="toc-link">Download the launch checklist</a>
+    </li>
+<li>
+      <a href="#faq" class="toc-link">Frequently asked questions</a>
+    </li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+              <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+              <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+            </a>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Core Builders</span>
+            <ul class="footer-links">
+              <li><a href="/">UTM Tracking Toolkit</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+              <li><a href="/#campaign-history" data-switch-tab="tab-history">Campaign History</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Platform Builders</span>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
+            <ul class="footer-links">
+              <li><a href="/blog/">All Knowledge Guides</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Company &amp; Trust</span>
+            <ul class="footer-links">
+              <li><a href="/about/">About Us</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/version-history.html">Version History</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by Dinesh Jeengar</div>
+          <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    <button class="back-to-top" type="button" aria-label="Back to top" aria-hidden="true" tabindex="-1">
+      <span class="back-to-top__arrow" aria-hidden="true">↑</span>
+      <span class="back-to-top__text" aria-hidden="true">Back to Top</span>
+    </button>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/blog.js"></script>
+</body>
+</html>

@@ -6,12 +6,14 @@ import { googleAdsPosts } from './posts/google-ads.js';
 import { metaAdsPosts } from './posts/meta-ads.js';
 import { linkedinAdsPosts } from './posts/linkedin-ads.js';
 import { emailTrackingPosts } from './posts/email-tracking.js';
+import { whatsappPosts } from './posts/whatsapp.js';
 import { organicSocialPrPosts } from './posts/organic-social-pr.js';
 import { offlineQrPosts } from './posts/offline-qr.js';
 import { utmOperationsPosts } from './posts/utm-operations.js';
 import { utmMistakesPosts } from './posts/utm-mistakes.js';
 import { searchNewsPosts } from './posts/search-news.js';
 import { aiTrafficPosts } from './posts/ai-traffic.js';
+import { advertisingNewsPosts } from './posts/advertising-news.js';
 
 // These guides were consolidated into their stronger parent pages. Keep their
 // slugs here so the redirect generator can preserve inbound links.
@@ -32,10 +34,12 @@ export const blogPosts = [
   ...linkedinAdsPosts,
   ...emailTrackingPosts,
   ...organicSocialPrPosts,
+  ...whatsappPosts,
   ...offlineQrPosts,
   ...utmOperationsPosts,
   ...utmMistakesPosts,
-  ...searchNewsPosts
+  ...searchNewsPosts,
+  ...advertisingNewsPosts
 ].filter(post => !mergedBlogPostSlugs.has(post.slug));
 
 export function getPostBySlug(slug) {

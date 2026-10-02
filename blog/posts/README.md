@@ -1,6 +1,6 @@
 # UTMCraft Blog Articles Directory
 
-All 52 active production guides are organized in this directory as individual HTML files.
+All 54 active production guides are organized in this directory as individual HTML files.
 
 ## URL Architecture & Routing Governance
 
@@ -15,6 +15,7 @@ Both the Vite development server and the production build automatically route re
 
 | Category | Type | Title | File | Canonical URL |
 | :--- | :--- | :--- | :--- | :--- |
+| Advertising News & Updates | Supporting | Discord Launches Ads Manager and Mobile Video Quests | `discord-ads-manager-video-quests.html` | [/discord-ads-manager-video-quests/](https://utmcraft.com/discord-ads-manager-video-quests/) |
 | UTM Strategy & Governance | **Pillar** | UTM Strategy Guide: How to Build a Tracking System That Stays Clean at Scale | `utm-strategy-guide.html` | [/utm-strategy-guide/](https://utmcraft.com/utm-strategy-guide/) |
 | UTM Strategy & Governance | Supporting | UTM Naming Conventions: Frameworks, Formats, and Governance Rules | `utm-naming-conventions-guide.html` | [/utm-naming-conventions-guide/](https://utmcraft.com/utm-naming-conventions-guide/) |
 | UTM Strategy & Governance | Supporting | Agency UTM Governance: Standardizing Campaign Tagging Across Clients and Teams | `agency-utm-governance.html` | [/agency-utm-governance/](https://utmcraft.com/agency-utm-governance/) |
@@ -43,6 +44,7 @@ Both the Vite development server and the production build automatically route re
 | Email Marketing Tracking | Supporting | Email UTM Link Wrappers: Preserve Tags Through ESP Redirects | `email-utm-tracking.html` | [/email-utm-tracking/](https://utmcraft.com/email-utm-tracking/) |
 | Organic Social, Influencer, PR & Partnerships | **Pillar** | How to Track Non-Paid Marketing With UTMs: Organic Social, PR & Partnerships | `non-paid-marketing-utm-tracking.html` | [/non-paid-marketing-utm-tracking/](https://utmcraft.com/non-paid-marketing-utm-tracking/) |
 | Organic Social, Influencer, PR & Partnerships | Supporting | Influencer & Creator UTM Tracking: Promo Codes, Bio Links & Partner Governance | `influencer-utm-tracking.html` | [/influencer-utm-tracking/](https://utmcraft.com/influencer-utm-tracking/) |
+| Organic Social, Influencer, PR & Partnerships | Supporting | How to Track WhatsApp Campaign Links in GA4 | `how-to-track-whatsapp-campaign-links-in-ga4.html` | [/how-to-track-whatsapp-campaign-links-in-ga4/](https://utmcraft.com/how-to-track-whatsapp-campaign-links-in-ga4/) |
 | Offline & QR Tracking | **Pillar** | Offline Campaign Tracking With UTMs and QR Codes: Print, Events & Packaging | `offline-qr-utm-tracking.html` | [/offline-qr-utm-tracking/](https://utmcraft.com/offline-qr-utm-tracking/) |
 | Offline & QR Tracking | Supporting | QR Code UTM Tracking: How to Track Print, Events, and Offline Clicks in GA4 | `qr-code-utm-tracking.html` | [/qr-code-utm-tracking/](https://utmcraft.com/qr-code-utm-tracking/) |
 | UTM Operations, Automation & QA | **Pillar** | UTM Operations: How to Build a Reliable Campaign Tracking Workflow | `utm-operations-workflow.html` | [/utm-operations-workflow/](https://utmcraft.com/utm-operations-workflow/) |

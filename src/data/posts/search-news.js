@@ -12,16 +12,17 @@ export const searchNewsPosts = [
       url: 'https://utmcraft.com/about/'
     },
     datePublished: '2026-09-28',
-    dateModified: '2026-10-01',
-    reviewedDate: 'September 28, 2026',
+    dateModified: '2026-10-02',
+    reviewedDate: 'October 2, 2026',
     readingTime: '4 min read',
     primaryKeyword: 'September 2026 Google spam update',
     secondaryKeywords: ['Google spam update September 2026', 'Google search ranking update', 'Google spam update rollout'],
     semanticKeywords: ['Google Search Status Dashboard', 'global spam update', 'ranking systems', 'spam policies'],
     relatedEntities: ['Google Search', 'Google Search Status Dashboard', 'Google Search spam updates'],
     searchIntent: 'Search News & Ranking Update',
-    featuredImage: '/blog/images/google-september-2026-spam-update.webp',
+    featuredImage: '/blog/images/google-september-2026-spam-update-banner-20261002.webp',
     featuredImageAlt: 'Google Search Console shown through a magnifying glass beside a graphic about the September 2026 spam update',
+    featuredImageMetadata: { width: 1200, height: 630, type: 'image/webp' },
     preserveFeaturedImage: true,
     tableOfContents: [
       { id: 'what-google-confirmed', title: 'What Google Confirmed', level: 2 },
@@ -40,7 +41,7 @@ export const searchNewsPosts = [
 
       <h2 id="what-google-confirmed">What Google Confirmed</h2>
       <p>The <a href="https://status.search.google.com/incidents/XhUDXP7A67iHCD2kmbVu" target="_blank" rel="noopener">Google Search Status Dashboard</a> records the rollout start as September 24, 2026 at 09:15 PDT. It classifies the incident as affecting ranking and says the update applies globally, across all languages. Google’s stated completion window is up to two weeks.</p>
-      <p>At publication on September 28, the dashboard has not posted a completion time. The rollout window is an estimate from Google; it does not mean every site will see ranking changes or that changes will happen evenly throughout the period.</p>
+      <p><strong>Status checked October 2, 2026:</strong> the dashboard has not posted a completion notice. The rollout window is an estimate; it does not mean every site will see ranking changes or that changes will happen evenly throughout the period.</p>
 
       <h2 id="how-this-rollout-compares">How This Rollout Compares With Earlier 2026 Spam Updates</h2>
       <p>The <a href="https://status.search.google.com/summary" target="_blank" rel="noopener">official ranking update history</a> lists three earlier spam updates in 2026:</p>
@@ -58,10 +59,11 @@ export const searchNewsPosts = [
       <h2 id="what-site-owners-should-do">What Site Owners Should Do Now</h2>
       <ol>
         <li><strong>Record a baseline.</strong> In Search Console, note clicks, impressions, and average position for important pages and queries before comparing later periods.</li>
-        <li><strong>Wait for the rollout to finish.</strong> Avoid attributing a short-lived fluctuation to this update while Google is still rolling it out.</li>
+        <li><strong>Monitor until Google confirms completion.</strong> Avoid attributing a short-lived fluctuation to this update. Fix known spam-policy violations now rather than waiting for the rollout to finish.</li>
         <li><strong>Review the affected pages.</strong> If a sustained decline appears after completion, check the pages and practices involved against Google’s published spam policies. Do not assume the update’s target without evidence.</li>
         <li><strong>Separate search visibility from analytics attribution.</strong> Search Console clicks and GA4 sessions measure different things. If the reports diverge, use our <a href="/ga4-utm-troubleshooting-guide/">GA4 UTM troubleshooting guide</a> to check campaign tagging and session-source issues.</li>
       </ol>
+      <p>Google’s spam-update guidance says improvements can take months to be reflected as its systems reassess policy compliance. A correction does not guarantee an immediate ranking recovery.</p>
       <p>We’ll update this news brief if Google posts a completion notice or publishes more detail about the rollout.</p>
     `
   },
@@ -83,7 +85,7 @@ export const searchNewsPosts = [
       ]
     },
     datePublished: '2026-09-28',
-    dateModified: '2026-10-01',
+    dateModified: '2026-10-03',
     reviewedDate: 'September 28, 2026',
     readingTime: '7 min read',
     primaryKeyword: 'Google DSA to AI Max migration',
@@ -153,11 +155,11 @@ export const searchNewsPosts = [
         <figcaption>Comparison graphic from <a href="https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/" target="_blank" rel="noopener">Google’s DSA-to-AI Max announcement</a>.</figcaption>
       </figure>
       <figure class="article-source-media">
-        <video controls playsinline preload="metadata" aria-label="Google Ads overview video about the Dynamic Search Ads to AI Max transition">
+        <video controls playsinline preload="metadata" poster="/blog/images/google-dsa-ai-max-video.webp" aria-label="Google Ads overview video about the Dynamic Search Ads to AI Max transition">
           <source src="/blog/videos/google-dsa-ai-max-panel.mp4" type="video/mp4">
           Your browser does not support embedded video. <a href="/blog/videos/google-dsa-ai-max-panel.mp4">Download the video</a>.
         </video>
-        <figcaption>Video from <a href="https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/" target="_blank" rel="noopener">Google’s DSA-to-AI Max announcement</a>.</figcaption>
+        <figcaption><a href="/videos/google-dsa-ai-max/">Watch the DSA to AI Max settings demo</a>. Source: <a href="https://blog.google/products/ads-commerce/dsa-upgrade-to-ai-max-2026/" target="_blank" rel="noopener">Google’s DSA-to-AI Max announcement</a>.</figcaption>
       </figure>
 
       <h2 id="migration-checklist">A Practical Migration Checklist</h2>

@@ -1,5 +1,14 @@
 export const blogCategories = [
   {
+    id: 'advertising-news',
+    name: 'Advertising News & Updates',
+    slug: 'advertising-news',
+    featuredSlug: 'discord-ads-manager-video-quests',
+    description: 'Advertising platform launches and updates, with practical guidance for campaign measurement and tracking.',
+    badge: 'Advertising News',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/><path d="M2 7v13a2 2 0 0 0 2 2"/></svg>`
+  },
+  {
     id: 'utm-strategy',
     name: 'UTM Strategy & Governance',
     slug: 'utm-strategy',

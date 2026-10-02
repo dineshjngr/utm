@@ -4,6 +4,19 @@
 
 export const DEFAULT_PRESETS = [
   {
+    id: 'whatsapp-website',
+    category: 'Messaging',
+    name: 'WhatsApp Website Link',
+    icon: 'message-square',
+    source: 'whatsapp',
+    medium: 'messaging',
+    defaultCampaign: 'demo-outreach-2026-10',
+    term: '',
+    content: 'broadcast-existing-customers',
+    color: '#25D366',
+    badge: 'Custom Messaging'
+  },
+  {
     id: 'google-cpc',
     category: 'Search & PPC',
     name: 'Google Ads (Search)',

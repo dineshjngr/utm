@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { blogPosts, getRelatedPosts, getCategoryById } from '../src/data/blog-posts.js';
+import { videos } from '../src/data/videos.js';
 import { blogCategories } from '../src/data/blog-categories.js';
 import { renderHeader, renderFooter } from './shared-layout.js';
 
@@ -268,7 +269,8 @@ export function renderArticlePage(post) {
           <!-- Featured Hero Image -->
           <div class="article-featured-image">
             <img src="${post.featuredImage}" alt="${escapeAttr(post.featuredImageAlt)}" width="1200" height="630" fetchpriority="high">
-          </div>
+          </div>${post.featuredImageCaption ? `
+          <p class="article-banner-caption">${escapeAttr(post.featuredImageCaption)}</p>` : ''}
         </header>
 
         <!-- Mobile Table of Contents Accordion -->
@@ -389,7 +391,7 @@ export function renderCategoryPage(category) {
         </div>
       </div>
     </a>
-  `).join('').trimEnd();
+  `.trimEnd()).join('\n');
 
   return `<!DOCTYPE html>
 <html lang="en" data-theme="light">
@@ -711,15 +713,26 @@ function updateSitemap() {
     lastmod: post.dateModified || now
   }));
 
-  const allUrls = [...staticUrls, ...categoryUrls, ...postUrls];
+  const videoUrls = videos.map(video => ({
+    loc: `https://utmcraft.com${video.watchPath}`,
+    lastmod: video.dateModified,
+    video
+  }));
+  const allUrls = [...staticUrls, ...categoryUrls, ...postUrls, ...videoUrls];
+  const escapeXml = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&apos;');
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${allUrls.map(u => `  <url>
     <loc>${u.loc}</loc>
-${u.lastmod ? `    <lastmod>${u.lastmod}</lastmod>\n` : ''}    <changefreq>${u.changefreq}</changefreq>
-    <priority>${u.priority}</priority>
-  </url>`).join('\n')}
+${u.lastmod ? `    <lastmod>${u.lastmod}</lastmod>\n` : ''}${u.changefreq ? `    <changefreq>${u.changefreq}</changefreq>\n` : ''}${u.priority ? `    <priority>${u.priority}</priority>\n` : ''}${u.video ? `    <video:video>
+      <video:thumbnail_loc>https://utmcraft.com${u.video.thumbnailPath}</video:thumbnail_loc>
+      <video:title>${escapeXml(u.video.title)}</video:title>
+      <video:description>${escapeXml(u.video.description)}</video:description>
+      <video:content_loc>https://utmcraft.com${u.video.contentPath}</video:content_loc>
+      <video:duration>${u.video.durationSeconds}</video:duration>
+      <video:publication_date>${u.video.uploadDate}</video:publication_date>
+    </video:video>\n` : ''}  </url>`).join('\n')}
 </urlset>
 `;
 

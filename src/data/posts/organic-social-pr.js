@@ -12,7 +12,7 @@ export const organicSocialPrPosts = [
       url: 'https://utmcraft.com/'
     },
     datePublished: '2026-02-16',
-    dateModified: '2026-10-01',
+    dateModified: '2026-10-03',
     reviewedDate: 'September 23, 2026',
     readingTime: '11 min read',
     primaryKeyword: 'track non paid marketing with utms',
@@ -93,6 +93,8 @@ export const organicSocialPrPosts = [
           </tbody>
         </table>
       </div>
+
+      <p>For messaging campaigns, see <a href="/how-to-track-whatsapp-campaign-links-in-ga4/">how to track WhatsApp campaign links in GA4</a>, including broadcast and sales-follow-up examples, chat-button events and the limits of conversation attribution.</p>
 
       <h2 id="public-relations-and-press-releases">Public Relations & Press Release Distribution</h2>
       <p>When issuing press releases through PR Newswire, Business Wire, or pitching journalists for exclusive features, embed UTM-tagged links:</p>

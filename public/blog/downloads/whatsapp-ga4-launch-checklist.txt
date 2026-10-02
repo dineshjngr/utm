@@ -1,0 +1,47 @@
+WHATSAPP CAMPAIGN TRACKING IN GA4
+Launch checklist — UTMCraft
+Guide: https://utmcraft.com/how-to-track-whatsapp-campaign-links-in-ga4/
+
+Choose the journey
+[ ] WhatsApp message to website: tag the destination website URL.
+[ ] Website to WhatsApp: track the website chat-button interaction.
+[ ] Ad directly to WhatsApp: use supported platform and conversation reporting.
+[ ] Define the outcome: visit, button click, confirmed lead or confirmed sale.
+
+Website links shared in WhatsApp
+[ ] GA4 collects activity on the destination under the intended consent setup.
+[ ] Source, medium, campaign and content follow the documented convention.
+[ ] No customer name, email, phone number or private text is in campaign tags.
+[ ] Existing query parameters remain intact; UTMs precede any #fragment.
+[ ] Every placement has the correct tagged URL.
+[ ] The delivered message opens the correct final page with UTMs preserved.
+[ ] Any short link or provider redirect preserves the intended tags.
+[ ] Realtime/DebugView confirms collection; processed reports confirm acquisition.
+[ ] Session source / medium, Session campaign and Session manual ad content
+    are used where appropriate. First user dimensions answer a different question.
+[ ] Custom messaging-channel rules are configured if a separate category is needed.
+
+Website chat buttons
+[ ] The trigger matches the real link/widget and excludes unrelated links.
+[ ] whatsapp_click fires once per tested interaction.
+[ ] button_location describes the actual placement restricted by the trigger.
+[ ] Events send safe labels, not a phone number, message text or full chat URL.
+[ ] Automatic outbound-click collection is also checked for personal data.
+[ ] Desktop and mobile app handoff work after the tracking setup is added.
+[ ] Clicking nested icons/text produces the same result as clicking the link.
+[ ] No overlapping tags or rules duplicate the dedicated event.
+[ ] Custom event parameters needed in reports have event-scoped definitions.
+[ ] Any key-event label accurately describes a button click, not a confirmed lead.
+
+Interpret results
+[ ] Record campaign, audience label, destination, tagged URL, placement,
+    send date, owner and QA status in the campaign log.
+[ ] Keep recipient contact details in the business system, outside Analytics tags.
+[ ] Link clicks, GA4 sessions, conversations and CRM sales are reported separately.
+[ ] Forwarded-link attribution and missing collection are documented limitations.
+[ ] Claimed leads/sales are supported by a verified outcome implementation.
+
+Campaign: ____________________  Owner: ____________________
+Test date/device: _________________________________________
+Final URL checked: ________________________________________
+Remaining issues: _________________________________________

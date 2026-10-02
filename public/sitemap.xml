@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://utmcraft.com/</loc>
     <lastmod>2026-09-28</lastmod>
@@ -83,6 +83,12 @@
     <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://utmcraft.com/blog/advertising-news/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://utmcraft.com/blog/utm-strategy/</loc>
@@ -314,13 +320,19 @@
   </url>
   <url>
     <loc>https://utmcraft.com/non-paid-marketing-utm-tracking/</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://utmcraft.com/influencer-utm-tracking/</loc>
     <lastmod>2026-10-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://utmcraft.com/how-to-track-whatsapp-campaign-links-in-ga4/</loc>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -458,14 +470,32 @@
   </url>
   <url>
     <loc>https://utmcraft.com/google-september-2026-spam-update/</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://utmcraft.com/google-dsa-ai-max-migration-2027/</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://utmcraft.com/discord-ads-manager-video-quests/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://utmcraft.com/videos/google-dsa-ai-max/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <video:video>
+      <video:thumbnail_loc>https://utmcraft.com/blog/images/google-dsa-ai-max-video.webp</video:thumbnail_loc>
+      <video:title>DSA to AI Max: Google Ads Settings Demo</video:title>
+      <video:description>Watch Google’s six-second demo of the campaign settings transition from Dynamic Search Ads to AI Max, then read the migration timeline and checklist.</video:description>
+      <video:content_loc>https://utmcraft.com/blog/videos/google-dsa-ai-max-panel.mp4</video:content_loc>
+      <video:duration>6</video:duration>
+      <video:publication_date>2026-09-28T00:00:00Z</video:publication_date>
+    </video:video>
   </url>
 </urlset>

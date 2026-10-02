@@ -1810,3 +1810,44 @@ body[data-page="blog-index"] .blog-hero-title {
     transform: none;
   }
 }
+
+/* Dedicated video watch pages keep the player as the primary content. */
+.video-watch {
+  max-width: 960px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.video-watch h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.video-watch-player {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 65vh;
+  aspect-ratio: 16 / 9;
+  background: #101827;
+  border-radius: var(--radius-card);
+  object-fit: contain;
+}
+
+.video-watch p {
+  margin: 1rem 0;
+  color: var(--text-secondary);
+}
+
+.video-watch .video-watch-credit {
+  font-size: 0.875rem;
+}
+
+.article-banner-caption {
+  margin: 0.75rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
