@@ -4,6 +4,7 @@ import { blogPosts, getRelatedPosts, getCategoryById } from '../src/data/blog-po
 import { videos } from '../src/data/videos.js';
 import { blogCategories } from '../src/data/blog-categories.js';
 import { renderHeader, renderFooter } from './shared-layout.js';
+import { externalLinksInNewTabs } from './normalize-external-links.js';
 
 const rootDir = path.resolve(import.meta.dirname, '..');
 
@@ -284,7 +285,7 @@ export function renderArticlePage(post) {
 
         <!-- Main Prose Body -->
         <div class="article-prose">
-          ${post.contentHtml}
+          ${externalLinksInNewTabs(post.contentHtml)}
 
           ${referencesHtml}
 

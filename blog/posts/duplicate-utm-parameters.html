@@ -343,7 +343,7 @@
 <td>A query value and text in the fragment; not two query occurrences</td>
 </tr>
 </tbody></table></div>
-<p>The fragment is the portion after <code>#</code>. It is separate from the URL&#39;s query string, so inspecting text alone can misidentify a duplicate. <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/hash">URL hash reference</a></p>
+<p>The fragment is the portion after <code>#</code>. It is separate from the URL&#39;s query string, so inspecting text alone can misidentify a duplicate. <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/hash" target="_blank" rel="noopener">URL hash reference</a></p>
 <h2 id="how-duplicates-enter-a-campaign-workflow">How duplicates enter a campaign workflow</h2>
 <p>Common places to inspect include:</p>
 <ul>
@@ -354,9 +354,9 @@
 <li>Two teams each believe they own the tagging step.</li>
 </ul>
 <p>These are diagnostic possibilities, not proof of what happened to your link. Record the URL before and after each system to locate the actual change.</p>
-<p>For Google Ads, review the destination, suffix and any tracking template together. <a href="https://support.google.com/google-ads/answer/6076199">Google Ads URL configuration</a></p>
+<p>For Google Ads, review the destination, suffix and any tracking template together. <a href="https://support.google.com/google-ads/answer/6076199" target="_blank" rel="noopener">Google Ads URL configuration</a></p>
 <h2 id="check-all-occurrences-not-just-one-displayed-value">Check all occurrences, not just one displayed value</h2>
-<p>A parser that returns one value can hide a duplicate. In the browser&#39;s URL API, <code>get()</code> returns the first matching value; <code>getAll()</code> returns every value for the requested key. That tells you how these APIs behave, not how GA4 or a third-party CRM necessarily processes a duplicate. <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/get">get() documentation</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/getAll">getAll() documentation</a></p>
+<p>A parser that returns one value can hide a duplicate. In the browser&#39;s URL API, <code>get()</code> returns the first matching value; <code>getAll()</code> returns every value for the requested key. That tells you how these APIs behave, not how GA4 or a third-party CRM necessarily processes a duplicate. <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/get" target="_blank" rel="noopener">get() documentation</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/getAll" target="_blank" rel="noopener">getAll() documentation</a></p>
 <p>You can inspect a link locally with this JavaScript example. Replace the illustrative URL with a link you are authorised to inspect:</p>
 <div class="code-block-wrap"><pre><code class="language-javascript">const url = new URL(
   &#39;https://example.com/demo?utm_source=email&amp;utm_source=facebook&amp;utm_campaign=launch&#39;
@@ -451,7 +451,7 @@ for (const [key, value] of Object.entries(approved)) {
 }
 
 console.log(url.href);" aria-label="Copy example">Copy</button></div>
-<p>This cleans the keys explicitly listed in <code>approved</code>. It is not a general deletion of every tracking parameter. <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/set">set() documentation</a></p>
+<p>This cleans the keys explicitly listed in <code>approved</code>. It is not a general deletion of every tracking parameter. <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/set" target="_blank" rel="noopener">set() documentation</a></p>
 <p>If you rebuild with <a href="https://utmcraft.com/">UTMCraft</a>, review the option to strip existing UTMs before entering the approved values. Inspect the generated URL afterwards. Removing old UTM fields may also remove optional campaign information you intended to keep, so re-enter those deliberately.</p>
 <h2 id="fix-the-origin-of-the-problem">Fix the origin of the problem</h2>
 <p>A corrected link is temporary if an email platform, ad setting or redirect adds the conflicting tags again. Assign one owner to each tracking field and document where those values are applied.</p>
@@ -465,7 +465,7 @@ console.log(url.href);" aria-label="Copy example">Copy</button></div>
 <li>Check the page location received by the analytics tag and any campaign fields stored by your form or CRM.</li>
 <li>Review the relevant GA4 dimensions after processing.</li>
 </ol>
-<p>UTM values map to manual campaign dimensions in GA4. A clean URL does not prove that the tag ran, consent allowed collection, or the selected report has the right scope. <a href="https://support.google.com/analytics/answer/11242870">GA4 traffic-source dimensions</a></p>
+<p>UTM values map to manual campaign dimensions in GA4. A clean URL does not prove that the tag ran, consent allowed collection, or the selected report has the right scope. <a href="https://support.google.com/analytics/answer/11242870" target="_blank" rel="noopener">GA4 traffic-source dimensions</a></p>
 <p>Use the <a href="https://utmcraft.com/utm-checker/">UTM checker</a> for the checks it explicitly reports, and follow the <a href="https://utmcraft.com/how-to-test-utms/">UTM testing guide</a> for measurement QA. Do not rely on a single extracted value or quality score as proof that duplicates are absent.</p>
 <h2 id="frequently-asked-questions">Frequently asked questions</h2>
 <p><strong>Will GA4 always take the first duplicate value?</strong></p>

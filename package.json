@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "node scripts/sync-layout.js",
+    "predev": "node scripts/sync-layout.js && node scripts/normalize-external-links.js",
     "dev": "vite",
-    "prebuild": "node scripts/generate-assets.js && node scripts/build-blog.js && node scripts/build-videos.js && node scripts/sync-layout.js && node scripts/generate-redirects.js",
+    "prebuild": "node scripts/generate-assets.js && node scripts/build-blog.js && node scripts/build-videos.js && node scripts/sync-layout.js && node scripts/generate-redirects.js && node scripts/normalize-external-links.js",
     "build": "vite build",
     "check:layout": "node scripts/sync-layout.js --check",
     "preview": "vite preview",
