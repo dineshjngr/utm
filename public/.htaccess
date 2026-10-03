@@ -272,6 +272,18 @@ RewriteRule ^blog/discord-ads-manager-video-quests$ /discord-ads-manager-video-q
 RewriteRule ^blog/discord-ads-manager-video-quests/$ /discord-ads-manager-video-quests/ [R=301,L]
 RewriteRule ^blog/discord-ads-manager-video-quests/index\.html$ /discord-ads-manager-video-quests/ [R=301,L]
 RewriteRule ^blog/posts/discord-ads-manager-video-quests\.html$ /discord-ads-manager-video-quests/ [R=301,L]
+RewriteRule ^blog/how-to-bulk-add-utm-parameters-to-google-ads$ /how-to-bulk-add-utm-parameters-to-google-ads/ [R=301,L]
+RewriteRule ^blog/how-to-bulk-add-utm-parameters-to-google-ads/$ /how-to-bulk-add-utm-parameters-to-google-ads/ [R=301,L]
+RewriteRule ^blog/how-to-bulk-add-utm-parameters-to-google-ads/index\.html$ /how-to-bulk-add-utm-parameters-to-google-ads/ [R=301,L]
+RewriteRule ^blog/posts/how-to-bulk-add-utm-parameters-to-google-ads\.html$ /how-to-bulk-add-utm-parameters-to-google-ads/ [R=301,L]
+RewriteRule ^blog/duplicate-utm-parameters$ /duplicate-utm-parameters/ [R=301,L]
+RewriteRule ^blog/duplicate-utm-parameters/$ /duplicate-utm-parameters/ [R=301,L]
+RewriteRule ^blog/duplicate-utm-parameters/index\.html$ /duplicate-utm-parameters/ [R=301,L]
+RewriteRule ^blog/posts/duplicate-utm-parameters\.html$ /duplicate-utm-parameters/ [R=301,L]
+RewriteRule ^blog/how-to-find-utm-content-and-utm-term-in-ga4$ /how-to-find-utm-content-and-utm-term-in-ga4/ [R=301,L]
+RewriteRule ^blog/how-to-find-utm-content-and-utm-term-in-ga4/$ /how-to-find-utm-content-and-utm-term-in-ga4/ [R=301,L]
+RewriteRule ^blog/how-to-find-utm-content-and-utm-term-in-ga4/index\.html$ /how-to-find-utm-content-and-utm-term-in-ga4/ [R=301,L]
+RewriteRule ^blog/posts/how-to-find-utm-content-and-utm-term-in-ga4\.html$ /how-to-find-utm-content-and-utm-term-in-ga4/ [R=301,L]
 # END GENERATED CANONICAL REDIRECTS
 
 # Consolidate index-file variants.

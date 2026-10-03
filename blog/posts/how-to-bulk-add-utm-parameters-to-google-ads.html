@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script type="module" src="/src/theme.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk Add UTM Parameters to Google Ads | UTMCraft</title>
+  <meta name="description" content="Add UTMs across Google Ads campaigns using a shared final URL suffix or campaign-specific CSV changes. Includes examples, checks and rollback steps.">
+  <meta name="keywords" content="how to bulk add utm parameters to google ads, ">
+  <link rel="canonical" href="https://utmcraft.com/how-to-bulk-add-utm-parameters-to-google-ads/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utmcraft.com/how-to-bulk-add-utm-parameters-to-google-ads/">
+  <meta property="og:title" content="Bulk Add UTM Parameters to Google Ads | UTMCraft">
+  <meta property="og:description" content="Add UTMs across Google Ads campaigns using a shared final URL suffix or campaign-specific CSV changes. Includes examples, checks and rollback steps.">
+  <meta property="og:image" content="https://utmcraft.com/blog/images/how-to-bulk-add-utm-parameters-to-google-ads.webp">
+  <meta property="og:image:alt" content="Illustration of bulk UTM campaign tagging in Google Ads">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="article:published_time" content="2026-10-03">
+  <meta property="article:modified_time" content="2026-10-03">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utmcraft.com/how-to-bulk-add-utm-parameters-to-google-ads/">
+  <meta name="twitter:title" content="Bulk Add UTM Parameters to Google Ads | UTMCraft">
+  <meta name="twitter:description" content="Add UTMs across Google Ads campaigns using a shared final URL suffix or campaign-specific CSV changes. Includes examples, checks and rollback steps.">
+  <meta name="twitter:image" content="https://utmcraft.com/blog/images/how-to-bulk-add-utm-parameters-to-google-ads.webp">
+  <meta name="twitter:image:alt" content="Illustration of bulk UTM campaign tagging in Google Ads">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="stylesheet" href="/src/blog.css">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://utmcraft.com/how-to-bulk-add-utm-parameters-to-google-ads/#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://utmcraft.com/how-to-bulk-add-utm-parameters-to-google-ads/"
+      },
+      "headline": "How to Bulk Add UTM Parameters to Google Ads",
+      "description": "Add UTMs across Google Ads campaigns using a shared final URL suffix or campaign-specific CSV changes. Includes examples, checks and rollback steps.",
+      "image": "https://utmcraft.com/blog/images/how-to-bulk-add-utm-parameters-to-google-ads.webp",
+      "datePublished": "2026-10-03",
+      "dateModified": "2026-10-03",
+      "citation": [
+        {
+          "@type": "CreativeWork",
+          "name": "Google Ads tracking tests",
+          "url": "https://support.google.com/google-ads/answer/6076199"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "ValueTrack reference",
+          "url": "https://support.google.com/google-ads/answer/6305348"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Add a final URL suffix",
+          "url": "https://support.google.com/google-ads/answer/9054021"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Editor CSV columns",
+          "url": "https://support.google.com/google-ads/editor/answer/57747"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Edit campaign settings in Editor",
+          "url": "https://support.google.com/google-ads/editor/answer/30570"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "GA4 manual and automatic tagging",
+          "url": "https://support.google.com/analytics/answer/11242870"
+        }
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "Dinesh Jeengar",
+        "jobTitle": "Founder, UTMCraft",
+        "url": "https://utmcraft.com/about/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://utmcraft.com/#organization",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://utmcraft.com/utmcraft-logo-light.png"
+        }
+      },
+      "mainEntityOfPage": "https://utmcraft.com/how-to-bulk-add-utm-parameters-to-google-ads/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://utmcraft.com/how-to-bulk-add-utm-parameters-to-google-ads/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://utmcraft.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://utmcraft.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Google Ads Tracking",
+          "item": "https://utmcraft.com/blog/google-ads/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "How to Bulk Add UTM Parameters to Google Ads",
+          "item": "https://utmcraft.com/how-to-bulk-add-utm-parameters-to-google-ads/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://utmcraft.com/#organization",
+      "name": "UTMCraft",
+      "url": "https://utmcraft.com/",
+      "logo": "https://utmcraft.com/utmcraft-logo-light.png",
+      "email": "contact@utmcraft.com"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="blog-post">
+  <!-- Reading Progress Indicator -->
+  <div id="reading-progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+
+      <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-controls="builder-nav-options">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="builder-nav-options" class="nav-dropdown-menu">
+            <a href="/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-controls="guide-nav-options">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="guide-nav-options" class="nav-dropdown-menu">
+            <a href="/blog/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
+            </a>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>New Link</span>
+        </a>
+      </div>
+      <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+    <script type="module" src="/src/site.js"></script>
+  </header>
+
+  <div class="app-container">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/">Guides</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/google-ads/">Google Ads Tracking</a></li>
+        <li class="separator">/</li>
+        <li class="current" aria-current="page">How to Bulk Add UTM Parameters to Google Ads</li>
+      </ol>
+    </nav>
+
+    <!-- Main Article Layout -->
+    <main id="main-content" class="blog-article-layout">
+      <!-- Article Content Column -->
+      <article class="article-main-column">
+        <header class="article-header">
+          <a href="/blog/google-ads/" class="article-category-badge">
+            Paid Search
+          </a>
+
+          <h1 class="article-title">How to Bulk Add UTM Parameters to Google Ads</h1>
+          <p class="article-description">Add UTMs across Google Ads campaigns using a shared final URL suffix or campaign-specific CSV changes. Includes examples, checks and rollback steps.</p>
+          <div class="article-meta-top">
+            <span class="article-date">Updated October 2026</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-reading-time">6 min read</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-author-byline">Written by Dinesh Jeengar</span>
+          </div>
+
+          <!-- Featured Hero Image -->
+          <div class="article-featured-image">
+            <img src="/blog/images/how-to-bulk-add-utm-parameters-to-google-ads.webp" alt="Illustration of bulk UTM campaign tagging in Google Ads" width="1200" height="630" fetchpriority="high">
+          </div>
+          <p class="article-banner-caption">Illustrative banner, not an actual Google Ads screenshot. Follow the article for the documented settings and bulk-edit workflow.</p>
+        </header>
+
+        <!-- Mobile Table of Contents Accordion -->
+        <details class="mobile-toc">
+          <summary>Table of Contents</summary>
+          <ol>
+            <li>
+      <a href="#choose-the-setup-that-matches-your-account" class="toc-link">Choose the setup that matches your account</a>
+    </li>
+<li>
+      <a href="#start-with-an-inventory-and-backup" class="toc-link">Start with an inventory and backup</a>
+    </li>
+<li>
+      <a href="#option-1-use-a-shared-account-level-suffix" class="toc-link">Option 1: Use a shared account-level suffix</a>
+    </li>
+<li>
+      <a href="#option-2-prepare-different-suffixes-for-different-campaigns" class="toc-link">Option 2: Prepare different suffixes for different campaigns</a>
+    </li>
+<li>
+      <a href="#test-three-layers-before-expanding-the-rollout" class="toc-link">Test three layers before expanding the rollout</a>
+    </li>
+<li>
+      <a href="#keep-auto-tagging-and-manual-campaign-values-separate-in-your-review" class="toc-link">Keep auto-tagging and manual campaign values separate in your review</a>
+    </li>
+<li>
+      <a href="#roll-back-using-the-saved-values" class="toc-link">Roll back using the saved values</a>
+    </li>
+<li>
+      <a href="#questions-before-you-launch" class="toc-link">Questions before you launch</a>
+    </li>
+          </ol>
+        </details>
+
+        <!-- Main Prose Body -->
+        <div class="article-prose">
+          <p>You do not need to open every ad to add campaign tracking parameters. For a shared tagging format, you can use a final URL suffix at account level. If campaigns need different values, prepare campaign-level changes in Google Ads Editor and review them before posting.</p>
+<p>The important decision is where the tagging should live. Appending the same UTM string to every final URL may create duplicates if the account already adds those parameters elsewhere.</p>
+<p>This guide covers website campaign tagging. It does not replace Google Ads conversion tracking, and adding UTMs does not automatically configure GA4 or a CRM.</p>
+<h2 id="choose-the-setup-that-matches-your-account">Choose the setup that matches your account</h2>
+<div class="editorial-table-wrap"><table class="editorial-table">
+<thead>
+<tr>
+<th>Situation</th>
+<th>Suggested approach</th>
+<th>Check first</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Campaigns share one tagging format</td>
+<td>Account-level final URL suffix with supported dynamic parameters</td>
+<td>Existing URL options and campaign exceptions</td>
+</tr>
+<tr>
+<td>Campaigns need readable, distinct names</td>
+<td>Campaign-level suffixes, prepared in Editor</td>
+<td>Names match the campaigns already in the account</td>
+</tr>
+<tr>
+<td>A third-party click tracker is installed</td>
+<td>Review its required template and suffix together</td>
+<td>Who maintains the tracker and which parameters it needs</td>
+</tr>
+<tr>
+<td>You need tagged URLs for newsletters or social posts</td>
+<td>Build complete campaign URLs separately</td>
+<td>Those links are not Google Ads suffixes</td>
+</tr>
+</tbody></table></div>
+<p>Google distinguishes the landing-page URL, tracking template and final URL suffix. A suffix adds parameters to the destination, while a template can involve a tracking service. Read the account&#39;s existing settings before choosing a replacement. <a href="https://support.google.com/google-ads/answer/6076199">About tracking in Google Ads</a></p>
+<h2 id="start-with-an-inventory-and-backup">Start with an inventory and backup</h2>
+<p>Create a record of your current URL configuration before applying changes. Include the account, campaigns, ad groups, ads, keywords and sitelinks that use tracking settings. Look for UTMs already in final URLs, custom parameters, existing suffixes and third-party templates.</p>
+<p>For each planned change, record the entity, previous value, proposed value and reason. This makes rollback possible without guessing what used to be there.</p>
+<p>Do not assume a shared account setting will produce the same effective URL for every entity. Audit lower-level settings and test representative examples, including any exceptions.</p>
+<h2 id="option-1-use-a-shared-account-level-suffix">Option 1: Use a shared account-level suffix</h2>
+<p>A useful starting example is:</p>
+<div class="code-block-wrap"><pre><code class="language-text">utm_source=google&amp;utm_medium=cpc&amp;utm_campaign={campaignid}&amp;utm_id={campaignid}&amp;utm_source_platform=google_ads
+</code></pre><button class="copy-code-btn" data-copy="utm_source=google&amp;utm_medium=cpc&amp;utm_campaign={campaignid}&amp;utm_id={campaignid}&amp;utm_source_platform=google_ads" aria-label="Copy example">Copy</button></div>
+<p>This is a suffix, not a complete URL. It contains no website address, leading question mark or <code>{lpurl}</code> placeholder.</p>
+<p><code>{campaignid}</code> is a supported Google Ads ValueTrack parameter. It produces an identifier rather than a readable campaign name. Keep a campaign-ID lookup if people consuming your CRM data need names. Dynamic parameters have different availability across campaign types; check any additional token against Google&#39;s reference. <a href="https://support.google.com/google-ads/answer/6305348">ValueTrack reference</a></p>
+<p>In Google Ads, open <strong>Admin → Account settings</strong>, open the tracking settings, and place the parameter string in <strong>Final URL suffix</strong>. Check the existing value before saving. Google documents suffix setup at account and other entity levels. <a href="https://support.google.com/google-ads/answer/9054021">Add a final URL suffix</a></p>
+<p>For an illustrative campaign ID of <code>123456789</code>, a destination could resolve to:</p>
+<div class="code-block-wrap"><pre><code class="language-text">https://example.com/demo?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=123456789&amp;utm_id=123456789&amp;utm_source_platform=google_ads
+</code></pre><button class="copy-code-btn" data-copy="https://example.com/demo?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=123456789&amp;utm_id=123456789&amp;utm_source_platform=google_ads" aria-label="Copy example">Copy</button></div>
+<p>The ID is an example, not a real campaign or a measured result. An auto-tagged click can also include click identifiers; do not remove them as part of a UTM cleanup.</p>
+<h2 id="option-2-prepare-different-suffixes-for-different-campaigns">Option 2: Prepare different suffixes for different campaigns</h2>
+<p>If your reporting convention requires readable campaign names, use a planning table like this:</p>
+<div class="editorial-table-wrap"><table class="editorial-table">
+<thead>
+<tr>
+<th>Existing campaign</th>
+<th>Intended campaign value</th>
+<th>Proposed suffix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Search - Brand - UAE</td>
+<td>brand-search-uae</td>
+<td><code>utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=brand-search-uae&amp;utm_id={campaignid}&amp;utm_source_platform=google_ads</code></td>
+</tr>
+<tr>
+<td>Search - Demo - UAE</td>
+<td>demo-search-uae</td>
+<td><code>utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=demo-search-uae&amp;utm_id={campaignid}&amp;utm_source_platform=google_ads</code></td>
+</tr>
+</tbody></table></div>
+<p>These are fictional campaign names. Substitute names from your account, not new names you expect the import to create.</p>
+<p>In Google Ads Editor:</p>
+<ol>
+<li>Download current account changes and select the intended campaigns.</li>
+<li>Export the relevant existing campaign data as your backup and working starting point.</li>
+<li>Prepare the <strong>Campaign</strong> and <strong>Final URL suffix</strong> columns for the existing campaign rows. Keep identity fields required by your export or import workflow.</li>
+<li>Import the file and check column mapping and the proposed changes.</li>
+<li>Confirm the preview edits the intended campaigns, with no unexpected additions or changes to other fields.</li>
+<li>Resolve errors, review the diff and post only after a small pilot passes.</li>
+</ol>
+<p>Editor recognises a <strong>Final URL suffix</strong> column. A blank imported field normally means no change; <code>[]</code> instructs Editor to erase an existing value. Do not treat those as interchangeable when preparing a rollback. <a href="https://support.google.com/google-ads/editor/answer/57747">Editor CSV columns</a></p>
+<p>For a shared value, Editor also supports editing multiple selected campaigns together. Review what is selected before changing a field. <a href="https://support.google.com/google-ads/editor/answer/30570">Edit campaign settings in Editor</a></p>
+<h2 id="test-three-layers-before-expanding-the-rollout">Test three layers before expanding the rollout</h2>
+<p><strong>Configuration:</strong> Check one ordinary campaign and one with custom URL options. Use Google Ads&#39; available URL testing function, which checks the assembled destination. A successful destination test is not proof that GA4 received the visit. <a href="https://support.google.com/google-ads/answer/6076199">Google Ads tracking tests</a></p>
+<p><strong>Landing page:</strong> Inspect the resulting URL and its redirect chain. Confirm the intended UTMs survive, required non-UTM query parameters remain, and each tracking key appears once. Avoid repeatedly clicking your own live ads to perform QA.</p>
+<p><strong>Measurement:</strong> Separately confirm your website tag receives the intended page location. After processing, inspect the appropriate campaign dimensions in GA4 and any fields collected by your CRM. Manual URL testing confirms collection behaviour; it cannot simulate every part of a genuine auto-tagged ad click.</p>
+<h2 id="keep-auto-tagging-and-manual-campaign-values-separate-in-your-review">Keep auto-tagging and manual campaign values separate in your review</h2>
+<p>With Google Ads and GA4 integrated, auto-tagging supplies advertising dimensions. GA4 can use auto-tagged information for its cross-channel traffic classification while retaining supported manual fields. Do not assume a manually supplied campaign string must replace the Google Ads campaign name everywhere. <a href="https://support.google.com/analytics/answer/11242870">GA4 manual and automatic tagging</a></p>
+<h2 id="roll-back-using-the-saved-values">Roll back using the saved values</h2>
+<p>If the pilot produces incorrect destinations or campaign values, restore the settings for the entities you changed. Re-test the destination and collection after restoration. A configuration rollback does not rewrite already collected analytics data.</p>
+<p>Use the <a href="https://utmcraft.com/utm-builder/google-ads/">Google Ads UTM builder</a> to prepare candidate parameters. For the broader setup, read the <a href="https://utmcraft.com/google-ads-utm-guide/">Google Ads UTM tracking guide</a>. Always distinguish a full generated URL from the parameter string required by a suffix field.</p>
+<h2 id="questions-before-you-launch">Questions before you launch</h2>
+<p><strong>Should I add <code>{keyword}</code> to every campaign?</strong></p>
+<p>Only when it serves a reporting purpose and is supported for your traffic. Keyword availability is not universal, and a ValueTrack keyword is not a promise of the user&#39;s exact search query.</p>
+<p><strong>Can I use the same UTMs in the final URL and suffix?</strong></p>
+<p>Avoid defining the same keys in multiple places. Inspect the assembled URL rather than relying on a presumed precedence rule.</p>
+<p><strong>Does adding a suffix activate conversion tracking?</strong></p>
+<p>No. Conversion measurement requires its own configuration and validation.</p>
+
+
+
+    <section class="article-references" id="article-sources">
+      <h3>References</h3>
+      <ul class="references-list">
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/google-ads/answer/6076199" target="_blank" rel="noopener">Google Ads tracking tests</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/google-ads/answer/6305348" target="_blank" rel="noopener">ValueTrack reference</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/google-ads/answer/9054021" target="_blank" rel="noopener">Add a final URL suffix</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/google-ads/editor/answer/57747" target="_blank" rel="noopener">Editor CSV columns</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/google-ads/editor/answer/30570" target="_blank" rel="noopener">Edit campaign settings in Editor</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/11242870" target="_blank" rel="noopener">GA4 manual and automatic tagging</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+      </ul>
+    </section>
+
+
+          <!-- Author Box -->
+          <div class="article-author-card">
+            <div class="author-avatar" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="author-info">
+              <h4>Dinesh Jeengar</h4>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
+              <nav class="author-social-links" aria-label="Author links">
+    <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
+    </a>
+
+    <a class="author-social-link" href="https://www.linkedin.com/in/dinesh-jeengar/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg><span>LinkedIn</span>
+    </a>
+
+    <a class="author-social-link" href="https://www.instagram.com/dinesshjngr/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span>
+    </a>
+  </nav>
+            </div>
+          </div>
+        </div>
+
+<aside class="article-tool-cta" aria-label="Related tool">
+      <div class="article-tool-cta-inner">
+        <div class="article-tool-cta-content">
+          <p class="article-tool-cta-label">Related tool</p>
+          <h3 class="article-tool-cta-title">Prepare Google Ads campaign parameters</h3>
+          <p class="article-tool-cta-desc">Prepare or review the URL, then verify the relevant platform settings and measurement separately.</p>
+        </div>
+        <div class="article-tool-cta-action">
+          <a href="/utm-builder/google-ads/" class="article-tool-cta-btn">
+            <span>Open tool</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+        <!-- Related Guides Grid -->
+        <section class="related-articles-section">
+          <h3>Related Articles &amp; Guides</h3>
+          <div class="related-articles-grid">
+
+    <a href="/google-ads-utm-guide/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/google-ads-utm-guide.webp" alt="Architectural diagram of Google Ads ValueTrack parameters populating UTM tracking templates across campaigns" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Paid Search</span>
+          <span class="post-card-readtime">13 min read</span>
+        </div>
+        <h4 class="post-card-title">Google Ads UTM Tracking Guide: ValueTrack, Tracking Templates & GA4 Attribution</h4>
+        <p class="post-card-excerpt">The complete technical guide to Google Ads UTM tracking. Configure account-level tracking templates, ValueTrack parameters, and GA4 auto-tagging without conflicts.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published February 1, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/google-ads-tracking-templates/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/google-ads-tracking-templates.webp" alt="UI walkthrough showing where to configure account-level tracking templates and URL options in Google Ads" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Paid Search</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h4 class="post-card-title">Google Ads Tracking Template Setup: Custom Parameters & Parallel Tracking</h4>
+        <p class="post-card-excerpt">Configure Google Ads tracking templates across account levels, define custom parameters, and meet parallel tracking requirements with a tested setup workflow.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published March 5, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/google-ads-auto-tagging-vs-utms/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/google-ads-auto-tagging-vs-utms.webp" alt="Comparison graphic showing how GCLID and UTM parameters flow into GA4 and third-party CRMs" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Paid Search</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h4 class="post-card-title">Google Ads Auto-Tagging vs UTMs: When to Use GCLID, UTMs, or Both</h4>
+        <p class="post-card-excerpt">Compare Google Ads auto-tagging and UTMs. Learn when to use both, what each provides and how to keep readable campaign values in your CRM.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published February 14, 2026</span>
+        </div>
+      </div>
+    </a>
+          </div>
+        </section>
+      </article>
+
+      <!-- Desktop Sticky Table of Contents Sidebar -->
+      <aside class="blog-sidebar">
+        <div class="toc-card">
+          <div class="toc-heading">Table of Contents</div>
+          <ul class="toc-list">
+            <li>
+      <a href="#choose-the-setup-that-matches-your-account" class="toc-link">Choose the setup that matches your account</a>
+    </li>
+<li>
+      <a href="#start-with-an-inventory-and-backup" class="toc-link">Start with an inventory and backup</a>
+    </li>
+<li>
+      <a href="#option-1-use-a-shared-account-level-suffix" class="toc-link">Option 1: Use a shared account-level suffix</a>
+    </li>
+<li>
+      <a href="#option-2-prepare-different-suffixes-for-different-campaigns" class="toc-link">Option 2: Prepare different suffixes for different campaigns</a>
+    </li>
+<li>
+      <a href="#test-three-layers-before-expanding-the-rollout" class="toc-link">Test three layers before expanding the rollout</a>
+    </li>
+<li>
+      <a href="#keep-auto-tagging-and-manual-campaign-values-separate-in-your-review" class="toc-link">Keep auto-tagging and manual campaign values separate in your review</a>
+    </li>
+<li>
+      <a href="#roll-back-using-the-saved-values" class="toc-link">Roll back using the saved values</a>
+    </li>
+<li>
+      <a href="#questions-before-you-launch" class="toc-link">Questions before you launch</a>
+    </li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+              <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+              <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+            </a>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Core Builders</span>
+            <ul class="footer-links">
+              <li><a href="/">UTM Tracking Toolkit</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+              <li><a href="/#campaign-history" data-switch-tab="tab-history">Campaign History</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Platform Builders</span>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
+            <ul class="footer-links">
+              <li><a href="/blog/">All Knowledge Guides</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Company &amp; Trust</span>
+            <ul class="footer-links">
+              <li><a href="/about/">About Us</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/version-history.html">Version History</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by Dinesh Jeengar</div>
+          <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    <button class="back-to-top" type="button" aria-label="Back to top" aria-hidden="true" tabindex="-1">
+      <span class="back-to-top__arrow" aria-hidden="true">↑</span>
+      <span class="back-to-top__text" aria-hidden="true">Back to Top</span>
+    </button>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/blog.js"></script>
+</body>
+</html>

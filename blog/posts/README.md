@@ -1,6 +1,6 @@
 # UTMCraft Blog Articles Directory
 
-All 54 active production guides are organized in this directory as individual HTML files.
+All 57 active production guides are organized in this directory as individual HTML files.
 
 ## URL Architecture & Routing Governance
 
@@ -24,6 +24,7 @@ Both the Vite development server and the production build automatically route re
 | UTM Parameters | Supporting | What Is utm_source? Naming Standards, Taxonomy & Common Mistakes | `utm-source-guide.html` | [/utm-source-guide/](https://utmcraft.com/utm-source-guide/) |
 | UTM Parameters | Supporting | What Is utm_medium? GA4 Default Channel Grouping Rules & Standards | `utm-medium-guide.html` | [/utm-medium-guide/](https://utmcraft.com/utm-medium-guide/) |
 | UTM Parameters | Supporting | What Is utm_campaign? Campaign Naming Frameworks, IDs & Taxonomy | `utm-campaign-guide.html` | [/utm-campaign-guide/](https://utmcraft.com/utm-campaign-guide/) |
+| UTM Parameters | Supporting | How to Find utm_content and utm_term in GA4 Reports | `how-to-find-utm-content-and-utm-term-in-ga4.html` | [/how-to-find-utm-content-and-utm-term-in-ga4/](https://utmcraft.com/how-to-find-utm-content-and-utm-term-in-ga4/) |
 | GA4 Attribution & Troubleshooting | **Pillar** | GA4 UTM Tracking Troubleshooting Guide: Root Causes, Debugging & Solutions | `ga4-utm-troubleshooting-guide.html` | [/ga4-utm-troubleshooting-guide/](https://utmcraft.com/ga4-utm-troubleshooting-guide/) |
 | GA4 Attribution & Troubleshooting | Supporting | Why UTMs Don't Appear in GA4: 9 Causes and Step-by-Step Fixes | `ga4-utms-not-showing.html` | [/ga4-utms-not-showing/](https://utmcraft.com/ga4-utms-not-showing/) |
 | GA4 Attribution & Troubleshooting | Supporting | Why Campaign Traffic Shows as Direct in GA4 (and How to Fix It) | `ga4-direct-traffic-troubleshooting.html` | [/ga4-direct-traffic-troubleshooting/](https://utmcraft.com/ga4-direct-traffic-troubleshooting/) |
@@ -36,6 +37,7 @@ Both the Vite development server and the production build automatically route re
 | Google Ads Tracking | Supporting | Google Ads Auto-Tagging vs UTMs: When to Use GCLID, UTMs, or Both | `google-ads-auto-tagging-vs-utms.html` | [/google-ads-auto-tagging-vs-utms/](https://utmcraft.com/google-ads-auto-tagging-vs-utms/) |
 | Google Ads Tracking | Supporting | GCLID vs UTM Parameters: Safari Privacy & Offline Conversion Tracking | `gclid-vs-utms.html` | [/gclid-vs-utms/](https://utmcraft.com/gclid-vs-utms/) |
 | Google Ads Tracking | Supporting | Google Ads Tracking Template Setup: Custom Parameters & Parallel Tracking | `google-ads-tracking-templates.html` | [/google-ads-tracking-templates/](https://utmcraft.com/google-ads-tracking-templates/) |
+| Google Ads Tracking | Supporting | How to Bulk Add UTM Parameters to Google Ads | `how-to-bulk-add-utm-parameters-to-google-ads.html` | [/how-to-bulk-add-utm-parameters-to-google-ads/](https://utmcraft.com/how-to-bulk-add-utm-parameters-to-google-ads/) |
 | Meta Ads Tracking | **Pillar** | Meta Ads UTM Tracking Guide: Dynamic Parameters, Attribution Discrepancies & Setup | `meta-ads-utm-guide.html` | [/meta-ads-utm-guide/](https://utmcraft.com/meta-ads-utm-guide/) |
 | Meta Ads Tracking | Supporting | Meta Dynamic Parameters Not Working? Fix Raw Tokens & Syntax | `meta-dynamic-url-parameters.html` | [/meta-dynamic-url-parameters/](https://utmcraft.com/meta-dynamic-url-parameters/) |
 | LinkedIn Ads Tracking | **Pillar** | LinkedIn Ads UTM Tracking Guide: Dynamic Tokens, B2B Attribution & Campaign Setup | `linkedin-ads-utm-guide.html` | [/linkedin-ads-utm-guide/](https://utmcraft.com/linkedin-ads-utm-guide/) |
@@ -51,6 +53,7 @@ Both the Vite development server and the production build automatically route re
 | UTM Operations, Automation & QA | Supporting | Bulk UTM Creation Workflow: Generating Hundreds of Tagged Links Without Errors | `bulk-utm-workflow.html` | [/bulk-utm-workflow/](https://utmcraft.com/bulk-utm-workflow/) |
 | UTM Operations, Automation & QA | Supporting | First-Touch vs Last-Touch UTM Attribution: Capture Models, Cookies & CRM Sync | `first-touch-vs-last-touch-utm.html` | [/first-touch-vs-last-touch-utm/](https://utmcraft.com/first-touch-vs-last-touch-utm/) |
 | UTM Operations, Automation & QA | Supporting | How to Store UTM Parameters in CRM Hidden Fields (Salesforce, HubSpot & Forms) | `storing-utm-parameters-in-crm.html` | [/storing-utm-parameters-in-crm/](https://utmcraft.com/storing-utm-parameters-in-crm/) |
+| UTM Operations, Automation & QA | Supporting | Duplicate UTM Parameters: How to Find and Fix Them | `duplicate-utm-parameters.html` | [/duplicate-utm-parameters/](https://utmcraft.com/duplicate-utm-parameters/) |
 | UTM Mistakes & Tracking Audits | **Pillar** | 15 UTM Tracking Mistakes That Ruin Your GA4 Data (and How to Fix Them) | `utm-tracking-mistakes.html` | [/utm-tracking-mistakes/](https://utmcraft.com/utm-tracking-mistakes/) |
 | UTM Mistakes & Tracking Audits | Supporting | 7 UTM Naming Mistakes Marketing Teams Keep Making | `utm-naming-mistakes.html` | [/utm-naming-mistakes/](https://utmcraft.com/utm-naming-mistakes/) |
 | UTM Mistakes & Tracking Audits | Supporting | 5 utm_source Mistakes That Break Attribution in GA4 | `utm-source-mistakes.html` | [/utm-source-mistakes/](https://utmcraft.com/utm-source-mistakes/) |

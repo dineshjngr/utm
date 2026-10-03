@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script type="module" src="/src/theme.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duplicate UTM Parameters: Find and Fix Conflicts | UTMCraft</title>
+  <meta name="description" content="Spot repeated UTM keys, choose the intended campaign values, and rebuild clean links without losing other query parameters or URL fragments.">
+  <meta name="keywords" content="duplicate utm parameters, ">
+  <link rel="canonical" href="https://utmcraft.com/duplicate-utm-parameters/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utmcraft.com/duplicate-utm-parameters/">
+  <meta property="og:title" content="Duplicate UTM Parameters: Find and Fix Conflicts | UTMCraft">
+  <meta property="og:description" content="Spot repeated UTM keys, choose the intended campaign values, and rebuild clean links without losing other query parameters or URL fragments.">
+  <meta property="og:image" content="https://utmcraft.com/blog/images/duplicate-utm-parameters.webp">
+  <meta property="og:image:alt" content="Illustration of a URL containing conflicting utm_source parameters">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="article:published_time" content="2026-10-03">
+  <meta property="article:modified_time" content="2026-10-03">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utmcraft.com/duplicate-utm-parameters/">
+  <meta name="twitter:title" content="Duplicate UTM Parameters: Find and Fix Conflicts | UTMCraft">
+  <meta name="twitter:description" content="Spot repeated UTM keys, choose the intended campaign values, and rebuild clean links without losing other query parameters or URL fragments.">
+  <meta name="twitter:image" content="https://utmcraft.com/blog/images/duplicate-utm-parameters.webp">
+  <meta name="twitter:image:alt" content="Illustration of a URL containing conflicting utm_source parameters">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="stylesheet" href="/src/blog.css">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://utmcraft.com/duplicate-utm-parameters/#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://utmcraft.com/duplicate-utm-parameters/"
+      },
+      "headline": "Duplicate UTM Parameters: How to Find and Fix Them",
+      "description": "Spot repeated UTM keys, choose the intended campaign values, and rebuild clean links without losing other query parameters or URL fragments.",
+      "image": "https://utmcraft.com/blog/images/duplicate-utm-parameters.webp",
+      "datePublished": "2026-10-03",
+      "dateModified": "2026-10-03",
+      "citation": [
+        {
+          "@type": "CreativeWork",
+          "name": "URL hash reference",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/URL/hash"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Google Ads URL configuration",
+          "url": "https://support.google.com/google-ads/answer/6076199"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "get() documentation",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/get"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "getAll() documentation",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/getAll"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "set() documentation",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/set"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "GA4 traffic-source dimensions",
+          "url": "https://support.google.com/analytics/answer/11242870"
+        }
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "Dinesh Jeengar",
+        "jobTitle": "Founder, UTMCraft",
+        "url": "https://utmcraft.com/about/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://utmcraft.com/#organization",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://utmcraft.com/utmcraft-logo-light.png"
+        }
+      },
+      "mainEntityOfPage": "https://utmcraft.com/duplicate-utm-parameters/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://utmcraft.com/duplicate-utm-parameters/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://utmcraft.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://utmcraft.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "UTM Operations, Automation & QA",
+          "item": "https://utmcraft.com/blog/utm-operations/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Duplicate UTM Parameters: How to Find and Fix Them",
+          "item": "https://utmcraft.com/duplicate-utm-parameters/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://utmcraft.com/#organization",
+      "name": "UTMCraft",
+      "url": "https://utmcraft.com/",
+      "logo": "https://utmcraft.com/utmcraft-logo-light.png",
+      "email": "contact@utmcraft.com"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="blog-post">
+  <!-- Reading Progress Indicator -->
+  <div id="reading-progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+
+      <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-controls="builder-nav-options">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="builder-nav-options" class="nav-dropdown-menu">
+            <a href="/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-controls="guide-nav-options">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="guide-nav-options" class="nav-dropdown-menu">
+            <a href="/blog/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
+            </a>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>New Link</span>
+        </a>
+      </div>
+      <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+    <script type="module" src="/src/site.js"></script>
+  </header>
+
+  <div class="app-container">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/">Guides</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/utm-operations/">UTM Operations, Automation & QA</a></li>
+        <li class="separator">/</li>
+        <li class="current" aria-current="page">Duplicate UTM Parameters: How to Find and Fix Them</li>
+      </ol>
+    </nav>
+
+    <!-- Main Article Layout -->
+    <main id="main-content" class="blog-article-layout">
+      <!-- Article Content Column -->
+      <article class="article-main-column">
+        <header class="article-header">
+          <a href="/blog/utm-operations/" class="article-category-badge">
+            Operations
+          </a>
+
+          <h1 class="article-title">Duplicate UTM Parameters: How to Find and Fix Them</h1>
+          <p class="article-description">Spot repeated UTM keys, choose the intended campaign values, and rebuild clean links without losing other query parameters or URL fragments.</p>
+          <div class="article-meta-top">
+            <span class="article-date">Updated October 2026</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-reading-time">5 min read</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-author-byline">Written by Dinesh Jeengar</span>
+          </div>
+
+          <!-- Featured Hero Image -->
+          <div class="article-featured-image">
+            <img src="/blog/images/duplicate-utm-parameters.webp" alt="Illustration of a URL containing conflicting utm_source parameters" width="1200" height="630" fetchpriority="high">
+          </div>
+          <p class="article-banner-caption">Illustrative banner, not an actual GA4 report. Example figures and highlighted rows do not establish how GA4 processes duplicate URL parameters.</p>
+        </header>
+
+        <!-- Mobile Table of Contents Accordion -->
+        <details class="mobile-toc">
+          <summary>Table of Contents</summary>
+          <ol>
+            <li>
+      <a href="#distinguish-duplicate-keys-from-repeated-values" class="toc-link">Distinguish duplicate keys from repeated values</a>
+    </li>
+<li>
+      <a href="#how-duplicates-enter-a-campaign-workflow" class="toc-link">How duplicates enter a campaign workflow</a>
+    </li>
+<li>
+      <a href="#check-all-occurrences-not-just-one-displayed-value" class="toc-link">Check all occurrences, not just one displayed value</a>
+    </li>
+<li>
+      <a href="#decide-which-values-belong-in-the-final-link" class="toc-link">Decide which values belong in the final link</a>
+    </li>
+<li>
+      <a href="#rebuild-the-query-without-deleting-useful-parameters" class="toc-link">Rebuild the query without deleting useful parameters</a>
+    </li>
+<li>
+      <a href="#fix-the-origin-of-the-problem" class="toc-link">Fix the origin of the problem</a>
+    </li>
+<li>
+      <a href="#verify-the-complete-journey" class="toc-link">Verify the complete journey</a>
+    </li>
+<li>
+      <a href="#frequently-asked-questions" class="toc-link">Frequently asked questions</a>
+    </li>
+          </ol>
+        </details>
+
+        <!-- Main Prose Body -->
+        <div class="article-prose">
+          <p>A campaign URL has duplicate UTM parameters when the same tracking key appears more than once in its query string:</p>
+<div class="code-block-wrap"><pre><code class="language-text">https://example.com/demo?utm_source=newsletter&amp;utm_source=facebook&amp;utm_medium=email&amp;utm_campaign=demo-launch
+</code></pre><button class="copy-code-btn" data-copy="https://example.com/demo?utm_source=newsletter&amp;utm_source=facebook&amp;utm_medium=email&amp;utm_campaign=demo-launch" aria-label="Copy example">Copy</button></div>
+<p>Here, <code>utm_source</code> has two conflicting values. The URL can still open successfully, but opening the page does not establish which value your analytics or CRM will use.</p>
+<p>The safest fix is to identify the intended source, keep one value for each tracking key, and stop the system that added the duplicate. There is no reliable universal rule that the first or last occurrence wins across every consumer.</p>
+<h2 id="distinguish-duplicate-keys-from-repeated-values">Distinguish duplicate keys from repeated values</h2>
+<div class="editorial-table-wrap"><table class="editorial-table">
+<thead>
+<tr>
+<th>Example</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>utm_source=email&amp;utm_source=facebook</code></td>
+<td>One key appears twice with conflicting values</td>
+</tr>
+<tr>
+<td><code>utm_source=email&amp;utm_source=email</code></td>
+<td>One key appears twice with identical values; still redundant</td>
+</tr>
+<tr>
+<td><code>utm_campaign=launch&amp;utm_content=launch</code></td>
+<td>Two different keys share a value; not a duplicate key</td>
+</tr>
+<tr>
+<td><code>utm_source=email&amp;UTM_SOURCE=facebook</code></td>
+<td>Different spellings; investigate inconsistent keys rather than assuming normalisation</td>
+</tr>
+<tr>
+<td><code>?utm_source=email#utm_source=facebook</code></td>
+<td>A query value and text in the fragment; not two query occurrences</td>
+</tr>
+</tbody></table></div>
+<p>The fragment is the portion after <code>#</code>. It is separate from the URL&#39;s query string, so inspecting text alone can misidentify a duplicate. <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/hash">URL hash reference</a></p>
+<h2 id="how-duplicates-enter-a-campaign-workflow">How duplicates enter a campaign workflow</h2>
+<p>Common places to inspect include:</p>
+<ul>
+<li>A marketer pastes an already tagged URL into a builder that appends new tags.</li>
+<li>An email platform adds its own campaign tags to a link containing manual tags.</li>
+<li>A Google Ads final URL already includes keys also supplied by its suffix.</li>
+<li>A redirect or landing-page script appends parameters without checking for existing values.</li>
+<li>Two teams each believe they own the tagging step.</li>
+</ul>
+<p>These are diagnostic possibilities, not proof of what happened to your link. Record the URL before and after each system to locate the actual change.</p>
+<p>For Google Ads, review the destination, suffix and any tracking template together. <a href="https://support.google.com/google-ads/answer/6076199">Google Ads URL configuration</a></p>
+<h2 id="check-all-occurrences-not-just-one-displayed-value">Check all occurrences, not just one displayed value</h2>
+<p>A parser that returns one value can hide a duplicate. In the browser&#39;s URL API, <code>get()</code> returns the first matching value; <code>getAll()</code> returns every value for the requested key. That tells you how these APIs behave, not how GA4 or a third-party CRM necessarily processes a duplicate. <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/get">get() documentation</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/getAll">getAll() documentation</a></p>
+<p>You can inspect a link locally with this JavaScript example. Replace the illustrative URL with a link you are authorised to inspect:</p>
+<div class="code-block-wrap"><pre><code class="language-javascript">const url = new URL(
+  &#39;https://example.com/demo?utm_source=email&amp;utm_source=facebook&amp;utm_campaign=launch&#39;
+);
+
+const keys = [...new Set(url.searchParams.keys())];
+const duplicates = keys
+  .filter(key =&gt; key.startsWith(&#39;utm_&#39;))
+  .map(key =&gt; ({ key, values: url.searchParams.getAll(key) }))
+  .filter(entry =&gt; entry.values.length &gt; 1);
+
+console.table(duplicates);
+</code></pre><button class="copy-code-btn" data-copy="const url = new URL(
+  'https://example.com/demo?utm_source=email&amp;utm_source=facebook&amp;utm_campaign=launch'
+);
+
+const keys = [...new Set(url.searchParams.keys())];
+const duplicates = keys
+  .filter(key =&gt; key.startsWith('utm_'))
+  .map(key =&gt; ({ key, values: url.searchParams.getAll(key) }))
+  .filter(entry =&gt; entry.values.length &gt; 1);
+
+console.table(duplicates);" aria-label="Copy example">Copy</button></div>
+<p>This snippet reads the URL string without visiting the destination or changing the website. It detects exact lowercase <code>utm_</code> keys. It does not consolidate mixed-case spellings, inspect redirects or validate analytics collection. Review inconsistent spellings separately.</p>
+<h2 id="decide-which-values-belong-in-the-final-link">Decide which values belong in the final link</h2>
+<p>Do not choose a source based only on its position in the URL. Ask where the link will actually be distributed.</p>
+<p>For a link in a newsletter, an approved convention could be:</p>
+<div class="editorial-table-wrap"><table class="editorial-table">
+<thead>
+<tr>
+<th>Field</th>
+<th>Intended value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Source</td>
+<td><code>newsletter</code></td>
+</tr>
+<tr>
+<td>Medium</td>
+<td><code>email</code></td>
+</tr>
+<tr>
+<td>Campaign</td>
+<td><code>demo-launch</code></td>
+</tr>
+<tr>
+<td>Content</td>
+<td><code>hero-button</code></td>
+</tr>
+</tbody></table></div>
+<p>For a paid social advertisement, the intended values would be different. The purpose is one coherent campaign description, not mechanically deleting whichever parameter comes second.</p>
+<p>Get the campaign owner to confirm ambiguous values. Preserve a copy of the original link and document the chosen convention for future sends.</p>
+<h2 id="rebuild-the-query-without-deleting-useful-parameters">Rebuild the query without deleting useful parameters</h2>
+<p>Suppose your original link is:</p>
+<div class="code-block-wrap"><pre><code class="language-text">https://example.com/pricing?plan=pro&amp;utm_source=newsletter&amp;utm_source=facebook&amp;utm_medium=email&amp;utm_campaign=demo-launch#compare
+</code></pre><button class="copy-code-btn" data-copy="https://example.com/pricing?plan=pro&amp;utm_source=newsletter&amp;utm_source=facebook&amp;utm_medium=email&amp;utm_campaign=demo-launch#compare" aria-label="Copy example">Copy</button></div>
+<p>For the newsletter example, the corrected version is:</p>
+<div class="code-block-wrap"><pre><code class="language-text">https://example.com/pricing?plan=pro&amp;utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=demo-launch&amp;utm_content=hero-button#compare
+</code></pre><button class="copy-code-btn" data-copy="https://example.com/pricing?plan=pro&amp;utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=demo-launch&amp;utm_content=hero-button#compare" aria-label="Copy example">Copy</button></div>
+<p>The <code>plan=pro</code> parameter and <code>#compare</code> fragment remain. Do not erase unrelated query parameters simply because the URL contains a tracking conflict.</p>
+<p>For exact, consistently spelled keys, JavaScript&#39;s <code>set()</code> replaces the value and removes other occurrences of that key:</p>
+<div class="code-block-wrap"><pre><code class="language-javascript">const url = new URL(
+  &#39;https://example.com/pricing?plan=pro&amp;utm_source=newsletter&amp;utm_source=facebook&amp;utm_medium=email&amp;utm_campaign=demo-launch#compare&#39;
+);
+
+const approved = {
+  utm_source: &#39;newsletter&#39;,
+  utm_medium: &#39;email&#39;,
+  utm_campaign: &#39;demo-launch&#39;,
+  utm_content: &#39;hero-button&#39;
+};
+
+for (const [key, value] of Object.entries(approved)) {
+  url.searchParams.set(key, value);
+}
+
+console.log(url.href);
+</code></pre><button class="copy-code-btn" data-copy="const url = new URL(
+  'https://example.com/pricing?plan=pro&amp;utm_source=newsletter&amp;utm_source=facebook&amp;utm_medium=email&amp;utm_campaign=demo-launch#compare'
+);
+
+const approved = {
+  utm_source: 'newsletter',
+  utm_medium: 'email',
+  utm_campaign: 'demo-launch',
+  utm_content: 'hero-button'
+};
+
+for (const [key, value] of Object.entries(approved)) {
+  url.searchParams.set(key, value);
+}
+
+console.log(url.href);" aria-label="Copy example">Copy</button></div>
+<p>This cleans the keys explicitly listed in <code>approved</code>. It is not a general deletion of every tracking parameter. <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/set">set() documentation</a></p>
+<p>If you rebuild with <a href="https://utmcraft.com/">UTMCraft</a>, review the option to strip existing UTMs before entering the approved values. Inspect the generated URL afterwards. Removing old UTM fields may also remove optional campaign information you intended to keep, so re-enter those deliberately.</p>
+<h2 id="fix-the-origin-of-the-problem">Fix the origin of the problem</h2>
+<p>A corrected link is temporary if an email platform, ad setting or redirect adds the conflicting tags again. Assign one owner to each tracking field and document where those values are applied.</p>
+<p>For example, if the email platform owns newsletter tagging, decide whether the pasted destination should be untagged. If the marketing team supplies complete tagged links, check the platform&#39;s automatic-tagging configuration instead. Validate this using the actual platform rather than assuming all services behave the same way.</p>
+<h2 id="verify-the-complete-journey">Verify the complete journey</h2>
+<ol>
+<li>Inspect the rebuilt URL: one occurrence of each intended tracking key.</li>
+<li>Confirm required non-UTM query values and the destination fragment still work.</li>
+<li>Follow the authorised test journey and record any redirects.</li>
+<li>Inspect the final landing URL before collection.</li>
+<li>Check the page location received by the analytics tag and any campaign fields stored by your form or CRM.</li>
+<li>Review the relevant GA4 dimensions after processing.</li>
+</ol>
+<p>UTM values map to manual campaign dimensions in GA4. A clean URL does not prove that the tag ran, consent allowed collection, or the selected report has the right scope. <a href="https://support.google.com/analytics/answer/11242870">GA4 traffic-source dimensions</a></p>
+<p>Use the <a href="https://utmcraft.com/utm-checker/">UTM checker</a> for the checks it explicitly reports, and follow the <a href="https://utmcraft.com/how-to-test-utms/">UTM testing guide</a> for measurement QA. Do not rely on a single extracted value or quality score as proof that duplicates are absent.</p>
+<h2 id="frequently-asked-questions">Frequently asked questions</h2>
+<p><strong>Will GA4 always take the first duplicate value?</strong></p>
+<p>This guide does not make that claim. Browser API behaviour is not evidence of every analytics implementation&#39;s handling. Remove the ambiguity before launch.</p>
+<p><strong>Can I fix historical reporting by changing the URL today?</strong></p>
+<p>Changing a link controls future visits. It does not rewrite the campaign values already collected in GA4.</p>
+<p><strong>Should I delete click identifiers while cleaning UTMs?</strong></p>
+<p>No. Review click identifiers and non-UTM parameters separately with the system that requires them. Duplicate UTM repair is not a reason to remove other attribution information.</p>
+
+
+
+    <section class="article-references" id="article-sources">
+      <h3>References</h3>
+      <ul class="references-list">
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/hash" target="_blank" rel="noopener">URL hash reference</a>
+            <span class="ref-publisher">(MDN Web Docs)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/google-ads/answer/6076199" target="_blank" rel="noopener">Google Ads URL configuration</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/get" target="_blank" rel="noopener">get() documentation</a>
+            <span class="ref-publisher">(MDN Web Docs)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/getAll" target="_blank" rel="noopener">getAll() documentation</a>
+            <span class="ref-publisher">(MDN Web Docs)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/set" target="_blank" rel="noopener">set() documentation</a>
+            <span class="ref-publisher">(MDN Web Docs)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/11242870" target="_blank" rel="noopener">GA4 traffic-source dimensions</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+      </ul>
+    </section>
+
+
+          <!-- Author Box -->
+          <div class="article-author-card">
+            <div class="author-avatar" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="author-info">
+              <h4>Dinesh Jeengar</h4>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
+              <nav class="author-social-links" aria-label="Author links">
+    <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
+    </a>
+
+    <a class="author-social-link" href="https://www.linkedin.com/in/dinesh-jeengar/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg><span>LinkedIn</span>
+    </a>
+
+    <a class="author-social-link" href="https://www.instagram.com/dinesshjngr/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span>
+    </a>
+  </nav>
+            </div>
+          </div>
+        </div>
+
+<aside class="article-tool-cta" aria-label="Related tool">
+      <div class="article-tool-cta-inner">
+        <div class="article-tool-cta-content">
+          <p class="article-tool-cta-label">Related tool</p>
+          <h3 class="article-tool-cta-title">Review campaign URL fields</h3>
+          <p class="article-tool-cta-desc">Prepare or review the URL, then verify the relevant platform settings and measurement separately.</p>
+        </div>
+        <div class="article-tool-cta-action">
+          <a href="/utm-checker/" class="article-tool-cta-btn">
+            <span>Open tool</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+        <!-- Related Guides Grid -->
+        <section class="related-articles-section">
+          <h3>Related Articles &amp; Guides</h3>
+          <div class="related-articles-grid">
+
+    <a href="/how-to-test-utms/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/how-to-test-utms.webp" alt="Walkthrough illustration of testing a campaign link in GA4 DebugView and inspecting incoming event parameters" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Diagnostics</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h4 class="post-card-title">How to Test and QA UTM Parameters in GA4 DebugView and Realtime</h4>
+        <p class="post-card-excerpt">Learn how to test and verify UTM tracking in Google Analytics 4 before spending ad budget. Step-by-step guide using DebugView, Realtime, and DevTools.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published March 18, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/redirects-removing-utms/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/redirects-removing-utms.webp" alt="Technical diagram showing how an HTTP 301 redirect strips query parameters vs preserving them with QSA" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Diagnostics</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h4 class="post-card-title">Why HTTP Redirects Strip UTM Parameters (and How to Preserve Query Strings)</h4>
+        <p class="post-card-excerpt">Learn how HTTP 301 and 302 redirect rules can affect UTM parameters and campaign reporting, and how to inspect query-string handling on your server.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published March 15, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/utm-qa-checklist/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/utm-qa-checklist.webp" alt="Inspection checklist graphic depicting systematic validation gates for campaign URLs before ad spend launch" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Governance</span>
+          <span class="post-card-readtime">7 min read</span>
+        </div>
+        <h4 class="post-card-title">Pre-Launch UTM QA Checklist: 16 Steps to Prevent Broken Campaign Attribution</h4>
+        <p class="post-card-excerpt">Check campaign tracking before launch with 16 steps covering UTM values, redirects, landing pages and GA4 collection.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published February 22, 2026</span>
+        </div>
+      </div>
+    </a>
+          </div>
+        </section>
+      </article>
+
+      <!-- Desktop Sticky Table of Contents Sidebar -->
+      <aside class="blog-sidebar">
+        <div class="toc-card">
+          <div class="toc-heading">Table of Contents</div>
+          <ul class="toc-list">
+            <li>
+      <a href="#distinguish-duplicate-keys-from-repeated-values" class="toc-link">Distinguish duplicate keys from repeated values</a>
+    </li>
+<li>
+      <a href="#how-duplicates-enter-a-campaign-workflow" class="toc-link">How duplicates enter a campaign workflow</a>
+    </li>
+<li>
+      <a href="#check-all-occurrences-not-just-one-displayed-value" class="toc-link">Check all occurrences, not just one displayed value</a>
+    </li>
+<li>
+      <a href="#decide-which-values-belong-in-the-final-link" class="toc-link">Decide which values belong in the final link</a>
+    </li>
+<li>
+      <a href="#rebuild-the-query-without-deleting-useful-parameters" class="toc-link">Rebuild the query without deleting useful parameters</a>
+    </li>
+<li>
+      <a href="#fix-the-origin-of-the-problem" class="toc-link">Fix the origin of the problem</a>
+    </li>
+<li>
+      <a href="#verify-the-complete-journey" class="toc-link">Verify the complete journey</a>
+    </li>
+<li>
+      <a href="#frequently-asked-questions" class="toc-link">Frequently asked questions</a>
+    </li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+              <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+              <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+            </a>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Core Builders</span>
+            <ul class="footer-links">
+              <li><a href="/">UTM Tracking Toolkit</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+              <li><a href="/#campaign-history" data-switch-tab="tab-history">Campaign History</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Platform Builders</span>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
+            <ul class="footer-links">
+              <li><a href="/blog/">All Knowledge Guides</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Company &amp; Trust</span>
+            <ul class="footer-links">
+              <li><a href="/about/">About Us</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/version-history.html">Version History</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by Dinesh Jeengar</div>
+          <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    <button class="back-to-top" type="button" aria-label="Back to top" aria-hidden="true" tabindex="-1">
+      <span class="back-to-top__arrow" aria-hidden="true">↑</span>
+      <span class="back-to-top__text" aria-hidden="true">Back to Top</span>
+    </button>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/blog.js"></script>
+</body>
+</html>

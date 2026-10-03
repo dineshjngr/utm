@@ -15,9 +15,14 @@
   <meta property="og:title" content="UTM Campaign Tracking Toolkit | UTMCraft">
   <meta property="og:description" content="Build and validate UTM links, generate bulk campaign matrices, create QR codes, and organize GA4 campaign naming in your browser.">
   <meta property="og:url" content="https://utmcraft.com/">
-  <meta property="og:image" content="https://utmcraft.com/og-image.png">
+  <meta property="og:image" content="https://utmcraft.com/og-image.png?v=20261003">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="UTMCraft free UTM builder and campaign tracking toolkit illustration">
+  <meta name="twitter:image:alt" content="UTMCraft free UTM builder and campaign tracking toolkit illustration">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://utmcraft.com/og-image.png">
+  <meta name="twitter:image" content="https://utmcraft.com/og-image.png?v=20261003">
   <meta name="twitter:title" content="UTM Campaign Tracking Toolkit | UTMCraft">
   <meta name="twitter:description" content="Build and validate UTM links, generate bulk campaign matrices, create QR codes, and organize GA4 campaign naming in your browser.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +39,10 @@
         "@type": "WebSite",
         "@id": "https://utmcraft.com/#website",
         "name": "UTMCraft",
-        "url": "https://utmcraft.com/"
+        "url": "https://utmcraft.com/",
+        "publisher": {
+          "@id": "https://utmcraft.com/#organization"
+        }
       },
       {
         "@type": "Organization",
@@ -63,7 +71,11 @@
           "Optional URL shortening through external providers",
           "Google Analytics 4 default channel grouping guide",
           "Browser-local campaign history and presets"
-        ]
+        ],
+        "@id": "https://utmcraft.com/#application",
+        "publisher": {
+          "@id": "https://utmcraft.com/#organization"
+        }
       },
       {
         "@type": "HowTo",
@@ -89,6 +101,21 @@
             "text": "Enter your descriptive campaign identifier, then click Copy Campaign URL or generate a QR code."
           }
         ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://utmcraft.com/#webpage",
+        "url": "https://utmcraft.com/",
+        "name": "UTM Campaign Tracking Toolkit | UTMCraft",
+        "isPartOf": {
+          "@id": "https://utmcraft.com/#website"
+        },
+        "mainEntity": {
+          "@id": "https://utmcraft.com/#application"
+        },
+        "publisher": {
+          "@id": "https://utmcraft.com/#organization"
+        }
       }
     ]
   }

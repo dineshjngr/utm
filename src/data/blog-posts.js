@@ -14,6 +14,7 @@ import { utmMistakesPosts } from './posts/utm-mistakes.js';
 import { searchNewsPosts } from './posts/search-news.js';
 import { aiTrafficPosts } from './posts/ai-traffic.js';
 import { advertisingNewsPosts } from './posts/advertising-news.js';
+import { campaignWorkflowPosts } from './posts/campaign-workflows.js';
 
 // These guides were consolidated into their stronger parent pages. Keep their
 // slugs here so the redirect generator can preserve inbound links.
@@ -39,7 +40,8 @@ export const blogPosts = [
   ...utmOperationsPosts,
   ...utmMistakesPosts,
   ...searchNewsPosts,
-  ...advertisingNewsPosts
+  ...advertisingNewsPosts,
+  ...campaignWorkflowPosts
 ].filter(post => !mergedBlogPostSlugs.has(post.slug));
 
 export function getPostBySlug(slug) {

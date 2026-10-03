@@ -84,6 +84,7 @@ export function renderArticlePage(post) {
         },
         "publisher": {
           "@type": "Organization",
+          "@id": "https://utmcraft.com/#organization",
           "name": "UTMCraft",
           "url": "https://utmcraft.com/",
           "logo": {

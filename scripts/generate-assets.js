@@ -82,6 +82,20 @@ function getBespokeDiagram(post, theme) {
   const slug = post.slug;
 
   switch (slug) {
+    case 'how-to-bulk-add-utm-parameters-to-google-ads':
+    case 'duplicate-utm-parameters':
+    case 'how-to-find-utm-content-and-utm-term-in-ga4': {
+      const steps = slug === 'duplicate-utm-parameters'
+        ? [['INSPECT', 'Find every repeated key'], ['REPAIR', 'Keep one approved value'], ['VERIFY', 'Check the complete journey']]
+        : slug === 'how-to-find-utm-content-and-utm-term-in-ga4'
+          ? [['TAG', 'Define content and term'], ['REPORT', 'Choose session dimensions'], ['INTERPRET', 'Compare the right scope']]
+          : [['PLAN', 'Audit existing URL options'], ['APPLY', 'Review suffix changes'], ['TEST', 'Pilot before bulk rollout']];
+      return steps.map(([label, detail], i) => `
+        <rect x="610" y="${170 + i * 110}" width="490" height="88" rx="12" fill="#17222C" stroke="${accent}"/>
+        <text x="636" y="${203 + i * 110}" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="${accent}">${label}</text>
+        <text x="636" y="${231 + i * 110}" font-family="Inter, sans-serif" font-size="19" fill="#FFFFFF">${detail}</text>
+      `).join('');
+    }
     case 'track-ai-assistant-traffic-ga4':
       return `
         <text x="610" y="140" font-family="Inter, sans-serif" font-size="19" font-weight="700" fill="#FFFFFF">Follow the source signal</text>

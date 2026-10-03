@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script type="module" src="/src/theme.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find utm_content and utm_term in GA4 | UTMCraft</title>
+  <meta name="description" content="Find UTM content and term values using GA4 manual dimensions. Follow a session-scoped report example and troubleshoot missing campaign values.">
+  <meta name="keywords" content="utm content ga4, ">
+  <link rel="canonical" href="https://utmcraft.com/how-to-find-utm-content-and-utm-term-in-ga4/">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://utmcraft.com/how-to-find-utm-content-and-utm-term-in-ga4/">
+  <meta property="og:title" content="Find utm_content and utm_term in GA4 | UTMCraft">
+  <meta property="og:description" content="Find UTM content and term values using GA4 manual dimensions. Follow a session-scoped report example and troubleshoot missing campaign values.">
+  <meta property="og:image" content="https://utmcraft.com/blog/images/how-to-find-utm-content-and-utm-term-in-ga4.webp">
+  <meta property="og:image:alt" content="Illustration of locating UTM content and term values in GA4">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="article:published_time" content="2026-10-03">
+  <meta property="article:modified_time" content="2026-10-03">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://utmcraft.com/how-to-find-utm-content-and-utm-term-in-ga4/">
+  <meta name="twitter:title" content="Find utm_content and utm_term in GA4 | UTMCraft">
+  <meta name="twitter:description" content="Find UTM content and term values using GA4 manual dimensions. Follow a session-scoped report example and troubleshoot missing campaign values.">
+  <meta name="twitter:image" content="https://utmcraft.com/blog/images/how-to-find-utm-content-and-utm-term-in-ga4.webp">
+  <meta name="twitter:image:alt" content="Illustration of locating UTM content and term values in GA4">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <link rel="stylesheet" href="/src/blog.css">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://utmcraft.com/how-to-find-utm-content-and-utm-term-in-ga4/#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://utmcraft.com/how-to-find-utm-content-and-utm-term-in-ga4/"
+      },
+      "headline": "How to Find utm_content and utm_term in GA4 Reports",
+      "description": "Find UTM content and term values using GA4 manual dimensions. Follow a session-scoped report example and troubleshoot missing campaign values.",
+      "image": "https://utmcraft.com/blog/images/how-to-find-utm-content-and-utm-term-in-ga4.webp",
+      "datePublished": "2026-10-03",
+      "dateModified": "2026-10-03",
+      "citation": [
+        {
+          "@type": "CreativeWork",
+          "name": "GA4 dimension reference",
+          "url": "https://support.google.com/analytics/table/13948007"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Traffic-source scopes",
+          "url": "https://support.google.com/analytics/answer/11080067"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Google's guidance on personal information",
+          "url": "https://support.google.com/analytics/answer/6366371"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Traffic acquisition report",
+          "url": "https://support.google.com/analytics/answer/12923437"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Explorations overview",
+          "url": "https://support.google.com/analytics/answer/7579450"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Data retention",
+          "url": "https://support.google.com/analytics/answer/7667196"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "GA4 data freshness",
+          "url": "https://support.google.com/analytics/answer/12233314"
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Built-in campaign mappings",
+          "url": "https://support.google.com/analytics/answer/11242870"
+        }
+      ],
+      "author": {
+        "@type": "Person",
+        "name": "Dinesh Jeengar",
+        "jobTitle": "Founder, UTMCraft",
+        "url": "https://utmcraft.com/about/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://utmcraft.com/#organization",
+        "name": "UTMCraft",
+        "url": "https://utmcraft.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://utmcraft.com/utmcraft-logo-light.png"
+        }
+      },
+      "mainEntityOfPage": "https://utmcraft.com/how-to-find-utm-content-and-utm-term-in-ga4/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://utmcraft.com/how-to-find-utm-content-and-utm-term-in-ga4/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://utmcraft.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Guides",
+          "item": "https://utmcraft.com/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "UTM Parameters",
+          "item": "https://utmcraft.com/blog/utm-parameters/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "How to Find utm_content and utm_term in GA4 Reports",
+          "item": "https://utmcraft.com/how-to-find-utm-content-and-utm-term-in-ga4/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://utmcraft.com/#organization",
+      "name": "UTMCraft",
+      "url": "https://utmcraft.com/",
+      "logo": "https://utmcraft.com/utmcraft-logo-light.png",
+      "email": "contact@utmcraft.com"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="blog-post">
+  <!-- Reading Progress Indicator -->
+  <div id="reading-progress" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="brand" aria-label="UTMCraft Studio Homepage">
+        <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+        <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+      </a>
+
+      <nav id="site-navigation" class="header-nav" aria-label="Main Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle" aria-expanded="false" aria-controls="builder-nav-options">
+            <span>Campaign Builders</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="builder-nav-options" class="nav-dropdown-menu">
+            <a href="/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Tracking Toolkit</span>
+              <span class="dropdown-item-desc">Builder, checker, bulk links, QR codes and naming tools</span>
+            </a>
+            <a href="/utm-builder/google-ads/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Google Ads &amp; ValueTrack</span>
+              <span class="dropdown-item-desc">Dynamic {keyword} &amp; match type macro tags</span>
+            </a>
+            <a href="/utm-builder/facebook/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Meta / Facebook Ads</span>
+              <span class="dropdown-item-desc">Dynamic {{campaign.name}} &amp; ad set tokens</span>
+            </a>
+            <a href="/utm-builder/linkedin/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">LinkedIn Ads</span>
+              <span class="dropdown-item-desc">B2B audience targeting &amp; ABM attribution</span>
+            </a>
+            <a href="/bulk-utm-builder/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Bulk Matrix Generator</span>
+              <span class="dropdown-item-desc">Generate tagged URLs across multiple channels</span>
+            </a>
+          </div>
+        </div>
+        <a href="/bulk-utm-builder/" class="nav-header-link">Bulk Matrix</a>
+        <a href="/utm-checker/" class="nav-header-link">UTM Checker</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-header-link nav-dropdown-toggle active" aria-expanded="false" aria-controls="guide-nav-options">
+            <span>Guides</span>
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div id="guide-nav-options" class="nav-dropdown-menu">
+            <a href="/blog/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">All Measurement Guides</span>
+              <span class="dropdown-item-desc">Browse our tracking and attribution guides</span>
+            </a>
+            <a href="/utm-parameters/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">UTM Parameters Guide</span>
+              <span class="dropdown-item-desc">Guide to all 9 GA4 manual campaign parameters</span>
+            </a>
+            <a id="nav-taxonomy" href="/ga4-default-channel-grouping/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">GA4 Default Channel Grouping</span>
+              <span class="dropdown-item-desc">Strict GA4 default channel grouping rules</span>
+            </a>
+            <a href="/utm-naming-conventions/" class="nav-dropdown-item">
+              <span class="dropdown-item-title">Taxonomy &amp; Naming SOP</span>
+              <span class="dropdown-item-desc">Standard operating procedures for clean campaign data</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="btn-theme-toggle" class="btn-icon-action" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="theme-icon-sun" style="display: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+
+        <a href="/" class="btn-primary-cta" style="text-decoration: none;">
+          <span>New Link</span>
+        </a>
+      </div>
+      <button type="button" class="mobile-menu-toggle" aria-label="Open menu" aria-controls="site-navigation" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+    </div>
+    <script type="module" src="/src/site.js"></script>
+  </header>
+
+  <div class="app-container">
+    <!-- Breadcrumb -->
+    <nav class="blog-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/">Guides</a></li>
+        <li class="separator">/</li>
+        <li><a href="/blog/utm-parameters/">UTM Parameters</a></li>
+        <li class="separator">/</li>
+        <li class="current" aria-current="page">How to Find utm_content and utm_term in GA4 Reports</li>
+      </ol>
+    </nav>
+
+    <!-- Main Article Layout -->
+    <main id="main-content" class="blog-article-layout">
+      <!-- Article Content Column -->
+      <article class="article-main-column">
+        <header class="article-header">
+          <a href="/blog/utm-parameters/" class="article-category-badge">
+            Taxonomy
+          </a>
+
+          <h1 class="article-title">How to Find utm_content and utm_term in GA4 Reports</h1>
+          <p class="article-description">Find UTM content and term values using GA4 manual dimensions. Follow a session-scoped report example and troubleshoot missing campaign values.</p>
+          <div class="article-meta-top">
+            <span class="article-date">Updated October 2026</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-reading-time">6 min read</span>
+            <span class="article-meta-bullet">•</span>
+            <span class="article-author-byline">Written by Dinesh Jeengar</span>
+          </div>
+
+          <!-- Featured Hero Image -->
+          <div class="article-featured-image">
+            <img src="/blog/images/how-to-find-utm-content-and-utm-term-in-ga4.webp" alt="Illustration of locating UTM content and term values in GA4" width="1200" height="630" fetchpriority="high">
+          </div>
+          <p class="article-banner-caption">Illustrative banner, not an actual GA4 report. In GA4, use the manual campaign dimension names described below; displayed figures are examples.</p>
+        </header>
+
+        <!-- Mobile Table of Contents Accordion -->
+        <details class="mobile-toc">
+          <summary>Table of Contents</summary>
+          <ol>
+            <li>
+      <a href="#match-the-url-parameter-to-the-correct-dimension" class="toc-link">Match the URL parameter to the correct dimension</a>
+    </li>
+<li>
+      <a href="#use-a-tagged-link-that-answers-a-specific-question" class="toc-link">Use a tagged link that answers a specific question</a>
+    </li>
+<li>
+      <a href="#method-1-look-in-the-traffic-acquisition-report" class="toc-link">Method 1: Look in the Traffic acquisition report</a>
+    </li>
+<li>
+      <a href="#method-2-build-a-session-level-free-form-exploration" class="toc-link">Method 2: Build a session-level free-form exploration</a>
+    </li>
+<li>
+      <a href="#interpret-the-result-without-claiming-more-than-it-measures" class="toc-link">Interpret the result without claiming more than it measures</a>
+    </li>
+<li>
+      <a href="#why-the-values-might-be-missing" class="toc-link">Why the values might be missing</a>
+    </li>
+<li>
+      <a href="#do-these-parameters-require-custom-dimensions" class="toc-link">Do these parameters require custom dimensions?</a>
+    </li>
+<li>
+      <a href="#a-short-verification-checklist" class="toc-link">A short verification checklist</a>
+    </li>
+          </ol>
+        </details>
+
+        <!-- Main Prose Body -->
+        <div class="article-prose">
+          <p>In GA4, <code>utm_content</code> and <code>utm_term</code> appear under manual campaign dimension names rather than columns literally named after the URL parameters. For session analysis, look for <strong>Session manual ad content</strong> and <strong>Session manual term</strong>.</p>
+<p>Use these dimensions to answer questions such as which newsletter link generated sessions or which manually tagged variation sent engaged visits. They do not automatically tell you which creative caused a sale, and <code>utm_term</code> is not automatically a visitor&#39;s search query.</p>
+<h2 id="match-the-url-parameter-to-the-correct-dimension">Match the URL parameter to the correct dimension</h2>
+<div class="editorial-table-wrap"><table class="editorial-table">
+<thead>
+<tr>
+<th>URL parameter</th>
+<th>Session question</th>
+<th>First-user question</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>utm_content</code></td>
+<td>Session manual ad content</td>
+<td>First user manual ad content</td>
+</tr>
+<tr>
+<td><code>utm_term</code></td>
+<td>Session manual term</td>
+<td>First user manual term</td>
+</tr>
+</tbody></table></div>
+<p>Session dimensions describe the campaign information associated with a session. First-user dimensions describe the original acquisition information associated with a user. Google also documents event-scoped manual dimensions, so choose the scope that matches your question. <a href="https://support.google.com/analytics/table/13948007">GA4 dimension reference</a>, <a href="https://support.google.com/analytics/answer/11080067">traffic-source scopes</a></p>
+<p>For comparing links in a recent send, start with session dimensions. For understanding which tagged variation originally acquired users, consider first-user dimensions. Do not switch between those scopes without changing your interpretation.</p>
+<h2 id="use-a-tagged-link-that-answers-a-specific-question">Use a tagged link that answers a specific question</h2>
+<p>Here is an illustrative newsletter link:</p>
+<div class="code-block-wrap"><pre><code class="language-text">https://example.com/demo?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=demo-launch&amp;utm_content=hero-button
+</code></pre><button class="copy-code-btn" data-copy="https://example.com/demo?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=demo-launch&amp;utm_content=hero-button" aria-label="Copy example">Copy</button></div>
+<p>And a second link from the same newsletter:</p>
+<div class="code-block-wrap"><pre><code class="language-text">https://example.com/demo?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=demo-launch&amp;utm_content=text-link
+</code></pre><button class="copy-code-btn" data-copy="https://example.com/demo?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=demo-launch&amp;utm_content=text-link" aria-label="Copy example">Copy</button></div>
+<p>Source, medium and campaign stay consistent. Only content changes, allowing a session-level comparison between the two tagged links. These links are examples, not evidence of a real newsletter result or a controlled experiment.</p>
+<p>If you have a legitimate use for <code>utm_term</code>, supply a consistent value and document its meaning. Avoid stuffing unrelated labels into the field merely to populate a report. Do not include names, email addresses or other personal information in campaign values. <a href="https://support.google.com/analytics/answer/6366371">Google&#39;s guidance on personal information</a></p>
+<h2 id="method-1-look-in-the-traffic-acquisition-report">Method 1: Look in the Traffic acquisition report</h2>
+<p>Open <strong>Reports</strong> and find <strong>Traffic acquisition</strong>. Navigation varies with the collections published in your property; the report name is more reliable than assuming every property has the same menu path.</p>
+<p>Choose a campaign-related primary dimension, then use the <strong>+</strong> control to look for <strong>Session manual ad content</strong> or <strong>Session manual term</strong> as a secondary dimension. Search for the exact dimension name. If it is unavailable in that report&#39;s configuration, use an exploration instead. <a href="https://support.google.com/analytics/answer/12923437">Traffic acquisition report</a></p>
+<p>Filter or narrow the report to the campaign you are investigating. Comparing <code>hero-button</code> across every campaign would mix different sends and destinations. Keep the campaign and date context visible.</p>
+<h2 id="method-2-build-a-session-level-free-form-exploration">Method 2: Build a session-level free-form exploration</h2>
+<p>An exploration gives you more control over the dimensions in the table. Open <strong>Explore</strong> and create a <strong>Free form</strong> exploration. Import the dimensions and metrics you need into Variables, then add them to the table settings. <a href="https://support.google.com/analytics/answer/7579450">Explorations overview</a></p>
+<p>For the newsletter example, use this recipe:</p>
+<div class="editorial-table-wrap"><table class="editorial-table">
+<thead>
+<tr>
+<th>Setting</th>
+<th>Selection</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Date range</td>
+<td>The period containing the send and subsequent visits</td>
+</tr>
+<tr>
+<td>Dimensions</td>
+<td>Session manual campaign name; Session manual ad content; Session manual term</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>Sessions; Engaged sessions</td>
+</tr>
+<tr>
+<td>Rows</td>
+<td>Session manual campaign name; Session manual ad content</td>
+</tr>
+<tr>
+<td>Values</td>
+<td>Sessions; Engaged sessions</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Session manual campaign name exactly matches <code>demo-launch</code></td>
+</tr>
+</tbody></table></div>
+<p>You can make a second table using <strong>Session manual term</strong> in Rows if your links intentionally supplied that parameter. Prefer a small table that answers one question over adding every available acquisition dimension.</p>
+<p>If the interface rejects a dimension/metric combination, remove the incompatible selection rather than silently substituting a different scope. Explorations also depend on the data available under your property&#39;s retention settings. <a href="https://support.google.com/analytics/answer/7667196">Data retention</a></p>
+<h2 id="interpret-the-result-without-claiming-more-than-it-measures">Interpret the result without claiming more than it measures</h2>
+<p>Suppose the table shows sessions for <code>hero-button</code> and <code>text-link</code>. That establishes recorded session traffic associated with those content values in the selected report. It does not mean you have counted every link click or isolated the button&#39;s causal effect.</p>
+<p>A person may click more than once, arrive during an existing session, decline consent, or leave before collection. Your email platform and GA4 measure different parts of the journey. Use the email platform for its recorded clicks and GA4 for the website behaviour it actually collected.</p>
+<p>For a session-based comparison, inspect both sessions and engaged sessions. If you add business outcomes, define the selected key event and examine the relevant scope and attribution before making a “winning creative” claim.</p>
+<h2 id="why-the-values-might-be-missing">Why the values might be missing</h2>
+<h3 id="the-link-never-supplied-the-parameter">The link never supplied the parameter</h3>
+<p>If a URL contains source, medium and campaign but no <code>utm_content</code>, there is no content label in that link to collect. Check the exact distributed URL, not only the planning spreadsheet.</p>
+<h3 id="the-value-disappears-before-the-tag-sees-the-page">The value disappears before the tag sees the page</h3>
+<p>Follow the actual redirect journey and inspect the final landing URL. Then check the page location received by your analytics implementation. A URL in the browser address bar is useful evidence, but it is not proof of the value sent by every tag configuration.</p>
+<h3 id="you-selected-a-different-scope">You selected a different scope</h3>
+<p>A first-user content value can describe an earlier acquisition visit. It is not the same question as the content associated with the current session. Use a separate fresh-session test for each illustrative link when checking session attribution. <a href="https://support.google.com/analytics/answer/11080067">Traffic-source scopes</a></p>
+<h3 id="collection-or-processing-has-not-completed">Collection or processing has not completed</h3>
+<p>Confirm the tag runs under the applicable consent state. Allow for report processing rather than expecting an exact number of seconds. Standard reports and explorations do not all update at the same moment. <a href="https://support.google.com/analytics/answer/12233314">GA4 data freshness</a></p>
+<h3 id="you-expected-an-advertising-dimension-to-show-a-manual-tag">You expected an advertising dimension to show a manual tag</h3>
+<p>Manual values and Google Ads dimensions serve different purposes. With auto-tagging, campaign classification can use advertising information, while supported manual content and term fields remain separate dimensions. Check the field you selected before assuming the UTM value was overwritten. <a href="https://support.google.com/analytics/answer/11242870">Manual tagging and auto-tagging</a></p>
+<h2 id="do-these-parameters-require-custom-dimensions">Do these parameters require custom dimensions?</h2>
+<p>GA4 has built-in manual dimensions for these standard UTM parameters. You do not need to create a custom dimension simply to read <code>utm_content</code> as manual ad content or <code>utm_term</code> as manual term. Additional query parameters you invent are a separate collection and reporting decision. <a href="https://support.google.com/analytics/answer/11242870">Built-in campaign mappings</a></p>
+<h2 id="a-short-verification-checklist">A short verification checklist</h2>
+<ol>
+<li>Build a URL with one clear content value and the required campaign context.</li>
+<li>Inspect the complete landing journey for lost or repeated keys.</li>
+<li>Confirm collection under the test consent state.</li>
+<li>Use session dimensions for a session-based question.</li>
+<li>Select the right date range and campaign filter.</li>
+<li>Wait for processed data, then compare the report with the collected evidence.</li>
+</ol>
+<p>Build the example with the <a href="https://utmcraft.com/">UTM builder</a>, verify collection with the <a href="https://utmcraft.com/how-to-test-utms/">UTM testing guide</a>, and use the <a href="https://utmcraft.com/ga4-utm-parameters-guide/">GA4 parameters guide</a> for the broader dimension reference.</p>
+
+
+
+    <section class="article-references" id="article-sources">
+      <h3>References</h3>
+      <ul class="references-list">
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/table/13948007" target="_blank" rel="noopener">GA4 dimension reference</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/11080067" target="_blank" rel="noopener">Traffic-source scopes</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/6366371" target="_blank" rel="noopener">Google's guidance on personal information</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/12923437" target="_blank" rel="noopener">Traffic acquisition report</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/7579450" target="_blank" rel="noopener">Explorations overview</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/7667196" target="_blank" rel="noopener">Data retention</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/12233314" target="_blank" rel="noopener">GA4 data freshness</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a href="https://support.google.com/analytics/answer/11242870" target="_blank" rel="noopener">Built-in campaign mappings</a>
+            <span class="ref-publisher">(Google Help)</span>
+          </li>
+
+      </ul>
+    </section>
+
+
+          <!-- Author Box -->
+          <div class="article-author-card">
+            <div class="author-avatar" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="author-info">
+              <h4>Dinesh Jeengar</h4>
+              <div class="author-role">Founder, UTMCraft</div>
+              <p class="author-bio">Founder of UTMCraft, an independent set of browser-based campaign URL tools and measurement guides.</p>
+              <nav class="author-social-links" aria-label="Author links">
+    <a class="author-social-link" href="https://dineshjeengar.com/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Website">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg><span>Website</span>
+    </a>
+
+    <a class="author-social-link" href="https://www.linkedin.com/in/dinesh-jeengar/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg><span>LinkedIn</span>
+    </a>
+
+    <a class="author-social-link" href="https://www.instagram.com/dinesshjngr/" target="_blank" rel="me noopener noreferrer" aria-label="Dinesh Jeengar on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span>
+    </a>
+  </nav>
+            </div>
+          </div>
+        </div>
+
+<aside class="article-tool-cta" aria-label="Related tool">
+      <div class="article-tool-cta-inner">
+        <div class="article-tool-cta-content">
+          <p class="article-tool-cta-label">Related tool</p>
+          <h3 class="article-tool-cta-title">Build a tagged campaign link</h3>
+          <p class="article-tool-cta-desc">Prepare or review the URL, then verify the relevant platform settings and measurement separately.</p>
+        </div>
+        <div class="article-tool-cta-action">
+          <a href="/" class="article-tool-cta-btn">
+            <span>Open tool</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+        <!-- Related Guides Grid -->
+        <section class="related-articles-section">
+          <h3>Related Articles &amp; Guides</h3>
+          <div class="related-articles-grid">
+
+    <a href="/ga4-utm-parameters-guide/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/ga4-utm-parameters-guide.webp" alt="Technical schematic detailing the 9 UTM parameters mapping to GA4 session and event dimensions" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Taxonomy</span>
+          <span class="post-card-readtime">13 min read</span>
+        </div>
+        <h4 class="post-card-title">Complete UTM Parameters Guide for GA4: Manual Campaign Dimensions & Best Practices</h4>
+        <p class="post-card-excerpt">Find out what the nine GA4 UTM parameters do, how to format their values and which reporting limitations to check before using them.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published January 20, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/how-to-test-utms/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/how-to-test-utms.webp" alt="Walkthrough illustration of testing a campaign link in GA4 DebugView and inspecting incoming event parameters" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Diagnostics</span>
+          <span class="post-card-readtime">8 min read</span>
+        </div>
+        <h4 class="post-card-title">How to Test and QA UTM Parameters in GA4 DebugView and Realtime</h4>
+        <p class="post-card-excerpt">Learn how to test and verify UTM tracking in Google Analytics 4 before spending ad budget. Step-by-step guide using DebugView, Realtime, and DevTools.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published March 18, 2026</span>
+        </div>
+      </div>
+    </a>
+    <a href="/ga4-utms-not-showing/" class="post-card related-post-card">
+      <div class="post-card-thumb-wrap">
+        <img src="/blog/images/ga4-utms-not-showing.webp" alt="Diagnostic diagram showing 9 failure points where UTM parameters are dropped before reaching GA4" class="post-card-thumb" width="1200" height="630" loading="lazy">
+      </div>
+      <div class="post-card-content">
+        <div class="post-card-header">
+          <span class="post-card-category">Diagnostics</span>
+          <span class="post-card-readtime">9 min read</span>
+        </div>
+        <h4 class="post-card-title">Why UTMs Don't Appear in GA4: 9 Causes and Step-by-Step Fixes</h4>
+        <p class="post-card-excerpt">UTM parameters missing in Google Analytics 4? Review possible causes and steps for checking campaign data in GA4 reports.</p>
+        <div class="post-card-footer">
+          <span>Read Guide →</span>
+            <span>Published February 18, 2026</span>
+        </div>
+      </div>
+    </a>
+          </div>
+        </section>
+      </article>
+
+      <!-- Desktop Sticky Table of Contents Sidebar -->
+      <aside class="blog-sidebar">
+        <div class="toc-card">
+          <div class="toc-heading">Table of Contents</div>
+          <ul class="toc-list">
+            <li>
+      <a href="#match-the-url-parameter-to-the-correct-dimension" class="toc-link">Match the URL parameter to the correct dimension</a>
+    </li>
+<li>
+      <a href="#use-a-tagged-link-that-answers-a-specific-question" class="toc-link">Use a tagged link that answers a specific question</a>
+    </li>
+<li>
+      <a href="#method-1-look-in-the-traffic-acquisition-report" class="toc-link">Method 1: Look in the Traffic acquisition report</a>
+    </li>
+<li>
+      <a href="#method-2-build-a-session-level-free-form-exploration" class="toc-link">Method 2: Build a session-level free-form exploration</a>
+    </li>
+<li>
+      <a href="#interpret-the-result-without-claiming-more-than-it-measures" class="toc-link">Interpret the result without claiming more than it measures</a>
+    </li>
+<li>
+      <a href="#why-the-values-might-be-missing" class="toc-link">Why the values might be missing</a>
+    </li>
+<li>
+      <a href="#do-these-parameters-require-custom-dimensions" class="toc-link">Do these parameters require custom dimensions?</a>
+    </li>
+<li>
+      <a href="#a-short-verification-checklist" class="toc-link">A short verification checklist</a>
+    </li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-col-brand">
+            <a href="/" class="brand-group" style="margin-bottom: 0.25rem; text-decoration: none;">
+              <img class="brand-logo brand-logo-light" src="/utmcraft-logo-light.png" alt="UTMCraft" width="3850" height="635">
+              <img class="brand-logo brand-logo-dark" src="/utmcraft-logo-dark.png" alt="" width="3850" height="635" aria-hidden="true">
+            </a>
+            <p class="footer-desc">Build and check campaign URLs in your browser. Google Analytics measures site visits; optional shortening sends the URL to an external provider.</p>
+            <div class="footer-contact-link">Direct Support: <a href="mailto:contact@utmcraft.com">contact@utmcraft.com</a></div>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Core Builders</span>
+            <ul class="footer-links">
+              <li><a href="/">UTM Tracking Toolkit</a></li>
+              <li><a href="/campaign-url-builder/">Campaign URL Builder</a></li>
+              <li><a href="/bulk-utm-builder/">Bulk Matrix Generator</a></li>
+              <li><a href="/utm-checker/">UTM Link Checker</a></li>
+              <li><a href="/#campaign-history" data-switch-tab="tab-history">Campaign History</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Platform Builders</span>
+            <ul class="footer-links">
+              <li><a href="/utm-builder/google-ads/">Google Ads &amp; ValueTrack</a></li>
+              <li><a href="/utm-builder/facebook/">Meta &amp; Facebook Ads</a></li>
+              <li><a href="/utm-builder/linkedin/">LinkedIn Ads &amp; B2B</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Guides &amp; Taxonomy</span>
+            <ul class="footer-links">
+              <li><a href="/blog/">All Knowledge Guides</a></li>
+              <li><a href="/ga4-default-channel-grouping/">GA4 Default Channel Grouping</a></li>
+              <li><a href="/utm-parameters/">UTM Parameters Guide</a></li>
+              <li><a href="/utm-naming-conventions/">Taxonomy SOP Template</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <span class="footer-heading">Company &amp; Trust</span>
+            <ul class="footer-links">
+              <li><a href="/about/">About Us</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              <li><a href="/version-history.html">Version History</a></li>
+              <li><a href="/sitemap.xml">XML Sitemap</a></li>
+              <li><a href="https://github.com/dineshjngr/utm" target="_blank" rel="noopener">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">© 2026 UTMCraft Studio. All rights reserved.</div>
+          <div class="footer-credit">Made with ❤️ by Dinesh Jeengar</div>
+          <div class="footer-legal-links">
+            <a href="/about/">About</a>
+            <span>•</span>
+            <a href="/contact/">Contact</a>
+            <span>•</span>
+            <a href="/privacy.html">Privacy Policy</a>
+            <span>•</span>
+            <a href="/terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    <button class="back-to-top" type="button" aria-label="Back to top" aria-hidden="true" tabindex="-1">
+      <span class="back-to-top__arrow" aria-hidden="true">↑</span>
+      <span class="back-to-top__text" aria-hidden="true">Back to Top</span>
+    </button>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/blog.js"></script>
+</body>
+</html>

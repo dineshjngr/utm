@@ -38,22 +38,26 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "GA4 Default Channel Grouping Interactive Validator",
+        "name": "GA4 Channel Grouping Educational Pattern Checker",
         "url": "https://utmcraft.com/ga4-default-channel-grouping/",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "All modern browsers",
-        "description": "An interactive GA4 source and medium channel classification tool that evaluates UTM parameters against Google Analytics 4 default channel grouping rules and flags (Unassigned) traffic risks in real time.",
+        "description": "An educational source and medium pattern checker with a reference table. Results are simplified estimates, not Google’s complete classifier or live GA4 attribution.",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD"
         },
         "featureList": [
-          "Live GA4 source/medium channel grouping predictor",
-          "Interactive validation table with 30+ real-world channel patterns",
-          "Detection of inverted parameters, uppercase anomalies, and non-standard mediums",
-          "Clear recommendations to prevent (Unassigned) traffic leakage"
-        ]
+          "Educational source and medium pattern estimates",
+          "Searchable channel examples and reference table",
+          "Links to current GA4 channel definitions",
+          "Campaign builder links using entered source and medium values"
+        ],
+        "@id": "https://utmcraft.com/ga4-default-channel-grouping/#application",
+        "publisher": {
+          "@id": "https://utmcraft.com/#organization"
+        }
       },
       {
         "@type": "Article",
@@ -62,7 +66,18 @@
         "url": "https://utmcraft.com/ga4-default-channel-grouping/",
         "publisher": {
           "@type": "Organization",
-          "name": "UTMCraft Studio",
+          "name": "UTMCraft",
+          "url": "https://utmcraft.com/",
+          "@id": "https://utmcraft.com/#organization"
+        },
+        "@id": "https://utmcraft.com/ga4-default-channel-grouping/#article",
+        "mainEntityOfPage": {
+          "@id": "https://utmcraft.com/ga4-default-channel-grouping/#webpage"
+        },
+        "author": {
+          "@type": "Organization",
+          "@id": "https://utmcraft.com/#organization",
+          "name": "UTMCraft",
           "url": "https://utmcraft.com/"
         }
       },
@@ -89,6 +104,21 @@
         "name": "UTMCraft",
         "url": "https://utmcraft.com/",
         "logo": "https://utmcraft.com/utmcraft-logo-light.png"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://utmcraft.com/ga4-default-channel-grouping/#webpage",
+        "url": "https://utmcraft.com/ga4-default-channel-grouping/",
+        "name": "GA4 Default Channel Grouping Rules: The Complete Source/Medium Taxonomy Guide",
+        "isPartOf": {
+          "@id": "https://utmcraft.com/#website"
+        },
+        "mainEntity": {
+          "@id": "https://utmcraft.com/ga4-default-channel-grouping/#article"
+        },
+        "publisher": {
+          "@id": "https://utmcraft.com/#organization"
+        }
       }
     ]
   }
@@ -406,6 +436,7 @@
       <div class="workspace-title-group">
         <span class="card-category" style="color: var(--accent-text); font-weight: 700; letter-spacing: 0.06em;">GA4 ATTRIBUTION &amp; TAXONOMY REFERENCE</span>
         <h1 class="workspace-title">GA4 Default Channel Grouping: <span class="workspace-title-muted">Rules &amp; Validator</span></h1>
+        <p class="workspace-subtitle">By <a href="/about/">UTMCraft</a></p>
         <p class="workspace-subtitle">A technical reference and interactive test matrix for Google Analytics 4 source/medium rules. Prevent (Unassigned) traffic leakage, test campaign parameters, and audit channel mapping before deploying links.</p>
       </div>
 
